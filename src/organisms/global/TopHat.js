@@ -7,7 +7,7 @@ const TopHat = ({ text, url, learnMore }) => (
   <div className="header__top-hat show-at--large bg--black pad-half align--right">
     <span className="icon icon__logo">
       <a href={url}>
-        <Icon name="logo" fill="fill--white" />
+        <Icon name="logo" color="fill--white" />
       </a>
     </span>
     <p className="font--secondary--xs gray--med">

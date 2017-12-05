@@ -8,7 +8,7 @@ const Heading = ({ title, icon }) => (
   <h2 className="font--tertiary--m theme--primary-text-color pad--btm">
     {icon && (
       <div className="icon icon--s">
-        <Icon name={icon} fill="fill--gray" />
+        <Icon name={icon} color="fill--gray" />
       </div>
     )}
     {title}

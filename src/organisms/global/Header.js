@@ -8,9 +8,9 @@ import NavToggle from '../../organisms/navigation/NavToggle'
 import NavPrimary from '../../organisms/navigation/NavPrimary'
 import NavSecondary from '../../organisms/navigation/NavSecondary'
 
-const Header = ({ logo, classNames, menus }) => (
+const Header = ({ logo, className, primaryMenu, secondaryMenu }) => (
   <header
-    className={'header can-be--dark-dark ' + classNames.header}
+    className={'header can-be--dark-dark ' + className}
     role="banner"
     id="header"
   >
@@ -20,11 +20,11 @@ const Header = ({ logo, classNames, menus }) => (
       <div className="header__unify-logo-nav">
         <LogoLink {...logo} isHoriz />
         <LogoLink {...logo} />
-        <NavPrimary items={menus.primary} />
+        <NavPrimary items={primaryMenu} />
       </div>
       <div className="header__utility">
         <div className="header__utility__inner full--until-large">
-          <NavSecondary items={menus.secondary} />
+          <NavSecondary items={secondaryMenu} />
           <Search />
         </div>
       </div>
@@ -34,13 +34,15 @@ const Header = ({ logo, classNames, menus }) => (
 
 Header.propTypes = {
   logo: PropTypes.object,
-  classNames: PropTypes.object,
-  menus: PropTypes.object,
+  className: PropTypes.string,
+  primaryMenu: PropTypes.array,
+  secondaryMenu: PropTypes.array,
 }
 Header.defaultProps = {
   logo: { path: '', square: '', horizontal: '', text: '', title: '' },
-  classNames: { header: '', content: '' },
-  menus: { primary: null, secondary: null },
+  classNames: '',
+  primaryMenu: [],
+  secondaryMenu: [],
 }
 
 export default Header

@@ -34,7 +34,7 @@ const Footer = ({
           </nav>
           <div className="footer__desc">
             <span className="icon footer__logo">
-              <Icon name="logo" fill="fill--light-brown" />
+              <Icon name="logo" color="fill--light-brown" />
             </span>
             <p className="footer__desc-text brown--light font--secondary">
               {text} &bull;

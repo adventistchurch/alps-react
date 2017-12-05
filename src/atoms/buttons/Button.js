@@ -3,22 +3,20 @@ import PropTypes from 'prop-types'
 
 import Icon from '../icons/Icon'
 
-const Button = ({ text, url, icon }) => {
-  return (
-    <a href={url} className="btn theme--secondary-background-color">
-      {text}
-      {icon && (
-        <span className="dib icon--s">
-          <Icon name={icon} fill="fill--white" />
-        </span>
-      )}
-    </a>
-  )
-}
+const Button = ({ text, url, icon }) => (
+  <a href={url} className="btn theme--secondary-background-color">
+    {text}
+    {icon && (
+      <span className="dib icon--s">
+        <Icon name={icon} className="left space" color="fill--white" />
+      </span>
+    )}
+  </a>
+)
 
 Button.propTypes = {
+  url: PropTypes.string.isRequired,
   text: PropTypes.string,
-  url: PropTypes.string,
   icon: PropTypes.string,
 }
 

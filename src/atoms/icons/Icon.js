@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import WrapIf from '../../helpers/WrapIf'
+
 // Icons
 import ArrowLeftIcon from './ArrowLeft'
 import ArrowRightIcon from './ArrowRight'
@@ -32,22 +34,37 @@ const icons = {
   world: WorldIcon,
 }
 
-const Icon = ({ name, size, fill }) => {
+const iconNames = Object.keys(icons)
+
+const Icon = ({ name, size, color, className }) => {
   const Icn = icons[name]
 
-  return size ? (
-    <span className={`icon icon--${size}`}>
-      <Icn fill={fill} />
-    </span>
+  return Icn ? (
+    <WrapIf
+      condition={size}
+      Wrapper={({ children }) => (
+        <span className={`icon icon--${size}`}>{children}</span>
+      )}
+    >
+      <Icn fill={color} className={className} />
+    </WrapIf>
   ) : (
-    <Icn fill={fill} />
+    <span />
   )
 }
 
 Icon.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOf(iconNames).isRequired,
   size: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl']),
-  fill: PropTypes.string, //PropTypes.oneOf(['color']),
+  color: PropTypes.oneOf([
+    'fill--blue',
+    'fill--light-brown',
+    'fill--gray',
+    'fill--white',
+    'theme--primary-fill-color',
+    'theme--secondary-fill-color',
+  ]),
+  className: PropTypes.string,
 }
 
 Icon.defaultProps = {

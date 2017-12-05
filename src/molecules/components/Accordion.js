@@ -9,7 +9,7 @@ const AccordionItem = ({ title, description, imageSrcSet, datetime, cta }) => (
   <div className="accordion__item spacing--quarter">
     <div className="accordion__heading js-toggle-parent va--middle">
       <span className="icon icon--m accordion__arrow">
-        <Icon name="arrow-right" fill="fill--blue" />
+        <Icon name="arrow-right" color="fill--blue" />
       </span>&nbsp;
       <span className="font--secondary--m dib">{title}</span>
     </div>

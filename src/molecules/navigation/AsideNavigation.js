@@ -12,7 +12,7 @@ const AsideItem = ({ name, url, icon }) => (
     >
       {icon && (
         <span className="icon icon--s va--tbtm">
-          <Icon name={icon} fill="theme--primary-fill-color" />
+          <Icon name={icon} color="theme--primary-fill-color" />
         </span>
       )}
       {name}

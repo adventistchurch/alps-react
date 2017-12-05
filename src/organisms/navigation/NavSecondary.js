@@ -40,7 +40,7 @@ const Item = ({ label, url, icon, subpages }) => (
     >
       <If condition={icon}>
         <span className="secondary-nav__before-link">
-          <Icon name={icon} size="xs" fill="theme--secondary-fill-color" />
+          <Icon name={icon} size="xs" color="theme--secondary-fill-color" />
         </span>
       </If>
       <strong>{label}</strong>&nbsp;

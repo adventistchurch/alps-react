@@ -230,7 +230,11 @@ class App extends React.Component {
 
     return (
       <div className="content cf has-aside" role="document">
-        <Header menus={menus} logo={logo} />
+        <Header
+          primaryMenu={menus.primary}
+          secondaryMenu={menus.secondary}
+          logo={logo}
+        />
         <Microsite
           title={page.header.title}
           kicker={page.header.kicker}
