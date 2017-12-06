@@ -86,7 +86,7 @@ const MediaVideo = ({ video }) => (
   <div className="fitvid media-block__video">{video}</div>
 )
 MediaVideo.propTypes = {
-  video: PropTypes.element.isRequired,
+  video: PropTypes.node.isRequired,
 }
 
 const MediaCallToAction = ({ label, url }) => (
@@ -135,7 +135,7 @@ const MediaBlock = ({
             className={classImage}
           />
         )}
-        {video && <MediaVideo />}
+        {video && <MediaVideo video={video} />}
         <div className={`media-block__content block__content  ${classContent}`}>
           {title && (
             <MediaTitle title={title} url={url} className={classTitle} />
@@ -156,7 +156,7 @@ MediaBlock.propTypes = {
   description: PropTypes.string,
   imageSrcSet: PropTypes.object,
   imageAlt: PropTypes.string,
-  video: PropTypes.element,
+  video: PropTypes.node,
   datetime: PropTypes.string,
   cta: PropTypes.string,
   url: PropTypes.string,
