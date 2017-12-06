@@ -36,7 +36,18 @@ const icons = {
 
 const iconNames = Object.keys(icons)
 
-const Icon = ({ name, size, color, className }) => {
+const iconColors = [
+  'fill--blue',
+  'fill--light-brown',
+  'fill--gray',
+  'fill--white',
+  'theme--primary-fill-color',
+  'theme--secondary-fill-color',
+]
+
+const iconSizes = ['xs', 's', 'm', 'l', 'xl']
+
+const Icon = ({ name, size, color }) => {
   const Icn = icons[name]
 
   return Icn ? (
@@ -46,7 +57,7 @@ const Icon = ({ name, size, color, className }) => {
         <span className={`icon icon--${size}`}>{children}</span>
       )}
     >
-      <Icn fill={color} className={className} />
+      <Icn fill={color} />
     </WrapIf>
   ) : (
     <span />
@@ -55,20 +66,14 @@ const Icon = ({ name, size, color, className }) => {
 
 Icon.propTypes = {
   name: PropTypes.oneOf(iconNames).isRequired,
-  size: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl']),
-  color: PropTypes.oneOf([
-    'fill--blue',
-    'fill--light-brown',
-    'fill--gray',
-    'fill--white',
-    'theme--primary-fill-color',
-    'theme--secondary-fill-color',
-  ]),
-  className: PropTypes.string,
+  size: PropTypes.oneOf(iconSizes),
+  color: PropTypes.oneOf(iconColors),
 }
 
 Icon.defaultProps = {
   name: 'list',
 }
+
+export { iconNames, iconSizes, iconColors }
 
 export default Icon
