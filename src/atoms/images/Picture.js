@@ -24,12 +24,12 @@ const Picture = ({ image, alt, lazy }) => {
 }
 
 Picture.propTypes = {
-  image: PropTypes.object,
+  image: PropTypes.object.isRequired,
   alt: PropTypes.string,
   lazy: PropTypes.bool,
 }
 Picture.defaultProps = {
-  lazy: false,
+  image: { default: '' },
 }
 
 export default Picture
