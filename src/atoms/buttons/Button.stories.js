@@ -6,21 +6,24 @@ import { withKnobs, text, select } from '@storybook/addon-knobs'
 import Button from './Button'
 import { iconNames } from '../icons/Icon'
 
-const defaultText = 'Learn More'
-const defaultUrl = 'http://adventist.io'
+const defaults = {
+  text: 'Learn More',
+  icon: 'share',
+  url: 'http://adventist.io',
+}
 
 storiesOf('atoms/buttons/Button', module)
   .addDecorator(withKnobs)
 
   .add('only text', () => {
-    const textValue = text('text', defaultText)
-    const url = text('url', defaultUrl)
+    const textValue = text('text', defaults.text)
+    const url = text('url', defaults.url)
     return <Button url={url} text={textValue} />
   })
 
   .add('with text and icon', () => {
-    const textValue = text('text', defaultText)
-    const icon = select('icon', iconNames, 'share')
-    const url = text('url', defaultUrl)
+    const textValue = text('text', defaults.text)
+    const icon = select('icon', iconNames, defaults.icon)
+    const url = text('url', defaults.url)
     return <Button url={url} text={textValue} icon={icon} />
   })
