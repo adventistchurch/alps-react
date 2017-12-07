@@ -13,11 +13,7 @@ addDecorator(story => {
   const content = story()
   const primaryColor = select('Primary color', colors.primary, 'denim')
   const secondaryColor = select('Secondary color', colors.secondary, 'warm')
-  const backgroundColor = select(
-    'Background color',
-    ['black', 'white'],
-    'white'
-  )
+  const backgroundColor = select('Background color', colors.background, 'white')
   return (
     <div
       className={`theme--${primaryColor}`}

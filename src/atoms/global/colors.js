@@ -22,4 +22,6 @@ const fill = [
   theme.secondary.fill,
 ]
 
-export { primary, secondary, theme, fill }
+const background = ['black', 'white']
+
+export { primary, secondary, theme, fill, background }
