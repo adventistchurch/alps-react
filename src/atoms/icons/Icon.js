@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { fill as fillColors } from '../global/colors'
 import WrapIf from '../../helpers/WrapIf'
 
 // Icons
@@ -36,14 +37,7 @@ const icons = {
 
 const iconNames = Object.keys(icons)
 
-const iconColors = [
-  'fill--blue',
-  'fill--light-brown',
-  'fill--gray',
-  'fill--white',
-  'theme--primary-fill-color',
-  'theme--secondary-fill-color',
-]
+const iconColors = fillColors
 
 const iconSizes = ['xs', 's', 'm', 'l', 'xl']
 

@@ -16,9 +16,5 @@ storiesOf('atoms/icons/Icon', module)
     const name = select('name', iconNames, defaults.name)
     const color = select('color', iconColors, defaults.color)
     const size = select('size', iconSizes, defaults.size)
-    return (
-      <div style={{ backgroundColor: '#eee', padding: '1em' }}>
-        <Icon name={name} size={size} color={color} />
-      </div>
-    )
+    return <Icon name={name} size={size} color={color} />
   })
