@@ -5,7 +5,14 @@ import Icon from '../../atoms/icons/Icon'
 import MediaBlock from '../../molecules/blocks/MediaBlock'
 import renderItems from '../../helpers/renderItems'
 
-const AccordionItem = ({ title, description, imageSrcSet, datetime, cta }) => (
+const AccordionItem = ({
+  title,
+  description,
+  imageSrcSet,
+  datetime,
+  cta,
+  url,
+}) => (
   <div className="accordion__item spacing--quarter">
     <div className="accordion__heading js-toggle-parent va--middle">
       <span className="icon icon--m accordion__arrow">
@@ -20,6 +27,7 @@ const AccordionItem = ({ title, description, imageSrcSet, datetime, cta }) => (
         image={imageSrcSet}
         datetime={datetime}
         cta={cta}
+        url={url}
         classes={{ inner: 'block__row' }}
       />
     </div>
@@ -29,8 +37,9 @@ AccordionItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   imageSrcSet: PropTypes.object,
-  datetime: PropTypes.string,
+  datetime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   cta: PropTypes.string,
+  url: PropTypes.string,
 }
 
 const Accordion = ({ items }) => {
