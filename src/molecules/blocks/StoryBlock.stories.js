@@ -55,8 +55,6 @@ const defaults = {
   innerClass: '',
 }
 
-const imageModes = ['Landscape', 'Portrait', 'Square']
-
 storiesOf('molecules/blocks/StoryBlock', module)
   .addDecorator(withKnobs)
 
@@ -66,11 +64,12 @@ storiesOf('molecules/blocks/StoryBlock', module)
     const cta = text('cta', defaults.cta)
     const url = text('url', defaults.url)
     const imageSrcSet = object('imageSrcSet', defaults.imageSrcSet['Square'])
+    const imageAlt = text('imageAlt', defaults.imageAlt)
     const textImageSrcSet = object(
-      'imageSrcSet',
+      'textImageSrcSet',
       defaults.imageSrcSet['Landscape']
     )
-    const imageAlt = text('imageAlt', defaults.imageAlt)
+    const textImageAlt = text('imageAlt', defaults.imageAlt)
     const bgImage = text('bgImage', defaults.bgImage)
     const isVideo = boolean('isVideo', defaults.isVideo)
 
@@ -83,6 +82,7 @@ storiesOf('molecules/blocks/StoryBlock', module)
         imageSrcSet={imageSrcSet}
         imageAlt={imageAlt}
         textImageSrcSet={textImageSrcSet}
+        textImageAlt={textImageAlt}
         bgImage={bgImage}
         isVideo={isVideo}
       />
