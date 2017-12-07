@@ -97,26 +97,6 @@ storiesOf('molecules/blocks/MediaBlock', module)
     )
   })
 
-  .add('with image', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const imageMode = select('imageMode', imageModes, imageModes[0])
-    const imageSrcSet = object('imageSrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('imageAlt', defaults.imageAlt)
-    const datetime = date('datetime', defaults.datetime)
-    const url = text('url', defaults.url)
-    return (
-      <MediaBlock
-        title={title}
-        description={description}
-        url={url}
-        datetime={datetime}
-        imageSrcSet={imageSrcSet}
-        imageAlt={imageAlt}
-      />
-    )
-  })
-
   .add('with video', () => {
     const title = text('title', defaults.title)
     const description = text('description', defaults.description)
