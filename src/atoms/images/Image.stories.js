@@ -7,28 +7,17 @@ import Image from './Image'
 const defaults = {
   src: '//placehold.it/250x100',
   alt: 'Just a placeholder image',
+  lazy: false,
   className: 'story-block__image',
 }
 
 storiesOf('atoms/images/Image', module)
   .addDecorator(withKnobs)
 
-  .add('with text and alt', () => {
+  .add('default', () => {
     const src = text('src', defaults.src)
     const alt = text('alt', defaults.alt)
-    return <Image src={src} alt={alt} />
-  })
-
-  .add('with lazy', () => {
-    const src = text('src', defaults.src)
-    const alt = text('alt', defaults.alt)
-    const lazy = boolean('lazy', true)
-    return <Image src={src} alt={alt} lazy={lazy} />
-  })
-
-  .add('with a class', () => {
-    const src = text('src', defaults.src)
-    const alt = text('alt', defaults.alt)
+    const lazy = boolean('lazy', defaults.lazy)
     const className = text('className', defaults.className)
-    return <Image src={src} alt={alt} className={className} />
+    return <Image src={src} alt={alt} lazy={lazy} className={className} />
   })

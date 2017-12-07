@@ -20,27 +20,17 @@ const defaults = {
 storiesOf('molecules/blocks/HeadingBlock', module)
   .addDecorator(withKnobs)
 
-  .add('with title', () => {
-    const title = text('title', defaults.title)
-    return <HeadingBlock title={title} />
-  })
-
-  .add('with title and description', () => {
+  .add('default', () => {
     const title = text('title', defaults.title)
     const description = text('description', defaults.description)
-    return <HeadingBlock title={title} description={description} />
-  })
-
-  .add('with cta and url', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
+    const showCta = boolean('showCta', false)
     const cta = text('cta', defaults.cta)
     const url = text('url', defaults.url)
     return (
       <HeadingBlock
         title={title}
         description={description}
-        cta={cta}
+        cta={showCta ? cta : null}
         url={url}
       />
     )

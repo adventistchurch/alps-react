@@ -17,13 +17,7 @@ const defaults = {
 storiesOf('atoms/images/Picture', module)
   .addDecorator(withKnobs)
 
-  .add('with image and alt', () => {
-    const image = object('image', defaults.image)
-    const alt = text('alt', defaults.alt)
-    return <Picture image={image} alt={alt} />
-  })
-
-  .add('with lazy', () => {
+  .add('default', () => {
     const image = object('image', defaults.image)
     const alt = text('alt', defaults.alt)
     const lazy = boolean('lazy', true)
