@@ -3,27 +3,33 @@ import PropTypes from 'prop-types'
 
 import If from '../../helpers/If'
 import WrapIf from '../../helpers/WrapIf'
-import Image from '../../atoms/images/Image'
+import Picture from '../../atoms/images/Picture'
 
 const StoryBlock = ({
   title,
   subtitle,
-  image,
+  imageSrcSet,
+  imageAlt,
   bgImage,
   description,
   url,
   isVideo,
-  textImage,
+  textImageSrcSet,
+  textImageAlt,
   cta,
   className,
 }) => {
   return (
     <div
       className={`story-block block spacing--half pad ${className}`}
-      style={`background-image: url(${bgImage})`}
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="story-block__image-wrap round">
-        <Image className="story-block__image" {...image} />
+        <Picture
+          className="story-block__image"
+          image={imageSrcSet}
+          alt={imageAlt}
+        />
       </div>
       <div className="story-block__content spacing">
         <div>
@@ -36,16 +42,22 @@ const StoryBlock = ({
         </div>
         <div className="spacing">
           <div className="text story-block__description block__description white">
-            <If condition={textImage}>
+            <If condition={textImageSrcSet}>
               <a
                 className="story-block__text-image-wrap space-half--btm"
                 href={url}
               >
                 <WrapIf
                   condition={isVideo}
-                  wrapper={<div className="is-video" />}
+                  Wrapper={({ children }) => (
+                    <div className="is-video">{children}</div>
+                  )}
                 >
-                  <Image className="story-block__text-image" {...textImage} />
+                  <Picture
+                    className="story-block__text-image"
+                    image={textImageSrcSet}
+                    alt={textImageAlt}
+                  />
                 </WrapIf>
               </a>
             </If>
@@ -70,12 +82,14 @@ const StoryBlock = ({
 StoryBlock.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  image: PropTypes.object,
+  imageSrcSet: PropTypes.object,
+  imageAlt: PropTypes.string,
   bgImage: PropTypes.string,
+  textImageSrcSet: PropTypes.object,
+  textImageAlt: PropTypes.string,
   description: PropTypes.string,
   url: PropTypes.string,
   isVideo: PropTypes.bool,
-  textImage: PropTypes.object,
   cta: PropTypes.string,
   className: PropTypes.string,
 }
