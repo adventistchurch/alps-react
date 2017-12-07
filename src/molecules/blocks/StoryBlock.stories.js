@@ -1,22 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  withKnobs,
-  text,
-  select,
-  object,
-  boolean,
-  date,
-} from '@storybook/addon-knobs'
+import { withKnobs, text, object, boolean } from '@storybook/addon-knobs'
 
-import { iconNames } from '../../atoms/icons/Icon'
 import StoryBlock from './StoryBlock'
-import Video from '../../atoms/media/Video'
-
-const iconOptions = [null, ...iconNames]
 
 const defaults = {
   title: 'General Conference',
+  subtitle: 'Laudantium molestias maiores aut nostrum natus dolore',
   description:
     'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
   datetime: new Date(),
@@ -60,6 +50,7 @@ storiesOf('molecules/blocks/StoryBlock', module)
 
   .add('default', () => {
     const title = text('title', defaults.title)
+    const subtitle = text('subtitle', defaults.subtitle)
     const description = text('description', defaults.description)
     const cta = text('cta', defaults.cta)
     const url = text('url', defaults.url)
@@ -76,6 +67,7 @@ storiesOf('molecules/blocks/StoryBlock', module)
     return (
       <StoryBlock
         title={title}
+        subtitle={subtitle}
         description={description}
         url={url}
         cta={cta}
