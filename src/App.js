@@ -103,7 +103,7 @@ class App extends React.Component {
               name: 'John Doe',
               date: '2017/05/16 14:20',
               dateFormat: 'date',
-              region: <a href="//maps.google.com">Alsbach-Hähnlein</a>,
+              region: 'Alsbach-Hähnlein',
             }}
           />
           <Text className="spacing">

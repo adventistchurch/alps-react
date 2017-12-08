@@ -1,37 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import DateTimeFormat from '../../helpers/datetimeFormat'
+import dateTimeFormat from '../../helpers/datetimeFormat'
+import SeparateChildren from '../../helpers/SeparateChildren'
 
-const Metadata = ({ data, className }) => (
+const Metadata = ({ children, className }) => (
   <span className={`${className} font--secondary--s gray can-be--white`}>
-    {data}
+    {children}
   </span>
 )
 Metadata.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  children: PropTypes.node,
   className: PropTypes.string,
 }
 
-const Divider = ({ showIf }) => showIf && <span className="divider">|</span>
+const Divider = () => <span className="divider">|</span>
 
-const ArticleMeta = ({ name, date, region, dateFormat = '' }) => (
-  <div className="article__meta">
-    <Metadata
-      data={DateTimeFormat({ date, dateFormat })}
-      className="pub_date"
-    />{' '}
-    <Divider showIf={!!date} />{' '}
-    <Metadata data={region} className="pub_region" />{' '}
-    <Divider showIf={!!region} /> <Metadata data={name} className="byline" />
-  </div>
-)
+const ArticleMeta = ({ name, date, region, dateFormat = '' }) => {
+  const pubDate = date ? dateTimeFormat({ date, dateFormat }) : null
+  return (
+    <div className="article__meta">
+      <SeparateChildren separator={<Divider />}>
+        <Metadata className="pub_date">{pubDate}</Metadata>
+        <Metadata className="pub_region">{region}</Metadata>
+        <Metadata className="byline">{name}</Metadata>
+      </SeparateChildren>
+    </div>
+  )
+}
 
 ArticleMeta.propTypes = {
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  region: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  date: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  name: PropTypes.string,
+  region: PropTypes.string,
+  date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dateFormat: PropTypes.string,
+}
+ArticleMeta.defaultProps = {
+  dateFormat: 'date',
 }
 
 export default ArticleMeta
