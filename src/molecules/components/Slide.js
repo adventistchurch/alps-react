@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import datetimeFormat from '../../helpers/datetimeFormat'
+
 import Picture from '../../atoms/images/Picture'
 
 const Slide = ({
@@ -10,22 +12,23 @@ const Slide = ({
   cta,
   url,
   title,
-  date,
   datetime,
   description,
   imageSrcSet,
-  alt,
+  imageAlt,
   isLazy,
   isBlock,
+  alignRight,
   className,
   headingClass,
-  textClass,
+  // textClass,
   blockTitleClass,
   blockContentClass,
 }) => {
+  const textClass = alignRight ? 'carousel__item--right' : ''
   return (
     <div className={`carousel__item rel ${className}`}>
-      <Picture srcSet={imageSrcSet} alt={alt} lazy={isLazy} />
+      <Picture image={imageSrcSet} alt={imageAlt} lazy={isLazy} />
 
       {heading && (
         <div className="carousel__item-text__wrap">
@@ -48,12 +51,14 @@ const Slide = ({
                   <p>{dek}</p>
                 </div>
               </div>
-              <a
-                href={url}
-                className="carousel__item-cta btn theme--secondary-background-color"
-              >
-                {cta}
-              </a>
+              {cta && (
+                <a
+                  href={url}
+                  className="carousel__item-cta btn theme--secondary-background-color"
+                >
+                  {cta}
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -79,12 +84,12 @@ const Slide = ({
               </a>
             </h3>
           )}
-          {date && (
+          {datetime && (
             <time
               className="block__date font--secondary--xs brown space-half--btm"
               dateTime={datetime}
             >
-              {date}
+              {datetimeFormat(datetime, 'date')}
             </time>
           )}
           {description && (
@@ -117,13 +122,17 @@ Slide.propTypes = {
   cta: PropTypes.string,
   url: PropTypes.string,
   title: PropTypes.string,
-  date: PropTypes.string,
-  datetime: PropTypes.string,
+  datetime: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   description: PropTypes.string,
   imageSrcSet: PropTypes.object,
-  alt: PropTypes.string,
+  imageAlt: PropTypes.string,
   isLazy: PropTypes.bool,
   isBlock: PropTypes.bool,
+  alignRight: PropTypes.bool,
   className: PropTypes.string,
   headingClass: PropTypes.string,
   textClass: PropTypes.string,
@@ -132,6 +141,14 @@ Slide.propTypes = {
 }
 Slide.defaultProps = {
   isLazy: false,
+  isBlock: false,
+  alignRight: false,
+  datetime: '',
+  className: '',
+  headingClass: '',
+  textClass: '',
+  blockTitleClass: '',
+  blockContentClass: '',
 }
 
 export default Slide

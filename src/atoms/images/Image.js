@@ -20,6 +20,7 @@ Image.propTypes = {
   lazy: PropTypes.bool,
 }
 Image.defaultProps = {
+  className: '',
   lazy: false,
 }
 

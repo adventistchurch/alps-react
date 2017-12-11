@@ -9,13 +9,16 @@ const Slide2Column = ({
   dek,
   cta,
   url,
+  imageSrcSet,
+  imageAlt,
+  isLazy,
   className,
   textClass,
 }) => (
   <div className={`carousel__item carousel__slide cf spacing rel ${className}`}>
     <div className="flex-container">
       <div className="shift-left--fluid">
-        <Picture />
+        <Picture image={imageSrcSet} alt={imageAlt} lazy={isLazy} />
       </div>
 
       {heading && (
@@ -51,8 +54,16 @@ Slide2Column.propTypes = {
   dek: PropTypes.string,
   cta: PropTypes.string,
   url: PropTypes.string,
+  imageSrcSet: PropTypes.object,
+  imageAlt: PropTypes.string,
+  isLazy: PropTypes.bool,
   className: PropTypes.string,
   textClass: PropTypes.string,
+}
+Slide2Column.defaultProps = {
+  isLazy: false,
+  className: '',
+  textClass: '',
 }
 
 export default Slide2Column
