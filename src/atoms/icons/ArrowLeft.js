@@ -6,7 +6,7 @@ import Svg from '../../helpers/Svg'
 const ArrowLeftIcon = ({ fill }) => (
   <Svg
     title="Left arrow icon"
-    viewBox="0 0 63 63"
+    viewBox="0 0 50 50"
     className={fill}
     fill="#438390"
   >
