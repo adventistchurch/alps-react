@@ -5,7 +5,7 @@
 ## Requirements
 
 * [Node](https://nodejs.org)
-* [yarn](https://yarnpkg.com)
+* [yarn](https://yarnpkg.com/en/docs/install)
 
 ## Install Dependencies
 
@@ -53,4 +53,4 @@ This project was bootstrapped with
 
 ## Copyright
 
-&copy; 2017 General Conference of the Sevent-day Adventist Church
+&copy; 2017 General Conference of the Seventh-day Adventist church
