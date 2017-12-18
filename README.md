@@ -46,11 +46,11 @@ yarn
   `atoms/icons/File`.
 * `atoms/media/Video` accepts `src`, `width` and `height` as props
 
-## Copyright
-
-&copy; 2017 General Conference of the Sevent-day Adventist Church
-
-# Notes
+## Notes
 
 This project was bootstrapped with
 [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## Copyright
+
+&copy; 2017 General Conference of the Sevent-day Adventist Church
