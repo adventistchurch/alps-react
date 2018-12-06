@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Button from "../../atoms/buttons/Button";
-import IconWrap from "../../atoms/icons/IconWrap";
-import Image from "../../atoms/images/Image";
+import Button from '../../atoms/buttons/Button'
+import IconWrap from '../../atoms/icons/IconWrap'
+import Image from '../../atoms/images/Image'
 
 const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
   return (
@@ -14,7 +14,7 @@ const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
             <h2 className="u-font--primary--s u-theme--color--darker">
               <span className="u-theme--color--base">
                 <em>{kicker}</em>
-              </span>{" "}
+              </span>{' '}
               {title}
             </h2>
           )}
@@ -34,9 +34,9 @@ const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
         <div
           className="c-gallery-block__thumb u-background--cover"
           style={{
-            backgroundImage: "url(" + imageSrcSet[0].default + ")",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat"
+            backgroundImage: 'url(' + imageSrcSet[0].default + ')',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
           }}
         />
       </div>
@@ -53,14 +53,14 @@ const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 GalleryBlock.propTypes = {
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
   description: PropTypes.string,
-  imageSrcSet: PropTypes.array
-};
+  imageSrcSet: PropTypes.array,
+}
 
-export default GalleryBlock;
+export default GalleryBlock

@@ -14,7 +14,8 @@ const TopHat = ({ text, url, learnMore }) => (
       {text}&nbsp;
       <a className="link--white" href={learnMore.url}>
         {learnMore.text}
-      </a>.
+      </a>
+      .
     </p>
   </div>
 )

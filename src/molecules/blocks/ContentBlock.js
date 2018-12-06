@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import MediaImage from "./MediaBlock/MediaImage";
-import Button from "../../atoms/buttons/Button";
+import MediaImage from './MediaBlock/MediaImage'
+import Button from '../../atoms/buttons/Button'
 
 const ContentBlock = ({
   title,
@@ -14,9 +14,9 @@ const ContentBlock = ({
   blockClass,
   imageSrcSet,
   imageAlt,
-  imageClass
+  imageClass,
 }) => {
-  const hasImage = imageSrcSet ? "has-image" : "";
+  const hasImage = imageSrcSet ? 'has-image' : ''
   return (
     <div
       className={`c-block c-block__text ${hasImage} u-theme--border-color--darker u-border--left ${blockClass}`}
@@ -64,8 +64,8 @@ const ContentBlock = ({
         />
       )}
     </div>
-  );
-};
+  )
+}
 
 ContentBlock.propTypes = {
   title: PropTypes.string.isRequired,
@@ -77,15 +77,15 @@ ContentBlock.propTypes = {
   blockClass: PropTypes.string,
   imageSrcSet: PropTypes.object,
   imageAlt: PropTypes.string,
-  imageClass: PropTypes.string
-};
+  imageClass: PropTypes.string,
+}
 
 ContentBlock.defaultProps = {
-  descriptionMore: "",
-  blockClass: "u-spacing",
-  titleClass: "u-font--primary--m",
-  imageAlt: "",
-  imageClass: ""
-};
+  descriptionMore: '',
+  blockClass: 'u-spacing',
+  titleClass: 'u-font--primary--m',
+  imageAlt: '',
+  imageClass: '',
+}
 
-export default ContentBlock;
+export default ContentBlock

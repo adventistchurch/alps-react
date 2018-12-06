@@ -1,96 +1,96 @@
-import React from "react";
+import React from 'react'
 
-import LoadScript from "./helpers/LoadScript";
+import LoadScript from './helpers/LoadScript'
 
-import ArticleHeader from "./organisms/sections/ArticleHeader";
-import BasicPage from "./templates/BasicPage";
-import Footer from "./organisms/global/Footer";
+import ArticleHeader from './organisms/sections/ArticleHeader'
+import BasicPage from './templates/BasicPage'
+import Footer from './organisms/global/Footer'
 // import Grid2upContent from './organisms/content/Grid2upContent'
-import Header from "./organisms/global/Header";
-import MediaBlock from "./molecules/blocks/MediaBlock";
-import Microsite from "./templates/Microsite";
-import Pagination from "./organisms/navigation/Pagination";
-import Text from "./molecules/text/Text";
+import Header from './organisms/global/Header'
+import MediaBlock from './molecules/blocks/MediaBlock'
+import Microsite from './templates/Microsite'
+import Pagination from './organisms/navigation/Pagination'
+import Text from './molecules/text/Text'
 
 const menus = {
   primary: [
     {
-      label: "Home",
-      url: "/",
+      label: 'Home',
+      url: '/',
       subpages: [
         {
-          label: "Hallo",
-          url: "/hallo"
+          label: 'Hallo',
+          url: '/hallo',
         },
         {
-          label: "Wie gehts?",
-          url: "/wie-geths",
-          active: true
+          label: 'Wie gehts?',
+          url: '/wie-geths',
+          active: true,
         },
         {
-          label: "Alles gut?",
-          url: "/alles-gut"
-        }
-      ]
+          label: 'Alles gut?',
+          url: '/alles-gut',
+        },
+      ],
     },
     {
-      label: "News",
-      url: "/news"
+      label: 'News',
+      url: '/news',
     },
     {
-      label: "Test",
-      url: "/test"
-    }
+      label: 'Test',
+      url: '/test',
+    },
   ],
   secondary: [
     {
-      label: "English",
-      icon: "world",
-      url: "#",
+      label: 'English',
+      icon: 'world',
+      url: '#',
       subpages: [
         {
-          label: "English",
-          url: "/en",
-          active: true
+          label: 'English',
+          url: '/en',
+          active: true,
         },
         {
-          label: "Español",
-          url: "/es"
+          label: 'Español',
+          url: '/es',
         },
         {
-          label: "Portugese",
-          url: "/pt"
+          label: 'Portugese',
+          url: '/pt',
         },
         {
-          label: "Deutsch",
-          url: "/de"
-        }
-      ]
+          label: 'Deutsch',
+          url: '/de',
+        },
+      ],
     },
     {
-      label: "Press",
-      url: "/press"
-    }
-  ]
-};
+      label: 'Press',
+      url: '/press',
+    },
+  ],
+}
 
 const logo = {
-  path: "//cdn.adventist.org/alps/2/latest/images/logo/",
-  square: "adventist-logo--sq.svg",
-  horizontal: "adventist-logo--en--horiz.svg",
+  path: '//cdn.adventist.org/alps/2/latest/images/logo/',
+  square: 'adventist-logo--sq.svg',
+  horizontal: 'adventist-logo--en--horiz.svg',
   //text: "logo-text--inter-european-division.svg",
-  title: "Adventist Church"
-};
+  title: 'Adventist Church',
+}
 
 const page = {
   header: {
-    kicker: "Ut expedita ipsum",
-    title: "Possimus mollitia nobis off",
-    heading: "Adventist News Network®",
+    kicker: 'Ut expedita ipsum',
+    title: 'Possimus mollitia nobis off',
+    heading: 'Adventist News Network®',
     subhead:
-      "The official news service of the Seventh-day Adventist world church",
+      'The official news service of the Seventh-day Adventist world church',
     imageSrc:
-      "https://news.adventist.org/fileadmin/news.adventist.org/files/layout/Logo.png"
+      'https://news.adventist.org/fileadmin/news.adventist.org/files/layout/Logo.png',
   },
   basicContent: (
     <div>
@@ -98,10 +98,10 @@ const page = {
         heading="Dolores, nisi asperiores totam dolor sit hic tempore"
         subheading="Ratione commodi perspiciatis tempora placeat asperiores impedit omnis illo id magnam expedita."
         meta={{
-          name: "John Doe",
-          date: "2017/05/16 14:20",
-          dateFormat: "date",
-          region: "Alsbach-Hähnlein, Germany"
+          name: 'John Doe',
+          date: '2017/05/16 14:20',
+          dateFormat: 'date',
+          region: 'Alsbach-Hähnlein, Germany',
         }}
       />
       <Text className="spacing">
@@ -156,9 +156,9 @@ const page = {
           title="Consectetur adipisicing elit"
           description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo obcaecati ut ea expedita dolor, ex libero dolore consequatur, deserunt error tempora earum dignissimos!"
           imageSrcSet={{
-            default: "//placehold.it/700x400",
-            700: "//placehold.it/900x500",
-            900: "//placehold.it/800x400"
+            default: '//placehold.it/700x400',
+            700: '//placehold.it/900x500',
+            900: '//placehold.it/800x400',
           }}
           imageAlt="Accusantium officia dolor"
           url="http://news.adventist.org"
@@ -178,18 +178,18 @@ const page = {
   ),
   micrositeNav: [
     {
-      name: "News",
-      url: "#",
+      name: 'News',
+      url: '#',
       subitems: [
-        { name: "Life Hope Centers", url: "#" },
-        { name: "Global Mission", url: "#" },
-        { name: "Life Hope Centers", url: "#" },
-        { name: "Church Mission Offerings", url: "#" }
-      ]
+        { name: 'Life Hope Centers', url: '#' },
+        { name: 'Global Mission', url: '#' },
+        { name: 'Life Hope Centers', url: '#' },
+        { name: 'Church Mission Offerings', url: '#' },
+      ],
     },
-    { name: "ANN Videos", url: "#" },
-    { name: "Photos", url: "#" },
-    { name: "Church Business Meetings", url: "#" }
+    { name: 'ANN Videos', url: '#' },
+    { name: 'Photos', url: '#' },
+    { name: 'Church Business Meetings', url: '#' },
   ],
   aside: {
     content: (
@@ -205,25 +205,25 @@ const page = {
     ),
     nav: {
       category: [
-        { name: "Submit a News Story", url: "#" },
-        { name: "Reproduction Requirements", url: "#" },
-        { name: "Styleguide", url: "#" },
-        { name: "Feeds", url: "#" },
-        { name: "Training", url: "#" },
-        { name: "News Contact Information", url: "#" },
-        { name: "Overview, Mission and Method", url: "#" }
+        { name: 'Submit a News Story', url: '#' },
+        { name: 'Reproduction Requirements', url: '#' },
+        { name: 'Styleguide', url: '#' },
+        { name: 'Feeds', url: '#' },
+        { name: 'Training', url: '#' },
+        { name: 'News Contact Information', url: '#' },
+        { name: 'Overview, Mission and Method', url: '#' },
       ],
       social: [
-        { name: "Twitter", url: "#", icon: "world" },
-        { name: "Facebook", url: "#", icon: "vitality" },
-        { name: "Flicker", url: "#", icon: "spirituality" },
-        { name: "Youtube", url: "#", icon: "magnify" },
-        { name: "Vimeo", url: "#", icon: "service" },
-        { name: "Email", url: "#", icon: "share" }
-      ]
-    }
-  }
-};
+        { name: 'Twitter', url: '#', icon: 'world' },
+        { name: 'Facebook', url: '#', icon: 'vitality' },
+        { name: 'Flicker', url: '#', icon: 'spirituality' },
+        { name: 'Youtube', url: '#', icon: 'magnify' },
+        { name: 'Vimeo', url: '#', icon: 'service' },
+        { name: 'Email', url: '#', icon: 'share' },
+      ],
+    },
+  },
+}
 
 const App = () => (
   <div className="content cf has-aside" role="document">
@@ -253,6 +253,6 @@ const App = () => (
     <LoadScript url="//code.jquery.com/jquery-2.2.4.min.js" />
     <LoadScript url="//cdn.adventist.org/alps/3/latest/js/script.min.js" />
   </div>
-);
+)
 
-export default App;
+export default App

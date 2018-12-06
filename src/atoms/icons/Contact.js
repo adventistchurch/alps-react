@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Svg from "../../helpers/Svg";
+import Svg from '../../helpers/Svg'
 
 const ContactIcon = ({ fill }) => (
   <Svg
@@ -12,10 +12,10 @@ const ContactIcon = ({ fill }) => (
   >
     <path d="M0,0V8H6l4,2V0ZM8,6.76,6.47,6H2V2H8Z" />
   </Svg>
-);
+)
 
 ContactIcon.propTypes = {
-  fill: PropTypes.string
-};
+  fill: PropTypes.string,
+}
 
-export default ContactIcon;
+export default ContactIcon

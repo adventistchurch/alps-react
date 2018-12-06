@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Icon from "../../atoms/icons/Icon";
+import Icon from '../../atoms/icons/Icon'
 
 const ContentBlockExpand = ({ kicker, title, description }) => {
   return (
@@ -12,7 +12,7 @@ const ContentBlockExpand = ({ kicker, title, description }) => {
             <h2 className="u-font--primary--s u-theme--color--darker">
               <span className="u-theme--color--base">
                 <em>{kicker}</em>
-              </span>{" "}
+              </span>{' '}
               {title}
             </h2>
           )}
@@ -33,13 +33,13 @@ const ContentBlockExpand = ({ kicker, title, description }) => {
         <p>{description}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
 ContentBlockExpand.propTypes = {
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
-  description: PropTypes.string
-};
+  description: PropTypes.string,
+}
 
-export default ContentBlockExpand;
+export default ContentBlockExpand

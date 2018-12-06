@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Svg from "../../helpers/Svg";
+import Svg from '../../helpers/Svg'
 
 const ArrowBracketRightIcon = ({ fill }) => (
   <Svg
@@ -12,10 +12,10 @@ const ArrowBracketRightIcon = ({ fill }) => (
   >
     <path d="M6.75,3.59,3.25.09,1.84,1.5,5.34,5,1.84,8.5,3.25,9.91l3.5-3.5L8.16,5Z" />
   </Svg>
-);
+)
 
 ArrowBracketRightIcon.propTypes = {
-  fill: PropTypes.string
-};
+  fill: PropTypes.string,
+}
 
-export default ArrowBracketRightIcon;
+export default ArrowBracketRightIcon

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const BreakoutBlock = ({ title, description, cta, url, blockClass }) => {
   return (
@@ -14,15 +14,15 @@ const BreakoutBlock = ({ title, description, cta, url, blockClass }) => {
         </a>
       )}
     </div>
-  );
-};
+  )
+}
 
 BreakoutBlock.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   cta: PropTypes.string,
   url: PropTypes.string,
-  blockClass: PropTypes.string
-};
+  blockClass: PropTypes.string,
+}
 
-export default BreakoutBlock;
+export default BreakoutBlock

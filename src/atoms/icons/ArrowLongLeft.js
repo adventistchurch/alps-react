@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Svg from "../../helpers/Svg";
+import Svg from '../../helpers/Svg'
 
 const ArrowLongLeftIcon = ({ fill }) => (
   <Svg
@@ -12,10 +12,10 @@ const ArrowLongLeftIcon = ({ fill }) => (
   >
     <path d="M1.42,6.32l3.5,3.5L6.33,8.41l-2.5-2.5H19.42v-2H3.83l2.5-2.5L4.92,0,1.42,3.5,0,4.91Z" />
   </Svg>
-);
+)
 
 ArrowLongLeftIcon.propTypes = {
-  fill: PropTypes.string
-};
+  fill: PropTypes.string,
+}
 
-export default ArrowLongLeftIcon;
+export default ArrowLongLeftIcon
