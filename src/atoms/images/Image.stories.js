@@ -5,7 +5,7 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import Image from './Image'
 
 const defaults = {
-  src: '//placehold.it/250x100',
+  src: '//picsum.photos/250/100',
   alt: 'Just a placeholder image',
   lazy: false,
   className: 'story-block__image',

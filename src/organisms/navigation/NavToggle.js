@@ -5,9 +5,7 @@ import renderTimes from '../../helpers/renderTimes'
 
 const Segment = ({ number }) => (
   <span
-    className={`nav-toggle__segment nav-toggle__segment--${
-      number
-    } theme--primary-background-color`}
+    className={`nav-toggle__segment nav-toggle__segment--${number} theme--primary-background-color`}
   />
 )
 Segment.propTypes = {

@@ -6,10 +6,10 @@ import Picture from './Picture'
 
 const defaults = {
   image: {
-    default: '//placehold.it/250x100',
-    500: '//placehold.it/500x200',
-    1000: '//placehold.it/1000x400',
-    1500: '//placehold.it/1500x600',
+    default: '//picsum.photos/250/100',
+    500: '//picsum.photos/500/200',
+    1000: '//picsum.photos/1000/400',
+    1500: '//picsum.photos/1500/600',
   },
   alt: 'Just a placeholder image',
 }

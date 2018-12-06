@@ -36,9 +36,7 @@ const Slide = ({
             <div className={`carousel__item-text ${textClass} spacing--half`}>
               <div className="carousel__item-text--inner">
                 <h2
-                  className={`${
-                    headingClass
-                  } carousel__item-heading theme--primary-transparent-background-color`}
+                  className={`${headingClass} carousel__item-heading theme--primary-transparent-background-color`}
                 >
                   {heading}
                 </h2>
@@ -66,15 +64,11 @@ const Slide = ({
 
       {isBlock && (
         <div
-          className={`carousel-block__content block__content spacing--quarter pad ${
-            blockContentClass
-          }`}
+          className={`carousel-block__content block__content spacing--quarter pad ${blockContentClass}`}
         >
           {title && (
             <h3
-              className={`carousel-block__title block__title ${
-                blockTitleClass
-              }`}
+              className={`carousel-block__title block__title ${blockTitleClass}`}
             >
               <a
                 href={url}

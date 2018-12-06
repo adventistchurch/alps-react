@@ -17,7 +17,8 @@ const AccordionItem = ({
     <div className="accordion__heading js-toggle-parent va--middle">
       <span className="icon icon--m accordion__arrow">
         <Icon name="arrow-right" color="fill--blue" />
-      </span>&nbsp;
+      </span>
+      &nbsp;
       <span className="font--secondary--m dib">{title}</span>
     </div>
     <div className="accordion__content">

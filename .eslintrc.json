@@ -25,6 +25,5 @@
     "valid-typeof": "warn",
     "react/react-in-jsx-scope": "warn",
     "react/display-name": "off"
-    // "react/prop-types": "warn"
   }
 }

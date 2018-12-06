@@ -1,6 +1,23 @@
-const primary = ['emperor', 'earth', 'grapevine', 'denim', 'campfire']
+const primary = [
+  'treefrog',
+  'ming',
+  'bluejay',
+  'iris',
+  'lily',
+  'scarlett',
+  'campfire',
+  'winter',
+  'forest',
+  'cave',
+  'denim',
+  'emperor',
+  'grapevine',
+  'velvet',
+  'earth',
+  'night',
+]
 
-const secondary = ['warm', 'cool']
+const secondary = ['white', 'dark']
 
 const theme = {
   primary: {

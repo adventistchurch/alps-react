@@ -17,29 +17,34 @@ const iconOptions = [null, ...iconNames]
 
 const defaults = {
   title: 'General Conference',
+  titleClass: 'u-theme--color--darker',
   description:
     'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
+  contentClass: 'u-color--gray',
+  metaClass: 'u-theme--color--dark',
   datetime: new Date(),
+  category: 'Culture',
   cta: 'Find out more',
+  ctaIcon: 'arrowLongRight',
   url: 'https://adventist.org',
   imageSrcSet: {
     Landscape: {
-      default: '//placehold.it/200x150',
-      500: '//placehold.it/400x300',
-      750: '//placehold.it/600x450',
-      1200: '//placehold.it/800x600',
+      default: '//picsum.photos/500/375',
+      500: '//picsum.photos/900/700',
+      750: '//picsum.photos/700/600',
+      1200: '//picsum.photos/500/375',
     },
     Portrait: {
-      default: '//placehold.it/150x200',
-      500: '//placehold.it/300x400',
-      750: '//placehold.it/450x600',
-      1200: '//placehold.it/600x800',
+      default: '//picsum.photos/150/200',
+      500: '//picsum.photos/300/400',
+      750: '//picsum.photos/450/600',
+      1200: '//picsum.photos/600/800',
     },
     Square: {
-      default: '//placehold.it/100x100',
-      500: '//placehold.it/200x200',
-      750: '//placehold.it/300x300',
-      1200: '//placehold.it/500x500',
+      default: '//picsum.photos/100/100',
+      500: '//picsum.photos/200/200',
+      750: '//picsum.photos/300/300',
+      1200: '//picsum.photos/500/500',
     },
   },
   imageAlt: 'Placeholder image',
@@ -50,132 +55,228 @@ const defaults = {
   headingIcon: '',
   asRow: false,
   asBreakout: false,
+  reversed: false,
   roundImage: false,
   innerClass: '',
 }
 
 const imageModes = ['Landscape', 'Portrait', 'Square']
 
+const mode = ['Row', 'Inline', 'Inset', 'Stacked']
+const blockModes = {
+  Row: 'c-media-block__row c-block__row',
+  Inline: 'c-block__inline c-media-block__inine',
+  Inset: 'c-block__inset c-media-block__inset',
+  Stacked: 'c-block__stacked c-media-block__stacked',
+}
+
 storiesOf('molecules/blocks/MediaBlock', module)
   .addDecorator(withKnobs)
 
-  .add('default', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const showCta = boolean('show cta', false)
-    const cta = text('cta', defaults.cta)
-    const url = text('url', defaults.url)
-    const datetime = date('datetime', defaults.datetime)
-    const showHeading = boolean('show heading', false)
-    const headingTitle = text('headingTitle', defaults.headingTitle)
-    const headingIcon = select('headingIcon', iconOptions, defaults.headingIcon)
-    const kickerText = text('kickerText', defaults.kickerText)
-    const showImage = boolean('show image', false)
-    const imageMode = select('imageMode', imageModes, imageModes[0])
-    const imageSrcSet = object('imageSrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('imageAlt', defaults.imageAlt)
-    const asRow = boolean('asRow', defaults.asRow)
-    const asBreakout = boolean('asBreakout', defaults.asBreakout)
-    const roundImage = boolean('roundImage', defaults.roundImage)
+  .add('Default', () => {
+    const title = text('Title', defaults.title)
+    const titleClass = text('Title class', defaults.titleClass)
+    const description = text('Description', defaults.description)
+    const contentClass = text('Content Class', defaults.contentClass)
+    const showCta = boolean('Show Call to Action', false)
+    const cta = text('Call to Action Text', defaults.cta)
+    const url = text('URL', defaults.url)
+    const metaClass = text('Meta Class', defaults.metaClass)
+    const datetime = date('Date Time', defaults.datetime)
+    const category = text('Category', defaults.category)
+    const kickerText = text('Kicker Text', defaults.kickerText)
+    const showImage = boolean('Show Image', true)
+    const imageMode = select('Image Mode', imageModes, 'Landscape')
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
+    const imageAlt = text('Image Alt', defaults.imageAlt)
+    const showMode = select('Show as', mode, 'Row')
+    const reversed = boolean('Show reversed', defaults.reversed)
+    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
+    const roundImage = boolean('Show round Images', defaults.roundImage)
 
     return (
       <MediaBlock
         title={title}
+        titleClass={titleClass}
         description={description}
+        contentClass={contentClass}
+        metaClass={metaClass}
         datetime={datetime}
+        category={category}
         url={url}
         cta={showCta ? cta : null}
-        headingTitle={showHeading ? headingTitle : null}
-        headingIcon={headingIcon}
         kickerText={kickerText}
         imageSrcSet={showImage ? imageSrcSet : null}
         imageAlt={imageAlt}
         asBreakout={asBreakout}
-        asRow={asRow}
+        showAs={blockModes[showMode]}
         roundImage={roundImage}
+        reversed={reversed}
       />
     )
   })
 
-  .add('with video', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const videoSrc = text('videoSrc', defaults.videoSrc)
+  .add('Inline', () => {
+    const title = text('Title', defaults.title)
+    const titleClass = text('Title class', defaults.titleClass)
+    const description = text('Description', defaults.description)
+    const contentClass = text(
+      'Content Class',
+      'l-grid-item u-border-left--black--at-large u-theme--border-color--darker--left u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom'
+    )
+    const showCta = boolean('Show Call to Action', false)
+    const cta = text('Call to Action Text', defaults.cta)
+    const url = text('URL', defaults.url)
+    const metaClass = text('Meta Class', defaults.metaClass)
+    const datetime = date('Date Time', defaults.datetime)
+    const category = text('Category', defaults.category)
+    const kickerText = text('Kicker Text', defaults.kickerText)
+    const showImage = boolean('Show Image', true)
+    const imageMode = select('Image Mode', imageModes, 'Landscape')
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
+    const imageAlt = text('Image Alt', defaults.imageAlt)
+    const imageClass = text('Image class', 'l-grid-item u-padding--zero--sides')
+    const reversed = boolean('Show reversed', true)
+
     return (
       <MediaBlock
         title={title}
+        titleClass={titleClass}
         description={description}
-        video={<Video src={videoSrc} />}
-      />
-    )
-  })
-
-  .add('with kicker', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const kickerText = text('kickerText', 'Lorem ipsum')
-    return (
-      <MediaBlock
-        title={title}
-        description={description}
-        kickerText={kickerText}
-      />
-    )
-  })
-
-  .add('as row', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const cta = text('cta', defaults.cta)
-    const url = text('url', defaults.url)
-    const headingTitle = text('headingTitle', '')
-    const headingIcon = select('headingIcon', iconOptions, '')
-    const kickerText = text('kickerText', '')
-    const imageMode = select('imageMode', imageModes, 'Square')
-    const imageSrcSet = object('imageSrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('imageAlt', defaults.imageAlt)
-    const asRow = boolean('asRow', true)
-    const roundImage = boolean('roundImage', true)
-    return (
-      <MediaBlock
-        title={title}
+        contentClass={contentClass}
+        metaClass={metaClass}
+        datetime={datetime}
+        category={category}
         url={url}
-        cta={cta}
+        cta={showCta ? cta : null}
         kickerText={kickerText}
-        headingTitle={headingTitle}
-        headingIcon={headingIcon}
+        imageSrcSet={showImage ? imageSrcSet : null}
+        imageAlt={imageAlt}
+        showAs={blockModes['Inline']}
+        reversed={reversed}
+        imageClass={imageClass}
+      />
+    )
+  })
+
+  .add('Inset', () => {
+    const title = text('Title', defaults.title)
+    const titleClass = text('Title class', defaults.titleClass)
+    const description = text('Description', defaults.description)
+    const contentClass = text(
+      'Content Class',
+      'l-grid--7-col u-theme--background-color--darker'
+    )
+    const url = text('URL', defaults.url)
+    const metaClass = text('Meta Class', 'l-grid-item l-grid-item--m--2-col')
+    const datetime = date('Date Time', defaults.datetime)
+    const category = text('Category', defaults.category)
+    const kickerText = text('Kicker Text', defaults.kickerText)
+    const imageMode = select('Image Mode', imageModes, 'Landscape')
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
+    const imageAlt = text('Image Alt', defaults.imageAlt)
+    const imageClass = text('Image class', '')
+
+    return (
+      <MediaBlock
+        title={title}
+        titleClass={titleClass}
+        description={description}
+        contentClass={contentClass}
+        metaClass={metaClass}
+        datetime={datetime}
+        category={category}
+        url={url}
+        kickerText={kickerText}
         imageSrcSet={imageSrcSet}
         imageAlt={imageAlt}
-        description={description}
-        asRow={asRow}
-        roundImage={roundImage}
+        showAs={blockModes['Inset']}
+        imageClass={imageClass}
       />
     )
   })
 
-  .add('as breakout', () => {
-    const title = text('title', defaults.title)
-    const description = text('description', defaults.description)
-    const cta = text('cta', defaults.cta)
-    const url = text('url', defaults.url)
-    const headingTitle = text('headingTitle', 'Lorem Breakout')
-    const headingIcon = select('headingIcon', iconOptions, 'list')
-    const imageMode = select('imageMode', imageModes, imageModes[0])
-    const imageSrcSet = object('imageSrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('imageAlt', defaults.imageAlt)
-    const asBreakout = boolean('asBreakout', true)
-    const roundImage = boolean('roundImage', defaults.roundImage)
+  .add('Reversed', () => {
+    const title = text('Title', defaults.title)
+    const titleClass = text('Title class', defaults.titleClass)
+    const description = text('Description', defaults.description)
+    const contentClass = text(
+      'Content Class',
+      'l-grid-item l-grid-item--m--4-col u-border-left--black--at-large'
+    )
+    const showCta = boolean('Show Call to Action', false)
+    const cta = text('Call to Action Text', defaults.cta)
+    const url = text('URL', defaults.url)
+    const metaClass = text('Meta Class', defaults.metaClass)
+    const datetime = date('Date Time', defaults.datetime)
+    const category = text('Category', defaults.category)
+    const kickerText = text('Kicker Text', defaults.kickerText)
+    const showImage = boolean('Show Image', true)
+    const imageMode = select('Image Mode', imageModes, 'Landscape')
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
+    const imageAlt = text('Image Alt', defaults.imageAlt)
+    const showMode = select('Show as', mode, 'Row')
+    const reversed = boolean('Show reversed', true)
+    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
+    const roundImage = boolean('Show round Images', defaults.roundImage)
+
     return (
       <MediaBlock
         title={title}
-        url={url}
-        cta={cta}
-        headingTitle={headingTitle}
-        headingIcon={headingIcon}
-        imageSrcSet={imageSrcSet}
-        imageAlt={imageAlt}
+        titleClass={titleClass}
         description={description}
+        contentClass={contentClass}
+        metaClass={metaClass}
+        datetime={datetime}
+        category={category}
+        url={url}
+        cta={showCta ? cta : null}
+        kickerText={kickerText}
+        imageSrcSet={showImage ? imageSrcSet : null}
+        imageAlt={imageAlt}
         asBreakout={asBreakout}
+        showAs={blockModes[showMode]}
+        roundImage={roundImage}
+        reversed={reversed}
+      />
+    )
+  })
+
+  .add('Stacked', () => {
+    const title = text('Title', defaults.title)
+    const titleClass = text('Title class', defaults.titleClass)
+    const description = text('Description', defaults.description)
+    const contentClass = text('Content Class', 'u-color--gray')
+    const showCta = boolean('Show Call to Action', false)
+    const cta = text('Call to Action Text', defaults.cta)
+    const url = text('URL', defaults.url)
+    const metaClass = text('Meta Class', defaults.metaClass)
+    const datetime = date('Date Time', defaults.datetime)
+    const category = text('Category', defaults.category)
+    const kickerText = text('Kicker Text', defaults.kickerText)
+    const showImage = boolean('Show Image', true)
+    const imageMode = select('Image Mode', imageModes, 'Landscape')
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
+    const imageAlt = text('Image Alt', defaults.imageAlt)
+    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
+    const roundImage = boolean('Show round Images', defaults.roundImage)
+
+    return (
+      <MediaBlock
+        title={title}
+        titleClass={titleClass}
+        description={description}
+        contentClass={contentClass}
+        metaClass={metaClass}
+        datetime={datetime}
+        category={category}
+        url={url}
+        cta={showCta ? cta : null}
+        kickerText={kickerText}
+        imageSrcSet={showImage ? imageSrcSet : null}
+        imageAlt={imageAlt}
+        asBreakout={asBreakout}
+        showAs={blockModes['Stacked']}
         roundImage={roundImage}
       />
     )
