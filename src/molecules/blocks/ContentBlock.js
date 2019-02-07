@@ -6,27 +6,25 @@ import Button from '../../atoms/buttons/Button'
 
 const ContentBlock = ({
   title,
-  titleClass,
+  category,
   description,
   descriptionMore,
   cta,
   url,
-  blockClass,
   imageSrcSet,
   imageAlt,
-  imageClass,
 }) => {
-  const hasImage = imageSrcSet ? 'has-image' : ''
+  const titleClass = 'u-font--primary--m'
+  const blockClass = descriptionMore
+    ? 'c-block__text-expand u-spacing u-background-color--gray--light u-padding u-clear-fix can-be--dark-dark'
+    : 'u-spacing'
+  const imageClass = imageSrcSet && 'has-image'
   return (
     <div
-      className={`c-block c-block__text ${hasImage} u-theme--border-color--darker u-border--left ${blockClass}`}
+      className={`c-block c-block__text u-spacing ${blockClass} u-theme--border-color--darker u-border--left ${imageClass}`}
     >
       {imageSrcSet && (
-        <MediaImage
-          srcSet={imageSrcSet}
-          alt={imageAlt}
-          imageClass={imageClass}
-        />
+        <MediaImage srcSet={imageSrcSet} alt={imageAlt} url={url} />
       )}
       <h3 className={`u-theme--color--darker ${titleClass}`}>
         {url ? (
@@ -40,28 +38,37 @@ const ContentBlock = ({
           <strong>{title}</strong>
         )}
       </h3>
-      <p className="c-block__body text">{description}</p>
-      {descriptionMore && (
-        <div className="c-block__content">
-          <p>{descriptionMore}</p>
-        </div>
+      {description && <p className="c-block__body text">{description}</p>}
+      {category && (
+        <span className="c-block__meta u-theme--color--dark u-font--secondary--xs">
+          {category}
+        </span>
       )}
-      {descriptionMore && (
-        <a
-          href=""
-          className="o-button o-button--outline o-button--expand js-toggle-parent"
-        >
-          &nbsp;
-        </a>
-      )}
-      {cta && (
-        <Button
-          text={cta}
-          url={url}
-          className="c-block__button o-button o-button--outline"
-          icon="arrow-long-right"
-          iconClass="u-icon--m u-path-fill--base u-space--half--left"
-        />
+      {descriptionMore ? (
+        <>
+          <div className="c-block__content">
+            <p>{descriptionMore}</p>
+          </div>
+          <a
+            href=""
+            className="o-button o-button--outline o-button--expand js-toggle-parent"
+          >
+            &nbsp;
+          </a>
+        </>
+      ) : (
+        cta &&
+        url && (
+          <Button
+            as="a"
+            text={cta}
+            url={url}
+            className="c-block__button"
+            iconClass="u-space--half--left"
+            icon="arrow-long-right"
+            outline
+          />
+        )
       )}
     </div>
   )
@@ -69,7 +76,7 @@ const ContentBlock = ({
 
 ContentBlock.propTypes = {
   title: PropTypes.string.isRequired,
-  titleClass: PropTypes.string,
+  category: PropTypes.string,
   description: PropTypes.string,
   descriptionMore: PropTypes.string,
   cta: PropTypes.string,
@@ -77,15 +84,8 @@ ContentBlock.propTypes = {
   blockClass: PropTypes.string,
   imageSrcSet: PropTypes.object,
   imageAlt: PropTypes.string,
-  imageClass: PropTypes.string,
 }
 
-ContentBlock.defaultProps = {
-  descriptionMore: '',
-  blockClass: 'u-spacing',
-  titleClass: 'u-font--primary--m',
-  imageAlt: '',
-  imageClass: '',
-}
+ContentBlock.defaultProps = {}
 
 export default ContentBlock

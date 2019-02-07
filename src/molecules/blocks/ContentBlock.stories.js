@@ -10,19 +10,18 @@ import {
 
 import ContentBlock from './ContentBlock'
 
+const propsTab = 'Props'
+const ctaTab = 'CTA'
+const imageTab = 'Image'
 const defaults = {
   title: 'General Conference',
+  category: '',
   description:
     'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
   descriptionMore:
     'Seventh-day Adventist beliefs are meant to permeate your whole life. Growing out of scriptures that paint a compelling portrait of God, you are invited to explore, experience and know the One who desires to make us whole.',
   cta: 'Find out more',
-  url: 'https://adventist.org',
-  blockClass: {
-    default: 'u-spacing',
-    showMore:
-      'c-block__text-expand u-spacing u-background-color--gray--light u-padding u-clear-fix can-be--dark-dark',
-  },
+  url: 'https://www.adventist.org',
   imageSrcSet: {
     Landscape: {
       default: '//picsum.photos/500/375',
@@ -52,39 +51,49 @@ storiesOf('molecules/blocks/ContentBlock', module)
   .addDecorator(withKnobs)
 
   .add('Default', () => {
-    const title = text('Title', defaults.title)
-    const description = text('Description', defaults.description)
-    const showCta = boolean('Show CTA', true)
-    const cta = text('CTA', defaults.cta)
-    const url = text('URL', defaults.url)
-    const blockClass = text('Block class', defaults.blockClass)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const showCta = boolean('Show CTA', true, ctaTab)
+    const cta = text('CTA', defaults.cta, ctaTab)
+    const url = text('URL', defaults.url, ctaTab)
     return (
       <ContentBlock
         title={title}
         description={description}
+        category={category}
         cta={showCta ? cta : null}
-        url={url}
-        blockClass={blockClass.default}
+        url={showCta ? url : null}
       />
     )
   })
 
   .add('Show more', () => {
-    const title = text('Title', defaults.title)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const description = text('Description', defaults.description)
-    const descriptionMore = text('Description (more)', defaults.descriptionMore)
-    const url = text('URL', defaults.url)
-    const blockClass = text('Block class', defaults.blockClass.showMore)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const descriptionMore = text(
+      'Description (more)',
+      defaults.descriptionMore,
+      propsTab
+    )
+    const url = text('URL', defaults.url, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
+    )
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
     return (
       <ContentBlock
         title={title}
+        category={category}
         description={description}
         descriptionMore={descriptionMore}
         imageSrcSet={imageSrcSet}
+        imageAlt={imageAlt}
         url={url}
-        blockClass={blockClass}
       />
     )
   })

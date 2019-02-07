@@ -1,25 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Icon from '../../atoms/icons/Icon'
 import renderItems from '../../helpers/renderItems'
 
-const BreadcrumbItem = ({ name, url }) => (
-  <li className="breadcrumbs__list-Breadcrumbitem font--secondary--xs upper dib">
-    <a href={url} className="breadcrumbs__link can-be--white">
-      {name}
-    </a>
+const BreadcrumbItem = ({ text, url }) => (
+  <li className="c-breadcrumbs__list-item u-font--secondary--s u-text-transform--upper u-display--inline-block u-color--gray">
+    <span className="u-icon u-icon--xs u-path-fill--gray">
+      <Icon name="arrow-bracket-right" />
+    </span>
+    <strong>
+      {url ? (
+        <a href={url} className="c-breadcrumbs__link can-be--white">
+          {text}
+        </a>
+      ) : (
+        text
+      )}
+    </strong>
   </li>
 )
 
 BreadcrumbItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  url: PropTypes.string,
 }
 
 const Breadcrumbs = ({ items }) =>
   items.length > 0 && (
-    <nav className="breadcrumbs">
-      <ul className="breadcrumbs__list">
+    <nav className="c-breadcrumbs" role="navigation">
+      <ul className="c-breadcrumbs__list">
         {renderItems(items, BreadcrumbItem)}
       </ul>
     </nav>

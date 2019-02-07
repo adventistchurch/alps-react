@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../../atoms/buttons/Button'
-import IconWrap from '../../atoms/icons/IconWrap'
+import Icon from '../../atoms/icons/Icon'
 import Image from '../../atoms/images/Image'
 
 const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
@@ -12,46 +11,71 @@ const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
         <div className="c-gallery-block__title u-padding u-spacing--half">
           {title && (
             <h2 className="u-font--primary--s u-theme--color--darker">
-              <span className="u-theme--color--base">
-                <em>{kicker}</em>
-              </span>{' '}
+              {kicker && (
+                <>
+                  <span className="u-theme--color--base">
+                    <em>{kicker}</em>
+                  </span>{' '}
+                </>
+              )}
               {title}
             </h2>
           )}
-          <Button
-            className="c-gallery-block__toggle js-toggle "
-            small
-            toggle
-            outline
-            icon="plus"
-            iconClass="u-icon--xs u-path-fill--white"
-            data-toggled="this"
-            data-prefix="this"
-          >
-            <IconWrap name="plus" size="xs" fill="white" />
-          </Button>
+          {imageSrcSet.length > 1 && (
+            <button
+              className="c-gallery-block__toggle js-toggle o-button o-button--outline o-button--toggle o-button--small"
+              data-toggled="this"
+              data-prefix="this"
+            >
+              <span className="u-icon u-icon--xs u-path-fill--white">
+                <Icon name="plus" />
+              </span>
+            </button>
+          )}
         </div>
-        <div
-          className="c-gallery-block__thumb u-background--cover"
-          style={{
-            backgroundImage: 'url(' + imageSrcSet[0].default + ')',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
-      </div>
-      <div className="c-gallery-block__body">
-        {imageSrcSet.map(
-          ({ default: src, imageAlt: alt, imageCaption: caption }, key) => (
-            <div key={key} className="c-gallery-block__image ">
-              <Image src={src} alt={alt} />
-              <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
-                {caption}
-              </div>
-            </div>
-          )
+        {imageSrcSet.length > 0 && (
+          <div
+            className="c-gallery-block__thumb u-background--cover"
+            style={{
+              backgroundImage: 'url(' + imageSrcSet[0].default + ')',
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
         )}
       </div>
+      {imageSrcSet.length > 1 && (
+        <div className="c-gallery-block__body">
+          {imageSrcSet
+            .slice(1)
+            .map(
+              (
+                {
+                  default: src,
+                  imageAlt: alt,
+                  isPortrait: portrait,
+                  imageCaption: caption,
+                },
+                key
+              ) => {
+                const portraitClass = portrait ? 'is-portrait' : ''
+                return (
+                  <div
+                    key={key}
+                    className={`c-gallery-block__image ${portraitClass}`}
+                  >
+                    <Image src={src} alt={alt} />
+                    {caption && (
+                      <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
+                        {caption}
+                      </div>
+                    )}
+                  </div>
+                )
+              }
+            )}
+        </div>
+      )}
     </div>
   )
 }
@@ -59,8 +83,11 @@ const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
 GalleryBlock.propTypes = {
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
-  description: PropTypes.string,
   imageSrcSet: PropTypes.array,
+}
+
+GalleryBlock.defaultProps = {
+  imageSrcSet: [],
 }
 
 export default GalleryBlock

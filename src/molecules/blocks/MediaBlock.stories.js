@@ -9,30 +9,27 @@ import {
   date,
 } from '@storybook/addon-knobs'
 
-import { iconNames } from '../../atoms/icons/Icon'
 import MediaBlock from './MediaBlock'
-import Video from '../../atoms/media/Video'
 
-const iconOptions = [null, ...iconNames]
-
+const propsTab = 'Props'
+const imageTab = 'Image'
+const ctaTab = 'CTA'
 const defaults = {
-  title: 'General Conference',
-  titleClass: 'u-theme--color--darker',
+  title:
+    'Adventist leaders call for international cooperation to end abuse of refugees in Libya',
   description:
-    'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
-  contentClass: 'u-color--gray',
-  metaClass: 'u-theme--color--dark',
+    'Mauris sit amet augue gravida, dignissim sem maximus, aliquam metus. Maecenas eu consectetur orci, id auctor dui.',
   datetime: new Date(),
   category: 'Culture',
   cta: 'Find out more',
   ctaIcon: 'arrowLongRight',
-  url: 'https://adventist.org',
+  url: 'https://www.adventist.org',
   imageSrcSet: {
     Landscape: {
-      default: '//picsum.photos/500/375',
-      500: '//picsum.photos/900/700',
-      750: '//picsum.photos/700/600',
-      1200: '//picsum.photos/500/375',
+      default: '//picsum.photos/500/282',
+      500: '//picsum.photos/900/507',
+      750: '//picsum.photos/700/395',
+      1200: '//picsum.photos/500/282',
     },
     Portrait: {
       default: '//picsum.photos/150/200',
@@ -50,234 +47,186 @@ const defaults = {
   imageAlt: 'Placeholder image',
   videoSrc:
     'https://player.vimeo.com/video/137487821?color=ffffff&title=0&byline=0&portrait=0',
-  kickerText: '',
-  headingTitle: '',
-  headingIcon: '',
-  asRow: false,
-  asBreakout: false,
-  reversed: false,
-  roundImage: false,
-  innerClass: '',
+  kicker: '',
 }
 
 const imageModes = ['Landscape', 'Portrait', 'Square']
-
-const mode = ['Row', 'Inline', 'Inset', 'Stacked']
-const blockModes = {
-  Row: 'c-media-block__row c-block__row',
-  Inline: 'c-block__inline c-media-block__inine',
-  Inset: 'c-block__inset c-media-block__inset',
-  Stacked: 'c-block__stacked c-media-block__stacked',
-}
+const dateFormats = ['date', 'time', 'datetime']
 
 storiesOf('molecules/blocks/MediaBlock', module)
   .addDecorator(withKnobs)
 
   .add('Default', () => {
-    const title = text('Title', defaults.title)
-    const titleClass = text('Title class', defaults.titleClass)
-    const description = text('Description', defaults.description)
-    const contentClass = text('Content Class', defaults.contentClass)
-    const showCta = boolean('Show Call to Action', false)
-    const cta = text('Call to Action Text', defaults.cta)
-    const url = text('URL', defaults.url)
-    const metaClass = text('Meta Class', defaults.metaClass)
-    const datetime = date('Date Time', defaults.datetime)
-    const category = text('Category', defaults.category)
-    const kickerText = text('Kicker Text', defaults.kickerText)
-    const showImage = boolean('Show Image', true)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('Image Alt', defaults.imageAlt)
-    const showMode = select('Show as', mode, 'Row')
-    const reversed = boolean('Show reversed', defaults.reversed)
-    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
-    const roundImage = boolean('Show round Images', defaults.roundImage)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const datetime = date('Date Time', defaults.datetime, propsTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
+    const url = text('URL', defaults.url, propsTab)
+    const showImage = boolean('Show Image', true, imageTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
+    )
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
+    const showCta = boolean('Show Call to Action', false, ctaTab)
+    const cta = text('Call to Action Text', defaults.cta, ctaTab)
 
     return (
       <MediaBlock
+        kicker={kicker}
         title={title}
-        titleClass={titleClass}
         description={description}
-        contentClass={contentClass}
-        metaClass={metaClass}
-        datetime={datetime}
         category={category}
-        url={url}
-        cta={showCta ? cta : null}
-        kickerText={kickerText}
+        datetime={datetime}
+        dateFormat={dateFormat}
         imageSrcSet={showImage ? imageSrcSet : null}
         imageAlt={imageAlt}
-        asBreakout={asBreakout}
-        showAs={blockModes[showMode]}
-        roundImage={roundImage}
-        reversed={reversed}
+        url={url}
+        cta={showCta ? cta : null}
       />
     )
   })
 
   .add('Inline', () => {
-    const title = text('Title', defaults.title)
-    const titleClass = text('Title class', defaults.titleClass)
-    const description = text('Description', defaults.description)
-    const contentClass = text(
-      'Content Class',
-      'l-grid-item u-border-left--black--at-large u-theme--border-color--darker--left u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom'
-    )
-    const showCta = boolean('Show Call to Action', false)
-    const cta = text('Call to Action Text', defaults.cta)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const datetime = date('Date Time', defaults.datetime, propsTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
     const url = text('URL', defaults.url)
-    const metaClass = text('Meta Class', defaults.metaClass)
-    const datetime = date('Date Time', defaults.datetime)
-    const category = text('Category', defaults.category)
-    const kickerText = text('Kicker Text', defaults.kickerText)
-    const showImage = boolean('Show Image', true)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('Image Alt', defaults.imageAlt)
-    const imageClass = text('Image class', 'l-grid-item u-padding--zero--sides')
-    const reversed = boolean('Show reversed', true)
+    const showImage = boolean('Show Image', true, imageTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
+    )
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
+    const showCta = boolean('Show Call to Action', false, ctaTab)
+    const cta = text('Call to Action Text', defaults.cta, ctaTab)
 
     return (
       <MediaBlock
+        kicker={kicker}
         title={title}
-        titleClass={titleClass}
         description={description}
-        contentClass={contentClass}
-        metaClass={metaClass}
-        datetime={datetime}
         category={category}
-        url={url}
-        cta={showCta ? cta : null}
-        kickerText={kickerText}
+        datetime={datetime}
+        dateFormat={dateFormat}
         imageSrcSet={showImage ? imageSrcSet : null}
         imageAlt={imageAlt}
-        showAs={blockModes['Inline']}
-        reversed={reversed}
-        imageClass={imageClass}
+        url={url}
+        cta={showCta ? cta : null}
+        inline
       />
     )
   })
 
   .add('Inset', () => {
-    const title = text('Title', defaults.title)
-    const titleClass = text('Title class', defaults.titleClass)
-    const description = text('Description', defaults.description)
-    const contentClass = text(
-      'Content Class',
-      'l-grid--7-col u-theme--background-color--darker'
+    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', '', propsTab)
+    const datetime = date('Date Time', defaults.datetime, propsTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
+    const url = text('URL', defaults.url, propsTab)
+    const category = text('Category', '', propsTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
     )
-    const url = text('URL', defaults.url)
-    const metaClass = text('Meta Class', 'l-grid-item l-grid-item--m--2-col')
-    const datetime = date('Date Time', defaults.datetime)
-    const category = text('Category', defaults.category)
-    const kickerText = text('Kicker Text', defaults.kickerText)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('Image Alt', defaults.imageAlt)
-    const imageClass = text('Image class', '')
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
 
     return (
       <MediaBlock
+        kicker={kicker}
         title={title}
-        titleClass={titleClass}
         description={description}
-        contentClass={contentClass}
-        metaClass={metaClass}
-        datetime={datetime}
         category={category}
-        url={url}
-        kickerText={kickerText}
+        datetime={datetime}
+        dateFormat={dateFormat}
         imageSrcSet={imageSrcSet}
         imageAlt={imageAlt}
-        showAs={blockModes['Inset']}
-        imageClass={imageClass}
+        url={url}
+        inset
       />
     )
   })
 
   .add('Reversed', () => {
-    const title = text('Title', defaults.title)
-    const titleClass = text('Title class', defaults.titleClass)
-    const description = text('Description', defaults.description)
-    const contentClass = text(
-      'Content Class',
-      'l-grid-item l-grid-item--m--4-col u-border-left--black--at-large'
+    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const datetime = date('Date Time', defaults.datetime, propsTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
+    const url = text('URL', defaults.url, propsTab)
+    const showImage = boolean('Show Image', true, imageTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
     )
-    const showCta = boolean('Show Call to Action', false)
-    const cta = text('Call to Action Text', defaults.cta)
-    const url = text('URL', defaults.url)
-    const metaClass = text('Meta Class', defaults.metaClass)
-    const datetime = date('Date Time', defaults.datetime)
-    const category = text('Category', defaults.category)
-    const kickerText = text('Kicker Text', defaults.kickerText)
-    const showImage = boolean('Show Image', true)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('Image Alt', defaults.imageAlt)
-    const showMode = select('Show as', mode, 'Row')
-    const reversed = boolean('Show reversed', true)
-    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
-    const roundImage = boolean('Show round Images', defaults.roundImage)
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
+    const showCta = boolean('Show Call to Action', false, ctaTab)
+    const cta = text('Call to Action Text', defaults.cta, ctaTab)
 
     return (
       <MediaBlock
+        kicker={kicker}
         title={title}
-        titleClass={titleClass}
         description={description}
-        contentClass={contentClass}
-        metaClass={metaClass}
-        datetime={datetime}
         category={category}
-        url={url}
-        cta={showCta ? cta : null}
-        kickerText={kickerText}
+        datetime={datetime}
+        dateFormat={dateFormat}
         imageSrcSet={showImage ? imageSrcSet : null}
         imageAlt={imageAlt}
-        asBreakout={asBreakout}
-        showAs={blockModes[showMode]}
-        roundImage={roundImage}
-        reversed={reversed}
+        url={url}
+        cta={showCta ? cta : null}
+        reversed
       />
     )
   })
 
   .add('Stacked', () => {
-    const title = text('Title', defaults.title)
-    const titleClass = text('Title class', defaults.titleClass)
-    const description = text('Description', defaults.description)
-    const contentClass = text('Content Class', 'u-color--gray')
-    const showCta = boolean('Show Call to Action', false)
-    const cta = text('Call to Action Text', defaults.cta)
-    const url = text('URL', defaults.url)
-    const metaClass = text('Meta Class', defaults.metaClass)
-    const datetime = date('Date Time', defaults.datetime)
-    const category = text('Category', defaults.category)
-    const kickerText = text('Kicker Text', defaults.kickerText)
-    const showImage = boolean('Show Image', true)
-    const imageMode = select('Image Mode', imageModes, 'Landscape')
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet[imageMode])
-    const imageAlt = text('Image Alt', defaults.imageAlt)
-    const asBreakout = boolean('Show as Breakout', defaults.asBreakout)
-    const roundImage = boolean('Show round Images', defaults.roundImage)
+    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
+    const category = text('Category', defaults.category, propsTab)
+    const datetime = date('Date Time', defaults.datetime, propsTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
+    const url = text('URL', defaults.url, propsTab)
+    const showImage = boolean('Show Image', true, imageTab)
+    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
+    const imageSrcSet = object(
+      'Image SrcSet',
+      defaults.imageSrcSet[imageMode],
+      imageTab
+    )
+    const imageAlt = text('Image Alt', defaults.imageAlt, imageTab)
+    const showCta = boolean('Show Call to Action', false, ctaTab)
+    const cta = text('Call to Action Text', defaults.cta, ctaTab)
 
     return (
       <MediaBlock
+        kicker={kicker}
         title={title}
-        titleClass={titleClass}
         description={description}
-        contentClass={contentClass}
-        metaClass={metaClass}
-        datetime={datetime}
         category={category}
-        url={url}
-        cta={showCta ? cta : null}
-        kickerText={kickerText}
+        datetime={datetime}
+        dateFormat={dateFormat}
         imageSrcSet={showImage ? imageSrcSet : null}
         imageAlt={imageAlt}
-        asBreakout={asBreakout}
-        showAs={blockModes['Stacked']}
-        roundImage={roundImage}
+        url={url}
+        cta={showCta ? cta : null}
+        stacked
       />
     )
   })
