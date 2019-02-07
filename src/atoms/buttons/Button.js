@@ -4,10 +4,13 @@ import PropTypes from 'prop-types'
 import IconWrap from '../icons/IconWrap'
 
 const Button = ({
+  as,
   text,
   url,
   icon,
   iconClass,
+  iconSize,
+  iconFill,
   className,
   small,
   outline,
@@ -18,36 +21,55 @@ const Button = ({
   ...rest
 }) => {
   const baseClass = 'o-button'
-
   const classNames = `${baseClass}
     ${className}
     ${small ? `${baseClass}--small` : ''}
-    ${outline ? `${baseClass}--outline` : ''} 
+    ${outline ? `${baseClass}--outline` : ''}
     ${toggle ? `${baseClass}--toggle` : ''} 
     ${lighter ? `${baseClass}--lighter` : ''} 
     ${simple ? `${baseClass}--simple` : ''} 
     ${disabled ? 'disabled' : ''}`
 
-  return (
-    <a {...rest} href={url ? url : '#'} className={classNames}>
+  return React.createElement(
+    as,
+    { href: url ? url : '#', className: classNames, ...rest },
+    <>
       {text}{' '}
       {icon && (
         <IconWrap
           name={icon}
           className={iconClass}
-          size="xs"
-          fill="white"
+          size={iconSize}
+          fill={iconFill}
           iconColor="white"
         />
       )}
-    </a>
+    </>
   )
+
+  // return (
+  //   <a {...rest} href={url ? url : '#'} className={classNames}>
+  //     {text}{' '}
+  //     {icon && (
+  //       <IconWrap
+  //         name={icon}
+  //         className={iconClass}
+  //         size={iconSize}
+  //         fill={iconFill}
+  //         iconColor="white"
+  //       />
+  //     )}
+  //   </a>
+  // )
 }
 
 Button.propTypes = {
+  as: PropTypes.oneOf(['a', 'button']),
   className: PropTypes.string,
   icon: PropTypes.string,
   iconClass: PropTypes.string,
+  iconSize: PropTypes.string,
+  iconFill: PropTypes.string,
   text: PropTypes.string,
   url: PropTypes.string,
   small: PropTypes.bool,
@@ -59,8 +81,9 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
-  className: 'u-theme--button',
-  iconClass: 'u-icon--xs u-path-fill--white',
+  as: 'button',
+  iconSize: 'm',
+  iconFill: 'base',
   url: '#',
 }
 

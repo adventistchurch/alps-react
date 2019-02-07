@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 import Icon, { iconNames } from './Icon'
 
+const propsTab = 'Props'
 const defaults = {
   name: 'logo',
 }
@@ -10,7 +11,7 @@ const defaults = {
 storiesOf('atoms/icons/Icon', module)
   .addDecorator(withKnobs)
 
-  .add('default', () => {
-    const name = select('name', iconNames, defaults.name)
+  .add('Default', () => {
+    const name = select('name', iconNames, defaults.name, propsTab)
     return <Icon name={name} />
   })

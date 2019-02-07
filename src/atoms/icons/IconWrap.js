@@ -15,12 +15,12 @@ const IconWrap = ({ name, size, fill, iconColor, className, ...props }) => (
 IconWrap.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(['xs', 'sm', 'md']),
-  fill: PropTypes.oneOf(['white']),
+  size: PropTypes.oneOf(['xs', 'm']),
+  fill: PropTypes.oneOf(['base', 'white']),
   iconColor: PropTypes.string,
 }
 IconWrap.defaultProps = {
-  size: 'sm',
+  size: 'm',
   fill: 'white',
 }
 

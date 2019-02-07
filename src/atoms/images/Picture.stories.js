@@ -4,12 +4,13 @@ import { withKnobs, text, boolean, object } from '@storybook/addon-knobs'
 
 import Picture from './Picture'
 
+const propsTab = 'Props'
 const defaults = {
-  image: {
-    default: '//picsum.photos/250/100',
-    500: '//picsum.photos/500/200',
-    1000: '//picsum.photos/1000/400',
-    1500: '//picsum.photos/1500/600',
+  imageSrcSet: {
+    default: '//picsum.photos/500/282',
+    500: '//picsum.photos/900/507',
+    750: '//picsum.photos/700/395',
+    1200: '//picsum.photos/500/282',
   },
   alt: 'Just a placeholder image',
 }
@@ -17,9 +18,9 @@ const defaults = {
 storiesOf('atoms/images/Picture', module)
   .addDecorator(withKnobs)
 
-  .add('default', () => {
-    const image = object('image', defaults.image)
-    const alt = text('alt', defaults.alt)
-    const lazy = boolean('lazy', true)
-    return <Picture image={image} alt={alt} lazy={lazy} />
+  .add('Default', () => {
+    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
+    const alt = text('Image Alt', defaults.alt, propsTab)
+    const lazy = boolean('Lazy', true, propsTab)
+    return <Picture image={imageSrcSet} alt={alt} lazy={lazy} />
   })
