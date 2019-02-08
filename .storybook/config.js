@@ -12,14 +12,19 @@ const style = {
 
 addDecorator(story => {
   const content = story()
-  const primaryColor = select('Primary color', colors.primary, 'denim')
-  const secondaryColor = select('Secondary color', colors.secondary, 'white')
+  const primaryColor = select('Primary color', colors.primary, 'denim', 'Theme')
+  const secondaryColor = select(
+    'Secondary color',
+    colors.secondary,
+    'white',
+    'Theme'
+  )
   return (
     <div className={`u-theme--${primaryColor}`} style={{ ...style }}>
       <div className={`body has-grid u-theme--${secondaryColor}`}>
         {content}
       </div>
-      <LoadScript url="//code.jquery.com/jquery-2.2.4.min.js" />
+      <LoadScript url="https://code.jquery.com/jquery-2.2.4.min.js" />
       <LoadScript url="//cdn.adventist.org/alps/3/latest/js/script.min.js" />
     </div>
   )

@@ -1,25 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Image from '../../atoms/images/Image'
-import Figcaption from './Figcaption'
 import Figure from './Figure'
 
-const FigureWithCaption = ({ image, caption, className }) => {
+const FigureWithCaption = ({ imageSrcSet, imageAlt, caption, className }) => {
   return (
-    <Figure className={className}>
-      <div className="img-wrap">
-        <Image {...image} />
-      </div>
-      <Figcaption caption={caption} />
-    </Figure>
+    <Figure
+      imageSrcSet={imageSrcSet}
+      imageAlt={imageAlt}
+      caption={caption}
+      className={className}
+    />
   )
 }
 
 FigureWithCaption.propTypes = {
-  image: PropTypes.object.isRequired,
+  imageSrcSet: PropTypes.object.isRequired,
+  imageAlt: PropTypes.string,
   caption: PropTypes.string,
   className: PropTypes.string,
+}
+
+FigureWithCaption.defaultProps = {
+  className: '',
 }
 
 export default FigureWithCaption

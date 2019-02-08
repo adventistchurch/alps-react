@@ -4,6 +4,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 
 import ContentBlockExpand from './ContentBlockExpand'
 
+const propsTab = 'Props'
 const defaults = {
   kicker: 'The General Conference.',
   title: 'Coordinates the global ministry of the Seventh-day Adventist Church.',
@@ -15,9 +16,9 @@ storiesOf('molecules/blocks/ContentBlockExpand', module)
   .addDecorator(withKnobs)
 
   .add('Default', () => {
-    const kicker = text('Kicker', defaults.kicker)
-    const title = text('Title', defaults.title)
-    const description = text('Description', defaults.description)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
+    const title = text('Title', defaults.title, propsTab)
+    const description = text('Description', defaults.description, propsTab)
     return (
       <ContentBlockExpand
         kicker={kicker}
