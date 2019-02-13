@@ -17,7 +17,7 @@ const primary = [
   'night',
 ]
 
-const secondary = ['white', 'dark']
+const secondary = ['', 'dark']
 
 const theme = {
   primary: {
