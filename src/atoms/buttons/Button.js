@@ -10,7 +10,9 @@ import IconWrap from '../icons/IconWrap'
  * @param {object} flags - Button flags
  */
 function getButtonClass(base, extra, { disabled, ...flags }) {
-  const classNames = [base, extra]
+  const classNames = [base]
+
+  if (extra) classNames.push(extra)
 
   if (disabled) classNames.push(disabled)
 
@@ -21,21 +23,26 @@ function getButtonClass(base, extra, { disabled, ...flags }) {
   return classNames.join(' ')
 }
 
+/**
+ * ALPS atom/buttons/Button component
+ * @param {object} props - Button props
+ */
 function Button({
   as,
-  text,
-  url,
+  className,
+  disabled,
+  expand,
   icon,
   iconClass,
   iconSize,
   iconFill,
-  className,
-  small,
-  outline,
   lighter,
-  toggle,
+  outline,
   simple,
-  disabled,
+  small,
+  text,
+  toggle,
+  url,
   ...rest
 }) {
   return React.createElement(
@@ -43,23 +50,24 @@ function Button({
     {
       href: url,
       className: getButtonClass('o-button', className, {
-        small,
-        outline,
-        toggle,
-        lighter,
-        simple,
         disabled,
+        expand,
+        lighter,
+        outline,
+        simple,
+        small,
+        toggle,
       }),
       ...rest,
     },
     <>
       {icon && (
         <IconWrap
-          name={icon}
           className={iconClass}
-          size={iconSize}
-          fill={iconFill}
           color="white"
+          fill={iconFill}
+          name={icon}
+          size={iconSize}
         />
       )}
       {text}
@@ -70,25 +78,26 @@ function Button({
 Button.propTypes = {
   as: PropTypes.oneOf(['a', 'button']),
   className: PropTypes.string,
+  disabled: PropTypes.bool,
+  expand: PropTypes.bool,
   icon: PropTypes.string,
   iconClass: PropTypes.string,
   iconSize: PropTypes.string,
   iconFill: PropTypes.string,
-  text: PropTypes.string,
-  url: PropTypes.string,
-  small: PropTypes.bool,
-  outline: PropTypes.bool,
   lighter: PropTypes.bool,
-  toggle: PropTypes.bool,
+  outline: PropTypes.bool,
   simple: PropTypes.bool,
-  disabled: PropTypes.bool,
+  small: PropTypes.bool,
+  text: PropTypes.string,
+  toggle: PropTypes.bool,
+  url: PropTypes.string,
 }
 
 Button.defaultProps = {
-  className: '',
   as: 'button',
-  iconSize: 'xs',
+  className: '',
   iconFill: 'base',
+  iconSize: 'xs',
   url: '#',
 }
 
