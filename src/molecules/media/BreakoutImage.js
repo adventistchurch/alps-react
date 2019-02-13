@@ -1,41 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import InlineStyles from '../../helpers/InlineStyles'
+import useResponsiveStyles from '../../helpers/useResponsiveStyles'
+
 import Figcaption from './Figcaption'
 
-const BreakoutImage = ({ caption, imageSrcSet, parallax }) => {
+const mediaQueries = {
+  default: null,
+  small: 'min-width: 500px',
+  medium: 'min-width: 700px',
+  large: 'min-width: 1200px',
+}
+
+function BreakoutImage({ caption, imageSrcSet, parallax }) {
+  // get background image's styles
+  const backgroundImageStyles = useResponsiveStyles(
+    url => `.c-breakout-image__background {
+      background-image: url('${url}');
+    }`,
+    imageSrcSet,
+    mediaQueries
+  )
+
+  const parallaxProps = parallax
+    ? {
+        dataType: 'background',
+        dataSpeed: '8',
+      }
+    : {}
+
   return (
     <div className="c-breakout-image">
-      <style type="text/css">
-        {`.c-breakout-image__background {
-              background-image: url('${imageSrcSet.default}');
-            }
-            @media(min-width: 500px) {
-              .c-breakout-image__background {
-                background-image: url('${imageSrcSet.small}');
-              }
-            }
-            @media(min-width: 700px) {
-              .c-breakout-image__background {
-                background-image: url('${imageSrcSet.medium}');
-              }
-            }
-            @media(min-width: 1200px) {
-              .c-breakout-image__background {
-                background-image: url('${imageSrcSet.large}');
-              }
-            }`}
-      </style>
+      <InlineStyles styles={backgroundImageStyles} />
 
-      {parallax ? (
-        <div
-          className="c-breakout-image__background u-image--breakout u-background--cover has-parallax"
-          data-type="background"
-          data-speed="8"
-        />
-      ) : (
-        <div className="c-breakout-image__background u-image--breakout u-background--cover" />
-      )}
+      <div
+        className={`c-breakout-image__background u-image--breakout u-background--cover ${
+          parallax ? 'has-parallax' : ''
+        }`}
+        {...parallaxProps}
+      />
+
       {caption && (
         <div className="c-breakout-image__caption">
           <Figcaption>{caption}</Figcaption>
