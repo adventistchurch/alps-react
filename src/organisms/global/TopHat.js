@@ -27,10 +27,10 @@ TopHat.propTypes = {
 }
 TopHat.defaultProps = {
   text: 'This is an official website of the Seventh-day Adventist Church.',
-  url: 'http://www.adventist.org',
+  url: 'https://www.adventist.org',
   learnMore: {
     text: 'Learn More about Adventists',
-    url: 'http://www.adventist.org/beliefs',
+    url: 'https://www.adventist.org/beliefs',
   },
 }
 
