@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Aside = ({ children }) => (
-  <aside className="aside spacing--double">
+  <div className="u-spacing--double u-padding--right">
     <div className="pad--secondary spacing--double">{children}</div>
-  </aside>
+  </div>
 )
 
 Aside.propTypes = {
