@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import InlineStyles from '../../helpers/InlineStyles'
@@ -13,7 +13,41 @@ const mediaQueries = {
   large: 'min-width: 1200px',
 }
 
+// Apply parallax effect to background images.
+function useBackgroundParallax(element, speed = 0) {
+  const [y, setY] = useState(0)
+
+  // event listener
+  const listener = () => {
+    const elementBox = element ? element.getBoundingClientRect() : { top: 0 }
+    setY(-((window.pageYOffset - elementBox.top) / speed))
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', listener)
+    window.addEventListener('resize', listener)
+
+    // Triggers window scroll for refresh
+    listener()
+    return () => {
+      window.removeEventListener('scroll', listener)
+      window.removeEventListener('resize', listener)
+    }
+  }, [element])
+
+  return { backgroundPosition: `50% ${y}px` }
+}
+
 function BreakoutImage({ caption, imageSrcSet, parallax }) {
+  const backgroundRef = useRef()
+  const backgroundStyles = parallax
+    ? useBackgroundParallax(
+        backgroundRef.current, // Element used to calculate the effect
+        8, // Speed
+        parallax // toggles parallax
+      )
+    : {}
+
   // get background image's styles
   const backgroundImageStyles = useResponsiveStyles(
     url => `.c-breakout-image__background {
@@ -23,22 +57,14 @@ function BreakoutImage({ caption, imageSrcSet, parallax }) {
     mediaQueries
   )
 
-  const parallaxProps = parallax
-    ? {
-        dataType: 'background',
-        dataSpeed: '8',
-      }
-    : {}
-
   return (
     <div className="c-breakout-image">
       <InlineStyles styles={backgroundImageStyles} />
 
       <div
-        className={`c-breakout-image__background u-image--breakout u-background--cover ${
-          parallax ? 'has-parallax' : ''
-        }`}
-        {...parallaxProps}
+        ref={backgroundRef}
+        className="c-breakout-image__background u-image--breakout u-background--cover"
+        style={backgroundStyles}
       />
 
       {caption && (
