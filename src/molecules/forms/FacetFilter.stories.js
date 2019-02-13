@@ -161,7 +161,7 @@ const defaults = {
 storiesOf('molecules/forms/FacetFilter', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const action = text('Form Action', defaults.action, propsTab)
     const title = text('Form Title', defaults.title, propsTab)
     const facets = array('Options', defaults.facets, propsTab)

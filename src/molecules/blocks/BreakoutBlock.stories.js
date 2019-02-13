@@ -16,7 +16,7 @@ const defaults = {
 storiesOf('molecules/blocks/BreakoutBlock', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
     const showCta = boolean('Show CTA', true, propsTab)

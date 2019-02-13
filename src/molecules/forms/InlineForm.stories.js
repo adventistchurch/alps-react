@@ -13,7 +13,7 @@ const defaults = {
 storiesOf('molecules/forms/InlineForm', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const action = text('Form Action', defaults.action, propsTab)
     const buttonText = text('Button Text', defaults.buttonText, propsTab)
     return <InlineForm action={action} buttonText={buttonText} />

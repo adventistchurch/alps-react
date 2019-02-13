@@ -16,7 +16,7 @@ const defaults = {
 storiesOf('molecules/navigation/Breadcrumbs', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const breadcrumbs = array(
       'Breadcrumbs',
       defaults.breadcrumbs,

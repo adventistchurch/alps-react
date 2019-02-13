@@ -44,7 +44,7 @@ const defaults = {
 storiesOf('molecules/components/Carousel', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const showArrows = boolean('Show Arrows', true)
     return <Carousel slides={defaults.slides} showArrows={showArrows} />
   })

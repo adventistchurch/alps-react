@@ -56,7 +56,7 @@ const dateFormats = ['date', 'time', 'datetime']
 storiesOf('molecules/blocks/MediaBlock', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
@@ -91,7 +91,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     )
   })
 
-  .add('Inline', () => {
+  .addWithJSX('Inline', () => {
     const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
@@ -127,7 +127,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     )
   })
 
-  .add('Inset', () => {
+  .addWithJSX('Inset', () => {
     const kicker = text('Kicker Text', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', '', propsTab)
@@ -159,7 +159,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     )
   })
 
-  .add('Reversed', () => {
+  .addWithJSX('Reversed', () => {
     const kicker = text('Kicker Text', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
@@ -195,7 +195,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     )
   })
 
-  .add('Stacked', () => {
+  .addWithJSX('Stacked', () => {
     const kicker = text('Kicker Text', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)

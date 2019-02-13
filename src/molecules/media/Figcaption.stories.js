@@ -12,7 +12,7 @@ const defaults = {
 storiesOf('molecules/media/Figcaption', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const caption = text('Caption', defaults.caption, propsTab)
     return <Figcaption>{caption}</Figcaption>
   })

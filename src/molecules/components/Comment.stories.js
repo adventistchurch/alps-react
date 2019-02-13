@@ -25,7 +25,7 @@ const dateFormats = ['date', 'time', 'datetime']
 storiesOf('molecules/components/Comment', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const byline = text('Byline', defaults.byline, propsTab)
     const comment = text('Comment', defaults.comment, propsTab)
     const datetime = date('Date Time', defaults.datetime, propsTab)

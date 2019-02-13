@@ -46,6 +46,6 @@ const defaults = {
 storiesOf('molecules/text/ExtendedQuote', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     return <ExtendedQuote>{defaults.content}</ExtendedQuote>
   })

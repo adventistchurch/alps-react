@@ -21,7 +21,7 @@ const defaults = {
 storiesOf('molecules/media/BreakoutImage', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const caption = text('Title', defaults.caption, propsTab)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
     const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
@@ -34,13 +34,18 @@ storiesOf('molecules/media/BreakoutImage', module)
     )
   })
 
-  .add('With Parallax', () => {
+  .addWithJSX('With Parallax', () => {
     const caption = text('Caption', defaults.caption, propsTab)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
     const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
+    const wrapperStyle = { marginTop: 100 }
+
     return (
-      // Adds some margin to the top, so the parallax is visible
-      <div style={{ marginTop: 200 }}>
+      <div
+        important="This wrapper div is not required for a BreakoutImage to work. So, don't copy it!"
+        note="It's just adds some top margin in order to make the parallax effect is visible in StoryBook."
+        style={wrapperStyle}
+      >
         <BreakoutImage
           imageSrcSet={imageSrcSet}
           imageAlt={imageAlt}

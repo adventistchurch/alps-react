@@ -19,7 +19,7 @@ const defaults = {
 storiesOf('molecules/media/FigureWithCaption', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const caption = text('Caption', defaults.caption, propsTab)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
     const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)

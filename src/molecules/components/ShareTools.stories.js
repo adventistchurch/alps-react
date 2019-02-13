@@ -59,7 +59,7 @@ const defaults = {
 storiesOf('molecules/components/ShareTools', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const code = object('Code', defaults.code, propsTab)
     return <ShareTools code={code} />
   })

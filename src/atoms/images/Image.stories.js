@@ -15,7 +15,7 @@ const defaults = {
 storiesOf('atoms/images/Image', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const src = text('Image Source', defaults.src, propsTab)
     const alt = text('Image Alt', defaults.alt, propsTab)
     const lazy = boolean('Lazy', defaults.lazy, propsTab)

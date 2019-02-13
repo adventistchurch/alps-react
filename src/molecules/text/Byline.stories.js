@@ -12,7 +12,7 @@ const defaults = {
 storiesOf('molecules/text/Byline', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const textValue = text('Byline', defaults.textValue, propsTab)
     return <Byline>{textValue}</Byline>
   })

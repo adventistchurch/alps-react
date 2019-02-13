@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Highlight from './Highlight'
 
@@ -13,7 +13,7 @@ const defaults = {
 storiesOf('molecules/text/Highlight', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const textValue = text('Text', defaults.textValue, propsTab)
     return <Highlight>{textValue}</Highlight>
   })

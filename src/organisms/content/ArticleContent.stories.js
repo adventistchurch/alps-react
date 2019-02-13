@@ -21,7 +21,7 @@ const defaults = {
 storiesOf('organisms/content/ArticleContent', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)

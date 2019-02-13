@@ -15,7 +15,7 @@ const defaults = {
 storiesOf('molecules/blocks/ContentBlockExpand', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)

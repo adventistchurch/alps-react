@@ -14,7 +14,7 @@ const defaults = {
 storiesOf('molecules/media/VideoFigureWithCaption', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const caption = text('Caption', defaults.caption, propsTab)
     const videoSrc = text('Video source', defaults.videoSrc, propsTab)
     return <VideoFigureWithCaption caption={caption} videoSrc={videoSrc} />

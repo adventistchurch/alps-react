@@ -16,46 +16,46 @@ const defaults = {
 storiesOf('atoms/buttons/Button', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const textValue = text('text', defaults.text, propsTab)
     const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} />
   })
 
-  .add('Disabled', () => {
+  .addWithJSX('Disabled', () => {
     const textValue = text('text', defaults.text, propsTab)
     return <Button url={null} text={textValue} disabled />
   })
 
-  .add('Lighter', () => {
+  .addWithJSX('Lighter', () => {
     const textValue = text('text', defaults.text, propsTab)
     const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} lighter />
   })
 
-  .add('Outline', () => {
+  .addWithJSX('Outline', () => {
     const textValue = text('text', defaults.text, propsTab)
     const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} outline />
   })
 
-  .add('Simple', () => {
+  .addWithJSX('Simple', () => {
     const textValue = text('text', defaults.text, propsTab)
     const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} simple />
   })
 
-  .add('Small', () => {
+  .addWithJSX('Small', () => {
     const textValue = text('text', defaults.text, propsTab)
     const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} small />
   })
 
-  .add('Toggle', () => {
+  .addWithJSX('Toggle', () => {
     return <Button icon="plus" outline toggle small className="js-toggle" />
   })
 
-  .add('With icon', () => {
+  .addWithJSX('With icon', () => {
     const textValue = text('text', defaults.text, propsTab)
     const icon = select('icon', iconNames, defaults.icon, propsTab)
     const url = text('url', defaults.url, propsTab)

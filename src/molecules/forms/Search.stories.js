@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Search from './Search'
 
@@ -15,7 +15,7 @@ const defaults = {
 storiesOf('molecules/forms/Search', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const action = text('Form Action', defaults.action, propsTab)
     const title = text('Form Title', defaults.title, propsTab)
     const buttonText = text('Description', defaults.buttonText, propsTab)

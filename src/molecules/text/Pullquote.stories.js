@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Pullquote from './Pullquote'
 
@@ -14,12 +14,12 @@ const defaults = {
 storiesOf('molecules/text/Pullquote', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const quote = text('Quote', defaults.quote, propsTab)
     return <Pullquote>{quote}</Pullquote>
   })
 
-  .add('With Author', () => {
+  .addWithJSX('With Author', () => {
     const quote = text('Quote', defaults.quote, propsTab)
     const author = text('Author', defaults.author, propsTab)
     return <Pullquote author={author}>{quote}</Pullquote>

@@ -50,7 +50,7 @@ const imageModes = ['Landscape', 'Portrait', 'Square']
 storiesOf('molecules/blocks/ContentBlock', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
     const category = text('Category', defaults.category, propsTab)
@@ -68,7 +68,7 @@ storiesOf('molecules/blocks/ContentBlock', module)
     )
   })
 
-  .add('Show more', () => {
+  .addWithJSX('Show more', () => {
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
     const descriptionMore = text(

@@ -68,6 +68,6 @@ const defaults = {
 storiesOf('molecules/components/Accordion', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     return <Accordion items={defaults.items} />
   })

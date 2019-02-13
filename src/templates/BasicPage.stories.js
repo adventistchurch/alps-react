@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
-import { withKnobs, text, select } from '@storybook/addon-knobs'
-import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
+import { withKnobs, text } from '@storybook/addon-knobs'
+// import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
 
 import BasicPage from './BasicPage'
 
@@ -67,7 +67,7 @@ const defaults = {
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const title = text('title', defaults.title)
     const kicker = text('kicker', defaults.kicker)
     const background = text('background', defaults.background)

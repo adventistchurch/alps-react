@@ -11,7 +11,7 @@ const defaults = {
 storiesOf('atoms/icons/Icon', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const name = select('name', iconNames, defaults.name, propsTab)
     return <Icon name={name} />
   })

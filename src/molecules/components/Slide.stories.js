@@ -26,7 +26,7 @@ const defaults = {
 storiesOf('molecules/components/Slide', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
     const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
     const isLazy = boolean('Layz load image', false, propsTab)
@@ -35,7 +35,7 @@ storiesOf('molecules/components/Slide', module)
     )
   })
 
-  .add('With text', () => {
+  .addWithJSX('With text', () => {
     const heading = text('Heading', defaults.heading, propsTab)
     const subtitle = text('Subtitle', defaults.subtitle, propsTab)
     const dek = text('Description', defaults.dek, propsTab)

@@ -49,7 +49,7 @@ const defaults = {
 storiesOf('molecules/blocks/GalleryBlock', module)
   .addDecorator(withKnobs)
 
-  .add('Default', () => {
+  .addWithJSX('Default', () => {
     const kicker = text('Kicker', defaults.kicker)
     const title = text('Title', defaults.title)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet)
