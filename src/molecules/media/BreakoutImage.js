@@ -1,63 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import InlineStyles from '../../helpers/InlineStyles'
+import useBackgroundParallax from '../../helpers/useBackgroundParallax'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
 import Figcaption from './Figcaption'
 
-const mediaQueries = {
+const backgroundMediaQueries = {
   default: null,
   small: 'min-width: 500px',
   medium: 'min-width: 700px',
   large: 'min-width: 1200px',
 }
 
-// Apply parallax effect to background images.
-function useBackgroundParallax(element, speed = 0) {
-  const [y, setY] = useState(0)
-
-  // event listener
-  const listener = () => {
-    const elementBox = element ? element.getBoundingClientRect() : { top: 0 }
-    setY(-((window.pageYOffset - elementBox.top) / speed))
-  }
-
-  useEffect(() => {
-    // Adds listeners on scroll and resize
-    window.addEventListener('scroll', listener)
-    window.addEventListener('resize', listener)
-
-    // Triggers listener for refresh
-    listener()
-
-    // Clear listeners on component unmount
-    return () => {
-      window.removeEventListener('scroll', listener)
-      window.removeEventListener('resize', listener)
-    }
-  }, [])
-
-  return { backgroundPosition: `50% ${y}px` }
-}
+const getBackgroundImageRule = url => `.c-breakout-image__background {
+  background-image: url('${url}');
+}`
 
 function BreakoutImage({ caption, imageSrcSet, parallax }) {
-  const backgroundRef = useRef()
-  const backgroundStyles = parallax
-    ? useBackgroundParallax(
-        backgroundRef.current, // Element used to calculate the effect
-        8, // Speed
-        parallax // toggles parallax
-      )
-    : {}
+  const backgroundRef = useRef(null)
 
-  // get background image's styles
+  const backgroundStyles =
+    parallax && useBackgroundParallax(backgroundRef.current, 8)
+
   const backgroundImageStyles = useResponsiveStyles(
-    url => `.c-breakout-image__background {
-      background-image: url('${url}');
-    }`,
+    getBackgroundImageRule,
     imageSrcSet,
-    mediaQueries
+    backgroundMediaQueries
   )
 
   return (
