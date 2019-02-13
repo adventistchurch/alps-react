@@ -3,7 +3,7 @@ import React from 'react'
 import { configure, addDecorator } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
 
-import LoadScript from '../src/helpers/LoadScript'
+import Wrapper from '../src/Wrapper'
 import * as colors from '../src/atoms/global/colors'
 
 const style = {
@@ -19,15 +19,14 @@ addDecorator(story => {
     'white',
     'Theme'
   )
-  return (
-    <div className={`u-theme--${primaryColor}`} style={{ ...style }}>
-      <div className={`body has-grid u-theme--${secondaryColor}`}>
-        {content}
-      </div>
-      <LoadScript url="https://code.jquery.com/jquery-2.2.4.min.js" />
-      <LoadScript url="//cdn.adventist.org/alps/3/latest/js/script.min.js" />
-    </div>
-  )
+
+  const props = {
+    primaryColor,
+    secondaryColor,
+    style,
+  }
+
+  return <Wrapper {...props}>{content}</Wrapper>
 })
 
 addDecorator(withKnobs) // this must be added after the story decorator
