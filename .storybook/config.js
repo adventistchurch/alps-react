@@ -1,7 +1,9 @@
 import React from 'react'
 
-import { configure, addDecorator } from '@storybook/react'
+import { configure, addDecorator, setAddon } from '@storybook/react'
 import { withKnobs, select } from '@storybook/addon-knobs'
+import JSXAddon from 'storybook-addon-jsx'
+import { configureViewport } from '@storybook/addon-viewport'
 
 import Wrapper from '../src/Wrapper'
 import * as colors from '../src/atoms/global/colors'
@@ -30,6 +32,10 @@ addDecorator(story => {
 })
 
 addDecorator(withKnobs) // this must be added after the story decorator
+
+setAddon(JSXAddon)
+
+configureViewport({ defaultViewport: 'responsive' })
 
 const req = require.context('../src', true, /\.stories\.js$/)
 
