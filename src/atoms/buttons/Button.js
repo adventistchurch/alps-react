@@ -37,6 +37,7 @@ function Button({
   iconSize,
   iconFill,
   lighter,
+  onClick,
   outline,
   simple,
   small,
@@ -48,7 +49,6 @@ function Button({
   return React.createElement(
     as,
     {
-      href: url,
       className: getButtonClass('o-button', className, {
         disabled,
         expand,
@@ -58,6 +58,8 @@ function Button({
         small,
         toggle,
       }),
+      href: onClick ? null : url,
+      onClick,
       ...rest,
     },
     <>
@@ -85,6 +87,7 @@ Button.propTypes = {
   iconSize: PropTypes.string,
   iconFill: PropTypes.string,
   lighter: PropTypes.bool,
+  onClick: PropTypes.func,
   outline: PropTypes.bool,
   simple: PropTypes.bool,
   small: PropTypes.bool,
