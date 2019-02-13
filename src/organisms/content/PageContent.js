@@ -3,16 +3,20 @@ import PropTypes from 'prop-types'
 
 import Breadcrumbs from '../../molecules/navigation/Breadcrumbs'
 
-const PageContent = ({ content, breadcrumbs }) => (
-  <div className="pad--primary spacing">
-    <Breadcrumbs items={breadcrumbs} />
-    <div className="text article__body spacing">{content}</div>
+const PageContent = ({ children, content, breadcrumbs }) => (
+  <div className="text u-spacing">
+    {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+    {children || content}
   </div>
 )
 
 PageContent.propTypes = {
+  breadcrumbs: Breadcrumbs.propTypes.items,
+  children: PropTypes.node,
   content: PropTypes.node,
-  breadcrumbs: PropTypes.array,
+}
+PageContent.defaultProps = {
+  breadcrumbs: [],
 }
 
 export default PageContent
