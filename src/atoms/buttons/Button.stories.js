@@ -52,7 +52,7 @@ storiesOf('atoms/buttons/Button', module)
   })
 
   .addWithJSX('Toggle', () => {
-    return <Button icon="plus" outline toggle small className="js-toggle" />
+    return <Button icon="plus" outline toggle small />
   })
 
   .addWithJSX('With icon', () => {

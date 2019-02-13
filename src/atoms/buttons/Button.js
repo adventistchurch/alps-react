@@ -3,7 +3,25 @@ import PropTypes from 'prop-types'
 
 import IconWrap from '../icons/IconWrap'
 
-const Button = ({
+/**
+ *
+ * @param {string} base - Base class name
+ * @param {string} extra - Extra class name
+ * @param {object} flags - Button flags
+ */
+function getButtonClass(base, extra, { disabled, ...flags }) {
+  const classNames = [base, extra]
+
+  if (disabled) classNames.push(disabled)
+
+  for (const flag in flags) {
+    if (flags[flag]) classNames.push(`${base}--${flag}`)
+  }
+
+  return classNames.join(' ')
+}
+
+function Button({
   as,
   text,
   url,
@@ -19,31 +37,32 @@ const Button = ({
   simple,
   disabled,
   ...rest
-}) => {
-  const baseClass = 'o-button'
-  const classNames = `${baseClass}
-    ${className}
-    ${small ? `${baseClass}--small` : ''}
-    ${outline ? `${baseClass}--outline` : ''}
-    ${toggle ? `${baseClass}--toggle` : ''} 
-    ${lighter ? `${baseClass}--lighter` : ''} 
-    ${simple ? `${baseClass}--simple` : ''} 
-    ${disabled ? 'disabled' : ''}`
-
+}) {
   return React.createElement(
     as,
-    { href: url ? url : '#', className: classNames, ...rest },
+    {
+      href: url,
+      className: getButtonClass('o-button', className, {
+        small,
+        outline,
+        toggle,
+        lighter,
+        simple,
+        disabled,
+      }),
+      ...rest,
+    },
     <>
-      {text}{' '}
       {icon && (
         <IconWrap
           name={icon}
           className={iconClass}
           size={iconSize}
           fill={iconFill}
-          iconColor="white"
+          color="white"
         />
       )}
+      {text}
     </>
   )
 }
@@ -68,7 +87,7 @@ Button.propTypes = {
 Button.defaultProps = {
   className: '',
   as: 'button',
-  iconSize: 'm',
+  iconSize: 'xs',
   iconFill: 'base',
   url: '#',
 }
