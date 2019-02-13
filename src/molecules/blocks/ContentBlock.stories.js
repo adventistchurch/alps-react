@@ -18,7 +18,7 @@ const defaults = {
   category: '',
   description:
     'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
-  descriptionMore:
+  more:
     'Seventh-day Adventist beliefs are meant to permeate your whole life. Growing out of scriptures that paint a compelling portrait of God, you are invited to explore, experience and know the One who desires to make us whole.',
   cta: 'Find out more',
   url: 'https://www.adventist.org',
@@ -71,11 +71,7 @@ storiesOf('molecules/blocks/ContentBlock', module)
   .addWithJSX('Show more', () => {
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
-    const descriptionMore = text(
-      'Description (more)',
-      defaults.descriptionMore,
-      propsTab
-    )
+    const more = text('Extra text (more)', defaults.more, propsTab)
     const url = text('URL', defaults.url, propsTab)
     const category = text('Category', defaults.category, propsTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
@@ -90,7 +86,7 @@ storiesOf('molecules/blocks/ContentBlock', module)
         title={title}
         category={category}
         description={description}
-        descriptionMore={descriptionMore}
+        more={more}
         imageSrcSet={imageSrcSet}
         imageAlt={imageAlt}
         url={url}
