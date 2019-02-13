@@ -24,16 +24,19 @@ function useBackgroundParallax(element, speed = 0) {
   }
 
   useEffect(() => {
+    // Adds listeners on scroll and resize
     window.addEventListener('scroll', listener)
     window.addEventListener('resize', listener)
 
-    // Triggers window scroll for refresh
+    // Triggers listener for refresh
     listener()
+
+    // Clear listeners on component unmount
     return () => {
       window.removeEventListener('scroll', listener)
       window.removeEventListener('resize', listener)
     }
-  }, [element])
+  }, [])
 
   return { backgroundPosition: `50% ${y}px` }
 }
