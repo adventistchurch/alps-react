@@ -3,16 +3,23 @@ import { useState } from 'react'
 /**
  * Hook to toggle boolean value
  *
- * @param {boolean} initial - Default toggle value
+ * @param {boolean} initial - Default open value (optional)
+ * @param {string} openClass - Default open class name (optional)
+ * @param {string} closedClass - Default closed class name (optional)
+ * @returns {object} With attributes: onToggle (func), open (bool), openClass (string)
  */
-function useToggle(initial = false) {
-  const [value, setValue] = useState(initial)
+function useToggle(
+  initial = false,
+  openClass = 'this-is-active',
+  closedClass = null
+) {
+  const [open, setValue] = useState(initial)
 
-  function toggle() {
-    setValue(!value)
+  return {
+    onToggle: () => setValue(!open),
+    open,
+    openClass: open ? openClass : closedClass,
   }
-
-  return [value, toggle]
 }
 
 export default useToggle
