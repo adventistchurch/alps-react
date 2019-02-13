@@ -52,19 +52,15 @@ const icons = {
 
 const iconNames = Object.keys(icons)
 
-const Icon = ({ name, color }) => {
+function Icon({ name, color }) {
   const Icn = icons[name]
 
-  return Icn ? <Icn className={color ? `fill--${color}` : ''} /> : <span />
+  return Icn ? <Icn fill={color ? `fill--${color}` : null} /> : <span />
 }
 
 Icon.propTypes = {
   name: PropTypes.oneOf(iconNames).isRequired,
   color: PropTypes.oneOf(['white']),
-}
-
-Icon.defaultProps = {
-  name: 'list',
 }
 
 export { iconNames }
