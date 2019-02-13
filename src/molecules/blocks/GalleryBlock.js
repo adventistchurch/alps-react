@@ -1,79 +1,65 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../atoms/icons/Icon'
+import Button from '../../atoms/buttons/Button'
 import Image from '../../atoms/images/Image'
+import Title from '../../atoms/texts/Title'
+import useToggle from '../../helpers/useToggle'
 
-const GalleryBlock = ({ kicker, title, imageSrcSet }) => {
+function GalleryBlock({ kicker, title, imageSrcSet }) {
+  const { onToggle, openClass } = useToggle()
+
+  const thumbImage = imageSrcSet.length > 0 ? imageSrcSet[0].default : null
+  const otherImages = imageSrcSet.length > 1 ? imageSrcSet.slice(1) : null
+
   return (
-    <div className="js-this c-gallery-block c-block u-background-color--gray--light u-border--left u-theme--border-color--darker--left can-be--dark-dark">
+    <div
+      className={`c-gallery-block c-block u-background-color--gray--light u-border--left u-theme--border-color--darker--left can-be--dark-dark ${openClass}`}
+    >
       <div className="c-gallery-block__header">
         <div className="c-gallery-block__title u-padding u-spacing--half">
-          {title && (
-            <h2 className="u-font--primary--s u-theme--color--darker">
-              {kicker && (
-                <>
-                  <span className="u-theme--color--base">
-                    <em>{kicker}</em>
-                  </span>{' '}
-                </>
-              )}
-              {title}
-            </h2>
-          )}
-          {imageSrcSet.length > 1 && (
-            <button
-              className="c-gallery-block__toggle js-toggle o-button o-button--outline o-button--toggle o-button--small"
-              data-toggled="this"
-              data-prefix="this"
-            >
-              <span className="u-icon u-icon--xs u-path-fill--white">
-                <Icon name="plus" />
-              </span>
-            </button>
+          {title && <Title text={title} kicker={kicker} />}
+          {otherImages && (
+            <Button
+              as="button"
+              className={`c-gallery-block__toggle ${openClass}`}
+              icon="plus"
+              iconFill="white"
+              onClick={onToggle}
+              outline
+              small
+              toggle
+            />
           )}
         </div>
-        {imageSrcSet.length > 0 && (
+        {thumbImage && (
           <div
             className="c-gallery-block__thumb u-background--cover"
             style={{
-              backgroundImage: 'url(' + imageSrcSet[0].default + ')',
+              backgroundImage: `url(${thumbImage})`,
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',
             }}
           />
         )}
       </div>
-      {imageSrcSet.length > 1 && (
+      {otherImages && (
         <div className="c-gallery-block__body">
-          {imageSrcSet
-            .slice(1)
-            .map(
-              (
-                {
-                  default: src,
-                  imageAlt: alt,
-                  isPortrait: portrait,
-                  imageCaption: caption,
-                },
-                key
-              ) => {
-                const portraitClass = portrait ? 'is-portrait' : ''
-                return (
-                  <div
-                    key={key}
-                    className={`c-gallery-block__image ${portraitClass}`}
-                  >
-                    <Image src={src} alt={alt} />
-                    {caption && (
-                      <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
-                        {caption}
-                      </div>
-                    )}
-                  </div>
-                )
-              }
-            )}
+          {otherImages.map((image, key) => (
+            <div
+              className={`c-gallery-block__image ${
+                image.isPortrait ? 'is-portrait' : ''
+              }`}
+              key={key}
+            >
+              <Image src={image.src} alt={image.imageAlt} />
+              {image.imageCaption && (
+                <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
+                  {image.mageCaption}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
     </div>
