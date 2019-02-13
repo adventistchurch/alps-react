@@ -46,21 +46,6 @@ const Button = ({
       )}
     </>
   )
-
-  // return (
-  //   <a {...rest} href={url ? url : '#'} className={classNames}>
-  //     {text}{' '}
-  //     {icon && (
-  //       <IconWrap
-  //         name={icon}
-  //         className={iconClass}
-  //         size={iconSize}
-  //         fill={iconFill}
-  //         iconColor="white"
-  //       />
-  //     )}
-  //   </a>
-  // )
 }
 
 Button.propTypes = {
@@ -81,6 +66,7 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  className: '',
   as: 'button',
   iconSize: 'm',
   iconFill: 'base',
