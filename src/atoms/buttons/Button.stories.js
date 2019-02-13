@@ -9,7 +9,7 @@ import { iconNames } from '../icons/Icon'
 const propsTab = 'Props'
 const defaults = {
   text: 'Learn More',
-  icon: 'share',
+  icon: 'plus',
   url: 'https://www.adventist.org',
 }
 
