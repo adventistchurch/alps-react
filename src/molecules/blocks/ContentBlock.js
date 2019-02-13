@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import MediaImage from './MediaBlock/MediaImage'
 import Button from '../../atoms/buttons/Button'
+import Title from '../../atoms/texts/Title'
 import useToggle from '../../helpers/useToggle'
 
 function ContentBlock({
@@ -15,7 +16,7 @@ function ContentBlock({
   imageSrcSet,
   imageAlt,
 }) {
-  const [open, toggleOpen] = useToggle()
+  const { onToggle, openClass } = useToggle()
 
   const blockClass = `c-block c-block__text u-spacing ${
     more
@@ -23,7 +24,7 @@ function ContentBlock({
       : 'u-spacing'
   } u-theme--border-color--darker u-border--left ${
     imageSrcSet ? 'has-image' : ''
-  } ${open ? 'this-is-active' : ''}`
+  } ${openClass}`
 
   return (
     <div className={blockClass}>
@@ -31,18 +32,18 @@ function ContentBlock({
         <MediaImage srcSet={imageSrcSet} alt={imageAlt} url={url} />
       )}
 
-      <h3 className="u-theme--color--darker u-font--primary--m">
+      <Title as="h3" color="darker" text={title} size="m">
         {url ? (
           <a
-            href={url}
             className="c-block__title-link u-theme--link-hover--dark"
+            href={url}
           >
             <strong>{title}</strong>
           </a>
         ) : (
           <strong>{title}</strong>
         )}
-      </h3>
+      </Title>
 
       {description && <p className="c-block__body text">{description}</p>}
 
@@ -54,16 +55,14 @@ function ContentBlock({
 
       {more ? (
         <>
-          {open && (
-            <div className="c-block__content">
-              <p>{more}</p>
-            </div>
-          )}
+          <div className="c-block__content">
+            <p>{more}</p>
+          </div>
           <Button
             as="a"
-            className={open ? 'this-is-active' : null}
+            className={openClass}
             expand
-            onClick={toggleOpen}
+            onClick={onToggle}
             outline
             toggle
           />
