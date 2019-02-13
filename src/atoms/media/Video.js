@@ -1,15 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Video = ({ src, width, height }) => (
-  <iframe
-    src={src}
-    width={width}
-    height={height}
-    frameBorder="0"
-    allowFullScreen
-  />
-)
+const Video = ({ src, width, height }) => {
+  return (
+    <iframe
+      src={src}
+      width={width}
+      height={height}
+      frameBorder="0"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allowFullScreen
+    />
+  )
+}
 
 Video.propTypes = {
   src: PropTypes.string.isRequired,

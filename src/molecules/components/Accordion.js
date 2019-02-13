@@ -2,49 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../../atoms/icons/Icon'
-import MediaBlock from '../../molecules/blocks/MediaBlock'
 import renderItems from '../../helpers/renderItems'
 
-const AccordionItem = ({
-  title,
-  description,
-  imageSrcSet,
-  datetime,
-  cta,
-  url,
-}) => (
-  <div className="accordion__item spacing--quarter">
-    <div className="accordion__heading js-toggle-parent va--middle">
-      <span className="icon icon--m accordion__arrow">
-        <Icon name="arrow-right" color="fill--blue" />
-      </span>&nbsp;
-      <span className="font--secondary--m dib">{title}</span>
+const AccordionItem = ({ heading, content }) => (
+  <div className="c-accordion__item u-spacing--half u-border--left u-padding--half--left">
+    <div className="c-accordion__heading js-toggle-parent u-font--primary--m u-theme--color--darker">
+      <span className="u-icon u-icon--m c-accordion__arrow u-space--half--right u-theme--path-fill--darker">
+        <Icon name="arrow-bracket-right" />
+      </span>
+      <strong>{heading}</strong>
     </div>
-    <div className="accordion__content">
-      <MediaBlock
-        title={title}
-        description={description}
-        image={imageSrcSet}
-        datetime={datetime}
-        cta={cta}
-        url={url}
-        classes={{ inner: 'block__row' }}
-      />
-    </div>
+    <div className="c-accordion__content u-padding--half--left">{content}</div>
   </div>
 )
+
 AccordionItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  imageSrcSet: PropTypes.object,
-  datetime: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  cta: PropTypes.string,
-  url: PropTypes.string,
+  heading: PropTypes.string.isRequired,
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
 }
 
 const Accordion = ({ items }) => {
   return (
-    <div className="accordion rel spacing--half {{ accordion_class }}">
+    <div className="c-accordion u-position--relative u-spacing {{ accordion_class }}">
       {renderItems(items, AccordionItem)}
     </div>
   )
@@ -53,6 +33,7 @@ const Accordion = ({ items }) => {
 Accordion.propTypes = {
   items: PropTypes.array,
 }
+
 Accordion.defaultProps = {
   items: [],
 }

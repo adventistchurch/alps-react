@@ -1,16 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Text from './Text'
-
 const ExtendedQuote = ({ children }) => (
-  <Text>
+  <div className="text">
     <blockquote className="quote--extended">{children}</blockquote>
-  </Text>
+  </div>
 )
 
 ExtendedQuote.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
 }
 
 export default ExtendedQuote

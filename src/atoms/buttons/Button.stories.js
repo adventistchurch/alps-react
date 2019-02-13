@@ -6,24 +6,58 @@ import { withKnobs, text, select } from '@storybook/addon-knobs'
 import Button from './Button'
 import { iconNames } from '../icons/Icon'
 
+const propsTab = 'Props'
 const defaults = {
   text: 'Learn More',
   icon: 'share',
-  url: 'http://adventist.io',
+  url: 'https://www.adventist.org',
 }
 
 storiesOf('atoms/buttons/Button', module)
   .addDecorator(withKnobs)
 
-  .add('only text', () => {
-    const textValue = text('text', defaults.text)
-    const url = text('url', defaults.url)
+  .add('Default', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} />
   })
 
-  .add('with text and icon', () => {
-    const textValue = text('text', defaults.text)
-    const icon = select('icon', iconNames, defaults.icon)
-    const url = text('url', defaults.url)
+  .add('Disabled', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    return <Button url={null} text={textValue} disabled />
+  })
+
+  .add('Lighter', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const url = text('url', defaults.url, propsTab)
+    return <Button url={url} text={textValue} lighter />
+  })
+
+  .add('Outline', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const url = text('url', defaults.url, propsTab)
+    return <Button url={url} text={textValue} outline />
+  })
+
+  .add('Simple', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const url = text('url', defaults.url, propsTab)
+    return <Button url={url} text={textValue} simple />
+  })
+
+  .add('Small', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const url = text('url', defaults.url, propsTab)
+    return <Button url={url} text={textValue} small />
+  })
+
+  .add('Toggle', () => {
+    return <Button icon="plus" outline toggle small className="js-toggle" />
+  })
+
+  .add('With icon', () => {
+    const textValue = text('text', defaults.text, propsTab)
+    const icon = select('icon', iconNames, defaults.icon, propsTab)
+    const url = text('url', defaults.url, propsTab)
     return <Button url={url} text={textValue} icon={icon} />
   })

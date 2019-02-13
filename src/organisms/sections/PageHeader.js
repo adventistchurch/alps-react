@@ -17,9 +17,9 @@ const PageHeader = ({
     <header
       className={`header__swath theme--primary-background-color ${
         heading ? ' header-swath--with-text' : ''
-      } ${logoSrc ? ' header-swath--with-image blend-mode--multiply' : ''} ${
-        className
-      }`}
+      } ${
+        logoSrc ? ' header-swath--with-image blend-mode--multiply' : ''
+      } ${className}`}
     >
       {/* TODO: This should be a header's sibling. Use a fragment. */}
       {/* <style type="text/css">

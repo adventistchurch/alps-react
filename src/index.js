@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-
-ReactDOM.render(<App />, document.getElementById('root'))
+export * from './atoms/index'
+export * from './molecules/index'
+export * from './organisms/index'
+export * from './templates/index'
+export { default as Wrapper } from './Wrapper'

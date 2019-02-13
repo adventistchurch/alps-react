@@ -1,22 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Figcaption from './Figcaption'
 import Figure from './Figure'
 
-const VideoFigureWithCaption = ({ videoEmbed, caption, className }) => {
-  return (
-    <Figure className={className}>
-      <div className="img-wrap fitvid">{videoEmbed}</div>
-      <Figcaption caption={caption} />
-    </Figure>
-  )
+const VideoFigureWithCaption = ({ videoSrc, caption, className }) => {
+  return <Figure videoSrc={videoSrc} caption={caption} className={className} />
 }
 
 VideoFigureWithCaption.propTypes = {
-  videoEmbed: PropTypes.node,
+  videoSrc: PropTypes.string.isRequired,
   caption: PropTypes.string,
   className: PropTypes.string,
+}
+
+VideoFigureWithCaption.defaultProps = {
+  className: '',
 }
 
 export default VideoFigureWithCaption

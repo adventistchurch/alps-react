@@ -18,7 +18,7 @@ const Picture = ({ image, alt, lazy }) => {
   return (
     <picture className="picture">
       <Sources image={image} />
-      <Image alt={alt} {...opts} />
+      <Image alt={alt} itemProp="image" {...opts} />
     </picture>
   )
 }

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import datetimeFormat from '../../helpers/datetimeFormat'
-
 import Picture from '../../atoms/images/Picture'
 
 const Slide = ({
@@ -11,104 +9,44 @@ const Slide = ({
   dek,
   cta,
   url,
-  title,
-  datetime,
-  description,
   imageSrcSet,
   imageAlt,
   isLazy,
-  isBlock,
-  alignRight,
   className,
-  headingClass,
-  // textClass,
-  blockTitleClass,
-  blockContentClass,
+  textClass,
 }) => {
-  const textClass = alignRight ? 'carousel__item--right' : ''
   return (
-    <div className={`carousel__item rel ${className}`}>
+    <div className={`c-carousel__item u-position--relative ${className}`}>
       <Picture image={imageSrcSet} alt={imageAlt} lazy={isLazy} />
-
       {heading && (
-        <div className="carousel__item-text__wrap">
-          <div className="layout-container">
-            <div className={`carousel__item-text ${textClass} spacing--half`}>
-              <div className="carousel__item-text--inner">
-                <h2
-                  className={`${
-                    headingClass
-                  } carousel__item-heading theme--primary-transparent-background-color`}
-                >
+        <div className="c-carousel__item-text__wrap l-grid l-grid--7-col u-shift--left--1-col--at-large">
+          <div className="l-grid-item l-grid-item--m--4-col l-grid-item--xl--3-col">
+            <div
+              className={`c-carousel__item-text ${textClass} u-spacing u-padding--double--top u-padding--double--bottom`}
+            >
+              <div className="c-carousel__item-text--inner u-spacing--half">
+                <h2 className="c-carousel__item-heading u-font--primary--xl">
                   {heading}
                 </h2>
                 {subtitle && (
-                  <h3 className="carousel__item-subtitle font--secondary--m theme--primary-transparent-background-color">
+                  <h3 className="c-carousel__item-subtitle u-font--secondary--s u-text-transform--upper">
                     {subtitle}
                   </h3>
                 )}
-                <div className="carousel__item-dek pad-half--btm theme--primary-transparent-background-color">
+                <div className="c-carousel__item-dek">
                   <p>{dek}</p>
                 </div>
               </div>
-              {cta && (
+              {cta && url && (
                 <a
                   href={url}
-                  className="carousel__item-cta btn theme--secondary-background-color"
+                  className="c-carousel__item-cta o-button u-theme--secondary-background-color"
                 >
                   {cta}
                 </a>
               )}
             </div>
           </div>
-        </div>
-      )}
-
-      {isBlock && (
-        <div
-          className={`carousel-block__content block__content spacing--quarter pad ${
-            blockContentClass
-          }`}
-        >
-          {title && (
-            <h3
-              className={`carousel-block__title block__title ${
-                blockTitleClass
-              }`}
-            >
-              <a
-                href={url}
-                className="block__title-link theme--primary-text-color"
-              >
-                {title}
-              </a>
-            </h3>
-          )}
-          {datetime && (
-            <time
-              className="block__date font--secondary--xs brown space-half--btm"
-              dateTime={datetime}
-            >
-              {datetimeFormat(datetime, 'date')}
-            </time>
-          )}
-          {description && (
-            <div className="text pad-half--btm">
-              <p className="carousel-block__description block__description">
-                <span className="font--primary--xs">{description}</span>
-              </p>
-            </div>
-          )}
-          {cta && (
-            <p>
-              <a
-                className="carousel-block__cta block__cta btn theme--secondary-background-color"
-                href={url}
-              >
-                {cta}
-              </a>
-            </p>
-          )}
         </div>
       )}
     </div>
@@ -121,34 +59,17 @@ Slide.propTypes = {
   dek: PropTypes.string,
   cta: PropTypes.string,
   url: PropTypes.string,
-  title: PropTypes.string,
-  datetime: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.object,
-  ]),
-  description: PropTypes.string,
   imageSrcSet: PropTypes.object,
   imageAlt: PropTypes.string,
   isLazy: PropTypes.bool,
-  isBlock: PropTypes.bool,
-  alignRight: PropTypes.bool,
   className: PropTypes.string,
-  headingClass: PropTypes.string,
   textClass: PropTypes.string,
-  blockTitleClass: PropTypes.string,
-  blockContentClass: PropTypes.string,
 }
+
 Slide.defaultProps = {
   isLazy: false,
-  isBlock: false,
-  alignRight: false,
-  datetime: '',
   className: '',
-  headingClass: '',
   textClass: '',
-  blockTitleClass: '',
-  blockContentClass: '',
 }
 
 export default Slide

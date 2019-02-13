@@ -3,7 +3,8 @@
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -11,9 +12,6 @@
     },
     "sourceType": "module"
   },
-  "parser": "babel-eslint",
-  "plugins": ["react"],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
     "no-const-assign": "warn",
     "no-this-before-super": "warn",
@@ -23,8 +21,10 @@
     "constructor-super": "warn",
     "no-console": "warn",
     "valid-typeof": "warn",
-    "react/react-in-jsx-scope": "warn",
     "react/display-name": "off"
-    // "react/prop-types": "warn"
-  }
+  },
+
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
 }
