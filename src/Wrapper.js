@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import LoadScript from './helpers/LoadScript'
+// import LoadScript from './helpers/LoadScript'
 
 function Wrapper({ children, primaryColor, secondaryColor, style }) {
   return (
@@ -9,8 +9,8 @@ function Wrapper({ children, primaryColor, secondaryColor, style }) {
       <div className={`body has-grid u-theme--${secondaryColor}`}>
         {children}
       </div>
-      <LoadScript url="https://code.jquery.com/jquery-2.2.4.min.js" />
-      <LoadScript url="//cdn.adventist.org/alps/3/latest/js/script.min.js" />
+      {/* <LoadScript url="https://code.jquery.com/jquery-2.2.4.min.js" /> */}
+      {/* <LoadScript url="//cdn.adventist.org/alps/3/latest/js/script.min.js" /> */}
     </div>
   )
 }
