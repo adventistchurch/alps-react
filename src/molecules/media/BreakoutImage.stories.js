@@ -39,11 +39,14 @@ storiesOf('molecules/media/BreakoutImage', module)
     const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
     const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
     return (
-      <BreakoutImage
-        imageSrcSet={imageSrcSet}
-        imageAlt={imageAlt}
-        caption={caption}
-        parallax
-      />
+      // Adds some margin to the top, so the parallax is visible
+      <div style={{ marginTop: 200 }}>
+        <BreakoutImage
+          imageSrcSet={imageSrcSet}
+          imageAlt={imageAlt}
+          caption={caption}
+          parallax
+        />
+      </div>
     )
   })
