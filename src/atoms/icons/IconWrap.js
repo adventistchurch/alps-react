@@ -3,25 +3,28 @@ import PropTypes from 'prop-types'
 
 import Icon from '../../atoms/icons/Icon'
 
-const IconWrap = ({ name, size, fill, iconColor, className, ...props }) => (
-  <span
-    className={`u-icon u-icon--${size} u-path-fill--${fill}} ${className}`}
-    {...props}
-  >
-    <Icon name={name} color={iconColor} />
-  </span>
-)
+function IconWrap({ name, size, fill, color, className, ...props }) {
+  return (
+    <span
+      className={`u-icon u-icon--${size} u-path-fill--${fill} ${className}`}
+      {...props}
+    >
+      <Icon name={name} color={color} />
+    </span>
+  )
+}
 
 IconWrap.propTypes = {
-  name: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(['xs', 'm']),
   fill: PropTypes.oneOf(['base', 'white']),
-  iconColor: PropTypes.string,
+  color: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['xs', 'm']),
 }
 IconWrap.defaultProps = {
-  size: 'm',
+  className: '',
   fill: 'white',
+  size: 'm',
 }
 
 export default IconWrap
