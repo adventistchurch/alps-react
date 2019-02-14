@@ -15,7 +15,7 @@ function Title({ as, children, color, kicker, kickerColor, size, text }) {
 }
 
 Title.propTypes = {
-  as: PropTypes.string,
+  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
   color: PropTypes.oneOf(['base', 'darker']),
   children: PropTypes.node,
   kicker: Kicker.propTypes.text,
