@@ -3,29 +3,28 @@ import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-const Sources = ({ image }) => {
-  const breakpoints = Object.keys(image)
-    .filter(i => i !== 'default')
+function Sources({ image }) {
+  return Object.keys(image)
     .reverse()
-  return breakpoints.map((x, i) => (
-    <source key={i} srcSet={image[x]} media={`(min-width: ${x}px)`} />
-  ))
+    .map((x, i) => (
+      <source key={i} srcSet={image[x]} media={`(min-width: ${x}px)`} />
+    ))
 }
 
-const Picture = ({ image, alt, lazy }) => {
-  let opts = []
-  opts[lazy ? 'data-lazy' : 'srcSet'] = image.default
+function Picture({ image, alt, lazy }) {
+  const { default: defaultImages, ...otherImages } = image
+
   return (
     <picture className="picture">
-      <Sources image={image} />
-      <Image alt={alt} itemProp="image" {...opts} />
+      <Sources image={{ ...otherImages }} />
+      <Image alt={alt} itemProp="image" lazy={lazy} srcSet={defaultImages} />
     </picture>
   )
 }
 
 Picture.propTypes = {
-  image: PropTypes.object.isRequired,
   alt: PropTypes.string,
+  image: PropTypes.object.isRequired,
   lazy: PropTypes.bool,
 }
 Picture.defaultProps = {
