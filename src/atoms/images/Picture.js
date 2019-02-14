@@ -3,21 +3,24 @@ import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-function Sources({ image }) {
-  return Object.keys(image)
-    .reverse()
-    .map((x, i) => (
-      <source key={i} srcSet={image[x]} media={`(min-width: ${x}px)`} />
-    ))
-}
-
 function Picture({ image, alt, lazy }) {
-  const { default: defaultImages, ...otherImages } = image
+  const { default: defaultImage, ...otherImages } = image
+
+  const sources = Object.keys(otherImages)
+    .reverse()
+    .map((minWidth, i) => (
+      <Image
+        as="source"
+        key={i}
+        media={`(min-width: ${minWidth}px)`}
+        srcSet={image[minWidth]}
+      />
+    ))
 
   return (
     <picture className="picture">
-      <Sources image={{ ...otherImages }} />
-      <Image alt={alt} itemProp="image" lazy={lazy} srcSet={defaultImages} />
+      {sources}
+      <Image alt={alt} itemProp="image" lazy={lazy} src={defaultImage} />
     </picture>
   )
 }
