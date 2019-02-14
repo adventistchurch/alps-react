@@ -18,7 +18,7 @@ Title.propTypes = {
   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
   color: PropTypes.oneOf(['base', 'darker']),
   children: PropTypes.node,
-  kicker: Kicker.propTypes.text,
+  kicker: PropTypes.string,
   kickerColor: Kicker.propTypes.color,
   text: PropTypes.string,
   size: PropTypes.oneOf(['s', 'm', 'l']),
