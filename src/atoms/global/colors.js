@@ -19,26 +19,47 @@ const primary = [
 
 const secondary = ['', 'dark']
 
-const theme = {
-  primary: {
-    fill: 'theme--primary-fill-color',
-    text: 'theme--primary-text-color',
-  },
-  secondary: {
-    fill: 'theme--secondary-fill-color',
-    text: 'theme--secondary-text-color',
-  },
-}
-
-const fill = [
-  'fill--blue',
-  'fill--light-brown',
-  'fill--gray',
-  'fill--white',
-  theme.primary.fill,
-  theme.secondary.fill,
+const grayscaleColors = [
+  'black',
+  'gray--darker',
+  'gray--dark',
+  'gray',
+  'gray--light',
+  'white',
 ]
 
-const background = ['black', 'white']
+// Utils
 
-export { primary, secondary, theme, fill, background }
+const generateColors = (prefix, colors) =>
+  colors.map(color => `${prefix}--${color}`)
+
+// Text Colors:
+
+const textClass = 'u-color'
+const textColors = [
+  ...grayscaleColors,
+  'black-transparent',
+  'white-transparent',
+]
+const text = generateColors(textClass, textColors)
+
+// SVG Fill Colors
+
+const svgFillClass = 'u-path-fill'
+const svgFillColors = grayscaleColors
+const svgFill = generateColors(svgFillClass, svgFillColors)
+
+// Background Colors (grayscale)
+
+const backgroundClass = 'u-background-color'
+const backgroundColors = ['none', ...grayscaleColors]
+const background = generateColors(backgroundClass, backgroundColors)
+
+// Theme Colors
+
+const themeColors = primary
+const theme = generateColors(backgroundClass, themeColors)
+
+// Exports
+
+export { background, primary, secondary, svgFill, text, theme }
