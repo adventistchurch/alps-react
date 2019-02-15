@@ -14,6 +14,7 @@ const mediaBlockClasses = {
   default: {
     block: 'c-media-block__row c-block__row',
     image: '',
+    imageWrap: '',
     content: 'u-color--gray',
     group: '',
     kicker: '',
@@ -24,8 +25,9 @@ const mediaBlockClasses = {
     block:
       'c-block__inline c-media-block__inine c-block--reversed c-media-block--reversed l-grid--7-col',
     image: 'l-grid-item u-padding--zero--sides',
+    imageWrap: '',
     content:
-      'l-grid-item u-border-left--black--at-large u-theme--border-color--darker--left u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
+      'l-grid-item u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
     group: '',
     kicker: '',
     title: 'u-theme--color--darker',
@@ -34,6 +36,7 @@ const mediaBlockClasses = {
   inset: {
     block: 'c-block__inset c-media-block__inset',
     image: '',
+    imageWrap: '',
     content: 'l-grid--7-col u-theme--background-color--darker',
     group: '',
     kicker: '',
@@ -43,7 +46,8 @@ const mediaBlockClasses = {
   reversed: {
     block: 'c-block--reversed c-media-block--reversed l-grid--7-col',
     image: 'l-grid-item l-grid-item--m--3-col',
-    content: 'l-grid-item l-grid-item--m--4-col u-border-left--black--at-large',
+    imageWrap: '',
+    content: 'l-grid-item l-grid-item--m--4-col',
     group: '',
     kicker: '',
     title: '',
@@ -52,12 +56,19 @@ const mediaBlockClasses = {
   stacked: {
     block: 'c-block__stacked c-media-block__stacked',
     image: '',
+    imageWrap: '',
     content: '',
     group: '',
     kicker: '',
     title: '',
     meta: '',
   },
+}
+
+const borderClasses = {
+  left: 'u-border--left u-theme--border-color--darker--left',
+  leftAtLarge:
+    'u-border-left--black--at-large u-theme--border-color--darker--left',
 }
 
 const MediaBlock = ({
@@ -77,6 +88,7 @@ const MediaBlock = ({
   inset,
   reversed,
   stacked,
+  border,
 }) => {
   const classes = inline
     ? mediaBlockClasses.inline
@@ -88,6 +100,15 @@ const MediaBlock = ({
     ? mediaBlockClasses.stacked
     : mediaBlockClasses.default
 
+  const borderLeftClass =
+    border == 'left'
+      ? stacked
+        ? borderClasses.left
+        : inline || reversed
+        ? borderClasses.leftAtLarge
+        : ''
+      : ''
+
   return (
     <div className={`c-media-block c-block ${classes.block}`}>
       {imageSrcSet && (
@@ -95,14 +116,15 @@ const MediaBlock = ({
           srcSet={imageSrcSet}
           alt={imageAlt}
           url={url}
-          imageClass={classes.image}
+          imageClass={`${classes.image}`}
+          wrapClass={`${classes.imageWrap}`}
         />
       )}
       {video && <MediaVideo video={video} />}
       <div
         className={`c-media-block__content c-block__content u-spacing ${
           classes.content
-        }`}
+        } ${borderLeftClass}`}
       >
         <div
           className={`u-spacing c-block__group c-media-block__group ${
@@ -156,11 +178,13 @@ MediaBlock.propTypes = {
   inset: PropTypes.bool,
   reversed: PropTypes.bool,
   stacked: PropTypes.bool,
+  border: PropTypes.oneOf(['left', 'none']),
 }
 
 MediaBlock.defaultProps = {
   dateFormat: 'date',
   ctaIcon: 'arrow-long-right',
+  border: 'none',
 }
 
 export default MediaBlock
