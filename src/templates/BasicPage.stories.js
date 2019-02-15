@@ -1,11 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-// import { action } from '@storybook/addon-actions'
-import { withKnobs, text } from '@storybook/addon-knobs'
-// import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
+import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 
 import BasicPage from './BasicPage'
 
+const propsTab = 'Props'
+const sidebarTab = 'Sidebar'
 const defaults = {
   title: 'Basic Page',
   kicker: 'Kicker',
@@ -48,33 +48,88 @@ const defaults = {
     title: 'Nulla facilisi',
     description:
       'Fusce porta sed odio eu dignissim. Vivamus imperdiet libero mattis orci aliquam imperdiet. Vivamus sit amet tortor nec magna tincidunt faucibus sit amet ac sem. Maecenas mattis nibh at urna feugiat posuere. Pellentesque blandit condimentum eros, fermentum ornare diam facilisis eget.',
-    ctaText: 'Vestibulum non lectus',
-    ctaUrl: '#',
+    cta: 'Vestibulum non lectus',
+    url: 'https://www.adventist.org',
     blockClass: 'can-be--dark-dark',
   },
-  // aside: {
-  //   content: [],
-  //   contentBlocks: [],
-  // },
-  aside: (
-    <>
-      <h1>Aside</h1>
-      <p>Text</p>
-    </>
-  ),
+  aside: {
+    primaryBlocks: {
+      heading: 'News',
+      linkText: 'See All',
+      url: '/news/all',
+      blocks: [
+        {
+          title: 'Nulla finibus ligula ut nisl facilisis',
+          description:
+            'Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum.',
+          category: 'Culture',
+          datetime: 1550093519415,
+          imageSrcSet: {
+            '500': '//picsum.photos/900/507?random',
+            '750': '//picsum.photos/700/395?random',
+            '1200': '//picsum.photos/500/282?random',
+            default: '//picsum.photos/500/282?random',
+          },
+          imageAlt: 'Placeholder image',
+          stacked: true,
+          border: 'left',
+        },
+        {
+          title: 'Nulla finibus ligula ut nisl facilisis',
+          description:
+            'Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum.',
+          category: 'Culture',
+          datetime: 1550093519415,
+          imageSrcSet: {
+            '500': '//picsum.photos/900/507?random',
+            '750': '//picsum.photos/700/395?random',
+            '1200': '//picsum.photos/500/282?random',
+            default: '//picsum.photos/500/282?random',
+          },
+          imageAlt: 'Placeholder image',
+          stacked: true,
+          border: 'left',
+        },
+      ],
+    },
+    secondaryBlocks: {
+      heading: 'More News',
+      linkText: 'See All',
+      url: '/news/all',
+      blocks: [
+        {
+          title: 'Aenean quis velit vel nibh commodo elementum',
+          category: 'Culture',
+        },
+        {
+          title: 'Aenean quis velit vel nibh commodo elementum',
+          category: 'Culture',
+        },
+        {
+          title: 'Aenean quis velit vel nibh commodo elementum',
+          category: 'Culture',
+        },
+        {
+          title: 'Aenean quis velit vel nibh commodo elementum',
+          category: 'Culture',
+        },
+      ],
+    },
+  },
 }
 
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const title = text('title', defaults.title)
-    const kicker = text('kicker', defaults.kicker)
-    const background = text('background', defaults.background)
-    const breadcrumbs = text('breadcrumbs', defaults.breadcrumbs)
-    const content = text('content', defaults.content)
-    const breakout = text('breakout', defaults.breakout)
-    const aside = text('aside', defaults.aside)
+    const title = text('Title', defaults.title, propsTab)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
+    const background = object('Background', defaults.background, propsTab)
+    const breadcrumbs = object('Breadcrumbs', defaults.breadcrumbs, propsTab)
+    const content = object('Content', defaults.content, propsTab)
+    const showSidebar = boolean('Sidebar', true, sidebarTab)
+    const breakout = object('Breakout', defaults.breakout, sidebarTab)
+    const aside = object('Aside', defaults.aside, sidebarTab)
     return (
       <div className="l-wrap">
         <div className="l-wrap__content l-content" role="document">
@@ -84,8 +139,8 @@ storiesOf('templates/BasicPage', module)
             background={background}
             breadcrumbs={breadcrumbs}
             content={content}
-            breakout={breakout}
-            aside={aside}
+            breakout={showSidebar ? breakout : null}
+            aside={showSidebar ? aside : null}
           />
         </div>
       </div>
