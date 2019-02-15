@@ -28,11 +28,11 @@ const Figure = ({ imageSrcSet, imageAlt, videoSrc, caption, className }) => {
 }
 
 Figure.propTypes = {
-  imageSrcSet: PropTypes.object,
-  imageAlt: PropTypes.string,
-  videoSrc: PropTypes.string,
   caption: PropTypes.string,
   className: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageSrcSet: PropTypes.object,
+  videoSrc: PropTypes.string,
 }
 
 Figure.defaultProps = {

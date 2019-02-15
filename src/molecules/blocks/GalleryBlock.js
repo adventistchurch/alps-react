@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import Image from '../../atoms/images/Image'
+import Picture from '../../atoms/images/Picture'
 import Title from '../../atoms/texts/Title'
 import useToggle from '../../helpers/useToggle'
 
-function GalleryBlock({ kicker, title, imageSrcSet }) {
+function GalleryBlock({ images, kicker, title }) {
   const { onToggle, openClass } = useToggle()
 
-  const thumbImage = imageSrcSet.length > 0 ? imageSrcSet[0].default : null
-  const otherImages = imageSrcSet.length > 1 ? imageSrcSet.slice(1) : null
+  const thumbImage = images.length > 0 ? images[0] : null
+  const otherImages = images.length > 1 ? images.slice(1) : null
 
   return (
     <div
@@ -36,7 +36,7 @@ function GalleryBlock({ kicker, title, imageSrcSet }) {
           <div
             className="c-gallery-block__thumb u-background--cover"
             style={{
-              backgroundImage: `url(${thumbImage})`,
+              backgroundImage: `url(${thumbImage.srcSet.default})`,
               backgroundPosition: 'center center',
               backgroundRepeat: 'no-repeat',
             }}
@@ -48,14 +48,14 @@ function GalleryBlock({ kicker, title, imageSrcSet }) {
           {otherImages.map((image, key) => (
             <div
               className={`c-gallery-block__image ${
-                image.isPortrait ? 'is-portrait' : ''
+                image.portrait ? 'is-portrait' : ''
               }`}
               key={key}
             >
-              <Image src={image.src} alt={image.imageAlt} />
-              {image.imageCaption && (
+              <Picture image={image.srcSet} alt={image.alt} />
+              {image.caption && (
                 <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
-                  {image.mageCaption}
+                  {image.caption}
                 </div>
               )}
             </div>
@@ -67,13 +67,19 @@ function GalleryBlock({ kicker, title, imageSrcSet }) {
 }
 
 GalleryBlock.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      alt: PropTypes.string,
+      caption: PropTypes.string,
+      srcSet: PropTypes.object,
+    })
+  ),
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
-  imageSrcSet: PropTypes.array,
 }
 
 GalleryBlock.defaultProps = {
-  imageSrcSet: [],
+  images: [],
 }
 
 export default GalleryBlock

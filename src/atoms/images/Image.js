@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
-const Image = ({ src, alt, className, lazy, ...other }) => {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={className + (lazy ? ' lazy' : '')}
-      itemProp="image"
-      {...other}
-    />
-  )
+import setLazy from '../../helpers/lazy'
+
+function Image({ as, lazy, src, srcSet, ...others }) {
+  const ref = useRef(null)
+
+  const srcPrefix = lazy ? 'data-' : ''
+  const props = {
+    [`${srcPrefix}src`]: src,
+    [`${srcPrefix}srcset`]: srcSet,
+    itemProp: 'image',
+    ref,
+    ...others,
+  }
+
+  if (lazy && ref.current) setLazy(ref.current)
+
+  return React.createElement(as, props)
 }
 
 Image.propTypes = {
-  src: PropTypes.string,
   alt: PropTypes.string,
+  as: PropTypes.oneOf(['img', 'source']),
   className: PropTypes.string,
   lazy: PropTypes.bool,
+  src: PropTypes.string,
+  srcSet: PropTypes.string,
 }
 Image.defaultProps = {
-  className: '',
-  lazy: false,
+  as: 'img',
+  lazy: true,
 }
 
 export default Image

@@ -1,10 +1,9 @@
-const sizes = ['xs', 's', 'm', 'l', 'xl']
+const sizes = ['xs', 's', 'm', 'l', 'xl', 'xxl']
 
-const sizesMap = type => sizes.map(size => `font--${type}--${size}`)
+const sizesMap = type => sizes.map(size => `u-font--${type}--${size}`)
 
 const primary = sizesMap('primary')
 const secondary = sizesMap('secondary')
-const tertiary = sizesMap('tertiary')
-const all = [...primary, ...secondary, ...tertiary]
+const all = [...primary, ...secondary]
 
-export { primary, secondary, tertiary, all }
+export { all, primary, secondary, sizes }
