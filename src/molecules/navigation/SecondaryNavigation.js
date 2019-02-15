@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import { MenuContext } from '../../Wrapper'
 import renderItems from '../../helpers/renderItems'
+import useMenuContext from '../../helpers/useMenuContext'
 
 import SecondaryNavItem from './SecondaryNavItem'
 import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
-  const { setMenuIsOpen, setMenuWithSearch } = useContext(MenuContext)
+  const { setMenuIsOpen, setMenuWithSearch } = useMenuContext()
 
   const openMenu = ({ withSearch = false } = {}) => event => {
     event.preventDefault()
