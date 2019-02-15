@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../atoms/icons/Icon'
+import { svgFillClass, svgFillColors } from '../../atoms/global/colors'
+
+import Icon, { iconSizes } from '../../atoms/icons/Icon'
 
 function IconWrap({ name, size, fill, color, className, ...props }) {
   return (
     <span
-      className={`u-icon u-icon--${size} u-path-fill--${fill} ${className}`}
+      className={`u-icon u-icon--${size} ${svgFillClass}--${fill} ${className}`}
       {...props}
     >
       <Icon name={name} color={color} />
@@ -16,10 +18,10 @@ function IconWrap({ name, size, fill, color, className, ...props }) {
 
 IconWrap.propTypes = {
   className: PropTypes.string,
-  fill: PropTypes.oneOf(['base', 'white']),
-  color: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['xs', 'm']),
+  fill: PropTypes.oneOf(svgFillColors),
+  color: Icon.propTypes.color,
+  name: Icon.propTypes.name,
+  size: PropTypes.oneOf(iconSizes),
 }
 IconWrap.defaultProps = {
   className: '',
