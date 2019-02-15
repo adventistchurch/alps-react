@@ -1,48 +1,55 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import LogoLink from '../../molecules/images/LogoLink'
-import Search from '../../molecules/forms/Search'
-import TopHat from '../../organisms/global/TopHat'
-import NavToggle from '../../organisms/navigation/NavToggle'
-import NavPrimary from '../../organisms/navigation/NavPrimary'
-import NavSecondary from '../../organisms/navigation/NavSecondary'
+import Logo from '../../atoms/images/Logo'
+import PrimaryNavigation from '../../molecules/navigation/PrimaryNavigation'
+import SecondaryNavigation from '../../molecules/navigation/SecondaryNavigation'
+import DrawerNavigation from '../../molecules/navigation/DrawerNavigation'
 
-const Header = ({ logo, className, primaryMenu, secondaryMenu }) => (
-  <header
-    className={'header can-be--dark-dark ' + className}
-    role="banner"
-    id="header"
-  >
-    <TopHat />
-    <div className="header__inner">
-      <NavToggle />
-      <div className="header__unify-logo-nav">
-        <LogoLink {...logo} isHoriz />
-        <LogoLink {...logo} />
-        <NavPrimary items={primaryMenu} />
-      </div>
-      <div className="header__utility">
-        <div className="header__utility__inner full--until-large">
-          <NavSecondary items={secondaryMenu} />
-          <Search />
+function Header({
+  drawer,
+  logo,
+  logoClass,
+  className,
+  primaryNav,
+  secondaryNav,
+}) {
+  return (
+    <>
+      <header className={`c-header ${className}`} role="banner" id="header">
+        <div className="c-header--inner">
+          <div className="c-header__nav-secondary">
+            <SecondaryNavigation {...secondaryNav} />
+          </div>
+          <div className="c-header__logo c-logo">
+            <a href="/" className={`c-logo__link ${logoClass}`}>
+              <Logo {...logo} />
+            </a>
+          </div>
+          <div className="c-header__nav-primary">
+            <PrimaryNavigation {...primaryNav} />
+          </div>
         </div>
-      </div>
-    </div>
-  </header>
-)
+      </header>
+      <DrawerNavigation {...drawer} />
+    </>
+  )
+}
 
 Header.propTypes = {
-  logo: PropTypes.object,
   className: PropTypes.string,
-  primaryMenu: PropTypes.array,
-  secondaryMenu: PropTypes.array,
+  drawer: PropTypes.object,
+  logo: PropTypes.object,
+  logoClass: PropTypes.string,
+  primaryNav: PropTypes.object,
+  secondaryNav: PropTypes.object,
 }
 Header.defaultProps = {
-  logo: { path: '', square: '', horizontal: '', text: '', title: '' },
   classNames: '',
-  primaryMenu: [],
-  secondaryMenu: [],
+  drawer: {},
+  logo: { path: '', square: '', horizontal: '', text: '', title: '' },
+  primaryNav: {},
+  secondaryNav: {},
 }
 
 export default Header
