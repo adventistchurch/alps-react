@@ -1,14 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Aside = ({ children }) => (
-  <div className="u-spacing--double u-padding--right">
-    <div className="pad--secondary spacing--double">{children}</div>
-  </div>
-)
+import SidebarBlock from './SidebarBlock'
+
+// TODO: add search component on top
+
+const Aside = ({ primaryBlocks, secondaryBlocks }) => {
+  return (
+    <>
+      {primaryBlocks && <SidebarBlock {...primaryBlocks} render="mediaBlock" />}
+      {secondaryBlocks && (
+        <SidebarBlock {...secondaryBlocks} render="contentBlock" />
+      )}
+    </>
+  )
+}
 
 Aside.propTypes = {
-  children: PropTypes.node,
+  primaryBlocks: PropTypes.shape({
+    heading: PropTypes.string,
+    linkText: PropTypes.string,
+    url: PropTypes.string,
+    blocks: PropTypes.array,
+  }),
+  secondaryBlocks: PropTypes.shape({
+    heading: PropTypes.string,
+    linkText: PropTypes.string,
+    url: PropTypes.string,
+    blocks: PropTypes.array,
+  }),
 }
 
 export default Aside
