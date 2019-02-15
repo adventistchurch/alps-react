@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import renderItems from '../../helpers/renderItems'
 
-import PrimaryNavigationSubItem from './PrimaryNavigationSubItem'
+import PrimaryNavSubItem from './PrimaryNavSubItem'
 
-function NavItem({ text, url, isActive, subnav }) {
+function PrimaryNavItem({ text, url, isActive, subnav }) {
   return (
     <li className={`c-primary-nav__list-item${subnav && ' has-subnav'}`}>
       <a
@@ -21,21 +21,21 @@ function NavItem({ text, url, isActive, subnav }) {
       )}
       {subnav && (
         <ul className="c-primary-nav__subnav c-subnav">
-          {renderItems(subnav, PrimaryNavigationSubItem)}
+          {renderItems(subnav, PrimaryNavSubItem)}
         </ul>
       )}
     </li>
   )
 }
 
-NavItem.propTypes = {
+PrimaryNavItem.propTypes = {
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
   subnav: PropTypes.array,
 }
-NavItem.defaultProps = {
+PrimaryNavItem.defaultProps = {
   active: false,
 }
 
-export default NavItem
+export default PrimaryNavItem

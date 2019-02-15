@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import renderItems from '../../helpers/renderItems'
-import PrimaryNavigationItem from './PrimaryNavigationItem'
+import PrimaryNavigationItem from './PrimaryNavItem'
 
 function PrimaryNavigation({ items }) {
   return (

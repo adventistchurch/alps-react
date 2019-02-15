@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function PrimaryNavigationSubItem({ isActive, text, url }) {
+function PrimaryNavSubItem({ isActive, text, url }) {
   return (
     <li className="c-primary-nav__subnav__list-item c-subnav__list-item u-background-color--gray--light">
       <a
@@ -16,13 +16,13 @@ function PrimaryNavigationSubItem({ isActive, text, url }) {
   )
 }
 
-PrimaryNavigationSubItem.propTypes = {
+PrimaryNavSubItem.propTypes = {
   isActive: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 }
-PrimaryNavigationSubItem.defaultProps = {
+PrimaryNavSubItem.defaultProps = {
   isActive: false,
 }
 
-export default PrimaryNavigationSubItem
+export default PrimaryNavSubItem
