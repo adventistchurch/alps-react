@@ -26,6 +26,7 @@ import SettingsIcon from './Settings'
 import ShareIcon from './Share'
 import SubscribeIcon from './Subscribe'
 
+// Names mapping with Components
 const icons = {
   'arrow-bracket-left': ArrowBracketLeftIcon,
   'arrow-bracket-right': ArrowBracketRightIcon,
@@ -51,6 +52,10 @@ const icons = {
   subscribe: SubscribeIcon,
 }
 
+// Available icons sizes
+const iconSizes = ['xs', 's', 'm', 'l', 'xl']
+
+// Available icon names
 const iconNames = Object.keys(icons)
 
 function Icon({ name, color }) {
@@ -67,6 +72,6 @@ Icon.defaultProps = {
   name: 'logo',
 }
 
-export { iconNames }
+export { iconNames, iconSizes }
 
 export default Icon
