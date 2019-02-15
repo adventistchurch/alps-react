@@ -1,5 +1,6 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+
+import { svgFillClass, svgFillColors } from '../../atoms/global/colors'
 
 // Icons
 import ArrowBracketLeftIcon from './ArrowBracketLeft'
@@ -53,14 +54,17 @@ const icons = {
 const iconNames = Object.keys(icons)
 
 function Icon({ name, color }) {
-  const Icn = icons[name]
-
-  return Icn ? <Icn fill={color ? `fill--${color}` : null} /> : <span />
+  const fill = color ? `${svgFillClass}--${color}` : null
+  return icons[name]({ fill })
 }
 
 Icon.propTypes = {
   name: PropTypes.oneOf(iconNames).isRequired,
-  color: PropTypes.oneOf(['white']),
+  color: PropTypes.oneOf(svgFillColors),
+}
+
+Icon.defaultProps = {
+  name: 'logo',
 }
 
 export { iconNames }
