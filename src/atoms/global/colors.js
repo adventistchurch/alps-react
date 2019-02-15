@@ -47,7 +47,7 @@ const text = generateColors(textClass, textColors)
 
 const svgFillClass = 'u-path-fill'
 const svgFillColors = grayscaleColors
-const svgFill = generateColors(svgFillClass, svgFillColors)
+// const svgFill = generateColors(svgFillClass, svgFillColors)
 
 // Background Colors (grayscale)
 
@@ -62,4 +62,12 @@ const theme = generateColors(backgroundClass, themeColors)
 
 // Exports
 
-export { background, primary, secondary, svgFill, text, theme }
+export {
+  background,
+  primary,
+  secondary,
+  svgFillClass,
+  svgFillColors,
+  text,
+  theme,
+}
