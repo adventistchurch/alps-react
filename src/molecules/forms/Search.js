@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SearchForm = ({ action, buttonText, placeholder, title }) => {
+function SearchForm({ action, buttonText, placeholder, title }) {
   return (
     <form
       action={action}
@@ -28,7 +28,7 @@ const SearchForm = ({ action, buttonText, placeholder, title }) => {
 
 SearchForm.propTypes = {
   action: PropTypes.string.isRequired,
-  title: PropTypes.title,
+  title: PropTypes.string,
   buttonText: PropTypes.string,
   placeholder: PropTypes.string,
 }
