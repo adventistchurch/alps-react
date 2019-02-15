@@ -12,6 +12,7 @@ import {
 import MediaBlock from './MediaBlock'
 
 const propsTab = 'Props'
+const metaTab = 'Meta'
 const imageTab = 'Image'
 const ctaTab = 'CTA'
 const defaults = {
@@ -45,8 +46,6 @@ const defaults = {
     },
   },
   imageAlt: 'Placeholder image',
-  videoSrc:
-    'https://player.vimeo.com/video/137487821?color=ffffff&title=0&byline=0&portrait=0',
   kicker: '',
 }
 
@@ -60,10 +59,10 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
-    const category = text('Category', defaults.category, propsTab)
-    const datetime = date('Date Time', defaults.datetime, propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
-    const url = text('URL', defaults.url, propsTab)
+    const category = text('Category', defaults.category, metaTab)
+    const datetime = date('Date Time', defaults.datetime, metaTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
+    const url = text('URL', defaults.url, metaTab)
     const showImage = boolean('Show Image', true, imageTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
     const imageSrcSet = object(
@@ -95,10 +94,11 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
-    const category = text('Category', defaults.category, propsTab)
-    const datetime = date('Date Time', defaults.datetime, propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
-    const url = text('URL', defaults.url)
+    const showBorder = boolean('Content Border', true, propsTab)
+    const category = text('Category', defaults.category, metaTab)
+    const datetime = date('Date Time', defaults.datetime, metaTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
+    const url = text('URL', defaults.url, metaTab)
     const showImage = boolean('Show Image', true, imageTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
     const imageSrcSet = object(
@@ -123,18 +123,19 @@ storiesOf('molecules/blocks/MediaBlock', module)
         url={url}
         cta={showCta ? cta : null}
         inline
+        border={showBorder ? 'left' : 'none'}
       />
     )
   })
 
   .addWithJSX('Inset', () => {
-    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', '', propsTab)
-    const datetime = date('Date Time', defaults.datetime, propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
-    const url = text('URL', defaults.url, propsTab)
-    const category = text('Category', '', propsTab)
+    const category = text('Category', '', metaTab)
+    const datetime = date('Date Time', defaults.datetime, metaTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
+    const url = text('URL', defaults.url, metaTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
     const imageSrcSet = object(
       'Image SrcSet',
@@ -160,13 +161,14 @@ storiesOf('molecules/blocks/MediaBlock', module)
   })
 
   .addWithJSX('Reversed', () => {
-    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
-    const category = text('Category', defaults.category, propsTab)
-    const datetime = date('Date Time', defaults.datetime, propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
-    const url = text('URL', defaults.url, propsTab)
+    const category = text('Category', defaults.category, metaTab)
+    const datetime = date('Date Time', defaults.datetime, metaTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
+    const url = text('URL', defaults.url, metaTab)
+    const showBorder = boolean('Content Border', true, propsTab)
     const showImage = boolean('Show Image', true, imageTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
     const imageSrcSet = object(
@@ -191,18 +193,20 @@ storiesOf('molecules/blocks/MediaBlock', module)
         url={url}
         cta={showCta ? cta : null}
         reversed
+        border={showBorder ? 'left' : 'none'}
       />
     )
   })
 
   .addWithJSX('Stacked', () => {
-    const kicker = text('Kicker Text', defaults.kicker, propsTab)
+    const kicker = text('Kicker', defaults.kicker, propsTab)
     const title = text('Title', defaults.title, propsTab)
     const description = text('Description', defaults.description, propsTab)
-    const category = text('Category', defaults.category, propsTab)
-    const datetime = date('Date Time', defaults.datetime, propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', propsTab)
-    const url = text('URL', defaults.url, propsTab)
+    const showBorder = boolean('Content Border', false, propsTab)
+    const category = text('Category', defaults.category, metaTab)
+    const datetime = date('Date Time', defaults.datetime, metaTab)
+    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
+    const url = text('URL', defaults.url, metaTab)
     const showImage = boolean('Show Image', true, imageTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
     const imageSrcSet = object(
@@ -227,6 +231,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         url={url}
         cta={showCta ? cta : null}
         stacked
+        border={showBorder ? 'left' : 'none'}
       />
     )
   })
