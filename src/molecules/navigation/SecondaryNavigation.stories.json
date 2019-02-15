@@ -1,0 +1,92 @@
+{
+  "items": [
+    {
+      "text": "Sitemap",
+      "icon": "subscribe",
+      "url": "#"
+    },
+    {
+      "text": "Find a Church",
+      "icon": "find",
+      "url": "#"
+    },
+    {
+      "text": "Contact",
+      "icon": "contact",
+      "url": "#"
+    },
+    {
+      "text": "Press",
+      "icon": "heart",
+      "url": "#"
+    }
+  ],
+  "itemsWithSubmenu": [
+    {
+      "text": "Sitemap",
+      "icon": "subscribe",
+      "url": "#",
+      "subnav": [
+        {
+          "text": "Find a Church",
+          "icon": "find",
+          "url": "#"
+        },
+        {
+          "text": "Contact",
+          "icon": "contact",
+          "url": "#"
+        },
+        {
+          "text": "Press",
+          "icon": "heart",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "text": "Contact",
+      "icon": "subscribe",
+      "url": "#",
+      "subnav": [
+        {
+          "text": "Find a Church",
+          "icon": "find",
+          "url": "#"
+        },
+        {
+          "text": "Contact",
+          "icon": "contact",
+          "url": "#"
+        },
+        {
+          "text": "Press",
+          "icon": "heart",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "text": "Find a Church",
+      "icon": "find",
+      "url": "#",
+      "subnav": [
+        {
+          "text": "Find a Church",
+          "icon": "find",
+          "url": "#"
+        },
+        {
+          "text": "Contact",
+          "icon": "contact",
+          "url": "#"
+        },
+        {
+          "text": "Press",
+          "icon": "heart",
+          "url": "#"
+        }
+      ]
+    }
+  ]
+}
