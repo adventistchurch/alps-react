@@ -42,10 +42,6 @@ const SidebarBlock = ({ blocks, render, heading, linkText, url }) => {
 }
 
 SidebarBlock.propTypes = {
-  renderAs: PropTypes.oneOfType([
-    PropTypes.instanceOf(MediaBlock),
-    PropTypes.instanceOf(ContentBlock),
-  ]),
   render: PropTypes.oneOf(['mediaBlock', 'contentBlock', 'relatedPosts']),
   heading: PropTypes.string,
   linkText: PropTypes.string,
