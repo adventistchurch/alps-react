@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import SidebarBlock from './SidebarBlock'
 
 const RelatedPosts = ({ blocks }) => {
-  return <>{blocks && <SidebarBlock {...blocks} render="relatedPosts" />}</>
+  return <>{blocks && <SidebarBlock {...blocks} type="relatedPosts" />}</>
 }
 
 RelatedPosts.propTypes = {

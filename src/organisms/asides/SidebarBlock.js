@@ -6,18 +6,16 @@ import ContentBlock from '../../molecules/blocks/ContentBlock'
 
 import renderItems from '../../helpers/renderItems'
 
-const SidebarBlock = ({ blocks, render, heading, linkText, url }) => {
+const SidebarBlock = ({ blocks, type, heading, linkText, url }) => {
   const wrapperClass =
-    render == 'relatedPosts'
+    type == 'relatedPosts'
       ? 'c-related-posts'
-      : render == 'mediaBlock' || render == 'contentBlock'
+      : type == 'mediaBlock' || type == 'contentBlock'
       ? 'c-block-wrap'
       : 'c-block-wrap'
 
   const Component =
-    render == 'mediaBlock' || render == 'relatedPosts'
-      ? MediaBlock
-      : ContentBlock
+    type == 'mediaBlock' || type == 'relatedPosts' ? MediaBlock : ContentBlock
 
   return (
     <div className={`${wrapperClass} u-spacing`}>
@@ -42,7 +40,7 @@ const SidebarBlock = ({ blocks, render, heading, linkText, url }) => {
 }
 
 SidebarBlock.propTypes = {
-  render: PropTypes.oneOf(['mediaBlock', 'contentBlock', 'relatedPosts']),
+  type: PropTypes.oneOf(['mediaBlock', 'contentBlock', 'relatedPosts']),
   heading: PropTypes.string,
   linkText: PropTypes.string,
   url: PropTypes.string,

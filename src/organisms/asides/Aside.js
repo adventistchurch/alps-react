@@ -8,9 +8,9 @@ import SidebarBlock from './SidebarBlock'
 const Aside = ({ primaryBlocks, secondaryBlocks }) => {
   return (
     <>
-      {primaryBlocks && <SidebarBlock {...primaryBlocks} render="mediaBlock" />}
+      {primaryBlocks && <SidebarBlock {...primaryBlocks} type="mediaBlock" />}
       {secondaryBlocks && (
-        <SidebarBlock {...secondaryBlocks} render="contentBlock" />
+        <SidebarBlock {...secondaryBlocks} type="contentBlock" />
       )}
     </>
   )
