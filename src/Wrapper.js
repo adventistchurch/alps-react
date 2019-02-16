@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { MenuContextProvider } from './helpers/useMenuContext'
+import { DrawerContextProvider } from './helpers/useDrawerContext'
 
 function Wrapper({ children, primaryColor, secondaryColor, style }) {
   return (
-    <MenuContextProvider>
+    <DrawerContextProvider>
       <div className={`u-theme--${primaryColor}`} style={style}>
         <div className={`body has-grid u-theme--${secondaryColor}`}>
           {children}
         </div>
       </div>
-    </MenuContextProvider>
+    </DrawerContextProvider>
   )
 }
 

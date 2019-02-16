@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
 import SearchForm from '../forms/Search'
+import useDrawerContext from '../../helpers/useDrawerContext'
 import PrimaryNavigation from './PrimaryNavigation'
 import SecondaryNavigation from './SecondaryNavigation'
 
 import useMenuContext from '../../helpers/useMenuContext'
 
 function DrawerNavigation({ aboutLeft, aboutRight, primaryNav, secondaryNav }) {
-  const { menuIsOpen, setMenuIsOpen } = useMenuContext()
+  const { menuIsOpen, setMenuIsOpen, searchHasFocus } = useDrawerContext()
 
   const onClose = () => setMenuIsOpen(false)
 

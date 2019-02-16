@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import renderItems from '../../helpers/renderItems'
-import useMenuContext from '../../helpers/useMenuContext'
+import useDrawerContext from '../../helpers/useDrawerContext'
 
 import SecondaryNavItem from './SecondaryNavItem'
 import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
-  const { setMenuIsOpen, setMenuWithSearch } = useMenuContext()
+  const { setMenuIsOpen, setSearchHasFocus } = useDrawerContext()
 
   const openMenu = ({ withSearch = false } = {}) => event => {
     event.preventDefault()
     setMenuIsOpen(true)
-    setMenuWithSearch(withSearch)
+    setSearchHasFocus(withSearch)
   }
 
   return (
