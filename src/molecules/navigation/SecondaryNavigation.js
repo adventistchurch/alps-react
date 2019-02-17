@@ -8,13 +8,7 @@ import SecondaryNavItem from './SecondaryNavItem'
 import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
-  const { setIsOpen, setSearchHasFocus } = useDrawerContext()
-
-  const openMenu = ({ withSearch = false } = {}) => event => {
-    event.preventDefault()
-    setIsOpen(true)
-    setSearchHasFocus(withSearch)
-  }
+  const { openDrawer, openDrawerWithSearch } = useDrawerContext()
 
   return (
     <nav className="c-secondary-nav" role="navigation">
@@ -26,7 +20,7 @@ function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
             text="Search"
             icon="search"
             isPriority
-            onClick={openMenu({ withSearch: true })}
+            onClick={openDrawerWithSearch}
           />
         )}
         {showMenu && (
@@ -34,7 +28,7 @@ function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
             text="Menu"
             icon="menu"
             isPriority
-            onClick={openMenu()}
+            onClick={openDrawer}
           />
         )}
       </ul>
