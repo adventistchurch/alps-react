@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Image from './Image'
+import logos from './logos'
 
-const Logo = props => {
-  return <Image {...props} />
+function Logo({ name, ...props }) {
+  const Logo = logos[name] || logos['sda']
+
+  return <Logo {...props} />
 }
 
 Logo.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
+  name: PropTypes.oneOf(Object.keys(logos)),
+  fill: PropTypes.string,
 }
 
 export default Logo
