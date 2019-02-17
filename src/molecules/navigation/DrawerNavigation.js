@@ -7,24 +7,24 @@ import useDrawerContext from '../../helpers/useDrawerContext'
 import PrimaryNavigation from './PrimaryNavigation'
 import SecondaryNavigation from './SecondaryNavigation'
 
-import useMenuContext from '../../helpers/useMenuContext'
-
-function DrawerNavigation({ aboutLeft, aboutRight, primaryNav, secondaryNav }) {
-  const { isOpen, setIsOpen, searchHasFocus } = useDrawerContext()
-
-  const onClose = () => setIsOpen(false)
-
-  console.log(secondaryNav)
+function DrawerNavigation({
+  aboutLeft,
+  aboutRight,
+  onSearch,
+  primaryNav,
+  secondaryNav,
+}) {
+  const { closeDrawer, isOpen } = useDrawerContext()
 
   return (
     <div
       className={`c-drawer l-grid l-grid--7-col ${
-        menuIsOpen ? 'this-is-active' : ''
+        isOpen.menu ? 'this-is-active' : ''
       }`}
     >
       <div
         className="c-drawer__toggle js-toggle-parent u-theme--background-color-trans--darker"
-        onClick={onClose}
+        onClick={closeDrawer}
       >
         <div className="u-icon o-icon__close">
           <span />
@@ -33,12 +33,14 @@ function DrawerNavigation({ aboutLeft, aboutRight, primaryNav, secondaryNav }) {
       </div>
       <div className="l-grid-wrap--6-of-7 l-grid-item--s--6-col c-drawer__container u-spacing u-theme--background-color--darker">
         <div className="c-drawer__search">
-          <SearchForm action="some" />
+          <SearchForm onSearch={onSearch} hasFocus={isOpen.search} />
         </div>
         <div className="c-drawer__nav">
           <div className="c-drawer__nav-primary">
             <PrimaryNavigation {...primaryNav} />
-            <ul className="c-drawer__subnav u-theme--background-color--darker" />
+            <ul className="c-drawer__subnav u-theme--background-color--darker">
+              {/* TODO: What is this for?? */}
+            </ul>
           </div>
           <div className="c-drawer__nav-secondary">
             <SecondaryNavigation
@@ -64,10 +66,11 @@ function DrawerNavigation({ aboutLeft, aboutRight, primaryNav, secondaryNav }) {
 }
 
 DrawerNavigation.propTypes = {
-  primaryNav: PropTypes.object,
-  secondaryNav: PropTypes.object,
   aboutLeft: PropTypes.node,
   aboutRight: PropTypes.node,
+  onSearch: PropTypes.func,
+  primaryNav: PropTypes.object,
+  secondaryNav: PropTypes.object,
 }
 DrawerNavigation.defaultProps = {
   aboutLeft: (
