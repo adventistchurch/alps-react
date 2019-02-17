@@ -8,11 +8,11 @@ import SecondaryNavItem from './SecondaryNavItem'
 import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
-  const { setMenuIsOpen, setSearchHasFocus } = useDrawerContext()
+  const { setIsOpen, setSearchHasFocus } = useDrawerContext()
 
   const openMenu = ({ withSearch = false } = {}) => event => {
     event.preventDefault()
-    setMenuIsOpen(true)
+    setIsOpen(true)
     setSearchHasFocus(withSearch)
   }
 

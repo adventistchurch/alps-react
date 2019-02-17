@@ -10,9 +10,9 @@ import SecondaryNavigation from './SecondaryNavigation'
 import useMenuContext from '../../helpers/useMenuContext'
 
 function DrawerNavigation({ aboutLeft, aboutRight, primaryNav, secondaryNav }) {
-  const { menuIsOpen, setMenuIsOpen, searchHasFocus } = useDrawerContext()
+  const { isOpen, setIsOpen, searchHasFocus } = useDrawerContext()
 
-  const onClose = () => setMenuIsOpen(false)
+  const onClose = () => setIsOpen(false)
 
   console.log(secondaryNav)
 
