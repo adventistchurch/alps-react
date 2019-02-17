@@ -7,7 +7,7 @@ import PrimaryNavSubItem from './PrimaryNavSubItem'
 
 function PrimaryNavItem({ text, url, isActive, subnav }) {
   return (
-    <li className={`c-primary-nav__list-item${subnav && ' has-subnav'}`}>
+    <li className={`c-primary-nav__list-item${subnav ? ' has-subnav' : ''}`}>
       <a
         className={`c-primary-nav__link u-font--primary-nav u-color--gray--dark u-theme--link-hover--base u-theme--border-color--base ${
           isActive ? 'this-is-active' : ''
