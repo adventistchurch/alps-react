@@ -1,23 +1,46 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-const MenuContext = React.createContext({
+const DrawerContext = React.createContext({
   isOpen: false,
-  searchHasFocus: false,
   setIsOpen: value => value,
-  setSearchHasFocus: value => value,
 })
 
+const statuses = {
+  closed: { menu: false, search: false },
+  open: { menu: true, search: false },
+  openSearch: { menu: true, search: true },
+}
+
 function DrawerContextProvider({ children }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [searchHasFocus, setSearchHasFocus] = useState(false)
+  const [isOpen, setIsOpen] = useState(statuses.closed)
+
+  function openDrawer(event) {
+    event.preventDefault()
+    setIsOpen(statuses.open)
+  }
+
+  function openDrawerWithSearch(event) {
+    event.preventDefault()
+    setIsOpen(statuses.openSearch)
+  }
+
+  function closeDrawer(event) {
+    event.preventDefault()
+    setIsOpen(statuses.closed)
+  }
 
   return (
-    <MenuContext.Provider
-      value={{ isOpen, setIsOpen, searchHasFocus, setSearchHasFocus }}
+    <DrawerContext.Provider
+      value={{
+        closeDrawer,
+        isOpen,
+        openDrawer,
+        openDrawerWithSearch,
+      }}
     >
       {children}
-    </MenuContext.Provider>
+    </DrawerContext.Provider>
   )
 }
 
@@ -25,10 +48,10 @@ DrawerContextProvider.propTypes = {
   children: PropTypes.node,
 }
 
-function useMenuContext() {
-  return useContext(MenuContext)
+function useDrawerContext() {
+  return useContext(DrawerContext)
 }
 
 export { DrawerContextProvider }
 
-export default useMenuContext
+export default useDrawerContext
