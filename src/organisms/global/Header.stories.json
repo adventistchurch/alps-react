@@ -1,5 +1,8 @@
 {
-  "logo": {},
+  "logo": {
+    "name": "sda",
+    "useFillTheme": true
+  },
   "drawer": {
     "aboutLeft": "Something!",
     "aboutRight": "Something else!"
