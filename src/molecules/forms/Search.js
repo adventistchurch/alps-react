@@ -1,22 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SearchForm({ action, buttonText, placeholder, title }) {
+import useInputFocus from '../../helpers/useInputFocus'
+
+function SearchForm({
+  action,
+  buttonText,
+  hasFocus,
+  onSearch,
+  placeholder,
+  title,
+}) {
+  const inputFocusRef = useInputFocus(hasFocus)
+
   return (
     <form
       action={action}
-      role="search"
-      method="get"
       className="search-form toggled-element"
+      method="get"
+      onSubmit={onSearch}
+      role="search"
     >
       <fieldset>
         <legend className="is-vishidden">{title}</legend>
         <input
-          type="search"
-          name="search"
-          placeholder={placeholder ? placeholder + '...' : ''}
           className="search-form__input u-font--secondary--s"
+          name="search"
+          placeholder={placeholder ? `${placeholder}...` : null}
+          ref={inputFocusRef}
           required
+          type="search"
         />
         <button className="search-form__submit is-vishidden">
           <span className="is-vishidden">{buttonText}</span>
@@ -27,15 +40,17 @@ function SearchForm({ action, buttonText, placeholder, title }) {
 }
 
 SearchForm.propTypes = {
-  action: PropTypes.string.isRequired,
-  title: PropTypes.string,
+  action: PropTypes.string,
   buttonText: PropTypes.string,
+  hasFocus: PropTypes.bool,
+  onSearch: PropTypes.func,
   placeholder: PropTypes.string,
+  title: PropTypes.string,
 }
 
 SearchForm.defaultProps = {
-  title: 'Search',
   buttonText: 'Search',
+  title: 'Search',
   placeholder: 'Search',
 }
 
