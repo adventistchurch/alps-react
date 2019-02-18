@@ -36,7 +36,7 @@ storiesOf('organisms/global/Header', module)
 
     return (
       <Header
-        {...drawer}
+        drawer={drawer}
         logo={logo}
         primaryNav={dataPrimaryNav}
         secondaryNav={dataSecondaryNav}
