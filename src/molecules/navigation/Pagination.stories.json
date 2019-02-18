@@ -1,0 +1,13 @@
+{
+  "current": 7,
+  "dividerLabel": "…",
+  "firstLabel": "← First",
+  "lastLabel": "Last →",
+  "linkPrefix": "?page=",
+  "nextLabel": "Next →",
+  "prevLabel": "← Previous",
+  "surrounding": 3,
+  "showFirstAndLast": false,
+  "showPrevAndNext": true,
+  "total": 120
+}
