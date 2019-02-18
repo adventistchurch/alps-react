@@ -13,8 +13,5 @@ Blockquote.propTypes = {
   children: PropTypes.node,
   text: PropTypes.string,
 }
-Blockquote.defaultProps = {
-  text: '',
-}
 
 export default Blockquote

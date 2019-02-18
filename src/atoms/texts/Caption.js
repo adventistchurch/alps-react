@@ -13,8 +13,5 @@ Caption.propTypes = {
   children: PropTypes.node,
   text: PropTypes.string,
 }
-Caption.defaultProps = {
-  text: '',
-}
 
 export default Caption
