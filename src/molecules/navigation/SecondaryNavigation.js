@@ -7,7 +7,14 @@ import useDrawerContext from '../../helpers/useDrawerContext'
 import SecondaryNavItem from './SecondaryNavItem'
 import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
-function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
+function SecondaryNavigation({
+  items,
+  menuLabel,
+  searchLabel,
+  showLanguages,
+  showMenu,
+  showSearch,
+}) {
   const { openDrawer, openDrawerWithSearch } = useDrawerContext()
 
   return (
@@ -17,16 +24,18 @@ function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
         {renderItems(items, SecondaryNavItem)}
         {showSearch && (
           <SecondaryNavItem
-            text="Search"
+            text={searchLabel}
             icon="search"
+            type="search"
             isPriority
             onClick={openDrawerWithSearch}
           />
         )}
         {showMenu && (
           <SecondaryNavItem
-            text="Menu"
+            text={menuLabel}
             icon="menu"
+            type="menu"
             isPriority
             onClick={openDrawer}
           />
@@ -37,12 +46,16 @@ function SecondaryNavigation({ items, showLanguages, showMenu, showSearch }) {
 }
 SecondaryNavigation.propTypes = {
   items: PropTypes.array,
+  menuLabel: PropTypes.string,
+  searchLabel: PropTypes.string,
   showLanguages: PropTypes.bool,
   showMenu: PropTypes.bool,
   showSearch: PropTypes.bool,
 }
 SecondaryNavigation.defaultProps = {
   items: [],
+  menuLabel: 'Menu',
+  searchLabel: 'Search',
   showLanguages: true,
   showMenu: true,
   showSearch: true,
