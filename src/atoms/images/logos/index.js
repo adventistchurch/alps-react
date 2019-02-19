@@ -10,4 +10,9 @@ const logos = {
   'sda-with-icon': SDAWithIcon,
 }
 
+// Available logo names
+const logoNames = Object.keys(logos)
+
+export { logoNames }
+
 export default logos
