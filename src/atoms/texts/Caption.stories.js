@@ -4,11 +4,9 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Caption from './Caption'
 
-const propsTab = 'Props'
+import data from './Caption.stories.json'
 
-const data = {
-  text: 'Proin dictum lobortis luctus.',
-}
+const propsTab = 'Props'
 
 storiesOf('atoms/texts/Caption', module)
   .addDecorator(withKnobs)
@@ -18,7 +16,7 @@ storiesOf('atoms/texts/Caption', module)
     return <Caption text={captionText} />
   })
 
-  .addWithJSX('As children', () => {
+  .addWithJSX('As Children', () => {
     const captionText = text('Text', data.text, propsTab)
     return <Caption>{captionText}</Caption>
   })
