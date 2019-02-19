@@ -14,11 +14,16 @@ const style = {
 
 addDecorator(story => {
   const content = story()
-  const primaryColor = select('Primary color', colors.primary, 'denim', 'Theme')
+  const primaryColor = select(
+    'Primary color',
+    colors.primary,
+    colors.primary[0],
+    'Theme'
+  )
   const secondaryColor = select(
     'Secondary color',
     colors.secondary,
-    'white',
+    colors.secondary[0],
     'Theme'
   )
 
