@@ -39,7 +39,7 @@ storiesOf('atoms/tables/Table', module)
   .addWithJSX('Playground', () => {
     const title = text('Title', 'Table A.1', propsTab)
     const colCount = number('Number of Columns', 7, {}, propsTab)
-    const rowCount = number('Nof umber Rows', 7, {}, propsTab)
+    const rowCount = number('Number of Rows', 7, {}, propsTab)
     const slim = boolean('Slim', false, propsTab)
 
     const columns = useRange(1, colCount).map(col => `Header ${col}`)
