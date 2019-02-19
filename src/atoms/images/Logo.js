@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import logos from './logos'
+import logos, { logoNames } from './logos'
+import { svgFillColors } from '../global/colors'
 
 function Logo({ name, ...props }) {
   const Logo = logos[name] || logos['sda']
@@ -10,8 +11,9 @@ function Logo({ name, ...props }) {
 }
 
 Logo.propTypes = {
-  name: PropTypes.oneOf(Object.keys(logos)),
-  fill: PropTypes.string,
+  name: PropTypes.oneOf(logoNames),
+  fill: PropTypes.oneOf(svgFillColors),
+  fillAccent: PropTypes.string,
 }
 
 export default Logo
