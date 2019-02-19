@@ -5,12 +5,14 @@ import debounce from './debounce'
 /**
  * Get innerwidth without padding
  * @param {HTMLElement} element
+ * @param {boolean} onlyPadding
  * @returns {number}
  */
-function getElementContentWidth(element) {
+function getElementContentWidth(element, onlyPadding = false) {
   const { paddingLeft, paddingRight } = window.getComputedStyle(element)
   const padding = parseFloat(paddingLeft) + parseFloat(paddingRight)
-  return element.clientWidth - padding
+
+  return onlyPadding ? padding : element.clientWidth - padding
 }
 
 /**
@@ -59,12 +61,20 @@ function usePriorityNav({ enabled = true, total = 0 }) {
   // Recalculates lastVisibleIndex and hasDropdown values based on the visible breakpoints
   function onResize() {
     const wrapper = wrapperNavRef.current
+    const dropdown = dropdownRef.current
 
     // Recalculate wrapper's width
     const wrapperWidth = getElementContentWidth(wrapper)
 
-    // Get all visible breakpoints (all smaller that wrapperWidth)
-    const visibleBreakpoints = breakpoints.filter(bp => bp < wrapperWidth)
+    // If present, recalculate wrapper's width
+    const dropdownWidth = dropdown ? getElementContentWidth(dropdown, true) : 0
+
+    console.log(dropdown, dropdownWidth)
+
+    // Get all visible breakpoints (all smaller that wrapper+dropdown width)
+    const visibleBreakpoints = breakpoints.filter(
+      bp => bp < wrapperWidth - dropdownWidth
+    )
 
     // Calculate and set the last visible breakpoint
     setLastVisibleIndex(visibleBreakpoints.length - 1)

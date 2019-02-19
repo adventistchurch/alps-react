@@ -28,18 +28,17 @@ function PrimaryNavigation({ hasPriorityNav, items }) {
       className={`c-primary-nav c-priority-nav priority-nav ${
         hasDropdown ? 'priority-nav-has-dropdown' : ''
       }`}
-      role="navigation"
       ref={wrapperNavRef}
+      role="navigation"
     >
       <ul className="c-primary-nav__list c-priority-nav__list" ref={mainNavRef}>
         {renderItems(menuItems, PrimaryNavigationItem)}
       </ul>
 
-      {hasDropdown ? (
+      {hasPriorityNav ? (
         <span
-          className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
           aria-haspopup={!hasDropdown}
-          ref={dropdownRef}
+          className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
         >
           <button
             aria-controls="menu"
@@ -48,6 +47,7 @@ function PrimaryNavigation({ hasPriorityNav, items }) {
             }`}
             onClick={openDrawer}
             type="button"
+            ref={dropdownRef}
           >
             {''}
           </button>
