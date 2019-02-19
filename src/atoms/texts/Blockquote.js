@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 function Blockquote({ children, text }) {
   return (
     <blockquote className="pullquote u-theme--border-color--darker--left u-theme--color--darker u-padding--right">
-      <p>{children || text}</p>
+      {children ? children : <p>{text}</p>}
     </blockquote>
   )
 }

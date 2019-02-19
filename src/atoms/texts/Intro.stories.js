@@ -2,21 +2,21 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, withKnobs } from '@storybook/addon-knobs'
 
-import Blockquote from './Blockquote'
+import Intro from './Intro'
 
-import data from './Blockquote.stories.json'
+import data from './Intro.stories.json'
 
 const propsTab = 'Props'
 
-storiesOf('atoms/texts/Blockquote', module)
+storiesOf('atoms/texts/Intro', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
     const captionText = text('Text', data.text, propsTab)
-    return <Blockquote text={captionText} />
+    return <Intro text={captionText} />
   })
 
   .addWithJSX('As Children', () => {
     const captionText = text('Text', data.text, propsTab)
-    return <Blockquote>{captionText}</Blockquote>
+    return <Intro>{captionText}</Intro>
   })
