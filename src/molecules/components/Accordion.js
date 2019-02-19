@@ -22,7 +22,7 @@ AccordionItem.propTypes = {
     .isRequired,
 }
 
-const Accordion = ({ items }) => {
+function Accordion({ items }) {
   return (
     <div className="c-accordion u-position--relative u-spacing {{ accordion_class }}">
       {renderItems(items, AccordionItem)}

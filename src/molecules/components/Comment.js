@@ -4,16 +4,17 @@ import PropTypes from 'prop-types'
 import datetimeFormat from '../../helpers/datetimeFormat'
 import Picture from '../../atoms/images/Picture'
 
-const Comment = ({
+function Comment({
   avatarSrcSet,
   avatarAlt,
   datetime,
   dateFormat,
   byline,
+  children,
   text,
   editUrl,
   replyUrl,
-}) => {
+}) {
   return (
     <div className="c-comment--inner u-border--left u-theme--border-color--darker">
       <div className="c-comment__avatar u-space--right">
@@ -36,7 +37,7 @@ const Comment = ({
             </span>
           )}
         </div>
-        <p className="c-comment__content">{text}</p>
+        <p className="c-comment__content">{children || text}</p>
         {replyUrl && (
           <div className="c-comment__reply">
             <a href="" className="u-font--secondary--s u-theme--color--base">
@@ -55,11 +56,14 @@ Comment.propTypes = {
   datetime: PropTypes.number,
   dateFormat: PropTypes.oneOf(['date', 'time', 'datetime']),
   byline: PropTypes.string,
+  children: PropTypes.node,
   text: PropTypes.string,
   editUrl: PropTypes.string,
   replyUrl: PropTypes.string,
 }
 
-Comment.defaultProps = {}
+Comment.defaultProps = {
+  dateFormat: 'datetime',
+}
 
 export default Comment

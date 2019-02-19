@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
 
-const Slide = ({
+function Slide({
   heading,
   subtitle,
   dek,
@@ -14,7 +14,7 @@ const Slide = ({
   isLazy,
   className,
   textClass,
-}) => {
+}) {
   return (
     <div className={`c-carousel__item u-position--relative ${className}`}>
       <Picture image={imageSrcSet} alt={imageAlt} lazy={isLazy} />
