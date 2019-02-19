@@ -12,11 +12,11 @@ storiesOf('atoms/texts/Blockquote', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const captionText = text('Text', data.text, propsTab)
-    return <Blockquote text={captionText} />
+    const blockquoteText = text('Text *', data.text, propsTab)
+    return <Blockquote text={blockquoteText} />
   })
 
   .addWithJSX('As Children', () => {
-    const captionText = text('Text', data.text, propsTab)
-    return <Blockquote>{captionText}</Blockquote>
+    const blockquoteText = text('Text *', data.text, propsTab)
+    return <Blockquote>{blockquoteText}</Blockquote>
   })

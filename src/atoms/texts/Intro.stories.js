@@ -12,11 +12,11 @@ storiesOf('atoms/texts/Intro', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const captionText = text('Text', data.text, propsTab)
+    const captionText = text('Text *', data.text, propsTab)
     return <Intro text={captionText} />
   })
 
   .addWithJSX('As Children', () => {
-    const captionText = text('Text', data.text, propsTab)
+    const captionText = text('Text *', data.text, propsTab)
     return <Intro>{captionText}</Intro>
   })
