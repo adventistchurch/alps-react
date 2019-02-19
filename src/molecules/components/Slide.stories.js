@@ -4,31 +4,18 @@ import { withKnobs, text, boolean, object } from '@storybook/addon-knobs'
 
 import Slide from './Slide'
 
+import data from './Slide.stories.json'
+
 const propsTab = 'Props'
+const textTab = 'Text'
 const ctaTab = 'CTA'
-const defaults = {
-  heading: 'Lorem Ipsum',
-  subtitle: 'Fusce nec urna ut tellus accumsan fermentum.',
-  dek:
-    'Morbi eleifend, mi et varius imperdiet, nunc magna ullamcorper nibh, vel varius felis dui ac arcu. Vestibulum semper commodo dolor vel congue. Curabitur eleifend ligula ut arcu finibus posuere.',
-  cta: 'Mec cursus mi',
-  url: 'https://www.adventist.org',
-  imageSrcSet: {
-    default: '//picsum.photos/500/282',
-    500: '//picsum.photos/900/507?image=314',
-    750: '//picsum.photos/700/395',
-    1200: '//picsum.photos/500/282',
-  },
-  imageAlt: 'Placeholder image',
-  isLazy: false,
-}
 
 storiesOf('molecules/components/Slide', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
-    const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
+    const imageSrcSet = object('Image SrcSet *', data.imageSrcSet, propsTab)
+    const imageAlt = text('Image Alt', data.imageAlt, propsTab)
     const isLazy = boolean('Layz load image', false, propsTab)
     return (
       <Slide imageSrcSet={imageSrcSet} imageAlt={imageAlt} isLazy={isLazy} />
@@ -36,15 +23,15 @@ storiesOf('molecules/components/Slide', module)
   })
 
   .addWithJSX('With text', () => {
-    const heading = text('Heading', defaults.heading, propsTab)
-    const subtitle = text('Subtitle', defaults.subtitle, propsTab)
-    const dek = text('Description', defaults.dek, propsTab)
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
-    const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
+    const imageSrcSet = object('Image SrcSet *', data.imageSrcSet, propsTab)
+    const imageAlt = text('Image Alt', data.imageAlt, propsTab)
     const isLazy = boolean('Lazy load image', false, propsTab)
+    const heading = text('Heading *', data.heading, textTab)
+    const dek = text('Description *', data.dek, textTab)
+    const subtitle = text('Subtitle', data.subtitle, textTab)
     const showCta = boolean('Show CTA', true, ctaTab)
-    const cta = text('CTA', defaults.cta, ctaTab)
-    const url = text('URL', defaults.url, ctaTab)
+    const cta = text('Call to Action Text', data.cta, ctaTab)
+    const url = text('Call to Action URL', data.url, ctaTab)
     return (
       <Slide
         heading={heading}
