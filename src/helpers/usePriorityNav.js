@@ -69,8 +69,6 @@ function usePriorityNav({ enabled = true, total = 0 }) {
     // If present, recalculate wrapper's width
     const dropdownWidth = dropdown ? getElementContentWidth(dropdown, true) : 0
 
-    console.log(dropdown, dropdownWidth)
-
     // Get all visible breakpoints (all smaller that wrapper+dropdown width)
     const visibleBreakpoints = breakpoints.filter(
       bp => bp < wrapperWidth - dropdownWidth
