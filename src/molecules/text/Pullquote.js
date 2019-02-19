@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Blockquote from '../../atoms/texts/Blockquote'
+
 const Pullquote = ({ author, children, text }) => (
-  <blockquote className="pullquote u-theme--border-color--darker--left u-theme--color--darker u-padding--right">
+  <Blockquote>
     <p>{text || children}</p>
     {author && (
       <cite className="o-citation u-theme--color--base">&mdash; {author}</cite>
     )}
-  </blockquote>
+  </Blockquote>
 )
 
 Pullquote.propTypes = {
