@@ -16,7 +16,7 @@ storiesOf('atoms/images/Image', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const src = text('Image Source', defaults.src, propsTab)
+    const src = text('Image Source *', defaults.src, propsTab)
     const alt = text('Image Alt', defaults.alt, propsTab)
     const lazy = boolean('Lazy', defaults.lazy, propsTab)
     const className = text('className', defaults.className, propsTab)

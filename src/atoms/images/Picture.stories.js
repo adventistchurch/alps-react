@@ -19,7 +19,7 @@ storiesOf('atoms/images/Picture', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
+    const imageSrcSet = object('Image SrcSet *', defaults.imageSrcSet, propsTab)
     const alt = text('Image Alt', defaults.alt, propsTab)
     const lazy = boolean('Lazy', true, propsTab)
     return <Picture image={imageSrcSet} alt={alt} lazy={lazy} />
