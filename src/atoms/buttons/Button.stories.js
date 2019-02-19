@@ -6,48 +6,45 @@ import { withKnobs, text, select } from '@storybook/addon-knobs'
 import Button from './Button'
 import { iconNames } from '../icons/Icon'
 
+import data from './Button.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  text: 'Learn More',
-  icon: 'plus',
-  url: 'https://www.adventist.org',
-}
 
 storiesOf('atoms/buttons/Button', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const url = text('url', defaults.url, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} />
   })
 
   .addWithJSX('Disabled', () => {
-    const textValue = text('text', defaults.text, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
     return <Button url={null} text={textValue} disabled />
   })
 
   .addWithJSX('Lighter', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const url = text('url', defaults.url, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} lighter />
   })
 
   .addWithJSX('Outline', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const url = text('url', defaults.url, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} outline />
   })
 
   .addWithJSX('Simple', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const url = text('url', defaults.url, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} simple />
   })
 
   .addWithJSX('Small', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const url = text('url', defaults.url, propsTab)
+    const textValue = text('Text *', data.text, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} small />
   })
 
@@ -55,9 +52,9 @@ storiesOf('atoms/buttons/Button', module)
     return <Button icon="plus" outline toggle small />
   })
 
-  .addWithJSX('With icon', () => {
-    const textValue = text('text', defaults.text, propsTab)
-    const icon = select('icon', iconNames, defaults.icon, propsTab)
-    const url = text('url', defaults.url, propsTab)
+  .addWithJSX('With Icon', () => {
+    const textValue = text('Text *', data.text, propsTab)
+    const icon = select('Icon', iconNames, data.icon, propsTab)
+    const url = text('URL', data.url, propsTab)
     return <Button url={url} text={textValue} icon={icon} />
   })
