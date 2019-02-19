@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { iconNames } from '../../../atoms/icons/Icon'
 import Kicker from './Kicker'
 import MediaTitle from './MediaTitle'
 import MediaDescription from './MediaDescription'
@@ -71,7 +72,7 @@ const borderClasses = {
     'u-border-left--black--at-large u-theme--border-color--darker--left',
 }
 
-const MediaBlock = ({
+function MediaBlock({
   kicker,
   title,
   description,
@@ -89,7 +90,7 @@ const MediaBlock = ({
   reversed,
   stacked,
   border,
-}) => {
+}) {
   const classes = inline
     ? mediaBlockClasses.inline
     : inset
@@ -173,7 +174,7 @@ MediaBlock.propTypes = {
   video: PropTypes.node,
   url: PropTypes.string,
   cta: PropTypes.string,
-  ctaIcon: PropTypes.string,
+  ctaIcon: PropTypes.oneOf(iconNames),
   inline: PropTypes.bool,
   inset: PropTypes.bool,
   reversed: PropTypes.bool,
