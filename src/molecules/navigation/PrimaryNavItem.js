@@ -1,22 +1,12 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-
-import usePriorityNav from '../../helpers/usePriorityNav'
 
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
 
 function PrimaryNavItem({ text, url, active, subnav }) {
-  const itemRef = useRef()
-  const { registerItem, enabled } = usePriorityNav()
-
-  if (enabled) registerItem(itemRef, text)
-
   return (
-    <li
-      className={`c-primary-nav__list-item ${subnav ? 'has-subnav' : ''}`}
-      ref={itemRef}
-    >
+    <li className={`c-primary-nav__list-item ${subnav ? 'has-subnav' : ''}`}>
       <a
         className={`c-primary-nav__link u-font--primary-nav u-color--gray--dark u-theme--link-hover--base u-theme--border-color--base ${
           active ? 'this-is-active' : ''
