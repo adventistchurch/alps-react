@@ -14,7 +14,7 @@ function getButtonClass(base, extra, { disabled, ...flags }) {
 
   if (extra) classNames.push(extra)
 
-  if (disabled) classNames.push(disabled)
+  if (disabled) classNames.push('disabled')
 
   for (const flag in flags) {
     if (flags[flag]) classNames.push(`${base}--${flag}`)
@@ -99,7 +99,7 @@ Button.propTypes = {
 Button.defaultProps = {
   as: 'button',
   className: '',
-  iconFill: 'base',
+  iconFill: 'white',
   iconSize: 'xs',
   url: '#',
 }
