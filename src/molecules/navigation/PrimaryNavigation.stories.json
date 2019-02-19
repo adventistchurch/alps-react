@@ -46,7 +46,7 @@
     },
     {
       "text": "Beliefs",
-      "isActive": true,
+      "active": true,
       "url": "#"
     },
     {

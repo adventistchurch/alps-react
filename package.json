@@ -4,9 +4,8 @@
   "private": true,
   "main": "lib/alps-react.min.js",
   "dependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-load-script": "^0.0.6"
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "scripts": {
     "build": "rollup -c",
@@ -15,25 +14,25 @@
     "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^4.1.9",
-    "@storybook/addon-knobs": "^4.1.9",
-    "@storybook/addon-links": "^4.1.9",
-    "@storybook/addon-viewport": "^4.1.11",
-    "@storybook/react": "^4.1.9",
+    "@storybook/addon-actions": "^4.1.12",
+    "@storybook/addon-knobs": "^4.1.12",
+    "@storybook/addon-links": "^4.1.12",
+    "@storybook/addon-viewport": "^4.1.12",
+    "@storybook/react": "^4.1.12",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.11.1",
-    "rollup": "^1.1.2",
+    "rollup": "^1.2.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-filesize": "^6.0.1",
     "rollup-plugin-terser": "^4.0.4",
     "storybook-addon-jsx": "^6.0.0",
-    "webpack": "^4.29.3"
+    "webpack": "^4.29.5"
   },
   "prettier": {
     "semi": false,
