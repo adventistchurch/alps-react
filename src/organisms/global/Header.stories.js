@@ -16,9 +16,6 @@ storiesOf('organisms/global/Header', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    // Drawer:
-    const drawer = object('Drawer', data.drawer, drawerTab)
-
     // Logo:
     const logoName = select(
       'Logo Name',
@@ -33,6 +30,9 @@ storiesOf('organisms/global/Header', module)
       canBeDark: logoCanBeDark,
       useFillTheme: logoUseFillTheme,
     }
+
+    // Drawer:
+    const drawer = object('Drawer', data.drawer || {}, drawerTab)
 
     return (
       <Header

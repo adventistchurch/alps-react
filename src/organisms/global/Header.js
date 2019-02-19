@@ -25,7 +25,7 @@ function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
             </a>
           </div>
           <div className="c-header__nav-primary">
-            <PrimaryNavigation {...primaryNav} />
+            <PrimaryNavigation {...primaryNav} hasPriorityNav />
           </div>
         </div>
       </header>
