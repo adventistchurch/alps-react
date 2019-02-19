@@ -22,10 +22,10 @@ function PrimaryNavItem({ text, url, active, subnav }) {
 }
 
 PrimaryNavItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
   active: PropTypes.bool,
   subnav: PropTypes.array,
+  text: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 PrimaryNavItem.defaultProps = {
   active: false,
