@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
 
-const BreakoutBlock = ({ title, description, cta, url, blockClass }) => {
+function BreakoutBlock({ title, description, cta, url, blockClass }) {
   return (
     <div
       className={`c-block__breakout u-padding u-padding--double--bottom u-padding--double--top u-spacing u-theme--background-color--darker ${blockClass}`}
