@@ -4,11 +4,9 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Blockquote from './Blockquote'
 
-const propsTab = 'Props'
+import data from './Blockquote.stories.json'
 
-const data = {
-  text: 'Proin dictum lobortis luctus.',
-}
+const propsTab = 'Props'
 
 storiesOf('atoms/texts/Blockquote', module)
   .addDecorator(withKnobs)
@@ -18,7 +16,7 @@ storiesOf('atoms/texts/Blockquote', module)
     return <Blockquote text={captionText} />
   })
 
-  .addWithJSX('As children', () => {
+  .addWithJSX('As Children', () => {
     const captionText = text('Text', data.text, propsTab)
     return <Blockquote>{captionText}</Blockquote>
   })
