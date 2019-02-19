@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import datetimeFormat from '../../helpers/datetimeFormat'
 import Picture from '../../atoms/images/Picture'
 
-const Comment = ({
+function Comment({
   avatarSrcSet,
   avatarAlt,
   datetime,
@@ -13,7 +13,7 @@ const Comment = ({
   text,
   editUrl,
   replyUrl,
-}) => {
+}) {
   return (
     <div className="c-comment--inner u-border--left u-theme--border-color--darker">
       <div className="c-comment__avatar u-space--right">
