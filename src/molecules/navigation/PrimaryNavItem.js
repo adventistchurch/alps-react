@@ -1,29 +1,32 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
-import renderItems from '../../helpers/renderItems'
+import usePriorityNav from '../../helpers/usePriorityNav'
 
-import PrimaryNavSubItem from './PrimaryNavSubItem'
+import SubNav from './SubNav'
+import SubNavArrow from './SubNavArrow'
 
-function PrimaryNavItem({ text, url, isActive, subnav }) {
+function PrimaryNavItem({ text, url, active, subnav }) {
+  const itemRef = useRef()
+  const { registerItem, enabled } = usePriorityNav()
+
+  if (enabled) registerItem(itemRef, text)
+
   return (
-    <li className={`c-primary-nav__list-item${subnav ? ' has-subnav' : ''}`}>
+    <li
+      className={`c-primary-nav__list-item ${subnav ? 'has-subnav' : ''}`}
+      ref={itemRef}
+    >
       <a
         className={`c-primary-nav__link u-font--primary-nav u-color--gray--dark u-theme--link-hover--base u-theme--border-color--base ${
-          isActive ? 'this-is-active' : ''
+          active ? 'this-is-active' : ''
         }`}
         href={url}
       >
         {text}
       </a>
-      {subnav && (
-        <span className="c-subnav__arrow o-arrow--down u-path-fill--gray" />
-      )}
-      {subnav && (
-        <ul className="c-primary-nav__subnav c-subnav">
-          {renderItems(subnav, PrimaryNavSubItem)}
-        </ul>
-      )}
+      {subnav && <SubNavArrow fill="gray" />}
+      {subnav && <SubNav items={subnav} type="primary" />}
     </li>
   )
 }
@@ -31,7 +34,7 @@ function PrimaryNavItem({ text, url, isActive, subnav }) {
 PrimaryNavItem.propTypes = {
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
+  active: PropTypes.bool,
   subnav: PropTypes.array,
 }
 PrimaryNavItem.defaultProps = {

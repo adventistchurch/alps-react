@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
-import renderItems from '../../helpers/renderItems'
 
-import SecondaryNavSubItem from './SecondaryNavSubItem'
+import SubNav from './SubNav'
+import SubNavArrow from './SubNavArrow'
 
 function SecondaryNavItem({
   icon,
@@ -31,13 +31,9 @@ function SecondaryNavItem({
       >
         {icon && <IconWrap name={icon} size="xs" fill="gray" />}
         {text}&nbsp;
-        {subnav && <span className="c-subnav__arrow o-arrow--down" />}
+        {subnav && <SubNavArrow />}
       </a>
-      {subnav && (
-        <ul className="c-secondary-nav__subnav c-subnav">
-          {renderItems(subnav, SecondaryNavSubItem)}
-        </ul>
-      )}
+      {subnav && <SubNav items={subnav} type="secondary" />}
     </li>
   )
 }
