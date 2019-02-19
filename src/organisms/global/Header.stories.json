@@ -4,7 +4,7 @@
     "useFillTheme": true
   },
   "drawer": {
-    "aboutLeft": "Something!",
-    "aboutRight": "Something else!"
+    "aboutLeft": "Tell the world is an offical media production of the Seventh-day Adventist world church.",
+    "aboutRight": "Seventh-day Adventists are devoted to helping people understand the Bible to find freedom, healing and hope."
   }
 }
