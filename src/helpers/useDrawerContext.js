@@ -2,8 +2,10 @@ import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 const DrawerContext = React.createContext({
-  isOpen: false,
-  setIsOpen: value => value,
+  closeDrawer: value => value,
+  isOpen: { menu: false, search: false },
+  openDrawer: value => value,
+  openDrawerWithSearch: value => value,
 })
 
 const statuses = {
