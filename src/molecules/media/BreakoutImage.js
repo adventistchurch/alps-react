@@ -20,9 +20,11 @@ const getBackgroundImageRule = url => `.c-breakout-image__background {
 
 function BreakoutImage({ caption, imageSrcSet, parallax }) {
   const backgroundRef = useRef(null)
+  const backgroundElem = backgroundRef.current
 
-  const backgroundStyles =
-    parallax && useBackgroundParallax(backgroundRef.current, 8)
+  const backgroundStyles = parallax
+    ? useBackgroundParallax(backgroundElem, 8)
+    : {}
 
   const backgroundImageStyles = useResponsiveStyles(
     getBackgroundImageRule,
