@@ -1,22 +1,30 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { number, text, withKnobs } from '@storybook/addon-knobs'
 
 import CommentForm from './CommentForm'
 
+import data from './CommentForm.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  action: '/doSomething',
-  title: 'Leave a comment',
-  buttonText: 'Post comment',
-}
 
 storiesOf('molecules/forms/CommentForm', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const action = text('Form Action', defaults.action, propsTab)
-    const title = text('Form Title', defaults.title, propsTab)
-    const buttonText = text('Button Text', defaults.buttonText, propsTab)
-    return <CommentForm action={action} title={title} buttonText={buttonText} />
+    const title = text('Form Title *', data.title, propsTab)
+    const submitLabel = text('Submit Label', data.submitLabel, propsTab)
+    const numberOfRows = number(
+      'Number of Rows',
+      data.numberOfRows,
+      {},
+      propsTab
+    )
+    return (
+      <CommentForm
+        rows={numberOfRows}
+        submitLabel={submitLabel}
+        title={title}
+      />
+    )
   })
