@@ -12,6 +12,9 @@ function useBackgroundParallax(element, speed = 0) {
   const [top, setTop] = useState(0)
 
   function calculateTop() {
+    // Bailout if no window (for SSR)
+    if (!window) return
+
     const elementBox = element ? element.getBoundingClientRect() : { top: 0 }
     setTop(-((window.pageYOffset - elementBox.top) / speed))
   }
