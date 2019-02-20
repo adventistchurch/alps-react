@@ -4,25 +4,17 @@ import { withKnobs, text, object } from '@storybook/addon-knobs'
 
 import FigureWithCaption from './FigureWithCaption'
 
+import data from './FigureWithCaption.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  caption: 'Proin dictum lobortis luctus.',
-  imageSrcSet: {
-    default: '//picsum.photos/500/282',
-    500: '//picsum.photos/900/507',
-    750: '//picsum.photos/700/395',
-    1200: '//picsum.photos/500/282',
-  },
-  imageAlt: 'Placeholder image',
-}
 
 storiesOf('molecules/media/FigureWithCaption', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const caption = text('Caption', defaults.caption, propsTab)
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
-    const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
+    const imageSrcSet = object('Image SrcSet *', data.imageSrcSet, propsTab)
+    const imageAlt = text('Image Alt', data.imageAlt, propsTab)
+    const caption = text('Caption', data.caption, propsTab)
     return (
       <FigureWithCaption
         caption={caption}
