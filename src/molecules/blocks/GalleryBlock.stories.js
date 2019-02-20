@@ -16,5 +16,6 @@ storiesOf('molecules/blocks/GalleryBlock', module)
     const kicker = text('Kicker', data.kicker, propsTab)
     const title = text('Title', data.title, propsTab)
     const images = object('Image SrcSet', data.images, imagesTab)
+
     return <GalleryBlock images={images} kicker={kicker} title={title} />
   })

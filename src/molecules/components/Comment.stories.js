@@ -23,10 +23,15 @@ storiesOf('molecules/components/Comment', module)
     const replyUrl = text('Reply URL', '', propsTab)
     const avatarSrcSet = object('Avatar SrcSet', data.avatarSrcSet, imageTab)
     const avatarAlt = text('Avatar Alt', data.avatarAlt, imageTab)
+
+    const avatar = {
+      alt: avatarSrcSet,
+      srcSet: avatarAlt,
+    }
+
     return (
       <Comment
-        avatarSrcSet={avatarSrcSet}
-        avatarAlt={avatarAlt}
+        avatar={avatar}
         datetime={datetime}
         dateFormat={dateFormat}
         byline={byline}
@@ -46,10 +51,15 @@ storiesOf('molecules/components/Comment', module)
     const replyUrl = text('Reply URL', '', propsTab)
     const avatarSrcSet = object('Avatar SrcSet', data.avatarSrcSet, imageTab)
     const avatarAlt = text('Avatar Alt', data.avatarAlt, imageTab)
+
+    const avatar = {
+      alt: avatarSrcSet,
+      srcSet: avatarAlt,
+    }
+
     return (
       <Comment
-        avatarSrcSet={avatarSrcSet}
-        avatarAlt={avatarAlt}
+        avatar={avatar}
         datetime={datetime}
         dateFormat={dateFormat}
         byline={byline}

@@ -9,15 +9,14 @@ function Slide({
   dek,
   cta,
   url,
-  imageSrcSet,
-  imageAlt,
-  isLazy,
+  image,
+  imageIsLazy,
   className,
   textClass,
 }) {
   return (
     <div className={`c-carousel__item u-position--relative ${className}`}>
-      <Picture image={imageSrcSet} alt={imageAlt} lazy={isLazy} />
+      <Picture image={image} lazy={imageIsLazy} />
       {heading && (
         <div className="c-carousel__item-text__wrap l-grid l-grid--7-col u-shift--left--1-col--at-large">
           <div className="l-grid-item l-grid-item--m--4-col l-grid-item--xl--3-col">
@@ -59,9 +58,8 @@ Slide.propTypes = {
   dek: PropTypes.string,
   cta: PropTypes.string,
   url: PropTypes.string,
-  imageSrcSet: PropTypes.object,
-  imageAlt: PropTypes.string,
-  isLazy: PropTypes.bool,
+  image: Picture.propTypes.image.isRequired,
+  imageIsLazy: PropTypes.bool,
   className: PropTypes.string,
   textClass: PropTypes.string,
 }

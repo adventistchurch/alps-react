@@ -1,24 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import datetimeFormat from '../../helpers/datetimeFormat'
 import Picture from '../../atoms/images/Picture'
+import DatetimeFormat, { dateFormats } from '../../helpers/datetimeFormat'
 
 function Comment({
-  avatarSrcSet,
-  avatarAlt,
-  datetime,
-  dateFormat,
+  avatar,
   byline,
   children,
-  text,
+  date,
+  dateFormat,
+  editLabel,
   editUrl,
+  replyLabel,
   replyUrl,
+  text,
 }) {
   return (
     <div className="c-comment--inner u-border--left u-theme--border-color--darker">
       <div className="c-comment__avatar u-space--right">
-        <Picture image={avatarSrcSet} alt={avatarAlt} />
+        <Picture image={avatar} />
       </div>
       <div className="c-comment__body u-spacing--quarter">
         <div className="c-comment__meta">
@@ -27,12 +28,12 @@ function Comment({
           </span>
           <span className="o-divider">|</span>
           <span className="pub_date u-font--secondary--s u-color--gray can-be--white">
-            {datetimeFormat({ date: datetime, dateFormat: dateFormat })}
+            <DatetimeFormat date={date} dateFormat={dateFormat} />
           </span>
           {editUrl && (
             <span className="c-comment__edit-link u-font--secondary--s u-theme--color--base">
-              <a className="c-comment-edit-link" href="">
-                (Edit)
+              <a className="c-comment-edit-link" href={editUrl}>
+                {editLabel}
               </a>
             </span>
           )}
@@ -40,8 +41,11 @@ function Comment({
         <p className="c-comment__content">{children || text}</p>
         {replyUrl && (
           <div className="c-comment__reply">
-            <a href="" className="u-font--secondary--s u-theme--color--base">
-              Reply
+            <a
+              href={replyUrl}
+              className="u-font--secondary--s u-theme--color--base"
+            >
+              {replyLabel}
             </a>
           </div>
         )}
@@ -51,19 +55,22 @@ function Comment({
 }
 
 Comment.propTypes = {
-  avatarSrcSet: PropTypes.object,
-  avatarAlt: PropTypes.string,
-  datetime: PropTypes.number,
-  dateFormat: PropTypes.oneOf(['date', 'time', 'datetime']),
+  avatar: Picture.propTypes.image,
   byline: PropTypes.string,
   children: PropTypes.node,
-  text: PropTypes.string,
+  date: PropTypes.number,
+  dateFormat: PropTypes.oneOf(dateFormats),
   editUrl: PropTypes.string,
+  editLabel: PropTypes.string,
+  replyLabel: PropTypes.string,
   replyUrl: PropTypes.string,
+  text: PropTypes.string,
 }
 
 Comment.defaultProps = {
   dateFormat: 'datetime',
+  editLabel: 'Edit',
+  replyLabel: 'Reply',
 }
 
 export default Comment

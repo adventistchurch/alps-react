@@ -17,9 +17,8 @@ function MediaImage({
   url,
   wrapClass,
 }) {
-  const { alt, caption, srcSet } = image
   const backgroundImageStyles = asBackgroundImage
-    ? useResponsiveStyles(getBackgroundImageRule, srcSet)
+    ? useResponsiveStyles(getBackgroundImageRule, image.srcSet)
     : null
 
   return (
@@ -30,8 +29,8 @@ function MediaImage({
     >
       {backgroundImageStyles && <InlineStyles styles={backgroundImageStyles} />}
       <div className={`c-block__image-wrap ${wrapClass}`}>
-        <a href={url} title={caption || alt}>
-          <Picture className="picture" image={srcSet} alt={alt} />
+        <a href={url} title={image.caption || image.alt}>
+          <Picture className="picture" image={image} />
         </a>
       </div>
     </div>
@@ -42,7 +41,7 @@ MediaImage.propTypes = {
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.string,
   className: PropTypes.string,
-  image: Picture.propTypes.image.isRequired,
+  image: PropTypes.objectOf(Picture.propTypes.image).isRequired,
   url: PropTypes.string,
   wrapClass: PropTypes.string,
 }

@@ -186,7 +186,7 @@ MediaBlock.propTypes = {
   description: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dateFormat: PropTypes.oneOf(dateFormats),
-  image: MediaImage.propTypes.image,
+  image: PropTypes.objectOf(MediaImage.propTypes.image),
   kicker: PropTypes.string,
   url: PropTypes.string,
   type: PropTypes.oneOf(['inline', 'inset', 'reversed', 'stacked']),

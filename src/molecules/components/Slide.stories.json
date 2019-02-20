@@ -4,12 +4,14 @@
   "dek": "Morbi eleifend, mi et varius imperdiet, nunc magna ullamcorper nibh, vel varius felis dui ac arcu. Vestibulum semper commodo dolor vel congue. Curabitur eleifend ligula ut arcu finibus posuere.",
   "cta": "Mec cursus mi",
   "url": "https://www.adventist.org",
-  "imageSrcSet": {
-    "default": "//picsum.photos/500/282",
-    "500": "//picsum.photos/900/507?image=314",
-    "750": "//picsum.photos/700/395",
-    "1200": "//picsum.photos/500/282"
+  "image": {
+    "srcSet": {
+      "default": "//picsum.photos/500/282",
+      "500": "//picsum.photos/900/507?image=314",
+      "750": "//picsum.photos/700/395",
+      "1200": "//picsum.photos/500/282"
+    },
+    "alt": "Placeholder image"
   },
-  "imageAlt": "Placeholder image",
   "isLazy": false
 }

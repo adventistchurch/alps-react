@@ -52,7 +52,7 @@ function GalleryBlock({ images, kicker, title }) {
               }`}
               key={key}
             >
-              <Picture image={image.srcSet} alt={image.alt} />
+              <Picture image={image} />
               {image.caption && (
                 <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
                   {image.caption}
@@ -67,13 +67,7 @@ function GalleryBlock({ images, kicker, title }) {
 }
 
 GalleryBlock.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      alt: PropTypes.string,
-      caption: PropTypes.string,
-      srcSet: PropTypes.object,
-    })
-  ),
+  images: PropTypes.arrayOf(Picture.propTypes.image),
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
 }
