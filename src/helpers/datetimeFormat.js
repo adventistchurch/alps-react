@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 
-const DateTimeFormat = ({ date, dateFormat }) => {
+const dateFormats = ['date', 'time', 'datetime']
+
+const dateTimeFormat = ({ date, dateFormat }) => {
   date = new Date(date)
 
   switch (dateFormat) {
@@ -13,9 +15,11 @@ const DateTimeFormat = ({ date, dateFormat }) => {
   }
 }
 
-DateTimeFormat.propTypes = {
+dateTimeFormat.propTypes = {
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  dateFormat: PropTypes.oneOf(['date', 'time', 'datetime']),
+  dateFormat: PropTypes.oneOf(dateFormats),
 }
 
-export default DateTimeFormat
+export { dateFormats }
+
+export default dateTimeFormat
