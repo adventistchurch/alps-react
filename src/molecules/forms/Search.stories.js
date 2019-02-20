@@ -4,28 +4,26 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Search from './Search'
 
+import data from './Search.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  action: '/search',
-  title: 'Search',
-  buttonText: 'Search',
-  placeholder: 'Search',
-}
 
 storiesOf('molecules/forms/Search', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const action = text('Form Action', defaults.action, propsTab)
-    const title = text('Form Title', defaults.title, propsTab)
-    const buttonText = text('Description', defaults.buttonText, propsTab)
-    const placeholder = text('Description', defaults.placeholder, propsTab)
+    const placeholder = text('Placeholder', data.placeholder, propsTab)
+    const title = text('Form Title (hidden)', data.title, propsTab)
+    const submitLabel = text(
+      'Submit Button (hidden)',
+      data.submitLabel,
+      propsTab
+    )
     return (
       <Search
-        action={action}
-        title={title}
-        buttonText={buttonText}
         placeholder={placeholder}
+        submitLabel={submitLabel}
+        title={title}
       />
     )
   })
