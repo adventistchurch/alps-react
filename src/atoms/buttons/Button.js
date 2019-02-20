@@ -78,7 +78,7 @@ function Button({
 }
 
 Button.propTypes = {
-  as: PropTypes.oneOf(['a', 'button']),
+  as: PropTypes.oneOf(['a', 'button', 'span']),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   expand: PropTypes.bool,
