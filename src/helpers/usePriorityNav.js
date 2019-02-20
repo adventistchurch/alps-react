@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-import debounce from './debounce'
+import useWindowEvent from './useWindowEvent'
 
 /**
  * Get innerwidth without padding
@@ -63,13 +63,13 @@ function usePriorityNav({ enabled = true, total = 0 }) {
     const wrapper = wrapperNavRef.current
     const dropdown = dropdownRef.current
 
-    // Recalculate wrapper's width
+    // [Re]calculate wrapper's width
     const wrapperWidth = getElementContentWidth(wrapper)
 
-    // If present, recalculate wrapper's width
+    // If present, [re]calculate dropdown's width
     const dropdownWidth = dropdown ? getElementContentWidth(dropdown, true) : 0
 
-    // Get all visible breakpoints (all smaller that wrapper+dropdown width)
+    // Get all visible breakpoints (smaller that wrapper + dropdown widths)
     const visibleBreakpoints = breakpoints.filter(
       bp => bp < wrapperWidth - dropdownWidth
     )
@@ -81,17 +81,12 @@ function usePriorityNav({ enabled = true, total = 0 }) {
     setHasDropdown(visibleBreakpoints.length < breakpoints.length)
   }
 
-  // Debounced version of onResize
-  const debouncedOnResize = debounce(onResize, 50)
-
   useEffect(() => {
     init()
-    onResize()
     setSafeToShow(true) // Let the user know that menu is safe to display (to avoid flickering)
-
-    window.addEventListener('resize', debouncedOnResize)
-    return () => window.removeEventListener('resize', debouncedOnResize)
   }, [])
+
+  useWindowEvent('resize', onResize, 50, true)
 
   return {
     dropdownRef,
