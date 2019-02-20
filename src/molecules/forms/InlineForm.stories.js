@@ -4,17 +4,14 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import InlineForm from './InlineForm'
 
+import data from './InlineForm.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  action: '/doSomething',
-  buttonText: 'Submit',
-}
 
 storiesOf('molecules/forms/InlineForm', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const action = text('Form Action', defaults.action, propsTab)
-    const buttonText = text('Button Text', defaults.buttonText, propsTab)
-    return <InlineForm action={action} buttonText={buttonText} />
+    const submitLabel = text('Submit Label', data.submitLabel, propsTab)
+    return <InlineForm submitLabel={submitLabel} />
   })

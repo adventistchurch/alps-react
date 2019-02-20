@@ -1,58 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Form from './Form'
 import renderItems from '../../helpers/renderItems'
+import Fieldset from './Fieldset'
+import Facet from './Facet'
 
-const FilterItem = ({ text, value }) => <option value={value}>{text}</option>
-
-FilterItem.propTypes = {
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-}
-
-const FacetFilter = ({ action, method, facets, title }) => {
+function FacetFilter({ facets, filterLabel, showButton, title, ...props }) {
+  const buttonClass = showButton ? '' : 'is-vishidden'
   return (
-    <form
-      action={action}
-      method={method}
-      className="c-facet-filter-form toggled-element"
-    >
-      <fieldset className="u-spacing--half">
-        <legend className="u-font--secondary--m u-theme--color--darker">
-          {title}
-        </legend>
+    <Form className="c-facet-filter-form" {...props}>
+      <Fieldset
+        legend={title}
+        legendClass="u-font--secondary--m u-theme--color--darker"
+        spacing="half"
+      >
         <div className="u-spacing">
-          {facets.map(({ name, defaultValue, options }, key) => {
-            return (
-              <select
-                name={`select--${name}`}
-                id={`select--${name}`}
-                key={key}
-                defaultValue={defaultValue}
-              >
-                {renderItems(options, FilterItem)}
-              </select>
-            )
-          })}
-          <button className="search-form__submit is-vishidden">
-            <span className="is-vishidden">Filter</span>
+          {renderItems(facets, Facet)}
+          <button className={`search-form__submit ${buttonClass}`}>
+            <span className={buttonClass}>{filterLabel}</span>
           </button>
         </div>
-      </fieldset>
-    </form>
+      </Fieldset>
+    </Form>
   )
 }
 
 FacetFilter.propTypes = {
-  action: PropTypes.string.isRequired,
-  method: PropTypes.oneOf(['post', 'get']),
   facets: PropTypes.array,
+  filterLabel: PropTypes.string,
+  showButton: PropTypes.bool,
   title: PropTypes.string,
 }
-
 FacetFilter.defaultProps = {
-  method: 'post',
   facets: [],
+  filterLabel: 'Filter',
 }
 
 export default FacetFilter

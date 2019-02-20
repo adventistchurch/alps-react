@@ -1,28 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Fieldset from './Fieldset'
+import Form from './Form'
+
 import useInputFocus from '../../helpers/useInputFocus'
 
-function SearchForm({
-  action,
-  buttonText,
-  hasFocus,
-  onSearch,
-  placeholder,
-  title,
-}) {
+function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
   const inputFocusRef = useInputFocus(hasFocus)
 
   return (
-    <form
-      action={action}
-      className="search-form toggled-element"
-      method="get"
-      onSubmit={onSearch}
-      role="search"
-    >
-      <fieldset>
-        <legend className="is-vishidden">{title}</legend>
+    <Form className="search-form" role="search" {...props}>
+      <Fieldset legend={title} legendClass="is-vishidden">
         <input
           className="search-form__input u-font--secondary--s"
           name="search"
@@ -32,26 +21,25 @@ function SearchForm({
           type="search"
         />
         <button className="search-form__submit is-vishidden">
-          <span className="is-vishidden">{buttonText}</span>
+          <span className="is-vishidden">{submitLabel}</span>
         </button>
-      </fieldset>
-    </form>
+      </Fieldset>
+    </Form>
   )
 }
 
-SearchForm.propTypes = {
-  action: PropTypes.string,
-  buttonText: PropTypes.string,
+Search.propTypes = {
   hasFocus: PropTypes.bool,
-  onSearch: PropTypes.func,
+  onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
+  submitLabel: PropTypes.string,
   title: PropTypes.string,
 }
 
-SearchForm.defaultProps = {
-  buttonText: 'Search',
+Search.defaultProps = {
+  submitLabel: 'Search',
   title: 'Search',
   placeholder: 'Search',
 }
 
-export default SearchForm
+export default Search

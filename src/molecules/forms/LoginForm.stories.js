@@ -4,46 +4,39 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs'
 
 import LoginForm from './LoginForm'
 
+import data from './LoginForm.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  action: '/doSomething',
-  titleText: 'Login',
-  usernameText: 'Username',
-  pwdText: 'Password',
-  buttonText: 'Login',
-  forgotPwdText: 'Forgot Password?',
-  submitMessage: 'Logging you in...',
-}
+const submitTag = 'Submit'
 
 storiesOf('molecules/forms/LoginForm', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const formSubmitted = boolean('Form submitted', false, propsTab)
-    const action = text('Form Action', defaults.action, propsTab)
-    const titleText = text('Form Title', defaults.titleText, propsTab)
-    const usernameText = text('Username', defaults.usernameText, propsTab)
-    const pwdText = text('Password', defaults.pwdText, propsTab)
-    const buttonText = text('Submit Button', defaults.buttonText, propsTab)
-    const forgotPwdText = text(
+    const title = text('Form Title *', data.title, propsTab)
+    const usernameLabel = text('Username', data.usernameLabel, propsTab)
+    const passwordLabel = text('Password', data.passwordLabel, propsTab)
+    const submitLabel = text('Submit Button', data.submitLabel, propsTab)
+    const forgotPwdLabel = text(
       'Password Button',
-      defaults.forgotPwdText,
+      data.forgotPwdLabel,
       propsTab
     )
+    const formSubmitted = boolean('Form submitted', false, submitTag)
     const submitMessage = text(
-      'Login message',
-      defaults.submitMessage,
-      propsTab
+      'Logging you in...',
+      data.submitMessage,
+      submitTag
     )
     return (
       <LoginForm
-        action={action}
-        titleText={titleText}
-        usernameText={usernameText}
-        pwdText={pwdText}
-        buttonText={buttonText}
-        forgotPwdText={forgotPwdText}
+        forgotPwdLabel={forgotPwdLabel}
+        forgotPwdUrl={data.forgotPwdUrl}
+        passwordLabel={passwordLabel}
+        submitLabel={submitLabel}
         submitMessage={formSubmitted ? submitMessage : null}
+        title={title}
+        usernameLabel={usernameLabel}
       />
     )
   })

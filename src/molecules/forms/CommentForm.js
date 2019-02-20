@@ -1,79 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const CommentForm = ({
-  action,
-  method,
-  title,
-  buttonText,
-  small,
-  medium,
-  large,
-}) => {
-  const cols = 45
-  const rowsDefault = 8
-  const rows = large ? 12 : medium ? 8 : small ? 4 : rowsDefault
+import Title from '../../atoms/texts/Title'
+import Form from './Form'
 
+const CommentForm = ({ rows, submitLabel, title, ...props }) => {
   return (
     <div className="c-comment-form">
-      <div className="comment-respond u-spacing--half">
-        <h3 className="comment-reply-title u-font--secondary--m u-text-transform--upper u-theme--color--darker">
-          <strong>{title}</strong>{' '}
-          <small>
-            <a
-              rel="nofollow"
-              id="cancel-comment-reply-link"
-              href="/spirituality/sabbath/article/the-sabbath-in-colossians/#respond"
-              style={{ display: 'none' }}
-            >
-              Cancel reply
-            </a>
-          </small>
-        </h3>
-        <form
-          action={action}
-          method={method}
-          className="u-spacing--half"
-          noValidate=""
+      <div className="u-spacing--half">
+        <Title
+          as="h3"
+          type="secondary"
+          size="m"
+          color="darker"
+          uppercase
+          strong
         >
-          <p className="comment-form-comment">
+          {title}
+        </Title>
+        <Form spacing="half" noValidate {...props}>
+          <p>
             <textarea
-              name="comment"
-              cols={cols}
-              rows={rows}
               aria-required="true"
-              required="required"
+              name="comment"
+              required
+              rows={rows}
             />
           </p>
-          <p className="form-submit">
-            <input
-              name="submit"
-              type="submit"
-              className="submit"
-              value={buttonText}
-            />
+          <p>
+            <input name="submit" type="submit" value={submitLabel} />
           </p>
-        </form>
+        </Form>
       </div>
     </div>
   )
 }
 
 CommentForm.propTypes = {
-  action: PropTypes.string.isRequired,
-  method: PropTypes.oneOf(['post', 'get']),
   title: PropTypes.string,
-  buttonText: PropTypes.string,
-  small: PropTypes.bool,
-  medium: PropTypes.bool,
-  large: PropTypes.bool,
+  submitLabel: PropTypes.string,
+  rows: PropTypes.number,
 }
 
 CommentForm.defaultProps = {
+  rows: 8,
+  submitLabel: 'Post Comment',
   title: 'Leave a Comment',
-  buttonText: 'Post Comment',
-  method: 'post',
-  medium: true,
 }
 
 export default CommentForm
