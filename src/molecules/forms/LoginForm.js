@@ -1,57 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const LoginForm = ({
-  action,
-  method,
-  buttonText,
-  forgotPwdText,
+import Button from '../../atoms/buttons/Button'
+import Form from './Form'
+import Title from '../../atoms/texts/Title'
+
+function LoginForm({
+  forgotPwdLabel,
+  forgotPwdUrl,
+  passwordLabel,
+  submitLabel,
   submitMessage,
-  pwdText,
-  titleText,
-  usernameText,
-}) => {
+  title,
+  usernameLabel,
+  ...props
+}) {
   return (
-    <form className="u-spacing--half" action={action} method={method}>
-      <h2 className="u-font--secondary--m u-theme--color--darker">
-        {titleText}
-      </h2>
+    <Form spacing="half" {...props}>
+      <Title color="darker" size="m" type="secondary">
+        {title}
+      </Title>
       {submitMessage && (
         <div className="messaging u-padding u-color--white u-theme--background-color--darker">
           <span className="u-font--secondary--s">{submitMessage}</span>
         </div>
       )}
-      <input type="text" name="name" placeholder={`${usernameText}*`} />
-      <input type="password" name="name" placeholder={`${pwdText}*`} />
+      <input type="text" name="name" placeholder={`${usernameLabel}*`} />
+      <input type="password" name="name" placeholder={`${passwordLabel}*`} />
       <div className="u-flex u-flex--align-center">
-        <input type="submit" value={buttonText} />
-        <a className="o-button o-button--simple" href="">
-          {forgotPwdText}
-        </a>
+        <input type="submit" value={submitLabel} />
+        <Button url={forgotPwdUrl} text={forgotPwdLabel} simple />
       </div>
-    </form>
+    </Form>
   )
 }
 
 LoginForm.propTypes = {
-  action: PropTypes.string.isRequired,
-  method: PropTypes.oneOf(['post', 'get']),
-  titleText: PropTypes.string,
-  usernameText: PropTypes.string,
-  pwdText: PropTypes.string,
-  buttonText: PropTypes.string,
+  forgotPwdLabel: PropTypes.string,
+  forgotPwdUrl: PropTypes.string,
+  passwordLabel: PropTypes.string,
+  submitLabel: PropTypes.string,
   submitMessage: PropTypes.string,
-  forgotPwdText: PropTypes.string,
+  title: PropTypes.string,
+  usernameLabel: PropTypes.string,
 }
-
 LoginForm.defaultProps = {
-  titleText: 'Login',
-  usernameText: 'Username',
-  pwdText: 'Password',
-  buttonText: 'Login',
-  forgotPwdText: 'Forgot Password?',
+  forgotPwdLabel: 'Forgot Password?',
+  passwordLabel: 'Password',
+  submitLabel: 'Login',
   submitMessage: 'Logging you in...',
-  method: 'post',
+  title: 'Login',
+  usernameLabel: 'Username',
 }
 
 export default LoginForm
