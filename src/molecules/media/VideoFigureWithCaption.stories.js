@@ -4,18 +4,15 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import VideoFigureWithCaption from './VideoFigureWithCaption'
 
+import data from './VideoFigureWithCaption.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  caption: 'Proin dictum lobortis luctus.',
-  videoSrc:
-    'https://player.vimeo.com/video/137487821?color=ffffff&title=0&byline=0&portrait=0',
-}
 
 storiesOf('molecules/media/VideoFigureWithCaption', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const caption = text('Caption', defaults.caption, propsTab)
-    const videoSrc = text('Video source', defaults.videoSrc, propsTab)
+    const videoSrc = text('Video Source *', data.videoSrc, propsTab)
+    const caption = text('Caption', data.caption, propsTab)
     return <VideoFigureWithCaption caption={caption} videoSrc={videoSrc} />
   })
