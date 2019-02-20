@@ -18,7 +18,7 @@ const getBackgroundImageRule = url => `.c-breakout-image__background {
   background-image: url('${url}');
 }`
 
-function BreakoutImage({ caption, imageSrcSet, parallax }) {
+function BreakoutImage({ caption, srcSet, parallax }) {
   const backgroundRef = useRef(null)
 
   const backgroundStyles =
@@ -26,7 +26,7 @@ function BreakoutImage({ caption, imageSrcSet, parallax }) {
 
   const backgroundImageStyles = useResponsiveStyles(
     getBackgroundImageRule,
-    imageSrcSet,
+    srcSet,
     backgroundMediaQueries
   )
 
@@ -37,7 +37,7 @@ function BreakoutImage({ caption, imageSrcSet, parallax }) {
       <div
         ref={backgroundRef}
         className="c-breakout-image__background u-image--breakout u-background--cover"
-        style={backgroundStyles}
+        style={backgroundStyles ? backgroundStyles : null}
       />
 
       {caption && (
@@ -51,7 +51,7 @@ function BreakoutImage({ caption, imageSrcSet, parallax }) {
 
 BreakoutImage.propTypes = {
   caption: PropTypes.string,
-  imageSrcSet: PropTypes.object,
+  srcSet: PropTypes.object,
   parallax: PropTypes.bool,
 }
 

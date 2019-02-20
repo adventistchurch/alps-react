@@ -4,40 +4,22 @@ import { object, text, withKnobs } from '@storybook/addon-knobs'
 
 import BreakoutImage from './BreakoutImage'
 
+import data from './BreakoutImage.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  title: 'Lorem Ipsum',
-  description: 'Fusce nec urna ut tellus accumsan fermentum.',
-  imageSrcSet: {
-    default: '//picsum.photos/500/800',
-    small: '//picsum.photos/700/800', // 500
-    medium: '//picsum.photos/1200/800', // 750
-    large: '//picsum.photos/1500/900', // 1200
-  },
-  imageAlt: 'Placeholder image',
-  caption: 'Proin dictum lobortis luctus.',
-}
 
 storiesOf('molecules/media/BreakoutImage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const caption = text('Title', defaults.caption, propsTab)
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
-    const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
-    return (
-      <BreakoutImage
-        imageSrcSet={imageSrcSet}
-        imageAlt={imageAlt}
-        caption={caption}
-      />
-    )
+    const srcSet = object('Image SrcSet *', data.srcSet, propsTab)
+    const caption = text('Caption', data.caption, propsTab)
+    return <BreakoutImage srcSet={srcSet} caption={caption} />
   })
 
   .addWithJSX('With Parallax', () => {
-    const caption = text('Caption', defaults.caption, propsTab)
-    const imageSrcSet = object('Image SrcSet', defaults.imageSrcSet, propsTab)
-    const imageAlt = text('Image Alt', defaults.imageAlt, propsTab)
+    const srcSet = object('Image SrcSet *', data.srcSet, propsTab)
+    const caption = text('Caption', data.caption, propsTab)
     const wrapperStyle = { marginTop: 100 }
 
     return (
@@ -46,12 +28,7 @@ storiesOf('molecules/media/BreakoutImage', module)
         note="It's just adds some top margin in order to make the parallax effect is visible in StoryBook."
         style={wrapperStyle}
       >
-        <BreakoutImage
-          imageSrcSet={imageSrcSet}
-          imageAlt={imageAlt}
-          caption={caption}
-          parallax
-        />
+        <BreakoutImage srcSet={srcSet} caption={caption} parallax />
       </div>
     )
   })
