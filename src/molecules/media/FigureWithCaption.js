@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Figure from './Figure'
 
-const FigureWithCaption = ({ imageSrcSet, imageAlt, caption, className }) => {
+function FigureWithCaption({ imageSrcSet, imageAlt, caption, className }) {
   return (
     <Figure
       imageSrcSet={imageSrcSet}
@@ -20,7 +20,6 @@ FigureWithCaption.propTypes = {
   caption: PropTypes.string,
   className: PropTypes.string,
 }
-
 FigureWithCaption.defaultProps = {
   className: '',
 }

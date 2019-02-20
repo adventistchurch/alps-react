@@ -5,7 +5,7 @@ import Figcaption from './Figcaption'
 import Picture from '../../atoms/images/Picture'
 import Video from '../../atoms/media/Video'
 
-const Figure = ({ imageSrcSet, imageAlt, videoSrc, caption, className }) => {
+function Figure({ imageSrcSet, imageAlt, videoSrc, caption, className }) {
   return (
     <figure className={`o-figure ${className}`}>
       {imageSrcSet && (
@@ -34,7 +34,6 @@ Figure.propTypes = {
   imageSrcSet: PropTypes.object,
   videoSrc: PropTypes.string,
 }
-
 Figure.defaultProps = {
   className: '',
 }
