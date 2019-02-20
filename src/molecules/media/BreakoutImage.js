@@ -39,7 +39,7 @@ function BreakoutImage({ caption, srcSet, parallax }) {
       <div
         ref={backgroundRef}
         className="c-breakout-image__background u-image--breakout u-background--cover"
-        style={backgroundStyles ? backgroundStyles : null}
+        style={backgroundStyles}
       />
 
       {caption && (
