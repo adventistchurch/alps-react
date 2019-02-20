@@ -1,19 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import SidebarBlock from './SidebarBlock'
+import BlockWrap from './BlockWrap'
 
-const RelatedPosts = ({ blocks }) => {
-  return <>{blocks && <SidebarBlock {...blocks} type="relatedPosts" />}</>
+function RelatedPosts(props) {
+  return <BlockWrap {...props} type="relatedPosts" />
 }
 
 RelatedPosts.propTypes = {
-  blocks: PropTypes.shape({
-    heading: PropTypes.string,
-    linkText: PropTypes.string,
-    url: PropTypes.string,
-    blocks: PropTypes.array,
-  }),
+  ...BlockWrap.propTypes,
 }
 
 export default RelatedPosts
