@@ -1,44 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const InlineForm = ({ action, method, buttonText }) => {
+import Form from './Form'
+
+function InlineForm({ submitLabel, ...props }) {
   return (
-    <form
-      action={action}
-      method={method}
-      className="c-form--inline"
-      noValidate=""
-    >
+    <Form inline noValidate {...props}>
       <input
         type="text"
         name="text"
-        cols="45"
-        rows="8"
         aria-required="true"
-        required="required"
+        required
         className="form-input"
       />
-      <p className="u-space--left form-submit">
+      <p className="u-space--left">
         <input
           name="submit"
           type="submit"
           className="submit"
-          value={buttonText}
+          value={submitLabel}
         />
       </p>
-    </form>
+    </Form>
   )
 }
 
 InlineForm.propTypes = {
-  action: PropTypes.string.isRequired,
-  method: PropTypes.oneOf(['post', 'get']),
-  buttonText: PropTypes.string,
+  submitLabel: PropTypes.string,
 }
 
 InlineForm.defaultProps = {
-  method: 'post',
-  buttonText: 'Submit',
+  submitLabel: 'Submit',
 }
 
 export default InlineForm
