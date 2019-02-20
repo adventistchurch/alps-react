@@ -15,7 +15,7 @@ function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
         <input
           className="search-form__input u-font--secondary--s"
           name="search"
-          placeholder={placeholder ? `${placeholder}...` : null}
+          placeholder={placeholder ? `${placeholder}` : null}
           ref={inputFocusRef}
           required
           type="search"
