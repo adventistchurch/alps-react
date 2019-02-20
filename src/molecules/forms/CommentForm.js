@@ -13,11 +13,10 @@ const CommentForm = ({ rows, submitLabel, title, ...props }) => {
           type="secondary"
           size="m"
           color="darker"
-          uppercase
+          transform="upper"
+          text={title}
           strong
-        >
-          {title}
-        </Title>
+        />
         <Form spacing="half" noValidate {...props}>
           <p>
             <textarea

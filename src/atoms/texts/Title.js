@@ -8,18 +8,19 @@ import { sizes } from '../global/fonts'
 function Title({
   as,
   children,
+  className,
   color,
   kicker,
   kickerColor,
   size,
   strong,
   text,
+  transform,
   type,
-  uppercase,
 }) {
   const titleClass = `u-font--${type}--${size} u-theme--color--${color} ${
     strong ? 'u-text--strong' : ''
-  } ${uppercase ? 'u-text-transform--upper' : ''}`
+  } ${transform ? `u-text-transform--${transform}` : ''} ${className}`
   return React.createElement(
     as,
     { className: titleClass },
@@ -32,6 +33,7 @@ function Title({
 
 Title.propTypes = {
   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+  className: PropTypes.string,
   color: PropTypes.oneOf(['base', 'darker']),
   children: PropTypes.node,
   kicker: PropTypes.string,
@@ -39,11 +41,12 @@ Title.propTypes = {
   size: PropTypes.oneOf(sizes),
   strong: PropTypes.bool,
   text: PropTypes.string,
+  transform: PropTypes.oneOf(['upper', 'lower']),
   type: PropTypes.oneOf(['primary', 'secondary']),
-  uppercase: PropTypes.bool,
 }
 Title.defaultProps = {
   as: 'h2',
+  className: '',
   color: 'darker',
   size: 's',
   type: 'primary',
