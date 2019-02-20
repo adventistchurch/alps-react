@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+import useWindowEvent from './useWindowEvent'
 
 /**
  * Sets a parallax effect for an element changing its background position
@@ -9,26 +11,13 @@ import { useEffect, useState } from 'react'
 function useBackgroundParallax(element, speed = 0) {
   const [top, setTop] = useState(0)
 
-  // event listener
-  const listener = () => {
+  function calculateTop() {
     const elementBox = element ? element.getBoundingClientRect() : { top: 0 }
     setTop(-((window.pageYOffset - elementBox.top) / speed))
   }
 
-  useEffect(() => {
-    // Adds listeners on scroll and resize
-    window.addEventListener('scroll', listener)
-    window.addEventListener('resize', listener)
-
-    // Triggers listener for refresh
-    listener()
-
-    // Clear listeners on component unmount
-    return () => {
-      window.removeEventListener('scroll', listener)
-      window.removeEventListener('resize', listener)
-    }
-  }, [])
+  useWindowEvent('scroll', calculateTop, 0)
+  useWindowEvent('resize', calculateTop, 100)
 
   return { backgroundPosition: `50% ${top}px` }
 }
