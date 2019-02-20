@@ -9,6 +9,9 @@ import useWindowEvent from './useWindowEvent'
  * @returns {number}
  */
 function getElementContentWidth(element, onlyPadding = false) {
+  // Bailout with 0, if no window (for SSR)
+  if (!window) return 0
+
   const { paddingLeft, paddingRight } = window.getComputedStyle(element)
   const padding = parseFloat(paddingLeft) + parseFloat(paddingRight)
 
