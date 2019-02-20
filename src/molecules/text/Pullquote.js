@@ -3,18 +3,22 @@ import PropTypes from 'prop-types'
 
 import Blockquote from '../../atoms/texts/Blockquote'
 
-const Pullquote = ({ author, children, text }) => (
-  <Blockquote>
-    <p>{text || children}</p>
-    {author && (
-      <cite className="o-citation u-theme--color--base">&mdash; {author}</cite>
-    )}
-  </Blockquote>
-)
+function Pullquote({ author, children, text }) {
+  return (
+    <Blockquote>
+      {children ? children : <p>{text}</p>}
+      {author && (
+        <cite className="o-citation u-theme--color--base">
+          &mdash; {author}
+        </cite>
+      )}
+    </Blockquote>
+  )
+}
 
 Pullquote.propTypes = {
   author: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
   text: PropTypes.string,
 }
 

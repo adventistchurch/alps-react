@@ -4,23 +4,26 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 
 import Pullquote from './Pullquote'
 
+import data from './Pullquote.stories.json'
+
 const propsTab = 'Props'
-const defaults = {
-  quote:
-    'Mauris sit amet augue gravida, dignissim sem maximus, aliquam metus. Maecenas eu consectetur orci, id auctor dui.',
-  author: 'Alvin Brodus',
-}
 
 storiesOf('molecules/text/Pullquote', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const quote = text('Quote', defaults.quote, propsTab)
-    return <Pullquote>{quote}</Pullquote>
+    const quote = text('Quote *', data.quote, propsTab)
+    const author = text('Author', data.author, propsTab)
+    return <Pullquote text={quote} author={author} />
   })
 
-  .addWithJSX('With Author', () => {
-    const quote = text('Quote', defaults.quote, propsTab)
-    const author = text('Author', defaults.author, propsTab)
+  .addWithJSX('As Children', () => {
+    const quote = text('Quote *', data.quote, propsTab)
+    const author = text('Author', data.author, propsTab)
     return <Pullquote author={author}>{quote}</Pullquote>
+  })
+
+  .addWithJSX('Without Author', () => {
+    const quote = text('Quote *', data.quote, propsTab)
+    return <Pullquote>{quote}</Pullquote>
   })
