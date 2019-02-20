@@ -1,63 +1,138 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon, { iconNames } from '../../atoms/icons/Icon'
 import InlineStyles from '../../helpers/InlineStyles'
+import useDrawerContext from '../../helpers/useDrawerContext'
+import useWindowEvent from '../../helpers/useWindowEvent'
 
-// TODO: replace js-sticky-parent && js-sticky
+const stickyBaseStyle = { zIndex: 99999, top: 0, position: 'fixed' }
 
-const logoModes = {
-  default: 'l-sabbath__logo u-path-fill--white js-sticky',
-  light: 'l-sabbath__logo-light u-path-fill--white',
-  dark: 'l-sabbath__logo-dark u-theme--path-fill--base',
+function useStickyLogo(showLogoOnScroll) {
+  const logoWrapRef = useRef()
+  const logoRef = useRef()
+  const [logoSize, setlogoSize] = useState(null)
+  const [logoMarginTop, setLogoMarginTop] = useState()
+  const [logoInnerClass, setLogoInnerClass] = useState()
+  const [opacity, setOpacity] = useState()
+
+  function onScroll() {
+    const logoElem = logoRef.current
+    const logoWrapElem = logoWrapRef.current
+
+    const { height, width } = logoElem.getBoundingClientRect()
+
+    setlogoSize({ height, width })
+
+    if (logoWrapElem) {
+      const { height: wrapHeight } = logoWrapElem.getBoundingClientRect()
+      setLogoMarginTop(wrapHeight)
+    }
+
+    const vericalOffset = window.pageYOffset
+    const headerHeight = 0 //'.c-header'.outerHeight()
+
+    // Calculate scroll percent
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop
+
+    const scrollHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight
+
+    const scrollpercent = winScroll / scrollHeight
+
+    // Set opacity
+    setOpacity(1 - scrollpercent)
+
+    // Set inner logo visibiliy class when vertical offset is higher than header
+    if (showLogoOnScroll) {
+      const scrolling = vericalOffset > headerHeight
+      setLogoInnerClass(scrolling ? 'is-visible' : 'is-hidden')
+    }
+  }
+
+  useWindowEvent('scroll', onScroll, 0)
+
+  const opacityStyle = { opacity }
+  const stickyLogoStyle = logoSize
+    ? { ...stickyBaseStyle, ...logoSize, marginTop: logoMarginTop }
+    : null
+
+  return {
+    opacityStyle,
+    stickyLogoStyle,
+    logoInnerClass,
+    logoRef,
+    logoWrapRef,
+  }
 }
 
-function SabbathLogo({ logo, mode }) {
-  return (
-    <div className={logoModes[mode]}>
-      <Icon name={logo} />
-    </div>
-  )
-}
+function Sabbath({
+  backgroundImage,
+  logo,
+  showLogo,
+  showLogoOnScroll,
+  stickyLogo,
+}) {
+  const { openDrawer } = useDrawerContext()
+  const {
+    opacityStyle,
+    stickyLogoStyle,
+    logoInnerClass,
+    logoRef,
+    logoWrapRef,
+  } = useStickyLogo(showLogoOnScroll)
 
-SabbathLogo.propTypes = {
-  logo: PropTypes.oneOf(iconNames).isRequired,
-  mode: PropTypes.oneOf(Object.keys(logoModes)),
-}
-SabbathLogo.defaultProps = {
-  logo: 'logo',
-  mode: 'default',
-}
-
-function Sabbath({ backgroundImage, logo, showLogo, showLogoOnScroll }) {
   return (
     <aside
       className={`l-wrap__sabbath l-sabbath ${
         backgroundImage ? 'u-background-image--sabbath' : ''
-      } js-sticky-parent js-toggle-menu`}
+      } ###js-toggle-menu###`} // TODO: replace js-toggle-menu
+      onClick={openDrawer}
     >
       {backgroundImage ? (
         <>
           <InlineStyles
             styles={`.u-background-image--sabbath { background-image: url('${backgroundImage}') !important; }`}
           />
-          {showLogo && <SabbathLogo logo={logo} />}
+          {showLogo && (
+            <div
+              className="l-sabbath__logo u-path-fill--white"
+              ref={logoRef}
+              style={stickyLogo ? stickyLogoStyle : null}
+            >
+              <Icon name={logo} />
+            </div>
+          )}
         </>
       ) : (
         <>
-          <div className="l-sabbath__logo js-sticky">
+          <div className="l-sabbath__logo" ref={logoWrapRef}>
             {showLogo && (
               <div
                 className={`l-sabbath__logo--inner ${
-                  showLogoOnScroll ? 'js-show-on-scroll is-hidden' : ''
+                  stickyLogo ? logoInnerClass : ''
                 }`}
+                ref={logoRef}
+                style={stickyLogo ? stickyLogoStyle : null}
               >
-                <SabbathLogo logo={logo} mode="light" />
-                <SabbathLogo logo={logo} mode="dark" />
+                <div
+                  className="l-sabbath__logo-light u-path-fill--white"
+                  style={opacityStyle}
+                >
+                  <Icon name={logo} />
+                </div>
+                <div className="l-sabbath__logo-dark u-theme--path-fill--base">
+                  <Icon name={logo} />
+                </div>
               </div>
             )}
           </div>
-          <div className="l-sabbath__overlay u-theme--background-color--base" />
+          <div
+            className="l-sabbath__overlay u-theme--background-color--base"
+            style={opacityStyle}
+          />
         </>
       )}
     </aside>
@@ -65,14 +140,16 @@ function Sabbath({ backgroundImage, logo, showLogo, showLogoOnScroll }) {
 }
 
 Sabbath.propTypes = {
-  backgroundImage: PropTypes.object,
+  backgroundImage: PropTypes.string,
   logo: PropTypes.oneOf(iconNames),
   showLogo: PropTypes.bool,
   showLogoOnScroll: PropTypes.bool,
+  stickyLogo: PropTypes.bool,
 }
 Sabbath.defaultProps = {
   showLogo: true,
   showLogoOnScroll: false,
+  stickyLogo: false,
 }
 
 export default Sabbath

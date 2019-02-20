@@ -40,11 +40,7 @@ storiesOf('organisms/asides/Sabbath', module)
 
   .addWithJSX('with Logo on Scroll', () => {
     const showLogo = boolean('Show logo', data.showLogo, propsTab)
-    const showLogoOnScroll = boolean(
-      'Show logo on scoll',
-      data.showLogoOnScroll,
-      propsTab
-    )
+    const showLogoOnScroll = boolean('Show logo on scoll', true, propsTab)
 
     return <Sabbath showLogo={showLogo} showLogoOnScroll={showLogoOnScroll} />
   })
