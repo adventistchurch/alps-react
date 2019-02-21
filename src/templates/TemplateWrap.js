@@ -8,7 +8,7 @@ import Header from '../organisms/global/Header'
 /**
  * TemplateWrap component
  *
- * Note: Dont use directly! This component is meant only to be used by templates.
+ * Note: Don't use directly! This component is meant only to be used by templates.
  *
  * @param {Object} props
  */
