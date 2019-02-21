@@ -17,11 +17,12 @@ function BasicPage({
   kicker,
   relatedPosts,
   title,
+  ...templateProps
 }) {
   const hasSidebar = aside || breakout || relatedPosts
 
   return (
-    <TemplateWrap>
+    <TemplateWrap {...templateProps}>
       <main
         className="l-main u-spacing--double u-padding--double--bottom"
         role="main"
@@ -64,6 +65,7 @@ BasicPage.propTypes = {
   kicker: PageHeader.propTypes.kicker,
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
   title: PageHeader.propTypes.title,
+  ...TemplateWrap.propTypes,
 }
 BasicPage.defaultProps = {
   breadcrumbs: [],
