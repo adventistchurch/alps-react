@@ -4,6 +4,9 @@ import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 
 import BasicPage from './BasicPage'
 
+import Text from '../atoms/texts/Text'
+
+// Stories and data
 import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
 import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
@@ -21,24 +24,6 @@ function getTabData(name, settings = {}) {
   }
 }
 
-function sidebarTab(settings = {}) {
-  const { aside, tab } = getTabData('Sidebar', settings)
-
-  return {
-    showSidebar: boolean('Show Sidebar', true, tab),
-    breakout: object('Breakout', breakoutData, tab),
-    ...asideTab({ aside, tab }),
-  }
-}
-
-function contentTab(settings = {}) {
-  const { content, tab } = getTabData('Content', settings)
-  return {
-    contentTitle: text('Content Title', content.title, tab),
-    contentText: text('Content Text', content.text, tab),
-  }
-}
-
 function pageHeaderTab(settings = {}) {
   const { title, url, kicker, tab } = getTabData('Page Header', settings)
   return headerTab({ title, url, kicker, tab })
@@ -47,6 +32,18 @@ function pageHeaderTab(settings = {}) {
 function pageBreadcrumbsTab(settings = {}) {
   const { breadcrumbs, tab } = getTabData('Page Header', settings)
   return breadcrumbsTab({ items: breadcrumbs, tab })
+}
+
+function contentTab(settings = {}) {
+  const { content, tab } = getTabData('Content', settings)
+  return {
+    title1: text('Content Title 1', content.title1, tab),
+    text1: text('Content Text 1', content.text1, tab),
+    title2: text('Content Title 2', content.title2, tab),
+    text2: text('Content Text 2', content.text2, tab),
+    title3: text('Content Title 3', content.title3, tab),
+    text3: text('Content Text 3', content.text3, tab),
+  }
 }
 
 function globalTab(settings = {}) {
@@ -58,21 +55,37 @@ function globalTab(settings = {}) {
   }
 }
 
+function sidebarTab(settings = {}) {
+  const { aside, tab } = getTabData('Sidebar', settings)
+
+  return {
+    showSidebar: boolean('Show Sidebar', true, tab),
+    breakout: object('Breakout', breakoutData, tab),
+    aside: asideTab({ aside, tab }),
+  }
+}
+
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
     const { title, kicker, background } = pageHeaderTab()
     const { items: breadcrumbs } = pageBreadcrumbsTab()
-    const { contentTitle, contentText } = contentTab()
+    const { title1, title2, title3, text1, text2, text3 } = contentTab()
     const { showSidebar, breakout, aside } = sidebarTab()
     const templateProps = globalTab()
 
+    // Note: This is just a simple demo content.
+    // The `content` prop should be provided to BasicPage with actual React components
     const content = (
-      <>
-        <h2>{contentTitle}</h2>
-        <p>{contentText}</p>
-      </>
+      <Text hasDropcap hasSpacing>
+        <h1>{title1}</h1>
+        <p>{text1}</p>
+        <h2>{title2}</h2>
+        <p>{text2}</p>
+        <h3>{title3}</h3>
+        <p>{text3}</p>
+      </Text>
     )
 
     return (
