@@ -11,7 +11,7 @@ import { useState } from 'react'
 function useToggle(
   initial = false,
   openClass = 'this-is-active',
-  closedClass = null
+  closedClass = ''
 ) {
   const [open, setValue] = useState(initial)
 
