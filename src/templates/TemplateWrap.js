@@ -12,24 +12,24 @@ import Header from '../organisms/global/Header'
  *
  * @param {Object} props
  */
-function TemplateWrap({ children, footerProps, headerProps, sabbathProps }) {
+function TemplateWrap({ children, footer, header, sabbath }) {
   return (
     <div className="l-wrap">
       <div className="l-wrap__content l-content" role="document">
-        <Header {...headerProps} />
+        <Header {...header} />
         {children}
-        <Footer {...footerProps} />
+        <Footer {...footer} />
       </div>
-      <Sabbath {...sabbathProps} />
+      <Sabbath {...sabbath} />
     </div>
   )
 }
 
 TemplateWrap.propTypes = {
   children: PropTypes.node,
-  footerProps: PropTypes.object,
-  headerProps: PropTypes.object,
-  sabbathProps: PropTypes.object,
+  footer: PropTypes.object,
+  header: PropTypes.object,
+  sabbath: PropTypes.object,
 }
 TemplateWrap.defaultProps = {}
 
