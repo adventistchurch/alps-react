@@ -1,12 +1,6 @@
 {
-  "title": "Basic Page",
-  "kicker": "Kicker",
-  "background": {
-    "default": "//placeimg.com/600/300/nature",
-    "500": "//placeimg.com/600/300/nature",
-    "750": "//placeimg.com/900/400/nature",
-    "1200": "//placeimg.com/1400/500/nature"
-  },
+  "title": "Basic page",
+  "url": "#est-doloremque-harum",
   "breadcrumbs": [
     {
       "text": "Home",
@@ -22,6 +16,6 @@
   ],
   "content": {
     "title": "Header Two",
-    "text": "Praesent pulvinar condimentum sagittis. Maecenas laoreet neque non eros consectetur fringilla. Donec vitae risus leo, vitae pharetra ipsum. Sed placerat eros eget elit iaculis semper. Aliquam congue blandit orci ac pretium. In hac habitasse platea dictumst. Maecenas vitae turpis pretium, accumsan neque non, pretium dui. Phasellus volutpat tortor vitae lacinia elementum. Fusce fringilla lectus vel risus feugiat semper. Fusce ullamcorper condimentum condimentum proin eget vehicula lorem, at lacinia arcu. Aenean vulputate vitae lorem ac tempor. <strong>Etiam semper</strong> eros vitae vestibulum ultricies."
+    "text": "Praesent pulvinar condimentum sagittis. Maecenas laoreet neque non eros consectetur fringilla. Donec vitae risus leo, vitae pharetra ipsum. Sed placerat eros eget elit iaculis semper. Aliquam congue blandit orci ac pretium. In hac habitasse platea dictumst. Maecenas vitae turpis pretium, accumsan neque non, pretium dui. Phasellus volutpat tortor vitae lacinia elementum. Fusce fringilla lectus vel risus feugiat semper. Fusce ullamcorper condimentum condimentum proin eget vehicula lorem, at lacinia arcu. Aenean vulputate vitae lorem ac tempor. Etiam semper eros vitae vestibulum ultricies."
   }
 }
