@@ -7,21 +7,8 @@ import usePriorityNav from '../../helpers/usePriorityNav'
 
 import PrimaryNavigationItem from './PrimaryNavItem'
 
-function PrimaryNavigation({ hasPriorityNav, items }) {
-  const { openDrawer } = useDrawerContext()
-
-  const {
-    dropdownRef,
-    hasDropdown,
-    lastVisibleIndex,
-    mainNavRef,
-    // safeToShow, // Use this to avoid flickering durting calculation
-    wrapperNavRef,
-  } = usePriorityNav({ enabled: hasPriorityNav, total: items.length })
-
-  const menuItems = hasPriorityNav
-    ? items.filter((item, i) => i <= lastVisibleIndex)
-    : items
+function PrimaryNavBase({ items, children, ...others }) {
+  const { hasDropdown, mainNavRef, wrapperNavRef } = others
 
   return (
     <nav
@@ -32,28 +19,61 @@ function PrimaryNavigation({ hasPriorityNav, items }) {
       role="navigation"
     >
       <ul className="c-primary-nav__list c-priority-nav__list" ref={mainNavRef}>
-        {renderItems(menuItems, PrimaryNavigationItem)}
+        {renderItems(items, PrimaryNavigationItem)}
       </ul>
-
-      {hasPriorityNav ? (
-        <span
-          aria-haspopup={!hasDropdown}
-          className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
-        >
-          <button
-            aria-controls="menu"
-            className={`c-priority-nav__toggle priority-nav__dropdown-toggle priority-nav-is-${
-              hasDropdown ? 'visible' : 'hidden'
-            }`}
-            onClick={openDrawer}
-            type="button"
-            ref={dropdownRef}
-          >
-            {''}
-          </button>
-        </span>
-      ) : null}
+      {children}
     </nav>
+  )
+}
+PrimaryNavBase.propTypes = {
+  items: PropTypes.array.isRequired,
+  children: PropTypes.node,
+}
+
+function PrimaryNavWithPriority({ items }) {
+  const { openDrawer } = useDrawerContext()
+  const {
+    dropdownRef,
+    hasDropdown,
+    lastVisibleIndex,
+    // safeToShow
+    ...rest
+  } = usePriorityNav({
+    total: items.length,
+  })
+
+  const priorityItems = items.filter((item, index) => index <= lastVisibleIndex)
+
+  return (
+    <PrimaryNavBase items={priorityItems} {...rest}>
+      <span
+        aria-haspopup={!hasDropdown}
+        className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
+      >
+        <button
+          aria-controls="menu"
+          className={`c-priority-nav__toggle priority-nav__dropdown-toggle priority-nav-is-${
+            hasDropdown ? 'visible' : 'hidden'
+          }`}
+          onClick={openDrawer}
+          type="button"
+          ref={dropdownRef}
+        >
+          {''}
+        </button>
+      </span>
+    </PrimaryNavBase>
+  )
+}
+PrimaryNavWithPriority.propTypes = {
+  items: PropTypes.array,
+}
+
+function PrimaryNavigation({ hasPriorityNav, items }) {
+  return hasPriorityNav ? (
+    <PrimaryNavWithPriority items={items} />
+  ) : (
+    <PrimaryNavBase items={items} />
   )
 }
 
