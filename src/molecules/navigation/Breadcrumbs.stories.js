@@ -8,11 +8,29 @@ import data from './Breadcrumbs.stories.json'
 
 const propsTab = 'Props'
 
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Breadcrumbs.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function breadcrumbsTab(settings = {}) {
+  const { items, tab } = getTabData('Breadcrumbs', settings)
+
+  return {
+    items: object('Breadcrumbs Items ', items, tab),
+  }
+}
+
 storiesOf('molecules/navigation/Breadcrumbs', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const items = object('Items ', data.items, propsTab)
+    const { items } = breadcrumbsTab()
+
     return <Breadcrumbs items={items} />
   })
 

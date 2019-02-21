@@ -2,99 +2,91 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../../atoms/icons/Icon'
+import FooterPrimaryNavigation from '../../molecules/navigation/FooterPrimaryNavigation'
+import FooterSecondaryNavigation from '../../molecules/navigation/FooterSecondaryNavigation'
 
-const Footer = ({
-  text,
-  copyright,
-  address,
-  regionsText,
-  regionsUrl,
-  socialLinks,
-  legalLinks,
-}) => (
-  <footer className="footer" role="contentinfo">
-    <div className="footer__inner cf bg--medium-brown white can-be--dark-dark">
-      <div className="layout-container">
-        <div className="footer__unify-nav-desc spacing--until-large">
-          <nav className="footer__nav">
-            <ul className="inline-list">
-              {socialLinks.map((link, key) => {
-                return (
-                  <li key={key} className="footer__nav-item inline-list__item">
-                    <a
-                      href={link.url}
-                      className="footer__nav-link font--secondary link--white"
-                    >
-                      {link.text}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </nav>
-          <div className="footer__desc">
-            <span className="icon footer__logo">
-              <Icon name="logo" color="fill--light-brown" />
-            </span>
-            <p className="footer__desc-text brown--light font--secondary">
-              {text} &bull;
-              <a href={regionsUrl} className="link--white">
-                {regionsText}
-              </a>
-            </p>
+function Footer({ address, copyright, primaryNav, secondaryNav, text }) {
+  return (
+    <footer
+      className="c-footer u-theme--background-color--primary u-theme--background-color--darker"
+      role="contentinfo"
+    >
+      <div className="c-footer--inner u-color--white l-grid l-grid--7-col l-grid-wrap l-grid-wrap--6-of-7">
+        <div className="l-grid-item l-grid-item--m--3-col c-footer__description">
+          <p className="c-footer__description-text u-font--secondary--m">
+            {text}
+          </p>
+        </div>
+        {primaryNav && (
+          <div className="l-grid-item l-grid-item--m--3-col l-grid-item--l--1-col c-footer__primary-nav">
+            <FooterPrimaryNavigation {...primaryNav} />
           </div>
+        )}
+
+        {secondaryNav && (
+          <div className="l-grid-item l-grid-item--m--3-col l-grid-item--l--2-col c-footer__secondary-nav">
+            <FooterSecondaryNavigation {...secondaryNav} />
+          </div>
+        )}
+
+        {/* TODO: .c-footer__logo hides the logo */}
+        <div className="l-grid-item--7-col l-grid-item--m--1-col c-footer__logo u-path-fill--white">
+          <Icon name="logo-round" />
+        </div>
+
+        <div className="l-grid-item l-grid-item--m--3-col c-footer__legal">
+          <p className="c-footer__copyright">{copyright}</p>
+          <address
+            className="c-footer__address"
+            itemProp="address"
+            itemScope=""
+            itemType="http://schema.org/PostalAddress"
+          >
+            <span itemProp="streetAddress">{address.street}</span>,{' '}
+            <span itemProp="addressPostCode">{address.postcode}</span>{' '}
+            <span itemProp="addressLocality">{address.locality}</span>,{' '}
+            <span itemProp="addressRegion">{address.region}</span>{' '}
+            {address.country}{' '}
+            <a
+              itemProp="telephone"
+              href={`tel:${address.phone}`}
+              className="c-footer__phone u-link--white u-theme--link-hover--light"
+            >
+              {address.phone}
+            </a>
+          </address>
         </div>
       </div>
-
-      <div className="footer__legal bg--brown  can-be--dark-light">
-        <div className="footer__legal__inner layout-container spacing--quarter--until-large">
-          <div className="footer__unify-copyright-address spacing--quarter--until-large">
-            <p className="footer__copyright font--secondary--xs brown--light no-space--btm">
-              {copyright}
-            </p>
-            <address className="footer__address font--secondary--xs brown--light">
-              {address}
-            </address>
-          </div>
-          <div className="footer__legal-links font--secondary--xs">
-            {legalLinks.map((link, key) => (
-              <a
-                key={key}
-                className={`hover link--brown-light 
-                  ${key === legalLinks.length - 1 ? ' space-half--right' : ''}`}
-                href={link.url}
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-)
+    </footer>
+  )
+}
 
 Footer.propTypes = {
-  text: PropTypes.string,
+  address: PropTypes.shape({
+    street: PropTypes.string,
+    postcode: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    locality: PropTypes.string,
+    region: PropTypes.string,
+    country: PropTypes.string,
+    phone: PropTypes.string,
+  }),
   copyright: PropTypes.string,
-  address: PropTypes.string,
-  regionsText: PropTypes.string,
-  regionsUrl: PropTypes.string,
-  socialLinks: PropTypes.array,
-  legalLinks: PropTypes.array,
+  primaryNav: PropTypes.object,
+  secondaryNav: PropTypes.object,
+  text: PropTypes.string,
 }
 Footer.defaultProps = {
+  address: {
+    street: '12501 Old Columbia Pike',
+    postcode: '20904',
+    locality: 'Silver Spring',
+    region: 'MD',
+    country: 'USA',
+    phone: '301-680-6000',
+  },
+  copyright: 'Copyright ©2019, General Conference of Seventh-day Adventists',
   text:
     'Adventist.org is the Official website of the Seventh-day Adventist world church',
-  copyright: 'Copyright 2017, General Conference of Seventh-day Adventists',
-  address: '12501 Old Columbia Pike, Silver Spring, MD 20904, USA 301-680-6000',
-  regionsText: 'View regions',
-  regionsUrl: '#regions',
-  socialLinks: [{ text: 'Facebook', url: '#facebook' }],
-  legalLinks: [
-    { name: 'Legal Notice', url: '#LegalNotice' },
-    { name: 'Trademark and Logo Usage', url: '#TrademarkAndLogo' },
-  ],
 }
 
 export default Footer

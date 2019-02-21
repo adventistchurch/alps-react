@@ -23,17 +23,7 @@ function getElementContentWidth(element, onlyPadding = false) {
  * @param {Object} settings `{ enabled: boolean, total: number }`
  * @returns {Object}
  */
-function usePriorityNav({ enabled = true, total = 0 }) {
-  // Return directly if is not enabled
-  if (!enabled)
-    return {
-      dropdownRef: null,
-      hasDropdown: false,
-      mainNavRef: null,
-      safeToShow: true, // \_😕_/
-      wrapperNavRef: null,
-    }
-
+function usePriorityNav({ total = 0 }) {
   // Set element refs, states and variables
   const dropdownRef = useRef()
   const mainNavRef = useRef()

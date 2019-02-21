@@ -2,29 +2,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Aside from '../organisms/asides/Aside'
-import RelatedPosts from '../organisms/asides/RelatedPosts'
 import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
-import PageHeader from '../organisms/sections/PageHeader'
 import PageContent from '../organisms/content/PageContent'
+import PageHeader from '../organisms/sections/PageHeader'
+import RelatedPosts from '../organisms/asides/RelatedPosts'
+import TemplateWrap from './TemplateWrap'
 
-const BasicPage = ({
+function BasicPage({
+  aside,
   background,
   breadcrumbs,
-  kicker,
-  title,
-  content,
   breakout,
-  aside,
+  content,
+  kicker,
   relatedPosts,
-}) => {
-  const hasSidebar = breakout || aside || relatedPosts
+  title,
+  ...templateProps
+}) {
+  const hasSidebar = aside || breakout || relatedPosts
+  const pageHeaderProps = { background, kicker, title }
+
   return (
-    <>
+    <TemplateWrap {...templateProps}>
       <main
         className="l-main u-spacing--double u-padding--double--bottom"
         role="main"
       >
-        <PageHeader {...{ background, breadcrumbs, kicker, title }} />
+        <PageHeader {...pageHeaderProps} />
         <section
           id="top"
           className={`l-main__content l-grid l-grid--7-col u-shift--left--1-col--at-${
@@ -49,20 +53,20 @@ const BasicPage = ({
           )}
         </section>
       </main>
-    </>
+    </TemplateWrap>
   )
 }
 
 BasicPage.propTypes = {
-  title: PageHeader.propTypes.title,
-  kicker: PageHeader.propTypes.kicker,
-  background: PageHeader.propTypes.background,
-  content: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-    .isRequired,
+  aside: PropTypes.object,
+  background: PageHeader.propTypes.backgroundSrcSet,
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
-  aside: PropTypes.oneOfType([PropTypes.element]),
+  content: PropTypes.node.isRequired,
+  kicker: PageHeader.propTypes.kicker,
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
+  title: PageHeader.propTypes.title,
+  ...TemplateWrap.propTypes,
 }
 BasicPage.defaultProps = {
   breadcrumbs: [],

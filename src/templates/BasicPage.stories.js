@@ -4,145 +4,100 @@ import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 
 import BasicPage from './BasicPage'
 
-const propsTab = 'Props'
-const sidebarTab = 'Sidebar'
-const defaults = {
-  title: 'Basic Page',
-  kicker: 'Kicker',
-  background: {
-    small: '//placeimg.com/600/300/nature',
-    medium: '//placeimg.com/900/400/nature',
-    large: '//placeimg.com/1400/500/nature',
-  },
-  breadcrumbs: [
-    {
-      text: 'Home',
-      url: '/',
-    },
-    {
-      text: 'Vitality',
-      url: '/vitality',
-    },
-    {
-      text: 'Photos',
-    },
-  ],
-  content: (
-    <>
-      <h2>Header Two</h2>
-      <p>
-        Praesent pulvinar condimentum sagittis. <a href="">Maecenas</a> laoreet
-        neque non eros consectetur fringilla. Donec vitae risus leo, vitae
-        pharetra ipsum. Sed placerat eros eget elit iaculis semper. Aliquam
-        congue blandit orci ac pretium. In hac habitasse platea dictumst.
-        Maecenas vitae turpis pretium, accumsan neque non, pretium dui.
-        Phasellus volutpat tortor vitae lacinia elementum. Fusce fringilla
-        lectus vel risus feugiat semper. Fusce ullamcorper condimentum
-        condimentum proin eget vehicula lorem, at lacinia arcu. Aenean vulputate
-        vitae lorem ac tempor. <strong>Etiam semper</strong> eros vitae
-        vestibulum ultricies.
-      </p>
-    </>
-  ),
-  breakout: {
-    title: 'Nulla facilisi',
-    description:
-      'Fusce porta sed odio eu dignissim. Vivamus imperdiet libero mattis orci aliquam imperdiet. Vivamus sit amet tortor nec magna tincidunt faucibus sit amet ac sem. Maecenas mattis nibh at urna feugiat posuere. Pellentesque blandit condimentum eros, fermentum ornare diam facilisis eget.',
-    cta: 'Vestibulum non lectus',
-    url: 'https://www.adventist.org',
-    blockClass: 'can-be--dark-dark',
-  },
-  aside: {
-    primaryBlocks: {
-      heading: 'News',
-      linkText: 'See All',
-      url: '/news/all',
-      blocks: [
-        {
-          title: 'Nulla finibus ligula ut nisl facilisis',
-          description:
-            'Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum.',
-          category: 'Culture',
-          datetime: 1550093519415,
-          imageSrcSet: {
-            '500': '//picsum.photos/900/507?random',
-            '750': '//picsum.photos/700/395?random',
-            '1200': '//picsum.photos/500/282?random',
-            default: '//picsum.photos/500/282?random',
-          },
-          imageAlt: 'Placeholder image',
-          stacked: true,
-          border: 'left',
-        },
-        {
-          title: 'Nulla finibus ligula ut nisl facilisis',
-          description:
-            'Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum.',
-          category: 'Culture',
-          datetime: 1550093519415,
-          imageSrcSet: {
-            '500': '//picsum.photos/900/507?random',
-            '750': '//picsum.photos/700/395?random',
-            '1200': '//picsum.photos/500/282?random',
-            default: '//picsum.photos/500/282?random',
-          },
-          imageAlt: 'Placeholder image',
-          stacked: true,
-          border: 'left',
-        },
-      ],
-    },
-    secondaryBlocks: {
-      heading: 'More News',
-      linkText: 'See All',
-      url: '/news/all',
-      blocks: [
-        {
-          title: 'Aenean quis velit vel nibh commodo elementum',
-          category: 'Culture',
-        },
-        {
-          title: 'Aenean quis velit vel nibh commodo elementum',
-          category: 'Culture',
-        },
-        {
-          title: 'Aenean quis velit vel nibh commodo elementum',
-          category: 'Culture',
-        },
-        {
-          title: 'Aenean quis velit vel nibh commodo elementum',
-          category: 'Culture',
-        },
-      ],
-    },
-  },
+import Text from '../atoms/texts/Text'
+
+// Stories and data
+import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
+import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
+import { asideTab } from '../organisms/asides/Aside.stories.js'
+import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
+import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
+import { pageHeaderTab as headerTab } from '../organisms/sections/PageHeader.stories.js'
+import data from './BasicPage.stories.json'
+
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...BasicPage.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function pageHeaderTab(settings = {}) {
+  const { title, url, kicker, tab } = getTabData('Page Header', settings)
+  return headerTab({ title, url, kicker, tab })
+}
+
+function pageBreadcrumbsTab(settings = {}) {
+  const { breadcrumbs, tab } = getTabData('Page Header', settings)
+  return breadcrumbsTab({ items: breadcrumbs, tab })
+}
+
+function contentTab(settings = {}) {
+  const { content, tab } = getTabData('Content', settings)
+  return {
+    title1: text('Content Title 1', content.title1, tab),
+    text1: text('Content Text 1', content.text1, tab),
+    title2: text('Content Title 2', content.title2, tab),
+    text2: text('Content Text 2', content.text2, tab),
+    title3: text('Content Title 3', content.title3, tab),
+    text3: text('Content Text 3', content.text3, tab),
+  }
+}
+
+function globalTab(settings = {}) {
+  const { globalHeader, globalFooter, tab } = getTabData('Global', settings)
+
+  return {
+    header: globalHeaderTab({ ...globalHeader, tab }),
+    footer: globalFooterTab({ ...globalFooter, tab }),
+  }
+}
+
+function sidebarTab(settings = {}) {
+  const { aside, tab } = getTabData('Sidebar', settings)
+
+  return {
+    showSidebar: boolean('Show Sidebar', true, tab),
+    breakout: object('Breakout', breakoutData, tab),
+    aside: asideTab({ aside, tab }),
+  }
 }
 
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const title = text('Title', defaults.title, propsTab)
-    const kicker = text('Kicker', defaults.kicker, propsTab)
-    const background = object('Background', defaults.background, propsTab)
-    const breadcrumbs = object('Breadcrumbs', defaults.breadcrumbs, propsTab)
-    const content = object('Content', defaults.content, propsTab)
-    const showSidebar = boolean('Sidebar', true, sidebarTab)
-    const breakout = object('Breakout', defaults.breakout, sidebarTab)
-    const aside = object('Aside', defaults.aside, sidebarTab)
+    const { title, kicker, background } = pageHeaderTab()
+    const { items: breadcrumbs } = pageBreadcrumbsTab()
+    const { title1, title2, title3, text1, text2, text3 } = contentTab()
+    const { showSidebar, breakout, aside } = sidebarTab()
+    const templateProps = globalTab()
+
+    // Note: This is just a simple demo content.
+    // The `content` prop should be provided to BasicPage with actual React components
+    const content = (
+      <Text hasDropcap hasSpacing>
+        <h1>{title1}</h1>
+        <p>{text1}</p>
+        <h2>{title2}</h2>
+        <p>{text2}</p>
+        <h3>{title3}</h3>
+        <p>{text3}</p>
+      </Text>
+    )
+
     return (
-      <div className="l-wrap">
-        <div className="l-wrap__content l-content" role="document">
-          <BasicPage
-            title={title}
-            kicker={kicker}
-            background={background}
-            breadcrumbs={breadcrumbs}
-            content={content}
-            breakout={showSidebar ? breakout : null}
-            aside={showSidebar ? aside : null}
-          />
-        </div>
-      </div>
+      <BasicPage
+        aside={showSidebar ? aside : null}
+        background={background}
+        breadcrumbs={breadcrumbs}
+        breakout={showSidebar ? breakout : null}
+        content={content}
+        kicker={kicker}
+        title={title}
+        {...templateProps}
+      />
     )
   })

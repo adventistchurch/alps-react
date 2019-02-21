@@ -1,0 +1,67 @@
+{
+  "primary": {
+    "heading": "News",
+    "linkText": "See All",
+    "url": "/news/all",
+    "blocks": [
+      {
+        "title": "Sed quod corrupti qui reiciendis qui sequi iure deleniti atque.",
+        "description": "Quidem ab magnam quae cumque dolorum ipsam totam facilis totam. Et atque eum quis temporibus voluptates itaque excepturi quo facere. Ea ab ut minima voluptatum animi consequatur rerum. ",
+        "category": "Culture",
+        "date": 1550093519415,
+        "image": {
+          "srcSet": {
+            "default": "//picsum.photos/300/200?random",
+            "500": "//picsum.photos/400/300?random",
+            "750": "//picsum.photos/600/400?random",
+            "1200": "//picsum.photos/900/600?random"
+          },
+          "alt": "Placeholder image"
+        },
+        "type": "stacked",
+        "border": "left"
+      },
+      {
+        "title": "Nulla finibus ligula ut nisl facilisis",
+        "description": "Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum. Aliquam est hic hic esse libero. Et non qui ut et.",
+        "category": "Culture",
+        "date": 1550093519415,
+        "image": {
+          "srcSet": {
+            "default": "//picsum.photos/300/200?random",
+            "500": "//picsum.photos/400/300?random",
+            "750": "//picsum.photos/600/400?random",
+            "1200": "//picsum.photos/900/600?random"
+          },
+          "alt": "Placeholder image"
+        },
+        "type": "stacked",
+        "border": "left"
+      }
+    ]
+  },
+  "secondary": {
+    "heading": "More News",
+    "linkText": "See All",
+    "url": "/news/all",
+    "blocks": [
+      {
+        "title": "Dicta maxime enim impedit harum et nulla praesentium aut.",
+        "date": 1550093519415,
+        "category": "Culture"
+      },
+      {
+        "title": "Fugiat sit iusto error quo numquam sed qui quos.",
+        "category": "Family"
+      },
+      {
+        "title": "Dignissimos iusto commodi nostrum enim nostrum est ut.",
+        "category": "Kids"
+      },
+      {
+        "title": "Aenean quis velit vel nibh commodo elementum",
+        "category": "Church"
+      }
+    ]
+  }
+}

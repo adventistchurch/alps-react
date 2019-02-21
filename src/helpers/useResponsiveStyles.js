@@ -19,10 +19,16 @@ function wrapMediaQuery(rule, query) {
  * @param {Map} data - Map with data that will be used by `rule()` for a specific media query
  * @param {Map} mediaQueries - Map of media queries to be looped through
  */
-function useResponsiveStyles(rule, data = {}, mediaQueries = {}) {
-  const styles = Object.keys(mediaQueries).map(mq =>
-    wrapMediaQuery(rule(data[mq]), mediaQueries[mq])
-  )
+function useResponsiveStyles(rule, data = {}) {
+  const styles = Object.keys(data)
+    .reverse()
+    .map(source => {
+      const size = source === 'default' ? null : source
+      return wrapMediaQuery(
+        rule(data[source]),
+        size ? `min-width: ${size}px` : null
+      )
+    })
 
   return styles.join('')
 }

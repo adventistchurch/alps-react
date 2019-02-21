@@ -1,34 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import SidebarBlock from './SidebarBlock'
+import BlockWrap from './BlockWrap'
 
 // TODO: add search component on top
 
-const Aside = ({ primaryBlocks, secondaryBlocks }) => {
+function Aside({ primary, secondary }) {
   return (
-    <>
-      {primaryBlocks && <SidebarBlock {...primaryBlocks} type="mediaBlock" />}
-      {secondaryBlocks && (
-        <SidebarBlock {...secondaryBlocks} type="contentBlock" />
-      )}
-    </>
+    <div className="u-spacing--double u-padding--right">
+      {primary && <BlockWrap {...primary} type="mediaBlock" />}
+      {secondary && <BlockWrap {...secondary} type="contentBlock" />}
+    </div>
   )
 }
 
 Aside.propTypes = {
-  primaryBlocks: PropTypes.shape({
-    heading: PropTypes.string,
-    linkText: PropTypes.string,
-    url: PropTypes.string,
-    blocks: PropTypes.array,
-  }),
-  secondaryBlocks: PropTypes.shape({
-    heading: PropTypes.string,
-    linkText: PropTypes.string,
-    url: PropTypes.string,
-    blocks: PropTypes.array,
-  }),
+  primary: PropTypes.shape(BlockWrap.propTypes),
+  secondary: PropTypes.shape(BlockWrap.propTypes),
 }
 
 export default Aside

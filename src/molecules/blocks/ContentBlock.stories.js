@@ -28,6 +28,7 @@ storiesOf('molecules/blocks/ContentBlock', module)
     const showCta = boolean('Show Call to Action', true, ctaTab)
     const cta = text('Call to Action Text', data.cta, ctaTab)
     const url = text('Call to Action URL', data.url, ctaTab)
+
     return (
       <ContentBlock
         title={title}
@@ -47,20 +48,21 @@ storiesOf('molecules/blocks/ContentBlock', module)
     const category = text('Category', data.category, propsTab)
     const showImage = boolean('Show Image', true, imageTab)
     const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.imageSrcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.imageAlt, imageTab)
+    const srcSet = object('Image SrcSet', data.imageSrcSet[imageMode], imageTab)
+    const alt = text('Image Alt', data.imageAlt, imageTab)
+
+    const image = {
+      alt,
+      srcSet,
+    }
+
     return (
       <ContentBlock
-        title={title}
         category={category}
         description={description}
+        image={showImage ? image : null}
         more={more}
-        imageSrcSet={showImage ? imageSrcSet : null}
-        imageAlt={showImage ? imageAlt : null}
+        title={title}
         url={url}
       />
     )

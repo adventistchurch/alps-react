@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-function Picture({ image, alt, lazy }) {
-  const { default: defaultImage, ...otherImages } = image
+function Picture({ image, lazy }) {
+  const { alt, srcSet } = image
+  const { default: defaultImage, ...otherImages } = srcSet
 
   const sources = Object.keys(otherImages)
     .reverse()
@@ -13,7 +14,7 @@ function Picture({ image, alt, lazy }) {
         as="source"
         key={i}
         media={`(min-width: ${minWidth}px)`}
-        srcSet={image[minWidth]}
+        src={image[minWidth]}
       />
     ))
 
@@ -26,8 +27,10 @@ function Picture({ image, alt, lazy }) {
 }
 
 Picture.propTypes = {
-  alt: PropTypes.string,
-  image: PropTypes.object.isRequired,
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    srcSet: PropTypes.object.isRequired,
+  }).isRequired,
   lazy: PropTypes.bool,
 }
 Picture.defaultProps = {

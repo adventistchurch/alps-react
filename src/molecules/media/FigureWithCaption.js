@@ -3,20 +3,12 @@ import PropTypes from 'prop-types'
 
 import Figure from './Figure'
 
-function FigureWithCaption({ imageSrcSet, imageAlt, caption, className }) {
-  return (
-    <Figure
-      imageSrcSet={imageSrcSet}
-      imageAlt={imageAlt}
-      caption={caption}
-      className={className}
-    />
-  )
+function FigureWithCaption({ image, caption, className }) {
+  return <Figure caption={caption} className={className} image={image} />
 }
 
 FigureWithCaption.propTypes = {
-  imageSrcSet: PropTypes.object.isRequired,
-  imageAlt: PropTypes.string,
+  image: PropTypes.objectOf(Figure.propTypes.image).isRequired,
   caption: PropTypes.string,
   className: PropTypes.string,
 }

@@ -1,30 +1,33 @@
 {
   "title": "Adventist leaders call for international cooperation to end abuse of refugees in Libya",
   "description": "Mauris sit amet augue gravida, dignissim sem maximus, aliquam metus. Maecenas eu consectetur orci, id auctor dui.",
+  "date": 1220929929,
   "category": "Culture",
   "cta": "Find out more",
   "ctaIcon": "arrowLongRight",
   "url": "https://www.adventist.org",
-  "imageSrcSet": {
-    "Landscape": {
-      "default": "//picsum.photos/500/282",
-      "500": "//picsum.photos/900/507",
-      "750": "//picsum.photos/700/395",
-      "1200": "//picsum.photos/500/282"
+  "image": {
+    "srcSet": {
+      "Landscape": {
+        "default": "//picsum.photos/500/282",
+        "500": "//picsum.photos/900/507",
+        "750": "//picsum.photos/700/395",
+        "1200": "//picsum.photos/500/282"
+      },
+      "Portrait": {
+        "default": "//picsum.photos/150/200",
+        "500": "//picsum.photos/300/400",
+        "750": "//picsum.photos/450/600",
+        "1200": "//picsum.photos/600/800"
+      },
+      "Square": {
+        "default": "//picsum.photos/100/100",
+        "500": "//picsum.photos/200/200",
+        "750": "//picsum.photos/300/300",
+        "1200": "//picsum.photos/500/500"
+      }
     },
-    "Portrait": {
-      "default": "//picsum.photos/150/200",
-      "500": "//picsum.photos/300/400",
-      "750": "//picsum.photos/450/600",
-      "1200": "//picsum.photos/600/800"
-    },
-    "Square": {
-      "default": "//picsum.photos/100/100",
-      "500": "//picsum.photos/200/200",
-      "750": "//picsum.photos/300/300",
-      "1200": "//picsum.photos/500/500"
-    }
+    "alt": "Placeholder image"
   },
-  "imageAlt": "Placeholder image",
   "kicker": ""
 }

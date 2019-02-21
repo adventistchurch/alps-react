@@ -1,49 +1,59 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, withKnobs } from '@storybook/addon-knobs'
+import { object, text, withKnobs } from '@storybook/addon-knobs'
 
 import RelatedPosts from './RelatedPosts'
+import data from './RelatedPosts.stories.json'
 
-const propsTab = 'Props'
-const defaults = {
-  blocks: {
-    heading: 'Related Stories',
-    blocks: [
-      {
-        title:
-          'Mauris at ante laoreet, gravida odio gravida, fermentum lectus ',
-        category: 'Culture',
-        imageSrcSet: {
-          '500': '//picsum.photos/900/507?random',
-          '750': '//picsum.photos/700/395?random',
-          '1200': '//picsum.photos/500/282?random',
-          default: '//picsum.photos/500/282?random',
-        },
-        imageAlt: 'Placeholder image',
-        reversed: true,
-        border: 'left',
-      },
-      {
-        title: 'Proin sed nisl ac velit aliquam euismod non tincidunt lectus ',
-        category: 'Culture',
-        imageSrcSet: {
-          '500': '//picsum.photos/900/507?random',
-          '750': '//picsum.photos/700/395?random',
-          '1200': '//picsum.photos/500/282?random',
-          default: '//picsum.photos/500/282?random',
-        },
-        imageAlt: 'Placeholder image',
-        reversed: true,
-        border: 'left',
-      },
-    ],
-  },
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...RelatedPosts.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function textsTab(settings = {}) {
+  const { heading, linkText, url, tab } = getTabData('Texts', settings)
+
+  return {
+    heading: text('Heading', heading, tab),
+    linkText: text('LinkText', linkText, tab),
+    url: text('Url', url, tab),
+  }
+}
+
+function blocksTab(settings = {}) {
+  const { blocks, tab } = getTabData('Related blocks', settings)
+
+  return {
+    blocks: object('Blocks *', blocks, tab),
+  }
+}
+
+export function relatedPostsTab(settings = {}) {
+  const tabData = getTabData('Related Posts', settings)
+
+  return {
+    ...textsTab(tabData),
+    ...blocksTab(tabData),
+  }
 }
 
 storiesOf('organisms/asides/RelatedPosts', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const blocks = object('Blocks', defaults.blocks, propsTab)
-    return <RelatedPosts blocks={blocks} />
+    const { heading, linkText, url } = textsTab()
+    const { blocks } = blocksTab()
+
+    return (
+      <RelatedPosts
+        blocks={blocks}
+        heading={heading}
+        linkText={linkText}
+        url={url}
+      />
+    )
   })

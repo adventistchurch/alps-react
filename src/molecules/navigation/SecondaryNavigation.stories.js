@@ -6,34 +6,116 @@ import SecondaryNavigation from './SecondaryNavigation'
 
 import data from './SecondaryNavigation.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...SecondaryNavigation.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function itemsTab({ withSubmenues, ...settings } = {}) {
+  const { items, tab } = getTabData('Item', {
+    items: withSubmenues ? data.itemsWithSubmenu : data.items,
+    ...settings,
+  })
+
+  return {
+    items: object('Secondary Nav items', items, tab),
+  }
+}
+
+function optionsTab(settings = {}) {
+  const { showLanguages, showMenu, showSearch, tab } = getTabData(
+    'Options',
+    settings
+  )
+
+  return {
+    showLanguages: boolean('Show Languages', showLanguages, tab),
+    showMenu: boolean('Show Menu', showMenu, tab),
+    showSearch: boolean('Show Search', showSearch, tab),
+  }
+}
+
+export function secondaryNavTab(settings = {}) {
+  const {
+    showLanguages,
+    showMenu,
+    showSearch,
+    withSubmenues,
+    tab,
+  } = getTabData('Secondary Nav', settings)
+
+  return {
+    ...optionsTab({ showLanguages, showMenu, showSearch, tab }),
+    ...itemsTab({ withSubmenues, tab }),
+  }
+}
 
 storiesOf('molecules/navigation/SecondaryNavigation', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const showLanguages = boolean('Show Languages', true, propsTab)
-    const showMenu = boolean('Show Menu', true, propsTab)
-    const showSearch = boolean('Show Search', true, propsTab)
-    const items = object('Items', data.items, propsTab)
+    const { showLanguages, showMenu, showSearch } = optionsTab()
+    const { items } = itemsTab()
 
-    const props = {
-      items,
-      showLanguages,
-      showMenu,
-      showSearch,
-    }
-    return <SecondaryNavigation {...props} />
-  })
-
-  .addWithJSX('With submenues', () => {
-    const items = object('Items', data.itemsWithSubmenu, propsTab)
     return (
       <SecondaryNavigation
         items={items}
-        showLanguages={false}
-        showMenu={false}
-        showSearch={false}
+        showLanguages={showLanguages}
+        showMenu={showMenu}
+        showSearch={showSearch}
+      />
+    )
+  })
+
+  .addWithJSX('With submenues', () => {
+    const { showLanguages, showMenu, showSearch } = optionsTab()
+    const { items } = itemsTab({
+      withSubmenues: true,
+    })
+
+    return (
+      <SecondaryNavigation
+        items={items}
+        showLanguages={showLanguages}
+        showMenu={showMenu}
+        showSearch={showSearch}
+      />
+    )
+  })
+
+  .addWithJSX('Without menu and search toggles', () => {
+    const { showLanguages, showMenu, showSearch } = optionsTab({
+      showMenu: false,
+      showSearch: false,
+    })
+    const { items } = itemsTab()
+
+    return (
+      <SecondaryNavigation
+        items={items}
+        showLanguages={showLanguages}
+        showMenu={showMenu}
+        showSearch={showSearch}
+      />
+    )
+  })
+
+  .addWithJSX('Without languages', () => {
+    const { showLanguages, showMenu, showSearch } = optionsTab({
+      showLanguages: false,
+    })
+    const { items } = itemsTab()
+
+    return (
+      <SecondaryNavigation
+        items={items}
+        showLanguages={showLanguages}
+        showMenu={showMenu}
+        showSearch={showSearch}
       />
     )
   })
