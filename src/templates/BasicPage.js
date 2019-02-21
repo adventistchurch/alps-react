@@ -2,24 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Aside from '../organisms/asides/Aside'
-import RelatedPosts from '../organisms/asides/RelatedPosts'
 import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
-import PageHeader from '../organisms/sections/PageHeader'
 import PageContent from '../organisms/content/PageContent'
+import PageHeader from '../organisms/sections/PageHeader'
+import RelatedPosts from '../organisms/asides/RelatedPosts'
+import TemplateWrap from './TemplateWrap'
 
-const BasicPage = ({
+function BasicPage({
+  aside,
   background,
   breadcrumbs,
-  kicker,
-  title,
-  content,
   breakout,
-  aside,
+  content,
+  kicker,
   relatedPosts,
-}) => {
-  const hasSidebar = breakout || aside || relatedPosts
+  title,
+}) {
+  const hasSidebar = aside || breakout || relatedPosts
+
   return (
-    <>
+    <TemplateWrap>
       <main
         className="l-main u-spacing--double u-padding--double--bottom"
         role="main"
@@ -49,20 +51,19 @@ const BasicPage = ({
           )}
         </section>
       </main>
-    </>
+    </TemplateWrap>
   )
 }
 
 BasicPage.propTypes = {
-  title: PageHeader.propTypes.title,
-  kicker: PageHeader.propTypes.kicker,
-  background: PageHeader.propTypes.background,
-  content: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-    .isRequired,
+  aside: PropTypes.object,
+  background: PageHeader.propTypes.backgroundSrcSet,
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
-  aside: PropTypes.oneOfType([PropTypes.element]),
+  content: PropTypes.node.isRequired,
+  kicker: PageHeader.propTypes.kicker,
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
+  title: PageHeader.propTypes.title,
 }
 BasicPage.defaultProps = {
   breadcrumbs: [],

@@ -36,18 +36,14 @@ storiesOf('templates/BasicPage', module)
     )
 
     return (
-      <div className="l-wrap">
-        <div className="l-wrap__content l-content" role="document">
-          <BasicPage
-            aside={showSidebar ? aside : null}
-            background={background}
-            breadcrumbs={breadcrumbs}
-            breakout={showSidebar ? breakout : null}
-            content={content}
-            kicker={kicker}
-            title={title}
-          />
-        </div>
-      </div>
+      <BasicPage
+        aside={showSidebar ? aside : null}
+        background={background}
+        breadcrumbs={breadcrumbs}
+        breakout={showSidebar ? breakout : null}
+        content={content}
+        kicker={kicker}
+        title={title}
+      />
     )
   })
