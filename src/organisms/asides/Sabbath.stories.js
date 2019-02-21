@@ -5,29 +5,53 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs'
 import Sabbath from './Sabbath'
 import data from './Sabbath.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Sabbath.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function logoTab(settings = {}) {
+  const { showLogo, showLogoOnScroll, tab } = getTabData('Logo', settings)
+
+  return {
+    showLogo: boolean('Show logo', showLogo, tab),
+    showLogoOnScroll: boolean('Show logo on scoll', showLogoOnScroll, tab),
+  }
+}
+
+function backgroundTab(settings = {}) {
+  const { backgroundImage, tab } = getTabData('Background', settings)
+
+  return {
+    backgroundImage: text('Background image', backgroundImage, tab),
+  }
+}
+
+export function sabbathTab(settings = {}) {
+  const tabData = getTabData('Sabbath Column', settings)
+
+  return {
+    ...logoTab(tabData),
+    ...backgroundTab(tabData),
+  }
+}
 
 storiesOf('organisms/asides/Sabbath', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const showLogo = boolean('Show logo', data.showLogo, propsTab)
+    const { showLogo, showLogoOnScroll } = logoTab()
 
-    return <Sabbath showLogo={showLogo} />
+    return <Sabbath showLogo={showLogo} showLogoOnScroll={showLogoOnScroll} />
   })
 
   .addWithJSX('with Backround', () => {
-    const backgroundImage = text(
-      'Background image',
-      data.backgroundImage,
-      propsTab
-    )
-    const showLogo = boolean('Show logo', data.showLogo, propsTab)
-    const showLogoOnScroll = boolean(
-      'Show logo on scoll',
-      data.showLogoOnScroll,
-      propsTab
-    )
+    const { backgroundImage } = backgroundTab()
+    const { showLogo, showLogoOnScroll } = logoTab()
 
     return (
       <Sabbath
@@ -38,9 +62,8 @@ storiesOf('organisms/asides/Sabbath', module)
     )
   })
 
-  .addWithJSX('with Logo on Scroll', () => {
-    const showLogo = boolean('Show logo', data.showLogo, propsTab)
-    const showLogoOnScroll = boolean('Show logo on scoll', true, propsTab)
+  .addWithJSX('with Show Logo On Scroll', () => {
+    const { showLogo, showLogoOnScroll } = logoTab({ showLogoOnScroll: true })
 
     return <Sabbath showLogo={showLogo} showLogoOnScroll={showLogoOnScroll} />
   })

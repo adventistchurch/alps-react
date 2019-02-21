@@ -3,17 +3,31 @@ import { storiesOf } from '@storybook/react'
 import { object, withKnobs } from '@storybook/addon-knobs'
 
 import Aside from './Aside'
-
 import data from './Aside.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Aside.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function asideTab(settings = {}) {
+  const { primary, secondary, tab } = getTabData('Blocks', settings)
+
+  return {
+    primary: object('Primary Blocks *', primary, tab),
+    secondary: object('Secondary Blocks', secondary, tab),
+  }
+}
 
 storiesOf('organisms/asides/Aside', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const primary = object('Primary Blocks', data.primary, propsTab)
-    const secondary = object('Secondary Blocks', data.secondary, propsTab)
+    const { primary, secondary } = asideTab()
 
     return <Aside primary={primary} secondary={secondary} />
   })

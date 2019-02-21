@@ -8,33 +8,43 @@ import data from './Footer.stories.json'
 import dataPrimaryNav from '../../molecules/navigation/FooterPrimaryNavigation.stories.json'
 import dataSecondaryNav from '../../molecules/navigation/FooterSecondaryNavigation.stories.json'
 
-const textsTab = 'Texts'
-const addressTab = 'Address'
+function textTab({ tab = 'Footer Texts' } = {}) {
+  return {
+    textFooter: text('Text', data.text, tab),
+    copyright: text('Copyright', data.copyright, tab),
+  }
+}
+
+function addressTab({ tab = 'Address' } = {}) {
+  return {
+    street: text('Street', data.address.street, tab),
+    postcode: text('Postcode', data.address.postcode, tab),
+    locality: text('Locality', data.address.locality, tab),
+    region: text('Region', data.address.region, tab),
+    country: text('Country', data.address.country, tab),
+    phone: text('Phone number', data.address.phone, tab),
+  }
+}
+
+export function footerTab({ tab = 'Footer' } = {}) {
+  const { copyright, textFooter } = textTab({ tab })
+  const address = addressTab({ tab })
+
+  return {
+    address,
+    copyright,
+    text: textFooter,
+    primaryNav: dataPrimaryNav,
+    secondaryNav: dataSecondaryNav,
+  }
+}
 
 storiesOf('organisms/global/Footer', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    // Texts
-    const textFooter = text('Text', data.text, textsTab)
-    const copyright = text('Copyright', data.copyright, textsTab)
-
-    // Address:
-    const street = text('Street', data.address.street, addressTab)
-    const postcode = text('Postcode', data.address.postcode, addressTab)
-    const locality = text('Locality', data.address.locality, addressTab)
-    const region = text('Region', data.address.region, addressTab)
-    const country = text('Country', data.address.country, addressTab)
-    const phone = text('Phone number', data.address.phone, addressTab)
-
-    const address = {
-      street,
-      postcode,
-      locality,
-      region,
-      country,
-      phone,
-    }
+    const { copyright, textFooter } = textTab()
+    const address = addressTab()
 
     return (
       <Footer

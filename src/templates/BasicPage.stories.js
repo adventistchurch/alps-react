@@ -5,28 +5,58 @@ import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 import BasicPage from './BasicPage'
 
 import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
-import asideData from '../organisms/asides/Aside.stories.json'
+import { asideTab } from '../organisms/asides/Aside.stories.js'
+import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
+import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
+import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import data from './BasicPage.stories.json'
 
-const headerTab = 'Header'
-const sidebarTab = 'Sidebar'
-const contentTab = 'Content'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...BasicPage.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function sidebarTab(settings = {}) {
+  const { aside, tab } = getTabData('Sidebar', settings)
+
+  return {
+    showSidebar: boolean('Show Sidebar', true, tab),
+    breakout: object('Breakout', breakoutData, tab),
+    ...asideTab({ aside, tab }),
+  }
+}
+
+function contentTab(settings = {}) {
+  const { content, tab } = getTabData('Content', settings)
+  return {
+    contentTitle: text('Content Title', content.title, tab),
+    contentText: text('Content Text', content.text, tab),
+  }
+}
+
+function globalTab(settings = {}) {
+  const { globalHeader, globalFooter, tab } = getTabData('Global', settings)
+
+  console.log(globalHeader)
+
+  return {
+    header: globalHeaderTab({ ...globalHeader, tab }),
+    footer: globalFooterTab({ ...globalFooter, tab }),
+  }
+}
 
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const title = text('Title', data.title, headerTab)
-    const kicker = text('Kicker', data.kicker, headerTab)
-    const background = object('Background', data.background, headerTab)
-    const breadcrumbs = object('Breadcrumbs', data.breadcrumbs, headerTab)
-
-    const contentTitle = text('Content Title', data.content.title, contentTab)
-    const contentText = text('Content Text', data.content.text, contentTab)
-
-    const showSidebar = boolean('Sidebar', true, sidebarTab)
-    const breakout = object('Breakout', breakoutData, sidebarTab)
-    const aside = object('Aside', asideData, sidebarTab)
+    const { title, kicker, background, breadcrumbs } = pageHeaderTab()
+    const { contentTitle, contentText } = contentTab()
+    const { showSidebar, breakout, aside } = sidebarTab()
+    const templateProps = globalTab()
 
     const content = (
       <>
@@ -44,6 +74,7 @@ storiesOf('templates/BasicPage', module)
         content={content}
         kicker={kicker}
         title={title}
+        {...templateProps}
       />
     )
   })

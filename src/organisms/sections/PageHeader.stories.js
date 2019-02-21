@@ -1,21 +1,55 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 
 import PageHeader from './PageHeader'
 
 import data from './PageHeader.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...PageHeader.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function textsTab(settings = {}) {
+  const { kicker, title, url, tab } = getTabData('Texts', settings)
+
+  return {
+    kicker: text('Kicker', kicker, tab),
+    title: text('Title *', title, tab),
+    url: text('Url', url, tab),
+  }
+}
+
+function backgroundTab(settings = {}) {
+  const { background, tab } = getTabData('Background', settings)
+
+  return {
+    background: boolean('Show Background', false, tab)
+      ? object('Background image', background, tab)
+      : null,
+  }
+}
+
+export function pageHeaderTab(settings = {}) {
+  const tabProps = getTabData('Header', settings)
+
+  return {
+    ...textsTab(tabProps),
+    ...backgroundTab(tabProps),
+  }
+}
 
 storiesOf('organisms/sections/PageHeader', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title *', data.title, propsTab)
-    const url = text('Url', data.url, propsTab)
-    const background = object('Background', data.background, propsTab)
+    const { kicker, title, url } = textsTab()
+    const { background } = backgroundTab()
 
     return (
       <PageHeader

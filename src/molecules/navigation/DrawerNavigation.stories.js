@@ -5,24 +5,51 @@ import { text, withKnobs } from '@storybook/addon-knobs'
 import DrawerNavigation from './DrawerNavigation'
 
 import data from './DrawerNavigation.stories.json'
-import dataPrimaryNav from './PrimaryNavigation.stories.json'
-import dataSecondaryNav from './SecondaryNavigation.stories.json'
+import { primaryNavTab } from './PrimaryNavigation.stories.js'
+import { secondaryNavTab } from './SecondaryNavigation.stories.js'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...DrawerNavigation.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function aboutTextsTab(settings = {}) {
+  const { aboutLeft, aboutRight, tab } = getTabData('About texts', settings)
+
+  return {
+    aboutLeft: text('About Left', aboutLeft, tab),
+    aboutRight: text('About Right', aboutRight, tab),
+  }
+}
+
+export function drawerTab(settings = {}) {
+  const { aboutLeft, aboutRight, tab } = getTabData('Drawer', settings)
+
+  return {
+    ...primaryNavTab({ tab }),
+    ...secondaryNavTab({ tab }),
+    ...aboutTextsTab({ aboutLeft, aboutRight, tab }),
+  }
+}
 
 storiesOf('molecules/navigation/DrawerNavigation', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const aboutLeft = text('About Left', data.aboutLeft, propsTab)
-    const aboutRigth = text('About Rigth', data.aboutRigth, propsTab)
+    const primaryNav = primaryNavTab()
+    const secondaryNav = secondaryNavTab()
+    const { aboutLeft, aboutRight } = aboutTextsTab()
 
     return (
       <DrawerNavigation
         aboutLeft={aboutLeft}
-        aboutRight={aboutRigth}
-        primaryNav={dataPrimaryNav}
-        secondaryNav={dataSecondaryNav}
+        aboutRight={aboutRight}
+        primaryNav={primaryNav}
+        secondaryNav={secondaryNav}
       />
     )
   })

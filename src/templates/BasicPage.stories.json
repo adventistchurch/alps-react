@@ -2,9 +2,10 @@
   "title": "Basic Page",
   "kicker": "Kicker",
   "background": {
-    "small": "//placeimg.com/600/300/nature",
-    "medium": "//placeimg.com/900/400/nature",
-    "large": "//placeimg.com/1400/500/nature"
+    "default": "//placeimg.com/600/300/nature",
+    "500": "//placeimg.com/600/300/nature",
+    "750": "//placeimg.com/900/400/nature",
+    "1200": "//placeimg.com/1400/500/nature"
   },
   "breadcrumbs": [
     {

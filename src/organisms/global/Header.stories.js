@@ -1,45 +1,60 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, select, withKnobs } from '@storybook/addon-knobs'
+import { boolean, select, withKnobs } from '@storybook/addon-knobs'
 
 import Header from './Header'
-import logos from '../../atoms/images/logos'
+import { logoNames } from '../../atoms/images/logos'
 
 import data from './Header.stories.json'
-import dataPrimaryNav from '../../molecules/navigation/PrimaryNavigation.stories.json'
-import dataSecondaryNav from '../../molecules/navigation/SecondaryNavigation.stories.json'
+import { drawerTab } from '../../molecules/navigation/DrawerNavigation.stories.js'
+import { primaryNavTab } from '../../molecules/navigation/PrimaryNavigation.stories.js'
+import { secondaryNavTab } from '../../molecules/navigation/SecondaryNavigation.stories.js'
 
-const drawerTab = 'Drawer'
-const logoTab = 'Logo'
+function logoTab(settings = {}) {
+  const { canBeDark, name, useFillTheme, tab } = {
+    tab: 'Logo',
+    ...Header.defaultProps.logo,
+    name: data.logo.name,
+    ...settings,
+  }
+
+  return {
+    name: select('Logo Name', logoNames, name, tab),
+    canBeDark: boolean('Logo can be dark', canBeDark, tab),
+    useFillTheme: boolean('Logo Use Fill Theme', useFillTheme, tab),
+  }
+}
+
+export function headerTab(settings = {}) {
+  const tabProps = {
+    tab: 'Header',
+    ...Header.defaultProps,
+    ...settings,
+  }
+
+  return {
+    logo: logoTab(tabProps),
+    primaryNav: primaryNavTab(tabProps),
+    secondaryNav: secondaryNavTab(tabProps),
+    drawer: drawerTab(tabProps),
+  }
+}
 
 storiesOf('organisms/global/Header', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    // Logo:
-    const logoName = select(
-      'Logo Name',
-      Object.keys(logos),
-      data.logo.name,
-      logoTab
-    )
-    const logoCanBeDark = boolean('Logo can be dark', false, logoTab)
-    const logoUseFillTheme = boolean('Logo Use Fill Theme', true, logoTab)
-    const logo = {
-      name: logoName,
-      canBeDark: logoCanBeDark,
-      useFillTheme: logoUseFillTheme,
-    }
-
-    // Drawer:
-    const drawer = object('Drawer', data.drawer || {}, drawerTab)
+    const logo = logoTab()
+    const primaryNav = primaryNavTab()
+    const secondaryNav = secondaryNavTab()
+    const drawer = drawerTab()
 
     return (
       <Header
         drawer={drawer}
         logo={logo}
-        primaryNav={dataPrimaryNav}
-        secondaryNav={dataSecondaryNav}
+        primaryNav={primaryNav}
+        secondaryNav={secondaryNav}
       />
     )
   })

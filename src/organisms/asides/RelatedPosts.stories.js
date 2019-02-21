@@ -5,16 +5,48 @@ import { object, text, withKnobs } from '@storybook/addon-knobs'
 import RelatedPosts from './RelatedPosts'
 import data from './RelatedPosts.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...RelatedPosts.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function textsTab(settings = {}) {
+  const { heading, linkText, url, tab } = getTabData('Texts', settings)
+
+  return {
+    heading: text('Heading', heading, tab),
+    linkText: text('LinkText', linkText, tab),
+    url: text('Url', url, tab),
+  }
+}
+
+function blocksTab(settings = {}) {
+  const { blocks, tab } = getTabData('Related blocks', settings)
+
+  return {
+    blocks: object('Blocks *', blocks, tab),
+  }
+}
+
+export function relatedPostsTab(settings = {}) {
+  const tabData = getTabData('Related Posts', settings)
+
+  return {
+    ...textsTab(tabData),
+    ...blocksTab(tabData),
+  }
+}
 
 storiesOf('organisms/asides/RelatedPosts', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const heading = text('Heading', data.heading, propsTab)
-    const linkText = text('LinkText', data.linkText, propsTab)
-    const url = text('Url', data.url, propsTab)
-    const blocks = object('Blocks *', data.blocks, propsTab)
+    const { heading, linkText, url } = textsTab()
+    const { blocks } = blocksTab()
 
     return (
       <RelatedPosts
