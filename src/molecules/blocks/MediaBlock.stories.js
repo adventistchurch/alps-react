@@ -10,7 +10,7 @@ import {
 } from '@storybook/addon-knobs'
 
 import { iconNames } from '../../atoms/icons/Icon'
-import { dateFormats } from '../../helpers/datetimeFormat'
+import { dateFormats } from '../../helpers/DateTimeFormat'
 
 import MediaBlock from './MediaBlock'
 

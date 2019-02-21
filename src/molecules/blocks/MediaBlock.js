@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon, { iconNames } from '../../atoms/icons/Icon'
-import datetimeFormat, { dateFormats } from '../../helpers/datetimeFormat'
+import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 
 import MediaImage from './MediaImage'
 
@@ -155,7 +155,7 @@ function MediaBlock({
                   className="c-block__date u-text-transform--upper"
                   dateTime={date}
                 >
-                  {datetimeFormat({ date, dateFormat })}
+                  <DateTimeFormat datetime={date} format={dateFormat} />
                 </time>
               )}
             </div>

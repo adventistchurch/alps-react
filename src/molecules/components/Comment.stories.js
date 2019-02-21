@@ -4,12 +4,11 @@ import { date, object, select, text, withKnobs } from '@storybook/addon-knobs'
 
 import Comment from './Comment'
 
+import { dateFormats } from '../../helpers/DateTimeFormat'
 import data from './Comment.stories.json'
 
 const propsTab = 'Props'
 const imageTab = 'Image'
-
-const dateFormats = ['date', 'time', 'datetime']
 
 storiesOf('molecules/components/Comment', module)
   .addDecorator(withKnobs)
@@ -18,7 +17,12 @@ storiesOf('molecules/components/Comment', module)
     const byline = text('Byline *', data.byline, propsTab)
     const comment = text('Comment *', data.comment, propsTab)
     const datetime = date('Date Time *', new Date(), propsTab)
-    const dateFormat = select('Date Format', dateFormats, 'datetime', propsTab)
+    const dateFormat = select(
+      'Date Format',
+      dateFormats,
+      dateFormat[0],
+      propsTab
+    )
     const editUrl = text('Edit URL', '', propsTab)
     const replyUrl = text('Reply URL', '', propsTab)
     const avatarSrcSet = object('Avatar SrcSet', data.avatarSrcSet, imageTab)

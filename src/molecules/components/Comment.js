@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
-import DatetimeFormat, { dateFormats } from '../../helpers/datetimeFormat'
+import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 
 function Comment({
   avatar,
@@ -28,7 +28,7 @@ function Comment({
           </span>
           <span className="o-divider">|</span>
           <span className="pub_date u-font--secondary--s u-color--gray can-be--white">
-            <DatetimeFormat date={date} dateFormat={dateFormat} />
+            <DateTimeFormat datetime={date} format={dateFormat} />
           </span>
           {editUrl && (
             <span className="c-comment__edit-link u-font--secondary--s u-theme--color--base">
