@@ -20,6 +20,7 @@ function BasicPage({
   ...templateProps
 }) {
   const hasSidebar = aside || breakout || relatedPosts
+  const pageHeaderProps = { background, kicker, title }
 
   return (
     <TemplateWrap {...templateProps}>
@@ -27,7 +28,7 @@ function BasicPage({
         className="l-main u-spacing--double u-padding--double--bottom"
         role="main"
       >
-        <PageHeader {...{ background, breadcrumbs, kicker, title }} />
+        <PageHeader {...pageHeaderProps} />
         <section
           id="top"
           className={`l-main__content l-grid l-grid--7-col u-shift--left--1-col--at-${
