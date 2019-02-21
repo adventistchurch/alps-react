@@ -7,14 +7,7 @@ import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
 import Figcaption from './Figcaption'
 
-const backgroundMediaQueries = {
-  default: null,
-  small: 'min-width: 500px',
-  medium: 'min-width: 700px',
-  large: 'min-width: 1200px',
-}
-
-const getBackgroundImageRule = url => `.c-breakout-image__background {
+const getBackgroundRule = url => `.c-breakout-image__background {
   background-image: url('${url}');
 }`
 
@@ -26,15 +19,11 @@ function BreakoutImage({ caption, srcSet, parallax }) {
     ? useBackgroundParallax(backgroundElem, 8)
     : {}
 
-  const backgroundImageStyles = useResponsiveStyles(
-    getBackgroundImageRule,
-    srcSet,
-    backgroundMediaQueries
-  )
+  const inlineStyles = useResponsiveStyles(getBackgroundRule, srcSet)
 
   return (
     <div className="c-breakout-image">
-      <InlineStyles styles={backgroundImageStyles} />
+      <InlineStyles styles={inlineStyles} />
 
       <div
         ref={backgroundRef}
