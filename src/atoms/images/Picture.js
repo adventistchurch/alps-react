@@ -13,7 +13,7 @@ function Picture({ image, lazy }) {
       <source
         key={i}
         media={`(min-width: ${size}px)`}
-        src={otherImages[size]}
+        srcSet={otherImages[size]}
       />
     ))
 
