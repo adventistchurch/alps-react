@@ -28,6 +28,7 @@
     "eslint": "^5.14.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-hooks": "^1.2.0",
     "rollup": "^1.2.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-filesize": "^6.0.1",
