@@ -40,11 +40,12 @@ storiesOf('atoms/tables/Table', module)
     const title = text('Title', 'Table A.1', propsTab)
     const colCount = number('Number of Columns', 7, {}, propsTab)
     const rowCount = number('Number of Rows', 7, {}, propsTab)
+    const cellText = text('Cell text', '', propsTab)
     const slim = boolean('Slim', false, propsTab)
 
     const columns = useRange(1, colCount).map(col => `Header ${col}`)
     const rows = useRange(1, rowCount).map(row =>
-      useRange(1, colCount).map(col => `C:${col} / R:${row}`)
+      useRange(1, colCount).map(col => cellText || `C:${col} / R:${row}`)
     )
 
     return <Table title={title} columns={columns} rows={rows} slim={slim} />
