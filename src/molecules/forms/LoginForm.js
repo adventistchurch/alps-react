@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import Form from './Form'
+import Form from './elements/Form'
 import Title from '../../atoms/texts/Title'
 
 function LoginForm({

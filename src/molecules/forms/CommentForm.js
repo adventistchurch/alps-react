@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Title from '../../atoms/texts/Title'
-import Form from './Form'
+import Form from './elements/Form'
 
 const CommentForm = ({ rows, submitLabel, title, ...props }) => {
   return (

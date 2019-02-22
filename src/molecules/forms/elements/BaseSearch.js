@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../../atoms/buttons/Button'
+import Button from '../../../atoms/buttons/Button'
 import FilterGroup from './FilterGroup'
 import Form from './Form'
-import renderItems from '../../helpers/renderItems'
-import useToggle from '../../helpers/useToggle'
+import renderItems from '../../../helpers/renderItems'
+import useToggle from '../../../helpers/useToggle'
 
 function BaseSearch({
   border,

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import BaseSearch from './BaseSearch'
+import BaseSearch from './elements/BaseSearch'
 
 function SearchHeader({ ...props }) {
   return (
