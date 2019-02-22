@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import useDropcap from '../../helpers/useDropcap'
 import getSpacing, { spacingSides, spacingSizes } from '../global/spacing'
+import Dropcap from './Dropcap'
 
 function Text({ children, hasDropcap, hasSpacing, spacingSize, spacingSide }) {
   const dropcap = hasDropcap ? 'has-dropcap' : ''
@@ -12,7 +14,11 @@ function Text({ children, hasDropcap, hasSpacing, spacingSize, spacingSide }) {
       })
     : ''
 
-  return <div className={`text ${spacing} ${dropcap}`}>{children}</div>
+  return (
+    <div className={`text ${spacing} ${dropcap}`}>
+      {hasDropcap ? useDropcap(children, { Dropcap }) : children}
+    </div>
+  )
 }
 
 Text.propTypes = {
