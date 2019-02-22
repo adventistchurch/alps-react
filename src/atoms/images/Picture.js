@@ -9,12 +9,11 @@ function Picture({ image, lazy }) {
 
   const sources = Object.keys(otherImages)
     .reverse()
-    .map((minWidth, i) => (
-      <Image
-        as="source"
+    .map((size, i) => (
+      <source
         key={i}
-        media={`(min-width: ${minWidth}px)`}
-        src={image[minWidth]}
+        media={`(min-width: ${size}px)`}
+        src={otherImages[size]}
       />
     ))
 
