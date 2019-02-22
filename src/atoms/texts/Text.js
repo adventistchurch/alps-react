@@ -6,6 +6,7 @@ import getSpacing, { spacingSides, spacingSizes } from '../global/spacing'
 import Dropcap from './Dropcap'
 
 function Text({ children, hasDropcap, hasSpacing, spacingSize, spacingSide }) {
+  const content = useDropcap(children, { Dropcap, enabled: hasDropcap })
   const dropcap = hasDropcap ? 'has-dropcap' : ''
   const spacing = hasSpacing
     ? getSpacing({
@@ -14,11 +15,7 @@ function Text({ children, hasDropcap, hasSpacing, spacingSize, spacingSide }) {
       })
     : ''
 
-  return (
-    <div className={`text ${spacing} ${dropcap}`}>
-      {hasDropcap ? useDropcap(children, { Dropcap }) : children}
-    </div>
-  )
+  return <div className={`text ${spacing} ${dropcap}`}>{content}</div>
 }
 
 Text.propTypes = {

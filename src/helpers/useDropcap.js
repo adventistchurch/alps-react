@@ -57,11 +57,15 @@ function withChildren(children, Dropcap, parentFound, setParentFound) {
 
 const defaults = {
   Dropcap: DefaultDropcap,
+  enabled: true,
   tag: 'p',
 }
 
-function useDropCap(children, config = {}) {
-  const { Dropcap, tag } = { ...defaults, ...config }
+function useDropcap(children, config = {}) {
+  const { Dropcap, enabled, tag } = { ...defaults, ...config }
+
+  // Return children directly if it's not enabled
+  if (!enabled) return children
 
   let firstTag = false
 
@@ -79,4 +83,4 @@ function useDropCap(children, config = {}) {
   })
 }
 
-export default useDropCap
+export default useDropcap
