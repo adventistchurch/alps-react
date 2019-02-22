@@ -1,3 +1,6 @@
+// NOTE: This code is not being used as it was buggy and we replaced it with `react-lazyload`
+// TODO: Consider fix these bugs, so `react-lazyload` dependency can be removed
+
 const defaults = {
   src: 'data-src',
   srcSet: 'data-srcset',
