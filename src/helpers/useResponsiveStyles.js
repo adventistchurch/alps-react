@@ -8,7 +8,7 @@ function wrapMediaQuery(rule, query) {
 }
 
 /**
- * Makes sure default querie is at the begining.
+ * Makes sure the "default: query is at the beginning.
  *
  * Example:
  * - Input keys:  ["500", "750", "1200", "default"]
