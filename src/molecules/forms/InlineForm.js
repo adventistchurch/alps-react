@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Form from './Form'
+import Form from './elements/Form'
 
 function InlineForm({ submitLabel, ...props }) {
   return (

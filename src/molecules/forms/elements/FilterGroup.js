@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Title from '../../atoms/texts/Title'
+import Title from '../../../atoms/texts/Title'
 
 function FormFilter({ options, title }) {
   return (

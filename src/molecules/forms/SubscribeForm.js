@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import FormGroup from './FormGroup'
+import BaseInput from './elements/BaseInput'
 import Title from '../../atoms/texts/Title'
-import Form from './Form'
+import Form from './elements/Form'
 
 function SubscribeForm({
   cancelLabel,
@@ -22,13 +22,13 @@ function SubscribeForm({
         color={null}
         strong
       />
-      <FormGroup
+      <BaseInput
         name="first_name"
         label="First Name"
         placeholder="First Name"
       />
-      <FormGroup name="last_name" placeholder="Last Name" label="Last Name" />
-      <FormGroup
+      <BaseInput name="last_name" placeholder="Last Name" label="Last Name" />
+      <BaseInput
         name="email"
         type="email"
         placeholder="Email Address"
@@ -38,7 +38,7 @@ function SubscribeForm({
         <span className="u-font--secondary--s u-theme--color--lighter u-text-transform--upper">
           <strong>Frequency</strong>
         </span>
-        <FormGroup
+        <BaseInput
           checked={true}
           id="weekly"
           name="option"
@@ -46,7 +46,7 @@ function SubscribeForm({
           value="one"
           label="Weekly Bulletin"
         />
-        <FormGroup
+        <BaseInput
           id="seasonal"
           name="option"
           type="radio"

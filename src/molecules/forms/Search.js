@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Fieldset from './Fieldset'
-import Form from './Form'
+import Fieldset from './elements/Fieldset'
+import Form from './elements/Form'
 
 import useInputFocus from '../../helpers/useInputFocus'
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Form from './Form'
+import Form from './elements/Form'
 import renderItems from '../../helpers/renderItems'
-import Fieldset from './Fieldset'
-import Facet from './Facet'
+import Fieldset from './elements/Fieldset'
+import Facet from './elements/Facet'
 
 function FacetFilter({ facets, filterLabel, showButton, title, ...props }) {
   const buttonClass = showButton ? '' : 'is-vishidden'

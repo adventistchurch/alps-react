@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function FormGroup({ checked, id, label, name, placeholder, type, value }) {
+function BaseInput({ checked, id, label, name, placeholder, type, value }) {
   const inputId = id ? id : name
   const groupClass =
     type == 'radio' ? 'c-form-group__radio' : 'c-form-group u-spacing--quarter'
@@ -22,7 +22,7 @@ function FormGroup({ checked, id, label, name, placeholder, type, value }) {
   )
 }
 
-FormGroup.propTypes = {
+BaseInput.propTypes = {
   className: PropTypes.string,
   checked: PropTypes.bool,
   id: PropTypes.string,
@@ -32,9 +32,9 @@ FormGroup.propTypes = {
   type: PropTypes.oneOf(['text', 'email', 'radio']),
   value: PropTypes.string,
 }
-FormGroup.defaultProps = {
+BaseInput.defaultProps = {
   className: '',
   type: 'text',
 }
 
-export default FormGroup
+export default BaseInput
