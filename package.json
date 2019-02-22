@@ -5,7 +5,8 @@
   "main": "lib/alps-react.min.js",
   "dependencies": {
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "react-lazyload": "^2.5.0"
   },
   "scripts": {
     "build": "rollup -c",
