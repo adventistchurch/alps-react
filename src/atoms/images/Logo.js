@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import logos, { logoNames } from './logos'
+import logos, { logoNames } from './logos/index'
 import { svgFillColors } from '../global/colors'
 
 function Logo({ name, ...props }) {
