@@ -57,9 +57,12 @@ function imageTab(settings = {}) {
   }
 }
 
-function borderTab(settings = {}) {
-  const { border, tab } = getTabData('Image', settings)
-  return { border: select('Content Border', ['none', 'left'], border, tab) }
+function displayTab(settings = {}) {
+  const { border, reversed, tab } = getTabData('Display', settings)
+  return {
+    border: select('Content Border', ['none', 'left'], border, tab),
+    reversed: boolean('Reversed', reversed, tab),
+  }
 }
 
 function ctaTab(settings = {}) {
@@ -97,6 +100,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { asBackgroundImage, image } = imageTab()
     const { category, date, dateFormat } = metaTab()
     const { cta, ctaIcon } = ctaTab()
+    const { reversed } = displayTab()
 
     return (
       <MediaBlock
@@ -109,6 +113,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         description={description}
         image={image}
         kicker={kicker}
+        reversed={reversed}
         title={title}
         url={url}
       />
@@ -120,7 +125,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { asBackgroundImage, image } = imageTab()
     const { category, date, dateFormat } = metaTab()
     const { cta, ctaIcon } = ctaTab()
-    const { border } = borderTab()
+    const { border, reversed } = displayTab()
 
     return (
       <MediaBlock
@@ -134,6 +139,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         description={description}
         image={image}
         kicker={kicker}
+        reversed={reversed}
         title={title}
         type="inline"
         url={url}
@@ -145,6 +151,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { description, kicker, title, url } = textsTab()
     const { asBackgroundImage, image } = imageTab()
     const { category, date, dateFormat } = metaTab()
+    const { reversed } = displayTab()
 
     return (
       <MediaBlock
@@ -155,6 +162,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         description={description}
         image={image}
         kicker={kicker}
+        reversed={reversed}
         title={title}
         type="inset"
         url={url}
@@ -167,7 +175,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { asBackgroundImage, image } = imageTab()
     const { category, date, dateFormat } = metaTab()
     const { cta, ctaIcon } = ctaTab()
-    const { border } = borderTab()
+    const { border, reversed } = displayTab({ reversed: true })
 
     return (
       <MediaBlock
@@ -181,8 +189,8 @@ storiesOf('molecules/blocks/MediaBlock', module)
         description={description}
         image={image}
         kicker={kicker}
+        reversed={reversed}
         title={title}
-        type="reversed"
         url={url}
       />
     )
@@ -193,7 +201,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { asBackgroundImage, image } = imageTab()
     const { category, date, dateFormat } = metaTab()
     const { cta, ctaIcon } = ctaTab()
-    const { border } = borderTab()
+    const { border, reversed } = displayTab()
 
     return (
       <MediaBlock
@@ -207,6 +215,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         description={description}
         image={image}
         kicker={kicker}
+        reversed={reversed}
         title={title}
         type="stacked"
         url={url}

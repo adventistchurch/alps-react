@@ -18,11 +18,10 @@ const typeClasses = {
     meta: 'u-theme--color--dark',
   },
   inline: {
-    block:
-      'c-block__inline c-media-block__inine c-block--reversed c-media-block--reversed l-grid--7-col',
-    image: 'l-grid-item u-padding--zero--sides',
+    block: 'c-block__inline c-media-block__inine',
+    image: 'u-padding--zero--sides',
     content:
-      'l-grid-item u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
+      'u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
     title: 'u-theme--color--darker',
     meta: 'u-theme--color--dark',
   },
@@ -31,11 +30,6 @@ const typeClasses = {
     content: 'l-grid--7-col u-theme--background-color--darker',
     title: 'l-grid-item l-grid-item--m--4-col u-link-hover--white',
     meta: 'l-grid-item l-grid-item--m--2-col',
-  },
-  reversed: {
-    block: 'c-block--reversed c-media-block--reversed l-grid--7-col',
-    image: 'l-grid-item l-grid-item--m--3-col',
-    content: 'l-grid-item l-grid-item--m--4-col',
   },
   stacked: {
     block: 'c-block__stacked c-media-block__stacked',
@@ -60,6 +54,7 @@ function MediaBlock({
   description,
   image,
   kicker,
+  reversed,
   title,
   type,
   video,
@@ -67,6 +62,9 @@ function MediaBlock({
 }) {
   // Get classes including ones for current type (if provided)
   const classes = { ...typeClasses.default, ...(type ? typeClasses[type] : {}) }
+
+  if (reversed)
+    classes.block = `${classes.block} c-block--reversed c-media-block--reversed`
 
   // Get border clases
   const borderLeftClass =
@@ -189,7 +187,8 @@ MediaBlock.propTypes = {
   image: MediaImage.propTypes.image,
   kicker: PropTypes.string,
   url: PropTypes.string,
-  type: PropTypes.oneOf(['inline', 'inset', 'reversed', 'stacked']),
+  reversed: PropTypes.bool,
+  type: PropTypes.oneOf(['inline', 'inset', 'stacked']),
   title: PropTypes.string,
   video: PropTypes.node,
 }
