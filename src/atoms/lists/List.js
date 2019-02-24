@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Text from '../texts/Text'
 
+import Element from '../../helpers/Element'
 import renderItems from '../../helpers/renderItems'
 
 function ListItem({ text, unorderedItems, orderedItems }) {
@@ -27,7 +28,9 @@ ListItem.defaultProps = {
 
 function List({ items, as }) {
   return (
-    <Text>{React.createElement(as, {}, renderItems(items, ListItem))}</Text>
+    <Text>
+      <Element tag={as}>{renderItems(items, ListItem)}</Element>
+    </Text>
   )
 }
 

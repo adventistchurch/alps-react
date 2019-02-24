@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
 import useDropcap from '../../helpers/useDropcap'
 import getSpacing, { spacingSides, spacingSizes } from '../global/spacing'
 import Dropcap from './Dropcap'
@@ -22,10 +23,10 @@ function Text({
       })
     : ''
 
-  return React.createElement(
-    as,
-    { className: `text ${spacing} ${dropcap}` },
-    content
+  return (
+    <Element tag={as} className={`text ${spacing} ${dropcap}`}>
+      {content}
+    </Element>
   )
 }
 

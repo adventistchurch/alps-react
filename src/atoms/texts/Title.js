@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
 import Kicker from './Kicker'
 
 import { sizes } from '../global/fonts'
@@ -21,13 +22,11 @@ function Title({
   const titleClass = `u-font--${type}--${size} u-theme--color--${color} ${
     strong ? 'u-text--strong' : ''
   } ${transform ? `u-text-transform--${transform}` : ''} ${className}`
-  return React.createElement(
-    as,
-    { className: titleClass },
-    <>
+  return (
+    <Element tag={as} className={titleClass}>
       {kicker && <Kicker text={kicker} color={kickerColor} />}{' '}
       {text || children}
-    </>
+    </Element>
   )
 }
 

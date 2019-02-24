@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
 import IconWrap from '../icons/IconWrap'
 
 /**
@@ -46,23 +47,24 @@ function Button({
   url,
   ...rest
 }) {
-  return React.createElement(
-    as,
-    {
-      className: getButtonClass('o-button', className, {
-        disabled,
-        expand,
-        lighter,
-        outline,
-        simple,
-        small,
-        toggle,
-      }),
-      href: onClick ? null : url,
-      onClick,
-      ...rest,
-    },
-    <>
+  const buttonClass = getButtonClass('o-button', className, {
+    disabled,
+    expand,
+    lighter,
+    outline,
+    simple,
+    small,
+    toggle,
+  })
+
+  return (
+    <Element
+      tag={as}
+      className={buttonClass}
+      href={onClick ? null : url}
+      onClick={onClick}
+      {...rest}
+    >
       {icon && (
         <IconWrap
           className={iconClass}
@@ -73,7 +75,7 @@ function Button({
         />
       )}
       {text}
-    </>
+    </Element>
   )
 }
 
