@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react'
 import {
   boolean,
   date as datetime,
-  object,
   select,
   text,
   withKnobs,
@@ -15,56 +14,100 @@ import { dateFormats } from '../../helpers/DateTimeFormat'
 import MediaBlock from './MediaBlock'
 
 import data from './MediaBlock.stories.json'
+import { pictureTab } from '../../atoms/images/Picture.stories'
 
-const propsTab = 'Props'
-const metaTab = 'Meta'
-const imageTab = 'Image'
-const ctaTab = 'CTA'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...MediaBlock.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
 
-const imageModes = ['Landscape', 'Portrait', 'Square']
+function textsTab(settings = {}) {
+  const { description, kicker, title, tab } = getTabData('Texts', settings)
+
+  return {
+    kicker: text('Kicker', kicker, tab),
+    title: text('Title', title, tab),
+    description: text('Description', description, tab),
+  }
+}
+
+function metaTab(settings = {}) {
+  const { category, date, url, tab } = getTabData('Meta', settings)
+
+  return {
+    category: text('Category', category, tab),
+    date: datetime('Date Time', new Date(date), tab),
+    dateFormat: select('Date Format', dateFormats, 'date', tab),
+    url: text('URL', url, tab),
+  }
+}
+
+function imageTab(settings = {}) {
+  const { image, tab } = getTabData('Image', settings)
+  const showImage = boolean('Show Image', true, tab)
+  const asBackgroundImage = boolean('As Background Image', false, tab)
+
+  return {
+    asBackgroundImage,
+    ...(showImage ? pictureTab({ image, tab }) : {}),
+  }
+}
+
+function borderTab(settings = {}) {
+  const { border, tab } = getTabData('Image', settings)
+  return { border: select('Content Border', ['none', 'left'], border, tab) }
+}
+
+function ctaTab(settings = {}) {
+  const { cta, ctaIcon = 'arrow-long-right', tab } = getTabData(
+    'Image',
+    settings
+  )
+
+  const showCta = boolean('Show Call to Action', false, ctaTab)
+
+  return showCta
+    ? {
+        cta: text('Call to Action Text', cta, tab),
+        ctaIcon: select('Call to Action Icon *', iconNames, ctaIcon, tab),
+      }
+    : {}
+}
+
+export function mediaBlockTab(settings = {}) {
+  const mediaBlock = getTabData('MediaBlock', settings)
+
+  return {
+    ...textsTab(mediaBlock),
+    ...metaTab(mediaBlock),
+    ...imageTab(mediaBlock),
+    ...ctaTab(mediaBlock),
+  }
+}
 
 storiesOf('molecules/blocks/MediaBlock', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const category = text('Category', data.category, metaTab)
-    const date = datetime('Date Time', new Date(), metaTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
-    const url = text('URL', data.url, metaTab)
-    const showImage = boolean('Show Image', true, imageTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.image.srcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.image.alt, imageTab)
-    const showCta = boolean('Show Call to Action', false, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const ctaIcon = select(
-      'Call to Action Icon *',
-      iconNames,
-      'arrow-long-right',
-      ctaTab
-    )
-
-    const image = {
-      alt: imageAlt,
-      srcSet: imageSrcSet,
-    }
+    const { description, kicker, title, url } = textsTab()
+    const { asBackgroundImage, image } = imageTab()
+    const { category, date, dateFormat } = metaTab()
+    const { cta, ctaIcon } = ctaTab()
 
     return (
       <MediaBlock
+        asBackgroundImage={asBackgroundImage}
         category={category}
-        cta={showCta ? cta : null}
-        ctaIcon={showCta ? ctaIcon : null}
+        cta={cta}
+        ctaIcon={ctaIcon}
         date={date}
         dateFormat={dateFormat}
         description={description}
-        image={showImage ? image : null}
+        image={image}
         kicker={kicker}
         title={title}
         url={url}
@@ -73,46 +116,23 @@ storiesOf('molecules/blocks/MediaBlock', module)
   })
 
   .addWithJSX('Inline', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const showBorder = boolean('Content Border', true, propsTab)
-    const category = text('Category', data.category, metaTab)
-    const date = datetime('Date Time', new Date(), metaTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
-    const url = text('URL', data.url, metaTab)
-    const showImage = boolean('Show Image', true, imageTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.image.srcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.image.alt, imageTab)
-    const showCta = boolean('Show Call to Action', false, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const ctaIcon = select(
-      'Call to Action Icon *',
-      iconNames,
-      'arrow-long-right',
-      ctaTab
-    )
-
-    const image = {
-      alt: imageAlt,
-      srcSet: imageSrcSet,
-    }
+    const { description, kicker, title, url } = textsTab()
+    const { asBackgroundImage, image } = imageTab()
+    const { category, date, dateFormat } = metaTab()
+    const { cta, ctaIcon } = ctaTab()
+    const { border } = borderTab()
 
     return (
       <MediaBlock
-        border={showBorder ? 'left' : 'none'}
+        asBackgroundImage={asBackgroundImage}
+        border={border}
         category={category}
-        cta={showCta ? cta : null}
-        ctaIcon={showCta ? ctaIcon : null}
+        cta={cta}
+        ctaIcon={ctaIcon}
         date={date}
         dateFormat={dateFormat}
         description={description}
-        image={showImage ? image : null}
+        image={image}
         kicker={kicker}
         title={title}
         type="inline"
@@ -122,28 +142,13 @@ storiesOf('molecules/blocks/MediaBlock', module)
   })
 
   .addWithJSX('Inset', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const description = text('Description', '', propsTab)
-    const category = text('Category', '', metaTab)
-    const date = datetime('Date Time', new Date(), metaTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
-    const url = text('URL', data.url, metaTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.image.srcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.image.alt, imageTab)
-
-    const image = {
-      alt: imageAlt,
-      srcSet: imageSrcSet,
-    }
+    const { description, kicker, title, url } = textsTab()
+    const { asBackgroundImage, image } = imageTab()
+    const { category, date, dateFormat } = metaTab()
 
     return (
       <MediaBlock
+        asBackgroundImage={asBackgroundImage}
         category={category}
         date={date}
         dateFormat={dateFormat}
@@ -158,46 +163,23 @@ storiesOf('molecules/blocks/MediaBlock', module)
   })
 
   .addWithJSX('Reversed', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const category = text('Category', data.category, metaTab)
-    const date = datetime('Date Time', new Date(), metaTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
-    const url = text('URL', data.url, metaTab)
-    const showBorder = boolean('Content Border', true, propsTab)
-    const showImage = boolean('Show Image', true, imageTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.image.srcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.image.alt, imageTab)
-    const showCta = boolean('Show Call to Action', false, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const ctaIcon = select(
-      'Call to Action Icon *',
-      iconNames,
-      'arrow-long-right',
-      ctaTab
-    )
-
-    const image = {
-      alt: imageAlt,
-      srcSet: imageSrcSet,
-    }
+    const { description, kicker, title, url } = textsTab()
+    const { asBackgroundImage, image } = imageTab()
+    const { category, date, dateFormat } = metaTab()
+    const { cta, ctaIcon } = ctaTab()
+    const { border } = borderTab()
 
     return (
       <MediaBlock
-        border={showBorder ? 'left' : 'none'}
+        asBackgroundImage={asBackgroundImage}
+        border={border}
         category={category}
-        cta={showCta ? cta : null}
-        ctaIcon={showCta ? ctaIcon : null}
+        cta={cta}
+        ctaIcon={ctaIcon}
         date={date}
         dateFormat={dateFormat}
         description={description}
-        image={showImage ? image : null}
+        image={image}
         kicker={kicker}
         title={title}
         type="reversed"
@@ -207,46 +189,23 @@ storiesOf('molecules/blocks/MediaBlock', module)
   })
 
   .addWithJSX('Stacked', () => {
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const showBorder = boolean('Content Border', false, propsTab)
-    const category = text('Category', data.category, metaTab)
-    const date = datetime('Date Time', new Date(), metaTab)
-    const dateFormat = select('Date Format', dateFormats, 'date', metaTab)
-    const url = text('URL', data.url, metaTab)
-    const showImage = boolean('Show Image', true, imageTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const imageSrcSet = object(
-      'Image SrcSet',
-      data.image.srcSet[imageMode],
-      imageTab
-    )
-    const imageAlt = text('Image Alt', data.image.alt, imageTab)
-    const showCta = boolean('Show Call to Action', false, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const ctaIcon = select(
-      'Call to Action Icon *',
-      iconNames,
-      'arrow-long-right',
-      ctaTab
-    )
-
-    const image = {
-      alt: imageAlt,
-      srcSet: imageSrcSet,
-    }
+    const { description, kicker, title, url } = textsTab()
+    const { asBackgroundImage, image } = imageTab()
+    const { category, date, dateFormat } = metaTab()
+    const { cta, ctaIcon } = ctaTab()
+    const { border } = borderTab()
 
     return (
       <MediaBlock
-        border={showBorder ? 'left' : 'none'}
+        asBackgroundImage={asBackgroundImage}
+        border={border}
         category={category}
-        cta={showCta ? cta : null}
-        ctaIcon={showCta ? ctaIcon : null}
+        cta={cta}
+        ctaIcon={ctaIcon}
         date={date}
         dateFormat={dateFormat}
         description={description}
-        image={showImage ? image : null}
+        image={image}
         kicker={kicker}
         title={title}
         type="stacked"

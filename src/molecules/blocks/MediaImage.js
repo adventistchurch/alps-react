@@ -17,9 +17,10 @@ function MediaImage({
   url,
   wrapClass,
 }) {
-  const backgroundImageStyles = asBackgroundImage
-    ? useResponsiveStyles(getBackgroundImageRule, image.srcSet)
-    : null
+  const bgImageStyles = useResponsiveStyles(
+    getBackgroundImageRule,
+    image.srcSet
+  )
 
   return (
     <div
@@ -27,10 +28,12 @@ function MediaImage({
         blockIconType ? `c-block__icon c-block__icon--${blockIconType}` : ''
       } ${asBackgroundImage ? ' o-background-image u-background--cover' : ''}`}
     >
-      {backgroundImageStyles && <InlineStyles styles={backgroundImageStyles} />}
+      {asBackgroundImage && bgImageStyles && (
+        <InlineStyles styles={bgImageStyles} />
+      )}
       <div className={`c-block__image-wrap ${wrapClass}`}>
         <a href={url} title={image.caption || image.alt}>
-          <Picture className="picture" image={image} />
+          <Picture image={image} />
         </a>
       </div>
     </div>
@@ -41,7 +44,7 @@ MediaImage.propTypes = {
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.string,
   className: PropTypes.string,
-  image: PropTypes.objectOf(Picture.propTypes.image).isRequired,
+  image: Picture.propTypes.image,
   url: PropTypes.string,
   wrapClass: PropTypes.string,
 }

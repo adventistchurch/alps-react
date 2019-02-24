@@ -49,7 +49,7 @@ const borderClasses = {
 }
 
 function MediaBlock({
-  backgroundImage,
+  asBackgroundImage,
   blockIconType,
   border,
   category,
@@ -80,9 +80,9 @@ function MediaBlock({
 
   return (
     <div className={`c-media-block c-block ${classes.block}`}>
-      {(image || backgroundImage) && (
+      {image && (
         <MediaImage
-          backgroundImage={backgroundImage}
+          asBackgroundImage={asBackgroundImage}
           blockIconType={blockIconType}
           className={classes.image}
           image={image}
@@ -177,7 +177,7 @@ function MediaBlock({
 }
 
 MediaBlock.propTypes = {
-  backgroundImage: PropTypes.object,
+  asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.oneOf(['audio', 'gallery', 'video']),
   border: PropTypes.oneOf(['left', 'none']),
   category: PropTypes.string,
@@ -186,7 +186,7 @@ MediaBlock.propTypes = {
   description: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dateFormat: PropTypes.oneOf(dateFormats),
-  image: PropTypes.objectOf(MediaImage.propTypes.image),
+  image: MediaImage.propTypes.image,
   kicker: PropTypes.string,
   url: PropTypes.string,
   type: PropTypes.oneOf(['inline', 'inset', 'reversed', 'stacked']),
@@ -195,6 +195,7 @@ MediaBlock.propTypes = {
 }
 
 MediaBlock.defaultProps = {
+  asBackgroundImage: false,
   border: 'none',
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
