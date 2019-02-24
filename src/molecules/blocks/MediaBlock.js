@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon, { iconNames } from '../../atoms/icons/Icon'
+import Button from '../../atoms/buttons/Button'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 
 import MediaImage from './MediaImage'
@@ -159,14 +159,15 @@ function MediaBlock({
             </div>
           )}
           {cta && url && (
-            <a
-              className="c-block__button o-button o-button--outline"
-              href={url}
-            >
-              <span className="u-icon u-icon--m u-path-fill--base u-space--half--left">
-                <Icon name={ctaIcon} />
-              </span>
-            </a>
+            <Button
+              as="a"
+              className="c-block__button"
+              icon={ctaIcon}
+              iconSize="m"
+              outline
+              text={cta}
+              url={url}
+            />
           )}
         </div>
       </div>
@@ -180,7 +181,7 @@ MediaBlock.propTypes = {
   border: PropTypes.oneOf(['left', 'none']),
   category: PropTypes.string,
   cta: PropTypes.string,
-  ctaIcon: PropTypes.oneOf(iconNames),
+  ctaIcon: Button.propTypes.icon,
   description: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   dateFormat: PropTypes.oneOf(dateFormats),
