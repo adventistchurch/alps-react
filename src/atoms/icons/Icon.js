@@ -60,7 +60,7 @@ const iconNames = Object.keys(icons)
 
 function Icon({ name, color }) {
   const fill = color ? `${svgFillClass}--${color}` : null
-  return icons[name] && icons[name]({ fill })
+  return icons[name] ? icons[name]({ fill }) : `[${name}]`
 }
 
 Icon.propTypes = {
