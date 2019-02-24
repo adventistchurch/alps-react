@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import MediaBlock from '../../molecules/blocks/MediaBlock'
+import HeadingBlock from '../../molecules/blocks/HeadingBlock'
 import ContentBlock from '../../molecules/blocks/ContentBlock'
 import renderItems from '../../helpers/renderItems'
 
@@ -11,19 +12,7 @@ function BlockWrap({ blocks, heading, linkText, type, url }) {
 
   return (
     <div className={`${wrapperClass} u-spacing`}>
-      <div className="c-block__heading u-theme--border-color--darker">
-        <h3 className="c-block__heading-title u-theme--color--darker">
-          {heading}
-        </h3>
-        {url && linkText && (
-          <a
-            href={url}
-            className="c-block__heading-link u-theme--color--base u-theme--link-hover--dark"
-          >
-            {linkText}
-          </a>
-        )}
-      </div>
+      <HeadingBlock title={heading} linkText={linkText} url={url} />
       <div className={`${wrapperClass}__content u-spacing`}>
         {renderItems(
           blocks,
