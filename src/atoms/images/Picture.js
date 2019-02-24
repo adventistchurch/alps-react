@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import Image from './Image'
 
 function Picture({ image, lazy }) {
+  if (!image || !image.srcSet) return null
   const { alt, srcSet } = image
+
   const { default: defaultImage, ...otherImages } = srcSet
 
   const sources = Object.keys(otherImages)
@@ -29,7 +31,7 @@ Picture.propTypes = {
   image: PropTypes.shape({
     alt: PropTypes.string.isRequired,
     srcSet: PropTypes.object.isRequired,
-  }).isRequired,
+  }),
   lazy: PropTypes.bool,
 }
 Picture.defaultProps = {
