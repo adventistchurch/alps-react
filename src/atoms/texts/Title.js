@@ -19,9 +19,17 @@ function Title({
   transform,
   type,
 }) {
-  const titleClass = `u-font--${type}--${size} u-theme--color--${color} ${
-    strong ? 'u-text--strong' : ''
-  } ${transform ? `u-text-transform--${transform}` : ''} ${className}`
+  const fontClass = `u-font--${type}--${size}`
+  const colorClass = `u-theme--color--${color}`
+
+  const classes = [fontClass, colorClass]
+
+  if (strong) classes.push('u-text--strong')
+  if (transform) classes.push(`u-text-transform--${transform}`)
+  if (className) classes.push(className)
+
+  const titleClass = classes.join(' ')
+
   return (
     <Element tag={as} className={titleClass}>
       {kicker && <Kicker text={kicker} color={kickerColor} />}{' '}
