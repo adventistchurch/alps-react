@@ -1,15 +1,29 @@
-const baseClass = 'u-spacing'
-const spacingSizes = ['quarter', 'half', 'double', 'triple', 'quad', 'zero']
-const spacingSides = ['top', 'botton', 'left', 'right']
+/**
+ * Provides classes methods and configurations for:
+ * - padding
+ * - space
+ * - spacing
+ */
+
+export const sizes = ['quarter', 'half', 'double', 'triple', 'quad', 'zero']
+export const sides = ['top', 'botton', 'left', 'right']
 
 function mod(key) {
-  return `${key ? `--${key}` : ''}`
+  return key ? `--${key}` : ''
 }
 
-function getSpacing({ size, side }) {
+function getBaseClass(baseClass, size, side) {
   return `${baseClass}${mod(size)}${mod(side)}`
 }
 
-export { spacingSizes, spacingSides }
+export function getPaddingClass({ size, side }) {
+  return getBaseClass('u-padding', size, side)
+}
 
-export default getSpacing
+export function getSpaceClass({ size, side }) {
+  return getBaseClass('u-space', size, side)
+}
+
+export function getSpacingClass({ size, side }) {
+  return getBaseClass('u-spacing', size, side)
+}
