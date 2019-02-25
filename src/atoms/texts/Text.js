@@ -3,40 +3,24 @@ import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
 import useDropcap from '../../helpers/useDropcap'
-import { getSpacingClass, sides, sizes } from '../global/spacing'
 import Dropcap from './Dropcap'
 
-function Text({
-  as,
-  children,
-  hasDropcap,
-  hasSpacing,
-  spacingSize,
-  spacingSide,
-}) {
+function Text({ as, children, hasDropcap, ...props }) {
   const content = useDropcap(children, { Dropcap, enabled: hasDropcap })
   const dropcap = hasDropcap ? 'has-dropcap' : ''
-  const spacing = hasSpacing
-    ? getSpacingClass({
-        size: spacingSize,
-        side: spacingSide,
-      })
-    : ''
 
   return (
-    <Element tag={as} className={`text ${spacing} ${dropcap}`}>
+    <Element {...props} tag={as} className={`text ${dropcap}`}>
       {content}
     </Element>
   )
 }
 
 Text.propTypes = {
+  ...Element.propTypes,
   as: PropTypes.oneOf(['article', 'div', 'section']),
   children: PropTypes.node,
   hasDropcap: PropTypes.bool,
-  hasSpacing: PropTypes.bool,
-  spacingSide: PropTypes.oneOf(sides),
-  spacingSize: PropTypes.oneOf(sizes),
 }
 Text.defaultProps = {
   as: 'div',
