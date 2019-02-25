@@ -38,7 +38,10 @@ const defaults = {
  * @param {Map} data - Map with data that will be used by `rule()` for a specific media query
  * @param {String} mediaFeature - default media features
  */
-function useResponsiveStyles(rule, data = {}, settings = defaults) {
+function useResponsiveStyles(rule, data, settings = defaults) {
+  // Bailout when there is no data
+  if (!data) return null
+
   const { mediaFeature, unit } = settings
   const styles = sortQueries(data).map(source => {
     const size = source === 'default' ? null : source
