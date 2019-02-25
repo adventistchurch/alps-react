@@ -11,7 +11,7 @@ import {
 import { iconNames } from '../../atoms/icons/Icon'
 import { dateFormats } from '../../helpers/DateTimeFormat'
 
-import MediaBlock from './MediaBlock'
+import MediaBlock, { mediaBlocksTypes } from './MediaBlock'
 
 import data from './MediaBlock.stories.json'
 import { pictureTab } from '../../atoms/images/Picture.stories'
@@ -101,6 +101,12 @@ storiesOf('molecules/blocks/MediaBlock', module)
     const { category, date, dateFormat } = metaTab()
     const { cta, ctaIcon } = ctaTab()
     const { reversed } = displayTab()
+    const type = select(
+      'Type',
+      mediaBlocksTypes,
+      MediaBlock.defaultProps.type,
+      'Type'
+    )
 
     return (
       <MediaBlock
@@ -115,6 +121,7 @@ storiesOf('molecules/blocks/MediaBlock', module)
         kicker={kicker}
         reversed={reversed}
         title={title}
+        type={type}
         url={url}
       />
     )

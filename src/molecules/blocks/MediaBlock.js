@@ -2,23 +2,54 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
+import Figure from '../../molecules/media/Figure'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 
 import MediaImage from './MediaImage'
 
-const typeClasses = {
-  default: {
-    block: 'c-media-block__row c-block__row',
-    image: '',
-    imageWrap: '',
-    content: 'u-color--gray',
-    group: '',
-    kicker: '',
-    title: 'u-theme--color--darker',
-    meta: 'u-theme--color--dark',
+export const mediaBlocksTypes = [
+  'column',
+  'feature',
+  'full',
+  'inline',
+  'inset',
+  'longform',
+  'row',
+  'stacked',
+]
+
+const defaultClasses = {
+  image: '',
+  imageWrap: '',
+  content: '',
+  group: '',
+  kicker: '',
+  title: '',
+  meta: '',
+}
+
+const presetClasses = {
+  column: {
+    content: 'u-color--white',
+    group: 'u-flex--justify-center u-overlay--dark',
+    title: 'u-font--primary--xl u-flex--justify-center',
+  },
+  feature: {
+    block:
+      'c-block__inline c-media-block__inine c-block--reversed c-media-block--reversed l-grid--7-col',
+    content:
+      'l-grid-item u-border-left--black--at-large u-theme--border-color--darker--left u-theme--color--lighter u-theme--background-color--darker u-padding--top u-padding--bottom',
+    image: 'l-grid-item u-padding--zero--sides',
+    title: 'u-color--white u-font--primary u-font-weight--bold',
+  },
+  full: {
+    content: 'l-grid--7-col l-grid-wrap l-grid-wrap--7-of-7 u-color--white',
+    group:
+      'u-flex--justify-center u-flex--align-center u-text-align--center u-overlay--dark',
+    title:
+      'l-grid-item--5-col l-grid-item--m--2-col u-font--primary--xl u-flex--justify-center',
   },
   inline: {
-    block: 'c-block__inline c-media-block__inine',
     image: 'u-padding--zero--sides',
     content:
       'u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
@@ -26,14 +57,24 @@ const typeClasses = {
     meta: 'u-theme--color--dark',
   },
   inset: {
-    block: 'c-block__inset c-media-block__inset',
     content: 'l-grid--7-col u-theme--background-color--darker',
     title: 'l-grid-item l-grid-item--m--4-col u-link-hover--white',
     meta: 'l-grid-item l-grid-item--m--2-col',
   },
-  stacked: {
-    block: 'c-block__stacked c-media-block__stacked',
+  longform: {
+    block:
+      ' l-grid--7-col l-grid-wrap u-theme--background-color--darker can-be--dark-dark u-padding--top u-padding--bottom',
+    type: 'inline',
+    content:
+      'u-shift--left--1-col--at-large l-grid-item l-grid-item--m--6-col l-grid-item--l--4-col l-grid-item--xl--3-col u-border--left u-theme--border-color--light--left u-theme--color--lighter',
+    title: 'u-color--white u-font--primary--l',
   },
+  row: {
+    content: 'u-color--gray',
+    title: 'u-theme--color--darker',
+    meta: 'u-theme--color--dark',
+  },
+  stacked: {},
 }
 
 const borderClasses = {
@@ -61,13 +102,19 @@ function MediaBlock({
   url,
 }) {
   // Get classes including ones for current type (if provided)
-  const classes = { ...typeClasses.default, ...(type ? typeClasses[type] : {}) }
+  const classes = {
+    ...defaultClasses,
+    ...(type ? presetClasses[type] : {}),
+  }
 
-  if (reversed)
-    classes.block = `${classes.block} c-block--reversed c-media-block--reversed`
+  // Set block classes
+  const blockType = classes.type || type
+  const blockClass = `c-media-block c-block c-media-block__${blockType} c-block__${blockType} ${
+    reversed ? ' c-block--reversed c-media-block--reversed`' : ''
+  } ${classes.block}`
 
-  // Get border clases
-  const borderLeftClass =
+  // Set border clases
+  const borderClass =
     border === 'left'
       ? type === 'stacked'
         ? borderClasses.left
@@ -77,7 +124,7 @@ function MediaBlock({
       : ''
 
   return (
-    <div className={`c-media-block c-block ${classes.block}`}>
+    <div className={blockClass}>
       {image && (
         <MediaImage
           asBackgroundImage={asBackgroundImage}
@@ -89,16 +136,14 @@ function MediaBlock({
         />
       )}
       {video && (
-        <div className="c-block__image-wrap ">
-          <figure className="o-figure">
-            <div className="fitvid">{video}</div>
-          </figure>
+        <div className="c-block__image-wrap">
+          <Figure videoSrc={video} />
         </div>
       )}
       <div
         className={`c-media-block__content c-block__content u-spacing ${
           classes.content
-        } ${borderLeftClass}`}
+        } ${borderClass}`}
       >
         <div
           className={`c-block__group c-media-block__group u-spacing ${
@@ -180,6 +225,7 @@ MediaBlock.propTypes = {
   blockIconType: PropTypes.oneOf(['audio', 'gallery', 'video']),
   border: PropTypes.oneOf(['left', 'none']),
   category: PropTypes.string,
+  column: PropTypes.bool,
   cta: PropTypes.string,
   ctaIcon: Button.propTypes.icon,
   description: PropTypes.string,
@@ -189,8 +235,8 @@ MediaBlock.propTypes = {
   kicker: PropTypes.string,
   url: PropTypes.string,
   reversed: PropTypes.bool,
-  type: PropTypes.oneOf(['inline', 'inset', 'stacked']),
-  title: PropTypes.string,
+  type: PropTypes.oneOf(mediaBlocksTypes),
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   video: PropTypes.node,
 }
 
@@ -199,6 +245,7 @@ MediaBlock.defaultProps = {
   border: 'none',
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
+  type: 'row',
 }
 
 export default MediaBlock
