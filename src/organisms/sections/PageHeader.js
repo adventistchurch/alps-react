@@ -9,9 +9,7 @@ const getBackgroundRule = url => `.c-background-image {
 }`
 
 function PageHeader({ title, kicker, background, url }) {
-  const bgInlineStyles = background
-    ? useResponsiveStyles(getBackgroundRule, background)
-    : null
+  const bgInlineStyles = useResponsiveStyles(getBackgroundRule, background)
 
   const backgroundClass = background
     ? 'c-background-image blended u-background--cover u-gradient--bottom'
