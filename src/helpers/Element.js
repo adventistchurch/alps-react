@@ -12,10 +12,13 @@ import {
 function Element({
   as,
   children,
+  padding,
   paddingSide,
   paddingSize,
+  space,
   spaceSide,
   spaceSize,
+  spacing,
   spacingSide,
   spacingSize,
   tag,
@@ -24,15 +27,15 @@ function Element({
 }) {
   const classes = [className]
 
-  if (paddingSize || paddingSide)
+  if (padding || paddingSide || paddingSize)
     classes.push(
       getPaddingClass({
-        size: spaceSize,
-        side: spaceSide,
+        size: paddingSide,
+        side: paddingSize,
       })
     )
 
-  if (spaceSize || spaceSide)
+  if (space || spaceSide || spaceSize)
     classes.push(
       getSpaceClass({
         size: spaceSize,
@@ -40,7 +43,7 @@ function Element({
       })
     )
 
-  if (spacingSize || spacingSide)
+  if (spacing || spacingSide || spacingSize)
     classes.push(
       getSpacingClass({
         size: spacingSize,
@@ -61,10 +64,13 @@ Element.propTypes = {
   as: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
+  padding: PropTypes.bool,
   paddingSize: PropTypes.oneOf(sides),
   paddingSide: PropTypes.oneOf(sizes),
+  space: PropTypes.bool,
   spaceSide: PropTypes.oneOf(sides),
   spaceSize: PropTypes.oneOf(sizes),
+  spacing: PropTypes.bool,
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
   tag: PropTypes.string,
