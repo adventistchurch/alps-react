@@ -11,7 +11,8 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
     <section className="c-testimonies u-spacing u-posititon--relative">
       <HeadingBlock
         linkText={linkText}
-        spacing="double--bottom"
+        spaceSide="bottom"
+        spaceSize="double"
         title={title}
         url={linkUrl}
       />

@@ -51,8 +51,6 @@ storiesOf('organisms/sections/Testimonies', module)
       shareUrl,
     } = testimoniesTab()
 
-    console.log(items)
-
     return (
       <Testimonies
         items={items}
