@@ -1,9 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function HeadingBlock({ title, linkText, url }) {
+import Element, { sides, sizes } from '../../helpers/Element'
+
+function HeadingBlock({ linkText, spaceSide, spaceSize, title, url }) {
   return (
-    <div className="c-block__heading u-theme--border-color--darker">
+    <Element
+      className="c-block__heading u-theme--border-color--darker"
+      spaceSide={spaceSide}
+      spaceSize={spaceSize}
+      tag="div"
+    >
       <h3 className="c-block__heading-title u-theme--color--darker">{title}</h3>
       {url && linkText && (
         <a
@@ -13,12 +20,14 @@ function HeadingBlock({ title, linkText, url }) {
           {linkText}
         </a>
       )}
-    </div>
+    </Element>
   )
 }
 
 HeadingBlock.propTypes = {
   linkText: PropTypes.string,
+  spaceSide: PropTypes.oneOf(sides),
+  spaceSize: PropTypes.oneOf(sizes),
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
 }
