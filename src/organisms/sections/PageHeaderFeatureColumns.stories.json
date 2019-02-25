@@ -1,0 +1,37 @@
+{
+  "blocks": [
+    {
+      "title": "Sermon - Seeking Another Way",
+      "image": {
+        "alt": "Aut blanditiis qui",
+        "srcSet": {
+          "default": "//picsum.photos/350/150?image=1067",
+          "700": "//picsum.photos/450/900?image=1067",
+          "1100": "//picsum.photos/600/1200?image=1067"
+        }
+      }
+    },
+    {
+      "title": "Blog - Son Rise Over the Land of the Rising Sun: My Eyewitness Account",
+      "image": {
+        "alt": "Aut blanditiis qui",
+        "srcSet": {
+          "default": "//picsum.photos/350/150?image=1066",
+          "700": "//picsum.photos/450/900?image=1066",
+          "1100": "//picsum.photos/600/1200?image=1066"
+        }
+      }
+    },
+    {
+      "title": "Event - Religious Liberty – The Freedom to Beleive",
+      "image": {
+        "alt": "Aut blanditiis qui",
+        "srcSet": {
+          "default": "//picsum.photos/350/150?image=1043",
+          "700": "//picsum.photos/450/900?image=1043",
+          "1100": "//picsum.photos/600/1200?image=1043"
+        }
+      }
+    }
+  ]
+}
