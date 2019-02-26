@@ -6,7 +6,7 @@ import JSXAddon from 'storybook-addon-jsx'
 import { configureViewport } from '@storybook/addon-viewport'
 
 import Wrapper from '../src/Wrapper'
-import * as colors from '../src/atoms/global/colors'
+import { primaryColors, secondaryColors } from '../src/atoms/global/colors'
 
 const style = {
   height: '100vh',
@@ -16,14 +16,14 @@ addDecorator(story => {
   const content = story()
   const primaryColor = select(
     'Primary color',
-    colors.primary,
-    colors.primary[0],
+    primaryColors,
+    primaryColors[0],
     'Theme'
   )
   const secondaryColor = select(
     'Secondary color',
-    colors.secondary,
-    colors.secondary[0],
+    secondaryColors,
+    secondaryColors[0],
     'Theme'
   )
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { primary, secondary } from './atoms/global/colors'
+import { primaryColors, secondaryColors } from './atoms/global/colors'
 import useDrawerContext from './helpers/useDrawerContext'
 
 function Body({ children, primaryColor, secondaryColor, style }) {
@@ -21,8 +21,8 @@ function Body({ children, primaryColor, secondaryColor, style }) {
 }
 Body.propTypes = {
   children: PropTypes.node,
-  primaryColor: PropTypes.oneOf(primary),
-  secondaryColor: PropTypes.oneOf(secondary),
+  primaryColor: PropTypes.oneOf(primaryColors),
+  secondaryColor: PropTypes.oneOf(secondaryColors),
   style: PropTypes.object,
 }
 Body.defaultProps = {
