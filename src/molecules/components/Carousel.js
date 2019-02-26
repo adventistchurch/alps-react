@@ -1,30 +1,53 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import renderItems from '../../helpers/renderItems'
-import Icon from '../../atoms/icons/Icon'
+import IconWrap from '../../atoms/icons/IconWrap'
+import Slider, { DefaultContols } from '../../helpers/Slider'
 import Slide from './Slide'
 
-function Carousel({ slides, showArrows, outerClass, carouselClass }) {
+const sliderProps = {
+  fade: true,
+  touchThreshold: 11,
+  dots: true,
+  adaptiveHeight: true,
+}
+
+function CarouselControls({ onNext, onPrev }) {
+  return (
+    <div className="c-carousel__controls">
+      <span className="o-arrow__prev" onClick={onPrev}>
+        <IconWrap
+          background="darker"
+          className="c-carousel__arrow c-carousel__arrow--prev u-round"
+          name="arrow-bracket-left"
+          size="s"
+        />
+      </span>
+      <span className="o-arrow__next" onClick={onNext}>
+        <IconWrap
+          background="darker"
+          className="c-carousel__arrow c-carousel__arrow--next u-round"
+          name="arrow-bracket-right"
+          size="s"
+        />
+      </span>
+    </div>
+  )
+}
+CarouselControls.propTypes = DefaultContols.propTypes
+
+function Carousel({ slides, showArrows, outerClass }) {
   return (
     <div className={`c-carousel u-position--relative ${outerClass}`}>
-      <div className={`c-carousel__slides ${carouselClass}`}>
-        {renderItems(slides, Slide)}
-      </div>
-      {showArrows && (
-        <div className="c-carousel__controls">
-          <span className="o-arrow__prev">
-            <span className="c-carousel__arrow c-carousel__arrow--prev u-icon u-icon--s u-round u-theme--background-color--darker u-path-fill--white">
-              <Icon name="arrow-bracket-left" />
-            </span>
-          </span>
-          <span className="o-arrow__next">
-            <span className="c-carousel__arrow c-carousel__arrow--next u-icon u-round u-theme--background-color--darker u-path-fill--white">
-              <Icon name="arrow-bracket-right" />
-            </span>
-          </span>
-        </div>
-      )}
+      <Slider
+        className="c-carousel__slides"
+        controls={showArrows ? CarouselControls : null}
+        {...sliderProps}
+      >
+        {slides.map((slide, key) => (
+          <Slide {...slide} key={`carousel-slide-${key}`} />
+        ))}
+      </Slider>
     </div>
   )
 }
@@ -33,12 +56,10 @@ Carousel.propTypes = {
   slides: PropTypes.array,
   showArrows: PropTypes.bool,
   outerClass: PropTypes.string,
-  carouselClass: PropTypes.string,
 }
 Carousel.defaultProps = {
   slides: [],
   showArrows: true,
-  carouselClass: 'js-carousel__single-item',
 }
 
 export default Carousel

@@ -13,9 +13,13 @@ function Slide({
   imageIsLazy,
   className,
   textClass,
+  ...others
 }) {
   return (
-    <div className={`c-carousel__item u-position--relative ${className}`}>
+    <div
+      className={`c-carousel__item u-position--relative ${className}`}
+      {...others}
+    >
       <Picture image={image} lazy={imageIsLazy} />
       {heading && (
         <div className="c-carousel__item-text__wrap l-grid l-grid--7-col u-shift--left--1-col--at-large">
@@ -29,7 +33,7 @@ function Slide({
                 </h2>
                 {subtitle && (
                   <h3 className="c-carousel__item-subtitle u-font--secondary--s u-text-transform--upper">
-                    {subtitle}
+                    <strong>{subtitle}</strong>
                   </h3>
                 )}
                 <div className="c-carousel__item-dek">
@@ -53,19 +57,18 @@ function Slide({
 }
 
 Slide.propTypes = {
-  heading: PropTypes.string,
-  subtitle: PropTypes.string,
-  dek: PropTypes.string,
-  cta: PropTypes.string,
-  url: PropTypes.string,
-  image: Picture.propTypes.image.isRequired,
-  imageIsLazy: PropTypes.bool,
   className: PropTypes.string,
+  cta: PropTypes.string,
+  dek: PropTypes.string,
+  heading: PropTypes.string,
+  image: Picture.propTypes.image.isRequired,
+  imageIsLazy: Picture.propTypes.bool,
+  subtitle: PropTypes.string,
   textClass: PropTypes.string,
+  url: PropTypes.string,
 }
 
 Slide.defaultProps = {
-  isLazy: false,
   className: '',
   textClass: '',
 }

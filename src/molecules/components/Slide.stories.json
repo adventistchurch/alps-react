@@ -6,12 +6,12 @@
   "url": "https://www.adventist.org",
   "image": {
     "srcSet": {
-      "default": "//picsum.photos/500/282",
-      "500": "//picsum.photos/900/507?image=314",
-      "750": "//picsum.photos/700/395",
-      "1200": "//picsum.photos/500/282"
+      "default": "//picsum.photos/500/375?image=767",
+      "500": "//picsum.photos/750/350?image=757",
+      "750": "//picsum.photos/1200/800?image=746",
+      "1200": "//picsum.photos/1500/900?image=737"
     },
     "alt": "Placeholder image"
   },
-  "isLazy": false
+  "imageIsLazy": false
 }
