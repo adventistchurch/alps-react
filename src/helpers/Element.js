@@ -2,6 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  themeBackgroundClass,
+  themeBackgroundColors,
+  themeForegroundClass,
+  themeForegroundColors,
+} from '../atoms/global/colors'
+
+import {
+  fontClass,
+  fontSizes,
+  fontTypes,
+  textClass,
+  textTransformClass,
+  textTransforms,
+  styles,
+} from '../atoms/global/fonts'
+
+import {
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
@@ -11,7 +28,11 @@ import {
 
 function Element({
   as,
+  backgroundColor,
   children,
+  color,
+  fontSize,
+  fontType,
   padding,
   paddingSide,
   paddingSize,
@@ -22,10 +43,20 @@ function Element({
   spacingSide,
   spacingSize,
   tag,
+  style,
+  transform,
   className,
   ...props
 }) {
   const classes = [className]
+
+  if (fontType && fontSize)
+    classes.push(`${fontClass}--${fontType}--${fontSize}`)
+  if (color) classes.push(`${themeForegroundClass}--${color}`)
+  if (backgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
+  if (style) classes.push(`${textClass}--${style}`)
+  if (transform) classes.push(`${textTransformClass}--${transform}`)
+  if (className) classes.push(className)
 
   if (padding || paddingSide || paddingSize)
     classes.push(
@@ -64,6 +95,10 @@ Element.propTypes = {
   as: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
+  color: PropTypes.oneOf(themeForegroundColors),
+  backgroundColor: PropTypes.oneOf(themeBackgroundColors),
+  fontSize: PropTypes.oneOf(fontSizes),
+  fontType: PropTypes.oneOf(fontTypes),
   padding: PropTypes.bool,
   paddingSize: PropTypes.oneOf(sides),
   paddingSide: PropTypes.oneOf(sizes),
@@ -73,7 +108,9 @@ Element.propTypes = {
   spacing: PropTypes.bool,
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
+  style: PropTypes.oneOf(styles),
   tag: PropTypes.string,
+  transform: PropTypes.oneOf(textTransforms),
 }
 Element.defaultProps = {
   as: 'div',
