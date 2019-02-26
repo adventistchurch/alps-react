@@ -1,9 +1,9 @@
-const sizes = ['xs', 's', 'm', 'l', 'xl', 'xxl']
+export const fontClass = 'u-font'
+export const fontTypes = ['primary', 'secondary', 'monospaced']
+export const fontSizes = ['xs', 's', 'm', 'l', 'xl', 'xxl']
 
-const sizesMap = type => sizes.map(size => `u-font--${type}--${size}`)
+export const textClass = 'u-text'
+export const textStyles = ['strong']
 
-const primary = sizesMap('primary')
-const secondary = sizesMap('secondary')
-const all = [...primary, ...secondary]
-
-export { all, primary, secondary, sizes }
+export const textTransformClass = 'u-text-transform'
+export const textTransforms = ['upper', 'lower']
