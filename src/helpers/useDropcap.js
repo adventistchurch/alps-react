@@ -9,7 +9,7 @@ DefaultDropcap.propTypes = {
 }
 
 function setDropcapInChildren(child, Dropcap, found = false, setFound = null) {
-  const { children, otherProps } = child.props
+  const { children, ...otherProps } = child.props
   return cloneElement(child, {
     children: withChildren(children, Dropcap, found, setFound),
     ...otherProps,
