@@ -15,7 +15,7 @@ function SubscribeForm({
 }) {
   return (
     <Form className="c-form c-subscribe-form u-theme--dark u-theme--background-color--darker u-spacing u-padding">
-      <Title color="white" fontSize="l" text={title} style="strong" />
+      <Title themeColor="white" fontSize="l" text={title} style="strong" />
       <BaseInput
         name="first_name"
         label="First Name"

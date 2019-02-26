@@ -17,7 +17,7 @@ function LoginForm({
 }) {
   return (
     <Form spacing="half" {...props}>
-      <Title color="darker" fontSize="m" fontType="secondary">
+      <Title themeColor="darker" fontSize="m" fontType="secondary">
         {title}
       </Title>
       {submitMessage && (

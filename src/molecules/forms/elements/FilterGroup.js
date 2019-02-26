@@ -10,7 +10,7 @@ function FormFilter({ options, title }) {
         as="h3"
         fontType="secondary"
         fontSize="s"
-        color="base"
+        themeColor="base"
         text={title}
         transform="upper"
         style="strong"

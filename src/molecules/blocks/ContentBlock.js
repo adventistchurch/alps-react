@@ -36,7 +36,7 @@ function ContentBlock({
 
       <Title
         as="h3"
-        color="darker"
+        themeColor="darker"
         text={title}
         size="m"
         className={titleClass}

@@ -10,7 +10,7 @@ const CommentForm = ({ rows, submitLabel, title, ...props }) => {
       <div className="u-spacing--half">
         <Title
           as="h3"
-          color="darker"
+          themeColor="darker"
           fontSize="m"
           fontType="secondary"
           style="strong"

@@ -2,10 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  backgroundColorClass,
+  backgroundColors,
+  textColorClass,
+  textColors,
   themeBackgroundClass,
   themeBackgroundColors,
-  themeForegroundClass,
-  themeForegroundColors,
+  themeColorClass,
+  themeColors,
 } from '../atoms/global/colors'
 
 import {
@@ -49,6 +53,8 @@ function parseProps(props) {
     spacingSide,
     spacingSize,
     style,
+    themeBackgroundColor,
+    themeColor,
     transform,
     className,
     ...otherProps
@@ -58,8 +64,10 @@ function parseProps(props) {
 
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
-  if (color) classes.push(`${themeForegroundClass}--${color}`)
-  if (backgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
+  if (color) classes.push(`${textColorClass}--${color}`)
+  if (themeColor) classes.push(`${themeColorClass}--${color}`)
+  if (backgroundColor) classes.push(`${backgroundColorClass}--${color}`)
+  if (themeBackgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
   if (style) classes.push(`${textClass}--${style}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
   if (className) classes.push(className)
@@ -104,8 +112,8 @@ Element.propTypes = {
   as: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.oneOf(themeForegroundColors),
-  backgroundColor: PropTypes.oneOf(themeBackgroundColors),
+  color: PropTypes.oneOf(textColors),
+  backgroundColor: PropTypes.oneOf(backgroundColors),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
   padding: PropTypes.bool,
@@ -119,6 +127,8 @@ Element.propTypes = {
   spacingSize: PropTypes.oneOf(sizes),
   style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
+  themeBackround: PropTypes.oneOf(themeBackgroundColors),
+  themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
 }
 Element.defaultProps = {
