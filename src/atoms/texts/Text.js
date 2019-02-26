@@ -18,7 +18,7 @@ function Text({ as, children, hasDropcap, ...props }) {
 
 Text.propTypes = {
   ...Element.propTypes,
-  as: PropTypes.oneOf(['article', 'div', 'section']),
+  as: PropTypes.oneOf(['article', 'div', 'p', 'section', 'span']),
   children: PropTypes.node,
   hasDropcap: PropTypes.bool,
 }

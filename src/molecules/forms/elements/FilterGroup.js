@@ -8,12 +8,12 @@ function FormFilter({ options, title }) {
     <div className="c-filter__form-item u-spacing--half l-grid-item l-grid-item--s--2-col l-grid-item--l--1-col">
       <Title
         as="h3"
-        className="u-color--gray can-be--lighter"
-        color={null}
-        strong
+        fontType="secondary"
+        fontSize="s"
+        color="base"
         text={title}
         transform="upper"
-        type="secondary"
+        textStyle="strong"
       />
       {options.map(({ checked, id, name, type, value }, key) => {
         const inputId = `${type}-${id}`

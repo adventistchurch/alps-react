@@ -10,12 +10,12 @@ const CommentForm = ({ rows, submitLabel, title, ...props }) => {
       <div className="u-spacing--half">
         <Title
           as="h3"
-          type="secondary"
-          size="m"
           color="darker"
-          transform="upper"
+          fontSize="m"
+          fontType="secondary"
           text={title}
-          strong
+          textStyle="strong"
+          transform="upper"
         />
         <Form spacing="half" noValidate {...props}>
           <p>
