@@ -8,7 +8,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs'
 
-import useRange from '../../helpers/useRange'
+import range from '../../helpers/range'
 import Table from './Table'
 
 import data from './Table.stories.json'
@@ -43,9 +43,9 @@ storiesOf('atoms/tables/Table', module)
     const cellText = text('Cell text', '', propsTab)
     const slim = boolean('Slim', false, propsTab)
 
-    const columns = useRange(1, colCount).map(col => `Header ${col}`)
-    const rows = useRange(1, rowCount).map(row =>
-      useRange(1, colCount).map(col => cellText || `C:${col} / R:${row}`)
+    const columns = range(1, colCount).map(col => `Header ${col}`)
+    const rows = range(1, rowCount).map(row =>
+      range(1, colCount).map(col => cellText || `C:${col} / R:${row}`)
     )
 
     return <Table title={title} columns={columns} rows={rows} slim={slim} />

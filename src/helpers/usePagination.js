@@ -1,4 +1,4 @@
-import useRange from './useRange'
+import range from './range'
 
 /**
  *
@@ -76,18 +76,18 @@ function usePagination({
 
   // - First numbered pages
   if (lowerOffset > lowerLimit) {
-    const firstRange = useRange(first, first + surrounding)
+    const firstRange = range(first, first + surrounding)
     pages.push(setPagesForRange(firstRange))
     pages.push(divider)
   }
 
   // - Middle numbered pages
-  const middleRange = useRange(lowerOffset, higerOffset)
+  const middleRange = range(lowerOffset, higerOffset)
   pages.push(setPagesForRange(middleRange))
 
   // - Last numbered pages
   if (higerOffset < last) {
-    const lastRange = useRange(last - surrounding, last)
+    const lastRange = range(last - surrounding, last)
     pages.push(divider)
     pages.push(setPagesForRange(lastRange))
   }
