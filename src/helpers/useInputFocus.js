@@ -10,24 +10,15 @@ function useInputFocus(hasFocus) {
   const inputRef = useRef(null)
   const input = inputRef.current
 
-  let focusTimeout
+  const focusTimeout = setTimeout(() => {
+    if (hasFocus) {
+      input && input.focus()
+    } else {
+      input && input.blur()
+    }
+  }, 250)
 
-  useEffect(
-    function() {
-      if (input) {
-        focusTimeout = setTimeout(function() {
-          if (hasFocus) {
-            input.focus()
-          } else {
-            input.blur()
-          }
-        }, 250)
-      }
-
-      return () => clearTimeout(focusTimeout)
-    },
-    [hasFocus]
-  )
+  useEffect(() => () => clearTimeout(focusTimeout), [focusTimeout])
 
   return inputRef
 }
