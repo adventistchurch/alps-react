@@ -28,7 +28,7 @@ export const grayscaleColors = [
 ]
 
 // Text Colors:
-
+export const textColorClass = 'u-color'
 export const textColors = [
   'base',
   ...grayscaleColors,
@@ -42,22 +42,15 @@ export const svgFillClass = 'u-path-fill'
 export const svgFillColors = grayscaleColors
 
 // Background Colors (grayscale)
-
-export const backgroundClass = 'u-background-color'
+export const backgroundColorClass = 'u-background-color'
 export const backgroundColors = ['none', ...grayscaleColors]
 
 // Theme Colors:
 
 // - Foreground
-export const themeForegroundClass = 'u-theme--color'
-export const themeForegroundColors = [
-  'base',
-  'dark',
-  'darker',
-  'light',
-  'lighter',
-]
+export const themeColorClass = 'u-theme--color'
+export const themeColors = ['base', 'dark', 'darker', 'light', 'lighter']
 
 // - Background
 export const themeBackgroundClass = 'u-theme--background-color'
-export const themeBackgroundColors = themeForegroundColors
+export const themeBackgroundColors = [...themeColors]
