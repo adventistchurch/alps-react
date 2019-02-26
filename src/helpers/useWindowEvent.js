@@ -11,13 +11,13 @@ import debounce from './debounce'
  * @param {Boolean} inmediate Should callback be run at start
  */
 function useWindowEvent(event, callback, wait = 100, inmediate = false) {
-  // If window is not available (SSR), or event nor callback are not present, bail out
-  if (!window || !event || !callback) return
-
   // if wait is not 0, set a debounced version of callback
   const debouncedCallback = wait > 0 ? debounce(callback, wait) : callback
 
   useEffect(() => {
+    // If window is not available (SSR), or event nor callback are not present, bail out
+    if (!window || !event || !callback) return () => null
+
     // Inmediate run
     inmediate && callback()
 
@@ -26,7 +26,7 @@ function useWindowEvent(event, callback, wait = 100, inmediate = false) {
 
     // Cleanup listener on unmount
     return () => window.removeEventListener(event, debouncedCallback)
-  }, [])
+  }, [callback, debouncedCallback, event, inmediate])
 }
 
 export default useWindowEvent
