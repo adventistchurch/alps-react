@@ -20,6 +20,7 @@ DefaultContols.propTypes = {
 function Slider({ children, controls: Controls, className, ...settings }) {
   const {
     initialized,
+    listRef,
     onNext,
     onPrev,
     sliderRef,
@@ -34,7 +35,7 @@ function Slider({ children, controls: Controls, className, ...settings }) {
       }`}
       ref={sliderRef}
     >
-      <div className="slick-list" aria-live="polite">
+      <div className="slick-list" aria-live="polite" ref={listRef}>
         <div className="slick-track" role="listbox" ref={trackRef}>
           {slides}
         </div>

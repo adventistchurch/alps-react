@@ -2,74 +2,29 @@ import React, { cloneElement, useEffect, useState, useRef } from 'react'
 
 import useWindowEvent from './useWindowEvent'
 
-function getAnimProps(options) {
-  const bodyStyle = document.body.style
+const isSet = x => x !== undefined
 
-  const position = options.vertical === true ? 'top' : 'left'
+function getAnimProps() {
+  const style = document.body.style
 
-  const noPerspective = bodyStyle.perspectiveProperty === undefined
-
-  let animType = 'transform'
   let transform = 'transform'
   let transition = 'transition'
 
-  let cssTransitions
-
-  if (
-    bodyStyle.WebkitTransition !== undefined ||
-    bodyStyle.MozTransition !== undefined ||
-    bodyStyle.msTransition !== undefined
-  ) {
-    if (options.useCSS === true) {
-      cssTransitions = true
-    }
-  }
-
-  if (options.fade) {
-    if (typeof options.zIndex === 'number') {
-      if (options.zIndex < 3) {
-        options.zIndex = 3
-      }
-    } else {
-      options.zIndex = defaults.zIndex
-    }
-  }
-
-  if (bodyStyle.OTransform !== undefined) {
-    transform = '-o-transform'
-    transition = 'OTransition'
-    if (noPerspective && bodyStyle.webkitPerspective === undefined)
-      animType = false
-  }
-  if (bodyStyle.MozTransform !== undefined) {
-    transform = '-moz-transform'
-    transition = 'MozTransition'
-    if (noPerspective && bodyStyle.MozPerspective === undefined)
-      animType = false
-  }
-  if (bodyStyle.webkitTransform !== undefined) {
+  if (isSet(style.webkitTransform)) {
     transform = '-webkit-transform'
     transition = 'webkitTransition'
-    if (noPerspective && bodyStyle.webkitPerspective === undefined)
-      animType = false
-  }
-  if (bodyStyle.msTransform !== undefined) {
+  } else if (isSet(style.msTransform)) {
     transform = '-ms-transform'
     transition = 'msTransition'
-    if (bodyStyle.msTransform === undefined) animType = false
+  } else if (isSet(style.MozTransform)) {
+    transform = '-moz-transform'
+    transition = 'MozTransition'
+  } else if (isSet(style.OTransform)) {
+    transform = '-o-transform'
+    transition = 'OTransition'
   }
 
-  const transformsEnabled =
-    options.useTransform && (animType !== null && animType !== false)
-
-  return {
-    animType,
-    cssTransitions,
-    position,
-    transform,
-    transition,
-    transformsEnabled,
-  }
+  return { transform, transition }
 }
 
 /**
@@ -83,17 +38,25 @@ export default function useSlider(children = [], settings = {}) {
   // Set some states
   const [index, setIndex] = useState(0)
   const [initialized, setInitialized] = useState(0)
-  const [slides, setSlides] = useState([])
+  const [slides, setSlides] = useState(null)
   const [slideWidth, setSlideWidth] = useState(0)
 
   // Set refs
   const sliderRef = useRef()
+  const listRef = useRef()
   const trackRef = useRef()
 
-  // Extract some settings
-  const { responsive, slidesToScroll, slidesToShow } = options
+  // Extract options
+  const {
+    cssEase,
+    fade,
+    responsive,
+    slidesToScroll,
+    slidesToShow,
+    speed,
+  } = options
 
-  const animProps = getAnimProps(options)
+  const animProps = getAnimProps()
 
   // Get total slides
   const totalSlides = children.length
@@ -122,25 +85,30 @@ export default function useSlider(children = [], settings = {}) {
   }
 
   function updateSlides() {
-    const { fade } = options
-
-    console.log(slideWidth)
-
     setSlides(
       React.Children.map(children, (child, i) => {
         const { className, ...childProps } = child.props
         const current = i === index
         const active = fade ? current : i >= index && index + slidesToShow >= i
         const style = fade
-          ? { opacity: current ? 1 : 0 }
+          ? {
+              width: slideWidth,
+              opacity: current ? 1 : 0,
+              top: 0,
+              left: index === 0 ? 0 : -slideWidth / i,
+              position: 'relative',
+              transition: current ? `opacity ${speed}ms ${cssEase}` : 'none',
+            }
           : { width: slideWidth }
 
         const slideProps = {
           'aria-hidden': !active,
-          className: `${className} slick-slide ${active ? 'slick-active' : ''}`,
+          className: `${className} slick-slide ${
+            active ? 'slick-active' : ''
+          } ${current ? 'slick-current' : ''}`,
           role: 'option',
-          tabIndex: -1,
           style,
+          tabIndex: -1,
         }
 
         return cloneElement(child, { ...slideProps, ...childProps })
@@ -151,7 +119,6 @@ export default function useSlider(children = [], settings = {}) {
   function setTransitions() {
     const trackElem = trackRef.current
     const { transition } = animProps
-    const { cssEase, fade, speed } = options
 
     const animation = fade ? 'opacity' : 'transform'
 
@@ -160,12 +127,19 @@ export default function useSlider(children = [], settings = {}) {
 
   function onResize() {
     const sliderElem = sliderRef.current
+    const listElem = listRef.current
     const trackElem = trackRef.current
     const { fade } = options
 
-    if (fade === false && sliderElem) {
+    const sliderWidth = sliderElem.offsetWidth
+
+    if (fade === true) {
+      listElem.style.height = '600px'
+      trackElem.style.width = `${sliderWidth * totalSlides}px`
+
+      setSlideWidth(sliderWidth)
+    } else {
       let itemsToShow = slidesToShow
-      const sliderWidth = sliderElem.offsetWidth
 
       if (responsive) {
         const breakpointKey = Object.keys(responsive)
@@ -201,6 +175,7 @@ export default function useSlider(children = [], settings = {}) {
 
   return {
     initialized,
+    listRef,
     onNext,
     onPrev,
     sliderRef,
@@ -212,36 +187,23 @@ export default function useSlider(children = [], settings = {}) {
 const defaults = {
   adaptiveHeight: true,
   arrows: true,
-  asNavFor: null,
-  prevArrow: '',
-  nextArrow: '',
   autoplay: true,
   autoplaySpeed: 4000,
-  centerMode: false,
-  centerPadding: '50px',
-  cssEase: 'ease',
-  customPaging: (slider, i) => <button type="button">{i}</button>,
+  cssEase: 'ease-out',
+  // customPaging: (slider, i) => <button type="button">{i}</button>,
   dots: false,
-  dotsClass: 'slick-dots',
+  // dotsClass: 'slick-dots',
   draggable: true,
   easing: 'ease-out',
-  edgeFriction: 0.35,
   fade: false,
   focusOnSelect: false,
   focusOnChange: false,
   infinite: true,
   initialSlide: 0,
-  lazyLoad: 'ondemand',
-  mobileFirst: true,
   pauseOnHover: true,
   pauseOnFocus: true,
   pauseOnDotsHover: false,
-  respondTo: 'window',
-  responsive: null,
   rows: 1,
-  rtl: false,
-  slide: '',
-  slidesPerRow: 1,
   slidesToShow: 1,
   slidesToScroll: 1,
   speed: 300,
@@ -249,11 +211,5 @@ const defaults = {
   swipeToSlide: false,
   touchMove: true,
   touchThreshold: 11,
-  useCSS: true,
-  useTransform: true,
-  variableWidth: false,
-  vertical: false,
-  verticalSwiping: false,
-  waitForAnimate: true,
   zIndex: 1000,
 }
