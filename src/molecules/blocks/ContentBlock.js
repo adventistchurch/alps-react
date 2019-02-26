@@ -4,9 +4,22 @@ import PropTypes from 'prop-types'
 import MediaImage from './MediaImage'
 import Button from '../../atoms/buttons/Button'
 import Title from '../../atoms/texts/Title'
+import Text from '../../atoms/texts/Text'
 import useToggle from '../../helpers/useToggle'
 
-function ContentBlock({ category, cta, description, image, more, title, url }) {
+function ContentBlock({
+  category,
+  className,
+  cta,
+  description,
+  descriptionClass,
+  image,
+  more,
+  title,
+  titleClass,
+  titleStrong,
+  url,
+}) {
   const { onToggle, openClass } = useToggle()
 
   const blockClass = `c-block c-block__text u-spacing ${
@@ -15,13 +28,20 @@ function ContentBlock({ category, cta, description, image, more, title, url }) {
       : 'u-spacing'
   } u-theme--border-color--darker u-border--left ${
     image ? 'has-image' : ''
-  } ${openClass}`
+  } ${openClass} ${className}`
 
   return (
     <div className={blockClass}>
       {image && <MediaImage {...image} url={url} />}
 
-      <Title as="h3" color="darker" text={title} size="m">
+      <Title
+        as="h3"
+        color="darker"
+        text={title}
+        size="m"
+        className={titleClass}
+        style={titleStrong ? 'strong' : null}
+      >
         {url ? (
           <a
             className="c-block__title-link u-theme--link-hover--dark"
@@ -34,12 +54,22 @@ function ContentBlock({ category, cta, description, image, more, title, url }) {
         )}
       </Title>
 
-      {description && <p className="c-block__body text">{description}</p>}
+      {description && (
+        <Text as="p" className={`c-block__body ${descriptionClass}`}>
+          {description}
+        </Text>
+      )}
 
       {category && (
-        <span className="c-block__meta u-theme--color--dark u-font--secondary--xs">
+        <Text
+          as="span"
+          className='"c-block__meta'
+          color="dark"
+          fontSize="xs"
+          fontType="secondary"
+        >
           {category}
-        </span>
+        </Text>
       )}
 
       {more ? (
@@ -76,14 +106,22 @@ function ContentBlock({ category, cta, description, image, more, title, url }) {
 
 ContentBlock.propTypes = {
   category: PropTypes.string,
+  className: PropTypes.string,
   cta: PropTypes.string,
   description: PropTypes.string,
+  descriptionClass: PropTypes.string,
   image: PropTypes.objectOf(MediaImage.propTypes.image),
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
+  titleClass: PropTypes.string,
+  titleStrong: PropTypes.bool,
   url: PropTypes.string,
 }
 
-ContentBlock.defaultProps = {}
+ContentBlock.defaultProps = {
+  className: '',
+  descriptionClass: '',
+  titleClass: '',
+}
 
 export default ContentBlock
