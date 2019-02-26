@@ -22,8 +22,7 @@
     "no-console": "warn",
     "valid-typeof": "warn",
     "react/display-name": "off",
-    "react-hooks/rules-of-hooks": 2,
-    "react-hooks/exhaustive-deps": 2
+    "react-hooks/rules-of-hooks": 2
   },
 
   "parser": "babel-eslint",
