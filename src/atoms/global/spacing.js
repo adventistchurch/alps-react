@@ -6,7 +6,7 @@
  */
 
 export const sizes = ['quarter', 'half', 'double', 'triple', 'quad', 'zero']
-export const sides = ['top', 'botton', 'left', 'right']
+export const sides = ['top', 'bottom', 'left', 'right']
 
 function mod(key) {
   return key ? `--${key}` : ''
