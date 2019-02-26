@@ -13,7 +13,7 @@ function FormFilter({ options, title }) {
         color="base"
         text={title}
         transform="upper"
-        textStyle="strong"
+        style="strong"
       />
       {options.map(({ checked, id, name, type, value }, key) => {
         const inputId = `${type}-${id}`

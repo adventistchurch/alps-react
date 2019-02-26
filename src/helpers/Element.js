@@ -15,7 +15,7 @@ import {
   textClass,
   textTransformClass,
   textTransforms,
-  styles,
+  textStyles,
 } from '../atoms/global/fonts'
 
 import {
@@ -26,32 +26,38 @@ import {
   sizes,
 } from '../atoms/global/spacing'
 
-function Element({
-  as,
-  backgroundColor,
-  children,
-  color,
-  fontSize,
-  fontType,
-  padding,
-  paddingSide,
-  paddingSize,
-  space,
-  spaceSide,
-  spaceSize,
-  spacing,
-  spacingSide,
-  spacingSize,
-  tag,
-  style,
-  transform,
-  className,
-  ...props
-}) {
-  const classes = [className]
+/**
+ * Element's props parser
+ *
+ * - It extracts _style-related_ props to build the `className` prop.
+ * - Then return it along with the rest of _non-style-related_ props.
+ * @param {Object} props All Element's props
+ */
+function parseProps(props) {
+  const {
+    backgroundColor,
+    color,
+    fontSize,
+    fontType,
+    padding,
+    paddingSide,
+    paddingSize,
+    space,
+    spaceSide,
+    spaceSize,
+    spacing,
+    spacingSide,
+    spacingSize,
+    style,
+    transform,
+    className,
+    ...otherProps
+  } = props
 
-  if (fontType && fontSize)
-    classes.push(`${fontClass}--${fontType}--${fontSize}`)
+  const classes = []
+
+  if (fontType)
+    classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
   if (color) classes.push(`${themeForegroundClass}--${color}`)
   if (backgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
   if (style) classes.push(`${textClass}--${style}`)
@@ -82,13 +88,16 @@ function Element({
       })
     )
 
-  const classNames = classes.join(' ')
+  return { className: classes.join(' '), ...otherProps }
+}
 
-  return React.createElement(
-    tag ? tag : as,
-    { className: classNames, ...props },
-    children
-  )
+/**
+ * The ubiquitous Element component
+ *
+ * @param {Object} props Element props
+ */
+function Element({ as, children, tag, ...props }) {
+  return React.createElement(tag ? tag : as, parseProps(props), children)
 }
 
 Element.propTypes = {
@@ -108,7 +117,7 @@ Element.propTypes = {
   spacing: PropTypes.bool,
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
-  style: PropTypes.oneOf(styles),
+  style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
   transform: PropTypes.oneOf(textTransforms),
 }
