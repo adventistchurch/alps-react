@@ -6,14 +6,15 @@
       "dek": "Morbi eleifend, mi et varius imperdiet, nunc magna ullamcorper nibh, vel varius felis dui ac arcu. Vestibulum semper commodo dolor vel congue. Curabitur eleifend ligula ut arcu finibus posuere.",
       "cta": "Mec cursus mi",
       "url": "https://www.adventist.org",
-      "imageSrcSet": {
-        "default": "//picsum.photos/500/375?image=765",
-        "500": "//picsum.photos/900/700?image=765",
-        "750": "//picsum.photos/700/600?image=723",
-        "1200": "//picsum.photos/500/375?image=321"
-      },
-      "imageAlt": "Placeholder image",
-      "isLazy": false
+      "image": {
+        "srcSet": {
+          "default": "//picsum.photos/500/375?image=767",
+          "500": "//picsum.photos/900/700?image=757",
+          "750": "//picsum.photos/700/600?image=746",
+          "1200": "//picsum.photos/500/375?image=737"
+        },
+        "alt": "Placeholder image"
+      }
     },
     {
       "heading": "Lorem Ipsum",
@@ -21,14 +22,15 @@
       "dek": "Morbi eleifend, mi et varius imperdiet, nunc magna ullamcorper nibh, vel varius felis dui ac arcu. Vestibulum semper commodo dolor vel congue. Curabitur eleifend ligula ut arcu finibus posuere.",
       "cta": "Mec cursus mi",
       "url": "https://www.adventist.org",
-      "imageSrcSet": {
-        "default": "//picsum.photos/500/375?image=831",
-        "500": "//picsum.photos/900/700?image=831",
-        "750": "//picsum.photos/700/600?image=823",
-        "1200": "//picsum.photos/500/375?image=772"
-      },
-      "imageAlt": "Placeholder image",
-      "isLazy": false
+      "image": {
+        "srcSet": {
+          "default": "//picsum.photos/500/375?image=123",
+          "500": "//picsum.photos/900/700?image=213",
+          "750": "//picsum.photos/700/600?image=231",
+          "1200": "//picsum.photos/500/375?image=321"
+        },
+        "alt": "Placeholder image"
+      }
     }
   ]
 }
