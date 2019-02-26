@@ -1,25 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { svgFillClass, svgFillColors } from '../../atoms/global/colors'
+import {
+  svgFillClass,
+  svgFillColors,
+  themeBackgroundClass,
+  themeBackgroundColors,
+} from '../../atoms/global/colors'
 
 import Icon, { iconSizes } from '../../atoms/icons/Icon'
 
-function IconWrap({ name, size, fill, color, className, ...props }) {
+function IconWrap({
+  background,
+  className,
+  color,
+  fill,
+  name,
+  size,
+  ...props
+}) {
+  const classes = ['u-icon', ` u-icon--${size}`]
+
+  if (className) classes.push(className)
+  if (background) classes.push(`${themeBackgroundClass}--${background}`)
+  if (fill) classes.push(`${svgFillClass}--${fill}`)
+
+  const classNames = classes.join(' ')
+
   return (
-    <span
-      className={`u-icon u-icon--${size} ${svgFillClass}--${fill} ${className}`}
-      {...props}
-    >
+    <span className={classNames} {...props}>
       <Icon name={name} color={color} />
     </span>
   )
 }
 
 IconWrap.propTypes = {
+  background: PropTypes.oneOf(themeBackgroundColors),
   className: PropTypes.string,
-  fill: PropTypes.oneOf(svgFillColors),
   color: Icon.propTypes.color,
+  fill: PropTypes.oneOf(svgFillColors),
   name: Icon.propTypes.name,
   size: PropTypes.oneOf(iconSizes),
 }
