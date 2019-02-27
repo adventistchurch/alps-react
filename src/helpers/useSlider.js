@@ -36,11 +36,31 @@ function getAnimProps() {
  * @param {Object} settings Slider configuration
  */
 export default function useSlider(children = [], settings = {}) {
-  const options = { ...defaults, ...settings }
+  // Get total slides
+  const totalSlides = children.length
+
+  // Get options from default and settings
+  const {
+    autoplay,
+    autoplaySpeed,
+    easing,
+    fade,
+    initialSlide,
+    responsive,
+    showArrows,
+    showDots,
+    slidesToScroll,
+    slidesToShow,
+    speed,
+  } = { ...defaults, ...settings }
+
   // Set some states
   const [dots, setDots] = useState([])
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(
+    initialSlide < totalSlides ? initialSlide : 0
+  )
   const [initialized, setInitialized] = useState(0)
+  const [paused, setPaused] = useState(false)
   const [slides, setSlides] = useState(null)
   const [transition, setTransition] = useState(null)
   const [slideWidth, setSlideWidth] = useState(0)
@@ -50,24 +70,19 @@ export default function useSlider(children = [], settings = {}) {
   const listRef = useRef()
   const trackRef = useRef()
 
-  // Extract options
-  const {
-    autoplay,
-    autoplaySpeed,
-    easing,
-    fade,
-    responsive,
-    showArrows,
-    showDots,
-    slidesToScroll,
-    slidesToShow,
-    speed,
-  } = options
-
   const animProps = getAnimProps()
 
-  // Get total slides
-  const totalSlides = children.length
+  // Autoplay methods
+
+  function onPause() {
+    setPaused(true)
+  }
+
+  function onPlay() {
+    setPaused(false)
+  }
+
+  // Nav methods
 
   function onPrev() {
     const prevIndex = index === 0 ? totalSlides - 1 : index - slidesToScroll
@@ -93,6 +108,8 @@ export default function useSlider(children = [], settings = {}) {
     // Update index
     setIndex(index)
   }
+
+  // UI Updaters
 
   function updateDots() {
     setDots(
@@ -128,6 +145,8 @@ export default function useSlider(children = [], settings = {}) {
           className: `${className} slick-slide ${
             active ? 'slick-active' : ''
           } ${current ? 'slick-current' : ''}`,
+          onMouseEnter: onPause,
+          onMouseLeave: onPlay,
           role: 'option',
           style,
           tabIndex: -1,
@@ -154,7 +173,6 @@ export default function useSlider(children = [], settings = {}) {
     const sliderElem = sliderRef.current
     const listElem = listRef.current
     const trackElem = trackRef.current
-    const { fade } = options
 
     const sliderWidth = sliderElem.offsetWidth
 
@@ -185,11 +203,13 @@ export default function useSlider(children = [], settings = {}) {
     }
   }
 
+  // Effects:
+
   // Call onReize on resize event
   useWindowEvent('resize', onResize, 0, true)
 
   // Autoplay
-  useInterval(onNext, autoplay ? autoplaySpeed : null)
+  useInterval(onNext, autoplay ? (paused ? null : autoplaySpeed) : null)
 
   // Init
   useEffect(() => {
