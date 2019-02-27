@@ -52,7 +52,7 @@ function parseProps(props) {
     spacing,
     spacingSide,
     spacingSize,
-    style,
+    textStyle,
     themeBackgroundColor,
     themeColor,
     transform,
@@ -65,10 +65,12 @@ function parseProps(props) {
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
   if (color) classes.push(`${textColorClass}--${color}`)
-  if (themeColor) classes.push(`${themeColorClass}--${color}`)
-  if (backgroundColor) classes.push(`${backgroundColorClass}--${color}`)
-  if (themeBackgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
-  if (style) classes.push(`${textClass}--${style}`)
+  if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
+  if (backgroundColor)
+    classes.push(`${backgroundColorClass}--${backgroundColor}`)
+  if (themeBackgroundColor)
+    classes.push(`${themeBackgroundClass}--${themeBackgroundColor}`)
+  if (textStyle) classes.push(`${textClass}--${textStyle}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
   if (className) classes.push(className)
 
@@ -125,8 +127,8 @@ Element.propTypes = {
   spacing: PropTypes.bool,
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
-  style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
+  textStyle: PropTypes.oneOf(textStyles),
   themeBackround: PropTypes.oneOf(themeBackgroundColors),
   themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
