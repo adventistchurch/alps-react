@@ -54,3 +54,6 @@ export const themeColors = ['base', 'dark', 'darker', 'light', 'lighter']
 // - Background
 export const themeBackgroundClass = 'u-theme--background-color'
 export const themeBackgroundColors = [...themeColors]
+
+// - Dark Theme
+export const darkThemeClass = 'u-theme--dark'
