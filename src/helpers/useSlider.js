@@ -29,6 +29,27 @@ function getAnimProps() {
   return { transform, transition }
 }
 
+export const swipeDirection = (x1, x2, y1, y2) => {
+  const xDist = x1 - x2
+  const yDist = y1 - y2
+  const r = Math.atan2(yDist, xDist)
+  let swipeAngle = Math.round((r * 180) / Math.PI)
+
+  if (swipeAngle < 0) {
+    swipeAngle = 360 - Math.abs(swipeAngle)
+  }
+  if (swipeAngle <= 45 && swipeAngle >= 0) {
+    return 1
+  }
+  if (swipeAngle <= 360 && swipeAngle >= 315) {
+    return 1
+  }
+  if (swipeAngle >= 135 && swipeAngle <= 225) {
+    return -1
+  }
+  return 0
+}
+
 /**
  * Hook for Slider
  *
@@ -52,11 +73,14 @@ export default function useSlider(children = [], settings = {}) {
     slidesToScroll,
     slidesToShow,
     speed,
+    touchMove,
     zIndex,
   } = { ...defaults, ...settings }
 
   // Set some states
   const [dots, setDots] = useState([])
+  const [touchStartPos, setTouchStartPos] = useState([])
+  const [touchEndPos, setTouchEndPos] = useState([])
   const [index, setIndex] = useState(
     initialSlide < totalSlides ? initialSlide : 0
   )
@@ -109,6 +133,53 @@ export default function useSlider(children = [], settings = {}) {
     // Update index
     setIndex(index)
   }
+
+  // Drag/Swipe methods
+
+  function getTouchPos(event) {
+    const { touches, clientX, clientY } = event
+    const { pageX: x = clientX, pageY: y = clientY } = touches ? touches[0] : {}
+
+    return [x, y]
+  }
+
+  function onSwipeStart(e) {
+    setTouchStartPos(getTouchPos(e))
+  }
+
+  function onSwipeMove(e) {
+    setTouchEndPos(getTouchPos(e))
+  }
+
+  function onSwipeEnd() {
+    const [x1, y1] = touchStartPos
+    const [x2, y2] = touchEndPos
+
+    const direction = swipeDirection(x1, x2, y1, y2)
+
+    if (direction > 0) {
+      onNext()
+    } else if (direction < 0) {
+      onPrev()
+    }
+
+    setTouchStartPos([])
+    setTouchEndPos([])
+  }
+
+  // set touch events
+  const touchEvents = touchMove
+    ? {
+        onMouseDown: onSwipeStart,
+        onMouseMove: onSwipeMove,
+        onMouseUp: onSwipeEnd,
+        onMouseLeave: onSwipeEnd,
+        onTouchStart: onSwipeStart,
+        onTouchMove: onSwipeMove,
+        onTouchEnd: onSwipeEnd,
+        onTouchCancel: onSwipeEnd,
+      }
+    : {}
 
   // UI Updaters
 
@@ -238,6 +309,7 @@ export default function useSlider(children = [], settings = {}) {
     showDots,
     sliderRef,
     slides,
+    touchEvents,
     trackRef,
   }
 }
