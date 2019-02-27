@@ -65,7 +65,7 @@ function parseProps(props) {
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
   if (color) classes.push(`${textColorClass}--${color}`)
-  if (themeColor) classes.push(`${themeColorClass}--${color}`)
+  if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
   if (backgroundColor) classes.push(`${backgroundColorClass}--${color}`)
   if (themeBackgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
   if (style) classes.push(`${textClass}--${style}`)
