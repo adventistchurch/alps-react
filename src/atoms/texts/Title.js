@@ -33,7 +33,7 @@ Title.propTypes = {
 Title.defaultProps = {
   as: 'h2',
   className: '',
-  color: 'darker',
+  themeColor: 'darker',
   fontSize: 's',
   fontType: 'primary',
 }
