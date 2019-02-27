@@ -53,7 +53,7 @@ function parseProps(props) {
     spacingSide,
     spacingSize,
     textStyle,
-    themeBackgroundColor,
+    themeBackground,
     themeColor,
     transform,
     className,
@@ -68,8 +68,8 @@ function parseProps(props) {
   if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
   if (backgroundColor)
     classes.push(`${backgroundColorClass}--${backgroundColor}`)
-  if (themeBackgroundColor)
-    classes.push(`${themeBackgroundClass}--${themeBackgroundColor}`)
+  if (themeBackground)
+    classes.push(`${themeBackgroundClass}--${themeBackground}`)
   if (textStyle) classes.push(`${textClass}--${textStyle}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
   if (className) classes.push(className)
