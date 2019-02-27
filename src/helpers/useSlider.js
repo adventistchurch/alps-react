@@ -52,6 +52,7 @@ export default function useSlider(children = [], settings = {}) {
     slidesToScroll,
     slidesToShow,
     speed,
+    zIndex,
   } = { ...defaults, ...settings }
 
   // Set some states
@@ -126,17 +127,21 @@ export default function useSlider(children = [], settings = {}) {
     setSlides(
       React.Children.map(children, (child, i) => {
         const { className, ...childProps } = child.props
+
+        // calculate if is current or active
         const current = i === index
         const active = fade ? current : i >= index && index + slidesToShow >= i
 
+        // Set styles
         const style = fade
           ? {
-              left: i === 0 ? 0 : -(slideWidth / i),
-              opacity: current ? 1 : 0,
+              left: i === 0 ? 0 : -(slideWidth * i),
+              opacity: current ? 1 : 0.2,
               position: 'relative',
               top: 0,
               transition: current ? transition : 'none',
               width: slideWidth,
+              zIndex: current ? zIndex + totalSlides + 10 : zIndex + i,
             }
           : { width: slideWidth }
 
