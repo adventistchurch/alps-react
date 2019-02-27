@@ -1,6 +1,8 @@
 import React, { cloneElement, useEffect, useState, useRef } from 'react'
 
+import useInterval from './useInterval'
 import useWindowEvent from './useWindowEvent'
+import range from './range'
 
 const isSet = x => x !== undefined
 
@@ -36,9 +38,11 @@ function getAnimProps() {
 export default function useSlider(children = [], settings = {}) {
   const options = { ...defaults, ...settings }
   // Set some states
+  const [dots, setDots] = useState([])
   const [index, setIndex] = useState(0)
   const [initialized, setInitialized] = useState(0)
   const [slides, setSlides] = useState(null)
+  const [transition, setTransition] = useState(null)
   const [slideWidth, setSlideWidth] = useState(0)
 
   // Set refs
@@ -48,9 +52,13 @@ export default function useSlider(children = [], settings = {}) {
 
   // Extract options
   const {
-    cssEase,
+    autoplay,
+    autoplaySpeed,
+    easing,
     fade,
     responsive,
+    showArrows,
+    showDots,
     slidesToScroll,
     slidesToShow,
     speed,
@@ -72,16 +80,29 @@ export default function useSlider(children = [], settings = {}) {
   }
 
   function onNav(index) {
-    const { transform } = animProps
-
-    if (!options.fade) {
+    // If fade is disabled
+    if (!fade) {
+      // Update Track left position
       const trackElem = trackRef.current
       const trackLeft = -(slideWidth * index)
-      trackElem.style[transform] = `translate3d(${trackLeft}px, 0px, 0px)`
+      trackElem.style[
+        animProps.transform
+      ] = `translate3d(${trackLeft}px, 0px, 0px)`
     }
 
     // Update index
     setIndex(index)
+  }
+
+  function updateDots() {
+    setDots(
+      range(1, totalSlides).map((label, key) => ({
+        active: key === index,
+        key,
+        label: `${label}`,
+        onClick: () => onNav(key),
+      }))
+    )
   }
 
   function updateSlides() {
@@ -90,14 +111,15 @@ export default function useSlider(children = [], settings = {}) {
         const { className, ...childProps } = child.props
         const current = i === index
         const active = fade ? current : i >= index && index + slidesToShow >= i
+
         const style = fade
           ? {
-              width: slideWidth,
+              left: i === 0 ? 0 : -(slideWidth / i),
               opacity: current ? 1 : 0,
-              top: 0,
-              left: index === 0 ? 0 : -slideWidth / i,
               position: 'relative',
-              transition: current ? `opacity ${speed}ms ${cssEase}` : 'none',
+              top: 0,
+              transition: current ? transition : 'none',
+              width: slideWidth,
             }
           : { width: slideWidth }
 
@@ -116,13 +138,16 @@ export default function useSlider(children = [], settings = {}) {
     )
   }
 
-  function setTransitions() {
+  function initAnimations() {
     const trackElem = trackRef.current
-    const { transition } = animProps
-
     const animation = fade ? 'opacity' : 'transform'
+    const transition = `${animation} ${speed}ms ${easing}`
 
-    trackElem.style[transition] = `${animation} ${speed}ms ${cssEase}`
+    if (fade) {
+      setTransition(transition)
+    } else {
+      trackElem.style[animProps.transition] = transition
+    }
   }
 
   function onResize() {
@@ -160,24 +185,32 @@ export default function useSlider(children = [], settings = {}) {
     }
   }
 
+  // Call onReize on resize event
   useWindowEvent('resize', onResize, 0, true)
+
+  // Autoplay
+  useInterval(onNext, autoplay ? autoplaySpeed : null)
 
   // Init
   useEffect(() => {
-    setTransitions()
+    initAnimations()
     setInitialized(true)
   }, [])
 
-  //
+  // Set slides and dots when index or slideWidth changes
   useEffect(() => {
     updateSlides()
+    updateDots()
   }, [index, slideWidth])
 
   return {
+    dots,
     initialized,
     listRef,
     onNext,
     onPrev,
+    showArrows,
+    showDots,
     sliderRef,
     slides,
     trackRef,
@@ -186,13 +219,8 @@ export default function useSlider(children = [], settings = {}) {
 
 const defaults = {
   adaptiveHeight: true,
-  arrows: true,
   autoplay: true,
   autoplaySpeed: 4000,
-  cssEase: 'ease-out',
-  // customPaging: (slider, i) => <button type="button">{i}</button>,
-  dots: false,
-  // dotsClass: 'slick-dots',
   draggable: true,
   easing: 'ease-out',
   fade: false,
@@ -204,6 +232,8 @@ const defaults = {
   pauseOnFocus: true,
   pauseOnDotsHover: false,
   rows: 1,
+  showArrows: true,
+  showDots: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   speed: 300,
