@@ -17,7 +17,7 @@ const CommentForm = ({ rows, submitLabel, title, ...props }) => {
           textStyle="strong"
           transform="upper"
         />
-        <Form spacing="half" noValidate {...props}>
+        <Form spacingSize="half" noValidate {...props}>
           <p>
             <textarea
               aria-required="true"
