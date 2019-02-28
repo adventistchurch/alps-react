@@ -22,6 +22,7 @@ function FormTitle({ darkMode, text, type }) {
           textStyle="strong"
           themeColor={darkMode ? 'lighter' : 'base'}
           transform="upper"
+          spacing={true}
         />
       )}
     </>
