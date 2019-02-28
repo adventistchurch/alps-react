@@ -23,21 +23,20 @@ const yearFacet = {
 }
 
 const propsTab = 'Props'
+const dataTab = 'Data'
 
 storiesOf('molecules/forms/FacetFilter', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
     const title = text('Form Title *', data.title, propsTab)
-    const showButton = boolean('Show Button', false, propsTab)
-    const filterLabel = text('Button Label', 'Filter', propsTab)
-    const facets = object('Facets *', [yearFacet, ...data.facets], propsTab)
+    const filterLabel = text(
+      'Filter Button (visible only for screen readers)',
+      'Filter',
+      propsTab
+    )
+    const facets = object('Facets *', [yearFacet, ...data.facets], dataTab)
     return (
-      <FacetFilter
-        title={title}
-        facets={facets}
-        showButton={showButton}
-        filterLabel={filterLabel}
-      />
+      <FacetFilter title={title} facets={facets} filterLabel={filterLabel} />
     )
   })
