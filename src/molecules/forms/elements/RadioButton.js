@@ -21,14 +21,7 @@ function RadioButton({
   value,
   ...props
 }) {
-  const RadioButton = (
-    <BaseInput
-      type="radio"
-      {...{ checked, error, id, name, value, ...props }}
-    />
-  )
-
-  return label ? (
+  return (
     <FormLabel
       error={error}
       fontSize={labelFontSize}
@@ -40,10 +33,16 @@ function RadioButton({
       wrapperClass={labelWrapperClass}
       wrapperSpacingSize={labelWrapperSpacingSize}
     >
-      {RadioButton}
+      <BaseInput
+        checked={checked}
+        error={error}
+        id={id}
+        name={name}
+        type="radio"
+        value={value}
+        {...props}
+      />
     </FormLabel>
-  ) : (
-    <>{RadioButton}</>
   )
 }
 
@@ -52,7 +51,7 @@ RadioButton.propTypes = {
   darkMode: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
   labelFontSize: PropTypes.oneOf(fontSizes),
   labelFontType: PropTypes.oneOf(fontTypes),
