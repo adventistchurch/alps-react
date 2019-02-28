@@ -4,32 +4,10 @@ import useInterval from './useInterval'
 import useWindowEvent from './useWindowEvent'
 import range from './range'
 
-const isSet = x => x !== undefined
+export const getSwipeDirection = (start = [], end = [], minSwipe = 0) => {
+  const [x1, y1] = start
+  const [x2, y2] = end
 
-function getAnimProps() {
-  const style = document.body.style
-
-  let transform = 'transform'
-  let transition = 'transition'
-
-  if (isSet(style.webkitTransform)) {
-    transform = '-webkit-transform'
-    transition = 'webkitTransition'
-  } else if (isSet(style.msTransform)) {
-    transform = '-ms-transform'
-    transition = 'msTransition'
-  } else if (isSet(style.MozTransform)) {
-    transform = '-moz-transform'
-    transition = 'MozTransition'
-  } else if (isSet(style.OTransform)) {
-    transform = '-o-transform'
-    transition = 'OTransition'
-  }
-
-  return { transform, transition }
-}
-
-export const getSwipeDirection = (x1, x2, y1, y2, minSwipe = 0) => {
   const xDist = x1 - x2
   const yDist = y1 - y2
 
@@ -72,6 +50,7 @@ export default function useSlider(children = [], settings = {}) {
     autoplaySpeed,
     easing,
     fade,
+    // infinite, // TODO: Implement this feature
     initialSlide,
     pauseOnHover,
     responsive,
@@ -98,7 +77,6 @@ export default function useSlider(children = [], settings = {}) {
   const [slides, setSlides] = useState(null)
   const [itemsToShow, setItemsToShow] = useState(slidesToShow)
   const [itemsToScroll, setItemsToScroll] = useState(slidesToScroll)
-  const [transition, setTransition] = useState(null)
   const [slideWidth, setSlideWidth] = useState(0)
 
   // Set refs
@@ -106,7 +84,8 @@ export default function useSlider(children = [], settings = {}) {
   const listRef = useRef()
   const trackRef = useRef()
 
-  const animProps = getAnimProps()
+  // Set CSS transition
+  const transition = `${fade ? 'opacity' : 'transform'} ${speed}ms ${easing}`
 
   // Autoplay methods
 
@@ -121,30 +100,18 @@ export default function useSlider(children = [], settings = {}) {
   // Nav methods
 
   function onPrev() {
-    const prevIndex = index === 0 ? totalSlides - 1 : index - itemsToScroll
-    onNav(prevIndex)
+    const prevIndex =
+      index - itemsToScroll < 0
+        ? totalSlides - (totalSlides % itemsToShow)
+        : index - itemsToScroll
+    setIndex(prevIndex)
   }
 
   function onNext() {
     const nextIndex =
       index + itemsToScroll >= totalSlides ? 0 : index + itemsToScroll
 
-    onNav(nextIndex)
-  }
-
-  function onNav(index) {
-    // If fade is disabled
-    if (!fade) {
-      // Update Track left position
-      const trackElem = trackRef.current
-      const trackLeft = -(slideWidth * index)
-      trackElem.style[
-        animProps.transform
-      ] = `translate3d(${trackLeft}px, 0px, 0px)`
-    }
-
-    // Update index
-    setIndex(index)
+    setIndex(nextIndex)
   }
 
   // Drag/Swipe methods
@@ -166,10 +133,7 @@ export default function useSlider(children = [], settings = {}) {
   }
 
   function onSwipeEnd() {
-    const [x1, y1] = touchStartPos
-    const [x2, y2] = touchEndPos
-
-    const direction = getSwipeDirection(x1, x2, y1, y2, minSwipe)
+    const direction = getSwipeDirection(touchStartPos, touchEndPos, minSwipe)
 
     if (direction > 0) {
       onNext()
@@ -212,61 +176,73 @@ export default function useSlider(children = [], settings = {}) {
         active: key === index,
         key,
         label: `${label}`,
-        onClick: () => onNav(key),
+        onClick: () => setIndex(key),
       }))
     )
   }
 
-  function updateSlides() {
-    setSlides(
-      React.Children.map(children, (child, i) => {
-        const { className, ...childProps } = child.props
+  function cloneSlide(slide, { active, current, style }) {
+    const { className, ...childProps } = slide.props
 
-        // calculate if is current or active
-        const current = i === index
-        const active = fade ? current : i >= index && index + itemsToShow >= i
+    // Set clases
+    const classes = [className, 'slick-slide']
+    if (active) classes.push('slick-active')
+    if (current) classes.push('slick-current')
 
-        // Set styles
-        const style = fade
-          ? {
-              left: i === 0 ? 0 : -(slideWidth * i),
-              opacity: current ? 1 : 0.2,
-              position: 'relative',
-              top: 0,
-              transition: current ? transition : 'none',
-              width: slideWidth,
-              zIndex: current ? zIndex + totalSlides + 10 : zIndex + i,
-            }
-          : { width: slideWidth }
+    const slideProps = {
+      'aria-hidden': !active,
+      className: classes.join(' '),
+      role: 'option',
+      style,
+      tabIndex: -1,
+      ...slideEvents,
+    }
 
-        const classes = [className, 'slick-slide']
-        if (active) classes.push('slick-active')
-        if (current) classes.push('slick-current')
-
-        const slideProps = {
-          'aria-hidden': !active,
-          className: classes.join(' '),
-          role: 'option',
-          style,
-          tabIndex: -1,
-          ...slideEvents,
-        }
-
-        return cloneElement(child, { ...slideProps, ...childProps })
-      })
-    )
+    return cloneElement(slide, { ...slideProps, ...childProps })
   }
 
-  function initAnimations() {
-    const trackElem = trackRef.current
-    const animation = fade ? 'opacity' : 'transform'
-    const transition = `${animation} ${speed}ms ${easing}`
+  function updateSlides() {
+    const slides = React.Children.map(children, (slide, i) => {
+      // calculate if is current
+      const current = i === index
 
-    if (fade) {
-      setTransition(transition)
-    } else {
-      trackElem.style[animProps.transition] = transition
-    }
+      let active
+      let style
+
+      if (fade) {
+        // Only current is active
+        active = current
+
+        // - Fade Styles
+        style = {
+          left: i === 0 ? 0 : -(slideWidth * i),
+          opacity: current ? 1 : 0.25,
+          position: 'relative',
+          top: 0,
+          transition: current ? transition : 'none',
+          zIndex: current ? zIndex + totalSlides + 10 : zIndex + i,
+        }
+      } else {
+        // Is active if is within the window (index <-> index + itemsToShow)
+        active = i >= index && index + itemsToShow > i
+
+        // - Slide styles (default)
+        let xPos = -slideWidth * index
+
+        style = {
+          transition: transition,
+          transform: `translate3d(${xPos}px, 0, 0)`,
+        }
+      }
+
+      return cloneSlide(slide, {
+        active,
+        current,
+        style: { width: slideWidth, ...style },
+      })
+    })
+
+    setSlides(slides)
   }
 
   function onResize() {
@@ -274,17 +250,28 @@ export default function useSlider(children = [], settings = {}) {
     const trackElem = trackRef.current
     const listElem = listRef.current
 
-    const sliderWidth = sliderElem.offsetWidth
+    // Calculate slider and list elements widths
     const listWidth = listElem.offsetWidth
+    const sliderWidth = sliderElem.offsetWidth
 
-    setMinSwipe(listWidth / touchThreshold)
+    // Calculate and set min swipe based on list width and touch threashold
+    if (!isNaN(touchThreshold) && touchThreshold > 0) {
+      setMinSwipe(listWidth / touchThreshold)
+    }
 
-    if (fade === true) {
-      trackElem.style.width = `${sliderWidth * totalSlides}px`
+    let trackWidth = 0
 
+    // FADE:
+    if (fade) {
       setSlideWidth(sliderWidth)
-    } else {
-      let width = 0
+
+      // Calculate track width for fade
+      trackWidth = sliderWidth * totalSlides
+    }
+    // SLIDE:
+    else {
+      // Calculate mobile slide width
+      let width = sliderWidth / slidesToShow
 
       if (responsive) {
         const breakpointKey = Object.keys(responsive)
@@ -292,22 +279,31 @@ export default function useSlider(children = [], settings = {}) {
           .find(bp => parseInt(bp) < sliderWidth)
 
         const breakpoint = responsive[breakpointKey]
-        width = sliderWidth / breakpoint.slidesToShow
 
-        setItemsToShow(breakpoint.slidesToShow)
-        setItemsToScroll(breakpoint.slidesToScroll)
-      } else {
-        width = sliderWidth / slidesToShow
+        // Get configuration from breakpoint, if exists
+        if (breakpoint) {
+          const { slidesToShow, slidesToScroll } = breakpoint
+
+          // Recalculate Width for breackpoint
+          width = sliderWidth / slidesToShow
+
+          setItemsToShow(slidesToShow)
+          setItemsToScroll(slidesToScroll)
+        }
       }
 
-      const slideWidth = Math.floor(width) + 1
+      // Roundup width
+      width = Math.floor(width)
 
-      setSlideWidth(slideWidth)
+      // Set slide width
+      setSlideWidth(width)
 
-      const trackWidth = slideWidth * totalSlides
-
-      trackElem.style.width = `${trackWidth}px`
+      // Calculate track width for slide
+      trackWidth = width * totalSlides
     }
+
+    // Set track width
+    trackElem.style.width = `${trackWidth}px`
   }
 
   // Effects:
@@ -318,16 +314,12 @@ export default function useSlider(children = [], settings = {}) {
   // Autoplay
   useInterval(onNext, autoplay ? (paused ? null : autoplaySpeed) : null)
 
-  // Init
-  useEffect(() => {
-    initAnimations()
-    setInitialized(true)
-  }, [])
-
   // Set slides and dots when index or slideWidth changes
   useEffect(() => {
     updateSlides()
     updateDots()
+
+    if (!initialized) setInitialized(true)
   }, [index, slideWidth])
 
   return {
@@ -346,8 +338,7 @@ export default function useSlider(children = [], settings = {}) {
 }
 
 const defaults = {
-  adaptiveHeight: true,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 4000,
   easing: 'ease-out',
   fade: false,
@@ -359,7 +350,6 @@ const defaults = {
   slidesToShow: 1,
   slidesToScroll: 1,
   speed: 300,
-  swipeToSlide: false,
   touchMove: true,
   touchThreshold: 11,
   zIndex: 1000,
