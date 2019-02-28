@@ -61,7 +61,7 @@ BaseTextField.propTypes = {
   labelWrapperSpacingSize: PropTypes.oneOf(sizes),
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(['email', 'password', 'text']),
+  type: PropTypes.oneOf(['email', 'password', 'search', 'text']),
   value: PropTypes.string,
 }
 BaseTextField.defaultProps = {

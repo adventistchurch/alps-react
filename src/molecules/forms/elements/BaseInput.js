@@ -38,7 +38,14 @@ BaseInput.propTypes = {
   inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(['checkbox', 'email', 'password', 'radio', 'text']),
+  type: PropTypes.oneOf([
+    'checkbox',
+    'email',
+    'password',
+    'radio',
+    'search',
+    'text',
+  ]),
   value: PropTypes.string,
 }
 BaseInput.defaultProps = {
