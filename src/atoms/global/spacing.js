@@ -6,7 +6,7 @@
  */
 
 export const sizes = ['quarter', 'half', 'double', 'triple', 'quad', 'zero']
-export const sides = ['top', 'bottom', 'left', 'right']
+export const sides = ['top', 'bottom', 'left', 'right', 'sides']
 export const afterSizes = ['medium', 'large']
 export const untilSizes = ['small', 'medium', 'large', 'xxlarge']
 
