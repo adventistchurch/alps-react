@@ -65,6 +65,7 @@ function Slider({
   const {
     dots,
     initialized,
+    listRef,
     onNext,
     onPrev,
     onDotClick,
@@ -83,7 +84,12 @@ function Slider({
       }`}
       ref={sliderRef}
     >
-      <div className="slick-list" aria-live="polite" {...touchEvents}>
+      <div
+        className="slick-list"
+        aria-live="polite"
+        ref={listRef}
+        {...touchEvents}
+      >
         <div className="slick-track" role="listbox" ref={trackRef}>
           {slides}
         </div>

@@ -29,9 +29,14 @@ function getAnimProps() {
   return { transform, transition }
 }
 
-export const swipeDirection = (x1, x2, y1, y2) => {
+export const getSwipeDirection = (x1, x2, y1, y2, minSwipe = 0) => {
   const xDist = x1 - x2
   const yDist = y1 - y2
+
+  if (isNaN(xDist) || isNaN(yDist) || Math.abs(xDist) < minSwipe) {
+    return 0
+  }
+
   const r = Math.atan2(yDist, xDist)
   let swipeAngle = Math.round((r * 180) / Math.PI)
 
@@ -47,6 +52,7 @@ export const swipeDirection = (x1, x2, y1, y2) => {
   if (swipeAngle >= 135 && swipeAngle <= 225) {
     return -1
   }
+
   return 0
 }
 
@@ -74,6 +80,7 @@ export default function useSlider(children = [], settings = {}) {
     slidesToShow,
     speed,
     touchMove,
+    touchThreshold,
     zIndex,
   } = { ...defaults, ...settings }
 
@@ -85,6 +92,7 @@ export default function useSlider(children = [], settings = {}) {
     initialSlide < totalSlides ? initialSlide : 0
   )
   const [initialized, setInitialized] = useState(0)
+  const [minSwipe, setMinSwipe] = useState(0)
   const [paused, setPaused] = useState(false)
   const [slides, setSlides] = useState(null)
   const [transition, setTransition] = useState(null)
@@ -92,6 +100,7 @@ export default function useSlider(children = [], settings = {}) {
 
   // Set refs
   const sliderRef = useRef()
+  const listRef = useRef()
   const trackRef = useRef()
 
   const animProps = getAnimProps()
@@ -144,6 +153,7 @@ export default function useSlider(children = [], settings = {}) {
 
   function onSwipeStart(e) {
     setTouchStartPos(getTouchPos(e))
+    setPaused(true)
   }
 
   function onSwipeMove(e) {
@@ -154,7 +164,7 @@ export default function useSlider(children = [], settings = {}) {
     const [x1, y1] = touchStartPos
     const [x2, y2] = touchEndPos
 
-    const direction = swipeDirection(x1, x2, y1, y2)
+    const direction = getSwipeDirection(x1, x2, y1, y2, minSwipe)
 
     if (direction > 0) {
       onNext()
@@ -164,6 +174,7 @@ export default function useSlider(children = [], settings = {}) {
 
     setTouchStartPos([])
     setTouchEndPos([])
+    setPaused(false)
   }
 
   // set touch events
@@ -249,8 +260,12 @@ export default function useSlider(children = [], settings = {}) {
   function onResize() {
     const sliderElem = sliderRef.current
     const trackElem = trackRef.current
+    const listElem = listRef.current
 
     const sliderWidth = sliderElem.offsetWidth
+    const listWidth = listElem.offsetWidth
+
+    setMinSwipe(listWidth / touchThreshold)
 
     if (fade === true) {
       trackElem.style.width = `${sliderWidth * totalSlides}px`
@@ -301,6 +316,7 @@ export default function useSlider(children = [], settings = {}) {
   return {
     dots,
     initialized,
+    listRef,
     onNext,
     onPrev,
     showArrows,
@@ -324,15 +340,12 @@ const defaults = {
   infinite: true,
   initialSlide: 0,
   pauseOnHover: true,
-  pauseOnFocus: true,
-  pauseOnDotsHover: false,
   rows: 1,
   showArrows: true,
   showDots: false,
   slidesToShow: 1,
   slidesToScroll: 1,
   speed: 300,
-  swipe: true,
   swipeToSlide: false,
   touchMove: true,
   touchThreshold: 11,
