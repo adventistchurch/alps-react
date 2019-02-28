@@ -39,7 +39,7 @@ function TextArea({
       {TextArea}
     </FormLabel>
   ) : (
-    { TextArea }
+    <>{TextArea}</>
   )
 }
 
