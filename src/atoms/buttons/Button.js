@@ -103,7 +103,6 @@ Button.defaultProps = {
   className: '',
   iconFill: 'white',
   iconSize: 'xs',
-  url: '#',
 }
 
 export default Button
