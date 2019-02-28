@@ -1,39 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function BaseInput({ checked, id, label, name, placeholder, type, value }) {
-  const inputId = id ? id : name
-  const groupClass =
-    type == 'radio' ? 'c-form-group__radio' : 'c-form-group u-spacing--quarter'
+function BaseInput({ checked, error, id, name, placeholder, type, value }) {
   return (
-    <div className={groupClass}>
-      <input
-        defaultChecked={checked}
-        id={inputId}
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        value={value}
-      />
-      <label className="u-font--secondary--s" htmlFor={inputId}>
-        {label}
-      </label>
-    </div>
+    <input
+      className={error ? 'has-error' : null}
+      defaultChecked={checked}
+      id={id}
+      name={name}
+      placeholder={placeholder}
+      type={type}
+      value={value}
+    />
   )
 }
 
 BaseInput.propTypes = {
-  className: PropTypes.string,
   checked: PropTypes.bool,
+  error: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'email', 'radio']),
+  type: PropTypes.oneOf(['checkbox', 'email', 'password', 'radio', 'text']),
   value: PropTypes.string,
 }
 BaseInput.defaultProps = {
-  className: '',
   type: 'text',
 }
 
