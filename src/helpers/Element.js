@@ -79,16 +79,16 @@ function parseProps(props) {
   if (padding || paddingSide || paddingSize)
     classes.push(
       getPaddingClass({
-        size: paddingSide,
-        side: paddingSize,
+        side: paddingSide,
+        size: paddingSize,
       })
     )
 
   if (space || spaceSide || spaceSize)
     classes.push(
       getSpaceClass({
-        size: spaceSize,
         side: spaceSide,
+        size: spaceSize,
       })
     )
 
@@ -96,8 +96,8 @@ function parseProps(props) {
     classes.push(
       getSpacingClass({
         after: spacingAfter,
-        size: spacingSize,
         side: spacingSide,
+        size: spacingSize,
         until: spacingUntil,
       })
     )
@@ -123,8 +123,8 @@ Element.propTypes = {
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
   padding: PropTypes.bool,
-  paddingSize: PropTypes.oneOf(sides),
-  paddingSide: PropTypes.oneOf(sizes),
+  paddingSide: PropTypes.oneOf(sides),
+  paddingSize: PropTypes.oneOf(sizes),
   space: PropTypes.bool,
   spaceSide: PropTypes.oneOf(sides),
   spaceSize: PropTypes.oneOf(sizes),
