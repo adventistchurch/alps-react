@@ -21,7 +21,7 @@ function RadioButton({
   value,
   ...props
 }) {
-  const Checkbox = (
+  const RadioButton = (
     <BaseInput
       type="radio"
       {...{ checked, error, id, name, value, ...props }}
@@ -40,10 +40,10 @@ function RadioButton({
       wrapperClass={labelWrapperClass}
       wrapperSpacingSize={labelWrapperSpacingSize}
     >
-      {Checkbox}
+      {RadioButton}
     </FormLabel>
   ) : (
-    { Checkbox }
+    <>{RadioButton}</>
   )
 }
 
