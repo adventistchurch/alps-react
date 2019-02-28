@@ -5,13 +5,10 @@ import Element from '../../../helpers/Element'
 import { darkThemeClass } from '../../../atoms/global/colors'
 
 function Form({ children, className, darkMode, inline, ...props }) {
-  const classes = []
-
-  classes.push('c-form')
+  const classes = ['c-form']
   if (inline) classes.push('c-form--inline')
   if (darkMode) classes.push(darkThemeClass)
   if (className) classes.push(className)
-
   const formClass = classes.join(' ')
 
   return (
