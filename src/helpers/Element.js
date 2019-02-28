@@ -23,11 +23,13 @@ import {
 } from '../atoms/global/fonts'
 
 import {
+  afterSizes,
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
   sides,
   sizes,
+  untilSizes,
 } from '../atoms/global/spacing'
 
 /**
@@ -50,8 +52,10 @@ function parseProps(props) {
     spaceSide,
     spaceSize,
     spacing,
+    spacingAfter,
     spacingSide,
     spacingSize,
+    spacingUntil,
     style,
     themeBackgroundColor,
     themeColor,
@@ -88,11 +92,13 @@ function parseProps(props) {
       })
     )
 
-  if (spacing || spacingSide || spacingSize)
+  if (spacing || spacingAfter || spacingSide || spacingSize || spacingUntil)
     classes.push(
       getSpacingClass({
+        after: spacingAfter,
         size: spacingSize,
         side: spacingSide,
+        until: spacingUntil,
       })
     )
 
@@ -123,8 +129,10 @@ Element.propTypes = {
   spaceSide: PropTypes.oneOf(sides),
   spaceSize: PropTypes.oneOf(sizes),
   spacing: PropTypes.bool,
+  spacingAfter: PropTypes.oneOf(afterSizes),
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
+  spacingUntil: PropTypes.oneOf(untilSizes),
   style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
   themeBackround: PropTypes.oneOf(themeBackgroundColors),
