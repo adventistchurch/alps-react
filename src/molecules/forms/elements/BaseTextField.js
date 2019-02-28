@@ -45,7 +45,7 @@ function BaseTextField({
       {InputField}
     </FormLabel>
   ) : (
-    { InputField }
+    <>{InputField}</>
   )
 }
 
