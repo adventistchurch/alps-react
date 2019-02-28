@@ -111,7 +111,7 @@ ContentBlock.propTypes = {
   cta: PropTypes.string,
   description: PropTypes.string,
   descriptionClass: PropTypes.string,
-  image: PropTypes.objectOf(MediaImage.propTypes.image),
+  image: MediaImage.propTypes.image,
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleClass: PropTypes.string,
