@@ -26,7 +26,7 @@ function useWindowEvent(event, callback, wait = 100, inmediate = false) {
 
     // Cleanup listener on unmount
     return () => window.removeEventListener(event, debouncedCallback)
-  }, [callback, debouncedCallback, event, inmediate])
+  }, [])
 }
 
 export default useWindowEvent
