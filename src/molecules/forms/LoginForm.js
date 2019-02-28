@@ -3,11 +3,15 @@ import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
 import Form from './elements/Form'
+import PasswordField from './elements/PasswordField'
+import SubmitMessage from './elements/SubmitMessage'
+import TextField from './elements/TextField'
 import Title from '../../atoms/texts/Title'
 
 function LoginForm({
   forgotPwdLabel,
   forgotPwdUrl,
+  onSubmit,
   passwordLabel,
   submitLabel,
   submitMessage,
@@ -16,19 +20,18 @@ function LoginForm({
   ...props
 }) {
   return (
-    <Form spacing="half" {...props}>
-      <Title themeColor="darker" fontSize="m" fontType="secondary">
-        {title}
-      </Title>
-      {submitMessage && (
-        <div className="messaging u-padding u-color--white u-theme--background-color--darker">
-          <span className="u-font--secondary--s">{submitMessage}</span>
-        </div>
-      )}
-      <input type="text" name="name" placeholder={`${usernameLabel}*`} />
-      <input type="password" name="name" placeholder={`${passwordLabel}*`} />
+    <Form spacingSize="half" {...props}>
+      <Title
+        fontSize="m"
+        fontType="secondary"
+        text={title}
+        themeColor="darker"
+      />
+      {submitMessage && <SubmitMessage text={submitMessage} />}
+      <TextField name="username" placeholder={`${usernameLabel}*`} />
+      <PasswordField name="password" placeholder={`${passwordLabel}*`} />
       <div className="u-flex u-flex--align-center">
-        <input type="submit" value={submitLabel} />
+        <Button text={submitLabel} onSubmit={onSubmit} />
         <Button url={forgotPwdUrl} text={forgotPwdLabel} simple />
       </div>
     </Form>
@@ -38,6 +41,7 @@ function LoginForm({
 LoginForm.propTypes = {
   forgotPwdLabel: PropTypes.string,
   forgotPwdUrl: PropTypes.string,
+  onSubmit: PropTypes.func,
   passwordLabel: PropTypes.string,
   submitLabel: PropTypes.string,
   submitMessage: PropTypes.string,
