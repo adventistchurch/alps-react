@@ -96,6 +96,8 @@ export default function useSlider(children = [], settings = {}) {
   const [minSwipe, setMinSwipe] = useState(0)
   const [paused, setPaused] = useState(false)
   const [slides, setSlides] = useState(null)
+  const [itemsToShow, setItemsToShow] = useState(slidesToShow)
+  const [itemsToScroll, setItemsToScroll] = useState(slidesToScroll)
   const [transition, setTransition] = useState(null)
   const [slideWidth, setSlideWidth] = useState(0)
 
@@ -119,12 +121,14 @@ export default function useSlider(children = [], settings = {}) {
   // Nav methods
 
   function onPrev() {
-    const prevIndex = index === 0 ? totalSlides - 1 : index - slidesToScroll
+    const prevIndex = index === 0 ? totalSlides - 1 : index - itemsToScroll
     onNav(prevIndex)
   }
 
   function onNext() {
-    const nextIndex = index === totalSlides - 1 ? 0 : index + slidesToScroll
+    const nextIndex =
+      index + itemsToScroll >= totalSlides ? 0 : index + itemsToScroll
+
     onNav(nextIndex)
   }
 
@@ -220,7 +224,7 @@ export default function useSlider(children = [], settings = {}) {
 
         // calculate if is current or active
         const current = i === index
-        const active = fade ? current : i >= index && index + slidesToShow >= i
+        const active = fade ? current : i >= index && index + itemsToShow >= i
 
         // Set styles
         const style = fade
@@ -280,7 +284,7 @@ export default function useSlider(children = [], settings = {}) {
 
       setSlideWidth(sliderWidth)
     } else {
-      let itemsToShow = slidesToShow
+      let width = 0
 
       if (responsive) {
         const breakpointKey = Object.keys(responsive)
@@ -288,10 +292,15 @@ export default function useSlider(children = [], settings = {}) {
           .find(bp => parseInt(bp) < sliderWidth)
 
         const breakpoint = responsive[breakpointKey]
-        itemsToShow = breakpoint.slidesToShow
+        width = sliderWidth / breakpoint.slidesToShow
+
+        setItemsToShow(breakpoint.slidesToShow)
+        setItemsToScroll(breakpoint.slidesToScroll)
+      } else {
+        width = sliderWidth / slidesToShow
       }
 
-      const slideWidth = Math.floor(sliderWidth / itemsToShow) + 1
+      const slideWidth = Math.floor(width) + 1
 
       setSlideWidth(slideWidth)
 
