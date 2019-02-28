@@ -73,6 +73,7 @@ export default function useSlider(children = [], settings = {}) {
     easing,
     fade,
     initialSlide,
+    pauseOnHover,
     responsive,
     showArrows,
     showDots,
@@ -177,7 +178,7 @@ export default function useSlider(children = [], settings = {}) {
     setPaused(false)
   }
 
-  // set touch events
+  // Set touch events
   const touchEvents = touchMove
     ? {
         onMouseDown: onSwipeStart,
@@ -188,6 +189,14 @@ export default function useSlider(children = [], settings = {}) {
         onTouchMove: onSwipeMove,
         onTouchEnd: onSwipeEnd,
         onTouchCancel: onSwipeEnd,
+      }
+    : {}
+
+  // Set slide mouse events
+  const slideEvents = pauseOnHover
+    ? {
+        onMouseEnter: onPause,
+        onMouseLeave: onPlay,
       }
     : {}
 
@@ -233,11 +242,10 @@ export default function useSlider(children = [], settings = {}) {
         const slideProps = {
           'aria-hidden': !active,
           className: classes.join(' '),
-          onMouseEnter: onPause,
-          onMouseLeave: onPlay,
           role: 'option',
           style,
           tabIndex: -1,
+          ...slideEvents,
         }
 
         return cloneElement(child, { ...slideProps, ...childProps })
@@ -332,15 +340,11 @@ const defaults = {
   adaptiveHeight: true,
   autoplay: true,
   autoplaySpeed: 4000,
-  draggable: true,
   easing: 'ease-out',
   fade: false,
-  focusOnSelect: false,
-  focusOnChange: false,
   infinite: true,
   initialSlide: 0,
   pauseOnHover: true,
-  rows: 1,
   showArrows: true,
   showDots: false,
   slidesToShow: 1,
