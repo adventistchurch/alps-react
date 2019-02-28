@@ -132,7 +132,7 @@ Element.propTypes = {
   spacingSize: PropTypes.oneOf(sizes),
   tag: PropTypes.string,
   textStyle: PropTypes.oneOf(textStyles),
-  themeBackround: PropTypes.oneOf(themeBackgroundColors),
+  themeBackground: PropTypes.oneOf(themeBackgroundColors),
   themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
 }
