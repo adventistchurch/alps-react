@@ -92,7 +92,6 @@ export default function useSlider(children = [], settings = {}) {
 
   // Set refs
   const sliderRef = useRef()
-  const listRef = useRef()
   const trackRef = useRef()
 
   const animProps = getAnimProps()
@@ -216,11 +215,13 @@ export default function useSlider(children = [], settings = {}) {
             }
           : { width: slideWidth }
 
+        const classes = [className, 'slick-slide']
+        if (active) classes.push('slick-active')
+        if (current) classes.push('slick-current')
+
         const slideProps = {
           'aria-hidden': !active,
-          className: `${className} slick-slide ${
-            active ? 'slick-active' : ''
-          } ${current ? 'slick-current' : ''}`,
+          className: classes.join(' '),
           onMouseEnter: onPause,
           onMouseLeave: onPlay,
           role: 'option',
@@ -247,13 +248,11 @@ export default function useSlider(children = [], settings = {}) {
 
   function onResize() {
     const sliderElem = sliderRef.current
-    const listElem = listRef.current
     const trackElem = trackRef.current
 
     const sliderWidth = sliderElem.offsetWidth
 
     if (fade === true) {
-      listElem.style.height = '600px'
       trackElem.style.width = `${sliderWidth * totalSlides}px`
 
       setSlideWidth(sliderWidth)
@@ -302,7 +301,6 @@ export default function useSlider(children = [], settings = {}) {
   return {
     dots,
     initialized,
-    listRef,
     onNext,
     onPrev,
     showArrows,
