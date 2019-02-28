@@ -11,9 +11,10 @@ function OptionGroup({
   title,
   titleFontSize,
   titleFontType,
+  ...props
 }) {
   return (
-    <Element className={className} spacingSize="half">
+    <Element className={className} {...props}>
       {title && (
         <Element fontSize={titleFontSize} fontType={titleFontType}>
           {title}
@@ -31,8 +32,10 @@ OptionGroup.propTypes = {
   titleFontSize: PropTypes.oneOf(fontSizes),
   titleFontType: PropTypes.oneOf(fontTypes),
   type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
+  ...Element.propTypes,
 }
 OptionGroup.defaultProps = {
+  spacingSize: 'half',
   titleFontSize: 's',
   titleFontType: 'secondary',
 }
