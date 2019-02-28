@@ -1,3 +1,4 @@
+import range from '../../helpers/range'
 const gridClass = 'l-grid'
 const col = 'col'
 
@@ -12,22 +13,17 @@ const shiftBreakpoints = ['at-medium', 'standard', 'at-large', 'at-xxlarge']
 
 const noGuttersClass = 'u-no-gutters'
 
-function validSize(size) {
-  const intSize = size ? parseInt(size) : 0
-  return intSize > 0 && intSize <= 7
-}
+const wrapSizes = range(1, 7)
 
 // Example: {side: 'left', breakpoint: 'at-xxlarge'} => 'u-shift--left--1-col--at-xxlarge'
-function getShiftClass({ side, breakpoint }) {
-  return side && breakpoint
-    ? `${shiftClass}--${side}--1-${col}--${breakpoint}`
-    : ''
+function getShiftClass(side, at) {
+  return `${shiftClass}--${side}--1-${col}--at-${at}`
 }
 
-function getGridWrapClass({ shift = null, size }) {
+function getGridWrapClass(size) {
   return `${wrapClass} ${
-    validSize(size) ? `${wrapClass}--${size}-of-7` : ''
-  } ${getShiftClass(shift)}`
+    wrapSizes.includes(size) ? `${wrapClass}--${size}-of-7` : ''
+  }`
 }
 
 function getGridClass({
@@ -35,8 +31,10 @@ function getGridClass({
   noGutters,
   seven,
   sevenInner,
-  shift,
+  shiftSide,
+  shiftAt,
   wrap,
+  wrapSize,
 }) {
   const classes = [gridClass]
 
@@ -44,8 +42,8 @@ function getGridClass({
   if (seven) classes.push(sevenClass)
   if (sevenInner) classes.push(sevenInnerClass)
   if (noGutters) classes.push(noGuttersClass)
-  if (wrap) classes.push(getGridWrapClass(shift))
-  if (shift) classes.push(getShiftClass(wrap))
+  if (wrap || wrapSize) classes.push(getGridWrapClass(wrapSize))
+  if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
 
   return classes.join(' ')
 }
@@ -71,7 +69,7 @@ function getGridItemClass({
   for (const { at, size } of sizes) {
     classes.push(
       `${itemClass}${at ? `--${at}` : ''}--${
-        validSize(size) ? `${size}-${col}` : ''
+        wrapSizes.includes(size) ? `${size}-${col}` : ''
       }`
     )
   }
@@ -88,4 +86,5 @@ export {
   sevenClass,
   shiftBreakpoints,
   shiftSides,
+  wrapSizes,
 }
