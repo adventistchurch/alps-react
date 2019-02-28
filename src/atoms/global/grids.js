@@ -9,20 +9,24 @@ const itemClass = `${gridClass}-item`
 
 const shiftClass = 'u-shift'
 const shiftSides = ['left', 'right']
-const shiftBreakpoints = ['at-medium', 'standard', 'at-large', 'at-xxlarge']
+const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
 const noGuttersClass = 'u-no-gutters'
 
-const wrapSizes = range(1, 7)
+const wrapSizes = range(1, 7).map(s => `${s}`)
 
-// Example: {side: 'left', breakpoint: 'at-xxlarge'} => 'u-shift--left--1-col--at-xxlarge'
+// Example: {side: 'left', breakpoint: 'xxlarge'} => 'u-shift--left--1-col--at-xxlarge'
 function getShiftClass(side, at) {
-  return `${shiftClass}--${side}--1-${col}--at-${at}`
+  return `${shiftClass}--${side}--1-${col}--${
+    at === 'standard' ? at : `at-${at}`
+  } ` // TODO: Ask if, to avoid this special case, `.u-shift--left--1-col--standard` is meant used, and if can be renamed to a more "standard" name like `.u-shift--left--1-col--at-standard` (note the added `at`).
 }
 
 function getGridWrapClass(size) {
   return `${wrapClass} ${
-    wrapSizes.includes(size) ? `${wrapClass}--${size}-of-7` : ''
+    typeof size === 'string' && wrapSizes.includes(size)
+      ? `${wrapClass}--${size}-of-7`
+      : ''
   }`
 }
 
@@ -34,7 +38,6 @@ function getGridClass({
   shiftSide,
   shiftAt,
   wrap,
-  wrapSize,
 }) {
   const classes = [gridClass]
 
@@ -42,7 +45,7 @@ function getGridClass({
   if (seven) classes.push(sevenClass)
   if (sevenInner) classes.push(sevenInnerClass)
   if (noGutters) classes.push(noGuttersClass)
-  if (wrap || wrapSize) classes.push(getGridWrapClass(wrapSize))
+  if (wrap) classes.push(getGridWrapClass(wrap))
   if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
 
   return classes.join(' ')

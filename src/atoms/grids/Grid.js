@@ -19,7 +19,6 @@ function Grid({
   shiftAt,
   shiftSide,
   wrap,
-  wrapSize,
   ...props
 }) {
   const elementClass = getGridClass({
@@ -30,7 +29,6 @@ function Grid({
     shiftAt,
     shiftSide,
     wrap,
-    wrapSize,
   })
 
   return (
@@ -51,8 +49,7 @@ Grid.propTypes = {
   sevenInner: PropTypes.bool,
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
   shiftSide: PropTypes.oneOf(shiftSides),
-  wrap: PropTypes.bool,
-  wrapSize: PropTypes.oneOf(wrapSizes),
+  wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
   ...Element.propTypes,
 }
 Grid.defaultProps = {
