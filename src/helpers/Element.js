@@ -98,7 +98,10 @@ function parseProps(props) {
       })
     )
 
-  return { className: classes.join(' '), ...otherProps }
+  return {
+    className: classes.length > 0 ? classes.join(' ') : null,
+    ...otherProps,
+  }
 }
 
 /**
