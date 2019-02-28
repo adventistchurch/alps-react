@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 
-import Container from '../../../helpers/Element'
+import Element from '../../../helpers/Element'
 
 function OptionGroup({
   children,
@@ -13,14 +13,14 @@ function OptionGroup({
   titleFontType,
 }) {
   return (
-    <Container className={className} spacingSize="half">
+    <Element className={className} spacingSize="half">
       {title && (
-        <Container fontSize={titleFontSize} fontType={titleFontType}>
+        <Element fontSize={titleFontSize} fontType={titleFontType}>
           {title}
-        </Container>
+        </Element>
       )}
       {children}
-    </Container>
+    </Element>
   )
 }
 
