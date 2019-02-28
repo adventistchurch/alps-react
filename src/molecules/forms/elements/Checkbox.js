@@ -7,7 +7,7 @@ import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 
-function BaseTextField({
+function Checkbox({
   checked,
   error,
   id,
@@ -21,14 +21,7 @@ function BaseTextField({
   value,
   ...props
 }) {
-  const Checkbox = (
-    <BaseInput
-      type="checkbox"
-      {...{ checked, error, id, name, value, ...props }}
-    />
-  )
-
-  return label ? (
+  return (
     <FormLabel
       error={error}
       fontSize={labelFontSize}
@@ -40,19 +33,25 @@ function BaseTextField({
       wrapperClass={labelWrapperClass}
       wrapperSpacingSize={labelWrapperSpacingSize}
     >
-      {Checkbox}
+      <BaseInput
+        checked={checked}
+        error={error}
+        id={id}
+        name={name}
+        type="checkbox"
+        value={value}
+        {...props}
+      />
     </FormLabel>
-  ) : (
-    { Checkbox }
   )
 }
 
-BaseTextField.propTypes = {
+Checkbox.propTypes = {
   checked: PropTypes.bool,
   darkMode: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
   labelFontSize: PropTypes.oneOf(fontSizes),
   labelFontType: PropTypes.oneOf(fontTypes),
@@ -62,9 +61,9 @@ BaseTextField.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
 }
-BaseTextField.defaultProps = {
-  labelWrapperClass: 'inline-form-element--row',
+Checkbox.defaultProps = {
+  labelWrapperClass: null,
   labelWrapperSpacingSize: null,
 }
 
-export default BaseTextField
+export default Checkbox
