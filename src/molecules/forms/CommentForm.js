@@ -1,44 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../../atoms/buttons/Button'
+import TextArea from './elements/TextArea'
 import Title from '../../atoms/texts/Title'
 import Form from './elements/Form'
 
-const CommentForm = ({ rows, submitLabel, title, ...props }) => {
+const CommentForm = ({ onSubmit, rows, submitLabel, title, ...props }) => {
   return (
-    <div className="c-comment-form">
-      <div className="u-spacing--half">
-        <Title
-          as="h3"
-          themeColor="darker"
-          fontSize="m"
-          fontType="secondary"
-          text={title}
-          textStyle="strong"
-          transform="upper"
-        />
-        <Form spacingSize="half" noValidate {...props}>
-          <p>
-            <textarea
-              aria-required="true"
-              name="comment"
-              required
-              rows={rows}
-            />
-          </p>
-          <p>
-            <input name="submit" type="submit" value={submitLabel} />
-          </p>
-        </Form>
-      </div>
-    </div>
+    <Form className="c-comment-form" spacingSize="half" noValidate {...props}>
+      <Title
+        as="h3"
+        themeColor="darker"
+        fontSize="m"
+        fontType="secondary"
+        text={title}
+        textStyle="strong"
+        transform="upper"
+      />
+      <TextArea
+        aria-required={true}
+        name="comment"
+        required="required"
+        rows={rows}
+      />
+      <Button text={submitLabel} onSubmit={onSubmit} />
+    </Form>
   )
 }
 
 CommentForm.propTypes = {
-  title: PropTypes.string,
-  submitLabel: PropTypes.string,
+  onSubmit: PropTypes.func,
   rows: PropTypes.number,
+  submitLabel: PropTypes.string,
+  title: PropTypes.string,
 }
 
 CommentForm.defaultProps = {
