@@ -54,3 +54,17 @@ export const themeColors = ['base', 'dark', 'darker', 'light', 'lighter']
 // - Background
 export const themeBackgroundClass = 'u-theme--background-color'
 export const themeBackgroundColors = [...themeColors]
+
+// - Border
+export const themeBorderColorClass = 'u-theme--border-color'
+export const themeBorderColors = [...themeColors]
+
+// - "Can be"
+export const canBeClass = 'can-be'
+export const canBeColors = [
+  'dark-dark',
+  'dark-light',
+  'white',
+  'light',
+  'lighter',
+]
