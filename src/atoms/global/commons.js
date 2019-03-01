@@ -1,5 +1,7 @@
 export const sides = ['top', 'bottom', 'left', 'right']
 
+export const vishiddenClass = 'is-vishidden'
+
 function getMod(key) {
   return key ? `--${key}` : ''
 }
