@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../../atoms/buttons/Button'
 import Checkbox from './elements/Checkbox'
 import Form from './elements/Form'
 import TextArea from './elements/TextArea'
@@ -8,8 +9,9 @@ import TextField from './elements/TextField'
 import Title from '../../atoms/texts/Title'
 import OptionGroup from './elements/OptionGroup'
 import RadioButton from './elements/RadioButton'
+import Dropdown from './elements/Dropdown'
 
-function SampleForm({ title }) {
+function SampleForm({ cancelLabel, onCancel, onSubmit, submitLabel, title }) {
   return (
     <Form padding spacing>
       <Title
@@ -72,6 +74,20 @@ function SampleForm({ title }) {
           value="radio-three"
         />
       </OptionGroup>
+      <OptionGroup title="Select from this list:">
+        <Dropdown
+          id="select"
+          name="select"
+          options={[
+            { text: 'Option 1', value: 'one' },
+            { text: 'Option 2', value: 'two' },
+            { text: 'Option 3', value: 'three' },
+            { text: 'Option 4', value: 'four' },
+          ]}
+        />
+      </OptionGroup>
+      <Button text={submitLabel} onSubmit={onSubmit} />
+      <Button text={cancelLabel} onCancel={onCancel} simple />
     </Form>
   )
 }
