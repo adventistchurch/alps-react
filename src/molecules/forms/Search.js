@@ -6,19 +6,15 @@ import Form from './elements/Form'
 import SearchField from './elements/SearchField'
 import SubmitButton from './elements/SubmitButton'
 
-import useInputFocus from '../../helpers/useInputFocus'
-
 function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
-  const inputFocusRef = useInputFocus(hasFocus)
-
   return (
     <Form className="search-form" role="search" {...props}>
-      <Fieldset legend={title} legendVisihidden>
+      <Fieldset legend={title} legendVishidden>
         <SearchField
           className="search-form__input"
           name="search"
           placeholder={placeholder}
-          ref={inputFocusRef}
+          hasFocus={hasFocus}
           required
         />
         {/* TODO: create component for screen readers? */}
@@ -39,6 +35,7 @@ Search.propTypes = {
 Search.defaultProps = {
   submitLabel: 'Search',
   title: 'Search',
+  placeholder: 'Search...',
 }
 
 export default Search

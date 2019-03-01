@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import useInputFocus from '../../../helpers/useInputFocus'
+
 function BaseInput({
   checked,
   error,
@@ -10,8 +12,11 @@ function BaseInput({
   placeholder,
   type,
   value,
+  hasFocus,
   ...props
 }) {
+  const inputFocusRef = useInputFocus(hasFocus)
+
   const classes = []
   if (error) classes.push('has-error')
   if (inline) classes.push('form-input')
@@ -26,6 +31,7 @@ function BaseInput({
       placeholder={placeholder}
       type={type}
       value={value}
+      ref={inputFocusRef}
       {...props}
     />
   )
@@ -34,6 +40,7 @@ function BaseInput({
 BaseInput.propTypes = {
   checked: PropTypes.bool,
   error: PropTypes.string,
+  hasFocus: PropTypes.bool,
   id: PropTypes.string,
   inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
