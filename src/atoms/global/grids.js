@@ -53,13 +53,16 @@ function getGridClass({
 
 function getGridItemClass({
   className,
+  noItemClass,
   size,
   sizeAtL,
   sizeAtM,
   sizeAtS,
   sizeAtXL,
 }) {
-  const classes = [itemClass]
+  const classes = []
+
+  if (!noItemClass) classes.push(itemClass)
 
   const sizes = []
 

@@ -8,6 +8,7 @@ function GridItem({
   as,
   children,
   className,
+  noItemClass,
   size,
   sizeAtL,
   sizeAtM,
@@ -17,6 +18,7 @@ function GridItem({
 }) {
   const elementClass = getGridItemClass({
     className,
+    noItemClass,
     size,
     sizeAtS,
     sizeAtM,
@@ -37,6 +39,7 @@ GridItem.propTypes = {
   as: PropTypes.oneOf(['article', 'div']),
   children: PropTypes.node,
   className: PropTypes.string,
+  noItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
   size: sizePropType,
   sizeAtS: sizePropType,
   sizeAtM: sizePropType,
@@ -45,6 +48,7 @@ GridItem.propTypes = {
 }
 GridItem.defaultProps = {
   as: 'div',
+  noItemClass: false,
   className: '',
 }
 
