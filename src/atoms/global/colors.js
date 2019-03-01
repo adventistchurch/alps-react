@@ -27,6 +27,8 @@ export const grayscaleColors = [
   'white',
 ]
 
+const stateColors = ['valid', 'error', 'warning', 'information']
+
 // Text Colors:
 export const textColorClass = 'u-color'
 export const textColors = [
@@ -34,6 +36,7 @@ export const textColors = [
   ...grayscaleColors,
   'black-transparent',
   'white-transparent',
+  ...stateColors,
 ]
 
 // SVG Fill Colors
@@ -54,6 +57,8 @@ export const themeColors = ['base', 'dark', 'darker', 'light', 'lighter']
 // - Background
 export const themeBackgroundClass = 'u-theme--background-color'
 export const themeBackgroundColors = [...themeColors]
+export const themeBackgroundTransClass = `${themeBackgroundClass}-trans`
+export const themeBackgroundTransColors = [...themeColors]
 
 // - Border
 export const themeBorderColorClass = 'u-theme--border-color'
