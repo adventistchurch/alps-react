@@ -9,8 +9,10 @@ import {
 } from '../../atoms/global/colors'
 
 import Icon, { iconSizes } from '../../atoms/icons/Icon'
+import Element from '../../helpers/Element'
 
 function IconWrap({
+  as,
   background,
   className,
   color,
@@ -28,13 +30,14 @@ function IconWrap({
   const classNames = classes.join(' ')
 
   return (
-    <span className={classNames} {...props}>
+    <Element as={as} className={classNames} {...props}>
       <Icon name={name} color={color} />
-    </span>
+    </Element>
   )
 }
 
 IconWrap.propTypes = {
+  as: PropTypes.string,
   background: PropTypes.oneOf(themeBackgroundColors),
   className: PropTypes.string,
   color: Icon.propTypes.color,
@@ -43,6 +46,7 @@ IconWrap.propTypes = {
   size: PropTypes.oneOf(iconSizes),
 }
 IconWrap.defaultProps = {
+  as: 'span',
   className: '',
   fill: 'white',
   size: 'm',
