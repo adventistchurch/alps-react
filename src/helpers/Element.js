@@ -2,12 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
+  borderColors,
+  borderSides,
+  getBorderClass,
+} from '../atoms/global/borders'
+
+import {
   backgroundColorClass,
   backgroundColors,
+  canBeClass,
+  canBeColors,
   textColorClass,
   textColors,
   themeBackgroundClass,
   themeBackgroundColors,
+  themeBorderColorClass,
+  themeBorderColors,
   themeColorClass,
   themeColors,
 } from '../atoms/global/colors'
@@ -24,6 +34,7 @@ import {
 
 import {
   afterSizes,
+  clearFixClass,
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
@@ -42,6 +53,11 @@ import {
 function parseProps(props) {
   const {
     backgroundColor,
+    border,
+    borderColor,
+    borderSide,
+    canBe,
+    clearFix,
     color,
     fontSize,
     fontType,
@@ -57,24 +73,50 @@ function parseProps(props) {
     spacingSize,
     spacingUntil,
     style,
-    themeBackgroundColor,
+    themeBackground,
+    themeBorder,
     themeColor,
     transform,
     className,
     ...otherProps
   } = props
 
+  // Set classes:
   const classes = []
 
+  if (className) classes.push(className)
+
+  // - Color classes
+  if (backgroundColor)
+    classes.push(`${backgroundColorClass}--${backgroundColor}`)
+  if (canBe) classes.push(`${canBeClass}--${canBe}`)
+  if (color) classes.push(`${textColorClass}--${color}`)
+
+  // - Font classes
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
-  if (color) classes.push(`${textColorClass}--${color}`)
-  if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
-  if (backgroundColor) classes.push(`${backgroundColorClass}--${color}`)
-  if (themeBackgroundColor) classes.push(`${themeBackgroundClass}--${color}`)
+
   if (style) classes.push(`${textClass}--${style}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
-  if (className) classes.push(className)
+
+  // - Theme classes
+  if (themeBorder) classes.push(`${themeBorderColorClass}--${themeBorder}`)
+  if (themeBackground)
+    classes.push(`${themeBackgroundClass}--${themeBackground}`)
+  if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
+
+  // - Border classes
+  if (border || borderColor || borderSide)
+    classes.push(
+      getBorderClass({
+        color: borderColor,
+        side: borderSide,
+      })
+    )
+
+  // - Spacing classes
+
+  if (clearFix) classes.push(clearFixClass)
 
   if (padding || paddingSide || paddingSize)
     classes.push(
@@ -116,8 +158,13 @@ function Element({ as, children, tag, ...props }) {
 
 Element.propTypes = {
   as: PropTypes.string,
+  border: PropTypes.bool,
+  borderColor: PropTypes.oneOf(borderColors),
+  borderSide: PropTypes.oneOf(borderSides),
+  canBe: PropTypes.oneOf(canBeColors),
   children: PropTypes.node,
   className: PropTypes.string,
+  clearFix: PropTypes.bool,
   color: PropTypes.oneOf(textColors),
   backgroundColor: PropTypes.oneOf(backgroundColors),
   fontSize: PropTypes.oneOf(fontSizes),
@@ -136,6 +183,7 @@ Element.propTypes = {
   style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
   themeBackround: PropTypes.oneOf(themeBackgroundColors),
+  themeBorder: PropTypes.oneOf(themeBorderColors),
   themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
 }
