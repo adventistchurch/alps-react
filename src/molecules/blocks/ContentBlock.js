@@ -23,16 +23,32 @@ function ContentBlock({
 }) {
   const { onToggle, openClass } = useToggle()
 
-  const blockClass = `c-block c-block__text u-spacing ${
-    more
-      ? 'c-block__text-expand u-spacing u-background-color--gray--light u-padding u-clear-fix can-be--dark-dark'
-      : 'u-spacing'
-  } u-theme--border-color--darker u-border--left ${
-    image ? 'has-image' : ''
-  } ${openClass} ${className}`
+  const classes = ['c-block', 'c-block__text']
+
+  if (more) classes.push('c-block__text-expand')
+  if (image) classes.push('has-image')
+  if (openClass) classes.push(openClass)
+  if (className) classes.push(className)
+
+  const classNames = classes.join(' ')
+
+  const moreProps = more
+    ? {
+        canBe: 'dark-dark',
+        clearFix: true,
+        padding: true,
+        backgroundColor: 'gray--light',
+      }
+    : {}
 
   return (
-    <div className={blockClass}>
+    <Element
+      className={classNames}
+      borderSide="left"
+      spacing
+      themeBorder="darker"
+      {...moreProps}
+    >
       {image && <MediaImage image={image} url={url} />}
 
       <Title
@@ -101,7 +117,7 @@ function ContentBlock({
           />
         )
       )}
-    </div>
+    </Element>
   )
 }
 
