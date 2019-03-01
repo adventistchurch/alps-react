@@ -1,26 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../atoms/icons/Icon'
+import IconWrap from '../../atoms/icons/IconWrap'
 import useToggle from '../../helpers/useToggle'
+import Text from '../../atoms/texts/Text'
+import Element from '../../helpers/Element'
 
 function FooterModal({ children, text }) {
   const { onToggle, openClass } = useToggle(true, '', 'this-is-active')
 
   return (
-    <div
-      className={`c-modal u-theme--background-color-trans--base u-color--white u-padding text ${openClass}`}
+    <Text
+      className={`c-modal ${openClass}`}
+      themeBackgroundTrans="base"
+      color="white"
+      padding
     >
-      <p className="c-modal__body u-font--primary">
-        <strong>{children || text}</strong>
-      </p>
-      <button
-        className="c-modal__close u-icon u-icon--m u-path-fill--white js-toggle-parent"
+      <Element as="p" className="c-modal__body" fontType="primary" strong>
+        {children || text}
+      </Element>
+
+      <IconWrap
+        as="button"
+        className="c-modal__close"
+        color="white"
+        fill="white"
+        name="close"
         onClick={onToggle}
-      >
-        <Icon name="close" color="white" />
-      </button>
-    </div>
+        size="m"
+      />
+    </Text>
   )
 }
 
