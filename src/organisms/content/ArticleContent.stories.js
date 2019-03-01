@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 
 import ArticleContent from './ArticleContent'
 
-import ArticleBody from './ArticleBody'
+import ArticleWrap from './ArticleWrap'
 
 storiesOf('organisms/content/ArticleContent', module)
   .addDecorator(withKnobs)
@@ -12,7 +12,7 @@ storiesOf('organisms/content/ArticleContent', module)
   .addWithJSX('Default', () => {
     return (
       <ArticleContent>
-        <ArticleBody hasDropcap spacingSize="double">
+        <ArticleWrap hasDropcap spacingSize="double">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.{' '}
             <a href="#!">Donec malesuada</a>, est ut viverra euismod, dui dolor
@@ -42,7 +42,7 @@ storiesOf('organisms/content/ArticleContent', module)
             scelerisque arcu non sem auctor molestie. Vestibulum sit amet congue
             ex.
           </p>
-        </ArticleBody>
+        </ArticleWrap>
       </ArticleContent>
     )
   })

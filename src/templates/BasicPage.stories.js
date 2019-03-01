@@ -78,14 +78,38 @@ storiesOf('templates/BasicPage', module)
     // Note: This is just a simple demo content.
     // The `content` prop should be provided to BasicPage with actual React components
     const content = (
-      <Text hasDropcap hasSpacing>
-        <h1>{title1}</h1>
-        <p>{text1}</p>
-        <h2>{title2}</h2>
-        <p>{text2}</p>
-        <h3>{title3}</h3>
-        <p>{text3}</p>
-      </Text>
+      <>
+        <Text hasDropcap spacing>
+          <h1>{title1}</h1>
+          <p>
+            <strong>
+              <span>
+                <a href="#link">Lorem</a>
+              </span>{' '}
+              Ipsum
+            </strong>
+            Text 3{text1}
+            {text2}
+          </p>
+        </Text>
+        <Text hasDropcap spacing>
+          <h2>{title2}</h2>
+          <p>
+            <a href="#link">This is a link</a> and here is the rest of text.{' '}
+            {text2}
+          </p>
+          <h3>{title3}</h3>
+          <p>{text2}</p>
+        </Text>
+        <Text hasDropcap spacing>
+          <h3>{title3}</h3>
+          <p>
+            <strong>Aperiam veritatis dolore.</strong>{' '}
+            <a href="#link">Mollitia repudiandae ipsa</a> {text3}
+          </p>
+          <h3>{title2}</h3>
+        </Text>
+      </>
     )
 
     return (

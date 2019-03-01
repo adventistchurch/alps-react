@@ -1,39 +1,54 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function BaseInput({ checked, id, label, name, placeholder, type, value }) {
-  const inputId = id ? id : name
-  const groupClass =
-    type == 'radio' ? 'c-form-group__radio' : 'c-form-group u-spacing--quarter'
+function BaseInput({
+  checked,
+  error,
+  id,
+  inline,
+  name,
+  placeholder,
+  type,
+  value,
+  ...props
+}) {
+  const classes = []
+  if (error) classes.push('has-error')
+  if (inline) classes.push('form-input')
+  const inputClass = classes.length > 0 ? classes.join(' ') : null
+
   return (
-    <div className={groupClass}>
-      <input
-        defaultChecked={checked}
-        id={inputId}
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        value={value}
-      />
-      <label className="u-font--secondary--s" htmlFor={inputId}>
-        {label}
-      </label>
-    </div>
+    <input
+      className={inputClass}
+      defaultChecked={checked}
+      id={id}
+      name={name}
+      placeholder={placeholder}
+      type={type}
+      value={value}
+      {...props}
+    />
   )
 }
 
 BaseInput.propTypes = {
-  className: PropTypes.string,
   checked: PropTypes.bool,
+  error: PropTypes.string,
   id: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'email', 'radio']),
+  type: PropTypes.oneOf([
+    'checkbox',
+    'email',
+    'password',
+    'radio',
+    'search',
+    'text',
+  ]),
   value: PropTypes.string,
 }
 BaseInput.defaultProps = {
-  className: '',
   type: 'text',
 }
 

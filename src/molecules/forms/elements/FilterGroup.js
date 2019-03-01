@@ -10,10 +10,10 @@ function FormFilter({ options, title }) {
         as="h3"
         fontType="secondary"
         fontSize="s"
-        themeColor="base"
         text={title}
+        textStyle="strong"
+        themeColor="base"
         transform="upper"
-        style="strong"
       />
       {options.map(({ checked, id, name, type, value }, key) => {
         const inputId = `${type}-${id}`

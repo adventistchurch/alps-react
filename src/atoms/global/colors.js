@@ -68,3 +68,6 @@ export const canBeColors = [
   'light',
   'lighter',
 ]
+
+// - Dark Theme
+export const darkThemeClass = 'u-theme--dark'

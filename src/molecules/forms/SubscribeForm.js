@@ -2,52 +2,57 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import BaseInput from './elements/BaseInput'
-import Title from '../../atoms/texts/Title'
+import EmailField from './elements/EmailField'
 import Form from './elements/Form'
+import FormTitle from './elements/FormTitle'
+import OptionGroup from './elements/OptionGroup'
+import RadioButton from './elements/RadioButton'
+import TextField from './elements/TextField'
 
 function SubscribeForm({
   cancelLabel,
+  darkMode,
   onCancel,
   onSubmit,
   submitLabel,
   title,
 }) {
   return (
-    <Form className="c-form c-subscribe-form u-theme--dark u-theme--background-color--darker u-spacing u-padding">
-      <Title themeColor="white" fontSize="l" text={title} style="strong" />
-      <BaseInput
-        name="first_name"
+    <Form darkMode={darkMode} padding spacing>
+      <FormTitle text={title} darkMode={darkMode} />
+      <TextField
+        darkMode={darkMode}
         label="First Name"
+        name="first_name"
         placeholder="First Name"
       />
-      <BaseInput name="last_name" placeholder="Last Name" label="Last Name" />
-      <BaseInput
-        name="email"
-        type="email"
-        placeholder="Email Address"
-        label="Email Address"
+      <TextField
+        darkMode={darkMode}
+        label="Last Name"
+        name="last_name"
+        placeholder="Last Name"
       />
-      <div className="u-spacing--half">
-        <span className="u-font--secondary--s u-theme--color--lighter u-text-transform--upper">
-          <strong>Frequency</strong>
-        </span>
-        <BaseInput
+      <EmailField
+        darkMode={darkMode}
+        label="Email Address"
+        name="email"
+        placeholder="Email Address"
+      />
+      <OptionGroup title="Frequency">
+        <RadioButton
           checked={true}
           id="weekly"
-          name="option"
-          type="radio"
-          value="one"
           label="Weekly Bulletin"
+          name="frequency"
+          value="weekly"
         />
-        <BaseInput
+        <RadioButton
           id="seasonal"
-          name="option"
-          type="radio"
-          value="two"
           label="Seasonal Bulletin"
+          name="frequency"
+          value="seasonal"
         />
-      </div>
+      </OptionGroup>
       <Button text={submitLabel} onSubmit={onSubmit} outline />
       <Button icon="close" text={cancelLabel} onCancel={onCancel} simple />
     </Form>
@@ -56,6 +61,7 @@ function SubscribeForm({
 
 SubscribeForm.propTypes = {
   cancelLabel: PropTypes.string,
+  darkMode: PropTypes.bool,
   onCancel: PropTypes.func,
   onSubmit: PropTypes.func,
   submitLabel: PropTypes.string,
@@ -63,6 +69,7 @@ SubscribeForm.propTypes = {
 }
 SubscribeForm.defaultProps = {
   cancelLabel: 'Cancel',
+  darkMode: true,
   submitLabel: 'Submit',
   title: 'Subscribe',
 }

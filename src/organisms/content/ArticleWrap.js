@@ -2,17 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Text from '../../atoms/texts/Text'
-import Grid from '../../atoms/grids/Grid'
+import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 
-function ArticleBody({ children, ...props }) {
+function ArticleWrap({ children, ...props }) {
   return (
-    <Grid
+    <GridSeven
       as="section"
-      seven
       shiftSide="left"
       shiftAt="xxlarge"
-      spacing="double"
+      spacingSize="double"
       spacingUntil="large"
     >
       <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">
@@ -20,14 +19,14 @@ function ArticleBody({ children, ...props }) {
           {children}
         </Text>
       </GridItem>
-    </Grid>
+    </GridSeven>
   )
 }
 
-ArticleBody.propTypes = {
+ArticleWrap.propTypes = {
   children: PropTypes.node,
   ...Text.propTypes,
 }
-ArticleBody.defaultProps = {}
+ArticleWrap.defaultProps = {}
 
-export default ArticleBody
+export default ArticleWrap

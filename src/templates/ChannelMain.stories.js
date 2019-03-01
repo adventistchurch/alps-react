@@ -37,19 +37,15 @@ storiesOf('templates/ChannelMain', module)
     )
 
     return (
-      <div className="l-wrap">
-        <div className="l-wrap__content l-content" role="document">
-          <ChannelMain
-            aside={aside}
-            background={background}
-            breadcrumbs={breadcrumbs}
-            breakout={breakout}
-            content={content}
-            kicker={kicker}
-            relatedPosts={relatedPosts}
-            title={title}
-          />
-        </div>
-      </div>
+      <ChannelMain
+        aside={aside}
+        background={background}
+        breadcrumbs={breadcrumbs}
+        breakout={breakout}
+        content={content}
+        kicker={kicker}
+        relatedPosts={relatedPosts}
+        title={title}
+      />
     )
   })

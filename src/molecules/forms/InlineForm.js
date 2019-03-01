@@ -1,31 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../../atoms/buttons/Button'
 import Form from './elements/Form'
+import TextField from './elements/TextField'
 
-function InlineForm({ submitLabel, ...props }) {
+function InlineForm({ onSubmit, submitLabel, ...props }) {
   return (
     <Form inline noValidate {...props}>
-      <input
-        type="text"
-        name="text"
-        aria-required="true"
-        required
-        className="form-input"
-      />
-      <p className="u-space--left">
-        <input
-          name="submit"
-          type="submit"
-          className="submit"
-          value={submitLabel}
-        />
-      </p>
+      <TextField aria-required={true} name="text" required inline />
+      <Button text={submitLabel} onSubmit={onSubmit} spaceSide="left" />
     </Form>
   )
 }
 
 InlineForm.propTypes = {
+  onSubmit: PropTypes.func,
   submitLabel: PropTypes.string,
 }
 

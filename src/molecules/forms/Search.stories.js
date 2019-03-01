@@ -13,9 +13,13 @@ storiesOf('molecules/forms/Search', module)
 
   .addWithJSX('Default', () => {
     const placeholder = text('Placeholder', data.placeholder, propsTab)
-    const title = text('Form Title (hidden)', data.title, propsTab)
+    const title = text(
+      'Form Title (visible only for screen readers)',
+      data.title,
+      propsTab
+    )
     const submitLabel = text(
-      'Submit Button (hidden)',
+      'Submit Button (visible only for screen readers)',
       data.submitLabel,
       propsTab
     )

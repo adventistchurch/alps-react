@@ -1,26 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Fieldset({ children, className, legendClass, spacing, legend }) {
-  const fieldsetClass = `${spacing ? `u-spacing--${spacing}` : ''} ${className}`
+import { themeColors } from '../../../atoms/global/colors'
+import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
+
+import Element from '../../../helpers/Element'
+
+function Fieldset({
+  children,
+  legend,
+  legendClass,
+  legendFontSize,
+  legendFontType,
+  legendThemeColor,
+  ...props
+}) {
   return (
-    <fieldset className={fieldsetClass}>
-      <legend className={legendClass}>{legend}</legend>
+    <Element as="fieldset" {...props}>
+      {legend && (
+        <Element
+          as="legend"
+          className={legendClass}
+          fontSize={legendFontSize}
+          fontType={legendFontType}
+          themeColor={legendThemeColor}
+        >
+          {legend}
+        </Element>
+      )}
       {children}
-    </fieldset>
+    </Element>
   )
 }
 
 Fieldset.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  legend: PropTypes.string.isRequired,
+  legend: PropTypes.string,
   legendClass: PropTypes.string,
-  spacing: PropTypes.oneOf(['half']),
+  legendFontSize: PropTypes.oneOf(fontSizes),
+  legendFontType: PropTypes.oneOf(fontTypes),
+  legendThemeColor: PropTypes.oneOf(themeColors),
+  ...Element.propTypes,
 }
 Fieldset.defaultProps = {
-  className: '',
-  legendClass: '',
+  legendFontSize: 'm',
+  legendFontType: 'secondary',
+  legendThemeColor: 'darker',
 }
 
 export default Fieldset

@@ -55,7 +55,7 @@ function ContentBlock({
         as="h3"
         className={titleClass}
         fontSize="m"
-        style={titleStrong ? 'strong' : null}
+        textStyle={titleStrong ? 'strong' : null}
         text={title}
         themeColor="darker"
       >

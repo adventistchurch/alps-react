@@ -72,7 +72,7 @@ function parseProps(props) {
     spacingSide,
     spacingSize,
     spacingUntil,
-    style,
+    textStyle,
     themeBackground,
     themeBorder,
     themeColor,
@@ -96,7 +96,8 @@ function parseProps(props) {
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
 
-  if (style) classes.push(`${textClass}--${style}`)
+  if (textStyle) classes.push(`${textClass}--${textStyle}`)
+
   if (transform) classes.push(`${textTransformClass}--${transform}`)
 
   // - Theme classes
@@ -144,7 +145,10 @@ function parseProps(props) {
       })
     )
 
-  return { className: classes.join(' '), ...otherProps }
+  return {
+    className: classes.length > 0 ? classes.join(' ') : null,
+    ...otherProps,
+  }
 }
 
 /**
@@ -180,9 +184,9 @@ Element.propTypes = {
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
   spacingUntil: PropTypes.oneOf(untilSizes),
-  style: PropTypes.oneOf(textStyles),
   tag: PropTypes.string,
-  themeBackround: PropTypes.oneOf(themeBackgroundColors),
+  textStyle: PropTypes.oneOf(textStyles),
+  themeBackground: PropTypes.oneOf(themeBackgroundColors),
   themeBorder: PropTypes.oneOf(themeBorderColors),
   themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),

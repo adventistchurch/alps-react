@@ -23,11 +23,7 @@ storiesOf('molecules/forms/LoginForm', module)
       propsTab
     )
     const formSubmitted = boolean('Form submitted', false, submitTag)
-    const submitMessage = text(
-      'Logging you in...',
-      data.submitMessage,
-      submitTag
-    )
+    const submitMessage = text('Submit Message', data.submitMessage, submitTag)
     return (
       <LoginForm
         forgotPwdLabel={forgotPwdLabel}
