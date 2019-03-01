@@ -4,9 +4,17 @@ import PropTypes from 'prop-types'
 import Element from '../../helpers/Element'
 import { getGridItemClass } from '../global/grids'
 
-function GridItem({ as, children, className, ...props }) {
-  const { size, sizeAtL, sizeAtM, sizeAtS, sizeAtXL, ...rest } = props
-
+function GridItem({
+  as,
+  children,
+  className,
+  size,
+  sizeAtL,
+  sizeAtM,
+  sizeAtS,
+  sizeAtXL,
+  ...props
+}) {
   const elementClass = getGridItemClass({
     className,
     size,
@@ -17,7 +25,7 @@ function GridItem({ as, children, className, ...props }) {
   })
 
   return (
-    <Element as={as} className={elementClass} {...rest}>
+    <Element as={as} className={elementClass} {...props}>
       {children}
     </Element>
   )

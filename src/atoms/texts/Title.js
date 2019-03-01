@@ -33,9 +33,9 @@ Title.propTypes = {
 Title.defaultProps = {
   as: 'h2',
   className: '',
-  themeColor: 'darker',
   fontSize: 's',
   fontType: 'primary',
+  themeColor: 'darker',
 }
 
 export default Title

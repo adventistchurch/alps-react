@@ -12,56 +12,120 @@ import ContentBlock from './ContentBlock'
 
 import data from './ContentBlock.stories.json'
 
-const propsTab = 'Props'
-const ctaTab = 'CTA'
-const imageTab = 'Image'
-
 const imageModes = ['Landscape', 'Portrait', 'Square']
+
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...ContentBlock.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function textsTab(settings = {}) {
+  const { category, description, more, title, tab } = getTabData('Texts', {
+    settings,
+  })
+
+  return {
+    title: text('Title *', title, tab),
+    description: text('Description', description, tab),
+    category: text('Category', category, tab),
+    more: text('Extra text (more)', more, tab),
+  }
+}
+function imageTab(settings = {}) {
+  const { image, showImage, tab } = getTabData('Image', {
+    settings,
+  })
+
+  const mode = select('Image Mode', imageModes, 'Landscape', tab)
+
+  return {
+    image: boolean('Show Image', showImage, tab)
+      ? {
+          alt: text('Image Alt', image.alt, tab),
+          srcSet: object('Image SrcSet', image.srcSet[mode], tab),
+        }
+      : null,
+  }
+}
+
+function ctaTab(settings = {}) {
+  const { cta, url, tab } = getTabData('CTA', {
+    settings,
+  })
+
+  const showCta = boolean('Show Call to Action', true, tab)
+
+  return showCta
+    ? {
+        cta: text('Call to Action Text', cta, tab),
+        url: text('Call to Action URL', url, tab),
+      }
+    : {}
+}
+
+export function contentBlockTab(settings = {}) {
+  const props = getTabData('Results', {
+    settings,
+  })
+
+  return {
+    ...textsTab(props),
+    ...imageTab(props),
+    ...ctaTab(props),
+  }
+}
 
 storiesOf('molecules/blocks/ContentBlock', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const title = text('Title *', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const category = text('Category', data.category, propsTab)
-    const showCta = boolean('Show Call to Action', true, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const url = text('Call to Action URL', data.url, ctaTab)
+    const { category, description, title } = textsTab()
+    const { image } = imageTab()
+    const { cta, url } = ctaTab()
 
     return (
       <ContentBlock
         title={title}
         description={description}
         category={category}
-        cta={showCta ? cta : null}
-        url={showCta ? url : null}
+        image={image}
+        cta={cta}
+        url={url}
       />
     )
   })
 
   .addWithJSX('Show more', () => {
-    const title = text('Title *', data.title, propsTab)
-    const description = text('Description', data.description, propsTab)
-    const more = text('Extra text (more)', data.more, propsTab)
-    const url = text('URL', data.url, propsTab)
-    const category = text('Category', data.category, propsTab)
-    const showImage = boolean('Show Image', true, imageTab)
-    const imageMode = select('Image Mode', imageModes, 'Landscape', imageTab)
-    const srcSet = object('Image SrcSet', data.imageSrcSet[imageMode], imageTab)
-    const alt = text('Image Alt', data.imageAlt, imageTab)
-
-    const image = {
-      alt,
-      srcSet,
-    }
+    const { category, description, more, title } = textsTab()
+    const { cta, url } = ctaTab()
 
     return (
       <ContentBlock
         category={category}
+        cta={cta}
         description={description}
-        image={showImage ? image : null}
         more={more}
+        title={title}
+        url={url}
+      />
+    )
+  })
+
+  .addWithJSX('Show image', () => {
+    const { category, description, title } = textsTab()
+    const { cta, url } = ctaTab()
+    const { image } = imageTab({ showImage: true })
+
+    return (
+      <ContentBlock
+        category={category}
+        cta={cta}
+        description={description}
+        image={image}
         title={title}
         url={url}
       />

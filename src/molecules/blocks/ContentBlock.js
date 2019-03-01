@@ -5,6 +5,7 @@ import MediaImage from './MediaImage'
 import Button from '../../atoms/buttons/Button'
 import Title from '../../atoms/texts/Title'
 import Text from '../../atoms/texts/Text'
+import Element from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
 function ContentBlock({
@@ -32,15 +33,15 @@ function ContentBlock({
 
   return (
     <div className={blockClass}>
-      {image && <MediaImage {...image} url={url} />}
+      {image && <MediaImage image={image} url={url} />}
 
       <Title
         as="h3"
-        themeColor="darker"
-        text={title}
-        size="m"
         className={titleClass}
+        fontSize="m"
         style={titleStrong ? 'strong' : null}
+        text={title}
+        themeColor="darker"
       >
         {url ? (
           <a
@@ -61,15 +62,15 @@ function ContentBlock({
       )}
 
       {category && (
-        <Text
+        <Element
           as="span"
-          className='"c-block__meta'
-          color="dark"
+          className="c-block__meta"
+          themeColor="dark"
           fontSize="xs"
           fontType="secondary"
         >
           {category}
-        </Text>
+        </Element>
       )}
 
       {more ? (
@@ -110,7 +111,7 @@ ContentBlock.propTypes = {
   cta: PropTypes.string,
   description: PropTypes.string,
   descriptionClass: PropTypes.string,
-  image: PropTypes.objectOf(MediaImage.propTypes.image),
+  image: MediaImage.propTypes.image,
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleClass: PropTypes.string,

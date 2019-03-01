@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import SliderArrow from './SliderArrow'
 import useSlider from './useSlider'
 
-export function DefaultContols({ onNext, onPrev }) {
+export function DefaultArrows({ onNext, onPrev }) {
   return (
     <>
       <SliderArrow prev onClick={onPrev} />
@@ -12,20 +12,69 @@ export function DefaultContols({ onNext, onPrev }) {
     </>
   )
 }
-DefaultContols.propTypes = {
+DefaultArrows.propTypes = {
   onNext: PropTypes.func,
   onPrev: PropTypes.func,
 }
 
-function Slider({ children, controls: Controls, className, ...settings }) {
+export function DefaultDots({ dots }) {
+  return (
+    <ul className="slick-dots" role="tablist">
+      {dots.map(({ active, key, label, onClick }) => (
+        <li
+          aria-hidden={!active}
+          role="presentation"
+          aria-selected={!active}
+          aria-controls={`navigation${label}`}
+          className={active ? 'slick-active' : ''}
+          key={`slider-dot-${key}`}
+          onClick={onClick}
+        >
+          <button
+            type="button"
+            data-role="none"
+            role="button"
+            aria-required="false"
+            tabIndex="0"
+          >
+            {label}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )
+}
+DefaultDots.propTypes = {
+  dots: PropTypes.arrayOf(
+    PropTypes.shape({
+      active: PropTypes.bool,
+      key: PropTypes.number,
+      label: PropTypes.string,
+      onClick: PropTypes.func,
+    })
+  ),
+}
+
+function Slider({
+  children,
+  arrowsComponent: Arrows,
+  dotsComponent: Dots,
+  className,
+  ...settings
+}) {
   const {
+    dots,
     initialized,
     listRef,
     onNext,
     onPrev,
+    onDotClick,
+    showArrows,
+    showDots,
     sliderRef,
     slides,
     trackRef,
+    touchEvents,
   } = useSlider(children, settings)
 
   return (
@@ -35,25 +84,32 @@ function Slider({ children, controls: Controls, className, ...settings }) {
       }`}
       ref={sliderRef}
     >
-      <div className="slick-list" aria-live="polite" ref={listRef}>
+      <div
+        className="slick-list"
+        aria-live="polite"
+        ref={listRef}
+        {...touchEvents}
+      >
         <div className="slick-track" role="listbox" ref={trackRef}>
           {slides}
         </div>
       </div>
-
-      {Controls && <Controls onNext={onNext} onPrev={onPrev} />}
+      {showArrows && <Arrows onNext={onNext} onPrev={onPrev} />}
+      {showDots && <Dots dots={dots} onClick={onDotClick} />}
     </div>
   )
 }
 
 Slider.propTypes = {
+  arrowsComponent: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
-  controls: PropTypes.func,
+  dotsComponent: PropTypes.func,
 }
 Slider.defaultProps = {
+  arrowsComponent: DefaultArrows,
   className: '',
-  controls: DefaultContols,
+  dotsComponent: DefaultDots,
 }
 
 export default Slider

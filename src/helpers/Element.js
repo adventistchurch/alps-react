@@ -23,11 +23,13 @@ import {
 } from '../atoms/global/fonts'
 
 import {
+  afterSizes,
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
   sides,
   sizes,
+  untilSizes,
 } from '../atoms/global/spacing'
 
 /**
@@ -50,8 +52,10 @@ function parseProps(props) {
     spaceSide,
     spaceSize,
     spacing,
+    spacingAfter,
     spacingSide,
     spacingSize,
+    spacingUntil,
     textStyle,
     themeBackground,
     themeColor,
@@ -77,24 +81,26 @@ function parseProps(props) {
   if (padding || paddingSide || paddingSize)
     classes.push(
       getPaddingClass({
-        size: paddingSide,
-        side: paddingSize,
+        side: paddingSide,
+        size: paddingSize,
       })
     )
 
   if (space || spaceSide || spaceSize)
     classes.push(
       getSpaceClass({
-        size: spaceSize,
         side: spaceSide,
+        size: spaceSize,
       })
     )
 
-  if (spacing || spacingSide || spacingSize)
+  if (spacing || spacingAfter || spacingSide || spacingSize || spacingUntil)
     classes.push(
       getSpacingClass({
-        size: spacingSize,
+        after: spacingAfter,
         side: spacingSide,
+        size: spacingSize,
+        until: spacingUntil,
       })
     )
 
@@ -122,14 +128,16 @@ Element.propTypes = {
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
   padding: PropTypes.bool,
-  paddingSize: PropTypes.oneOf(sides),
-  paddingSide: PropTypes.oneOf(sizes),
+  paddingSide: PropTypes.oneOf(sides),
+  paddingSize: PropTypes.oneOf(sizes),
   space: PropTypes.bool,
   spaceSide: PropTypes.oneOf(sides),
   spaceSize: PropTypes.oneOf(sizes),
   spacing: PropTypes.bool,
+  spacingAfter: PropTypes.oneOf(afterSizes),
   spacingSide: PropTypes.oneOf(sides),
   spacingSize: PropTypes.oneOf(sizes),
+  spacingUntil: PropTypes.oneOf(untilSizes),
   tag: PropTypes.string,
   textStyle: PropTypes.oneOf(textStyles),
   themeBackground: PropTypes.oneOf(themeBackgroundColors),

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
-import Slider, { DefaultContols } from '../../helpers/Slider'
+import Slider, { DefaultArrows } from '../../helpers/Slider'
 import Slide from './Slide'
 
 const sliderProps = {
@@ -12,7 +12,7 @@ const sliderProps = {
   adaptiveHeight: true,
 }
 
-function CarouselControls({ onNext, onPrev }) {
+function CarouselArrows({ onNext, onPrev }) {
   return (
     <div className="c-carousel__controls">
       <span className="o-arrow__prev" onClick={onPrev}>
@@ -34,14 +34,16 @@ function CarouselControls({ onNext, onPrev }) {
     </div>
   )
 }
-CarouselControls.propTypes = DefaultContols.propTypes
+CarouselArrows.propTypes = DefaultArrows.propTypes
 
-function Carousel({ slides, showArrows, outerClass }) {
+function Carousel({ slides, showArrows, showDots }) {
   return (
-    <div className={`c-carousel u-position--relative ${outerClass}`}>
+    <div className="c-carousel u-position--relative">
       <Slider
+        arrowsComponent={showArrows ? CarouselArrows : null}
         className="c-carousel__slides"
-        controls={showArrows ? CarouselControls : null}
+        showArrows={showArrows}
+        showDots={showDots}
         {...sliderProps}
       >
         {slides.map((slide, key) => (
@@ -53,13 +55,14 @@ function Carousel({ slides, showArrows, outerClass }) {
 }
 
 Carousel.propTypes = {
-  slides: PropTypes.array,
   showArrows: PropTypes.bool,
-  outerClass: PropTypes.string,
+  showDots: PropTypes.bool,
+  slides: PropTypes.array,
 }
 Carousel.defaultProps = {
+  showArrows: false,
+  showDots: true,
   slides: [],
-  showArrows: true,
 }
 
 export default Carousel

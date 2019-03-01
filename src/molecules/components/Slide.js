@@ -62,7 +62,7 @@ Slide.propTypes = {
   dek: PropTypes.string,
   heading: PropTypes.string,
   image: Picture.propTypes.image.isRequired,
-  imageIsLazy: Picture.propTypes.bool,
+  imageIsLazy: Picture.propTypes.lazy,
   subtitle: PropTypes.string,
   textClass: PropTypes.string,
   url: PropTypes.string,
