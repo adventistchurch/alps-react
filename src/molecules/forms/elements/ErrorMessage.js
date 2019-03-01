@@ -5,18 +5,15 @@ import Element from '../../../helpers/Element'
 
 function ErrorMessage({ text }) {
   return (
-    <>
-      <br />
-      <Element
-        as="small"
-        className="u-color-red"
-        fontSize="s"
-        fontType="secondary"
-      >
-        {text}
-      </Element>
-      <small className="u-font--secondary--s u-color--red">{text}</small>
-    </>
+    <Element
+      as="small"
+      color="error"
+      fontSize="s"
+      fontType="secondary"
+      clearFix
+    >
+      {text}
+    </Element>
   )
 }
 

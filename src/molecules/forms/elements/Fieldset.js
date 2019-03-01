@@ -13,6 +13,7 @@ function Fieldset({
   legendFontSize,
   legendFontType,
   legendThemeColor,
+  legendVishidden,
   ...props
 }) {
   return (
@@ -24,6 +25,7 @@ function Fieldset({
           fontSize={legendFontSize}
           fontType={legendFontType}
           themeColor={legendThemeColor}
+          vishidden={legendVishidden}
         >
           {legend}
         </Element>
@@ -40,6 +42,7 @@ Fieldset.propTypes = {
   legendFontSize: PropTypes.oneOf(fontSizes),
   legendFontType: PropTypes.oneOf(fontTypes),
   legendThemeColor: PropTypes.oneOf(themeColors),
+  legendVishidden: PropTypes.bool,
   ...Element.propTypes,
 }
 Fieldset.defaultProps = {

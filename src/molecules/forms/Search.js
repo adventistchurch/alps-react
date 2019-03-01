@@ -4,18 +4,16 @@ import PropTypes from 'prop-types'
 import Fieldset from './elements/Fieldset'
 import Form from './elements/Form'
 import SearchField from './elements/SearchField'
+import SubmitButton from './elements/SubmitButton'
 
 import useInputFocus from '../../helpers/useInputFocus'
 
 function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
   const inputFocusRef = useInputFocus(hasFocus)
 
-  // Remove from the flow but leave available to screen readers
-  const screenReaderClass = 'is-vishidden'
-
   return (
     <Form className="search-form" role="search" {...props}>
-      <Fieldset legend={title} legendClass={screenReaderClass}>
+      <Fieldset legend={title} legendVisihidden>
         <SearchField
           className="search-form__input"
           name="search"
@@ -24,9 +22,7 @@ function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
           required
         />
         {/* TODO: create component for screen readers? */}
-        <button className={`search-form__submit ${screenReaderClass}`}>
-          <span className={screenReaderClass}>{submitLabel}</span>
-        </button>
+        <SubmitButton className="search-form__submit" label={submitLabel} />
       </Fieldset>
     </Form>
   )
