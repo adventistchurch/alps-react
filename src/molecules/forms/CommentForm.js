@@ -15,7 +15,7 @@ const CommentForm = ({ onSubmit, rows, submitLabel, title, ...props }) => {
         fontSize="m"
         fontType="secondary"
         text={title}
-        textStyle="strong"
+        strong
         transform="upper"
       />
       <TextArea

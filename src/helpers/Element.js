@@ -16,20 +16,23 @@ import {
   textColors,
   themeBackgroundClass,
   themeBackgroundColors,
+  themeBackgroundTransClass,
+  themeBackgroundTransColors,
   themeBorderColorClass,
   themeBorderColors,
   themeColorClass,
   themeColors,
 } from '../atoms/global/colors'
 
+import { vishiddenClass } from '../atoms/global/commons'
+
 import {
   fontClass,
   fontSizes,
   fontTypes,
-  textClass,
+  textStrongClass,
   textTransformClass,
   textTransforms,
-  textStyles,
 } from '../atoms/global/fonts'
 
 import {
@@ -44,19 +47,19 @@ import {
 } from '../atoms/global/spacing'
 
 /**
- * Element's props parser
+ * The ubiquitous Element component
  *
- * - It extracts _style-related_ props to build the `className` prop.
- * - Then return it along with the rest of _non-style-related_ props.
  * @param {Object} props All Element's props
  */
-function parseProps(props) {
+function Element({ as, children, tag, ...props }) {
+  // Extract style-related props to build `className`
   const {
     backgroundColor,
     border,
     borderColor,
     borderSide,
     canBe,
+    className,
     clearFix,
     color,
     fontSize,
@@ -72,13 +75,15 @@ function parseProps(props) {
     spacingSide,
     spacingSize,
     spacingUntil,
-    textStyle,
+    strong,
     themeBackground,
+    themeBackgroundTrans,
     themeBorder,
     themeColor,
     transform,
-    className,
-    ...otherProps
+    vishidden,
+
+    ...otherProps // Other props will be provided here
   } = props
 
   // Set classes:
@@ -95,15 +100,15 @@ function parseProps(props) {
   // - Font classes
   if (fontType)
     classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
-
-  if (textStyle) classes.push(`${textClass}--${textStyle}`)
-
+  if (strong) classes.push(`${textStrongClass}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
 
   // - Theme classes
   if (themeBorder) classes.push(`${themeBorderColorClass}--${themeBorder}`)
   if (themeBackground)
     classes.push(`${themeBackgroundClass}--${themeBackground}`)
+  if (themeBackgroundTrans)
+    classes.push(`${themeBackgroundTransClass}--${themeBackgroundTrans}`)
   if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
 
   // - Border classes
@@ -145,19 +150,18 @@ function parseProps(props) {
       })
     )
 
-  return {
+  // - Others
+
+  // Remove from the flow but leave available to screen readers
+  if (vishidden) classes.push(vishiddenClass)
+
+  // Build all props
+  const allProps = {
     className: classes.length > 0 ? classes.join(' ') : null,
     ...otherProps,
   }
-}
 
-/**
- * The ubiquitous Element component
- *
- * @param {Object} props Element props
- */
-function Element({ as, children, tag, ...props }) {
-  return React.createElement(tag ? tag : as, parseProps(props), children)
+  return React.createElement(tag ? tag : as, allProps, children)
 }
 
 Element.propTypes = {
@@ -185,11 +189,13 @@ Element.propTypes = {
   spacingSize: PropTypes.oneOf(sizes),
   spacingUntil: PropTypes.oneOf(untilSizes),
   tag: PropTypes.string,
-  textStyle: PropTypes.oneOf(textStyles),
+  strong: PropTypes.bool,
   themeBackground: PropTypes.oneOf(themeBackgroundColors),
+  themeBackgroundTrans: PropTypes.oneOf(themeBackgroundTransColors),
   themeBorder: PropTypes.oneOf(themeBorderColors),
   themeColor: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
+  vishidden: PropTypes.bool,
 }
 Element.defaultProps = {
   as: 'div',

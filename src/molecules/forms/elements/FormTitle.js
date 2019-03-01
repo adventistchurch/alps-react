@@ -4,28 +4,24 @@ import PropTypes from 'prop-types'
 import Title from '../../../atoms/texts/Title'
 
 function FormTitle({ darkMode, text, type }) {
-  return (
-    <>
-      {type == 'primary' ? (
-        <Title
-          color={darkMode ? 'white' : null}
-          fontSize="l"
-          text={text}
-          textStyle="strong"
-          themeColor={darkMode ? null : 'darker'}
-        />
-      ) : (
-        <Title
-          as="h3"
-          fontType="secondary"
-          text={text}
-          textStyle="strong"
-          themeColor={darkMode ? 'lighter' : 'base'}
-          transform="upper"
-          spacing={true}
-        />
-      )}
-    </>
+  return type == 'primary' ? (
+    <Title
+      color={darkMode ? 'white' : null}
+      fontSize="l"
+      strong
+      text={text}
+      themeColor={darkMode ? null : 'darker'}
+    />
+  ) : (
+    <Title
+      as="h3"
+      fontType="secondary"
+      spacing={true}
+      strong
+      text={text}
+      themeColor={darkMode ? 'lighter' : 'base'}
+      transform="upper"
+    />
   )
 }
 

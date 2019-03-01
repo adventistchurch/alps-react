@@ -11,7 +11,7 @@ function FormFilter({ options, title }) {
         fontType="secondary"
         fontSize="s"
         text={title}
-        textStyle="strong"
+        strong
         themeColor="base"
         transform="upper"
       />
