@@ -33,10 +33,11 @@ function DrawerNavigation({
         </div>
       </Element>
       <GridItem
-        className="c-drawer__container l-grid-wrap--6-of-7"
-        wrap="6"
+        className="c-drawer__container"
+        gridWrap="6"
+        hasGridWrapClass={false}
+        hasItemClass={false}
         sizeAtS="6"
-        noItemClass
         spacing
         themeBackground="darker"
       >
@@ -67,10 +68,12 @@ function DrawerNavigation({
           <IconWrap name="logo" fill="white" size="l" />
         </div>
         <div className="c-drawer__about">
-          <div className="c-drawer__about-left u-spacing">{aboutLeft}</div>
-          <div className="c-drawer__about-right u-spacing--half">
+          <Element className="c-drawer__about-left" spacing>
+            {aboutLeft}
+          </Element>
+          <Element className="c-drawer__about-right" spacingSize="half">
             {aboutRight}
-          </div>
+          </Element>
         </div>
       </GridItem>
     </GridSeven>
