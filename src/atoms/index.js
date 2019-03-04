@@ -1,6 +1,10 @@
-export { default as Button } from './buttons/Button'
-export { default as Icon } from './icons/Icon'
-export { default as Image } from './images/Image'
-export { default as Logo } from './images/Logo'
-export { default as Picture } from './images/Picture'
-export { default as Video } from './media/Video'
+// Atoms:
+
+export * from './buttons/index'
+export * from './grids/index'
+export * from './icons/index'
+export * from './images/index'
+export * from './lists/index'
+export * from './media/index'
+export * from './tables/index'
+export * from './texts/index'

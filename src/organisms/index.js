@@ -1,8 +1,6 @@
-export { default as Aside } from './asides/Aside'
-export { default as RelatedPosts } from './asides/RelatedPosts'
-export { default as ArticleContent } from './content/ArticleContent'
-export { default as PageContent } from './content/PageContent'
-export { default as Footer } from './global/Footer'
-export { default as Header } from './global/Header'
-export { default as TopHat } from './global/TopHat'
-export { default as PageHeader } from './sections/PageHeader'
+// Organisms:
+
+export * from './asides/index'
+export * from './content/index'
+export * from './global/index'
+export * from './sections/index'

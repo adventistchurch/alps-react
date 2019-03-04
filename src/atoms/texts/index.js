@@ -1,0 +1,8 @@
+export { default as Blockquote } from './Blockquote'
+export { default as Caption } from './Caption'
+export { default as Dropcap } from './Dropcap'
+export { default as Intro } from './Intro'
+export { default as Kicker } from './Kicker'
+export { default as Section } from './Section'
+export { default as Text } from './Text'
+export { default as Title } from './Title'
