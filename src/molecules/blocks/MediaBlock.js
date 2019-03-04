@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import Figure from '../../molecules/media/Figure'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
+import Element, { HeadingFour, HeadingThree, Link } from '../../helpers/Element'
 
 import MediaImage from './MediaImage'
 
@@ -18,69 +19,180 @@ export const mediaBlocksTypes = [
   'stacked',
 ]
 
-const defaultClasses = {
-  image: '',
-  imageWrap: '',
-  content: '',
-  group: '',
-  kicker: '',
-  title: '',
-  meta: '',
-}
-
-const presetClasses = {
+// Types presets
+const presets = {
   column: {
-    content: 'u-color--white',
-    group: 'u-flex--justify-center u-overlay--dark',
-    title: 'u-font--primary--xl u-flex--justify-center',
+    content: {
+      color: 'white',
+    },
+    group: {
+      flexJustify: 'center',
+      overlay: 'dark',
+    },
+    title: {
+      flexJustify: 'center',
+      fontSize: 'xl',
+      fontType: 'primary',
+    },
   },
+
   feature: {
-    block:
-      'c-block__inline c-media-block__inine c-block--reversed c-media-block--reversed l-grid--7-col',
-    content:
-      'l-grid-item u-border-left--black--at-large u-theme--border-color--darker--left u-theme--color--lighter u-theme--background-color--darker u-padding--top u-padding--bottom',
-    image: 'l-grid-item u-padding--zero--sides',
-    title: 'u-color--white u-font--primary u-font-weight--bold',
-  },
-  full: {
-    content: 'l-grid--7-col l-grid-wrap l-grid-wrap--7-of-7 u-color--white',
-    group:
-      'u-flex--justify-center u-flex--align-center u-text-align--center u-overlay--dark',
-    title:
-      'l-grid-item--5-col l-grid-item--m--2-col u-font--primary--xl u-flex--justify-center',
-  },
-  inline: {
-    image: 'u-padding--zero--sides',
-    content:
-      'u-color--gray u-background-color--gray--light u-padding--top u-padding--bottom',
-    title: 'u-theme--color--darker',
-    meta: 'u-theme--color--dark',
-  },
-  inset: {
-    content: 'l-grid--7-col u-theme--background-color--darker',
-    title: 'l-grid-item l-grid-item--m--4-col u-link-hover--white',
-    meta: 'l-grid-item l-grid-item--m--2-col',
-  },
-  longform: {
-    block:
-      ' l-grid--7-col l-grid-wrap u-theme--background-color--darker can-be--dark-dark u-padding--top u-padding--bottom',
     type: 'inline',
-    content:
-      'u-shift--left--1-col--at-large l-grid-item l-grid-item--m--6-col l-grid-item--l--4-col l-grid-item--xl--3-col u-border--left u-theme--border-color--light--left u-theme--color--lighter',
-    title: 'u-color--white u-font--primary--l',
+    reversed: true,
+
+    block: {
+      className: 'l-grid--7-col',
+      seven: true,
+    },
+    content: {
+      borderAt: 'large',
+      borderColor: 'black',
+      borderSide: 'left',
+      gridItem: true,
+      paddingSide: ['top', 'bottom'],
+      themeBackground: 'darker',
+      themeBorder: 'darker',
+      themeBorderSide: 'left',
+      themeColor: 'lighter',
+    },
+    image: {
+      gridItem: true,
+      paddingSide: 'sides',
+      paddingSize: 'zero',
+    },
+    title: {
+      color: 'white',
+      fontType: 'primary',
+      strong: true, // 'u-font-weight--bold' => strong,
+    },
   },
+
+  full: {
+    content: {
+      color: 'white',
+      gridWrap: '7',
+      hasGridClass: false,
+      seven: true,
+    },
+    group: {
+      flexAlign: 'center',
+      flexJustify: 'center',
+      overlay: 'dark',
+      textAlign: 'center',
+    },
+    title: {
+      flexJustify: 'center',
+      fontType: 'primary',
+      fontSize: 'xl',
+      gridItemSize: '5',
+      gridItemSizeAtM: '2',
+      hasGridItemClass: false,
+    },
+  },
+
+  inline: {
+    image: {
+      paddingSide: 'sides',
+      paddingSize: 'zero',
+    },
+    content: {
+      backgroundColor: 'gray--light',
+      color: 'gray',
+      padding: ['top', 'bottom'],
+    },
+    title: {
+      themeColor: 'darker',
+    },
+    meta: {
+      themeColor: 'dark',
+    },
+  },
+
+  inset: {
+    content: {
+      hasGridClass: false,
+      seven: true,
+      themeBackground: 'darker',
+    },
+    title: {
+      gridItemSizeAtM: '4',
+      linkHover: 'white',
+    },
+    meta: {
+      gridItemSizeAtM: '2',
+    },
+  },
+
+  longform: {
+    type: 'inline',
+    block: {
+      canBe: 'dark-dark',
+      gridWrap: true,
+      hasGridClass: false,
+      paddingSide: ['top', 'bottom'],
+      seven: true,
+      themeBackground: 'darker',
+    },
+    content: {
+      borderSide: 'left',
+      gridItemSizeAtM: '6',
+      gridItemSizeAtL: '4',
+      gridItemSizeAtXL: '3',
+      hasGridClass: false,
+      shiftAt: 'large',
+      shiftSide: 'left',
+      themeBorder: 'light',
+      themeBorderSide: 'left',
+      themeColor: 'lighter',
+    },
+    title: {
+      color: 'white',
+      fontSize: 'l',
+      fontType: 'primary',
+    },
+  },
+
   row: {
-    content: 'u-color--gray',
-    title: 'u-theme--color--darker',
-    meta: 'u-theme--color--dark',
+    content: {
+      color: 'gray',
+    },
+    title: {
+      themeColor: 'darker',
+    },
+    meta: {
+      themeColor: 'dark',
+    },
   },
+
   stacked: {},
 }
 
-const borderClasses = {
-  left: 'u-border--left u-theme--border-color--darker--left',
-  leftAtLarge:
-    'u-border-left--black--at-large u-theme--border-color--darker--left',
+// Border preset props
+const borderProps = {
+  left: {
+    borderSide: 'left',
+    themeBorder: 'darker',
+    themeBorderSide: 'left',
+  },
+  leftAtLarge: {
+    borderAt: 'large',
+    borderColor: 'black',
+    borderSide: 'left',
+    themeBorder: 'darker',
+    themeBorderSide: 'left',
+  },
+}
+
+function getBlockClass(blocks = [], type, reversed = false) {
+  const classes = []
+
+  for (const block of blocks) {
+    classes.push(block)
+    classes.push(`${block}__${type}`)
+    if (reversed) classes.push(`${block}--reversed`)
+  }
+
+  return classes.join(' ')
 }
 
 function MediaBlock({
@@ -101,38 +213,37 @@ function MediaBlock({
   video,
   url,
 }) {
-  // Get classes including ones for current type (if provided)
-  const classes = {
-    ...defaultClasses,
-    ...(type ? presetClasses[type] : {}),
+  // Get preset props current type
+  const preset = {
+    ...presets[type],
+    ...(border === 'left'
+      ? type === 'stacked'
+        ? borderProps.left
+        : type === 'inline' || reversed || presets[type].reversed
+        ? borderProps.leftAtLarge
+        : ''
+      : {}),
   }
 
-  // Set block classes
-  const blockType = classes.type || type
-  const blockClass = `c-media-block c-block c-media-block__${blockType} c-block__${blockType} ${
-    reversed ? ' c-block--reversed c-media-block--reversed`' : ''
-  } ${classes.block}`
+  const blockType = preset.type || type
+  const isReversed = preset.reversed || reversed
 
-  // Set border clases
-  const borderClass =
-    border === 'left'
-      ? type === 'stacked'
-        ? borderClasses.left
-        : type === 'inline' || type === 'reversed'
-        ? borderClasses.leftAtLarge
-        : ''
-      : ''
+  // Set block classes
+  const blockClass = getBlockClass(
+    ['c-block', 'c-media-block'],
+    blockType,
+    isReversed
+  )
 
   return (
-    <div className={blockClass}>
+    <Element className={blockClass} {...preset.block}>
       {image && (
         <MediaImage
+          {...preset.image}
           asBackgroundImage={asBackgroundImage}
           blockIconType={blockIconType}
-          className={classes.image}
           image={image}
           url={url}
-          wrapClass={classes.imageWrap}
         />
       )}
       {video && (
@@ -140,68 +251,71 @@ function MediaBlock({
           <Figure videoSrc={video} />
         </div>
       )}
-      <div
-        className={`c-media-block__content c-block__content u-spacing ${
-          classes.content
-        } ${borderClass}`}
+      <Element
+        className="c-media-block__content c-block__content"
+        spacing
+        {...preset.content}
       >
-        <div
-          className={`c-block__group c-media-block__group u-spacing ${
-            classes.group
-          }`}
+        <Element
+          className="c-block__group c-media-block__group"
+          spacing
+          {...preset.group}
         >
-          <div className="u-width--100p u-spacing">
+          <Element className="u-width--100p" spacing>
             {kicker && (
-              <h4
-                className={`c-media-block__kicker c-block__kicker u-space--quarter--bottom ${
-                  classes.kicker
-                }`}
+              <HeadingFour
+                className="c-media-block__kicker c-block__kicker"
+                spaceSide="bottom"
+                spaceSize="quarter"
+                {...preset.kicker}
               >
                 {kicker}
-              </h4>
+              </HeadingFour>
             )}
             {title && (
-              <h3
-                className={`c-media-block__title c-block__title ${
-                  classes.title
-                } ${kicker ? 'u-space--zero' : ''}`}
+              <HeadingThree
+                className="c-media-block__title c-block__title"
+                spaceSize={kicker ? 'zero' : null}
+                {...preset.title}
               >
                 {url ? (
-                  <a
+                  <Link
+                    className="c-block__title-link"
                     href={url}
-                    className="c-block__title-link u-theme--link-hover--dark"
+                    themeLinkHover="dark"
                   >
                     {title}
-                  </a>
+                  </Link>
                 ) : (
                   title
                 )}
-              </h3>
+              </HeadingThree>
             )}
             {description && (
               <p className="c-media-block__description c-block__description">
                 {description}
               </p>
             )}
-          </div>
+          </Element>
           {(category || date) && (
-            <div
-              className={`c-media-block__meta c-block__meta ${classes.meta}`}
+            <Element
+              className="c-media-block__meta c-block__meta"
+              {...preset.meta}
             >
               {category && (
-                <span className="c-block__category u-text-transform--upper">
-                  {category}
-                </span>
+                <Element className="c-block__category">{category}</Element>
               )}
               {date && (
-                <time
+                <Element
+                  as="time"
                   className="c-block__date u-text-transform--upper"
                   dateTime={date}
+                  transform="upper"
                 >
                   <DateTimeFormat datetime={date} format={dateFormat} />
-                </time>
+                </Element>
               )}
-            </div>
+            </Element>
           )}
           {cta && url && (
             <Button
@@ -214,9 +328,9 @@ function MediaBlock({
               url={url}
             />
           )}
-        </div>
-      </div>
-    </div>
+        </Element>
+      </Element>
+    </Element>
   )
 }
 

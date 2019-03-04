@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
+import Element from '../../helpers/Element'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
@@ -15,7 +16,8 @@ function MediaImage({
   className,
   image,
   url,
-  wrapClass,
+  wrapProps,
+  ...otherProps
 }) {
   const bgImageStyles = useResponsiveStyles(
     getBackgroundImageRule,
@@ -23,7 +25,8 @@ function MediaImage({
   )
 
   return (
-    <div
+    <Element
+      {...otherProps}
       className={`c-media-block__image c-block__image ${className} ${
         blockIconType ? `c-block__icon c-block__icon--${blockIconType}` : ''
       } ${asBackgroundImage ? ' o-background-image u-background--cover' : ''}`}
@@ -31,26 +34,26 @@ function MediaImage({
       {asBackgroundImage && bgImageStyles && (
         <InlineStyles styles={bgImageStyles} />
       )}
-      <div className={`c-block__image-wrap ${wrapClass}`}>
+      <Element className="c-block__image-wrap" {...wrapProps}>
         <a href={url} title={image.caption || image.alt}>
           <Picture image={image} />
         </a>
-      </div>
-    </div>
+      </Element>
+    </Element>
   )
 }
 
 MediaImage.propTypes = {
+  ...Element.propTypes,
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.string,
   className: PropTypes.string,
   image: Picture.propTypes.image,
   url: PropTypes.string,
-  wrapClass: PropTypes.string,
+  wrapProps: PropTypes.object,
 }
 MediaImage.defaultProps = {
   className: '',
-  wrapClass: '',
 }
 
 export default MediaImage
