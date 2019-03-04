@@ -51,7 +51,7 @@ import {
  *
  * @param {Object} props All Element's props
  */
-function Element({ as, children, tag, ...props }) {
+export default function Element({ as, children, tag, ...props }) {
   // Extract style-related props to build `className`
   const {
     backgroundColor,
@@ -201,6 +201,30 @@ Element.defaultProps = {
   as: 'div',
 }
 
-export { sides, sizes }
+export function HeadingOne(props) {
+  return <Element as="h1" {...props} />
+}
 
-export default Element
+export function HeadingTwo(props) {
+  return <Element as="h2" {...props} />
+}
+
+export function HeadingThree(props) {
+  return <Element as="h3" {...props} />
+}
+
+export function HeadingFour(props) {
+  return <Element as="h4" {...props} />
+}
+
+export function Paragraph(props) {
+  return <Element as="p" {...props} />
+}
+
+export function Link(props) {
+  return <Element as="a" {...props} />
+}
+
+export function Section(props) {
+  return <Element as="section" {...props} />
+}
