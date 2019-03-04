@@ -2,7 +2,7 @@ import range from '../../helpers/range'
 const gridClass = 'l-grid'
 const col = 'col'
 
-const sevenClass = `${gridClass}--7${col}`
+const sevenClass = `${gridClass}--7-${col}`
 const sevenInnerClass = `${sevenClass}--inner` // Class is available in CSS, but not not used in twig/json templates
 const wrapClass = `${gridClass}-wrap`
 const itemClass = `${gridClass}-item`
