@@ -10,5 +10,7 @@ export const borderColors = ['red', 'light']
 export const borderAtBreakpoints = ['small', 'medium', 'large', 'xxlarge']
 
 export function getBorderClass({ at, color, side }) {
-  return getBaseClass('u-border', [color, side, at ? `at-${at}` : null])
+  return at
+    ? `${borderClass}-${side}--${color}--at-${at}`
+    : getBaseClass(borderClass, [color, side])
 }
