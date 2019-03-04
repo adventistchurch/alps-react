@@ -1,3 +1,8 @@
+/**
+ * Color Configurations & methods
+ */
+import { sides, getBaseClass } from './commons'
+
 export const primaryColors = [
   'bluejay',
   'campfire',
@@ -39,8 +44,11 @@ export const textColors = [
   ...stateColors,
 ]
 
-// SVG Fill Colors
+// Link Colors:
+export const linkHoverClass = 'u-link-hover'
+export const linkHoverColors = ['white']
 
+// SVG Fill Colors
 export const svgFillClass = 'u-path-fill'
 export const svgFillColors = grayscaleColors
 
@@ -63,6 +71,11 @@ export const themeBackgroundTransColors = [...themeColors]
 // - Border
 export const themeBorderColorClass = 'u-theme--border-color'
 export const themeBorderColors = [...themeColors]
+export const themeBorderSides = [...sides]
+
+export function getThemeBorderClass({ color, side }) {
+  return getBaseClass(`${themeBorderColorClass}-${color}`, [side])
+}
 
 // - Link
 export const themeLinkHoverClass = 'u-theme--link-hover'
@@ -79,3 +92,7 @@ export const canBeColors = [
 
 // - Dark Theme
 export const darkThemeClass = 'u-theme--dark'
+
+// Overlay
+export const overlayClass = 'u-overlay'
+export const overlayColors = ['dark', 'light']

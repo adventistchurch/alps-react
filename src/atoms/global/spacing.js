@@ -7,15 +7,23 @@
 
 import { sides as commonSides, getBaseClass } from './commons'
 
-export const sizes = ['quarter', 'half', 'double', 'triple', 'quad', 'zero']
-export const sides = [...commonSides, 'sides']
+export const spacingSizes = [
+  'quarter',
+  'half',
+  'double',
+  'triple',
+  'quad',
+  'zero',
+]
+export const spacingSides = [...commonSides, 'sides']
 export const afterSizes = ['medium', 'large']
 export const untilSizes = ['small', 'medium', 'large', 'xxlarge']
 
 export const clearFixClass = 'u-clear-fix'
 
 export function getPaddingClass({ size, side }) {
-  return getBaseClass('u-padding', [size, side])
+  const sides = Array.isArray(side) ? side : [side] // side can be an array
+  return sides.map(side => getBaseClass('u-padding', [size, side])).join(' ')
 }
 
 export function getSpaceClass({ size, side }) {

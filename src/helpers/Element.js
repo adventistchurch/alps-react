@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import {
   borderColors,
+  borderAtBreakpoints,
   borderSides,
   getBorderClass,
 } from '../atoms/global/borders'
@@ -12,25 +13,38 @@ import {
   backgroundColors,
   canBeClass,
   canBeColors,
+  getThemeBorderClass,
+  linkHoverClass,
+  linkHoverColors,
+  overlayClass,
+  overlayColors,
   textColorClass,
   textColors,
   themeBackgroundClass,
   themeBackgroundColors,
   themeBackgroundTransClass,
   themeBackgroundTransColors,
-  themeBorderColorClass,
   themeBorderColors,
   themeColorClass,
   themeColors,
   themeLinkHoverClass,
 } from '../atoms/global/colors'
 
-import { vishiddenClass } from '../atoms/global/commons'
+import { sides, vishiddenClass } from '../atoms/global/commons'
 
 import {
-  fontClass,
+  flexAlignOptions,
+  flexDirectionOptions,
+  flexJustifyOptions,
+  getFlexClass,
+} from '../atoms/global/flex'
+
+import {
   fontSizes,
   fontTypes,
+  getFontClass,
+  getTextAlignClass,
+  textAlignOptions,
   textStrongClass,
   textTransformClass,
   textTransforms,
@@ -42,8 +56,8 @@ import {
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
-  sides,
-  sizes,
+  spacingSides,
+  spacingSizes,
   untilSizes,
 } from '../atoms/global/spacing'
 
@@ -57,14 +71,21 @@ export default function Element({ as, children, tag, ...props }) {
   const {
     backgroundColor,
     border,
+    borderAt,
     borderColor,
     borderSide,
     canBe,
     className,
     clearFix,
     color,
+    flex,
+    flexAlign,
+    flexColumn,
+    flexJustify,
     fontSize,
     fontType,
+    linkHover,
+    overlay,
     padding,
     paddingSide,
     paddingSize,
@@ -77,9 +98,11 @@ export default function Element({ as, children, tag, ...props }) {
     spacingSize,
     spacingUntil,
     strong,
+    textAlign,
     themeBackground,
     themeBackgroundTrans,
     themeBorder,
+    themeBorderSide,
     themeColor,
     themeLinkHover,
     transform,
@@ -101,23 +124,35 @@ export default function Element({ as, children, tag, ...props }) {
 
   // - Font classes
   if (fontType)
-    classes.push(`${fontClass}--${fontType}${fontSize ? `--${fontSize}` : ''}`)
+    classes.push(
+      getFontClass({
+        type: fontType,
+        size: fontSize,
+      })
+    )
   if (strong) classes.push(`${textStrongClass}`)
   if (transform) classes.push(`${textTransformClass}--${transform}`)
+  if (textAlign) classes.push(getTextAlignClass({ align: textAlign }))
+  if (linkHover) classes.push(`${linkHoverClass}--${linkHover}`)
 
   // - Theme classes
-  if (themeBorder) classes.push(`${themeBorderColorClass}--${themeBorder}`)
+  if (themeBorder)
+    classes.push(
+      getThemeBorderClass({ color: themeBorder, side: themeBorderSide })
+    )
   if (themeBackground)
     classes.push(`${themeBackgroundClass}--${themeBackground}`)
   if (themeBackgroundTrans)
     classes.push(`${themeBackgroundTransClass}--${themeBackgroundTrans}`)
   if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
   if (themeLinkHover) classes.push(`${themeLinkHoverClass}--${themeLinkHover}`)
+  if (overlay) classes.push(`${overlayClass}--${overlay}`)
 
   // - Border classes
-  if (border || borderColor || borderSide)
+  if (border || borderAt || borderColor || borderSide)
     classes.push(
       getBorderClass({
+        at: borderAt,
         color: borderColor,
         side: borderSide,
       })
@@ -153,6 +188,17 @@ export default function Element({ as, children, tag, ...props }) {
       })
     )
 
+  // - Flex
+  if (flex || flexAlign || flexColumn || flexJustify) {
+    classes.push(
+      getFlexClass({
+        align: flexAlign,
+        column: flexColumn,
+        justify: flexJustify,
+      })
+    )
+  }
+
   // - Others
 
   // Remove from the flow but leave available to screen readers
@@ -169,7 +215,9 @@ export default function Element({ as, children, tag, ...props }) {
 
 Element.propTypes = {
   as: PropTypes.string,
+  backgroundColor: PropTypes.oneOf(backgroundColors),
   border: PropTypes.bool,
+  borderAt: PropTypes.oneOf(borderAtBreakpoints),
   borderColor: PropTypes.oneOf(borderColors),
   borderSide: PropTypes.oneOf(borderSides),
   canBe: PropTypes.oneOf(canBeColors),
@@ -177,25 +225,35 @@ Element.propTypes = {
   className: PropTypes.string,
   clearFix: PropTypes.bool,
   color: PropTypes.oneOf(textColors),
-  backgroundColor: PropTypes.oneOf(backgroundColors),
+  flex: PropTypes.bool,
+  flexAlign: PropTypes.oneOf(flexAlignOptions),
+  flexColumn: PropTypes.oneOf(flexDirectionOptions),
+  flexJustify: PropTypes.oneOf(flexJustifyOptions),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
+  linkHover: PropTypes.oneOf(linkHoverColors),
+  overlay: PropTypes.oneOf(overlayColors),
   padding: PropTypes.bool,
-  paddingSide: PropTypes.oneOf(sides),
-  paddingSize: PropTypes.oneOf(sizes),
+  paddingSide: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.oneOf(spacingSides),
+  ]),
+  paddingSize: PropTypes.oneOf(spacingSizes),
   space: PropTypes.bool,
-  spaceSide: PropTypes.oneOf(sides),
-  spaceSize: PropTypes.oneOf(sizes),
+  spaceSide: PropTypes.oneOf(spacingSides),
+  spaceSize: PropTypes.oneOf(spacingSizes),
   spacing: PropTypes.bool,
   spacingAfter: PropTypes.oneOf(afterSizes),
-  spacingSide: PropTypes.oneOf(sides),
-  spacingSize: PropTypes.oneOf(sizes),
+  spacingSide: PropTypes.oneOf(spacingSides),
+  spacingSize: PropTypes.oneOf(spacingSizes),
   spacingUntil: PropTypes.oneOf(untilSizes),
-  tag: PropTypes.string,
   strong: PropTypes.bool,
+  tag: PropTypes.string,
+  textAlign: PropTypes.oneOf(textAlignOptions),
   themeBackground: PropTypes.oneOf(themeBackgroundColors),
   themeBackgroundTrans: PropTypes.oneOf(themeBackgroundTransColors),
   themeBorder: PropTypes.oneOf(themeBorderColors),
+  themeBorderSide: PropTypes.oneOf(sides),
   themeColor: PropTypes.oneOf(themeColors),
   themeLinkHover: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { sizes } from '../../../atoms/global/spacing'
+import { spacingSizes } from '../../../atoms/global/spacing'
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 
 import Element from '../../../helpers/Element'
@@ -62,7 +62,7 @@ FormLabel.propTypes = {
   text: PropTypes.string,
   textOptional: PropTypes.string,
   wrapperClass: PropTypes.string,
-  wrapperSpacingSize: PropTypes.oneOf(sizes),
+  wrapperSpacingSize: PropTypes.oneOf(spacingSizes),
 }
 FormLabel.defaultProps = {
   fontSize: 's',

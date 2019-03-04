@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { sizes } from '../../../atoms/global/spacing'
+import { spacingSizes } from '../../../atoms/global/spacing'
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 
 import BaseInput from './BaseInput'
@@ -56,7 +56,7 @@ RadioButton.propTypes = {
   labelFontSize: PropTypes.oneOf(fontSizes),
   labelFontType: PropTypes.oneOf(fontTypes),
   labelWrapperClass: PropTypes.string,
-  labelWrapperSpacingSize: PropTypes.oneOf(sizes),
+  labelWrapperSpacingSize: PropTypes.oneOf(spacingSizes),
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
