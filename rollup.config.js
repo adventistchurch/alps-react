@@ -10,7 +10,6 @@ const babelConf = {
   presets: [
     ['@babel/preset-env', { modules: false }],
     ['@babel/preset-react', {}],
-    ['@babel/plugin-syntax-dynamic-import', {}],
   ],
   exclude: 'node_modules/**',
 }
