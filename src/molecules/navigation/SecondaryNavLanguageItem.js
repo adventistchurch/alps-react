@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Object } from 'es6-shim'
 
 function SecondaryNavLanguageItem({ label, languages }) {
   return (
