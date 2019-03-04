@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
-import { getGridItemClass } from '../global/grids'
 
 function GridItem({
   as,
   children,
   className,
-  noItemClass,
+  hasItemClass,
   size,
   sizeAtL,
   sizeAtM,
@@ -16,39 +15,37 @@ function GridItem({
   sizeAtXL,
   ...props
 }) {
-  const elementClass = getGridItemClass({
-    className,
-    noItemClass,
-    size,
-    sizeAtS,
-    sizeAtM,
-    sizeAtL,
-    sizeAtXL,
-  })
+  const gridItemProps = {
+    gridItemSize: size,
+    gridItemSizeAtS: sizeAtS,
+    gridItemSizeAtM: sizeAtM,
+    gridItemSizeAtL: sizeAtL,
+    gridItemSizeAtXL: sizeAtXL,
+    hasGridItemClass: hasItemClass,
+  }
 
   return (
-    <Element as={as} className={elementClass} {...props}>
+    <Element as={as} className={className} {...props} {...gridItemProps}>
       {children}
     </Element>
   )
 }
 
-const sizePropType = PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-
 GridItem.propTypes = {
   as: PropTypes.oneOf(['article', 'div']),
   children: PropTypes.node,
   className: PropTypes.string,
-  noItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
-  size: sizePropType,
-  sizeAtS: sizePropType,
-  sizeAtM: sizePropType,
-  sizeAtL: sizePropType,
-  sizeAtXL: sizePropType,
+  hasItemClass: Element.propTypes.hasGridItemClass,
+  size: Element.propTypes.gridItemSize,
+  sizeAtS: Element.propTypes.gridItemSizeAtS,
+  sizeAtM: Element.propTypes.gridItemSizeAtM,
+  sizeAtL: Element.propTypes.gridItemSizeAtL,
+  sizeAtXL: Element.propTypes.gridItemSizeAtXL,
+  ...Element.propTypes,
 }
 GridItem.defaultProps = {
   as: 'div',
-  noItemClass: false,
+  hasItemClass: true,
   className: '',
 }
 

@@ -22,38 +22,38 @@ function getShiftClass(side, at) {
   } ` // TODO: Ask if, to avoid this special case, `.u-shift--left--1-col--standard` is meant used, and if can be renamed to a more "standard" name like `.u-shift--left--1-col--at-standard` (note the added `at`).
 }
 
-function getGridWrapClass(size) {
-  return `${wrapClass} ${
+function getGridWrapClass(size, hasWrapClass) {
+  return `${hasWrapClass ? wrapClass : ''}${
     typeof size === 'string' && wrapSizes.includes(size)
-      ? `${wrapClass}--${size}-of-7`
+      ? ` ${wrapClass}--${size}-of-7`
       : ''
   }`
 }
 
 function getGridClass({
-  className,
   noGutters,
   seven,
   sevenInner,
   shiftSide,
   shiftAt,
   wrap,
+  hasGridClass,
+  hasWrapClass,
 }) {
-  const classes = [gridClass]
+  const classes = []
 
-  if (className) classes.push(className)
+  if (hasGridClass) classes.push(gridClass)
   if (seven) classes.push(sevenClass)
   if (sevenInner) classes.push(sevenInnerClass)
   if (noGutters) classes.push(noGuttersClass)
-  if (wrap) classes.push(getGridWrapClass(wrap))
+  if (wrap) classes.push(getGridWrapClass(wrap, hasWrapClass))
   if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
 
-  return classes.join(' ')
+  return classes
 }
 
 function getGridItemClass({
-  className,
-  noItemClass,
+  hasItemClass,
   size,
   sizeAtL,
   sizeAtM,
@@ -62,7 +62,7 @@ function getGridItemClass({
 }) {
   const classes = []
 
-  if (!noItemClass) classes.push(itemClass)
+  if (hasItemClass) classes.push(itemClass)
 
   const sizes = []
 
@@ -80,9 +80,7 @@ function getGridItemClass({
     )
   }
 
-  if (className) classes.push(className)
-
-  return classes.join(' ')
+  return classes
 }
 
 export {

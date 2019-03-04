@@ -51,6 +51,14 @@ import {
 } from '../atoms/global/fonts'
 
 import {
+  getGridClass,
+  getGridItemClass,
+  shiftBreakpoints,
+  shiftSides,
+  wrapSizes,
+} from '../atoms/global/grids'
+
+import {
   afterSizes,
   clearFixClass,
   getPaddingClass,
@@ -84,11 +92,25 @@ export default function Element({ as, children, tag, ...props }) {
     flexJustify,
     fontSize,
     fontType,
+    gridItemSize,
+    gridItemSizeAtS,
+    gridItemSizeAtM,
+    gridItemSizeAtL,
+    gridItemSizeAtXL,
+    hasGridClass,
+    hasGridItemClass,
+    hasGridWrapClass,
+    gridWrap,
+    gridNoGutters,
     linkHover,
     overlay,
     padding,
     paddingSide,
     paddingSize,
+    seven,
+    sevenInner,
+    shiftAt,
+    shiftSide,
     space,
     spaceSide,
     spaceSize,
@@ -199,6 +221,35 @@ export default function Element({ as, children, tag, ...props }) {
     )
   }
 
+  // - Grid
+  if (sevenInner || shiftAt || shiftSide || gridWrap || gridNoGutters) {
+    classes.push(
+      ...getGridClass({
+        seven,
+        sevenInner,
+        shiftAt,
+        shiftSide,
+        wrap: gridWrap,
+        hasGridClass,
+        hasWrapClass: hasGridWrapClass,
+        noGutters: gridNoGutters,
+      })
+    )
+  }
+  // - Grid Item
+  if (sevenInner || shiftAt || shiftSide || gridWrap || gridNoGutters) {
+    classes.push(
+      ...getGridItemClass({
+        size: gridItemSize,
+        sizeAtS: gridItemSizeAtS,
+        sizeAtM: gridItemSizeAtM,
+        sizeAtL: gridItemSizeAtL,
+        sizeAtXL: gridItemSizeAtXL,
+        hasItemClass: hasGridItemClass,
+      })
+    )
+  }
+
   // - Others
 
   // Remove from the flow but leave available to screen readers
@@ -212,6 +263,11 @@ export default function Element({ as, children, tag, ...props }) {
 
   return React.createElement(tag ? tag : as, allProps, children)
 }
+
+export const gridItemSizePropType = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+])
 
 Element.propTypes = {
   as: PropTypes.string,
@@ -231,6 +287,16 @@ Element.propTypes = {
   flexJustify: PropTypes.oneOf(flexJustifyOptions),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
+  gridNoGutters: PropTypes.bool,
+  gridWrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
+  gridItemSize: gridItemSizePropType,
+  gridItemSizeAtS: gridItemSizePropType,
+  gridItemSizeAtM: gridItemSizePropType,
+  gridItemSizeAtL: gridItemSizePropType,
+  gridItemSizeAtXL: gridItemSizePropType,
+  hasGridClass: PropTypes.bool,
+  hasGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
+  hasGridWrapClass: PropTypes.bool,
   linkHover: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
   padding: PropTypes.bool,
@@ -239,6 +305,10 @@ Element.propTypes = {
     PropTypes.oneOf(spacingSides),
   ]),
   paddingSize: PropTypes.oneOf(spacingSizes),
+  seven: PropTypes.bool,
+  sevenInner: PropTypes.bool,
+  shiftAt: PropTypes.oneOf(shiftBreakpoints),
+  shiftSide: PropTypes.oneOf(shiftSides),
   space: PropTypes.bool,
   spaceSide: PropTypes.oneOf(spacingSides),
   spaceSize: PropTypes.oneOf(spacingSizes),

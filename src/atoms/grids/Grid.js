@@ -2,37 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
-import {
-  getGridClass,
-  shiftBreakpoints,
-  shiftSides,
-  wrapSizes,
-} from '../global/grids'
 
 function Grid({
   as,
   children,
   className,
+  hasWrapClass,
   noGutters,
-  seven,
-  sevenInner,
-  shiftAt,
-  shiftSide,
   wrap,
   ...props
 }) {
-  const elementClass = getGridClass({
-    className,
-    noGutters,
-    seven,
-    sevenInner,
-    shiftAt,
-    shiftSide,
-    wrap,
-  })
-
   return (
-    <Element tag={as} className={elementClass} {...props}>
+    <Element
+      tag={as}
+      className={className}
+      gridNoGutters={noGutters}
+      gridWrap={wrap}
+      hasGridWrapClass={hasWrapClass}
+      {...props}
+    >
       {children}
     </Element>
   )
@@ -44,17 +32,16 @@ Grid.propTypes = {
   as: PropTypes.oneOf(asOptions),
   children: PropTypes.node,
   className: PropTypes.string,
-  noGutters: PropTypes.bool,
-  seven: PropTypes.bool,
-  sevenInner: PropTypes.bool,
-  shiftAt: PropTypes.oneOf(shiftBreakpoints),
-  shiftSide: PropTypes.oneOf(shiftSides),
-  wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
+  hasWrapClass: Element.propTypes.hasGridWrapClass,
+  noGutters: Element.propTypes.gridNoGutters,
+  wrap: Element.propTypes.gridWrap,
   ...Element.propTypes,
 }
 Grid.defaultProps = {
   as: 'div',
   className: '',
+  hasGridClass: true,
+  hasWrapClass: true,
 }
 
 export default Grid
