@@ -1,22 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
+import SearchFilter from '../../molecules/forms/SearchFilter'
 import BlockWrap from './BlockWrap'
 
-// TODO: add search component on top
-
-function Aside({ primary, secondary }) {
+function Aside({ primary, secondary, searchProps }) {
   return (
-    <div className="u-spacing--double u-padding--right">
+    <Element spacingSize="double" paddingSide="right">
+      <SearchFilter {...searchProps} />
       {primary && <BlockWrap {...primary} type="mediaBlock" />}
       {secondary && <BlockWrap {...secondary} type="contentBlock" />}
-    </div>
+    </Element>
   )
 }
 
 Aside.propTypes = {
   primary: PropTypes.shape(BlockWrap.propTypes),
   secondary: PropTypes.shape(BlockWrap.propTypes),
+  searchProps: PropTypes.shape(SearchFilter.propTypes),
 }
 
 export default Aside
