@@ -14,7 +14,7 @@ export const flexDirectionClass = `${flexClass}-direction`
 export const flexDirectionOptions = ['column', 'row']
 
 export function getFlexClass({ align, column, end, justify, noWrap, wrap }) {
-  return getBaseClass(column ? flexClass : flexDirectionClass, [
+  return getBaseClass(column ? flexDirectionClass : flexClass, [
     align
       ? `align-${align}`
       : column
