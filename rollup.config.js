@@ -1,15 +1,16 @@
-import { readdirSync } from 'fs'
-import path from 'path'
+import { readdirSync, statSync } from 'fs'
 
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import filesize from 'rollup-plugin-filesize'
 import resolve from 'rollup-plugin-node-resolve'
-import external from 'rollup-plugin-peer-deps-external'
 import replace from 'rollup-plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 
 import pkg from './package.json'
+
+// Sets some constants
+const env = process.env.NODE_ENV
+const srcDir = 'src'
 
 const EXTENSIONS = ['.js', '.json']
 const CODES = [
@@ -18,24 +19,64 @@ const CODES = [
   'CIRCULAR_DEPENDENCY',
 ]
 
-const getChunks = URI =>
-  readdirSync(path.resolve(URI))
-    .filter(x => x.includes('.js') && !x.includes('.stories.js'))
-    .reduce((a, c) => ({ ...a, [c.replace('.js', '')]: `src/${c}` }), {})
+/**
+ * Returns files and subfolder as an array from a starting folder
+ *
+ * @param {String} dir Starting directory/folder
+ */
+const walkFolder = dir => {
+  var results = []
+  var list = readdirSync(dir)
+  list.forEach(function(file) {
+    file = `${dir}/${file}`
 
+    var stat = statSync(file)
+
+    if (stat && stat.isDirectory()) {
+      // Recurse into a subdirectory
+      results = results.concat(walkFolder(file))
+    } else {
+      // Is a file
+      results.push(file)
+    }
+  })
+
+  return results
+}
+
+/**
+ * Returns an object with chunks information (name and source)
+ *
+ * Output example:
+ * { 'atoms/buttons/Button': 'src/atoms/buttons/Button.js', ... }
+ *
+ * @param {String} URI Starting directory/folder
+ */
+const getChunks = URI =>
+  walkFolder(URI)
+    .filter(x => x.includes('.js') && !x.includes('.stories.js'))
+    .reduce(
+      (acc, current) => ({
+        ...acc,
+        [current.replace('.js', '').replace(`${URI}/`, '')]: `${current}`,
+      }),
+      {}
+    )
+
+/**
+ * Discards some warnings (defined in CODES)
+ *
+ * @param {Object} warning
+ */
 const discardWarning = warning => {
   if (CODES.includes(warning.code)) {
     return
   }
-  console.error(warning)
+  console.error(warning) // eslint-disable-line no-console
 }
 
-const env = process.env.NODE_ENV
-
+// Setup common plugins
 const commonPlugins = () => [
-  external({
-    includeDependencies: false,
-  }),
   babel({
     babelrc: false,
     presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
@@ -49,11 +90,15 @@ const commonPlugins = () => [
   resolve({
     extensions: EXTENSIONS,
     preferBuiltins: false,
+    customResolveOptions: {
+      moduleDirectory: 'node_modules',
+    },
   }),
-  filesize(),
 ]
 
+// Actual Rollup configuration
 export default [
+  // UMD
   {
     onwarn: discardWarning,
     input: 'src/index.js',
@@ -69,10 +114,12 @@ export default [
       },
     },
     plugins: [...commonPlugins(), env === 'production' && terser()],
+    external: ['react', 'react-dom'],
   },
+  // CJS and ESM
   {
     onwarn: discardWarning,
-    input: getChunks('src'),
+    input: getChunks(srcDir),
     output: [
       {
         dir: 'build/esm',
@@ -87,5 +134,6 @@ export default [
       },
     ],
     plugins: commonPlugins(),
+    external: ['react', 'react-dom', 'prop-types'],
   },
 ]
