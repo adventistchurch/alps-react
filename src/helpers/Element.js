@@ -22,6 +22,7 @@ import {
   themeBorderColors,
   themeColorClass,
   themeColors,
+  themeLinkHoverClass,
 } from '../atoms/global/colors'
 
 import { vishiddenClass } from '../atoms/global/commons'
@@ -80,6 +81,7 @@ export default function Element({ as, children, tag, ...props }) {
     themeBackgroundTrans,
     themeBorder,
     themeColor,
+    themeLinkHover,
     transform,
     vishidden,
 
@@ -110,6 +112,7 @@ export default function Element({ as, children, tag, ...props }) {
   if (themeBackgroundTrans)
     classes.push(`${themeBackgroundTransClass}--${themeBackgroundTrans}`)
   if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
+  if (themeLinkHover) classes.push(`${themeLinkHoverClass}--${themeLinkHover}`)
 
   // - Border classes
   if (border || borderColor || borderSide)
@@ -194,6 +197,7 @@ Element.propTypes = {
   themeBackgroundTrans: PropTypes.oneOf(themeBackgroundTransColors),
   themeBorder: PropTypes.oneOf(themeBorderColors),
   themeColor: PropTypes.oneOf(themeColors),
+  themeLinkHover: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
   vishidden: PropTypes.bool,
 }

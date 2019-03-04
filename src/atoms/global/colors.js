@@ -64,6 +64,9 @@ export const themeBackgroundTransColors = [...themeColors]
 export const themeBorderColorClass = 'u-theme--border-color'
 export const themeBorderColors = [...themeColors]
 
+// - Link
+export const themeLinkHoverClass = 'u-theme--link-hover'
+
 // - "Can be"
 export const canBeClass = 'can-be'
 export const canBeColors = [
