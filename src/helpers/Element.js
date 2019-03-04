@@ -92,6 +92,7 @@ export default function Element({ as, children, tag, ...props }) {
     flexJustify,
     fontSize,
     fontType,
+    gridItem,
     gridItemSize,
     gridItemSizeAtS,
     gridItemSizeAtM,
@@ -222,7 +223,14 @@ export default function Element({ as, children, tag, ...props }) {
   }
 
   // - Grid
-  if (sevenInner || shiftAt || shiftSide || gridWrap || gridNoGutters) {
+  if (
+    seven ||
+    sevenInner ||
+    shiftAt ||
+    shiftSide ||
+    gridWrap ||
+    gridNoGutters
+  ) {
     classes.push(
       ...getGridClass({
         seven,
@@ -236,8 +244,16 @@ export default function Element({ as, children, tag, ...props }) {
       })
     )
   }
+
   // - Grid Item
-  if (sevenInner || shiftAt || shiftSide || gridWrap || gridNoGutters) {
+  if (
+    gridItem ||
+    gridItemSize ||
+    gridItemSizeAtS ||
+    gridItemSizeAtM ||
+    gridItemSizeAtL ||
+    gridItemSizeAtXL
+  ) {
     classes.push(
       ...getGridItemClass({
         size: gridItemSize,
@@ -288,12 +304,13 @@ Element.propTypes = {
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
   gridNoGutters: PropTypes.bool,
-  gridWrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
+  gridItem: PropTypes.bool,
   gridItemSize: gridItemSizePropType,
   gridItemSizeAtS: gridItemSizePropType,
   gridItemSizeAtM: gridItemSizePropType,
   gridItemSizeAtL: gridItemSizePropType,
   gridItemSizeAtXL: gridItemSizePropType,
+  gridWrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
   hasGridClass: PropTypes.bool,
   hasGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
   hasGridWrapClass: PropTypes.bool,
@@ -331,6 +348,9 @@ Element.propTypes = {
 }
 Element.defaultProps = {
   as: 'div',
+  hasGridClass: true,
+  hasGridItemClass: true,
+  hasGridWrapClass: true,
 }
 
 export function HeadingOne(props) {
