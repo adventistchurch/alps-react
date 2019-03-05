@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { configure, addDecorator, setAddon } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs'
+import { boolean, select, withKnobs } from '@storybook/addon-knobs'
 import JSXAddon from 'storybook-addon-jsx'
 import { configureViewport } from '@storybook/addon-viewport'
 
@@ -14,6 +14,7 @@ const style = {
 
 addDecorator(story => {
   const content = story()
+
   const primaryColor = select(
     'Primary color',
     primaryColors,
@@ -27,7 +28,10 @@ addDecorator(story => {
     'Theme'
   )
 
+  const hasGrid = boolean('Has Grid', true, 'Theme')
+
   const props = {
+    hasGrid,
     primaryColor,
     secondaryColor,
     style,
