@@ -50,7 +50,11 @@ export const linkHoverColors = ['white']
 
 // SVG Fill Colors
 export const svgFillClass = 'u-path-fill'
-export const svgFillColors = grayscaleColors
+export const svgFillColors = [...grayscaleColors]
+
+export function getSvgFillClass(color) {
+  return getBaseClass(svgFillClass, [color])
+}
 
 // Background Colors (grayscale)
 export const backgroundColorClass = 'u-background-color'
