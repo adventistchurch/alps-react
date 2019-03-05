@@ -77,7 +77,7 @@ import {
  *
  * @param {Object} props All Element's props
  */
-export default function Element({ as, children, tag, ...props }) {
+export default function Element({ as, children, tag, forwardedRef, ...props }) {
   // Extract style-related props to build `className`
   const {
     backgroundColor,
@@ -283,6 +283,7 @@ export default function Element({ as, children, tag, ...props }) {
   // Build all props
   const allProps = {
     className: classes.length > 0 ? classes.join(' ') : null,
+    ref: forwardedRef,
     ...otherProps,
   }
 
@@ -312,6 +313,7 @@ Element.propTypes = {
   flexJustify: PropTypes.oneOf(flexJustifyOptions),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
+  forwardedRef: PropTypes.object,
   gridNoGutters: PropTypes.bool,
   gridItem: PropTypes.bool,
   gridItemSize: gridItemSizePropType,
@@ -363,6 +365,10 @@ Element.defaultProps = {
   hasGridItemClass: true,
   hasGridWrapClass: true,
 }
+
+export const ElementWithRef = React.forwardRef((props, ref) => (
+  <Element {...props} forwardedRef={ref} />
+))
 
 export function HeadingOne(props) {
   return <Element as="h1" {...props} />
