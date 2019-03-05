@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon, { iconNames } from '../../atoms/icons/Icon'
+import { ElementWithRef, Div } from '../../helpers/Element'
 import InlineStyles from '../../helpers/InlineStyles'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import useWindowEvent from '../../helpers/useWindowEvent'
@@ -88,7 +89,7 @@ function Sabbath({
     <aside
       className={`l-wrap__sabbath l-sabbath ${
         backgroundImage ? 'u-background-image--sabbath' : ''
-      } ###js-toggle-menu###`} // TODO: replace js-toggle-menu
+      }`}
       onClick={openDrawer}
     >
       {backgroundImage ? (
@@ -97,41 +98,44 @@ function Sabbath({
             styles={`.u-background-image--sabbath { background-image: url('${backgroundImage}') !important; }`}
           />
           {showLogo && (
-            <div
-              className="l-sabbath__logo u-path-fill--white"
+            <ElementWithRef
+              className="l-sabbath__logo"
+              pathFill="white"
               ref={logoRef}
               style={stickyLogo ? stickyLogoStyle : null}
             >
               <Icon name={logo} />
-            </div>
+            </ElementWithRef>
           )}
         </>
       ) : (
         <>
-          <div className="l-sabbath__logo" ref={logoWrapRef}>
+          <ElementWithRef className="l-sabbath__logo" ref={logoWrapRef}>
             {showLogo && (
-              <div
+              <ElementWithRef
                 className={`l-sabbath__logo--inner ${
                   stickyLogo ? logoInnerClass : ''
                 }`}
                 ref={logoRef}
                 style={stickyLogo ? stickyLogoStyle : null}
               >
-                <div
-                  className="l-sabbath__logo-light u-path-fill--white"
+                <Div
+                  className="l-sabbath__logo-light"
+                  pathFill="white"
                   style={opacityStyle}
                 >
                   <Icon name={logo} />
-                </div>
-                <div className="l-sabbath__logo-dark u-theme--path-fill--base">
+                </Div>
+                <Div className="l-sabbath__logo-dark" themePathFill="base">
                   <Icon name={logo} />
-                </div>
-              </div>
+                </Div>
+              </ElementWithRef>
             )}
-          </div>
-          <div
-            className="l-sabbath__overlay u-theme--background-color--base"
+          </ElementWithRef>
+          <Div
+            className="l-sabbath__overlay"
             style={opacityStyle}
+            themeBackground="base"
           />
         </>
       )}
