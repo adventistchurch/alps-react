@@ -1,11 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../../helpers/Element'
 import Title from '../../../atoms/texts/Title'
 
 function FormFilter({ options, title }) {
   return (
-    <div className="c-filter__form-item u-spacing--half l-grid-item l-grid-item--s--2-col l-grid-item--l--1-col">
+    <Element
+      className="c-filter__form-item"
+      spacingSize="half"
+      gridItemSizeAtS="2"
+      gridItemSizeAtL="1"
+    >
       <Title
         as="h3"
         fontType="secondary"
@@ -31,7 +37,7 @@ function FormFilter({ options, title }) {
           </div>
         )
       })}
-    </div>
+    </Element>
   )
 }
 

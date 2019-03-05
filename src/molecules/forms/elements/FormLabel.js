@@ -1,75 +1,54 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { spacingSizes } from '../../../atoms/global/spacing'
-import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import Element from '../../../helpers/Element'
 import ErrorMessage from './ErrorMessage'
 
 function FormLabel({
-  children: FormField,
+  children: field,
   error,
-  fontSize,
-  fontType,
   htmlFor,
   position,
   text,
   textOptional,
-  wrapperClass,
-  wrapperSpacingSize,
+  className,
+  ...props
 }) {
-  const Label = (
-    <Element
-      as="label"
-      fontSize={fontSize}
-      fontType={fontType}
-      htmlFor={htmlFor}
-    >
-      {text}{' '}
-      {textOptional && (
-        <span className="type-alpha--s text-color--gray">({textOptional})</span>
-      )}
-    </Element>
-  )
-
   return (
-    <Element className={wrapperClass} spacingSize={wrapperSpacingSize}>
-      {position == 'top' ? (
-        <>
-          {Label}
-          {FormField}
-          {error && <ErrorMessage text={error} />}
-        </>
-      ) : (
-        <>
-          {FormField}
-          {Label}
-          {error && <ErrorMessage text={error} />}
-        </>
-      )}
+    <Element className={className} {...props}>
+      {position == 'bottom' && field}
+
+      <Element as="label" htmlFor={htmlFor}>
+        {text}{' '}
+        {textOptional && (
+          <span className="type-alpha--s text-color--gray">
+            ({textOptional})
+          </span>
+        )}
+      </Element>
+
+      {position == 'top' && field}
+
+      {error && <ErrorMessage text={error} />}
     </Element>
   )
 }
 
 FormLabel.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   error: PropTypes.string,
-  fontSize: PropTypes.oneOf(fontSizes),
-  fontType: PropTypes.oneOf(fontTypes),
   htmlFor: PropTypes.string,
   position: PropTypes.oneOf(['top', 'bottom']),
   text: PropTypes.string,
   textOptional: PropTypes.string,
-  wrapperClass: PropTypes.string,
-  wrapperSpacingSize: PropTypes.oneOf(spacingSizes),
 }
 FormLabel.defaultProps = {
+  className: 'c-form-group',
   fontSize: 's',
   fontType: 'secondary',
   position: 'top',
-  wrapperClass: 'c-form-group',
-  wrapperSpacingSize: 'quarter',
+  spacingSize: 'quarter',
 }
 
 export default FormLabel

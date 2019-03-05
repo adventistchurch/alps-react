@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { spacingSizes } from '../../../atoms/global/spacing'
-import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 
@@ -13,25 +10,21 @@ function Checkbox({
   id,
   label,
   labelOptional,
-  labelFontSize,
-  labelFontType,
-  labelWrapperClass,
-  labelWrapperSpacingSize,
+  labelClass,
+  labelSpacingSize,
   name,
   value,
   ...props
 }) {
   return (
     <FormLabel
+      className={labelClass}
       error={error}
-      fontSize={labelFontSize}
-      fontType={labelFontType}
       htmlFor={id}
       position="bottom"
       text={label}
       textOptional={labelOptional}
-      wrapperClass={labelWrapperClass}
-      wrapperSpacingSize={labelWrapperSpacingSize}
+      spacingSize={labelSpacingSize}
     >
       <BaseInput
         checked={checked}
@@ -53,17 +46,11 @@ Checkbox.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
-  labelFontSize: PropTypes.oneOf(fontSizes),
-  labelFontType: PropTypes.oneOf(fontTypes),
-  labelWrapperClass: PropTypes.string,
-  labelWrapperSpacingSize: PropTypes.oneOf(spacingSizes),
+  labelClass: PropTypes.string,
+  labelSpacingSize: FormLabel.propTypes.spacingSize,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-}
-Checkbox.defaultProps = {
-  labelWrapperClass: null,
-  labelWrapperSpacingSize: null,
 }
 
 export default Checkbox

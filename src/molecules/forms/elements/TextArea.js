@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { spacingSizes } from '../../../atoms/global/spacing'
-import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import FormLabel from './FormLabel'
 
 function TextArea({
@@ -12,10 +9,8 @@ function TextArea({
   id,
   label,
   labelOptional,
-  labelFontSize,
-  labelFontType,
-  labelWrapperClass,
-  labelWrapperSpacingSize,
+  labelClass,
+  labelSpacingSize,
   value,
   ...props
 }) {
@@ -27,14 +22,12 @@ function TextArea({
 
   return label ? (
     <FormLabel
+      className={labelClass}
       error={error}
-      fontSize={labelFontSize}
-      fontType={labelFontType}
       htmlFor={id}
       text={label}
       textOptional={labelOptional}
-      wrapperClass={labelWrapperClass}
-      wrapperSpacingSize={labelWrapperSpacingSize}
+      spacingSize={labelSpacingSize}
     >
       {TextArea}
     </FormLabel>
@@ -49,10 +42,8 @@ TextArea.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   labelOptional: PropTypes.string,
-  labelFontSize: PropTypes.oneOf(fontSizes),
-  labelFontType: PropTypes.oneOf(fontTypes),
-  labelWrapperClass: PropTypes.string,
-  labelWrapperSpacingSize: PropTypes.oneOf(spacingSizes),
+  labelClass: PropTypes.string,
+  labelSpacingSize: FormLabel.propTypes.spacingSize,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   rows: PropTypes.number,

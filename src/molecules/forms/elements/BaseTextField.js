@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { spacingSizes } from '../../../atoms/global/spacing'
-import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 
@@ -13,10 +10,8 @@ function BaseTextField({
   id,
   label,
   labelOptional,
-  labelFontSize,
-  labelFontType,
-  labelWrapperClass,
-  labelWrapperSpacingSize,
+  labelClass,
+  labelSpacingSize,
   name,
   placeholder,
   type,
@@ -32,15 +27,13 @@ function BaseTextField({
 
   return label ? (
     <FormLabel
+      className={labelClass}
       error={error}
-      fontSize={labelFontSize}
-      fontType={labelFontType}
       htmlFor={id}
       position={darkMode ? 'bottom' : 'top'}
       text={label}
       textOptional={labelOptional}
-      wrapperClass={labelWrapperClass}
-      wrapperSpacingSize={labelWrapperSpacingSize}
+      spacingSize={labelSpacingSize}
     >
       {InputField}
     </FormLabel>
@@ -55,17 +48,14 @@ BaseTextField.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   labelOptional: PropTypes.string,
-  labelFontSize: PropTypes.oneOf(fontSizes),
-  labelFontType: PropTypes.oneOf(fontTypes),
-  labelWrapperClass: PropTypes.string,
-  labelWrapperSpacingSize: PropTypes.oneOf(spacingSizes),
+  labelClass: PropTypes.string,
+  labelSpacingSize: FormLabel.propTypes.spacingSize,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf(['email', 'password', 'search', 'text']),
   value: PropTypes.string,
 }
 BaseTextField.defaultProps = {
-  labelWrapperClass: 'c-form-group',
   type: 'text',
 }
 

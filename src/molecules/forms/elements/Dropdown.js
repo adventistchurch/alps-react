@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { spacingSizes } from '../../../atoms/global/spacing'
-import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import FormLabel from './FormLabel'
 
 function Dropdown({
@@ -12,10 +9,8 @@ function Dropdown({
   id,
   label,
   labelOptional,
-  labelFontSize,
-  labelFontType,
-  labelWrapperClass,
-  labelWrapperSpacingSize,
+  labelClass,
+  labelSpacingSize,
   name,
   options,
 }) {
@@ -31,14 +26,12 @@ function Dropdown({
 
   return label ? (
     <FormLabel
+      className={labelClass}
       error={error}
-      fontSize={labelFontSize}
-      fontType={labelFontType}
       htmlFor={id}
       text={label}
       textOptional={labelOptional}
-      wrapperClass={labelWrapperClass}
-      wrapperSpacingSize={labelWrapperSpacingSize}
+      spacingSize={labelSpacingSize}
     >
       {Dropdown}
     </FormLabel>
@@ -59,10 +52,8 @@ Dropdown.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
-  labelFontSize: PropTypes.oneOf(fontSizes),
-  labelFontType: PropTypes.oneOf(fontTypes),
-  labelWrapperClass: PropTypes.string,
-  labelWrapperSpacingSize: PropTypes.oneOf(spacingSizes),
+  labelClass: PropTypes.string,
+  labelSpacingSize: FormLabel.propTypes.spacingSize,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
