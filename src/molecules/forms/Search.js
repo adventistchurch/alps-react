@@ -6,9 +6,16 @@ import Form from './elements/Form'
 import SearchField from './elements/SearchField'
 import SubmitButton from './elements/SubmitButton'
 
-function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
+function Search({
+  hasFocus,
+  onSearch,
+  placeholder,
+  submitLabel,
+  title,
+  ...props
+}) {
   return (
-    <Form className="search-form" role="search" {...props}>
+    <Form className="search-form" role="search" onSubmit={onSearch} {...props}>
       <Fieldset legend={title} legendVishidden>
         <SearchField
           className="search-form__input"
@@ -26,7 +33,7 @@ function Search({ submitLabel, hasFocus, placeholder, title, ...props }) {
 
 Search.propTypes = {
   hasFocus: PropTypes.bool,
-  onSubmit: PropTypes.func,
+  onSearch: PropTypes.func,
   placeholder: PropTypes.string,
   submitLabel: PropTypes.string,
   title: PropTypes.string,
