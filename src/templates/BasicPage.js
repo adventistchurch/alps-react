@@ -59,7 +59,7 @@ function BasicPage({
 
 BasicPage.propTypes = {
   aside: PropTypes.object,
-  background: PageHeader.propTypes.backgroundSrcSet,
+  background: PageHeader.propTypes.background,
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
   content: PropTypes.node.isRequired,
