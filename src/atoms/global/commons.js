@@ -11,5 +11,10 @@ function getMod(key) {
 }
 
 export function getBaseClass(baseClass, mods = []) {
-  return `${baseClass}${mods.map(mod => getMod(mod)).join('')}`
+  const modifiers =
+    typeof mods === 'string'
+      ? getMod(mods)
+      : mods.map(mod => getMod(mod)).join('')
+
+  return `${baseClass}${modifiers}`
 }
