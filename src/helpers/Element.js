@@ -14,10 +14,12 @@ import {
   canBeClass,
   canBeColors,
   getThemeBorderClass,
+  getSvgFillClass,
   linkHoverClass,
   linkHoverColors,
   overlayClass,
   overlayColors,
+  svgFillColors,
   textColorClass,
   textColors,
   themeBackgroundClass,
@@ -28,6 +30,7 @@ import {
   themeColorClass,
   themeColors,
   themeLinkHoverClass,
+  themePathFillClass,
 } from '../atoms/global/colors'
 
 import { getBaseClass, sides, vishiddenClass } from '../atoms/global/commons'
@@ -108,6 +111,7 @@ export default function Element({ as, children, tag, ...props }) {
     padding,
     paddingSide,
     paddingSize,
+    pathFill,
     seven,
     sevenInner,
     shiftAt,
@@ -128,6 +132,7 @@ export default function Element({ as, children, tag, ...props }) {
     themeBorderSide,
     themeColor,
     themeLinkHover,
+    themePathFill,
     transform,
     vishidden,
 
@@ -144,6 +149,7 @@ export default function Element({ as, children, tag, ...props }) {
     classes.push(getBaseClass(backgroundColorClass, backgroundColor))
   if (canBe) classes.push(getBaseClass(canBeClass, canBe))
   if (color) classes.push(getBaseClass(textColorClass, color))
+  if (pathFill) classes.push(getSvgFillClass(pathFill))
 
   // - Font classes
   if (fontType)
@@ -171,6 +177,8 @@ export default function Element({ as, children, tag, ...props }) {
   if (themeLinkHover)
     classes.push(getBaseClass(themeLinkHoverClass, themeLinkHover))
   if (overlay) classes.push(getBaseClass(overlayClass, overlay))
+  if (themePathFill)
+    classes.push(getBaseClass(themePathFillClass, themePathFill))
 
   // - Border classes
   if (border || borderAt || borderColor || borderSide)
@@ -323,6 +331,7 @@ Element.propTypes = {
     PropTypes.oneOf(spacingSides),
   ]),
   paddingSize: PropTypes.oneOf(spacingSizes),
+  pathFill: PropTypes.oneOf(svgFillColors),
   seven: PropTypes.bool,
   sevenInner: PropTypes.bool,
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
@@ -344,6 +353,7 @@ Element.propTypes = {
   themeBorderSide: PropTypes.oneOf(sides),
   themeColor: PropTypes.oneOf(themeColors),
   themeLinkHover: PropTypes.oneOf(themeColors),
+  themePathFill: PropTypes.oneOf(themeColors),
   transform: PropTypes.oneOf(textTransforms),
   vishidden: PropTypes.bool,
 }
@@ -376,6 +386,10 @@ export function Paragraph(props) {
 
 export function Link(props) {
   return <Element as="a" {...props} />
+}
+
+export function Div(props) {
+  return <Element as="div" {...props} />
 }
 
 export function Section(props) {

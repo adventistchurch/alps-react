@@ -48,12 +48,12 @@ export const textColors = [
 export const linkHoverClass = 'u-link-hover'
 export const linkHoverColors = ['white']
 
-// SVG Fill Colors
+// SVG Path Fill Colors
 export const svgFillClass = 'u-path-fill'
 export const svgFillColors = [...grayscaleColors]
 
 export function getSvgFillClass(color) {
-  return getBaseClass(svgFillClass, [color])
+  return getBaseClass(svgFillClass, color)
 }
 
 // Background Colors (grayscale)
@@ -83,6 +83,9 @@ export function getThemeBorderClass({ color, side }) {
 
 // - Link
 export const themeLinkHoverClass = 'u-theme--link-hover'
+
+// - SVG Path Fill
+export const themePathFillClass = 'u-theme--path-fill'
 
 // - "Can be"
 export const canBeClass = 'can-be'
