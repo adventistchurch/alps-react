@@ -2,6 +2,7 @@ import { readdirSync, statSync } from 'fs'
 
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
+import del from 'rollup-plugin-delete'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import { terser } from 'rollup-plugin-terser'
@@ -113,7 +114,13 @@ export default [
         'react-dom': 'ReactDOM',
       },
     },
-    plugins: [...commonPlugins(), env === 'production' && terser()],
+    plugins: [
+      del({
+        targets: 'build/umd',
+      }),
+      ...commonPlugins(),
+      env === 'production' && terser(),
+    ],
     external: ['react', 'react-dom'],
   },
   // CJS and ESM
@@ -133,7 +140,12 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: commonPlugins(),
+    plugins: [
+      del({
+        targets: ['build/cjs', 'build/esm'],
+      }),
+      ...commonPlugins(),
+    ],
     external: ['react', 'react-dom', 'prop-types'],
   },
 ]
