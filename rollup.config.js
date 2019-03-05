@@ -22,7 +22,7 @@ const CODES = [
 
 const excludePaths = [
   '.stories.js', // Storybook stories
-  'atoms/icons/library.js', // Icons library
+  'atoms/icons/library', // Icons in library
 ]
 
 function shouldIncludePath(path) {
