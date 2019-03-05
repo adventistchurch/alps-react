@@ -42,6 +42,7 @@ FormLabel.propTypes = {
   position: PropTypes.oneOf(['top', 'bottom']),
   text: PropTypes.string,
   textOptional: PropTypes.string,
+  ...Element.propTypes,
 }
 FormLabel.defaultProps = {
   className: 'c-form-group',

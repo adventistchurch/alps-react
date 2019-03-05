@@ -78,6 +78,7 @@ function SampleForm({ cancelLabel, onCancel, onSubmit, submitLabel, title }) {
         <Dropdown
           id="select"
           name="select"
+          label=""
           options={[
             { text: 'Option 1', value: 'one' },
             { text: 'Option 2', value: 'two' },
