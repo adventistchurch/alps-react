@@ -20,6 +20,19 @@ const CODES = [
   'CIRCULAR_DEPENDENCY',
 ]
 
+const excludePaths = [
+  '.stories.js', // Storybook stories
+  'atoms/icons/library.js', // Icons library
+]
+
+function shouldIncludePath(path) {
+  for (const excludePath of excludePaths) {
+    if (path.includes(excludePath)) return false
+  }
+
+  return true
+}
+
 /**
  * Returns files and subfolder as an array from a starting folder
  *
@@ -55,7 +68,7 @@ const walkFolder = dir => {
  */
 const getChunks = URI =>
   walkFolder(URI)
-    .filter(x => x.includes('.js') && !x.includes('.stories.js'))
+    .filter(path => path.includes('.js') && shouldIncludePath(path))
     .reduce(
       (acc, current) => ({
         ...acc,
