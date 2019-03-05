@@ -30,7 +30,7 @@ import {
   themeLinkHoverClass,
 } from '../atoms/global/colors'
 
-import { sides, vishiddenClass } from '../atoms/global/commons'
+import { getBaseClass, sides, vishiddenClass } from '../atoms/global/commons'
 
 import {
   flexAlignOptions,
@@ -141,9 +141,9 @@ export default function Element({ as, children, tag, ...props }) {
 
   // - Color classes
   if (backgroundColor)
-    classes.push(`${backgroundColorClass}--${backgroundColor}`)
-  if (canBe) classes.push(`${canBeClass}--${canBe}`)
-  if (color) classes.push(`${textColorClass}--${color}`)
+    classes.push(getBaseClass(backgroundColorClass, backgroundColor))
+  if (canBe) classes.push(getBaseClass(canBeClass, canBe))
+  if (color) classes.push(getBaseClass(textColorClass, color))
 
   // - Font classes
   if (fontType)
@@ -153,10 +153,10 @@ export default function Element({ as, children, tag, ...props }) {
         size: fontSize,
       })
     )
-  if (strong) classes.push(`${textStrongClass}`)
-  if (transform) classes.push(`${textTransformClass}--${transform}`)
+  if (strong) classes.push(textStrongClass)
+  if (transform) classes.push(getBaseClass(textTransformClass, transform))
   if (textAlign) classes.push(getTextAlignClass({ align: textAlign }))
-  if (linkHover) classes.push(`${linkHoverClass}--${linkHover}`)
+  if (linkHover) classes.push(getBaseClass(linkHoverClass, linkHover))
 
   // - Theme classes
   if (themeBorder)
@@ -164,12 +164,13 @@ export default function Element({ as, children, tag, ...props }) {
       getThemeBorderClass({ color: themeBorder, side: themeBorderSide })
     )
   if (themeBackground)
-    classes.push(`${themeBackgroundClass}--${themeBackground}`)
+    classes.push(getBaseClass(themeBackgroundClass, themeBackground))
   if (themeBackgroundTrans)
-    classes.push(`${themeBackgroundTransClass}--${themeBackgroundTrans}`)
-  if (themeColor) classes.push(`${themeColorClass}--${themeColor}`)
-  if (themeLinkHover) classes.push(`${themeLinkHoverClass}--${themeLinkHover}`)
-  if (overlay) classes.push(`${overlayClass}--${overlay}`)
+    classes.push(getBaseClass(themeBackgroundTransClass, themeBackgroundTrans))
+  if (themeColor) classes.push(getBaseClass(themeColorClass, themeColor))
+  if (themeLinkHover)
+    classes.push(getBaseClass(themeLinkHoverClass, themeLinkHover))
+  if (overlay) classes.push(getBaseClass(overlayClass, overlay))
 
   // - Border classes
   if (border || borderAt || borderColor || borderSide)
