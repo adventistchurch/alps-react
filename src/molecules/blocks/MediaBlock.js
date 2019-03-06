@@ -116,7 +116,7 @@ const presets = {
     },
     title: {
       gridItemSizeAtM: '4',
-      linkHover: 'white',
+      linkHoverColor: 'white',
     },
     meta: {
       gridItemSizeAtM: '2',

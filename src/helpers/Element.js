@@ -31,9 +31,17 @@ import {
   themeColors,
   themeLinkHoverClass,
   themePathFillClass,
+  linkColors,
+  linkClass,
 } from '../atoms/global/colors'
 
-import { getBaseClass, sides, vishiddenClass } from '../atoms/global/commons'
+import {
+  getBaseClass,
+  displayClass,
+  displayOptions,
+  sides,
+  vishiddenClass,
+} from '../atoms/global/commons'
 
 import {
   flexAlignOptions,
@@ -89,6 +97,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     className,
     clearFix,
     color,
+    display,
     flex,
     flexAlign,
     flexColumn,
@@ -106,7 +115,8 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     hasGridWrapClass,
     gridWrap,
     gridNoGutters,
-    linkHover,
+    linkColor,
+    linkHoverColor,
     overlay,
     padding,
     paddingSide,
@@ -162,7 +172,8 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
   if (strong) classes.push(textStrongClass)
   if (transform) classes.push(getBaseClass(textTransformClass, transform))
   if (textAlign) classes.push(getTextAlignClass({ align: textAlign }))
-  if (linkHover) classes.push(getBaseClass(linkHoverClass, linkHover))
+  if (linkColor) classes.push(getBaseClass(linkClass, linkColor))
+  if (linkHoverColor) classes.push(getBaseClass(linkHoverClass, linkHoverColor))
 
   // - Theme classes
   if (themeBorder)
@@ -278,6 +289,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
   // - Others
 
   // Remove from the flow but leave available to screen readers
+  if (display) classes.push(getBaseClass(displayClass, display))
   if (vishidden) classes.push(vishiddenClass)
 
   // Build all props
@@ -307,6 +319,7 @@ Element.propTypes = {
   className: PropTypes.string,
   clearFix: PropTypes.bool,
   color: PropTypes.oneOf(textColors),
+  display: PropTypes.oneOf(displayOptions),
   flex: PropTypes.bool,
   flexAlign: PropTypes.oneOf(flexAlignOptions),
   flexColumn: PropTypes.oneOf(flexDirectionOptions),
@@ -325,7 +338,8 @@ Element.propTypes = {
   hasGridClass: PropTypes.bool,
   hasGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
   hasGridWrapClass: PropTypes.bool,
-  linkHover: PropTypes.oneOf(linkHoverColors),
+  linkColor: PropTypes.oneOf(linkColors),
+  linkHoverColor: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
   padding: PropTypes.bool,
   paddingSide: PropTypes.oneOfType([
@@ -366,9 +380,14 @@ Element.defaultProps = {
   hasGridWrapClass: true,
 }
 
+// Use this component when a ref need to be passed to the element
 export const ElementWithRef = React.forwardRef((props, ref) => (
   <Element {...props} forwardedRef={ref} />
 ))
+
+// Some shortcut components for a more "semantic" structure
+
+// - Headings and Paragraphs:
 
 export function HeadingOne(props) {
   return <Element as="h1" {...props} />
@@ -389,15 +408,45 @@ export function HeadingFour(props) {
 export function Paragraph(props) {
   return <Element as="p" {...props} />
 }
+Paragraph.propTypes = Element.propTypes
+
+// - Lists
+
+export function UL(props) {
+  return <Element as="ul" {...props} />
+}
+UL.propTypes = Element.propTypes
+
+export function LI(props) {
+  return <Element as="li" {...props} />
+}
+LI.propTypes = Element.propTypes
+
+// - Links
 
 export function Link(props) {
   return <Element as="a" {...props} />
 }
+Link.propTypes = Element.propTypes
+
+// - Sections
 
 export function Div(props) {
   return <Element as="div" {...props} />
 }
+Div.propTypes = Element.propTypes
+
+// Ref version
+export function DivWithRef(props) {
+  return <ElementWithRef as="div" {...props} />
+}
+
+export function Article(props) {
+  return <Element as="article" {...props} />
+}
+Article.propTypes = Element.propTypes
 
 export function Section(props) {
   return <Element as="section" {...props} />
 }
+Section.propTypes = Element.propTypes
