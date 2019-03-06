@@ -13,7 +13,7 @@ const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
 const noGuttersClass = 'u-no-gutters'
 
-const wrapSizes = range(1, 7).map(s => `${s}`)
+const wrapSizes = [...range(1, 7).map(s => `${s}`), ...range(1, 7)]
 
 // Example: {side: 'left', breakpoint: 'xxlarge'} => 'u-shift--left--1-col--at-xxlarge'
 function getShiftClass(side, at) {
@@ -73,11 +73,9 @@ function getGridItemClass({
   if (sizeAtXL) sizes.push({ size: sizeAtXL, at: 'xl' })
 
   for (const { at, size } of sizes) {
-    classes.push(
-      `${itemClass}${at ? `--${at}` : ''}--${
-        wrapSizes.includes(size) ? `${size}-${col}` : ''
-      }`
-    )
+    if (wrapSizes.includes(size)) {
+      classes.push(`${itemClass}${at ? `--${at}` : ''}--${size}-${col}`)
+    }
   }
 
   return classes
