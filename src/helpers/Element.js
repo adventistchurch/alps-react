@@ -45,7 +45,7 @@ import {
 
 import {
   flexAlignOptions,
-  flexDirectionOptions,
+  flexColumnClass,
   flexJustifyOptions,
   getFlexClass,
 } from '../atoms/global/flex'
@@ -101,7 +101,10 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     flex,
     flexAlign,
     flexColumn,
+    flexEnd,
     flexJustify,
+    flexNoWrap,
+    flexWrap,
     fontSize,
     fontType,
     gridItem,
@@ -230,15 +233,13 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     )
 
   // - Flex
-  if (flex || flexAlign || flexColumn || flexJustify) {
-    classes.push(
-      getFlexClass({
-        align: flexAlign,
-        column: flexColumn,
-        justify: flexJustify,
-      })
-    )
-  }
+  if (flex) classes.push(getFlexClass())
+  if (flexColumn) classes.push(flexColumnClass)
+  if (flexEnd) classes.push(getFlexClass({ end: flexEnd }))
+  if (flexNoWrap || flexWrap)
+    classes.push(getFlexClass({ wrap: flexWrap, noWrap: flexNoWrap }))
+  if (flexAlign) classes.push(getFlexClass({ align: flexAlign }))
+  if (flexJustify) classes.push(getFlexClass({ justify: flexJustify }))
 
   // - Grid
   if (
@@ -320,7 +321,7 @@ Element.propTypes = {
   display: PropTypes.oneOf(displayOptions),
   flex: PropTypes.bool,
   flexAlign: PropTypes.oneOf(flexAlignOptions),
-  flexColumn: PropTypes.oneOf(flexDirectionOptions),
+  flexColumn: PropTypes.bool,
   flexJustify: PropTypes.oneOf(flexJustifyOptions),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
