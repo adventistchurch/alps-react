@@ -15,7 +15,7 @@ export const spacingSizes = [
   'quad',
   'zero',
 ]
-export const spacingSides = [...commonSides, 'sides']
+export const spaceSides = [...commonSides, 'sides']
 export const afterSizes = ['medium', 'large']
 export const untilSizes = ['small', 'medium', 'large', 'xxlarge']
 
@@ -30,10 +30,9 @@ export function getSpaceClass({ size, side }) {
   return getBaseClass('u-space', [size, side])
 }
 
-export function getSpacingClass({ after, size, side, until }) {
+export function getSpacingClass({ after, size, until }) {
   return getBaseClass('u-spacing', [
     size,
-    side,
     until ? `until-${until}` : '',
     after ? `after-${after}` : '',
   ])

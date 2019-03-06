@@ -75,7 +75,7 @@ import {
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
-  spacingSides,
+  spaceSides,
   spacingSizes,
   untilSizes,
 } from '../atoms/global/spacing'
@@ -131,7 +131,6 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     spaceSize,
     spacing,
     spacingAfter,
-    spacingSide,
     spacingSize,
     spacingUntil,
     strong,
@@ -221,11 +220,10 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
       })
     )
 
-  if (spacing || spacingAfter || spacingSide || spacingSize || spacingUntil)
+  if (spacing || spacingAfter || spacingSize || spacingUntil)
     classes.push(
       getSpacingClass({
         after: spacingAfter,
-        side: spacingSide,
         size: spacingSize,
         until: spacingUntil,
       })
@@ -344,7 +342,7 @@ Element.propTypes = {
   padding: PropTypes.bool,
   paddingSide: PropTypes.oneOfType([
     PropTypes.array,
-    PropTypes.oneOf(spacingSides),
+    PropTypes.oneOf(spaceSides),
   ]),
   paddingSize: PropTypes.oneOf(spacingSizes),
   pathFill: PropTypes.oneOf(svgFillColors),
@@ -353,11 +351,10 @@ Element.propTypes = {
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
   shiftSide: PropTypes.oneOf(shiftSides),
   space: PropTypes.bool,
-  spaceSide: PropTypes.oneOf(spacingSides),
+  spaceSide: PropTypes.oneOf(spaceSides),
   spaceSize: PropTypes.oneOf(spacingSizes),
   spacing: PropTypes.bool,
   spacingAfter: PropTypes.oneOf(afterSizes),
-  spacingSide: PropTypes.oneOf(spacingSides),
   spacingSize: PropTypes.oneOf(spacingSizes),
   spacingUntil: PropTypes.oneOf(untilSizes),
   strong: PropTypes.bool,
