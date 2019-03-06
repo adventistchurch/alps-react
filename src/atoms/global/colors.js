@@ -80,7 +80,7 @@ export const themeBorderColors = [...themeColors]
 export const themeBorderSides = [...sides]
 
 export function getThemeBorderClass({ color, side }) {
-  return getBaseClass(`${themeBorderColorClass}-${color}`, [side])
+  return getBaseClass(`${themeBorderColorClass}--${color}`, [side])
 }
 
 // - Link
