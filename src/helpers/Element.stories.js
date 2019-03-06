@@ -293,7 +293,7 @@ function displayAndFlexTab(settings = {}) {
   } = getTabData('Display', settings)
 
   return {
-    as: select('As (HTML Tag)', tagsOptions, as, tab),
+    as: as ? select('As (HTML Tag)', setOptions(tagsOptions), as, tab) : null,
     display: select('Display', setOptions(displayOptions), display, tab),
     clearFix: boolean('Clear Fix', clearFix, tab),
     vishidden: boolean('Is "vishidden"', vishidden, tab),
@@ -362,14 +362,14 @@ function gridTab(settings = {}) {
   }
 }
 
-export function elementTab() {
+export function elementTab(props) {
   return {
-    ...fontTab(),
-    ...colorTab(),
-    ...borderTab(),
-    ...paddingAndSpacingTab(),
-    ...displayAndFlexTab(),
-    ...gridTab(),
+    ...fontTab(props),
+    ...colorTab(props),
+    ...borderTab(props),
+    ...paddingAndSpacingTab(props),
+    ...displayAndFlexTab(props),
+    ...gridTab(props),
   }
 }
 
@@ -390,7 +390,7 @@ storiesOf('helpers/Element', module)
       'Incidunt asperiores pariatur voluptate optio et assumenda nulla. Reprehenderit quisquam doloremque voluptas. Est aut quia suscipit aut qui facilis saepe minima. Aspernatur eos odio fugiat officiis et natus necessitatibus debitis.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: null })
 
     return (
       <Div {...props}>
@@ -420,7 +420,7 @@ storiesOf('helpers/Element', module)
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return <HeadingOne {...props}>{content}</HeadingOne>
   })
@@ -431,7 +431,7 @@ storiesOf('helpers/Element', module)
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return <HeadingTwo {...props}>{content}</HeadingTwo>
   })
@@ -442,7 +442,7 @@ storiesOf('helpers/Element', module)
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return <HeadingThree {...props}>{content}</HeadingThree>
   })
@@ -453,7 +453,7 @@ storiesOf('helpers/Element', module)
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return <HeadingFour {...props}>{content}</HeadingFour>
   })
@@ -464,7 +464,7 @@ storiesOf('helpers/Element', module)
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis. Distinctio eligendi assumenda esse recusandae fuga. Repellendus et sunt id et consectetur nisi et in aliquam. Nostrum sunt aut doloribus necessitatibus tenetur dignissimos ut nihil pariatur.',
       'Content'
     )
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return <Paragraph {...props}>{content}</Paragraph>
   })
@@ -472,7 +472,7 @@ storiesOf('helpers/Element', module)
   .addWithJSX('Link (a)', () => {
     const content = text('Content', 'Lorem ipsum', 'Content')
     const href = text('Link (href)', '#link', 'Content')
-    const props = elementTab()
+    const props = elementTab({ as: false })
 
     return (
       <Link href={href} {...props}>

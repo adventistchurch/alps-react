@@ -388,77 +388,77 @@ export const ElementWithRef = React.forwardRef((props, ref) => (
 // - Headings and Paragraphs:
 
 export function HeadingOne(props) {
-  return <Element as="h1" {...props} />
+  return <Element {...props} as="h1" />
 }
 HeadingOne.propTypes = Element.propTypes
 
 export function HeadingTwo(props) {
-  return <Element as="h2" {...props} />
+  return <Element {...props} as="h2" />
 }
 HeadingTwo.propTypes = Element.propTypes
 
 export function HeadingThree(props) {
-  return <Element as="h3" {...props} />
+  return <Element {...props} as="h3" />
 }
 HeadingThree.propTypes = Element.propTypes
 
 export function HeadingFour(props) {
-  return <Element as="h4" {...props} />
+  return <Element {...props} as="h4" />
 }
 HeadingFour.propTypes = Element.propTypes
 
 export function Paragraph(props) {
-  return <Element as="p" {...props} />
+  return <Element {...props} as="p" />
 }
 Paragraph.propTypes = Element.propTypes
 
 // - Lists
 
 export function UL(props) {
-  return <Element as="ul" {...props} />
+  return <Element {...props} as="ul" />
 }
 UL.propTypes = Element.propTypes
 
 export function LI(props) {
-  return <Element as="li" {...props} />
+  return <Element {...props} as="li" />
 }
 LI.propTypes = Element.propTypes
 
 // - Links
 
 export function Link(props) {
-  return <Element as="a" {...props} />
+  return <Element {...props} as="a" />
 }
 Link.propTypes = Element.propTypes
 
 // - Sections
 
 export function Div(props) {
-  return <Element as="div" {...props} />
+  return <Element {...props} as="div" />
 }
 Div.propTypes = Element.propTypes
 
 // Ref version
 export function DivWithRef(props) {
-  return <ElementWithRef as="div" {...props} />
+  return <ElementWithRef {...props} as="div" />
 }
 
 export function Article(props) {
-  return <Element as="article" {...props} />
+  return <Element {...props} as="article" />
 }
 Article.propTypes = Element.propTypes
 
 export function Section(props) {
-  return <Element as="section" {...props} />
+  return <Element {...props} as="section" />
 }
 Section.propTypes = Element.propTypes
 
 export function Footer(props) {
-  return <Element as="footer" {...props} />
+  return <Element {...props} as="footer" />
 }
 Footer.propTypes = Element.propTypes
 
 export function Nav(props) {
-  return <Element as="nav" {...props} />
+  return <Element {...props} as="nav" />
 }
 Nav.propTypes = Element.propTypes
