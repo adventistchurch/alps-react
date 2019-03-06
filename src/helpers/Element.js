@@ -392,18 +392,22 @@ export const ElementWithRef = React.forwardRef((props, ref) => (
 export function HeadingOne(props) {
   return <Element as="h1" {...props} />
 }
+HeadingOne.propTypes = Element.propTypes
 
 export function HeadingTwo(props) {
   return <Element as="h2" {...props} />
 }
+HeadingTwo.propTypes = Element.propTypes
 
 export function HeadingThree(props) {
   return <Element as="h3" {...props} />
 }
+HeadingThree.propTypes = Element.propTypes
 
 export function HeadingFour(props) {
   return <Element as="h4" {...props} />
 }
+HeadingFour.propTypes = Element.propTypes
 
 export function Paragraph(props) {
   return <Element as="p" {...props} />
@@ -450,3 +454,8 @@ export function Section(props) {
   return <Element as="section" {...props} />
 }
 Section.propTypes = Element.propTypes
+
+export function Footer(props) {
+  return <Element as="footer" {...props} />
+}
+Footer.propTypes = Element.propTypes
