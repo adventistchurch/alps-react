@@ -45,8 +45,10 @@ export const textColors = [
 ]
 
 // Link Colors:
+export const linkClass = 'u-link'
+export const linkColors = ['white']
 export const linkHoverClass = 'u-link-hover'
-export const linkHoverColors = ['white']
+export const linkHoverColors = linkColors
 
 // SVG Path Fill Colors
 export const svgFillClass = 'u-path-fill'
