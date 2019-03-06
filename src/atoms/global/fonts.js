@@ -5,7 +5,7 @@
 import { getBaseClass } from './commons'
 
 export const fontClass = 'u-font'
-export const fontTypes = ['primary', 'secondary', 'monospaced']
+export const fontTypes = ['primary', 'secondary', 'monospace']
 export const fontSizes = ['xs', 's', 'm', 'l', 'xl', 'xxl']
 
 export const textClass = 'u-text'
