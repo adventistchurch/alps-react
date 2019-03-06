@@ -459,3 +459,8 @@ export function Footer(props) {
   return <Element as="footer" {...props} />
 }
 Footer.propTypes = Element.propTypes
+
+export function Nav(props) {
+  return <Element as="nav" {...props} />
+}
+Nav.propTypes = Element.propTypes
