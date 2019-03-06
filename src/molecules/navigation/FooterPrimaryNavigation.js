@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element, { Link } from '../../helpers/Element'
+import { Link, Nav } from '../../helpers/Element'
 
 function FooterPrimaryNavigation({ items }) {
   return (
-    <Element as="nav" className="c-footer__primary-nav__list" spacing="half">
+    <Nav className="c-footer__primary-nav__list" spacingSize="half">
       {items.map(({ text, url }, key) => (
         <Link
           href={url}
@@ -17,7 +17,7 @@ function FooterPrimaryNavigation({ items }) {
           <strong>{text}</strong>
         </Link>
       ))}
-    </Element>
+    </Nav>
   )
 }
 
