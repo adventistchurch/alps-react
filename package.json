@@ -2,6 +2,8 @@
   "name": "alps-react",
   "version": "0.1.0",
   "private": false,
+  "author": "Stimme der Hoffnung e.V.",
+  "license": "See LICENSE file",
   "description": "React implementation of the Adventist Living Pattern System (ALPS)",
   "repository": "git@github.com:adventistchurch/alps-react.git",
   "main": "build/cjs/index.js",
