@@ -15,17 +15,18 @@ function GridItem({
   sizeAtXL,
   ...props
 }) {
-  const gridItemProps = {
-    gridItemSize: size,
-    gridItemSizeAtS: sizeAtS,
-    gridItemSizeAtM: sizeAtM,
-    gridItemSizeAtL: sizeAtL,
-    gridItemSizeAtXL: sizeAtXL,
-    hasGridItemClass: hasItemClass,
-  }
-
   return (
-    <Element as={as} className={className} {...props} {...gridItemProps}>
+    <Element
+      {...props}
+      as={as}
+      className={className}
+      gridItemSize={size}
+      gridItemSizeAtS={sizeAtS}
+      gridItemSizeAtM={sizeAtM}
+      gridItemSizeAtL={sizeAtL}
+      gridItemSizeAtXL={sizeAtXL}
+      hasGridItemClass={hasItemClass}
+    >
       {children}
     </Element>
   )
