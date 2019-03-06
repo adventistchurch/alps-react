@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Blockquote from '../../atoms/texts/Blockquote'
+import Element from '../../helpers/Element'
 
 function Pullquote({ author, children, text }) {
   return (
     <Blockquote>
       {children ? children : <p>{text}</p>}
       {author && (
-        <cite className="o-citation u-theme--color--base">
+        <Element as="cite" className="o-citation" themeColor="base">
           &mdash; {author}
-        </cite>
+        </Element>
       )}
     </Blockquote>
   )

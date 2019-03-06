@@ -5,8 +5,8 @@ import IconWrap from '../../atoms/icons/IconWrap'
 import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 import SearchForm from '../forms/Search'
+import { Div, UL } from '../../helpers/Element'
 import useDrawerContext from '../../helpers/useDrawerContext'
-import Element from '../../helpers/Element'
 import PrimaryNavigation from './PrimaryNavigation'
 import SecondaryNavigation from './SecondaryNavigation'
 
@@ -21,7 +21,7 @@ function DrawerNavigation({
 
   return (
     <GridSeven className={`c-drawer ${isOpen.menu ? 'this-is-active' : ''}`}>
-      <Element
+      <Div
         className="c-drawer__toggle"
         themeBackgroundTrans="darker"
         onClick={closeDrawer}
@@ -31,11 +31,11 @@ function DrawerNavigation({
           <span />
           <span />
         </div>
-      </Element>
+      </Div>
       <GridItem
         className="c-drawer__container"
         gridWrap="6"
-        hasGridWrapClass={false}
+        hasGridClass={false}
         hasItemClass={false}
         sizeAtS="6"
         spacing
@@ -47,13 +47,9 @@ function DrawerNavigation({
         <div className="c-drawer__nav">
           <div className="c-drawer__nav-primary">
             <PrimaryNavigation {...primaryNav} />
-            <Element
-              as="ul"
-              className="c-drawer__subnav"
-              themeBackground="darker"
-            >
+            <UL className="c-drawer__subnav" themeBackground="darker">
               {/* TODO: What is this subnav for? Any examples? */}
-            </Element>
+            </UL>
           </div>
           <div className="c-drawer__nav-secondary">
             <SecondaryNavigation
@@ -68,12 +64,12 @@ function DrawerNavigation({
           <IconWrap name="logo" fill="white" size="l" />
         </div>
         <div className="c-drawer__about">
-          <Element className="c-drawer__about-left" spacing>
+          <Div className="c-drawer__about-left" spacing>
             {aboutLeft}
-          </Element>
-          <Element className="c-drawer__about-right" spacingSize="half">
+          </Div>
+          <Div className="c-drawer__about-right" spacingSize="half">
             {aboutRight}
-          </Element>
+          </Div>
         </div>
       </GridItem>
     </GridSeven>

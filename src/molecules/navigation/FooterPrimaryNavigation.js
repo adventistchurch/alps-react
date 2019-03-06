@@ -1,19 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element, { Link } from '../../helpers/Element'
+
 function FooterPrimaryNavigation({ items }) {
   return (
-    <nav className="c-footer__primary-nav__list u-spacing--half">
+    <Element as="nav" className="c-footer__primary-nav__list" spacing="half">
       {items.map(({ text, url }, key) => (
-        <a
+        <Link
           href={url}
-          className="c-footer__primary-nav__link u-theme--link-hover--light u-link--white"
+          className="c-footer__primary-nav__link"
+          linkColor="white"
+          themeLinkHover="light"
           key={`footer-nav-link-${key}`}
         >
           <strong>{text}</strong>
-        </a>
+        </Link>
       ))}
-    </nav>
+    </Element>
   )
 }
 

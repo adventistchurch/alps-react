@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Text from '../../atoms/texts/Text'
+
 function ExtendedQuote({ children, ...props }) {
   return (
-    <div className="text">
+    <Text>
       <blockquote className="quote--extended" {...props}>
         {children}
       </blockquote>
-    </div>
+    </Text>
   )
 }
 

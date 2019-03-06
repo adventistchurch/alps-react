@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Section, UL, LI } from '../../helpers/Element'
 import HeadingBlock from '../../molecules/blocks/HeadingBlock'
 import Comment from '../../molecules/components/Comment'
 import CommentForm from '../../molecules/forms/CommentForm'
@@ -12,14 +13,14 @@ function CommentsList({ items, level }) {
   const itemClass = `${listClass}-item`
 
   return (
-    <ul className={`${listClass} u-spacing`}>
+    <UL className={listClass} spacing>
       {items.map(({ byline, replies, date, text }, key) => (
-        <li className={`${itemClass} comment u-spacing`} key={`comment-${key}`}>
+        <LI className={`${itemClass} comment`} spacing key={`comment-${key}`}>
           <Comment byline={byline} date={date} text={text} />
           {replies && <CommentsList items={replies} level={level + 1} />}
-        </li>
+        </LI>
       ))}
-    </ul>
+    </UL>
   )
 }
 CommentsList.propTypes = {
@@ -32,11 +33,11 @@ CommentsList.defaultProps = {
 
 function Comments({ items, title }) {
   return (
-    <section className="c-comments u-spacing--double">
+    <Section className="c-comments" spacingSize="double">
       <HeadingBlock title={title} />
       <CommentsList items={items} level={0} />
       <CommentForm /> {/* TODO: Set CommentForm props here...*/}
-    </section>
+    </Section>
   )
 }
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Grid from '../../atoms/grids/Grid'
+import { Section } from '../../helpers/Element'
+import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 import MediaBlock, { mediaBlocksTypes } from '../../molecules/blocks/MediaBlock'
 import renderItems from '../../helpers/renderItems'
@@ -13,19 +14,19 @@ function BlockFeed({ blocks, blocksProps, blocksType, grid }) {
   }
 
   return (
-    <section className="c-section c-section__block-feed u-spacing--double">
+    <Section className="c-section c-section__block-feed" spacing="double">
       {grid ? (
-        <Grid seven noGutters>
+        <GridSeven noGutters>
           {renderItems(blocks, block => (
             <GridItem sizeAtS="3" sizeAtXL="2">
               <MediaBlock {...itemsProps} {...block} />
             </GridItem>
           ))}
-        </Grid>
+        </GridSeven>
       ) : (
         renderItems(blocks, MediaBlock, itemsProps)
       )}
-    </section>
+    </Section>
   )
 }
 

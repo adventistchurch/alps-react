@@ -1,11 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Paragraph } from '../../helpers/Element'
+
 function Highlight({ children }) {
   return (
-    <p className="o-highlight u-padding u-background-color--gray--light can-be--dark-dark">
+    <Paragraph
+      className="o-highlight"
+      canBe="dark-dark"
+      backgroundColor="gray--light"
+      padding
+    >
       {children}
-    </p>
+    </Paragraph>
   )
 }
 

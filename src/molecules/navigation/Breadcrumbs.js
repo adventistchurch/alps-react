@@ -1,25 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../atoms/icons/Icon'
+import IconWrap from '../../atoms/icons/IconWrap'
+import { LI, Link } from '../../helpers/Element'
 import renderItems from '../../helpers/renderItems'
 
 function BreadcrumbItem({ text, url }) {
   return (
-    <li className="c-breadcrumbs__list-item u-font--secondary--s u-text-transform--upper u-display--inline-block u-color--gray">
-      <span className="u-icon u-icon--xs u-path-fill--gray">
-        <Icon name="arrow-bracket-right" />
-      </span>
+    <LI
+      className="c-breadcrumbs__list-item"
+      color="gray"
+      display="inline-block"
+      fontSize="s"
+      fontType="secondary"
+      transform="upper"
+    >
+      <IconWrap name="arrow-bracket-right" size="xs" fill="gray" />
       <strong>
         {url ? (
-          <a href={url} className="c-breadcrumbs__link can-be--white">
+          <Link className="c-breadcrumbs__link" canBe="white" href={url}>
             {text}
-          </a>
+          </Link>
         ) : (
           text
         )}
       </strong>
-    </li>
+    </LI>
   )
 }
 

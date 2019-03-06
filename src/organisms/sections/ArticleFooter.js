@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Footer } from '../../helpers/Element'
+
 function ArticleFooter({ children }) {
   return (
-    <footer className="c-article__footer u-padding--left">{children}</footer>
+    <Footer className="c-article__footer" paddingSide="left">
+      {children}
+    </Footer>
   )
 }
 
