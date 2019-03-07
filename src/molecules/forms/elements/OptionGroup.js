@@ -3,25 +3,35 @@ import PropTypes from 'prop-types'
 
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 
-import Element from '../../../helpers/Element'
+import Checkbox from './Checkbox'
+import { Div } from '../../../helpers/Element'
+import RadioButton from './RadioButton'
+
+import renderItems from '../../../helpers/renderItems'
+
+const components = {
+  checkbox: Checkbox,
+  radio: RadioButton,
+}
 
 function OptionGroup({
   children,
-  className,
+  options,
   title,
   titleFontSize,
   titleFontType,
+  type,
   ...props
 }) {
   return (
-    <Element className={className} {...props}>
+    <Div {...props}>
       {title && (
-        <Element fontSize={titleFontSize} fontType={titleFontType}>
+        <Div fontSize={titleFontSize} fontType={titleFontType}>
           {title}
-        </Element>
+        </Div>
       )}
-      {children}
-    </Element>
+      {children ? children : options && renderItems(options, components[type])}
+    </Div>
   )
 }
 
@@ -31,10 +41,12 @@ OptionGroup.propTypes = {
   title: PropTypes.string.isRequired,
   titleFontSize: PropTypes.oneOf(fontSizes),
   titleFontType: PropTypes.oneOf(fontTypes),
-  type: PropTypes.oneOf(['checkbox', 'radio', 'select']),
+  options: PropTypes.array,
+  type: PropTypes.oneOf(['checkbox', 'radio']),
   ...Element.propTypes,
 }
 OptionGroup.defaultProps = {
+  options: [],
   spacingSize: 'half',
   titleFontSize: 's',
   titleFontType: 'secondary',
