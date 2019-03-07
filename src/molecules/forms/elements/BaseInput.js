@@ -26,11 +26,11 @@ function BaseInput({
     <input
       className={inputClass}
       defaultChecked={checked}
+      defaultValue={value}
       id={id}
       name={name}
       placeholder={placeholder}
       type={type}
-      value={value}
       ref={inputFocusRef}
       {...props}
     />
