@@ -90,14 +90,15 @@ storiesOf('templates/BasicPage', module)
               </span>{' '}
               Ipsum
             </strong>
-            .{text2}
+            . {text1}. <a href="#link">This is a link</a>, and here is the rest
+            of text.
           </p>
         </Text>
         <Text hasDropcap spacing>
           <h2>{title2}</h2>
           <p>
-            <a href="#link">This is a link</a> and here is the rest of text.{' '}
-            {text2}
+            {text2} <a href="#link">This is a link</a>, and here is the rest of
+            text.
           </p>
           <h3>{title3}</h3>
           <p>{text2}</p>
