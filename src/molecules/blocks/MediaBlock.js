@@ -4,7 +4,12 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import Figure from '../../molecules/media/Figure'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
-import Element, { HeadingFour, HeadingThree, Link } from '../../helpers/Element'
+import Element, {
+  Div,
+  HeadingFour,
+  HeadingThree,
+  Link,
+} from '../../helpers/Element'
 
 import MediaImage from './MediaImage'
 
@@ -63,7 +68,7 @@ const presets = {
     title: {
       color: 'white',
       fontType: 'primary',
-      strong: true, // 'u-font-weight--bold' => strong,
+      strong: true, // TODO: strong => 'u-font-weight--bold'
     },
   },
 
@@ -84,8 +89,8 @@ const presets = {
       flexJustify: 'center',
       fontType: 'primary',
       fontSize: 'xl',
-      gridItemSize: '5',
-      gridItemSizeAtM: '2',
+      gridItemSize: 5,
+      gridItemSizeAtM: 2,
       hasGridItemClass: false,
     },
   },
@@ -115,11 +120,11 @@ const presets = {
       themeBackground: 'darker',
     },
     title: {
-      gridItemSizeAtM: '4',
+      gridItemSizeAtM: 4,
       linkHoverColor: 'white',
     },
     meta: {
-      gridItemSizeAtM: '2',
+      gridItemSizeAtM: 2,
     },
   },
 
@@ -135,9 +140,9 @@ const presets = {
     },
     content: {
       borderSide: 'left',
-      gridItemSizeAtM: '6',
-      gridItemSizeAtL: '4',
-      gridItemSizeAtXL: '3',
+      gridItemSizeAtM: 6,
+      gridItemSizeAtL: 4,
+      gridItemSizeAtXL: 3,
       hasGridClass: false,
       shiftAt: 'large',
       shiftSide: 'left',
@@ -214,16 +219,17 @@ function MediaBlock({
   url,
 }) {
   // Get preset props current type
-  const preset = {
-    ...presets[type],
-    ...(border === 'left'
+  const preset = presets[type]
+
+  // Set border props for content, if required
+  const contentProps =
+    border === 'left'
       ? type === 'stacked'
         ? borderProps.left
         : type === 'inline' || reversed || presets[type].reversed
         ? borderProps.leftAtLarge
         : ''
-      : {}),
-  }
+      : {}
 
   const blockType = preset.type || type
   const isReversed = preset.reversed || reversed
@@ -236,7 +242,7 @@ function MediaBlock({
   )
 
   return (
-    <Element className={blockClass} {...preset.block}>
+    <Div className={blockClass} {...preset.block}>
       {image && (
         <MediaImage
           {...preset.image}
@@ -251,17 +257,18 @@ function MediaBlock({
           <Figure videoSrc={video} />
         </div>
       )}
-      <Element
+      <Div
         className="c-media-block__content c-block__content"
         spacing
+        {...contentProps}
         {...preset.content}
       >
-        <Element
+        <Div
           className="c-block__group c-media-block__group"
           spacing
           {...preset.group}
         >
-          <Element className="u-width--100p" spacing>
+          <Div className="u-width--100p" spacing>
             {kicker && (
               <HeadingFour
                 className="c-media-block__kicker c-block__kicker"
@@ -296,26 +303,21 @@ function MediaBlock({
                 {description}
               </p>
             )}
-          </Element>
+          </Div>
           {(category || date) && (
-            <Element
-              className="c-media-block__meta c-block__meta"
-              {...preset.meta}
-            >
-              {category && (
-                <Element className="c-block__category">{category}</Element>
-              )}
+            <Div className="c-media-block__meta c-block__meta" {...preset.meta}>
+              {category && <Div className="c-block__category">{category}</Div>}
               {date && (
                 <Element
                   as="time"
-                  className="c-block__date u-text-transform--upper"
+                  className="c-block__date"
                   dateTime={date}
                   transform="upper"
                 >
                   <DateTimeFormat datetime={date} format={dateFormat} />
                 </Element>
               )}
-            </Element>
+            </Div>
           )}
           {cta && url && (
             <Button
@@ -328,9 +330,9 @@ function MediaBlock({
               url={url}
             />
           )}
-        </Element>
-      </Element>
-    </Element>
+        </Div>
+      </Div>
+    </Div>
   )
 }
 
