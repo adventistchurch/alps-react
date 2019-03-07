@@ -7,7 +7,7 @@ function Grid({
   as,
   children,
   className,
-  hasWrapClass,
+  noWrapClass,
   noGutters,
   wrap,
   ...props
@@ -18,7 +18,7 @@ function Grid({
       className={className}
       gridNoGutters={noGutters}
       gridWrap={wrap}
-      hasGridWrapClass={hasWrapClass}
+      noGridWrapClass={noWrapClass}
       {...props}
     >
       {children}
@@ -32,7 +32,7 @@ Grid.propTypes = {
   as: PropTypes.oneOf(asOptions),
   children: PropTypes.node,
   className: PropTypes.string,
-  hasWrapClass: Element.propTypes.hasGridWrapClass,
+  noWrapClass: Element.propTypes.noGridWrapClass,
   noGutters: Element.propTypes.gridNoGutters,
   wrap: Element.propTypes.gridWrap,
   ...Element.propTypes,
@@ -40,8 +40,6 @@ Grid.propTypes = {
 Grid.defaultProps = {
   as: 'div',
   className: '',
-  hasGridClass: true,
-  hasWrapClass: true,
 }
 
 export default Grid
