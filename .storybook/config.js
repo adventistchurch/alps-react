@@ -54,7 +54,6 @@ addParameters({
   viewport: { defaultViewport: 'responsive' },
 
   options: {
-    name: 'ALPS-React',
     theme,
   },
 })
