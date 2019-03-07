@@ -24,9 +24,10 @@ function getTabData(name, settings = {}) {
 }
 
 function textsTab(settings = {}) {
-  const { category, description, more, title, tab } = getTabData('Texts', {
-    settings,
-  })
+  const { category, description, more, title, tab } = getTabData(
+    'Texts',
+    settings
+  )
 
   return {
     title: text('Title *', title, tab),
@@ -36,9 +37,7 @@ function textsTab(settings = {}) {
   }
 }
 function imageTab(settings = {}) {
-  const { image, showImage, tab } = getTabData('Image', {
-    settings,
-  })
+  const { image, showImage, tab } = getTabData('Image', settings)
 
   const mode = select('Image Mode', imageModes, 'Landscape', tab)
 
@@ -53,9 +52,7 @@ function imageTab(settings = {}) {
 }
 
 function ctaTab(settings = {}) {
-  const { cta, url, tab } = getTabData('CTA', {
-    settings,
-  })
+  const { cta, url, tab } = getTabData('CTA', settings)
 
   const showCta = boolean('Show Call to Action', true, tab)
 
@@ -102,12 +99,14 @@ storiesOf('molecules/blocks/ContentBlock', module)
   .addWithJSX('Show more', () => {
     const { category, description, more, title } = textsTab()
     const { cta, url } = ctaTab()
+    const { image } = imageTab()
 
     return (
       <ContentBlock
         category={category}
         cta={cta}
         description={description}
+        image={image}
         more={more}
         title={title}
         url={url}
@@ -115,7 +114,7 @@ storiesOf('molecules/blocks/ContentBlock', module)
     )
   })
 
-  .addWithJSX('Show image', () => {
+  .addWithJSX('With image', () => {
     const { category, description, title } = textsTab()
     const { cta, url } = ctaTab()
     const { image } = imageTab({ showImage: true })
