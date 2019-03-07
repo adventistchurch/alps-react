@@ -28,6 +28,9 @@ function withChildren(children, Dropcap, parentFound, setParentFound) {
   return React.Children.map(children, child => {
     // If still not found and is a string...
     if (!found && typeof child === 'string') {
+      // Avoids strings with just empty spaces.
+      if (!child.replace(/\s/g, '').length) return ''
+
       // Inform that we found it!
       setFound()
 

@@ -81,15 +81,16 @@ storiesOf('templates/BasicPage', module)
       <>
         <Text hasDropcap spacing>
           <h1>{title1}</h1>
+          {/* Tests how hasDropcap behaves with empty spaces and inline/nested tag elements */}
           <p>
             <strong>
+              {'  '}
               <span>
                 <a href="#link">Lorem</a>
               </span>{' '}
               Ipsum
             </strong>
-            Text 3{text1}
-            {text2}
+            .{text2}
           </p>
         </Text>
         <Text hasDropcap spacing>
