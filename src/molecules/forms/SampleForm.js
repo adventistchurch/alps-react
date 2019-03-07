@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 import Form from './elements/Form'
 
-function SampleForm({ cancelLabel, children, submitLabel, ...props }) {
+function SampleForm({
+  cancelLabel, // eslint-disable-line no-unused-vars
+  children,
+  submitLabel, // eslint-disable-line no-unused-vars
+  ...props
+}) {
   return (
     <Form padding spacing {...props}>
       {children}
