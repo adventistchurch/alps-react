@@ -462,3 +462,10 @@ export function Nav(props) {
   return <Element {...props} as="nav" />
 }
 Nav.propTypes = Element.propTypes
+
+// - Forms
+
+export function Form(props) {
+  return <Element {...props} as="form" />
+}
+Form.propTypes = Element.propTypes
