@@ -5,7 +5,7 @@ export default create({
 
   brandTitle: 'ALPS-React',
   brandUrl: 'https://adventistchurch.github.io/alps-react/',
-  brandImage: '/alps-react-logo.svg',
+  brandImage: 'alps-react-logo.svg',
 
   // Simulates ALPS radius-less styles.
   appBorderRadius: 0,
