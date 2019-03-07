@@ -42,8 +42,8 @@ function BasicPage({
         >
           <Article
             className="c-article"
-            gridItemSizeAtL="4"
-            gridItemSizeAtXL={hasSidebar ? '3' : null}
+            gridItemSizeAtL={4}
+            gridItemSizeAtXL={hasSidebar ? 3 : null}
           >
             <Div className="c-article__body">
               <PageContent breadcrumbs={breadcrumbs}>{content}</PageContent>
@@ -52,8 +52,8 @@ function BasicPage({
           {hasSidebar && (
             <Div
               className="c-sidebar"
-              gridItemSizeAtL="2"
-              gridItemSizeAtXL="2"
+              gridItemSizeAtL={2}
+              gridItemSizeAtXL={2}
               paddingSize="zero"
               paddingSide="sides"
               spacing

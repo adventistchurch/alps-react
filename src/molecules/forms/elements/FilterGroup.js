@@ -9,8 +9,8 @@ function FormFilter({ options, title }) {
     <Element
       className="c-filter__form-item"
       spacingSize="half"
-      gridItemSizeAtS="2"
-      gridItemSizeAtL="1"
+      gridItemSizeAtS={2}
+      gridItemSizeAtL={1}
     >
       <Title
         as="h3"
