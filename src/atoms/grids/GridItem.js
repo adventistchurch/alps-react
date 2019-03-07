@@ -7,7 +7,7 @@ function GridItem({
   as,
   children,
   className,
-  hasItemClass,
+  noItemClass,
   size,
   sizeAtL,
   sizeAtM,
@@ -25,7 +25,7 @@ function GridItem({
       gridItemSizeAtM={sizeAtM}
       gridItemSizeAtL={sizeAtL}
       gridItemSizeAtXL={sizeAtXL}
-      hasGridItemClass={hasItemClass}
+      noGridItemClass={noItemClass}
     >
       {children}
     </Element>
@@ -36,7 +36,7 @@ GridItem.propTypes = {
   as: PropTypes.oneOf(['article', 'div']),
   children: PropTypes.node,
   className: PropTypes.string,
-  hasItemClass: Element.propTypes.hasGridItemClass,
+  noItemClass: Element.propTypes.noGridItemClass,
   size: Element.propTypes.gridItemSize,
   sizeAtS: Element.propTypes.gridItemSizeAtS,
   sizeAtM: Element.propTypes.gridItemSizeAtM,
@@ -46,7 +46,7 @@ GridItem.propTypes = {
 }
 GridItem.defaultProps = {
   as: 'div',
-  hasItemClass: true,
+  noItemClass: false,
   className: '',
 }
 

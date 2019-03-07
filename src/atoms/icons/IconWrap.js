@@ -8,30 +8,34 @@ import {
   themeBackgroundColors,
 } from '../../atoms/global/colors'
 
-import Icon, { iconSizes } from '../../atoms/icons/Icon'
+import Icon from '../../atoms/icons/Icon'
 import Element from '../../helpers/Element'
 
-function IconWrap({
+// Available icons sizes
+export const iconSizes = ['xs', 's', 'm', 'l', 'xl']
+
+export default function IconWrap({
   as,
   background,
   className,
   color,
+  themeColor,
   fill,
   name,
   size,
   ...props
 }) {
   const classes = ['u-icon', ` u-icon--${size}`]
-
   if (className) classes.push(className)
-  if (background) classes.push(`${themeBackgroundClass}--${background}`)
-  if (fill) classes.push(`${svgFillClass}--${fill}`)
-
-  const classNames = classes.join(' ')
 
   return (
-    <Element as={as} className={classNames} {...props}>
-      <Icon name={name} color={color} />
+    <Element
+      as={as}
+      className={classes.join(' ')}
+      themeBackground={background}
+      {...props}
+    >
+      <Icon name={name} color={color} fill={fill} themeColor={themeColor} />
     </Element>
   )
 }
@@ -41,7 +45,8 @@ IconWrap.propTypes = {
   background: PropTypes.oneOf(themeBackgroundColors),
   className: PropTypes.string,
   color: Icon.propTypes.color,
-  fill: PropTypes.oneOf(svgFillColors),
+  themeColor: Icon.propTypes.themeColor,
+  fill: Icon.propTypes.fill,
   name: Icon.propTypes.name,
   size: PropTypes.oneOf(iconSizes),
 }
@@ -51,5 +56,3 @@ IconWrap.defaultProps = {
   fill: 'white',
   size: 'm',
 }
-
-export default IconWrap

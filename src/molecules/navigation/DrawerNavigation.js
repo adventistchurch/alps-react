@@ -35,8 +35,8 @@ function DrawerNavigation({
       <GridItem
         className="c-drawer__container"
         gridWrap="6"
-        hasGridClass={false}
-        hasItemClass={false}
+        noGridClass
+        noItemClass
         sizeAtS="6"
         spacing
         themeBackground="darker"

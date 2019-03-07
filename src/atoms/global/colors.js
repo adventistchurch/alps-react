@@ -66,7 +66,7 @@ export const backgroundColors = ['none', ...grayscaleColors]
 
 // - Foreground
 export const themeColorClass = 'u-theme--color'
-export const themeColors = ['base', 'dark', 'darker', 'light', 'lighter']
+export const themeColors = ['darker', 'dark', 'base', 'light', 'lighter']
 
 // - Background
 export const themeBackgroundClass = 'u-theme--background-color'

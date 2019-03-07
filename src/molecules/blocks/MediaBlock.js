@@ -76,7 +76,7 @@ const presets = {
     content: {
       color: 'white',
       gridWrap: '7',
-      hasGridClass: false,
+      noGridClass: true,
       seven: true,
     },
     group: {
@@ -91,7 +91,7 @@ const presets = {
       fontSize: 'xl',
       gridItemSize: 5,
       gridItemSizeAtM: 2,
-      hasGridItemClass: false,
+      noGridItemClass: true,
     },
   },
 
@@ -115,7 +115,7 @@ const presets = {
 
   inset: {
     content: {
-      hasGridClass: false,
+      noGridClass: true,
       seven: true,
       themeBackground: 'darker',
     },
@@ -133,7 +133,7 @@ const presets = {
     block: {
       canBe: 'dark-dark',
       gridWrap: true,
-      hasGridClass: false,
+      noGridClass: true,
       paddingSide: ['top', 'bottom'],
       seven: true,
       themeBackground: 'darker',
@@ -143,7 +143,7 @@ const presets = {
       gridItemSizeAtM: 6,
       gridItemSizeAtL: 4,
       gridItemSizeAtXL: 3,
-      hasGridClass: false,
+      noGridClass: true,
       shiftAt: 'large',
       shiftSide: 'left',
       themeBorder: 'light',
