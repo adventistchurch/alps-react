@@ -18,7 +18,7 @@ import Element, {
   Paragraph,
 } from './Element'
 
-import Icon from '../atoms/icons/Icon'
+import Icon, { iconNames } from '../atoms/icons/Icon'
 
 import {
   borderColors,
@@ -62,11 +62,11 @@ import {
 
 import tagsOptions from '../atoms/global/tags'
 
-function setOptions(options) {
+function setOptions(options, labelFormat) {
   const newOptions = {}
 
   for (const option of options) {
-    newOptions[option] = option
+    newOptions[labelFormat ? labelFormat(option) : option] = option
   }
 
   return { '-': null, ...newOptions }
@@ -321,9 +321,9 @@ function gridTab(settings = {}) {
     gridItemSizeAtM,
     gridItemSizeAtL,
     gridItemSizeAtXL,
-    hasGridClass,
-    hasGridItemClass,
-    hasGridWrapClass,
+    noGridClass,
+    noGridItemClass,
+    noGridWrapClass,
     gridWrap,
     gridNoGutters,
     seven,
@@ -333,15 +333,22 @@ function gridTab(settings = {}) {
     tab,
   } = getTabData('Grid', settings)
 
+  const wrapLabelFormat = value => `${value} of 7`
+
   return {
     seven: boolean('Seven Grid', seven, tab),
     sevenInner: boolean('Seven Inner', sevenInner, tab),
     gridNoGutters: boolean('No Gutters', gridNoGutters, tab),
-    hasGridClass: boolean('Has Grid class', hasGridClass, tab),
-    hasGridWrapClass: boolean('Has Grid Wrap class', hasGridWrapClass, tab),
-    gridWrap: select('Wrap', setOptions(wrapSizes), gridWrap, tab),
+    noGridClass: boolean('No Grid class', noGridClass, tab),
+    noGridWrapClass: boolean('No Grid Wrap class', noGridWrapClass, tab),
+    gridWrap: select(
+      'Grid Wrap',
+      setOptions(wrapSizes, wrapLabelFormat),
+      gridWrap,
+      tab
+    ),
     gridItem: boolean('Is Item', gridItem, tab),
-    hasGridItemClass: boolean('Has Grid Item class', hasGridItemClass, tab),
+    noGridItemClass: boolean('Has Grid Item class', noGridItemClass, tab),
     gridItemSize: number('Item Size', gridItemSize, {}, tab),
     gridItemSizeAtS: number('Item Size At Small', gridItemSizeAtS, {}, tab),
     gridItemSizeAtM: number('Item Size At Medium', gridItemSizeAtM, {}, tab),
@@ -402,14 +409,13 @@ storiesOf('helpers/Element', module)
     )
   })
 
-  .addWithJSX('Icons (SVG fill test)', () => {
+  .addWithJSX('With Icon (SVG fill)', () => {
+    const iconName = select('Icon', iconNames, 'logo', 'Content')
     const props = elementTab()
 
     return (
       <Element {...props}>
-        <Icon name="logo" />
-        <Icon name="find" />
-        <Icon name="heart" />
+        <Icon name={iconName} />
       </Element>
     )
   })

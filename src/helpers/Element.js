@@ -113,9 +113,9 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     gridItemSizeAtM,
     gridItemSizeAtL,
     gridItemSizeAtXL,
-    hasGridClass,
-    hasGridItemClass,
-    hasGridWrapClass,
+    noGridClass,
+    noGridItemClass,
+    noGridWrapClass,
     gridWrap,
     gridNoGutters,
     linkColor,
@@ -257,8 +257,8 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
         shiftAt,
         shiftSide,
         wrap: gridWrap,
-        hasGridClass,
-        hasWrapClass: hasGridWrapClass,
+        noGridClass,
+        noWrapClass: noGridWrapClass,
         noGutters: gridNoGutters,
       })
     )
@@ -280,7 +280,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
         sizeAtM: gridItemSizeAtM,
         sizeAtL: gridItemSizeAtL,
         sizeAtXL: gridItemSizeAtXL,
-        hasItemClass: hasGridItemClass,
+        noItemClass: noGridItemClass,
       })
     )
   }
@@ -334,9 +334,9 @@ Element.propTypes = {
   gridItemSizeAtL: gridItemSizePropType,
   gridItemSizeAtXL: gridItemSizePropType,
   gridWrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
-  hasGridClass: PropTypes.bool,
-  hasGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
-  hasGridWrapClass: PropTypes.bool,
+  noGridClass: PropTypes.bool,
+  noGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
+  noGridWrapClass: PropTypes.bool,
   linkColor: PropTypes.oneOf(linkColors),
   linkHoverColor: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
@@ -373,9 +373,9 @@ Element.propTypes = {
 }
 Element.defaultProps = {
   as: 'div',
-  hasGridClass: true,
-  hasGridItemClass: true,
-  hasGridWrapClass: true,
+  noGridClass: false,
+  noGridItemClass: false,
+  noGridWrapClass: false,
 }
 
 // Use this component when a ref need to be passed to the element
