@@ -5,21 +5,30 @@ import MediaBlock from '../../molecules/blocks/MediaBlock'
 import HeadingBlock from '../../molecules/blocks/HeadingBlock'
 import ContentBlock from '../../molecules/blocks/ContentBlock'
 import renderItems from '../../helpers/renderItems'
+import { Div } from '../../helpers/Element'
 
 function BlockWrap({ blocks, heading, linkText, type, url }) {
   const wrapperClass =
     type == 'relatedPosts' ? 'c-related-posts' : 'c-block-wrap'
 
+  const blockProps =
+    type == 'relatedPosts'
+      ? { reversed: true }
+      : type === 'mediaBlock'
+      ? { type: 'stacked', border: 'left' }
+      : {}
+
   return (
-    <div className={`${wrapperClass} u-spacing`}>
+    <Div className={wrapperClass} spacing>
       <HeadingBlock title={heading} linkText={linkText} url={url} />
-      <div className={`${wrapperClass}__content u-spacing`}>
+      <Div className={`${wrapperClass}__content`} spacing>
         {renderItems(
           blocks,
-          type == 'contentBlock' ? ContentBlock : MediaBlock
+          type == 'contentBlock' ? ContentBlock : MediaBlock,
+          blockProps
         )}
-      </div>
-    </div>
+      </Div>
+    </Div>
   )
 }
 
