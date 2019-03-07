@@ -12,9 +12,11 @@ import JSXAddon from 'storybook-addon-jsx'
 import Wrapper from '../src/Wrapper'
 import { primaryColors, secondaryColors } from '../src/atoms/global/colors'
 
-const style = {
-  height: '100vh',
-}
+import theme from './theme'
+
+// const style = {
+//   height: '100vh',
+// }
 
 addDecorator(story => {
   const content = story()
@@ -38,7 +40,7 @@ addDecorator(story => {
     hasGrid,
     primaryColor,
     secondaryColor,
-    style,
+    // style,
   }
 
   return <Wrapper {...props}>{content}</Wrapper>
@@ -48,7 +50,14 @@ addDecorator(withKnobs) // this must be added after the story decorator
 
 setAddon(JSXAddon)
 
-addParameters({ viewport: { defaultViewport: 'responsive' } })
+addParameters({
+  viewport: { defaultViewport: 'responsive' },
+
+  options: {
+    name: 'ALPS-React',
+    theme,
+  },
+})
 
 const req = require.context('../src', true, /\.stories\.js$/)
 
