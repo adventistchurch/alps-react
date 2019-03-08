@@ -2,7 +2,12 @@
 
 > [WIP] A React implementation of [ALPS](http://alps.adventist.io/v3)
 
-See [Project's Storybook](https://alps-react.adventist.io/)
+[![ALPS-React Storybook](https://cdn.jsdelivr.net/gh/storybooks/brand@master/badge/badge-storybook.svg)](https://alps-react.adventist.io/)
+
+For more info and reference, check ALPS Documentation:
+
+- [Alps Pattern Lab](https://alps.adventist.io/v3/)
+- [Alps-React Storybook](https://alps-react.adventist.io/)
 
 ## Usage
 
@@ -20,18 +25,44 @@ See [Project's Storybook](https://alps-react.adventist.io/)
 
 - Use it in your code:
 
-```js
-// Example:
-import { Button } from 'alps-react'
+  > NOTE: This is just a simple example on how the API loooks. Event when you can use the components as you will, the recomended way is to use some of the Templates components and provide them with configurations and data/subcomponents.
 
-function MyComponent(props) {
-  return (<Button label="Hello!">)
+```jsx
+import { Wrapper, Button, Blockquote } from 'alps-react'
+
+function MyApp(props) {
+  return (
+    // The Wrapper compoinent is required as parent other ALPS-React components (normally in your App root)
+    <Wrapper hasGrid={true} primaryColor="ming">
+      <Div spacingSize="double" padding>
+        <Button text="Welcome to ALPS-React" />
+
+        <MediaBlock
+          type="inline"
+          title="Sunt id vel ipsum at ut praesentium aut."
+          description="Repellat libero qui magni at ut sapiente facere nam veritatis."
+          kicker="Cumque omnis velit."
+          category="Church"
+          date={new Date()}
+          image={{
+            srcSet: {
+              default: '//picsum.photos/500/375?image=248',
+              '500': '//picsum.photos/700/600?image=248',
+              '900': '//picsum.photos/900/700?image=248',
+            },
+            alt: 'Placeholder image',
+          }}
+          reversed={true}
+          cta="Read more"
+          url="#/link/to/article"
+        />
+
+        <Blockquote text="Asperiores quisquam perferendis dolor in amet." />
+      </Div>
+    </Wrapper>
+  )
 }
 ```
-
-- For reference use:
-  - : [Alps Pattern Lab](https://alps.adventist.io/v3/)
-  - : [Alps-React Storybook](https://alps-react.adventist.io/)
 
 ## Development
 
