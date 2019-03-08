@@ -1,51 +1,51 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs'
 
 import ChannelMain from './ChannelMain'
 
-import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
-import asideData from '../organisms/asides/Aside.stories.json'
-import relatedPostsData from '../organisms/asides/RelatedPosts.stories.json'
-import data from './ChannelMain.stories.json'
-
-const headerTab = 'Header'
-const contentTab = 'Content'
-const sidebarTab = 'Sidebar'
+import {
+  pageHeaderTab,
+  pageBreadcrumbsTab,
+  mainContentTab,
+  sidebarTab,
+  globalTab,
+} from './BasicPage.stories'
 
 storiesOf('templates/ChannelMain', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const title = text('Title', data.title, headerTab)
-    const kicker = text('Kicker', data.kicker, headerTab)
-    const background = object('Background', data.background, headerTab)
-    const breadcrumbs = object('Breadcrumbs', data.breadcrumbs, headerTab)
-
-    const contentTitle = text('Content Title', data.content.title, contentTab)
-    const contentText = text('Content Text', data.content.text, contentTab)
-
-    const breakout = object('Breakout', breakoutData, sidebarTab)
-    const aside = object('Aside', asideData, sidebarTab)
-    const relatedPosts = object('Related Posts', relatedPostsData, sidebarTab)
+    const { title, kicker, background } = pageHeaderTab()
+    const { breadcrumbs } = pageBreadcrumbsTab()
+    const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
+    const { showSidebar, breakout, aside } = sidebarTab()
+    const templateProps = globalTab()
 
     const content = (
       <>
-        <h2>{contentTitle}</h2>
-        <p>{contentText}</p>
+        <h2>{title1}</h2>
+        <p>{text1}</p>
+
+        <h3>{title2}</h3>
+        <p>{text2}</p>
+
+        <h4>{title3}</h4>
+        <p>{text3}</p>
       </>
     )
 
     return (
       <ChannelMain
-        aside={aside}
+        aside={showSidebar ? aside : null}
         background={background}
         breadcrumbs={breadcrumbs}
         breakout={breakout}
         content={content}
         kicker={kicker}
-        relatedPosts={relatedPosts}
+        // relatedPosts={relatedPosts}
         title={title}
+        {...templateProps}
       />
     )
   })

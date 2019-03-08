@@ -31,7 +31,7 @@ export function pageHeaderTab(settings = {}) {
 
 export function pageBreadcrumbsTab(settings = {}) {
   const { breadcrumbs, tab } = getTabData('Page Header', settings)
-  return breadcrumbsTab({ items: breadcrumbs, tab })
+  return breadcrumbsTab({ breadcrumbs, tab })
 }
 
 export function mainContentTab(settings = {}) {
@@ -82,7 +82,7 @@ storiesOf('templates/BasicPage', module)
 
   .addWithJSX('Default', () => {
     const { title, kicker, background } = pageHeaderTab()
-    const { items: breadcrumbs } = pageBreadcrumbsTab()
+    const { breadcrumbs } = pageBreadcrumbsTab()
     const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
     const { showSidebar, breakout, aside } = sidebarTab()
     const templateProps = globalTab()
