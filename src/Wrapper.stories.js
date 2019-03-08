@@ -11,7 +11,7 @@ import { Div } from './helpers/Element'
 storiesOf('helpers/Wrapper', module)
   .addDecorator(withKnobs)
 
-  .addWithJSX('Defaulr', () => {
+  .addWithJSX('Default', () => {
     return (
       <Wrapper hasGrid={true} primaryColor="ming">
         <Div spacingSize="double" padding>
