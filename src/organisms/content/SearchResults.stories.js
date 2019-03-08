@@ -17,9 +17,7 @@ function getTabData(name, settings = {}) {
 }
 
 export function resultsTab(settings = {}) {
-  const { results, tab } = getTabData('Results', {
-    settings,
-  })
+  const { results, tab } = getTabData('Results', settings)
 
   return {
     results: object('Results *', results, tab),
@@ -46,9 +44,7 @@ function loadMoreTab(settings = {}) {
 }
 
 export function searchResultsTab(settings = {}) {
-  const props = getTabData('Search Results', {
-    settings,
-  })
+  const props = getTabData('Search Results', settings)
 
   return {
     ...resultsTab(props),

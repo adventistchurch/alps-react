@@ -6,8 +6,6 @@ import Carousel from './Carousel'
 
 import data from './Carousel.stories.json'
 
-const propsTab = 'Props'
-
 function getTabData(name, settings = {}) {
   return {
     tab: name,
@@ -18,9 +16,7 @@ function getTabData(name, settings = {}) {
 }
 
 function optionsTab(settings = {}) {
-  const { showArrows, showDots, tab } = getTabData('Options', {
-    settings,
-  })
+  const { showArrows, showDots, tab } = getTabData('Options', settings)
 
   return {
     showArrows: boolean('Show Arrows', showArrows, tab),
@@ -29,9 +25,7 @@ function optionsTab(settings = {}) {
 }
 
 function slidesTab(settings = {}) {
-  const { slides, tab } = getTabData('Slides', {
-    settings,
-  })
+  const { slides, tab } = getTabData('Slides', settings)
 
   return {
     slides: object('Slides *', slides, tab),
@@ -39,9 +33,7 @@ function slidesTab(settings = {}) {
 }
 
 export function carouselTab(settings = {}) {
-  const props = getTabData('Carousel', {
-    settings,
-  })
+  const props = getTabData('Carousel', settings)
 
   return {
     ...slidesTab(props),
@@ -62,7 +54,10 @@ storiesOf('molecules/components/Carousel', module)
   })
 
   .addWithJSX('With arrows', () => {
-    const { showArrows, showDots } = optionsTab()
+    const { showArrows, showDots } = optionsTab({
+      showArrows: true,
+      showDots: false,
+    })
     const { slides } = slidesTab()
 
     return (

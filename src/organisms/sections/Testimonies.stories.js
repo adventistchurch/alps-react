@@ -24,9 +24,7 @@ export function testimoniesTab(settings = {}) {
     shareText,
     shareUrl,
     tab,
-  } = getTabData('Props', {
-    settings,
-  })
+  } = getTabData('Props', settings)
 
   return {
     title: text('title', title, tab),

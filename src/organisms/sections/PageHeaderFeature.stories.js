@@ -40,7 +40,7 @@ export function pageHeaderFeatureTab(settings = {}) {
 
   const { blocks, blocksType, hasScroll, tab } = getTabData('Blocks', {
     blocksType: type,
-    settings,
+    ...settings,
   })
 
   return {

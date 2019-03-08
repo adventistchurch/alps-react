@@ -17,9 +17,7 @@ function getTabData(name, settings = {}) {
 }
 
 export function blocksFeedTab(settings = {}) {
-  const { blocks, blocksType, grid, tab } = getTabData('Blocks', {
-    settings,
-  })
+  const { blocks, blocksType, grid, tab } = getTabData('Blocks', settings)
 
   return {
     blocksType: select('Blocks Type', mediaBlocksTypes, blocksType, 'Blocks'),

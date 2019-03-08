@@ -65,9 +65,7 @@ function ctaTab(settings = {}) {
 }
 
 export function contentBlockTab(settings = {}) {
-  const props = getTabData('Results', {
-    settings,
-  })
+  const props = getTabData('Results', settings)
 
   return {
     ...textsTab(props),
