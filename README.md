@@ -2,6 +2,8 @@
 
 > [WIP] A React implementation of [ALPS](http://alps.adventist.io/v3)
 
+See [Project's Storybook](https://alps-react.adventist.io/)
+
 ## Usage
 
 - Add it as a dependency
@@ -27,7 +29,9 @@ function MyComponent(props) {
 }
 ```
 
-- Use Alps-React storybook for reference: [Alps-React Storybook](https://adventistchurch.github.io/alps-react)
+- For reference use:
+  - : [Alps Pattern Lab](https://alps.adventist.io/v3/)
+  - : [Alps-React Storybook](https://alps-react.adventist.io/)
 
 ## Development
 
