@@ -32,7 +32,7 @@ import { Wrapper, Button, Blockquote } from 'alps-react'
 
 function MyApp(props) {
   return (
-    // The Wrapper compoinent is required as parent other ALPS-React components (normally in your App root)
+    // The Wrapper component is required as parent other ALPS-React components (normally in your App root)
     <Wrapper hasGrid={true} primaryColor="bluejay">
       <Div spacingSize="double" padding>
         <Button text="Welcome to ALPS-React" />
@@ -97,6 +97,18 @@ yarn
   yarn build-storybook
   ```
 
+### Build for production
+
+To build a production version, run:
+
+```bash
+yarn build
+```
+
+> This library is built using [Rollup.js](https://rollupjs.org)
+
 ## Copyright
 
-&copy; 2019 General Conference of the Seventh-day Adventist church
+&copy; 2019 General Conference of the Seventh-day Adventist Church [https://adventist.org](https://adventist.org) | [https://adventist.io](https://adventist.io)
+
+Developed by [Stimme der Hoffnung e.V](https://stimme-der-hoffnung.de) in Germany
