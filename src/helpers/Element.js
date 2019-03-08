@@ -207,7 +207,9 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
 
   if (clearFix) classes.push(clearFixClass)
 
-  if (padding || paddingSide || paddingSize)
+  if (padding) classes.push(getPaddingClass({}))
+
+  if (paddingSide || paddingSize)
     classes.push(
       getPaddingClass({
         side: paddingSide,
@@ -437,6 +439,11 @@ export function Div(props) {
   return <Element {...props} as="div" />
 }
 Div.propTypes = Element.propTypes
+
+export function Span(props) {
+  return <Element {...props} as="span" />
+}
+Span.propTypes = Element.propTypes
 
 // Ref version
 export function DivWithRef(props) {
