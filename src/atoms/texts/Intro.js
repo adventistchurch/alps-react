@@ -1,8 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Text from './Text'
+
 function Intro({ children, text }) {
-  return <p className="o-intro text">{children || text}</p>
+  return (
+    <Text as="p" className="o-intro">
+      {children || text}
+    </Text>
+  )
 }
 
 Intro.propTypes = {

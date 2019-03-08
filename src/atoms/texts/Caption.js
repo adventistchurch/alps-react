@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Div } from '../../helpers/Element'
+
 function Caption({ children, text }) {
   return (
-    <div className="o-caption u-color--gray u-font--secondary--s">
+    <Div className="o-caption" color="gray" fontSize="s" fontType="secondary">
       {children || text}
-    </div>
+    </Div>
   )
 }
 

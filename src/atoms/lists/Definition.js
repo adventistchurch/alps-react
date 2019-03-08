@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
 import renderItems from '../../helpers/renderItems'
 
 function Definition({ items }) {
@@ -8,8 +9,12 @@ function Definition({ items }) {
     <dl>
       {renderItems(items, ({ text, title }) => (
         <>
-          <dt className="u-padding--top">{title}</dt>
-          <dd className="u-padding--bottom">{text}</dd>
+          <Element as="dt" paddingSide="top">
+            {title}
+          </Element>
+          <Element as="dd" paddingSide="bottom">
+            {text}
+          </Element>
         </>
       ))}
     </dl>

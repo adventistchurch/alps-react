@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
+
 function Table({ title, columns, rows, slim }) {
   return (
-    <table className={`u-spacing ${slim ? 'o-table-slim' : ''} u-border`}>
+    <Element as="table" className={slim ? 'o-table-slim' : null} border spacing>
       {title && <caption>{title}</caption>}
       <thead>
         <tr>
@@ -25,7 +27,7 @@ function Table({ title, columns, rows, slim }) {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Element>
   )
 }
 

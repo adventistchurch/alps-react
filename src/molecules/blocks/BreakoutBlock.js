@@ -2,29 +2,39 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
+import { Div, HeadingThree, Paragraph } from '../../helpers/Element'
 
-function BreakoutBlock({ title, description, cta, url, blockClass }) {
+function BreakoutBlock({ title, description, cta, url, ...props }) {
   return (
-    <div
-      className={`c-block__breakout u-padding u-padding--double--bottom u-padding--double--top u-spacing u-theme--background-color--darker ${blockClass}`}
+    <Div
+      className={`c-block__breakout`}
+      themeBackground="darker"
+      padding
+      paddingSize="double"
+      paddingSide={['top', 'bottom']}
+      spacing
+      {...props}
     >
-      <h3 className="c-block__title u-color--white">{title}</h3>
-      <p className="c-block__body u-theme--color--lighter">{description}</p>
+      <HeadingThree className="c-block__title" color="white">
+        {title}
+      </HeadingThree>
+      <Paragraph className="c-block__body" themeColor="lighter">
+        {description}
+      </Paragraph>
       {cta && url && <Button as="a" text={cta} url={url} lighter />}
-    </div>
+    </Div>
   )
 }
 
 BreakoutBlock.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
   cta: PropTypes.string,
+  description: PropTypes.string,
+  title: PropTypes.string.isRequired,
   url: PropTypes.string,
-  blockClass: PropTypes.string,
 }
 
 BreakoutBlock.defaultProps = {
-  blockClass: 'can-be--dark-dark',
+  canBe: 'dark-dark',
 }
 
 export default BreakoutBlock

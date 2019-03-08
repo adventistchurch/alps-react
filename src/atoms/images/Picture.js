@@ -22,7 +22,7 @@ function Picture({ image, lazy }) {
   return (
     <picture className="picture">
       {sources}
-      <Image alt={alt} itemProp="image" lazy={lazy} src={defaultImage} />
+      <Image alt={alt} lazy={lazy} src={defaultImage} />
     </picture>
   )
 }

@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Span } from '../../helpers/Element'
+
 function Kicker({ color, text }) {
   return (
-    <span className={`u-theme--color--${color}`}>
+    <Span themeColor={color}>
       <em>{text}</em>
-    </span>
+    </Span>
   )
 }
 

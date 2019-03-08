@@ -9,16 +9,24 @@ import {
 } from '@storybook/addon-knobs'
 
 import Element, {
+  Article,
   Div,
+  Footer,
   HeadingOne,
   HeadingTwo,
   HeadingThree,
   HeadingFour,
+  LI,
   Link,
+  Nav,
   Paragraph,
+  Section,
+  Span,
+  UL,
 } from './Element'
 
-import Icon, { iconNames } from '../atoms/icons/Icon'
+import { iconNames } from '../atoms/icons/Icon'
+import IconWrap, { iconSizes } from '../atoms/icons/IconWrap'
 
 import {
   borderColors,
@@ -384,43 +392,80 @@ storiesOf('helpers/Element', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const content = text('Content', 'Lorem ipsum', 'Content')
-    const props = elementTab()
-
-    return <Element {...props}>{content}</Element>
-  })
-
-  .addWithJSX('Div (div)', () => {
     const title = text('Title', 'Lorem ipsum dolor sit amet', 'Content')
     const paragraph = text(
       'Paragraph',
       'Incidunt asperiores pariatur voluptate optio et assumenda nulla. Reprehenderit quisquam doloremque voluptas. Est aut quia suscipit aut qui facilis saepe minima. Aspernatur eos odio fugiat officiis et natus necessitatibus debitis.',
       'Content'
     )
-    const props = elementTab({ as: null })
-
-    return (
-      <Div {...props}>
-        <h2>{title}</h2>
-        <p>{paragraph}</p>
-        <h3>{title}</h3>
-        <p>{paragraph}</p>
-      </Div>
-    )
-  })
-
-  .addWithJSX('With Icon (SVG fill)', () => {
-    const iconName = select('Icon', iconNames, 'logo', 'Content')
     const props = elementTab()
 
     return (
       <Element {...props}>
-        <Icon name={iconName} />
+        <h2>{title}</h2>
+        <p>{paragraph}</p>
+        <h3>{title}</h3>
+        <p>{paragraph}</p>
       </Element>
     )
   })
 
-  .addWithJSX('HeadingOne (h1)', () => {
+  .addWithJSX('SVG fill Icon', () => {
+    const iconName = select('Icon', iconNames, 'logo', 'Icon')
+    const iconSize = select('Icon size', iconSizes, 'xl', 'Icon')
+    const pathFill = select(
+      'SVG Path Fill ',
+      setOptions(svgFillColors),
+      'gray',
+      'Icon'
+    )
+    const themePathFill = select(
+      'Theme SVG Path Fill ',
+      setOptions(themeColors),
+      null,
+      'Icon'
+    )
+
+    return (
+      <Element pathFill={pathFill} themePathFill={themePathFill} padding>
+        <IconWrap name={iconName} size={iconSize} />
+
+        <Paragraph fontType="secondary">
+          Element props <code>pathFill</code> and <code>themePathFill</code> do
+          affect nested SVG paths fill color.
+        </Paragraph>
+        <Paragraph fontType="secondary">
+          Try this by changing <strong>Theme SVG Path Fill</strong> or{' '}
+          <strong>SVG Path Fill</strong> knobs.
+        </Paragraph>
+      </Element>
+    )
+  })
+
+storiesOf("helpers/Element's Shorcuts", module)
+  .addDecorator(withKnobs)
+  .addWithJSX('Article (<article>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Article {...props}>{content}</Article>
+  })
+
+  .addWithJSX('Div (div)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: null })
+
+    return <Div {...props}>{content}</Div>
+  })
+
+  .addWithJSX('Footer (<footer>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Footer {...props}>{content}</Footer>
+  })
+
+  .addWithJSX('HeadingOne (<h1>)', () => {
     const content = text(
       'Content',
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
@@ -431,7 +476,7 @@ storiesOf('helpers/Element', module)
     return <HeadingOne {...props}>{content}</HeadingOne>
   })
 
-  .addWithJSX('HeadingTwo (h2)', () => {
+  .addWithJSX('HeadingTwo (<h2>)', () => {
     const content = text(
       'Content',
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
@@ -442,7 +487,7 @@ storiesOf('helpers/Element', module)
     return <HeadingTwo {...props}>{content}</HeadingTwo>
   })
 
-  .addWithJSX('HeadingThree (h3)', () => {
+  .addWithJSX('HeadingThree (<h3>)', () => {
     const content = text(
       'Content',
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
@@ -453,7 +498,7 @@ storiesOf('helpers/Element', module)
     return <HeadingThree {...props}>{content}</HeadingThree>
   })
 
-  .addWithJSX('HeadingFour (h4)', () => {
+  .addWithJSX('HeadingFour (<h4>) ', () => {
     const content = text(
       'Content',
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis.',
@@ -464,7 +509,26 @@ storiesOf('helpers/Element', module)
     return <HeadingFour {...props}>{content}</HeadingFour>
   })
 
-  .addWithJSX('Paragraph (p)', () => {
+  .addWithJSX('Link (<a>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const href = text('Link (href)', '#link', 'Content')
+    const props = elementTab({ as: false })
+
+    return (
+      <Link href={href} {...props}>
+        {content}
+      </Link>
+    )
+  })
+
+  .addWithJSX('Nav (<nav>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Nav {...props}>{content}</Nav>
+  })
+
+  .addWithJSX('Paragraph (<p>)', () => {
     const content = text(
       'Content',
       'Ut numquam culpa deserunt cum qui suscipit saepe blanditiis. Distinctio eligendi assumenda esse recusandae fuga. Repellendus et sunt id et consectetur nisi et in aliquam. Nostrum sunt aut doloribus necessitatibus tenetur dignissimos ut nihil pariatur.',
@@ -475,14 +539,29 @@ storiesOf('helpers/Element', module)
     return <Paragraph {...props}>{content}</Paragraph>
   })
 
-  .addWithJSX('Link (a)', () => {
+  .addWithJSX('Section (<section>)', () => {
     const content = text('Content', 'Lorem ipsum', 'Content')
-    const href = text('Link (href)', '#link', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Section {...props}>{content}</Section>
+  })
+
+  .addWithJSX('Span (<span>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Span {...props}>{content}</Span>
+  })
+
+  .addWithJSX('UL>LI (<ul>,<li>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
     const props = elementTab({ as: false })
 
     return (
-      <Link href={href} {...props}>
-        {content}
-      </Link>
+      <UL {...props}>
+        <LI>{content}</LI>
+        <LI>{content}</LI>
+        <LI>{content}</LI>
+      </UL>
     )
   })
