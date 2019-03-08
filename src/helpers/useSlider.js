@@ -102,8 +102,10 @@ export default function useSlider(children = [], settings = {}) {
   function onPrev() {
     const prevIndex =
       index - itemsToScroll < 0
-        ? totalSlides - (totalSlides % itemsToShow)
+        ? totalSlides -
+          (itemsToScroll > 1 ? totalSlides % itemsToScroll : itemsToScroll)
         : index - itemsToScroll
+
     setIndex(prevIndex)
   }
 
