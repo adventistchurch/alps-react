@@ -26,7 +26,7 @@ function Grid({
   )
 }
 
-export const asOptions = ['aricle', 'div', 'section']
+export const asOptions = ['article', 'div', 'section']
 
 Grid.propTypes = {
   as: PropTypes.oneOf(asOptions),
