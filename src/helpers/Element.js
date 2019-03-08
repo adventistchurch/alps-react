@@ -340,7 +340,7 @@ Element.propTypes = {
   linkColor: PropTypes.oneOf(linkColors),
   linkHoverColor: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
-  padding: PropTypes.bool,
+  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   paddingSide: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.oneOf(spaceSides),

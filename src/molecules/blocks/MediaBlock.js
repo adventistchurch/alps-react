@@ -345,7 +345,11 @@ MediaBlock.propTypes = {
   cta: PropTypes.string,
   ctaIcon: Button.propTypes.icon,
   description: PropTypes.string,
-  date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  date: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   dateFormat: PropTypes.oneOf(dateFormats),
   image: MediaImage.propTypes.image,
   kicker: PropTypes.string,
