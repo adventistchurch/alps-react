@@ -11,21 +11,21 @@ For more info and reference, check ALPS Documentation:
 
 ## Usage
 
-- Add it as a dependency
+Add `alps-react` as a dependency:
+
+- Using `yarn`
 
   ```bash
   yarn add alps-react
   ```
 
-  or
+- Using `npm`
 
   ```bash
   npm intall alps-react
   ```
 
-- Use it in your code:
-
-  > NOTE: This is just a simple example on how the API loooks. Event when you can use the components as you will, the recomended way is to use some of the Templates components and provide them with configurations and data/subcomponents.
+Then import and use its components in your code:
 
 ```jsx
 import { Wrapper, Button, Blockquote } from 'alps-react'
@@ -33,7 +33,7 @@ import { Wrapper, Button, Blockquote } from 'alps-react'
 function MyApp(props) {
   return (
     // The Wrapper compoinent is required as parent other ALPS-React components (normally in your App root)
-    <Wrapper hasGrid={true} primaryColor="ming">
+    <Wrapper hasGrid={true} primaryColor="bluejay">
       <Div spacingSize="double" padding>
         <Button text="Welcome to ALPS-React" />
 
@@ -63,6 +63,12 @@ function MyApp(props) {
   )
 }
 ```
+
+> _NOTE_: This is just a simple example on how the API loooks. Event when you can use the components as you will, the recomended way is to use some of the Templates components and provide them with configurations and data/subcomponents.
+
+You should expect something like this:
+
+![Example output](public/example-output.png?raw=true)
 
 ## Development
 
