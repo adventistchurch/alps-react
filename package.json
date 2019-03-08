@@ -19,7 +19,7 @@
     "dev": "rollup -c -w",
     "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
     "sb": "yarn storybook",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public -o .storybook-build",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "devDependencies": {
