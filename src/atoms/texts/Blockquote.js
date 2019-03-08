@@ -1,11 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
+
 function Blockquote({ children, text }) {
   return (
-    <blockquote className="pullquote u-theme--border-color--darker--left u-theme--color--darker u-padding--right">
+    <Element
+      as="blockquote"
+      className="pullquote"
+      paddingSide="right"
+      themeColor="darker"
+      themeBorder="darker"
+      themeBorderSide="left"
+    >
       {children ? children : <p>{text}</p>}
-    </blockquote>
+    </Element>
   )
 }
 
