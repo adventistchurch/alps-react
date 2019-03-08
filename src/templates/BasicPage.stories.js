@@ -24,17 +24,17 @@ function getTabData(name, settings = {}) {
   }
 }
 
-function pageHeaderTab(settings = {}) {
+export function pageHeaderTab(settings = {}) {
   const { title, url, kicker, tab } = getTabData('Page Header', settings)
   return headerTab({ title, url, kicker, tab })
 }
 
-function pageBreadcrumbsTab(settings = {}) {
+export function pageBreadcrumbsTab(settings = {}) {
   const { breadcrumbs, tab } = getTabData('Page Header', settings)
   return breadcrumbsTab({ items: breadcrumbs, tab })
 }
 
-function contentTab(settings = {}) {
+export function mainContentTab(settings = {}) {
   const { content, tab } = getTabData('Content', settings)
   return {
     title1: text('Content Title 1', content.title1, tab),
@@ -46,7 +46,7 @@ function contentTab(settings = {}) {
   }
 }
 
-function globalTab(settings = {}) {
+export function globalTab(settings = {}) {
   const { globalHeader, globalFooter, tab } = getTabData('Global', settings)
 
   return {
@@ -55,7 +55,7 @@ function globalTab(settings = {}) {
   }
 }
 
-function sidebarTab(settings = {}) {
+export function sidebarTab(settings = {}) {
   const { aside, tab } = getTabData('Sidebar', settings)
 
   return {
@@ -65,13 +65,25 @@ function sidebarTab(settings = {}) {
   }
 }
 
+export function basicPageTabs(settings = {}) {
+  const props = getTabData('Global', settings)
+
+  return {
+    pageHeader: pageHeaderTab(props),
+    breadcrumbs: pageBreadcrumbsTab(props),
+    mainContent: mainContentTab(props),
+    sidebar: sidebarTab(props),
+    global: globalTab(props),
+  }
+}
+
 storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
     const { title, kicker, background } = pageHeaderTab()
     const { items: breadcrumbs } = pageBreadcrumbsTab()
-    const { title1, title2, title3, text1, text2, text3 } = contentTab()
+    const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
     const { showSidebar, breakout, aside } = sidebarTab()
     const templateProps = globalTab()
 
