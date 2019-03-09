@@ -1,12 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  svgFillClass,
-  svgFillColors,
-  themeBackgroundClass,
-  themeBackgroundColors,
-} from '../../atoms/global/colors'
+import { themeBackgroundColors } from '../../atoms/global/colors'
 
 import Icon from '../../atoms/icons/Icon'
 import Element from '../../helpers/Element'
@@ -25,7 +20,7 @@ export default function IconWrap({
   size,
   ...props
 }) {
-  const classes = ['u-icon', ` u-icon--${size}`]
+  const classes = ['u-icon', `u-icon--${size}`]
   if (className) classes.push(className)
 
   return (
@@ -49,6 +44,7 @@ IconWrap.propTypes = {
   fill: Icon.propTypes.fill,
   name: Icon.propTypes.name,
   size: PropTypes.oneOf(iconSizes),
+  ...Element.propTypes,
 }
 IconWrap.defaultProps = {
   as: 'span',
