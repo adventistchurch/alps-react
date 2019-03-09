@@ -9,6 +9,8 @@ export const sides = ['top', 'bottom', 'left', 'right']
 export const displayClass = 'u-display'
 export const displayOptions = ['block', 'inline-block']
 export const vishiddenClass = 'is-vishidden'
+export const positionClass = 'u-position'
+export const positionOptions = ['absolute', 'relative']
 
 // Common Functions:
 

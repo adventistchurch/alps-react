@@ -39,6 +39,8 @@ import {
   getBaseClass,
   displayClass,
   displayOptions,
+  positionClass,
+  positionOptions,
   sides,
   vishiddenClass,
 } from '../atoms/global/commons'
@@ -125,6 +127,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     paddingSide,
     paddingSize,
     pathFill,
+    position,
     seven,
     sevenInner,
     shiftAt,
@@ -176,22 +179,6 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
   if (textAlign) classes.push(getTextAlignClass({ align: textAlign }))
   if (linkColor) classes.push(getBaseClass(linkClass, linkColor))
   if (linkHoverColor) classes.push(getBaseClass(linkHoverClass, linkHoverColor))
-
-  // - Theme classes
-  if (themeBorder)
-    classes.push(
-      getThemeBorderClass({ color: themeBorder, side: themeBorderSide })
-    )
-  if (themeBackground)
-    classes.push(getBaseClass(themeBackgroundClass, themeBackground))
-  if (themeBackgroundTrans)
-    classes.push(getBaseClass(themeBackgroundTransClass, themeBackgroundTrans))
-  if (themeColor) classes.push(getBaseClass(themeColorClass, themeColor))
-  if (themeLinkHover)
-    classes.push(getBaseClass(themeLinkHoverClass, themeLinkHover))
-  if (overlay) classes.push(getBaseClass(overlayClass, overlay))
-  if (themePathFill)
-    classes.push(getBaseClass(themePathFillClass, themePathFill))
 
   // - Border classes
   if (border || borderAt || borderColor || borderSide)
@@ -287,11 +274,28 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     )
   }
 
-  // - Others
+  // - Display
 
   // Remove from the flow but leave available to screen readers
   if (display) classes.push(getBaseClass(displayClass, display))
+  if (position) classes.push(getBaseClass(positionClass, position))
   if (vishidden) classes.push(vishiddenClass)
+
+  // - Theme classes
+  if (themeBorder)
+    classes.push(
+      getThemeBorderClass({ color: themeBorder, side: themeBorderSide })
+    )
+  if (themeBackground)
+    classes.push(getBaseClass(themeBackgroundClass, themeBackground))
+  if (themeBackgroundTrans)
+    classes.push(getBaseClass(themeBackgroundTransClass, themeBackgroundTrans))
+  if (themeColor) classes.push(getBaseClass(themeColorClass, themeColor))
+  if (themeLinkHover)
+    classes.push(getBaseClass(themeLinkHoverClass, themeLinkHover))
+  if (overlay) classes.push(getBaseClass(overlayClass, overlay))
+  if (themePathFill)
+    classes.push(getBaseClass(themePathFillClass, themePathFill))
 
   // Build all props
   const allProps = {
@@ -349,6 +353,7 @@ Element.propTypes = {
   ]),
   paddingSize: PropTypes.oneOf(spacingSizes),
   pathFill: PropTypes.oneOf(svgFillColors),
+  position: PropTypes.oneOf(positionOptions),
   seven: PropTypes.bool,
   sevenInner: PropTypes.bool,
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
