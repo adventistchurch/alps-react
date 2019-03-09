@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../../atoms/buttons/Button'
 import Picture from '../../atoms/images/Picture'
+import { Div, HeadingTwo, HeadingThree } from '../../helpers/Element'
 
 function Slide({
   heading,
@@ -16,43 +18,61 @@ function Slide({
   ...others
 }) {
   return (
-    <div
-      className={`c-carousel__item u-position--relative ${className}`}
+    <Div
+      className={`c-carousel__item ${className}`}
+      position="relative"
       {...others}
     >
       <Picture image={image} lazy={imageIsLazy} />
       {heading && (
-        <div className="c-carousel__item-text__wrap l-grid l-grid--7-col u-shift--left--1-col--at-large">
-          <div className="l-grid-item l-grid-item--m--4-col l-grid-item--xl--3-col">
-            <div
-              className={`c-carousel__item-text ${textClass} u-spacing u-padding--double--top u-padding--double--bottom`}
+        <Div
+          className="c-carousel__item-text__wrap"
+          seven
+          shiftSide="left"
+          shiftAt="large"
+        >
+          <Div gridItemSizeAtM={4} gridItemSizeAtXL={3}>
+            <Div
+              className={`c-carousel__item-text ${textClass}`}
+              paddingSide={['top', 'bottom']}
+              paddingSize="double"
+              spacing
             >
-              <div className="c-carousel__item-text--inner u-spacing--half">
-                <h2 className="c-carousel__item-heading u-font--primary--xl">
+              <Div className="c-carousel__item-text--inner" spacingSize="half">
+                <HeadingTwo
+                  className="c-carousel__item-heading"
+                  fontType="primary"
+                  fontSize="xl"
+                >
                   {heading}
-                </h2>
+                </HeadingTwo>
                 {subtitle && (
-                  <h3 className="c-carousel__item-subtitle u-font--secondary--s u-text-transform--upper">
+                  <HeadingThree
+                    className="c-carousel__item-subtitle"
+                    fontType="secondary"
+                    fontSize="s"
+                    transform="upper"
+                  >
                     <strong>{subtitle}</strong>
-                  </h3>
+                  </HeadingThree>
                 )}
                 <div className="c-carousel__item-dek">
                   <p>{dek}</p>
                 </div>
-              </div>
+              </Div>
               {cta && url && (
-                <a
+                <Button
+                  as="a"
+                  className="c-carousel__item-cta"
                   href={url}
-                  className="c-carousel__item-cta o-button u-theme--secondary-background-color"
-                >
-                  {cta}
-                </a>
+                  text={cta}
+                />
               )}
-            </div>
-          </div>
-        </div>
+            </Div>
+          </Div>
+        </Div>
       )}
-    </div>
+    </Div>
   )
 }
 

@@ -3,17 +3,23 @@ import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
 import Title from '../../atoms/texts/Title'
+import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
 function ContentBlockExpand({ kicker, title, description }) {
   const { onToggle, openClass } = useToggle()
 
   return (
-    <div
-      className={`c-block c-block c-block__expand u-background-color--gray--light u-border--left u-theme--border-color--darker--left can-be--dark-dark ${openClass}`}
+    <Div
+      className={`c-block c-block c-block__expand ${openClass}`}
+      backgroundColor="gray--light"
+      borderSide="left"
+      canBe="dark-dark"
+      themeBorder="darker"
+      themeBorderSide="left"
     >
       <div className="c-block__header">
-        <div className="c-block__title u-padding">
+        <Div className="c-block__title" padding>
           {title && <Title text={title} kicker={kicker} />}
 
           <div className="c-block__toggle">
@@ -28,12 +34,18 @@ function ContentBlockExpand({ kicker, title, description }) {
               toggle
             />
           </div>
-        </div>
+        </Div>
       </div>
-      <div className="c-block__body u-padding u-padding--zero--top u-spacing">
+      <Div
+        className="c-block__body"
+        padding
+        paddingSide="top"
+        paddingSize="zero"
+        spacing
+      >
         <p>{description}</p>
-      </div>
-    </div>
+      </Div>
+    </Div>
   )
 }
 

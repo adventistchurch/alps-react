@@ -8,7 +8,7 @@
     "srcSet": {
       "default": "//picsum.photos/500/375?image=767",
       "500": "//picsum.photos/750/350?image=757",
-      "750": "//picsum.photos/1200/800?image=746",
+      "750": "//picsum.photos/1200/800?image=741",
       "1200": "//picsum.photos/1500/900?image=737"
     },
     "alt": "Placeholder image"

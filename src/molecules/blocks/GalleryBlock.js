@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import Picture from '../../atoms/images/Picture'
 import Title from '../../atoms/texts/Title'
+import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
 function GalleryBlock({ images, kicker, title }) {
@@ -13,11 +14,16 @@ function GalleryBlock({ images, kicker, title }) {
   const otherImages = images.length > 1 ? images.slice(1) : null
 
   return (
-    <div
-      className={`c-gallery-block c-block u-background-color--gray--light u-border--left u-theme--border-color--darker--left can-be--dark-dark ${openClass}`}
+    <Div
+      className={`c-gallery-block c-block ${openClass}`}
+      backgroundColor="gray--light"
+      borderSide="left"
+      canBe="dark-dark"
+      themeBorder="darker"
+      themeBorderSide="left"
     >
       <div className="c-gallery-block__header">
-        <div className="c-gallery-block__title u-padding u-spacing--half">
+        <Div className="c-gallery-block__title" padding spacingSize="half">
           {title && <Title text={title} kicker={kicker} />}
           {otherImages && (
             <Button
@@ -31,7 +37,7 @@ function GalleryBlock({ images, kicker, title }) {
               toggle
             />
           )}
-        </div>
+        </Div>
         {thumbImage && (
           <div
             className="c-gallery-block__thumb u-background--cover"
@@ -54,15 +60,23 @@ function GalleryBlock({ images, kicker, title }) {
             >
               <Picture image={image} />
               {image.caption && (
-                <div className="c-gallery-block__caption u-font--secondary--s u-color--gray u-padding u-padding--double--bottom">
+                <Div
+                  className="c-gallery-block__caption"
+                  color="gray"
+                  fontType="secondary"
+                  fontSize="s"
+                  padding
+                  paddingSize="double"
+                  paddingSide="bottom"
+                >
                   {image.caption}
-                </div>
+                </Div>
               )}
             </div>
           ))}
         </div>
       )}
-    </div>
+    </Div>
   )
 }
 

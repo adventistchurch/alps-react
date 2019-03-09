@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
+import { Div } from '../../helpers/Element'
 import Slider, { DefaultArrows } from '../../helpers/Slider'
 import Slide from './Slide'
 
@@ -38,7 +39,7 @@ CarouselArrows.propTypes = DefaultArrows.propTypes
 
 function Carousel({ slides, showArrows, showDots }) {
   return (
-    <div className="c-carousel u-position--relative">
+    <Div className="c-carousel" position="relative">
       <Slider
         arrowsComponent={showArrows ? CarouselArrows : null}
         className="c-carousel__slides"
@@ -50,7 +51,7 @@ function Carousel({ slides, showArrows, showDots }) {
           <Slide {...slide} key={`carousel-slide-${key}`} />
         ))}
       </Slider>
-    </div>
+    </Div>
   )
 }
 

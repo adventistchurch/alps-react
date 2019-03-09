@@ -1,30 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../../atoms/icons/Icon'
+import IconWrap from '../../atoms/icons/IconWrap'
 import renderItems from '../../helpers/renderItems'
+import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
 function AccordionItem({ heading, content }) {
   const { onToggle, openClass } = useToggle()
 
   return (
-    <div
-      className={`c-accordion__item u-spacing--half u-border--left u-padding--half--left ${openClass}`}
+    <Div
+      className={`c-accordion__item ${openClass}`}
+      borderSide="left"
+      paddingSide="left"
+      paddingSize="half"
+      spacingSize="half"
     >
-      <div
-        className="c-accordion__heading u-font--primary--m u-theme--color--darker"
+      <Div
+        className="c-accordion__heading"
+        fontType="primary"
+        fontSize="m"
         onClick={onToggle}
+        themeColor="darker"
       >
-        <span className="u-icon u-icon--m c-accordion__arrow u-space--half--right u-theme--path-fill--darker">
-          <Icon name="arrow-bracket-right" />
-        </span>
+        <IconWrap
+          className="c-accordion__arrow"
+          name="arrow-bracket-right"
+          size="m"
+          spaceSide="right"
+          spaceSize="half"
+          themePathFill="darker"
+        />
         <strong>{heading}</strong>
-      </div>
-      <div className="c-accordion__content u-padding--half--left">
+      </Div>
+      <Div
+        className="c-accordion__content"
+        paddingSide="left"
+        paddingSize="half"
+      >
         {content}
-      </div>
-    </div>
+      </Div>
+    </Div>
   )
 }
 
@@ -36,9 +53,9 @@ AccordionItem.propTypes = {
 
 function Accordion({ items, className }) {
   return (
-    <div className={`c-accordion u-position--relative u-spacing ${className}`}>
+    <Div className={`c-accordion ${className}`} position="relative" spacing>
       {renderItems(items, AccordionItem)}
-    </div>
+    </Div>
   )
 }
 

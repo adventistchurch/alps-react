@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 import MediaImage from './MediaImage'
 import Button from '../../atoms/buttons/Button'
-import Title from '../../atoms/texts/Title'
-import Text from '../../atoms/texts/Text'
-import Element from '../../helpers/Element'
+import { Div, HeadingThree, Link, Paragraph, Span } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
 function ContentBlock({
@@ -18,7 +16,6 @@ function ContentBlock({
   more,
   title,
   titleClass,
-  titleStrong,
   url,
 }) {
   const { onToggle, openClass } = useToggle()
@@ -42,7 +39,7 @@ function ContentBlock({
     : {}
 
   return (
-    <Element
+    <Div
       className={classNames}
       borderSide="left"
       spacing
@@ -51,42 +48,40 @@ function ContentBlock({
     >
       {image && <MediaImage image={image} url={url} />}
 
-      <Title
-        as="h3"
+      <HeadingThree
         className={titleClass}
+        fontType="primary"
         fontSize="m"
-        strong={titleStrong}
-        text={title}
         themeColor="darker"
       >
         {url ? (
-          <a
-            className="c-block__title-link u-theme--link-hover--dark"
+          <Link
+            className="c-block__title-link"
+            themeLinkHover="dark"
             href={url}
           >
             <strong>{title}</strong>
-          </a>
+          </Link>
         ) : (
           <strong>{title}</strong>
         )}
-      </Title>
+      </HeadingThree>
 
       {description && (
-        <Text as="p" className={`c-block__body ${descriptionClass}`}>
+        <Paragraph className={`c-block__body ${descriptionClass}`}>
           {description}
-        </Text>
+        </Paragraph>
       )}
 
       {category && (
-        <Element
-          as="span"
+        <Span
           className="c-block__meta"
           themeColor="dark"
           fontSize="xs"
           fontType="secondary"
         >
           {category}
-        </Element>
+        </Span>
       )}
 
       {more ? (
@@ -94,8 +89,7 @@ function ContentBlock({
           <div className="c-block__content">
             <p>{more}</p>
           </div>
-          <Button
-            as="a"
+          <Link
             className={openClass}
             expand
             onClick={onToggle}
@@ -117,7 +111,7 @@ function ContentBlock({
           />
         )
       )}
-    </Element>
+    </Div>
   )
 }
 
@@ -131,7 +125,6 @@ ContentBlock.propTypes = {
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleClass: PropTypes.string,
-  titleStrong: PropTypes.bool,
   url: PropTypes.string,
 }
 
