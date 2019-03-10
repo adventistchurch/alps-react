@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import useWindowEvent from './useWindowEvent'
 
@@ -8,21 +8,29 @@ import useWindowEvent from './useWindowEvent'
  * @param {element} element Element used to calculate the effect
  * @param {number} speed Animation speed
  */
-function useBackgroundParallax(element, speed = 0) {
+function useBackgroundParallax({ enabled, speed = 0 }) {
+  const backgroundRef = useRef(null)
   const [top, setTop] = useState(0)
 
   function calculateTop() {
-    // Bailout if no window (for SSR)
-    if (!window) return
+    // Bailout if no window (for SSR) nor enabled
+    if (!window || !enabled) return
 
-    const elementBox = element ? element.getBoundingClientRect() : { top: 0 }
+    const backgroundElem = backgroundRef.current
+
+    const elementBox = backgroundElem
+      ? backgroundElem.getBoundingClientRect()
+      : { top: 0 }
     setTop(-((window.pageYOffset - elementBox.top) / speed))
   }
 
   useWindowEvent('scroll', calculateTop, 0)
   useWindowEvent('resize', calculateTop, 100)
 
-  return { backgroundPosition: `50% ${top}px` }
+  return {
+    parallaxStyles: enabled ? { backgroundPosition: `50% ${top}px` } : null,
+    backgroundRef,
+  }
 }
 
 export default useBackgroundParallax

@@ -12,12 +12,10 @@ const getBackgroundRule = url => `.c-breakout-image__background {
 }`
 
 function BreakoutImage({ caption, srcSet, parallax }) {
-  const backgroundRef = useRef(null)
-  const backgroundElem = backgroundRef.current
-
-  const backgroundStyles = parallax
-    ? useBackgroundParallax(backgroundElem, 8)
-    : {}
+  const { backgroundRef, parallaxStyles } = useBackgroundParallax({
+    enabled: parallax,
+    speed: 8,
+  })
 
   const inlineStyles = useResponsiveStyles(getBackgroundRule, srcSet)
 
@@ -28,7 +26,7 @@ function BreakoutImage({ caption, srcSet, parallax }) {
       <div
         ref={backgroundRef}
         className="c-breakout-image__background u-image--breakout u-background--cover"
-        style={backgroundStyles}
+        style={parallaxStyles}
       />
 
       {caption && (
