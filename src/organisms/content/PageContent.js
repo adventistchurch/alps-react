@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Text from '../../atoms/texts/Text'
 import Breadcrumbs from '../../molecules/navigation/Breadcrumbs'
 
 const PageContent = ({ children, content, breadcrumbs }) => (
-  <div className="text u-spacing">
+  <Text spacing>
     {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
     {children || content}
-  </div>
+  </Text>
 )
 
 PageContent.propTypes = {

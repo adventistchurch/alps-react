@@ -6,9 +6,14 @@ import BaseSearch from './elements/BaseSearch'
 function SearchFilter({ ...props }) {
   return (
     <BaseSearch
-      border="left"
-      className="u-spacing u-padding"
-      contentWrapperClass="l-field-container u-spacing"
+      borderSide="left"
+      contentProps={{
+        className: 'l-field-container',
+        spacing: true,
+      }}
+      padding
+      spacing
+      themeBorder="darker"
       {...props}
     />
   )

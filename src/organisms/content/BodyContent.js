@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Div } from '../../helpers/Element'
+
 function BodyContent({ children }) {
-  return <div className="u-spacing--triple">{children}</div>
+  return <Div spacingSize="triple">{children}</Div>
 }
 
 BodyContent.propTypes = {

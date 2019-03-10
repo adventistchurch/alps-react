@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import IconWrap from '../../atoms/icons/IconWrap'
 import useToggle from '../../helpers/useToggle'
 import Text from '../../atoms/texts/Text'
-import Element from '../../helpers/Element'
+import { Paragraph } from '../../helpers/Element'
 
 function FooterModal({ children, text }) {
   const { onToggle, openClass } = useToggle(true, '', 'this-is-active')
@@ -16,9 +16,9 @@ function FooterModal({ children, text }) {
       color="white"
       padding
     >
-      <Element as="p" className="c-modal__body" fontType="primary" strong>
+      <Paragraph className="c-modal__body" fontType="primary" strong>
         {children || text}
-      </Element>
+      </Paragraph>
 
       <IconWrap
         as="button"

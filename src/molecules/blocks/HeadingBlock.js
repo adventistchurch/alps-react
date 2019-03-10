@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element, { HeadingThree, Link } from '../../helpers/Element'
+import Element, { Div, HeadingThree, Link } from '../../helpers/Element'
 
 function HeadingBlock({ linkText, title, url }) {
   return (
-    <Element className="c-block__heading" themeBorder="darker">
+    <Div className="c-block__heading" themeBorder="darker">
       <HeadingThree className="c-block__heading-title" themeColor="darker">
         {title}
       </HeadingThree>
@@ -19,7 +19,7 @@ function HeadingBlock({ linkText, title, url }) {
           {linkText}
         </Link>
       )}
-    </Element>
+    </Div>
   )
 }
 

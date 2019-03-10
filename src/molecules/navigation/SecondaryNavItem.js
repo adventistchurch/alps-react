@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
+import { Link } from '../../helpers/Element'
 
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
@@ -24,15 +25,18 @@ function SecondaryNavItem({
       }
       `}
     >
-      <a
-        className="c-secondary-nav__link u-font--secondary-nav u-color--gray u-theme--link-hover--base"
+      <Link
+        className="c-secondary-nav__link"
+        color="gray"
+        fontType="secondary-nav"
         href={onClick ? '#' : url}
         onClick={onClick}
+        themeLinkHover="base"
       >
         {icon && <IconWrap name={icon} size="xs" fill="gray" />}
         {text}&nbsp;
         {subnav && <SubNavArrow />}
-      </a>
+      </Link>
       {subnav && <SubNav items={subnav} type="secondary" />}
     </li>
   )

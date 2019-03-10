@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
+import { Div, Header, HeadingOne, Link, Span } from '../../helpers/Element'
 
 const getBackgroundRule = url => `.c-background-image {
   background-image: url('${url}');
@@ -12,23 +13,28 @@ function PageHeader({ title, kicker, background, url }) {
   const bgInlineStyles = useResponsiveStyles(getBackgroundRule, background)
 
   const backgroundClass = background
-    ? 'c-background-image blended u-background--cover u-gradient--bottom'
+    ? 'c-background-image u-background--cover u-gradient--bottom'
     : ''
 
   return (
-    <header
-      className={`c-page-header c-page-header__simple u-theme--background-color--dark ${backgroundClass}`}
+    <Header
+      className={`c-page-header c-page-header__simple ${backgroundClass}`}
+      themeBackground="dark"
     >
       {bgInlineStyles && <InlineStyles styles={bgInlineStyles} />}
-      <div className="c-page-header__simple--inner u-padding">
-        {kicker && <span className="o-kicker u-color--white">{kicker}</span>}
-        <h1 className="u-font--primary--xxl u-color--white">
-          <a className="u-link--white u-link-hover--white" href={url}>
+      <Div className="c-page-header__simple--inner" padding>
+        {kicker && (
+          <Span className="o-kicker" color="white">
+            {kicker}
+          </Span>
+        )}
+        <HeadingOne color="white" fontType="primary" fontSize="xxl">
+          <Link href={url} linkColor="white" linkHoverColor="white">
             {title}
-          </a>
-        </h1>
-      </div>
-    </header>
+          </Link>
+        </HeadingOne>
+      </Div>
+    </Header>
   )
 }
 

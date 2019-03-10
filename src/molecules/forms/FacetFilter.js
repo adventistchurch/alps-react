@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Dropdown from './elements/Dropdown'
-import Element from '../../helpers/Element'
+import { Div } from '../../helpers/Element'
 import Fieldset from './elements/Fieldset'
 import Form from './elements/Form'
 import SubmitButton from './elements/SubmitButton'
@@ -12,11 +12,11 @@ function FacetFilter({ facets, filterLabel, title, ...props }) {
   return (
     <Form className="c-facet-filter-form" {...props}>
       <Fieldset legend={title} spacingSize="half">
-        <Element spacing>
+        <Div spacing>
           {renderItems(facets, Dropdown)}
           {/* TODO: create component for screen readers? */}
           <SubmitButton label={filterLabel} />
-        </Element>
+        </Div>
       </Fieldset>
     </Form>
   )

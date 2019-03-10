@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element from '../../../helpers/Element'
+import { Div } from '../../../helpers/Element'
 import Title from '../../../atoms/texts/Title'
 
 function FormFilter({ options, title }) {
   return (
-    <Element
+    <Div
       className="c-filter__form-item"
       spacingSize="half"
       gridItemSizeAtS={2}
@@ -37,7 +37,7 @@ function FormFilter({ options, title }) {
           </div>
         )
       })}
-    </Element>
+    </Div>
   )
 }
 

@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Div } from '../../helpers/Element'
+
 const ArticleContent = ({ children, sidebar }) => {
   return (
     <>
       {children}
-      <div className="c-sidebar l-grid-item l-grid-item--m--2-col l-grid-item--l--2-col">
+      <Div className="c-sidebar" gridItemSizeAtM="2" gridItemSizeAtL="2">
         {sidebar}
-      </div>
+      </Div>
     </>
   )
 }

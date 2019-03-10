@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
-import Element from '../../helpers/Element'
+import { Div } from '../../helpers/Element'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
@@ -25,7 +25,7 @@ function MediaImage({
   )
 
   return (
-    <Element
+    <Div
       {...otherProps}
       className={`c-media-block__image c-block__image ${className} ${
         blockIconType ? `c-block__icon c-block__icon--${blockIconType}` : ''
@@ -34,12 +34,12 @@ function MediaImage({
       {asBackgroundImage && bgImageStyles && (
         <InlineStyles styles={bgImageStyles} />
       )}
-      <Element className="c-block__image-wrap" {...wrapProps}>
+      <Div className="c-block__image-wrap" {...wrapProps}>
         <a href={url} title={image.caption || image.alt}>
           <Picture image={image} />
         </a>
-      </Element>
-    </Element>
+      </Div>
+    </Div>
   )
 }
 

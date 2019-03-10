@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon, { iconNames } from '../../atoms/icons/Icon'
-import { ElementWithRef, Div } from '../../helpers/Element'
+import { Div, DivWithRef } from '../../helpers/Element'
 import InlineStyles from '../../helpers/InlineStyles'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import useWindowEvent from '../../helpers/useWindowEvent'
@@ -98,21 +98,21 @@ function Sabbath({
             styles={`.u-background-image--sabbath { background-image: url('${backgroundImage}') !important; }`}
           />
           {showLogo && (
-            <ElementWithRef
+            <DivWithRef
               className="l-sabbath__logo"
               pathFill="white"
               ref={logoRef}
               style={stickyLogo ? stickyLogoStyle : null}
             >
               <Icon name={logo} />
-            </ElementWithRef>
+            </DivWithRef>
           )}
         </>
       ) : (
         <>
-          <ElementWithRef className="l-sabbath__logo" ref={logoWrapRef}>
+          <DivWithRef className="l-sabbath__logo" ref={logoWrapRef}>
             {showLogo && (
-              <ElementWithRef
+              <DivWithRef
                 className={`l-sabbath__logo--inner ${
                   stickyLogo ? logoInnerClass : ''
                 }`}
@@ -129,9 +129,9 @@ function Sabbath({
                 <Div className="l-sabbath__logo-dark" themePathFill="base">
                   <Icon name={logo} />
                 </Div>
-              </ElementWithRef>
+              </DivWithRef>
             )}
-          </ElementWithRef>
+          </DivWithRef>
           <Div
             className="l-sabbath__overlay"
             style={opacityStyle}

@@ -1,20 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element from '../../../helpers/Element'
+import { Div } from '../../../helpers/Element'
 
 function SubmitMessage({ text }) {
   return (
-    <Element
-      className="messaging"
-      padding
-      color="white"
-      themeBackground="darker"
-    >
-      <Element fontSize="s" fontType="secondary">
+    <Div className="messaging" padding color="white" themeBackground="darker">
+      <Div fontSize="s" fontType="secondary">
         {text}
-      </Element>
-    </Element>
+      </Div>
+    </Div>
   )
 }
 

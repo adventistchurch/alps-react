@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Link, Span } from '../../helpers/Element'
+
 function onItemClick(number, cb) {
   return cb
     ? event => {
@@ -21,21 +23,29 @@ function PaginationItem({
   url,
 }) {
   return isCurrent ? (
-    <span className="pagination__page pagination__page--current u-padding--quarter u-theme--color--base u-font-weight--bold">
+    <Span
+      className="pagination__page pagination__page--current"
+      paddingSize="quarter"
+      themeColor="base"
+      fontWeight="bold"
+    >
       {number}
-    </span>
+    </Span>
   ) : isDivider ? (
     <span className="pagination__divide">{label}</span>
   ) : (
-    <a
+    <Link
       className={`pagination__page ${
         isPrev || isNext ? `pagination__${isPrev ? 'prev' : 'next'}` : ''
-      } u-padding--quarter u-theme--color--darker u-font-weight--bold`}
+      }`}
       href={url}
       onClick={onItemClick(number, onClick)}
+      paddingSize="quarter"
+      themeColor="darker"
+      fontWeight="bold"
     >
       {label || number}
-    </a>
+    </Link>
   )
 }
 

@@ -15,8 +15,9 @@ function ContentBlock({
   image,
   more,
   title,
-  titleClass,
+  titleProps,
   url,
+  ...props
 }) {
   const { onToggle, openClass } = useToggle()
 
@@ -44,15 +45,16 @@ function ContentBlock({
       borderSide="left"
       spacing
       themeBorder="darker"
+      {...props}
       {...moreProps}
     >
       {image && <MediaImage image={image} url={url} />}
 
       <HeadingThree
-        className={titleClass}
         fontType="primary"
         fontSize="m"
         themeColor="darker"
+        {...titleProps}
       >
         {url ? (
           <Link
@@ -89,7 +91,8 @@ function ContentBlock({
           <div className="c-block__content">
             <p>{more}</p>
           </div>
-          <Link
+          <Button
+            as="a"
             className={openClass}
             expand
             onClick={onToggle}
@@ -102,12 +105,15 @@ function ContentBlock({
         url && (
           <Button
             as="a"
+            className="c-block__button"
+            icon="arrow-long-right"
+            iconProps={{
+              spaceSide: 'left',
+              spaceSize: 'half',
+            }}
+            outline
             text={cta}
             url={url}
-            className="c-block__button"
-            iconClass="u-space--half--left"
-            icon="arrow-long-right"
-            outline
           />
         )
       )}
@@ -124,14 +130,13 @@ ContentBlock.propTypes = {
   image: MediaImage.propTypes.image,
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
-  titleClass: PropTypes.string,
+  titleProps: PropTypes.object,
   url: PropTypes.string,
 }
 
 ContentBlock.defaultProps = {
   className: '',
   descriptionClass: '',
-  titleClass: '',
 }
 
 export default ContentBlock

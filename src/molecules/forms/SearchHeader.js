@@ -6,9 +6,17 @@ import BaseSearch from './elements/BaseSearch'
 function SearchHeader({ ...props }) {
   return (
     <BaseSearch
-      className="u-padding--double--top u-padding--double--bottom"
-      contentWrapperClass="l-grid l-grid--7-col u-shift--left--1-col--at-large u-spacing--until-medium"
-      contentWrapperNestedClass="l-grid-item l-grid-item--m--3-col"
+      contentProps={{
+        seven: true,
+        shiftAt: 'large',
+        shiftSide: 'left',
+        spacingUntil: 'medium',
+      }}
+      nestedProps={{
+        gridItemSizeAtM: 3,
+      }}
+      paddingSide={['top', 'bottom']}
+      paddingSize="double"
       {...props}
     />
   )

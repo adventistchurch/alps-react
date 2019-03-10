@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element from '../../../helpers/Element'
+import Element, { Div } from '../../../helpers/Element'
 import ErrorMessage from './ErrorMessage'
 
 function FormLabel({
@@ -15,7 +15,7 @@ function FormLabel({
   ...props
 }) {
   return (
-    <Element className={className} {...props}>
+    <Div className={className} {...props}>
       {position == 'bottom' && field}
 
       <Element as="label" htmlFor={htmlFor}>
@@ -30,7 +30,7 @@ function FormLabel({
       {position == 'top' && field}
 
       {error && <ErrorMessage text={error} />}
-    </Element>
+    </Div>
   )
 }
 

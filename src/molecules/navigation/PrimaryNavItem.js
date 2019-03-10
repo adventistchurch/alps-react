@@ -1,20 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Link } from '../../helpers/Element'
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
 
 function PrimaryNavItem({ text, url, active, subnav }) {
   return (
     <li className={`c-primary-nav__list-item ${subnav ? 'has-subnav' : ''}`}>
-      <a
-        className={`c-primary-nav__link u-font--primary-nav u-color--gray--dark u-theme--link-hover--base u-theme--border-color--base ${
-          active ? 'this-is-active' : ''
-        }`}
+      <Link
+        className={`c-primary-nav__link ${active ? 'this-is-active' : ''}`}
+        color="gray--dark"
+        fontType="primary-nav"
+        themeLinkHover="base"
+        themeBorder="base"
         href={url}
       >
         {text}
-      </a>
+      </Link>
       {subnav && <SubNavArrow fill="gray" />}
       {subnav && <SubNav items={subnav} type="primary" />}
     </li>

@@ -2,39 +2,60 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../../atoms/icons/Icon'
+import { Div, Link, Paragraph } from '../../helpers/Element'
 import FooterPrimaryNavigation from '../../molecules/navigation/FooterPrimaryNavigation'
 import FooterSecondaryNavigation from '../../molecules/navigation/FooterSecondaryNavigation'
 
 function Footer({ address, copyright, primaryNav, secondaryNav, text }) {
   return (
-    <footer
-      className="c-footer u-theme--background-color--primary u-theme--background-color--darker"
+    <Div
+      as="footer"
+      className="c-footer"
       role="contentinfo"
+      themeBackground="darker" // TODO: ALPS was setting inexistent .u-theme--background-color--primary, along with .u-theme--background-color--darker. There was a reason behind that?
     >
-      <div className="c-footer--inner u-color--white l-grid l-grid--7-col l-grid-wrap l-grid-wrap--6-of-7">
-        <div className="l-grid-item l-grid-item--m--3-col c-footer__description">
-          <p className="c-footer__description-text u-font--secondary--m">
+      <Div className="c-footer--inner" color="white" seven gridWrap={6}>
+        <Div className="c-footer__description" gridItemSizeAtM={3}>
+          <Paragraph
+            className="c-footer__description-text"
+            fontSize="m"
+            fontType="secondary"
+          >
             {text}
-          </p>
-        </div>
+          </Paragraph>
+        </Div>
         {primaryNav && (
-          <div className="l-grid-item l-grid-item--m--3-col l-grid-item--l--1-col c-footer__primary-nav">
+          <Div
+            className="c-footer__primary-nav"
+            gridItemSizeAtM={3}
+            gridItemSizeAtL={1}
+          >
             <FooterPrimaryNavigation {...primaryNav} />
-          </div>
+          </Div>
         )}
 
         {secondaryNav && (
-          <div className="l-grid-item l-grid-item--m--3-col l-grid-item--l--2-col c-footer__secondary-nav">
+          <Div
+            className="c-footer__secondary-nav"
+            gridItemSizeAtM={3}
+            gridItemSizeAtL={2}
+          >
             <FooterSecondaryNavigation {...secondaryNav} />
-          </div>
+          </Div>
         )}
 
         {/* TODO: .c-footer__logo hides the logo */}
-        <div className="l-grid-item--7-col l-grid-item--m--1-col c-footer__logo u-path-fill--white">
+        <Div
+          className="c-footer__logo"
+          noGridItemClass
+          gridItemSize={7}
+          gridItemSizeAtM={1}
+          pathFill="white"
+        >
           <Icon name="logo-round" />
-        </div>
+        </Div>
 
-        <div className="l-grid-item l-grid-item--m--3-col c-footer__legal">
+        <Div className="c-footer__legal" gridItemSizeAtM={3}>
           <p className="c-footer__copyright">{copyright}</p>
           <address
             className="c-footer__address"
@@ -47,17 +68,19 @@ function Footer({ address, copyright, primaryNav, secondaryNav, text }) {
             <span itemProp="addressLocality">{address.locality}</span>,{' '}
             <span itemProp="addressRegion">{address.region}</span>{' '}
             {address.country}{' '}
-            <a
-              itemProp="telephone"
+            <Link
+              className="c-footer__phone"
               href={`tel:${address.phone}`}
-              className="c-footer__phone u-link--white u-theme--link-hover--light"
+              itemProp="telephone"
+              linkColor="white"
+              themeLinkHover="light"
             >
               {address.phone}
-            </a>
+            </Link>
           </address>
-        </div>
-      </div>
-    </footer>
+        </Div>
+      </Div>
+    </Div>
   )
 }
 

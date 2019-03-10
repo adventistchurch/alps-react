@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import renderItems from '../../helpers/renderItems'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import usePriorityNav from '../../helpers/usePriorityNav'
-
 import PrimaryNavigationItem from './PrimaryNavItem'
 
 function PrimaryNavBase({ items, children, ...others }) {
@@ -45,7 +44,7 @@ function PrimaryNavWithPriority({ items }) {
   const priorityItems = items.filter((item, index) => index <= lastVisibleIndex)
 
   return (
-    <PrimaryNavBase items={priorityItems} {...rest}>
+    <PrimaryNavBase items={priorityItems} hasDropdown={hasDropdown} {...rest}>
       <span
         aria-haspopup={!hasDropdown}
         className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"

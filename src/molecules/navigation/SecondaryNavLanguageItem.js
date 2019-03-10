@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Element from '../../helpers/Element'
+
 function SecondaryNavLanguageItem({ label, languages }) {
   return (
     <li className="c-secondary-nav__list-item c-secondary-nav__list-item__language c-secondary-nav__list-item__toggle is-priority">
-      <select className="u-font--secondary-nav u-color--gray">
+      <Element as="select" color="gray" fontType="secondary-nav">
         <option value="language" disabled>
           {label}
         </option>
@@ -13,7 +15,7 @@ function SecondaryNavLanguageItem({ label, languages }) {
             {languages[language]}
           </option>
         ))}
-      </select>
+      </Element>
     </li>
   )
 }

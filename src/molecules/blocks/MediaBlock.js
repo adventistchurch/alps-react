@@ -46,7 +46,6 @@ const presets = {
     reversed: true,
 
     block: {
-      className: 'l-grid--7-col',
       seven: true,
     },
     content: {
@@ -68,7 +67,7 @@ const presets = {
     title: {
       color: 'white',
       fontType: 'primary',
-      strong: true, // TODO: strong => 'u-font-weight--bold'
+      fontWeight: 'bold',
     },
   },
 
