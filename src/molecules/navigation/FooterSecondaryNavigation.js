@@ -2,26 +2,31 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
+import { Nav, Link } from '../../helpers/Element'
 
 function FooterSecondaryNavigation({ defaultItemIcon, items }) {
   return (
-    <nav className="c-footer__primary-nav__list u-spacing--half">
+    <Nav className="c-footer__primary-nav__list" spaceSize="half">
       {items.map(({ icon, text, url }, key) => (
-        <a
+        <Link
           href={url}
-          className="c-footer__secondary-nav__link u-link--white u-theme--link-hover--light"
+          className="c-footer__secondary-nav__link"
           key={`footer-nav-link-${key}`}
+          linkColor="white"
+          themeLinkHover="light"
         >
           <IconWrap
-            className="u-space--half--right"
             color="white"
             size="xs"
             name={icon || defaultItemIcon}
+            spaceSide="right"
+            spaceSize="half"
           />
+          {/* TODO: a font tag? */}
           <font>{text}</font>
-        </a>
+        </Link>
       ))}
-    </nav>
+    </Nav>
   )
 }
 
