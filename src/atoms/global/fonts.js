@@ -5,8 +5,11 @@
 import { getBaseClass } from './commons'
 
 export const fontClass = 'u-font'
-export const fontTypes = ['primary', 'secondary', 'monospace']
+export const fontTypes = ['primary', 'primary-nav', 'secondary', 'monospace']
 export const fontSizes = ['xs', 's', 'm', 'l', 'xl', 'xxl']
+
+export const fontWeightClass = 'u-font-weight'
+export const fontWeights = ['bold']
 
 export const textClass = 'u-text'
 export const textStrongClass = `${textClass}--strong`

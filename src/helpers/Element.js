@@ -55,6 +55,8 @@ import {
 import {
   fontSizes,
   fontTypes,
+  fontWeightClass,
+  fontWeights,
   getFontClass,
   getTextAlignClass,
   textAlignOptions,
@@ -72,14 +74,15 @@ import {
 } from '../atoms/global/grids'
 
 import {
-  afterSizes,
   clearFixClass,
   getPaddingClass,
   getSpaceClass,
   getSpacingClass,
+  spaceAfterSizes,
   spaceSides,
   spacingSizes,
-  untilSizes,
+  spacingAfterSizes,
+  spacingUntilSizes,
 } from '../atoms/global/spacing'
 
 /**
@@ -109,6 +112,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     flexWrap,
     fontSize,
     fontType,
+    fontWeight,
     gridItem,
     gridItemSize,
     gridItemSizeAtS,
@@ -176,6 +180,7 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
     )
   if (strong) classes.push(textStrongClass)
   if (transform) classes.push(getBaseClass(textTransformClass, transform))
+  if (fontWeight) classes.push(getBaseClass(fontWeightClass, fontWeight))
   if (textAlign) classes.push(getTextAlignClass({ align: textAlign }))
   if (linkColor) classes.push(getBaseClass(linkClass, linkColor))
   if (linkHoverColor) classes.push(getBaseClass(linkHoverClass, linkHoverColor))
@@ -331,6 +336,7 @@ Element.propTypes = {
   flexJustify: PropTypes.oneOf(flexJustifyOptions),
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
+  fontWeight: PropTypes.oneOf(fontWeights),
   forwardedRef: PropTypes.object,
   gridNoGutters: PropTypes.bool,
   gridItem: PropTypes.bool,
@@ -359,12 +365,13 @@ Element.propTypes = {
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
   shiftSide: PropTypes.oneOf(shiftSides),
   space: PropTypes.bool,
+  spaceAfter: PropTypes.oneOf(spaceAfterSizes),
   spaceSide: PropTypes.oneOf(spaceSides),
   spaceSize: PropTypes.oneOf(spacingSizes),
   spacing: PropTypes.bool,
-  spacingAfter: PropTypes.oneOf(afterSizes),
+  spacingAfter: PropTypes.oneOf(spacingAfterSizes),
   spacingSize: PropTypes.oneOf(spacingSizes),
-  spacingUntil: PropTypes.oneOf(untilSizes),
+  spacingUntil: PropTypes.oneOf(spacingUntilSizes),
   strong: PropTypes.bool,
   tag: PropTypes.string,
   textAlign: PropTypes.oneOf(textAlignOptions),
@@ -384,11 +391,6 @@ Element.defaultProps = {
   noGridItemClass: false,
   noGridWrapClass: false,
 }
-
-// Use this component when a ref need to be passed to the element
-export const ElementWithRef = React.forwardRef((props, ref) => (
-  <Element {...props} forwardedRef={ref} />
-))
 
 // Some shortcut components for a more "semantic" structure
 
@@ -450,11 +452,6 @@ export function Span(props) {
 }
 Span.propTypes = Element.propTypes
 
-// Ref version
-export function DivWithRef(props) {
-  return <ElementWithRef {...props} as="div" />
-}
-
 export function Article(props) {
   return <Element {...props} as="article" />
 }
@@ -464,6 +461,11 @@ export function Section(props) {
   return <Element {...props} as="section" />
 }
 Section.propTypes = Element.propTypes
+
+export function Header(props) {
+  return <Element {...props} as="header" />
+}
+Header.propTypes = Element.propTypes
 
 export function Footer(props) {
   return <Element {...props} as="footer" />
@@ -481,3 +483,13 @@ export function Form(props) {
   return <Element {...props} as="form" />
 }
 Form.propTypes = Element.propTypes
+
+// Use this component when a ref need to be passed to the element
+export const ElementWithRef = React.forwardRef((props, ref) => (
+  <Element {...props} forwardedRef={ref} />
+))
+
+// Div version
+export const DivWithRef = React.forwardRef((props, ref) => (
+  <Div {...props} forwardedRef={ref} />
+))

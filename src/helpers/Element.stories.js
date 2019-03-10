@@ -16,6 +16,7 @@ import Element, {
   HeadingTwo,
   HeadingThree,
   HeadingFour,
+  Header,
   LI,
   Link,
   Nav,
@@ -57,15 +58,17 @@ import {
   fontTypes,
   textAlignOptions,
   textTransforms,
+  fontWeights,
 } from '../atoms/global/fonts'
 
 import { shiftBreakpoints, shiftSides, wrapSizes } from '../atoms/global/grids'
 
 import {
-  afterSizes,
+  spaceAfterSizes,
   spaceSides,
   spacingSizes,
-  untilSizes,
+  spacingAfterSizes,
+  spacingUntilSizes,
 } from '../atoms/global/spacing'
 
 import tagsOptions from '../atoms/global/tags'
@@ -207,14 +210,20 @@ function colorTab(settings = {}) {
 }
 
 function fontTab(settings = {}) {
-  const { fontSize, fontType, strong, textAlign, transform, tab } = getTabData(
-    'Font/Text',
-    settings
-  )
+  const {
+    fontSize,
+    fontType,
+    fontWeight,
+    strong,
+    textAlign,
+    transform,
+    tab,
+  } = getTabData('Font/Text', settings)
 
   return {
     fontType: select('Font Type', setOptions(fontTypes), fontType, tab),
     fontSize: select('Font Size', setOptions(fontSizes), fontSize, tab),
+    fontWeight: select('Font Weight', setOptions(fontWeights), fontWeight, tab),
     strong: boolean('Strong', strong, tab),
     transform: select(
       'Text Transform',
@@ -237,6 +246,7 @@ function paddingAndSpacingTab(settings = {}) {
     paddingSide,
     paddingSize,
     space,
+    spaceAfter,
     spaceSide,
     spaceSize,
     spacing,
@@ -264,6 +274,12 @@ function paddingAndSpacingTab(settings = {}) {
     space: boolean('Has space', space, tab),
     spaceSize: select('Space Size', setOptions(spacingSizes), spaceSize, tab),
     spaceSide: select('Space Side', setOptions(spaceSides), spaceSide, tab),
+    spaceAfter: select(
+      'Space After',
+      setOptions(spaceAfterSizes),
+      spaceAfter,
+      tab
+    ),
 
     spacing: boolean('Has spacing', spacing, tab),
     spacingSize: select(
@@ -274,13 +290,13 @@ function paddingAndSpacingTab(settings = {}) {
     ),
     spacingAfter: select(
       'Spacing After',
-      setOptions(afterSizes),
+      setOptions(spacingAfterSizes),
       spacingAfter,
       tab
     ),
     spacingUntil: select(
       'Spacing Until',
-      setOptions(untilSizes),
+      setOptions(spacingUntilSizes),
       spacingUntil,
       tab
     ),
@@ -456,6 +472,13 @@ storiesOf("helpers/Element's Shorcuts", module)
     const props = elementTab({ as: null })
 
     return <Div {...props}>{content}</Div>
+  })
+
+  .addWithJSX('Heading (<heading>)', () => {
+    const content = text('Content', 'Lorem ipsum', 'Content')
+    const props = elementTab({ as: false })
+
+    return <Header {...props}>{content}</Header>
   })
 
   .addWithJSX('Footer (<footer>)', () => {
