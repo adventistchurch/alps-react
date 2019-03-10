@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
+import { Div } from '../../helpers/Element'
 import Form from './elements/Form'
 import PasswordField from './elements/PasswordField'
 import SubmitMessage from './elements/SubmitMessage'
@@ -30,10 +31,10 @@ function LoginForm({
       {submitMessage && <SubmitMessage text={submitMessage} />}
       <TextField name="username" placeholder={`${usernameLabel}*`} />
       <PasswordField name="password" placeholder={`${passwordLabel}*`} />
-      <div className="u-flex u-flex--align-center">
+      <Div flex flexAlign="center">
         <Button text={submitLabel} onSubmit={onSubmit} />
         <Button url={forgotPwdUrl} text={forgotPwdLabel} simple />
-      </div>
+      </Div>
     </Form>
   )
 }

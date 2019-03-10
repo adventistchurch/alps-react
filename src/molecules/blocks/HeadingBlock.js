@@ -12,7 +12,7 @@ function HeadingBlock({ linkText, title, url }) {
       {url && linkText && (
         <Link
           href={url}
-          className="c-block__heading-link u-theme--link-hover--dark"
+          className="c-block__heading-link"
           themeColor="base"
           themeLinkHover="dark"
         >
