@@ -4,18 +4,20 @@ import PropTypes from 'prop-types'
 import usePagination from '../../helpers/usePagination'
 import renderItems from '../../helpers/renderItems'
 
+import { Nav } from '../../helpers/Element'
 import PaginationItem from './PaginationItem'
 
 function Pagination(props) {
   const pages = usePagination(props)
 
   return (
-    <nav
-      className="pagination u-center-block u-text-align--center"
+    <Nav
+      className="pagination u-center-block"
+      textAlign="center"
       role="navigation"
     >
       {renderItems(pages, PaginationItem)}
-    </nav>
+    </Nav>
   )
 }
 

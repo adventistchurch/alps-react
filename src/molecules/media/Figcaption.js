@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Paragraph } from '../../helpers/Element'
+
 function Figcaption({ caption, children }) {
   return (
     <figcaption className="o-figcaption">
-      <p className="o-caption u-color--gray u-font--secondary--s">
+      <Paragraph
+        className="o-caption"
+        color="gray"
+        fontType="secondary"
+        fontSize="s"
+      >
         {caption || children}
-      </p>
+      </Paragraph>
     </figcaption>
   )
 }

@@ -5,7 +5,7 @@ import IconWrap from '../../atoms/icons/IconWrap'
 import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 import SearchForm from '../forms/Search'
-import { Div, UL } from '../../helpers/Element'
+import { Div, HeadingThree, Link, Paragraph, UL } from '../../helpers/Element'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import PrimaryNavigation from './PrimaryNavigation'
 import SecondaryNavigation from './SecondaryNavigation'
@@ -98,20 +98,20 @@ DrawerNavigation.defaultProps = {
   ),
   aboutRight: (
     <>
-      <h3 className="u-font--secondary--s u-text-transform--upper">
+      <HeadingThree fontType="secondary" fontSize="s" transform="upper">
         <strong>Learn More:</strong>
-      </h3>
-      <p className="u-spacing--half">
-        <a href="" target="_blank" className="u-link--white">
+      </HeadingThree>
+      <Paragraph spacingSize="half">
+        <Link href="https://adventist.org" target="_blank" linkColor="white">
           Adventist.org
-        </a>
-        <a href="" target="_blank" className="u-link--white">
+        </Link>
+        <Link href="https://nadadventist.org" target="_blank" linkColor="white">
           North American Division of Seventh-day Adventists
-        </a>
-        <a href="" target="_blank" className="u-link--white">
+        </Link>
+        <Link href="https://adra.org" target="_blank" linkColor="white">
           ADRA International
-        </a>
-      </p>
+        </Link>
+      </Paragraph>
     </>
   ),
 }

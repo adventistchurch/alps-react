@@ -45,7 +45,6 @@ function Comment({
               fontType="secondary"
               fontSize="s"
               themeColor="base"
-              //  u-font--secondary--s u-theme--color--base
             >
               <a className="c-comment-edit-link" href={editUrl}>
                 {editLabel}
