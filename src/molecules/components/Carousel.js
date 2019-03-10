@@ -6,7 +6,7 @@ import { Div } from '../../helpers/Element'
 import Slider, { DefaultArrows } from '../../helpers/Slider'
 import Slide from './Slide'
 
-const sliderProps = {
+const sliderSettings = {
   fade: true,
   touchThreshold: 11,
   dots: true,
@@ -45,7 +45,7 @@ function Carousel({ slides, showArrows, showDots }) {
         className="c-carousel__slides"
         showArrows={showArrows}
         showDots={showDots}
-        {...sliderProps}
+        settings={sliderSettings}
       >
         {slides.map((slide, key) => (
           <Slide {...slide} key={`carousel-slide-${key}`} />

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { DivWithRef } from './Element'
 import SliderArrow from './SliderArrow'
 import useSlider from './useSlider'
 
@@ -60,7 +61,8 @@ function Slider({
   arrowsComponent: Arrows,
   dotsComponent: Dots,
   className,
-  ...settings
+  settings,
+  ...props
 }) {
   const {
     dots,
@@ -78,11 +80,12 @@ function Slider({
   } = useSlider(children, settings)
 
   return (
-    <div
+    <DivWithRef
       className={`${className} slick-slider ${
         initialized ? 'slick-initialized' : ''
       }`}
       ref={sliderRef}
+      {...props}
     >
       <div
         className="slick-list"
@@ -96,7 +99,7 @@ function Slider({
       </div>
       {showArrows && <Arrows onNext={onNext} onPrev={onPrev} />}
       {showDots && <Dots dots={dots} onClick={onDotClick} />}
-    </div>
+    </DivWithRef>
   )
 }
 
@@ -105,6 +108,7 @@ Slider.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   dotsComponent: PropTypes.func,
+  settings: PropTypes.object,
 }
 Slider.defaultProps = {
   arrowsComponent: DefaultArrows,

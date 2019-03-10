@@ -6,8 +6,9 @@ import ContentBlock from '../../molecules/blocks/ContentBlock'
 import HeadingBlock from '../../molecules/blocks/HeadingBlock'
 
 import Slider from '../../helpers/Slider'
+import { Div, Section } from '../../helpers/Element'
 
-const sliderProps = {
+const sliderSettings = {
   fade: false,
   dots: false,
   slidesToShow: 1,
@@ -30,7 +31,7 @@ const sliderProps = {
 
 function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
   return (
-    <section className="c-testimonies u-spacing u-posititon--relative">
+    <Section className="c-testimonies" position="relative" spacing>
       <HeadingBlock
         linkText={linkText}
         spaceSide="bottom"
@@ -38,26 +39,34 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
         title={title}
         url={linkUrl}
       />
-      <Slider
-        className="l-grid l-grid-wrap l-grid-wrap--6-of-7"
-        {...sliderProps}
-      >
+      <Slider gridWrap={6} settings={sliderSettings}>
         {items.map((item, key) => (
-          <div
-            className="l-grid-item--6-col l-grid-item--m--3-col l-grid-item--l--2-col l-grid-item--xl--1-col u-space--bottom u-padding--zero--sides"
+          <Div
+            gridItemSize={6}
+            gridItemSizeAtM={3}
+            gridItemSizeAtL={2}
+            gridItemSizeAtXL={1}
             key={`slide-${key}`}
+            paddingSide="sides"
+            paddingSize="zero"
+            spaceSide="bottom"
           >
             <ContentBlock
               {...item}
-              className="u-spacing--half u-padding--right"
-              titleClass="u-font--secondary--m u-text-transform--upper"
-              titleStrong
+              spacingSize="half"
+              paddingSide="right"
+              titleProps={{
+                fontType: 'secondary',
+                fontSize: 'm',
+                transform: 'upper',
+                strong: true,
+              }}
             />
-          </div>
+          </Div>
         ))}
       </Slider>
-      <Button className="u-space--lef" text={shareText} url={shareUrl} />
-    </section>
+      <Button text={shareText} url={shareUrl} spaceSide="left" />
+    </Section>
   )
 }
 
