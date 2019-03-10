@@ -34,9 +34,9 @@ function Button({
   disabled,
   expand,
   icon,
-  iconClass,
-  iconSize,
   iconFill,
+  iconProps,
+  iconSize,
   lighter,
   onClick,
   outline,
@@ -67,11 +67,11 @@ function Button({
     >
       {icon && (
         <IconWrap
-          className={iconClass}
           color="white"
           fill={iconFill}
           name={icon}
           size={iconSize}
+          {...iconProps}
         />
       )}
       {text}
@@ -85,9 +85,9 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   expand: PropTypes.bool,
   icon: PropTypes.string,
-  iconClass: PropTypes.string,
-  iconSize: PropTypes.string,
   iconFill: PropTypes.string,
+  iconProps: PropTypes.object,
+  iconSize: PropTypes.string,
   lighter: PropTypes.bool,
   onClick: PropTypes.func,
   outline: PropTypes.bool,
