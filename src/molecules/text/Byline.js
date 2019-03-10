@@ -1,23 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Div } from '../../helpers/Element'
+import Element from '../../helpers/Element'
 
-function Byline({ children }) {
+function Byline({ children, ...props }) {
   return (
-    <Div
+    <Element
       className="byline"
       canBe="white"
       color="gray"
       fontType="secondary"
       fontSize="s"
+      {...props}
     >
       {children}
-    </Div>
+    </Element>
   )
 }
 Byline.propTypes = {
   children: PropTypes.string,
+  ...Element.propTypes,
 }
 
 export default Byline
