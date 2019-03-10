@@ -15,7 +15,7 @@
         },
         "alt": "A nostrum labore"
       },
-      "type": "reversed",
+      "reversed": true,
       "border": "left"
     },
     {
@@ -30,7 +30,7 @@
         },
         "alt": "At praesentium doloribus"
       },
-      "type": "reversed",
+      "reversed": true,
       "border": "left"
     }
   ]
