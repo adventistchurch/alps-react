@@ -2,12 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import renderItems from '../../helpers/renderItems'
-
 import SubNavItem from './SubNavItem'
 
 function SubNav({ items, type }) {
   return (
-    <ul className="c-secondary-nav__subnav c-subnav">
+    <ul className={`c-${type}-nav__subnav c-subnav`}>
       {renderItems(items, SubNavItem, { type })}
     </ul>
   )
