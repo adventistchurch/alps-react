@@ -1,6 +1,6 @@
 {
   "caption": "Proin dictum lobortis luctus.",
-  "imageSrcSet": {
+  "image": {
     "alt": "Placeholder image",
     "srcSet": {
       "default": "//picsum.photos/500/282",

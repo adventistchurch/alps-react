@@ -32,11 +32,14 @@ const defaults = {
         <MediaBlock
           title="Media Block with image"
           description="Fusce interdum purus est, vel semper ex tristique ut. Proin dapibus luctus pellentesque. Duis et sapien sit amet enim porttitor gravida at non orci. Proin dictum lobortis luctus. Sed sagittis massa id blandit aliquet. Pellentesque semper tincidunt ex sit amet tincidunt. Cras at sem at felis rhoncus varius eget vel ipsum."
-          imageSrcSet={{
-            default: '//picsum.photos/500/282',
-            500: '//picsum.photos/900/507',
-            750: '//picsum.photos/700/395',
-            1200: '//picsum.photos/500/282',
+          image={{
+            srcSet: {
+              default: '//picsum.photos/500/282',
+              500: '//picsum.photos/900/507',
+              750: '//picsum.photos/700/395',
+              1200: '//picsum.photos/500/282',
+            },
+            alt: 'Voluptas ex minus rerum asperiores sunt.',
           }}
         />
       ),
