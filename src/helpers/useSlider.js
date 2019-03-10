@@ -340,7 +340,7 @@ export default function useSlider(children = [], settings = {}) {
 }
 
 const defaults = {
-  autoplay: false,
+  autoplay: true,
   autoplaySpeed: 4000,
   easing: 'ease-out',
   fade: false,

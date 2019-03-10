@@ -62,6 +62,8 @@ function Slider({
   dotsComponent: Dots,
   className,
   settings,
+  showArrows,
+  showDots,
   ...props
 }) {
   const {
@@ -71,13 +73,15 @@ function Slider({
     onNext,
     onPrev,
     onDotClick,
-    showArrows,
-    showDots,
     sliderRef,
     slides,
     trackRef,
     touchEvents,
-  } = useSlider(children, settings)
+  } = useSlider(children, {
+    showArrows,
+    showDots,
+    ...settings,
+  })
 
   return (
     <DivWithRef
@@ -97,7 +101,7 @@ function Slider({
           {slides}
         </div>
       </div>
-      {showArrows && <Arrows onNext={onNext} onPrev={onPrev} />}
+      {showArrows && Arrows && <Arrows onNext={onNext} onPrev={onPrev} />}
       {showDots && <Dots dots={dots} onClick={onDotClick} />}
     </DivWithRef>
   )
@@ -109,6 +113,8 @@ Slider.propTypes = {
   className: PropTypes.string,
   dotsComponent: PropTypes.func,
   settings: PropTypes.object,
+  showArrows: PropTypes.bool,
+  showDots: PropTypes.bool,
 }
 Slider.defaultProps = {
   arrowsComponent: DefaultArrows,
