@@ -24,9 +24,7 @@ function getShiftClass(side, at) {
 
 function getGridWrapClass(size, noWrapClass) {
   return `${noWrapClass ? '' : wrapClass}${
-    typeof size === 'string' && wrapSizes.includes(size)
-      ? ` ${wrapClass}--${size}-of-7`
-      : ''
+    wrapSizes.includes(size) ? ` ${wrapClass}--${size}-of-7` : ''
   }`
 }
 
