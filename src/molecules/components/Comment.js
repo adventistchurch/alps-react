@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
+import Byline from '../../molecules/text/Byline'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
+import { Div, Link, Span } from '../../helpers/Element'
 
 function Comment({
   avatar,
   byline,
+  bylineLink,
   children,
   date,
   dateFormat,
@@ -17,46 +20,61 @@ function Comment({
   text,
 }) {
   return (
-    <div className="c-comment--inner u-border--left u-theme--border-color--darker">
-      <div className="c-comment__avatar u-space--right">
+    <Div className="c-comment--inner" borderSide="left" themeBorder="darker">
+      <Div className="c-comment__avatar" spaceSide="right">
         <Picture image={avatar} />
-      </div>
-      <div className="c-comment__body u-spacing--quarter">
+      </Div>
+      <Div className="c-comment__body" spacingSize="quarter">
         <div className="c-comment__meta">
-          <span className="byline u-font--secondary--s can-be--white u-theme--color--darker">
-            <a href="">{byline}</a>
-          </span>
+          <Byline as="span">
+            {bylineLink ? <a href={bylineLink}>{byline}</a> : byline}
+          </Byline>
           <span className="o-divider">|</span>
-          <span className="pub_date u-font--secondary--s u-color--gray can-be--white">
+          <Span
+            className="pub_date"
+            fontType="secondary"
+            fontSize="s"
+            canBe="white"
+            color="gray"
+          >
             <DateTimeFormat datetime={date} format={dateFormat} />
-          </span>
+          </Span>
           {editUrl && (
-            <span className="c-comment__edit-link u-font--secondary--s u-theme--color--base">
+            <Span
+              className="c-comment__edit-link"
+              fontType="secondary"
+              fontSize="s"
+              themeColor="base"
+              //  u-font--secondary--s u-theme--color--base
+            >
               <a className="c-comment-edit-link" href={editUrl}>
                 {editLabel}
               </a>
-            </span>
+            </Span>
           )}
         </div>
         <p className="c-comment__content">{children || text}</p>
         {replyUrl && (
           <div className="c-comment__reply">
-            <a
+            <Link
               href={replyUrl}
-              className="u-font--secondary--s u-theme--color--base"
+              fontType="secondary"
+              fontSize="s"
+              themeColor="base"
             >
               {replyLabel}
-            </a>
+            </Link>
           </div>
         )}
-      </div>
-    </div>
+      </Div>
+    </Div>
   )
 }
 
 Comment.propTypes = {
   avatar: Picture.propTypes.image,
   byline: PropTypes.string,
+  bylineLink: PropTypes.string,
   children: PropTypes.node,
   date: PropTypes.number,
   dateFormat: PropTypes.oneOf(dateFormats),
