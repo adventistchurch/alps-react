@@ -1,25 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SliderArrow({ className, prev, next, ...props }) {
+import { Span } from '../helpers/Element'
+
+function SliderArrow({
+  className,
+  prev,
+  next,
+  labelPrev,
+  labelNext,
+  ...props
+}) {
   const isPrev = prev && !next
+
+  const dir = isPrev ? 'prev' : 'next'
+  const arrow = isPrev ? '‹' : '›' // prev: '‹' == &#8249; next: '›' == &#8250;
+  const label = isPrev ? labelPrev : labelNext
+
   return (
-    <span
+    <Span
       {...props}
-      className={`c-arrow c-arrow--${
-        isPrev ? 'prev' : 'next'
-      } u-icon u-icon--s u-theme--color--darker slick-arrow slick-${
-        isPrev ? 'prev' : 'next'
-      } ${className}`}
-      aria-label={isPrev ? 'Previous' : 'Next'}
+      className={`c-arrow c-arrow--${dir} slick-arrow slick-${dir}${className}`} // u-icon u-icon--s
+      aria-label={label}
+      themeColor="darker"
     >
-      {isPrev ? '‹' : '›'}
-      {/* prev: '‹' == &#8249; next: '›' == &#8250; */}
-    </span>
+      {arrow}
+    </Span>
   )
 }
 SliderArrow.propTypes = {
   className: PropTypes.string,
+  labelPrev: PropTypes.string,
+  labelNext: PropTypes.string,
   prev: PropTypes.bool,
   next: PropTypes.bool,
 }
@@ -27,6 +39,8 @@ SliderArrow.defaultProps = {
   className: '',
   prev: true,
   next: false,
+  labelPrev: 'Previous',
+  labelNext: 'Next',
 }
 
 export default SliderArrow
