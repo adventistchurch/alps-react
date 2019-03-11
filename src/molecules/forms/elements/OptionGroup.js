@@ -43,7 +43,7 @@ OptionGroup.propTypes = {
   titleFontType: PropTypes.oneOf(fontTypes),
   options: PropTypes.array,
   type: PropTypes.oneOf(['checkbox', 'radio']),
-  ...Element.propTypes,
+  ...Div.propTypes,
 }
 OptionGroup.defaultProps = {
   options: [],

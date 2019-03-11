@@ -44,7 +44,7 @@ function MediaImage({
 }
 
 MediaImage.propTypes = {
-  ...Element.propTypes,
+  ...Div.propTypes,
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.string,
   className: PropTypes.string,

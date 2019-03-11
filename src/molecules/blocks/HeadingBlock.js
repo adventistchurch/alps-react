@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element, { Div, HeadingThree, Link } from '../../helpers/Element'
+import { Div, HeadingThree, Link } from '../../helpers/Element'
 
 function HeadingBlock({ linkText, title, url }) {
   return (
@@ -27,7 +27,6 @@ HeadingBlock.propTypes = {
   linkText: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
-  ...Element.propTypes,
 }
 
 export default HeadingBlock

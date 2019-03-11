@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Form as FormElement } from '../../../helpers/Element'
-import { darkThemeClass } from '../../../atoms/global/colors'
-
 import Button from '../../../atoms/buttons/Button'
+import { darkThemeClass } from '../../../atoms/global/colors'
+import Title from '../../../atoms/texts/Title'
+import { Form as FormElement } from '../../../helpers/Element'
 import TextArea from './TextArea'
 import TextField from './TextField'
-import Title from '../../../atoms/texts/Title'
 import OptionGroup from './OptionGroup'
 import Dropdown from './Dropdown'
 
@@ -64,7 +63,7 @@ Form.propTypes = {
   noValidate: PropTypes.bool,
   onSubmit: PropTypes.func,
   role: PropTypes.oneOf(['search']),
-  ...Element.propTypes,
+  ...FormElement.propTypes,
 }
 Form.defaultProps = {
   fields: [],

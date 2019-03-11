@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { themeColors } from '../../../atoms/global/colors'
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
-
 import Element from '../../../helpers/Element'
 
 function Fieldset({
