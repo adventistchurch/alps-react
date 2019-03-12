@@ -16,7 +16,7 @@ storiesOf('templates/ChannelMain', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const { title, kicker, background } = pageHeaderTab()
+    const pageHeader = pageHeaderTab({ kicker: 'Kicker' })
     const { breadcrumbs } = pageBreadcrumbsTab()
     const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
     const { showSidebar, breakout, aside } = sidebarTab()
@@ -38,13 +38,11 @@ storiesOf('templates/ChannelMain', module)
     return (
       <ChannelMain
         aside={showSidebar ? aside : null}
-        background={background}
         breadcrumbs={breadcrumbs}
         breakout={breakout}
         content={content}
-        kicker={kicker}
+        pageHeader={pageHeader}
         // relatedPosts={relatedPosts}
-        title={title}
         {...templateProps}
       />
     )

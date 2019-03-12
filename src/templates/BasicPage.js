@@ -12,22 +12,19 @@ import TemplateWrap from './TemplateWrap'
 
 function BasicPage({
   aside,
-  background,
   breadcrumbs,
   breakout,
   content,
-  kicker,
+  pageHeader,
   relatedPosts,
-  title,
   ...templateProps
 }) {
   const hasSidebar = aside || breakout || relatedPosts
-  const pageHeaderProps = { background, kicker, title }
 
   return (
     <TemplateWrap {...templateProps}>
       <Main>
-        <PageHeader {...pageHeaderProps} />
+        <PageHeader {...pageHeader} />
         <Section
           className="l-main__content"
           gridWrap="6"
@@ -71,13 +68,11 @@ function BasicPage({
 
 BasicPage.propTypes = {
   aside: PropTypes.object,
-  background: PageHeader.propTypes.background,
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
   content: PropTypes.node.isRequired,
-  kicker: PageHeader.propTypes.kicker,
+  pageHeader: PageHeader.propTypes,
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
-  title: PageHeader.propTypes.title,
   ...TemplateWrap.propTypes,
 }
 BasicPage.defaultProps = {

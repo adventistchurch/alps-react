@@ -36,7 +36,7 @@ function backgroundTab(settings = {}) {
 }
 
 export function pageHeaderTab(settings = {}) {
-  const tabProps = getTabData('Header', settings)
+  const tabProps = getTabData('Page Header', settings)
 
   return {
     ...textsTab(tabProps),
