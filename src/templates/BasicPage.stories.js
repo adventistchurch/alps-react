@@ -12,7 +12,7 @@ import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
 import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
-import { pageHeaderTab as headerTab } from '../organisms/sections/PageHeader.stories.js'
+import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import data from './BasicPage.stories.json'
 
 function getTabData(name, settings = {}) {
@@ -24,13 +24,10 @@ function getTabData(name, settings = {}) {
   }
 }
 
-export function pageHeaderTab(settings = {}) {
-  const { title, url, kicker, tab } = getTabData('Page Header', settings)
-  return headerTab({ title, url, kicker, tab })
-}
+export { pageHeaderTab }
 
 export function pageBreadcrumbsTab(settings = {}) {
-  const { breadcrumbs, tab } = getTabData('Page Header', settings)
+  const { breadcrumbs, tab } = getTabData('Breadcrumbs', settings)
   return breadcrumbsTab({ breadcrumbs, tab })
 }
 
@@ -81,7 +78,7 @@ storiesOf('templates/BasicPage', module)
   .addDecorator(withKnobs)
 
   .addWithJSX('Default', () => {
-    const { title, kicker, background } = pageHeaderTab()
+    const pageHeader = pageHeaderTab()
     const { breadcrumbs } = pageBreadcrumbsTab()
     const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
     const { showSidebar, breakout, aside } = sidebarTab()
@@ -129,12 +126,10 @@ storiesOf('templates/BasicPage', module)
     return (
       <BasicPage
         aside={showSidebar ? aside : null}
-        background={background}
         breadcrumbs={breadcrumbs}
         breakout={showSidebar ? breakout : null}
         content={content}
-        kicker={kicker}
-        title={title}
+        pageHeader={pageHeader}
         {...templateProps}
       />
     )

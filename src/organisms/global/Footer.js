@@ -57,27 +57,47 @@ function Footer({ address, copyright, primaryNav, secondaryNav, text }) {
 
         <Div className="c-footer__legal" gridItemSizeAtM={3}>
           <p className="c-footer__copyright">{copyright}</p>
-          <address
-            className="c-footer__address"
-            itemProp="address"
-            itemScope=""
-            itemType="http://schema.org/PostalAddress"
-          >
-            <span itemProp="streetAddress">{address.street}</span>,{' '}
-            <span itemProp="addressPostCode">{address.postcode}</span>{' '}
-            <span itemProp="addressLocality">{address.locality}</span>,{' '}
-            <span itemProp="addressRegion">{address.region}</span>{' '}
-            {address.country}{' '}
-            <Link
-              className="c-footer__phone"
-              href={`tel:${address.phone}`}
-              itemProp="telephone"
-              linkColor="white"
-              themeLinkHover="light"
+          {address && (
+            <address
+              className="c-footer__address"
+              itemProp="address"
+              itemScope=""
+              itemType="http://schema.org/PostalAddress"
             >
-              {address.phone}
-            </Link>
-          </address>
+              {address.street && (
+                <>
+                  <span itemProp="streetAddress">{address.street}</span>,{' '}
+                </>
+              )}
+              {address.postcode && (
+                <>
+                  <span itemProp="addressPostCode">{address.postcode}</span>{' '}
+                </>
+              )}
+              {address.locality && (
+                <>
+                  <span itemProp="addressLocality">{address.locality}</span>,{' '}
+                </>
+              )}
+              {address.region && (
+                <>
+                  <span itemProp="addressRegion">{address.region}</span>{' '}
+                </>
+              )}
+              {address.country}{' '}
+              {address.phone && (
+                <Link
+                  className="c-footer__phone"
+                  href={`tel:${address.phone}`}
+                  itemProp="telephone"
+                  linkColor="white"
+                  themeLinkHover="light"
+                >
+                  {address.phone}
+                </Link>
+              )}
+            </address>
+          )}
         </Div>
       </Div>
     </Div>
