@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react'
 import { boolean, number, text, withKnobs } from '@storybook/addon-knobs'
 
 import Pagination from './Pagination'
-import IconWrap from '../../atoms/icons/IconWrap'
 
 import data from './Pagination.stories.json'
 
