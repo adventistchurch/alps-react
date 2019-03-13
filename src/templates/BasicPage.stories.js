@@ -103,7 +103,7 @@ storiesOf('templates/BasicPage', module)
             of text.
           </p>
         </Text>
-        <Text hasDropcap spacing>
+        <Text spacing>
           <h2>{title2}</h2>
           <p>
             {text2} <a href="#link">This is a link</a>, and here is the rest of
@@ -112,7 +112,7 @@ storiesOf('templates/BasicPage', module)
           <h3>{title3}</h3>
           <p>{text2}</p>
         </Text>
-        <Text hasDropcap spacing>
+        <Text spacing>
           <h3>{title3}</h3>
           <p>
             <strong>Aperiam veritatis dolore.</strong>{' '}
