@@ -3,60 +3,105 @@ import { storiesOf } from '@storybook/react'
 import { boolean, number, text, withKnobs } from '@storybook/addon-knobs'
 
 import Pagination from './Pagination'
+import IconWrap from '../../atoms/icons/IconWrap'
 
 import data from './Pagination.stories.json'
 
-const propsTab = 'Props'
-const labelsTab = 'Labels'
+const onPageClick = () => console.log('Clicked on page') // eslint-disable-line no-console
+const onPrevClick = () => console.log('Clicked on prev page') // eslint-disable-line no-console
+const onNextClick = () => console.log('Clicked on next page') // eslint-disable-line no-console
+
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Pagination.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+function pagesTab(settings = {}) {
+  const { current, surrounding, total, tab } = getTabData('Pages', settings)
+
+  return {
+    total: number('Total pages', total, {}, tab),
+    current: number('Current page', current, {}, tab),
+    surrounding: number('Surrounding', surrounding, {}, tab),
+  }
+}
+
+function labelsTab({ iconArrows = true, ...settings } = {}) {
+  const {
+    dividerLabel,
+    firstLabel,
+    lastLabel,
+    nextLabel,
+    prevLabel,
+    tab,
+  } = getTabData('Labels', settings)
+
+  return {
+    firstLabel: text('First label', firstLabel, tab),
+    lastLabel: text('Last label', lastLabel, tab),
+    dividerLabel: text('Divider', dividerLabel, tab),
+    prevLabel: iconArrows ? null : text('Prev label', prevLabel, tab),
+    nextLabel: iconArrows ? null : text('Next label', nextLabel, tab),
+  }
+}
+
+function optionsTab(settings = {}) {
+  const { showFirstAndLast, showPrevAndNext, linkPrefix, tab } = getTabData(
+    'Options',
+    settings
+  )
+
+  return {
+    showFirstAndLast: boolean('Show First & Last', showFirstAndLast, tab),
+    showPrevAndNext: boolean('Show Prev & Next', showPrevAndNext, tab),
+    linkPrefix: text('Link prefix', linkPrefix, tab),
+  }
+}
 
 storiesOf('molecules/navigation/Pagination', module)
   .addDecorator(withKnobs)
 
-  .addWithJSX('Default', () => {
-    // Config
-    const total = number('Total pages', data.total, {}, propsTab)
-    const current = number('Current page', data.current, {}, propsTab)
-    const surrounding = number('Surrounding', data.surrounding, {}, propsTab)
-    const showFirstAndLast = boolean(
-      'Show First & Last',
-      data.showFirstAndLast,
-      propsTab
+  .addWithJSX('SVG Arrows (default)', () => {
+    const pagesProps = pagesTab()
+    const optionsProps = optionsTab()
+    const { dividerLabel, firstLabel, lastLabel } = labelsTab()
+
+    const setUrl = number => `${optionsProps.linkPrefix}${number}`
+
+    return (
+      <Pagination
+        onNextClick={onNextClick}
+        onPageClick={onPageClick}
+        onPrevClick={onPrevClick}
+        setUrl={setUrl}
+        dividerLabel={dividerLabel}
+        firstLabel={firstLabel}
+        lastLabel={lastLabel}
+        {...optionsProps}
+        {...pagesProps}
+      />
     )
-    const showPrevAndNext = boolean(
-      'Show Prev & Next',
-      data.showPrevAndNext,
-      propsTab
-    )
-    const linkPrefix = text('Link prefix', data.linkPrefix, propsTab)
+  })
 
-    // Labels:
-    const dividerLabel = text('First label', data.dividerLabel, labelsTab)
-    const firstLabel = text('First label', data.firstLabel, labelsTab)
-    const lastLabel = text('Last label', data.lastLabel, labelsTab)
-    const nextLabel = text('Next label', data.nextLabel, labelsTab)
-    const prevLabel = text('Prev label', data.prevLabel, labelsTab)
+  .addWithJSX('Text "Arrows"', () => {
+    const pagesProps = pagesTab()
+    const optionsProps = optionsTab()
+    const labelsProps = labelsTab({ iconArrows: false })
 
-    const onPageClick = () => console.log('Clicked on page') // eslint-disable-line no-console
-    const onPrevClick = () => console.log('Clicked on prev page') // eslint-disable-line no-console
-    const onNextClick = () => console.log('Clicked on next page') // eslint-disable-line no-console
-
-    const setUrl = number => `${linkPrefix}${number}`
+    const setUrl = number => `${optionsProps.linkPrefix}${number}`
 
     const props = {
-      dividerLabel,
-      firstLabel,
-      lastLabel,
-      total,
-      current,
-      onPageClick,
-      prevLabel,
-      onPrevClick,
-      nextLabel,
       onNextClick,
+      onPageClick,
+      onPrevClick,
       setUrl,
-      showFirstAndLast,
-      showPrevAndNext,
-      surrounding,
+      ...labelsProps,
+      ...optionsProps,
+      ...pagesProps,
     }
 
     return <Pagination {...props} />

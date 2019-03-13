@@ -22,6 +22,7 @@ function PaginationItem({
   onClick,
   url,
 }) {
+  const isArrow = isPrev || isNext
   return isCurrent ? (
     <Span
       className="pagination__page pagination__page--current"
@@ -36,7 +37,7 @@ function PaginationItem({
   ) : (
     <Link
       className={`pagination__page ${
-        isPrev || isNext ? `pagination__${isPrev ? 'prev' : 'next'}` : ''
+        isArrow ? `pagination__${isPrev ? 'prev' : 'next'}` : ''
       }`}
       href={url}
       onClick={onItemClick(number, onClick)}
@@ -44,7 +45,7 @@ function PaginationItem({
       themeColor="darker"
       fontWeight="bold"
     >
-      {label || number}
+      {isArrow ? label : label || number}
     </Link>
   )
 }
@@ -55,7 +56,7 @@ PaginationItem.propTypes = {
   isDivider: PropTypes.bool,
   isNext: PropTypes.bool,
   isPrev: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   onClick: PropTypes.func,
   url: PropTypes.string,
 }

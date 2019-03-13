@@ -1,11 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import IconWrap from '../../atoms/icons/IconWrap'
 import usePagination from '../../helpers/usePagination'
 import renderItems from '../../helpers/renderItems'
 
 import { Nav } from '../../helpers/Element'
 import PaginationItem from './PaginationItem'
+
+const nextIcon = (
+  <IconWrap
+    name="arrow-bracket-right"
+    size="m"
+    themeColor="dark"
+    spaceSide="left"
+    spaceSize="half"
+  />
+)
+const prevIcon = (
+  <IconWrap
+    name="arrow-bracket-left"
+    size="m"
+    themeColor="dark"
+    spaceSide="right"
+    spaceSize="half"
+  />
+)
 
 function Pagination(props) {
   const pages = usePagination(props)
@@ -23,14 +43,14 @@ function Pagination(props) {
 
 Pagination.propTypes = {
   current: PropTypes.number,
-  dividerLabel: PropTypes.string,
-  firstLabel: PropTypes.string,
-  lastLabel: PropTypes.string,
-  nextLabel: PropTypes.string,
+  dividerLabel: PaginationItem.propTypes.label,
+  firstLabel: PaginationItem.propTypes.label,
+  lastLabel: PaginationItem.propTypes.label,
+  nextLabel: PaginationItem.propTypes.label,
   onPageClick: PropTypes.func,
   onNextClick: PropTypes.func,
   onPrevClick: PropTypes.func,
-  prevLabel: PropTypes.string,
+  prevLabel: PaginationItem.propTypes.label,
   setUrl: PropTypes.func,
   showFirstAndLast: PropTypes.bool,
   showPrevAndNext: PropTypes.bool,
@@ -42,8 +62,8 @@ Pagination.defaultProps = {
   dividerLabel: '…', // Using actual chat instead of HTLM Entity &hellip.
   firstLabel: 'First',
   lastLabel: 'Last',
-  nextLabel: 'Next',
-  prevLabel: 'Prev',
+  nextLabel: nextIcon,
+  prevLabel: prevIcon,
   setUrl: number => `?page=${number}`,
   showFirstAndLast: false,
   showPrevAndNext: true,
