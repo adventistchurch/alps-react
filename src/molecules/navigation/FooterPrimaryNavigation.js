@@ -22,7 +22,12 @@ function FooterPrimaryNavigation({ items }) {
 }
 
 FooterPrimaryNavigation.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ),
 }
 FooterPrimaryNavigation.defaultProps = {
   items: [],
