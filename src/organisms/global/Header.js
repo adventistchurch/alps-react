@@ -10,9 +10,12 @@ import DrawerNavigation from '../../molecules/navigation/DrawerNavigation'
 function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
   const { canBeDark, useFillTheme, ...logoProps } = logo
 
+  const classNames = ['c-header']
+  if (className) classNames.push(className)
+
   return (
     <>
-      <header className={`c-header ${className}`} role="banner" id="header">
+      <header className={classNames.join(' ')} role="banner" id="header">
         <div className="c-header--inner">
           <div className="c-header__nav-secondary">
             <SecondaryNavigation {...secondaryNav} />
@@ -54,7 +57,6 @@ Header.propTypes = {
   secondaryNav: PropTypes.object,
 }
 Header.defaultProps = {
-  className: '',
   drawer: {},
   logo: {
     name: 'sda',

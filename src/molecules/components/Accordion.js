@@ -52,8 +52,11 @@ AccordionItem.propTypes = {
 }
 
 function Accordion({ items, className }) {
+  const classNames = ['c-accordion']
+  if (className) classNames.push(className)
+
   return (
-    <Div className={`c-accordion ${className}`} position="relative" spacing>
+    <Div className={classNames.join(' ')} position="relative" spacing>
       {renderItems(items, AccordionItem)}
     </Div>
   )
@@ -65,7 +68,6 @@ Accordion.propTypes = {
 }
 
 Accordion.defaultProps = {
-  className: '',
   items: [],
 }
 

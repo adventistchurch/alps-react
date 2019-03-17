@@ -10,7 +10,6 @@ import Element from '../../helpers/Element'
 export const iconSizes = ['xs', 's', 'm', 'l', 'xl']
 
 export default function IconWrap({
-  as,
   background,
   className,
   color,
@@ -25,7 +24,6 @@ export default function IconWrap({
 
   return (
     <Element
-      as={as}
       className={classes.join(' ')}
       themeBackground={background}
       {...props}
@@ -48,7 +46,6 @@ IconWrap.propTypes = {
 }
 IconWrap.defaultProps = {
   as: 'span',
-  className: '',
   fill: 'white',
   size: 'm',
 }

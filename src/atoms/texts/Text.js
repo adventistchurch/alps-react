@@ -5,7 +5,7 @@ import Element from '../../helpers/Element'
 import useDropcap from '../../helpers/useDropcap'
 import Dropcap from './Dropcap'
 
-function Text({ as, children, className, hasDropcap, ...props }) {
+function Text({ children, className, hasDropcap, ...props }) {
   const content = useDropcap(children, { Dropcap, enabled: hasDropcap })
   const classes = ['text']
 
@@ -13,7 +13,7 @@ function Text({ as, children, className, hasDropcap, ...props }) {
   if (hasDropcap) classes.push('has-dropcap')
 
   return (
-    <Element {...props} tag={as} className={classes.join(' ')}>
+    <Element {...props} className={classes.join(' ')}>
       {content}
     </Element>
   )
@@ -27,7 +27,6 @@ Text.propTypes = {
 }
 Text.defaultProps = {
   as: 'div',
-  className: '',
 }
 
 export default Text

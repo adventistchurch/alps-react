@@ -3,19 +3,10 @@ import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
 
-function Grid({
-  as,
-  children,
-  className,
-  noWrapClass,
-  noGutters,
-  wrap,
-  ...props
-}) {
+function Grid({ as, children, noWrapClass, noGutters, wrap, ...props }) {
   return (
     <Element
       tag={as}
-      className={className}
       gridNoGutters={noGutters}
       gridWrap={wrap}
       noGridWrapClass={noWrapClass}
@@ -39,7 +30,6 @@ Grid.propTypes = {
 }
 Grid.defaultProps = {
   as: 'div',
-  className: '',
 }
 
 export default Grid

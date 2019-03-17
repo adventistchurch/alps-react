@@ -45,8 +45,4 @@ PageHeader.propTypes = {
   url: PropTypes.string,
 }
 
-PageHeader.defaultProps = {
-  className: '',
-}
-
 export default PageHeader

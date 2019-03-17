@@ -24,13 +24,15 @@ function MediaImage({
     image.srcSet
   )
 
+  const classNames = ['c-media-block__image', 'c-block__image']
+  if (blockIconType)
+    classNames.push(`c-block__icon c-block__icon--${blockIconType}`)
+  if (asBackgroundImage)
+    classNames.push('o-background-image u-background--cover')
+  if (className) classNames.push(className)
+
   return (
-    <Div
-      {...otherProps}
-      className={`c-media-block__image c-block__image ${className} ${
-        blockIconType ? `c-block__icon c-block__icon--${blockIconType}` : ''
-      } ${asBackgroundImage ? ' o-background-image u-background--cover' : ''}`}
-    >
+    <Div {...otherProps} className={classNames.join(' ')}>
       {asBackgroundImage && bgImageStyles && (
         <InlineStyles styles={bgImageStyles} />
       )}
@@ -51,9 +53,6 @@ MediaImage.propTypes = {
   image: Picture.propTypes.image,
   url: PropTypes.string,
   wrapProps: PropTypes.object,
-}
-MediaImage.defaultProps = {
-  className: '',
 }
 
 export default MediaImage

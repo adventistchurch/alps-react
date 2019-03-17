@@ -135,7 +135,6 @@ ContentBlock.propTypes = {
 }
 
 ContentBlock.defaultProps = {
-  className: '',
   descriptionClass: '',
 }
 

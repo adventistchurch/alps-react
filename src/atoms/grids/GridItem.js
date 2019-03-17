@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 import Element from '../../helpers/Element'
 
 function GridItem({
-  as,
   children,
-  className,
   noItemClass,
   size,
   sizeAtL,
@@ -18,8 +16,6 @@ function GridItem({
   return (
     <Element
       {...props}
-      as={as}
-      className={className}
       gridItemSize={size}
       gridItemSizeAtS={sizeAtS}
       gridItemSizeAtM={sizeAtM}
@@ -47,7 +43,6 @@ GridItem.propTypes = {
 GridItem.defaultProps = {
   as: 'div',
   noItemClass: false,
-  className: '',
 }
 
 export default GridItem

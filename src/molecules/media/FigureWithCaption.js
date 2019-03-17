@@ -1,19 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Figure from './Figure'
 
-function FigureWithCaption({ image, caption, className }) {
-  return <Figure caption={caption} className={className} image={image} />
+function FigureWithCaption(props) {
+  return <Figure {...props} />
 }
 
-FigureWithCaption.propTypes = {
-  image: PropTypes.objectOf(Figure.propTypes.image).isRequired,
-  caption: PropTypes.string,
-  className: PropTypes.string,
-}
-FigureWithCaption.defaultProps = {
-  className: '',
-}
+FigureWithCaption.propTypes = Figure.propTypes
 
 export default FigureWithCaption

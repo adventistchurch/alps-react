@@ -4,17 +4,9 @@ import PropTypes from 'prop-types'
 import Element from '../../helpers/Element'
 import Kicker from './Kicker'
 
-function Title({
-  as,
-  children,
-  className,
-  kicker,
-  kickerColor,
-  text,
-  ...props
-}) {
+function Title({ children, kicker, kickerColor, text, ...props }) {
   return (
-    <Element tag={as} className={className} {...props}>
+    <Element {...props}>
       {kicker && <Kicker text={kicker} color={kickerColor} />}{' '}
       {text || children}
     </Element>
@@ -32,7 +24,6 @@ Title.propTypes = {
 }
 Title.defaultProps = {
   as: 'h2',
-  className: '',
   fontSize: 's',
   fontType: 'primary',
   themeColor: 'darker',

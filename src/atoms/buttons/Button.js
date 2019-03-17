@@ -100,7 +100,6 @@ Button.propTypes = {
 
 Button.defaultProps = {
   as: 'button',
-  className: '',
   iconFill: 'white',
   iconSize: 'xs',
 }

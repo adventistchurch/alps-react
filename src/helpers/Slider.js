@@ -83,14 +83,13 @@ function Slider({
     ...settings,
   })
 
+  const classNames = ['slick-slider']
+
+  if (initialized) classNames.push('slick-initialized')
+  if (className) classNames.push(className)
+
   return (
-    <DivWithRef
-      className={`${className} slick-slider ${
-        initialized ? 'slick-initialized' : ''
-      }`}
-      ref={sliderRef}
-      {...props}
-    >
+    <DivWithRef className={classNames.join(' ')} ref={sliderRef} {...props}>
       <div
         className="slick-list"
         aria-live="polite"
@@ -118,7 +117,6 @@ Slider.propTypes = {
 }
 Slider.defaultProps = {
   arrowsComponent: DefaultArrows,
-  className: '',
   dotsComponent: DefaultDots,
 }
 
