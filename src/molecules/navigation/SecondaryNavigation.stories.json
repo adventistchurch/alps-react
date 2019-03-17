@@ -88,5 +88,14 @@
         }
       ]
     }
-  ]
+  ],
+  "languageLabel": "Language",
+  "languages": {
+    "english": "English",
+    "french": "Français",
+    "german": "Deutsch",
+    "spanish": "Español",
+    "chineseTraditional": "中文",
+    "arabic": "عربى"
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
 
 import SecondaryNavigation from './SecondaryNavigation'
 
@@ -39,6 +39,15 @@ function optionsTab(settings = {}) {
   }
 }
 
+function languagesTab(settings = {}) {
+  const { languages, languageLabel, tab } = getTabData('Languages', settings)
+
+  return {
+    label: text('Language Label', languageLabel, tab),
+    languages: object('Languages', languages, tab),
+  }
+}
+
 export function secondaryNavTab(settings = {}) {
   const {
     showLanguages,
@@ -59,12 +68,14 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
 
   .addWithJSX('Default', () => {
     const { showLanguages, showMenu, showSearch } = optionsTab()
+    const languageProps = languagesTab()
     const { items } = itemsTab()
 
     return (
       <SecondaryNavigation
         items={items}
         showLanguages={showLanguages}
+        languageProps={languageProps}
         showMenu={showMenu}
         showSearch={showSearch}
       />
@@ -73,6 +84,7 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
 
   .addWithJSX('With submenues', () => {
     const { showLanguages, showMenu, showSearch } = optionsTab()
+    const languageProps = languagesTab()
     const { items } = itemsTab({
       withSubmenues: true,
     })
@@ -81,6 +93,7 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
       <SecondaryNavigation
         items={items}
         showLanguages={showLanguages}
+        languageProps={languageProps}
         showMenu={showMenu}
         showSearch={showSearch}
       />
@@ -92,12 +105,14 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
       showMenu: false,
       showSearch: false,
     })
+    const languageProps = languagesTab()
     const { items } = itemsTab()
 
     return (
       <SecondaryNavigation
         items={items}
         showLanguages={showLanguages}
+        languageProps={languageProps}
         showMenu={showMenu}
         showSearch={showSearch}
       />

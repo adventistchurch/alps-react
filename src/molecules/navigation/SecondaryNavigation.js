@@ -9,6 +9,7 @@ import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({
   items,
+  languageProps,
   menuLabel,
   searchLabel,
   showLanguages,
@@ -20,7 +21,7 @@ function SecondaryNavigation({
   return (
     <nav className="c-secondary-nav" role="navigation">
       <ul className="c-secondary-nav__list">
-        {showLanguages && <SecondaryNavLanguageItem />}
+        {showLanguages && <SecondaryNavLanguageItem {...languageProps} />}
         {renderItems(items, SecondaryNavItem)}
         {showSearch && (
           <SecondaryNavItem
@@ -46,6 +47,7 @@ function SecondaryNavigation({
 }
 SecondaryNavigation.propTypes = {
   items: PropTypes.array,
+  languageProps: SecondaryNavLanguageItem.propTypes,
   menuLabel: PropTypes.string,
   searchLabel: PropTypes.string,
   showLanguages: PropTypes.bool,
