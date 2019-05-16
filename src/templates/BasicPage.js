@@ -71,7 +71,7 @@ BasicPage.propTypes = {
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
   content: PropTypes.node.isRequired,
-  pageHeader: PropTypes.shape(PageHeader.propTypes),
+  pageHeader: PropTypes.shape(PageHeader.propTypes).isRequired,
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
   ...TemplateWrap.propTypes,
 }
