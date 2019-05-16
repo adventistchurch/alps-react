@@ -47,7 +47,7 @@ function SecondaryNavigation({
 }
 SecondaryNavigation.propTypes = {
   items: PropTypes.array,
-  languageProps: SecondaryNavLanguageItem.propTypes,
+  languageProps: PropTypes.shape(SecondaryNavLanguageItem.propTypes),
   menuLabel: PropTypes.string,
   searchLabel: PropTypes.string,
   showLanguages: PropTypes.bool,
