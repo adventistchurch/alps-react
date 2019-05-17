@@ -1,5 +1,7 @@
 # alps-react
 
+Você pode ler a versão em Português do Brasil desse manual [clicando aqui](https://github.com/adventistchurch/alps-react/blob/master/README-pt-br.md)
+
 > [WIP] A React implementation of [ALPS](http://alps.adventist.io/v3)
 
 [![ALPS-React Storybook](https://cdn.jsdelivr.net/gh/storybooks/brand@master/badge/badge-storybook.svg)](https://alps-react.adventist.io/)
