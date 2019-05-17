@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  yarn:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    ports:
+      - 9001:9001
+    volumes:
+      - .:/application
+      - yarn-cache:/root/.cache/yarn/v1
+    entrypoint: yarn
+
+volumes:
+  yarn-cache: ~
