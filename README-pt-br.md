@@ -1,43 +1,43 @@
 # alps-react
 
-Você pode ler a versão em Português do Brasil desse manual [clicando aqui](https://github.com/adventistchurch/alps-react/blob/master/README-pt-br.md)
+You can read the English version of this manual by [clicking here](https://github.com/adventistchurch/alps-react/blob/master/README.md)
 
-> [WIP] A React implementation of [ALPS](http://alps.adventist.io/v3)
+> [WIP] Uma implementação em React do [ALPS](http://alps.adventist.io/v3)
 
 [![ALPS-React Storybook](https://cdn.jsdelivr.net/gh/storybooks/brand@master/badge/badge-storybook.svg)](https://alps-react.adventist.io/)
 
-For more info and reference, check ALPS Documentation:
+Para mais informações e referências, leia a documentação do ALPS (em inglês):
 
 - [Alps Pattern Lab](https://alps.adventist.io/v3/)
 - [Alps-React Storybook](https://alps-react.adventist.io/)
 
-## Usage
+## Usar em seu projeto
 
-Add `alps-react` as a dependency:
+Adicione `alps-react` como depêndencia:
 
-- Using `yarn`
+- Usando `yarn`
 
   ```bash
   yarn add alps-react
   ```
 
-- Using `npm`
+- Usando `npm`
 
   ```bash
   npm intall alps-react
   ```
 
-Then import and use its components in your code:
+Então importe e use os componentes no seu código:
 
 ```jsx
 import { Wrapper, Button, Blockquote, Div, MediaBlock } from 'alps-react'
 
 function MyApp(props) {
   return (
-    // The Wrapper component is required as parent other ALPS-React components (normally in your App root)
+    // É necessário que o componente Wrapper seja o pai dos outros components do ALPS-React (normalmente em App root)
     <Wrapper hasGrid={true} primaryColor="bluejay">
       <Div spacingSize="double" padding>
-        <Button text="Welcome to ALPS-React" />
+        <Button text="Bem-Vindo ao ALPS-React" />
 
         <MediaBlock
           type="inline"
@@ -66,11 +66,11 @@ function MyApp(props) {
 }
 ```
 
-> _NOTE_: This is just a simple example on how the API loooks. Event when you can use the components as you will, the recomended way is to use some of the Templates components and provide them with configurations and data/subcomponents.
+> _Observação_: Esse é só um simples exemplo de como a API funciona. Você pode utilizar os componentes da forma como você quiser, porém, recomendamos que os utilize provendo as configurações e dados aos seus subcomponentes.
 
-### Add Assets: ALPS Styles and fonts
+### Adicione os Assets: estilos e fontes do ALPS
 
-You should also include in your HTML `<head>` ALPS stylesheets and fonts from their official CDN:
+Você deve incluir também, na tag `<head>` do seu HTML as fontes e os arquivos de estilos das CDN's oficiais.
 
 ```html
 <!-- FONT -->
@@ -90,7 +90,7 @@ You should also include in your HTML `<head>` ALPS stylesheets and fonts from th
 />
 ```
 
-If you need to add this programatically, the `externalAssets` variable is exposed by `alps-react`:
+Caso você queira adicionar programaticamente, a variável `externalAssets` é exposta em `alps-react`: 
 
 ```jsx
 import { Helmet } from "react-helmet"
@@ -101,8 +101,8 @@ function MyApp () {
     return (
       <React.Fragment>
         <Helmet>
-          <title>My App</title>
-          <link rel="canonical" href="http://myapp.com" />
+          <title>Meu App</title>
+          <link rel="canonical" href="http://meuapp.com" />
 
           {externalAssets.css.map(href => (
             <link rel="stylesheet" type="text/css" href={href} media="all" />
@@ -110,7 +110,7 @@ function MyApp () {
         </Helmet>
 
         <Wrapper hasGrid={true} primaryColor="bluejay">
-          {/* ALPS-React components go here */}
+          {/* componentes ALPS-React entram aqui */}
         </Wrapper>
       </React.Fragment>
     )
@@ -118,49 +118,49 @@ function MyApp () {
 }
 ```
 
-After adding the assets you should see something like this:
+Depois de adicionar os assets você verá algo parecido com isso:
 
 ![Example output](public/example-output.png?raw=true)
 
-## Development
+## Desenvolvimento
 
-### Requirements
+### Requisitos
 
 - [Node](https://nodejs.org)
 - [yarn](https://yarnpkg.com/en/docs/install)
 
-### Install Dependencies
+### Instale as dependências
 
 ```bash
 yarn
 ```
 
-### Load Storybook
+### Inicie o Storybook
 
-- **Run Storybook**: Will run a local storybook server with hot reload in `http://localhost:9009`
+- **Executando Storybook**: Irá iniciar um servidor storybook local com hot reload em `http://localhost:9009`
 
   ```bash
   yarn storybook
   ```
 
-- **Build Storybook**: will bundle the storybook as static assets in `/storybook-static`
+- **Buildando Storybook**: Irá fazer um bundle do storybook como arquivos estáticos em `/storybook-static`
 
   ```bash
   yarn build-storybook
   ```
 
-### Build for production
+### Buildando para produção
 
-To build a production version, run:
+Para buildar para produção, execute:
 
 ```bash
 yarn build
 ```
 
-> This library is built using [Rollup.js](https://rollupjs.org)
+> Esta biblioteca é construida utilizando [Rollup.js](https://rollupjs.org)
 
 ## Copyright
 
-&copy; 2019 General Conference of the Seventh-day Adventist Church [https://adventist.org](https://adventist.org) | [https://adventist.io](https://adventist.io)
+&copy; 2019 Conferência Geral da Igreja Adventista do Sétimo Dia [https://adventist.org](https://adventist.org) | [https://adventist.io](https://adventist.io)
 
-Developed by [Stimme der Hoffnung e.V](https://stimme-der-hoffnung.de) in Germany
+Desenvolvido por [Stimme der Hoffnung e.V](https://stimme-der-hoffnung.de) na Alemanha
