@@ -164,7 +164,7 @@ yarn build
 
 ## Development with Docker
 
-If you want to develop the project using Docker, follow the below instructions
+If you want to develop the project using Docker, follow the below instructions.
 
 ### Requirements
 
