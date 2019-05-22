@@ -159,6 +159,58 @@ yarn build
 
 > Esta biblioteca é construida utilizando [Rollup.js](https://rollupjs.org)
 
+## Desenvolvimento com Docker
+
+Se você quiser desenvolver o projeto utilizando Docker, siga as instruções abaixo.
+
+### Requisitos
+
+- Docker
+    - [Docker para Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+    - [Docker para Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+    - **Docker para Linux**: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
+
+- docker-compose
+    - docker-compose **vem incluso na instalação do Docker** por padrão tanto nas versões de **Mac OS** como de **Windows**
+    - docker-compose para linux: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
+    
+#### Uma sugestão sobre docker-compose
+
+Nós executamos o Node através do Docker. Para utilizar ferramentas como o Yarn, é preciso passar os comandos para o container do Docker. Por esse motivo comando se torna bem grande: 
+
+`docker-compose -f docker-compose.cli.yml run --rm <command>`
+
+Por isso recomendamos criar um alias para `docker-compose -f docker-compose.cli.yml run --rm` e chamá-lo de `dcli` (Docker CLI).
+
+
+### Instale as dependências
+
+```bash
+dcli yarn install
+```
+
+### Inicie o Storybook
+
+- **Executando Storybook**: Irá iniciar um servidor storybook local com hot reload em `http://localhost:9009`
+
+  ```bash
+  dcli --service-ports yarn storybook
+  ```
+
+- **Buildando Storybook**: Irá fazer um bundle do storybook como arquivos estáticos em `/storybook-static`
+
+  ```bash
+  dcli yarn build-storybook
+  ```
+
+### Buildando para produção
+
+Para buildar para produção, execute:
+
+```bash
+dcli yarn build
+```
+
 ## Copyright
 
 &copy; 2019 Conferência Geral da Igreja Adventista do Sétimo Dia [https://adventist.org](https://adventist.org) | [https://adventist.io](https://adventist.io)
