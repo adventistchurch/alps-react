@@ -162,6 +162,57 @@ yarn build
 
 > This library is built using [Rollup.js](https://rollupjs.org)
 
+## Development with Docker
+
+If you want to develop the project using Docker, follow the below instructions.
+
+### Requirements
+
+- Docker
+    - [Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+    - [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+    - **Docker for Linux**: Please see your distributions package management system
+
+- docker-compose
+    - docker-compose **is included with Docker** on default installation for both **Mac OS** and **Windows** version
+    - docker-compose for linux: Please see your distributions package management system
+    
+#### Advice about docker-compose
+
+We are using Node through Docker. In order to use tools like Yarn through Docker, we must pass our commands to the Docker container. This is a really long command:
+
+`docker-compose -f docker-compose.cli.yml run --rm <command>`
+
+Because of this, it is recommended to create an alias for `docker-compose -f docker-compose.cli.yml run --rm` and call it `dcli` (Docker CLI).
+
+### Install Dependencies
+
+```bash
+dcli yarn install
+```
+
+### Load Storybook
+
+- **Run Storybook**: Will run a local storybook server with hot reload in `http://localhost:9009`
+
+  ```bash
+  dcli --service-ports yarn storybook
+  ```
+
+- **Build Storybook**: will bundle the storybook as static assets in `/storybook-static`
+
+  ```bash
+  dcli yarn build-storybook
+  ```
+
+### Build for production
+
+To build a production version, run:
+
+```bash
+dcli yarn build
+```
+
 ## Copyright
 
 &copy; 2019 General Conference of the Seventh-day Adventist Church [https://adventist.org](https://adventist.org) | [https://adventist.io](https://adventist.io)

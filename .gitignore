@@ -25,3 +25,6 @@ yarn-error.log*
 
 # sample app
 /sample-app/node_modules
+
+# IDEs and editors
+.idea
