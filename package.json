@@ -1,6 +1,6 @@
 {
   "name": "alps-react",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": false,
   "author": "Stimme der Hoffnung e.V.",
   "license": "See LICENSE file",
@@ -14,6 +14,9 @@
     "react-dom": "^16.9.0",
     "react-lazyload": "^2.6.2"
   },
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
