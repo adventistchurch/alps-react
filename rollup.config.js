@@ -136,7 +136,7 @@ export default [
       ...commonPlugins(),
       env === 'production' && terser(),
     ],
-    external: ['react', 'react-dom'],
+    external: ['react', 'react-dom', 'prop-types'],
   },
   // CJS and ESM
   {
