@@ -25,11 +25,11 @@ function textsTab(settings = {}) {
   }
 }
 
-function backgroundTab(settings = {}) {
+function backgroundTab(settings = { showBackground: false }) {
   const { background, tab } = getTabData('Background', settings)
 
   return {
-    background: boolean('Show Background', false, tab)
+    background: boolean('Show Background', settings.showBackground, tab)
       ? object('Background image', background, tab)
       : null,
   }
@@ -44,16 +44,31 @@ export function pageHeaderTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/PageHeader', module).addWithJSX('Default', () => {
-  const { kicker, title, url } = textsTab()
-  const { background } = backgroundTab()
+storiesOf('organisms/sections/PageHeader', module)
+  .addWithJSX('Default', () => {
+    const { kicker, title, url } = textsTab()
+    const { background } = backgroundTab()
 
-  return (
-    <PageHeader
-      background={background}
-      kicker={kicker}
-      title={title}
-      url={url}
-    />
-  )
-})
+    return (
+      <PageHeader
+        background={background}
+        kicker={kicker}
+        title={title}
+        url={url}
+      />
+    )
+  })
+
+  .addWithJSX('With image', () => {
+    const { kicker, title, url } = textsTab()
+    const { background } = backgroundTab({ showBackground: true })
+
+    return (
+      <PageHeader
+        background={background}
+        kicker={kicker}
+        title={title}
+        url={url}
+      />
+    )
+  })
