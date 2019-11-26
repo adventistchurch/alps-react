@@ -1,4 +1,3 @@
-import range from '../../helpers/range'
 const gridClass = 'l-grid'
 const col = 'col'
 
@@ -13,9 +12,21 @@ const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
 const noGuttersClass = 'u-no-gutters'
 
-const wrapSizes = [...range(1, 7).map(s => `${s}`), ...range(1, 7)]
+const wrapRange = [1, 2, 3, 4, 5, 6, 7]
+const wrapSizes = [
+  ...wrapRange, // numeric versions
+  ...wrapRange.map(ws => `${ws}`), // string versions
+]
 
-// Example: {side: 'left', breakpoint: 'xxlarge'} => 'u-shift--left--1-col--at-xxlarge'
+/**
+ *  Examples:
+ *    `getShiftClass('left','xxlarge') // 'u-shift--left--1-col--at-xxlarge'`
+ *    `getShiftClass('right','standard') // 'u-shift--left--1-col--standard'`
+ *
+ * @param {string} side One of `shiftSides`
+ * @param {string} at one of `shiftBreakpoints`
+ *
+ */
 function getShiftClass(side, at) {
   return `${shiftClass}--${side}--1-${col}--${
     at === 'standard' ? at : `at-${at}`
