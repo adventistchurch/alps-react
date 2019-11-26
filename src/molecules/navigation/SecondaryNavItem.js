@@ -33,7 +33,11 @@ function SecondaryNavItem({
         onClick={onClick}
         themeLinkHover="base"
       >
-        {icon && <IconWrap name={icon} size="xs" fill="gray" />}
+        {icon && (
+          <>
+            <IconWrap name={icon} size="xs" fill="gray" />{' '}
+          </>
+        )}
         {text}&nbsp;
         {subnav && <SubNavArrow />}
       </Link>
