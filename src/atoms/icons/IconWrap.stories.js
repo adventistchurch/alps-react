@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { color as colorPicker, select, withKnobs } from '@storybook/addon-knobs'
+import { color as colorPicker, select} from '@storybook/addon-knobs'
 
 import IconWrap, { iconSizes } from './IconWrap'
 import { Div, Link } from '../../helpers/Element'
@@ -54,7 +54,7 @@ function iconWrapTab(settings = {}) {
 }
 
 storiesOf('atoms/icons/IconWrap', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { name, size, color, background, themeColor, fill } = iconWrapTab({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text} from '@storybook/addon-knobs'
 
 import SecondaryNavigation from './SecondaryNavigation'
 
@@ -64,7 +64,7 @@ export function secondaryNavTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/SecondaryNavigation', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { showLanguages, showMenu, showSearch } = optionsTab()

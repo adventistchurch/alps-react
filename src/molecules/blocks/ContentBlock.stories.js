@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import {
-  withKnobs,
+  
   text,
   boolean,
   object,
@@ -75,7 +75,7 @@ export function contentBlockTab(settings = {}) {
 }
 
 storiesOf('molecules/blocks/ContentBlock', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { category, description, title } = textsTab()

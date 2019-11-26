@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, number, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, number, text} from '@storybook/addon-knobs'
 
 import Pagination from './Pagination'
 
@@ -62,7 +62,7 @@ function optionsTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/Pagination', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('SVG Arrows (default)', () => {
     const pagesProps = pagesTab()

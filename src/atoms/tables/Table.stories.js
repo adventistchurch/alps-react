@@ -5,7 +5,7 @@ import {
   number,
   object,
   text,
-  withKnobs,
+  
 } from '@storybook/addon-knobs'
 
 import range from '../../helpers/range'
@@ -16,7 +16,7 @@ import data from './Table.stories.json'
 const propsTab = 'Props'
 
 storiesOf('atoms/tables/Table', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const title = text('Title', data.table1.title, propsTab)

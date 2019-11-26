@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { object, text} from '@storybook/addon-knobs'
 
 import Comments from './Comments'
 
@@ -40,7 +40,7 @@ export function commentsTab(settings = {}) {
 }
 
 storiesOf('organisms/sections/Comments', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { title } = textsTab()

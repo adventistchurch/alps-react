@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, text, object } from '@storybook/addon-knobs'
+import {  text, object } from '@storybook/addon-knobs'
 
 import GalleryBlock from './GalleryBlock'
 
@@ -10,7 +10,7 @@ const propsTab = 'Props'
 const imagesTab = 'Images'
 
 storiesOf('molecules/blocks/GalleryBlock', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const kicker = text('Kicker', data.kicker, propsTab)

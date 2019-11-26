@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, text, boolean, object } from '@storybook/addon-knobs'
+import {  text, boolean, object } from '@storybook/addon-knobs'
 
 import Slide from './Slide'
 
@@ -11,7 +11,7 @@ const textTab = 'Text'
 const ctaTab = 'CTA'
 
 storiesOf('molecules/components/Slide', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)

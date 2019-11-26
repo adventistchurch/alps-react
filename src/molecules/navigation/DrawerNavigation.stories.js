@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import DrawerNavigation from './DrawerNavigation'
 
@@ -37,7 +37,7 @@ export function drawerTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/DrawerNavigation', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const primaryNav = primaryNavTab()

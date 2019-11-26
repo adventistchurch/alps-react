@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, text} from '@storybook/addon-knobs'
 
 import LoginForm from './LoginForm'
 
@@ -10,7 +10,7 @@ const propsTab = 'Props'
 const submitTag = 'Submit'
 
 storiesOf('molecules/forms/LoginForm', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const title = text('Form Title *', data.title, propsTab)

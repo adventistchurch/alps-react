@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { select, text, withKnobs } from '@storybook/addon-knobs'
+import { select, text} from '@storybook/addon-knobs'
 
 import Logo from './Logo'
 import { logoNames } from './logos'
@@ -9,7 +9,7 @@ import { svgFillColors } from '../global/colors'
 const propsTab = 'Props'
 
 storiesOf('atoms/images/Logo', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const logoNamesWithoutGain = logoNames.filter(item => item !== 'gain')

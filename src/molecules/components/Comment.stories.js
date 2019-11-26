@@ -5,7 +5,6 @@ import {
   object,
   select,
   text,
-  withKnobs,
 } from '@storybook/addon-knobs'
 
 import Comment from './Comment'
@@ -69,8 +68,6 @@ export function commentTab(settings = {}) {
 }
 
 storiesOf('molecules/components/Comment', module)
-  .addDecorator(withKnobs)
-
   .addWithJSX('Default', () => {
     const { byline, comment, date, dateFormat } = dataTab()
     const avatar = avatarTab()

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text} from '@storybook/addon-knobs'
 
 import SearchResults from './SearchResults'
 
@@ -53,7 +53,7 @@ export function searchResultsTab(settings = {}) {
 }
 
 storiesOf('organisms/content/SearchResults', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { results } = resultsTab()

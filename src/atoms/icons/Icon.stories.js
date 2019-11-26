@@ -1,12 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs'
+import {  select } from '@storybook/addon-knobs'
 import Icon, { iconNames } from './Icon'
 
 const propsTab = 'Props'
 
 storiesOf('atoms/icons/Icon', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const name = select('Name *', iconNames, 'logo', propsTab)

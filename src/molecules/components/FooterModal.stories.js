@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import FooterModal from './FooterModal'
 
@@ -9,7 +9,7 @@ import data from './FooterModal.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/components/FooterModal', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const modalText = text('Text *', data.text, propsTab)

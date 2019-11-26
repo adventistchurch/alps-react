@@ -1,13 +1,13 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { } from '@storybook/addon-knobs'
 
 import ArticleContent from './ArticleContent'
 
 import ArticleWrap from './ArticleWrap'
 
 storiesOf('organisms/content/ArticleContent', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { object, text} from '@storybook/addon-knobs'
 
 import Testimonies from './Testimonies'
 
@@ -37,7 +37,7 @@ export function testimoniesTab(settings = {}) {
 }
 
 storiesOf('organisms/sections/Testimonies', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const {

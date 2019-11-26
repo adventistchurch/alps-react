@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { } from '@storybook/addon-knobs'
 
 import Wrapper from './Wrapper'
 import Button from './atoms/buttons/Button'
@@ -9,7 +9,7 @@ import MediaBlock from './molecules/blocks/MediaBlock'
 import { Div } from './helpers/Element'
 
 storiesOf('helpers/Wrapper', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     return (

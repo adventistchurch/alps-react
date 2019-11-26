@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import Pullquote from './Pullquote'
 
@@ -9,7 +9,7 @@ import data from './Pullquote.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/text/Pullquote', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const quote = text('Quote *', data.quote, propsTab)

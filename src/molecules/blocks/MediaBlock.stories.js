@@ -5,7 +5,7 @@ import {
   date as datetime,
   select,
   text,
-  withKnobs,
+  
 } from '@storybook/addon-knobs'
 
 import { iconNames } from '../../atoms/icons/Icon'
@@ -93,7 +93,7 @@ export function mediaBlockTab(settings = {}) {
 }
 
 storiesOf('molecules/blocks/MediaBlock', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { description, kicker, title, url } = textsTab()

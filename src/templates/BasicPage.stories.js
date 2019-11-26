@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text} from '@storybook/addon-knobs'
 
 import BasicPage from './BasicPage'
 
@@ -75,7 +75,7 @@ export function basicPageTabs(settings = {}) {
 }
 
 storiesOf('templates/BasicPage', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const pageHeader = pageHeaderTab()

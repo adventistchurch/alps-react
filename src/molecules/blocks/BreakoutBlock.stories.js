@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, text, boolean } from '@storybook/addon-knobs'
+import {  text, boolean } from '@storybook/addon-knobs'
 
 import BreakoutBlock from './BreakoutBlock'
 
@@ -10,7 +10,7 @@ const propsTab = 'Props'
 const ctaTab = 'CTA'
 
 storiesOf('molecules/blocks/BreakoutBlock', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const title = text('Title *', data.title, propsTab)

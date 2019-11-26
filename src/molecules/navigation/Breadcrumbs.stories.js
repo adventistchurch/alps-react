@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, select, withKnobs } from '@storybook/addon-knobs'
+import { object, select} from '@storybook/addon-knobs'
 
 import Breadcrumbs from './Breadcrumbs'
 
@@ -26,7 +26,7 @@ export function breadcrumbsTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/Breadcrumbs', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { items } = breadcrumbsTab()

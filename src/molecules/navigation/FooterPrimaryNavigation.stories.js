@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, withKnobs } from '@storybook/addon-knobs'
+import { object} from '@storybook/addon-knobs'
 
 import { Div } from '../../helpers/Element'
 import FooterPrimaryNavigation from './FooterPrimaryNavigation'
@@ -10,7 +10,7 @@ import data from './FooterPrimaryNavigation.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/navigation/FooterPrimaryNavigation', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const items = object('Total pages', data.items, propsTab)

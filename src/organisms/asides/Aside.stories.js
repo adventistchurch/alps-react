@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, withKnobs } from '@storybook/addon-knobs'
+import { object} from '@storybook/addon-knobs'
 
 import Aside from './Aside'
 import data from './Aside.stories.json'
@@ -24,7 +24,7 @@ export function asideTab(settings = {}) {
 }
 
 storiesOf('organisms/asides/Aside', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { primary, secondary } = asideTab()

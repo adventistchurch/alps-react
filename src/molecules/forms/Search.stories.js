@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import Search from './Search'
 
@@ -9,7 +9,7 @@ import data from './Search.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/forms/Search', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const placeholder = text('Placeholder', data.placeholder, propsTab)

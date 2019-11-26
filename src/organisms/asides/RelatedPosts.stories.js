@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { object, text} from '@storybook/addon-knobs'
 
 import RelatedPosts from './RelatedPosts'
 import data from './RelatedPosts.stories.json'
@@ -42,7 +42,7 @@ export function relatedPostsTab(settings = {}) {
 }
 
 storiesOf('organisms/asides/RelatedPosts', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { heading, linkText, url } = textsTab()

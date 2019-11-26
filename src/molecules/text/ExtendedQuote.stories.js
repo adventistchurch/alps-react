@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, text, withKnobs } from '@storybook/addon-knobs'
+import { number, text} from '@storybook/addon-knobs'
 
 import ExtendedQuote from './ExtendedQuote'
 
@@ -9,7 +9,7 @@ import data from './ExtendedQuote.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/text/ExtendedQuote', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const title = text('Title', data.title, propsTab)

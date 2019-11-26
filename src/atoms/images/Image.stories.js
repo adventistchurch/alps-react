@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, text, boolean } from '@storybook/addon-knobs'
+import {  text, boolean } from '@storybook/addon-knobs'
 
 import Image from './Image'
 
@@ -13,7 +13,7 @@ const defaults = {
 }
 
 storiesOf('atoms/images/Image', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const src = text('Image Source *', defaults.src, propsTab)

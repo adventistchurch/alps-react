@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, text } from '@storybook/addon-knobs'
 
 import PageHeader from './PageHeader'
 
@@ -44,19 +44,16 @@ export function pageHeaderTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/PageHeader', module)
-  .addDecorator(withKnobs)
+storiesOf('organisms/sections/PageHeader', module).addWithJSX('Default', () => {
+  const { kicker, title, url } = textsTab()
+  const { background } = backgroundTab()
 
-  .addWithJSX('Default', () => {
-    const { kicker, title, url } = textsTab()
-    const { background } = backgroundTab()
-
-    return (
-      <PageHeader
-        background={background}
-        kicker={kicker}
-        title={title}
-        url={url}
-      />
-    )
-  })
+  return (
+    <PageHeader
+      background={background}
+      kicker={kicker}
+      title={title}
+      url={url}
+    />
+  )
+})

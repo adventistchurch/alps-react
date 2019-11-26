@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
-import { withKnobs, text, select } from '@storybook/addon-knobs'
+import {  text, select } from '@storybook/addon-knobs'
 
 import Button from './Button'
 import { iconNames } from '../icons/Icon'
@@ -11,7 +11,7 @@ import data from './Button.stories.json'
 const propsTab = 'Props'
 
 storiesOf('atoms/buttons/Button', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const textValue = text('Text *', data.text, propsTab)

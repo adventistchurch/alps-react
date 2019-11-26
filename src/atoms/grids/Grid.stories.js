@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, select, withKnobs } from '@storybook/addon-knobs'
+import { boolean, select} from '@storybook/addon-knobs'
 
 import Grid, { asOptions } from './Grid'
 import GridItem from './GridItem'
@@ -8,7 +8,7 @@ import GridItem from './GridItem'
 const tab = 'Props'
 
 storiesOf('atoms/grids/Grid', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const as = select('As', asOptions, asOptions[0], tab)

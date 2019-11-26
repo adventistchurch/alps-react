@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, select, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, select} from '@storybook/addon-knobs'
 
 import BlockFeed from './BlockFeed'
 
@@ -27,7 +27,7 @@ export function blocksFeedTab(settings = {}) {
 }
 
 storiesOf('organisms/sections/BlockFeed', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { blocks, blocksType, grid } = blocksFeedTab()

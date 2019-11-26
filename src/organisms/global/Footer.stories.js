@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import Footer from './Footer'
 
@@ -40,7 +40,7 @@ export function footerTab({ tab = 'Footer' } = {}) {
 }
 
 storiesOf('organisms/global/Footer', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { copyright, textFooter } = textTab()

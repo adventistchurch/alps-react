@@ -5,7 +5,7 @@ import {
   object,
   select,
   text,
-  withKnobs,
+  
 } from '@storybook/addon-knobs'
 
 import Picture from './Picture'
@@ -38,7 +38,7 @@ export function pictureTab(settings = {}) {
 }
 
 storiesOf('atoms/images/Picture', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { image, lazy } = pictureTab()

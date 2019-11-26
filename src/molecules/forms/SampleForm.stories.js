@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text, withKnobs } from '@storybook/addon-knobs'
+import { object, text} from '@storybook/addon-knobs'
 
 import Button from '../../atoms/buttons/Button'
 import Checkbox from './elements/Checkbox'
@@ -17,7 +17,7 @@ import data from './SampleForm.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/forms/SampleForm', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const fields = object('Fields', data.form.fields, propsTab)

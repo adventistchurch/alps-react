@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, withKnobs } from '@storybook/addon-knobs'
+import { text} from '@storybook/addon-knobs'
 
 import Intro from './Intro'
 
@@ -9,7 +9,7 @@ import data from './Intro.stories.json'
 const propsTab = 'Props'
 
 storiesOf('atoms/texts/Intro', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('With text prop', () => {
     const captionText = text('Text *', data.text, propsTab)

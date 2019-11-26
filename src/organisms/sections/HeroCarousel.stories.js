@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object} from '@storybook/addon-knobs'
 
 import HeroCarousel from './HeroCarousel'
 
@@ -25,7 +25,7 @@ export function heroCarouselTab(settings = {}) {
 }
 
 storiesOf('organisms/sections/HeroCarousel', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const { showArrows, slides } = heroCarouselTab()

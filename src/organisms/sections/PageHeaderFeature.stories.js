@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, select, withKnobs } from '@storybook/addon-knobs'
+import { boolean, object, select } from '@storybook/addon-knobs'
 
 import PageHeaderFeature, {
   pageHeaderFeatureBlockTypes,
@@ -51,8 +51,6 @@ export function pageHeaderFeatureTab(settings = {}) {
 }
 
 storiesOf('organisms/sections/PageHeaderFeature', module)
-  .addDecorator(withKnobs)
-
   .addWithJSX('Default', () => {
     const { blocks, blocksType, hasScroll } = pageHeaderFeatureTab({
       blocksType: 'feature',

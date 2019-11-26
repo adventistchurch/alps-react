@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { } from '@storybook/addon-knobs'
 
 import ChannelMain from './ChannelMain'
 
@@ -13,7 +13,7 @@ import {
 } from './BasicPage.stories'
 
 storiesOf('templates/ChannelMain', module)
-  .addDecorator(withKnobs)
+  
 
   .addWithJSX('Default', () => {
     const pageHeader = pageHeaderTab({ kicker: 'Kicker' })
