@@ -47,6 +47,21 @@ export function pageHeaderTab(settings = {}) {
 
 storiesOf('organisms/sections/PageHeaderLong', module)
   .addWithJSX('Default', () => {
+    const { kicker, subtitle, title, url } = textsTab({ subtitle: '', url: '' })
+    const { background } = backgroundTab()
+
+    return (
+      <PageHeaderLong
+        background={background}
+        kicker={kicker}
+        title={title}
+        subtitle={subtitle}
+        url={url}
+      />
+    )
+  })
+
+  .addWithJSX('With Link', () => {
     const { kicker, title, url } = textsTab()
     const { background } = backgroundTab()
 
@@ -61,7 +76,7 @@ storiesOf('organisms/sections/PageHeaderLong', module)
   })
 
   .addWithJSX('With Image', () => {
-    const { kicker, title, subtitle, url } = textsTab({ subtitle: '' })
+    const { kicker, title, subtitle, url } = textsTab({ subtitle: '', url: '' })
     const { background } = backgroundTab({ showBackground: true })
 
     return (
@@ -77,7 +92,7 @@ storiesOf('organisms/sections/PageHeaderLong', module)
 
   .addWithJSX('With Subtitle', () => {
     const { kicker, title, subtitle, url } = textsTab()
-    const { background } = backgroundTab({ showBackground: true })
+    const { background } = backgroundTab({ showBackground: true, url: '' })
 
     return (
       <PageHeaderLong

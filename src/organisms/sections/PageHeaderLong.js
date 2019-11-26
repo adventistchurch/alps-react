@@ -70,7 +70,6 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
             fontType="secondary"
             fontSize="m"
             borderSide={background ? 'left' : null}
-            borderAt={background ? 'medium' : null}
             shiftSide="left"
             shiftAt="medium"
             gridWrap={5}
