@@ -47,7 +47,11 @@ addDecorator(story => {
   return <Wrapper {...props}>{content}</Wrapper>
 })
 
-addDecorator(withKnobs) // this must be added after the story decorator
+addDecorator(
+  withKnobs({
+    escapeHTML: false,
+  })
+) // this must be added after the story decorator
 
 setAddon(JSXAddon)
 
