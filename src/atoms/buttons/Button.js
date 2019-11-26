@@ -35,6 +35,7 @@ function Button({
   expand,
   icon,
   iconFill,
+  iconPosition,
   iconProps,
   iconSize,
   lighter,
@@ -57,6 +58,16 @@ function Button({
     toggle,
   })
 
+  const iconElem = icon ? (
+    <IconWrap
+      color="white"
+      fill={iconFill}
+      name={icon}
+      size={iconSize}
+      {...iconProps}
+    />
+  ) : null
+
   return (
     <Element
       tag={as}
@@ -65,16 +76,9 @@ function Button({
       onClick={onClick}
       {...rest}
     >
-      {icon && (
-        <IconWrap
-          color="white"
-          fill={iconFill}
-          name={icon}
-          size={iconSize}
-          {...iconProps}
-        />
-      )}
+      {iconElem && iconPosition === 'left' && iconElem}
       {text}
+      {iconElem && iconPosition === 'right' && iconElem}
     </Element>
   )
 }
@@ -86,6 +90,7 @@ Button.propTypes = {
   expand: PropTypes.bool,
   icon: PropTypes.string,
   iconFill: PropTypes.string,
+  iconPosition: PropTypes.oneOf(['left', 'right']),
   iconProps: PropTypes.object,
   iconSize: PropTypes.string,
   lighter: PropTypes.bool,
@@ -101,6 +106,7 @@ Button.propTypes = {
 Button.defaultProps = {
   as: 'button',
   iconFill: 'white',
+  iconPosition: 'left',
   iconSize: 'xs',
 }
 
