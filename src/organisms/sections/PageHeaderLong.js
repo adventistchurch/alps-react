@@ -5,7 +5,7 @@ import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 import { Div, Header, HeadingOne, Link, Span } from '../../helpers/Element'
 
-const getBackgroundRule = url => `.c-background-image {
+const getBackgroundRule = url => `.o-background-image {
   background-image: url('${url}');
 }`
 
