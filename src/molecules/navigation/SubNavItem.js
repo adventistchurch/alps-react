@@ -2,29 +2,47 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { LI, Link } from '../../helpers/Element'
+import useToggle from '../../helpers/useToggle'
+import SubNav from './SubNav'
+import SubNavArrow from './SubNavArrow'
 
-function SubNavItem({ active, text, url, type }) {
+function SubNavItem({ active, level, subnav, text, url, type }) {
+  const { onToggle, openClass } = useToggle(false)
+  const hasSubnav = Array.isArray(subnav) && subnav.length > 0
+  const isTertiary = level === 'tertiary'
+  const navLevel = isTertiary ? 'subnav__subnav' : 'subnav'
+
   return (
     <LI
-      className={`c-${type}-nav__subnav__list-item c-subnav__list-item`}
-      backgroundColor="gray--light"
+      className={`c-${type}-nav__${navLevel}__list-item c-subnav__list-item ${
+        hasSubnav ? 'has-subnav' : ''
+      } ${openClass}`}
+      backgroundColor={isTertiary ? null : 'gray--light'}
+      themeBackground={isTertiary ? 'base' : null}
     >
       <Link
-        className={`c-${type}-nav__subnav__link c-subnav__link ${
+        className={`c-${type}-nav__${navLevel}__link c-subnav__link ${
           active ? ' active' : ''
         }`}
         href={url}
         color={`gray${type === 'primary' ? '--dark' : ''}`}
-        themeLinkHover="base"
+        themeLinkHover={isTertiary ? 'lighter' : 'base'}
       >
         {text}
       </Link>
+
+      {hasSubnav && (
+        <SubNavArrow className={openClass} fill="gray" onClick={onToggle} />
+      )}
+      {hasSubnav && <SubNav items={subnav} level="tertiary" type={type} />}
     </LI>
   )
 }
 
 SubNavItem.propTypes = {
   active: PropTypes.bool,
+  level: PropTypes.oneOf(['secondary', 'tertiary']),
+  subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['primary', 'secondary']).isRequired,
   url: PropTypes.string.isRequired,

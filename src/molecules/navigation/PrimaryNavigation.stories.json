@@ -51,7 +51,43 @@
     },
     {
       "text": "World Church",
-      "url": "#"
+      "url": "#",
+      "subnav": [
+        {
+          "text": "General Conference",
+          "url": "#"
+        },
+        {
+          "text": "East-Central Africa",
+          "url": "#"
+        },
+        {
+          "text": "North America",
+          "url": "#",
+          "subnav": [
+            {
+              "text": "Atlantic Union",
+              "url": "#"
+            },
+            {
+              "text": "Canadian Union",
+              "url": "#"
+            },
+            {
+              "text": "Columbia Union",
+              "url": "#"
+            },
+            {
+              "text": "Lake Union",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "text": "Middle East and North Africa",
+          "url": "#"
+        }
+      ]
     },
     {
       "text": "Information",
