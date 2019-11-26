@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import renderItems from '../../helpers/renderItems'
+import useDrawerContext from '../../helpers/useDrawerContext'
 import usePriorityNav from '../../helpers/usePriorityNav'
 import PrimaryNavigationItem from './PrimaryNavItem'
 
@@ -29,7 +30,9 @@ PrimaryNavBase.propTypes = {
 }
 
 function PrimaryNavWithPriority({ items }) {
+  const { openDrawer } = useDrawerContext()
   const {
+    dropdownRef,
     hasDropdown,
     lastVisibleIndex,
     // safeToShow
@@ -44,7 +47,24 @@ function PrimaryNavWithPriority({ items }) {
   )
 
   return (
-    <PrimaryNavBase items={priorityItems} hasDropdown={hasDropdown} {...rest} />
+    <PrimaryNavBase items={priorityItems} hasDropdown={hasDropdown} {...rest}>
+      <span
+        aria-haspopup={!hasDropdown}
+        className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
+      >
+        <button
+          aria-controls="menu"
+          className={`c-priority-nav__dropdown-toggle c-priority-nav--is-${
+            hasDropdown ? 'visible' : 'hidden'
+          }`}
+          onClick={openDrawer}
+          type="button"
+          ref={dropdownRef}
+        >
+          {''}
+        </button>
+      </span>
+    </PrimaryNavBase>
   )
 }
 PrimaryNavWithPriority.propTypes = {

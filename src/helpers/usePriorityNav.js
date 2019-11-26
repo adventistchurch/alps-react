@@ -25,6 +25,7 @@ function getElementContentWidth(element, onlyPadding = false) {
  */
 function usePriorityNav({ total = 0 }) {
   // Set element refs, states and variables
+  const dropdownRef = useRef()
   const mainNavRef = useRef()
   const wrapperNavRef = useRef()
 
@@ -53,12 +54,18 @@ function usePriorityNav({ total = 0 }) {
   // Recalculates lastVisibleIndex and hasDropdown values based on the visible breakpoints
   function onResize() {
     const wrapper = wrapperNavRef.current
+    const dropdown = dropdownRef.current
 
     // [Re]calculate wrapper's width
     const wrapperWidth = getElementContentWidth(wrapper)
 
+    // If present, [re]calculate dropdown's width
+    const dropdownWidth = dropdown ? getElementContentWidth(dropdown, true) : 0
+
     // Get all visible breakpoints (smaller that wrapper + dropdown widths)
-    const visibleBreakpoints = breakpoints.filter(bp => bp < wrapperWidth)
+    const visibleBreakpoints = breakpoints.filter(
+      bp => bp < wrapperWidth - dropdownWidth
+    )
 
     // Calculate and set the last visible breakpoint
     setLastVisibleIndex(visibleBreakpoints.length - 1)
@@ -75,6 +82,7 @@ function usePriorityNav({ total = 0 }) {
   useWindowEvent('resize', onResize, 50, true)
 
   return {
+    dropdownRef,
     hasDropdown,
     lastVisibleIndex,
     mainNavRef,
