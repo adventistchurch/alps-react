@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object} from '@storybook/addon-knobs'
+import { object } from '@storybook/addon-knobs'
 
 import Inline from './Inline'
 import data from './Inline.stories.json'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text} from '@storybook/addon-knobs'
+import { boolean, object, text } from '@storybook/addon-knobs'
 
 import SecondaryNavigation from './SecondaryNavigation'
 

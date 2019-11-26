@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, text} from '@storybook/addon-knobs'
+import { boolean, text } from '@storybook/addon-knobs'
 
 import Sabbath from './Sabbath'
 import data from './Sabbath.stories.json'

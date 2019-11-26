@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, select} from '@storybook/addon-knobs'
+import { boolean, select } from '@storybook/addon-knobs'
 
 import Header from './Header'
 import { logoNames } from '../../atoms/images/logos'

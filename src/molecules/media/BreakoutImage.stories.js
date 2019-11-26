@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { object, text} from '@storybook/addon-knobs'
+import { object, text } from '@storybook/addon-knobs'
 
 import BreakoutImage from './BreakoutImage'
 

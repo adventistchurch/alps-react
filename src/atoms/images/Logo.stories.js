@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { select, text} from '@storybook/addon-knobs'
+import { select, text } from '@storybook/addon-knobs'
 
 import Logo from './Logo'
 import { logoNames } from './logos'

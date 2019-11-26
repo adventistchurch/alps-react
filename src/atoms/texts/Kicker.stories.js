@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text as textInput} from '@storybook/addon-knobs'
+import { text as textInput } from '@storybook/addon-knobs'
 
 import Kicker from './Kicker'
 
