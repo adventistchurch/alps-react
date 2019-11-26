@@ -7,6 +7,7 @@ import {
   setAddon,
 } from '@storybook/react'
 import { boolean, select, withKnobs } from '@storybook/addon-knobs'
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import JSXAddon from 'storybook-addon-jsx'
 
 import Wrapper from '../src/Wrapper'
@@ -51,7 +52,7 @@ addDecorator(withKnobs) // this must be added after the story decorator
 setAddon(JSXAddon)
 
 addParameters({
-  viewport: { defaultViewport: 'responsive' },
+  viewport: { defaultViewport: 'responsive', viewports: INITIAL_VIEWPORTS },
 
   options: {
     theme,
