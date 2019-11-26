@@ -16,6 +16,7 @@ const statuses = {
 
 function DrawerContextProvider({ children }) {
   const [isOpen, setIsOpen] = useState(statuses.closed)
+  const [openSubNav, setOpenSubNav] = useState(null)
 
   function openDrawer(event) {
     event.preventDefault()
@@ -39,6 +40,8 @@ function DrawerContextProvider({ children }) {
         isOpen,
         openDrawer,
         openDrawerWithSearch,
+        openSubNav,
+        setOpenSubNav,
       }}
     >
       {children}
