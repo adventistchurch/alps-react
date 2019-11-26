@@ -6,18 +6,31 @@ import useDrawerContext from '../../helpers/useDrawerContext'
 import usePriorityNav from '../../helpers/usePriorityNav'
 import PrimaryNavigationItem from './PrimaryNavItem'
 
-function PrimaryNavBase({ items, children, ...others }) {
-  const { hasDropdown, mainNavRef, wrapperNavRef } = others
+export const NavContext = React.createContext()
+
+function PrimaryNavBase({
+  children,
+  hasDropdown,
+  items,
+  mainNavRef,
+  wrapperNavRef,
+}) {
+  const { openSubNav } = useDrawerContext()
 
   return (
     <nav
       className={`c-primary-nav c-priority-nav priority-nav ${
-        hasDropdown ? 'priority-nav-has-dropdown' : ''
+        hasDropdown ? 'c-priority-nav-has-dropdown' : ''
       }`}
       ref={wrapperNavRef}
       role="navigation"
     >
-      <ul className="c-primary-nav__list c-priority-nav__list" ref={mainNavRef}>
+      <ul
+        className={`c-primary-nav__list c-priority-nav__list ${
+          openSubNav !== null ? 'this-is-active' : ''
+        }`}
+        ref={mainNavRef}
+      >
         {renderItems(items, PrimaryNavigationItem)}
       </ul>
       {children}
@@ -25,8 +38,12 @@ function PrimaryNavBase({ items, children, ...others }) {
   )
 }
 PrimaryNavBase.propTypes = {
-  items: PropTypes.array.isRequired,
   children: PropTypes.node,
+  hasDropdown: PropTypes.bool,
+  drawer: PropTypes.bool,
+  items: PropTypes.array.isRequired,
+  mainNavRef: PropTypes.object,
+  wrapperNavRef: PropTypes.object,
 }
 
 function PrimaryNavWithPriority({ items }) {

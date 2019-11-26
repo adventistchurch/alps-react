@@ -12,6 +12,11 @@ function SubNavItem({ active, level, subnav, text, url, type }) {
   const isTertiary = level === 'tertiary'
   const navLevel = isTertiary ? 'subnav__subnav' : 'subnav'
 
+  function onArrowClick(e) {
+    e.stopPropagation()
+    onToggle()
+  }
+
   return (
     <LI
       className={`c-${type}-nav__${navLevel}__list-item c-subnav__list-item ${
@@ -32,7 +37,12 @@ function SubNavItem({ active, level, subnav, text, url, type }) {
       </Link>
 
       {hasSubnav && (
-        <SubNavArrow className={openClass} fill="gray" onClick={onToggle} />
+        <SubNavArrow
+          fill="gray"
+          className={openClass}
+          onClick={onArrowClick}
+          isSubNav
+        />
       )}
       {hasSubnav && <SubNav items={subnav} level="tertiary" type={type} />}
     </LI>

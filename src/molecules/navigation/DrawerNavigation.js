@@ -17,10 +17,13 @@ function DrawerNavigation({
   primaryNav,
   secondaryNav,
 }) {
-  const { closeDrawer, isOpen } = useDrawerContext()
+  const { closeDrawer, isOpen, setOpenSubNav } = useDrawerContext()
 
   return (
-    <GridSeven className={`c-drawer ${isOpen.menu ? 'this-is-active' : ''}`}>
+    <GridSeven
+      className={`c-drawer ${isOpen.menu ? 'this-is-active' : ''}`}
+      onClick={() => setOpenSubNav(null)}
+    >
       <Div
         className="c-drawer__toggle"
         themeBackgroundTrans="darker"
