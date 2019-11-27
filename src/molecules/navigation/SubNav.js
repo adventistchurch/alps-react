@@ -18,7 +18,7 @@ function SubNav({ items, level, type }) {
 SubNav.propTypes = {
   items: PropTypes.array,
   level: PropTypes.oneOf(['secondary', 'tertiary']),
-  type: SubNavItem.propTypes.type,
+  type: PropTypes.oneOf(['primary', 'secondary']),
 }
 SubNav.defaultProps = {
   items: [],
