@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-// import { action } from '@storybook/addon-actions'
 import { boolean, text as textInput, select } from '@storybook/addon-knobs'
 
 import Button, { iconPositions, iconAsElements } from './Button'
@@ -38,12 +37,19 @@ export function iconTab(settings = {}) {
 }
 
 export function settingsTab(settings = {}) {
-  const { disabled, lighter, outline, simple, small, toggle, tab } = getTabData(
-    'Settings',
-    settings
-  )
+  const {
+    disabled,
+    expand,
+    lighter,
+    outline,
+    simple,
+    small,
+    toggle,
+    tab,
+  } = getTabData('Settings', settings)
   return {
     disabled: boolean('Disabled', disabled, tab),
+    expand: boolean('Expand', expand, tab),
     lighter: boolean('Lighter', lighter, tab),
     outline: boolean('Outline', outline, tab),
     simple: boolean('Simple', simple, tab),
@@ -67,32 +73,37 @@ storiesOf('atoms/buttons/Button', module)
   })
 
   .addWithJSX('Disabled', () => {
-    const props = allTabs()
+    const props = allTabs({ disabled: true })
     return <Button disabled {...props} />
   })
 
   .addWithJSX('Lighter', () => {
-    const props = allTabs()
+    const props = allTabs({ lighter: true })
     return <Button lighter {...props} />
   })
 
   .addWithJSX('Outline', () => {
-    const props = allTabs()
+    const props = allTabs({ outline: true })
     return <Button outline {...props} />
   })
 
   .addWithJSX('Simple', () => {
-    const props = allTabs()
+    const props = allTabs({ simple: true })
     return <Button simple {...props} />
   })
 
   .addWithJSX('Small', () => {
-    const props = allTabs()
+    const props = allTabs({ small: true })
     return <Button small {...props} />
   })
 
-  .addWithJSX('With Icon', () => {
-    const props = allTabs()
+  .addWithJSX('With icon left', () => {
+    const props = allTabs({ icon: 'plus' })
+    return <Button icon="plus" {...props} />
+  })
+
+  .addWithJSX('With icon right', () => {
+    const props = allTabs({ icon: 'plus', iconPosition: 'right' })
     return <Button icon="plus" {...props} />
   })
 
