@@ -9,8 +9,6 @@ import data from './HeadingBlock.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/blocks/HeadingBlock', module)
-  
-
   .addWithJSX('Default', () => {
     const title = text('Title', data.title, propsTab)
     const linkText = text('Link Text', data.linkText, propsTab)

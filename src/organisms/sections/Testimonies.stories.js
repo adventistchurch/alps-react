@@ -36,10 +36,9 @@ export function testimoniesTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/Testimonies', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('organisms/sections/Testimonies', module).addWithJSX(
+  'Default',
+  () => {
     const {
       items,
       linkText,
@@ -59,4 +58,5 @@ storiesOf('organisms/sections/Testimonies', module)
         shareUrl={shareUrl}
       />
     )
-  })
+  }
+)

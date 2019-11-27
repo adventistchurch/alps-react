@@ -1,15 +1,13 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { } from '@storybook/addon-knobs'
 
 import ArticleContent from './ArticleContent'
 
 import ArticleWrap from './ArticleWrap'
 
-storiesOf('organisms/content/ArticleContent', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('organisms/content/ArticleContent', module).addWithJSX(
+  'Default',
+  () => {
     return (
       <ArticleContent>
         <ArticleWrap hasDropcap spacingSize="double">
@@ -45,4 +43,5 @@ storiesOf('organisms/content/ArticleContent', module)
         </ArticleWrap>
       </ArticleContent>
     )
-  })
+  }
+)

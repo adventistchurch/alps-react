@@ -6,10 +6,7 @@ import Dropcap from './Dropcap'
 
 const propsTab = 'Props'
 
-storiesOf('atoms/texts/Dropcap', module)
-  
-
-  .addWithJSX('Default', () => {
-    const letter = text('Letter *', 'S', propsTab)
-    return <Dropcap letter={letter} />
-  })
+storiesOf('atoms/texts/Dropcap', module).addWithJSX('Default', () => {
+  const letter = text('Letter *', 'S', propsTab)
+  return <Dropcap letter={letter} />
+})

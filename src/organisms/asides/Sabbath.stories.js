@@ -41,8 +41,6 @@ export function sabbathTab(settings = {}) {
 }
 
 storiesOf('organisms/asides/Sabbath', module)
-  
-
   .addWithJSX('Default', () => {
     const { showLogo, showLogoOnScroll } = logoTab()
 

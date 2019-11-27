@@ -54,8 +54,6 @@ function iconWrapTab(settings = {}) {
 }
 
 storiesOf('atoms/icons/IconWrap', module)
-  
-
   .addWithJSX('Default', () => {
     const { name, size, color, background, themeColor, fill } = iconWrapTab({
       name: 'logo',

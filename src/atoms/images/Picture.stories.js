@@ -1,12 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  boolean,
-  object,
-  select,
-  text,
-  
-} from '@storybook/addon-knobs'
+import { boolean, object, select, text } from '@storybook/addon-knobs'
 
 import Picture from './Picture'
 import data from './Picture.stories.json'
@@ -37,10 +31,7 @@ export function pictureTab(settings = {}) {
   }
 }
 
-storiesOf('atoms/images/Picture', module)
-  
-
-  .addWithJSX('Default', () => {
-    const { image, lazy } = pictureTab()
-    return <Picture image={image} lazy={lazy} />
-  })
+storiesOf('atoms/images/Picture', module).addWithJSX('Default', () => {
+  const { image, lazy } = pictureTab()
+  return <Picture image={image} lazy={lazy} />
+})

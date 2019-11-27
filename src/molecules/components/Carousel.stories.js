@@ -42,8 +42,6 @@ export function carouselTab(settings = {}) {
 }
 
 storiesOf('molecules/components/Carousel', module)
-  
-
   .addWithJSX('Default (with dots)', () => {
     const { showArrows, showDots } = optionsTab()
     const { slides } = slidesTab()

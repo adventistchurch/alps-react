@@ -17,8 +17,6 @@ import data from './SampleForm.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/forms/SampleForm', module)
-  
-
   .addWithJSX('Default', () => {
     const fields = object('Fields', data.form.fields, propsTab)
     return <SampleForm fields={fields} />

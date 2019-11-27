@@ -9,8 +9,6 @@ import data from './Pullquote.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/text/Pullquote', module)
-  
-
   .addWithJSX('Default', () => {
     const quote = text('Quote *', data.quote, propsTab)
     const author = text('Author', data.author, propsTab)

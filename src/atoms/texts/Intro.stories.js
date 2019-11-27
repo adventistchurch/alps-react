@@ -9,8 +9,6 @@ import data from './Intro.stories.json'
 const propsTab = 'Props'
 
 storiesOf('atoms/texts/Intro', module)
-  
-
   .addWithJSX('With text prop', () => {
     const captionText = text('Text *', data.text, propsTab)
     return <Intro text={captionText} />

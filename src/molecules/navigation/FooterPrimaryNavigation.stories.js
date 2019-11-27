@@ -9,10 +9,9 @@ import data from './FooterPrimaryNavigation.stories.json'
 
 const propsTab = 'Props'
 
-storiesOf('molecules/navigation/FooterPrimaryNavigation', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('molecules/navigation/FooterPrimaryNavigation', module).addWithJSX(
+  'Default',
+  () => {
     const items = object('Total pages', data.items, propsTab)
 
     return (
@@ -21,4 +20,5 @@ storiesOf('molecules/navigation/FooterPrimaryNavigation', module)
         <FooterPrimaryNavigation items={items} />
       </Div>
     )
-  })
+  }
+)

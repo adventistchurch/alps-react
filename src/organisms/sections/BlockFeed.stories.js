@@ -26,11 +26,8 @@ export function blocksFeedTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/BlockFeed', module)
-  
+storiesOf('organisms/sections/BlockFeed', module).addWithJSX('Default', () => {
+  const { blocks, blocksType, grid } = blocksFeedTab()
 
-  .addWithJSX('Default', () => {
-    const { blocks, blocksType, grid } = blocksFeedTab()
-
-    return <BlockFeed blocks={blocks} blocksType={blocksType} grid={grid} />
-  })
+  return <BlockFeed blocks={blocks} blocksType={blocksType} grid={grid} />
+})

@@ -1,12 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  
-  text,
-  boolean,
-  object,
-  select,
-} from '@storybook/addon-knobs'
+import { text, boolean, object, select } from '@storybook/addon-knobs'
 
 import ContentBlock from './ContentBlock'
 
@@ -75,8 +69,6 @@ export function contentBlockTab(settings = {}) {
 }
 
 storiesOf('molecules/blocks/ContentBlock', module)
-  
-
   .addWithJSX('Default', () => {
     const { category, description, title } = textsTab()
     const { image } = imageTab()

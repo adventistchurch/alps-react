@@ -6,10 +6,7 @@ import Kicker from './Kicker'
 
 const propsTab = 'Props'
 
-storiesOf('atoms/texts/Kicker', module)
-  
-
-  .addWithJSX('Default', () => {
-    const text = textInput('text *', 'A Kicker title', propsTab)
-    return <Kicker text={text} />
-  })
+storiesOf('atoms/texts/Kicker', module).addWithJSX('Default', () => {
+  const text = textInput('text *', 'A Kicker title', propsTab)
+  return <Kicker text={text} />
+})

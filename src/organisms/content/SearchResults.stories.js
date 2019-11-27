@@ -5,7 +5,6 @@ import { boolean, object, text } from '@storybook/addon-knobs'
 import SearchResults from './SearchResults'
 
 import data from './SearchResults.stories.json'
-import {} from '../../molecules/blocks/ContentBlock.stories.js'
 
 function getTabData(name, settings = {}) {
   return {
@@ -52,10 +51,9 @@ export function searchResultsTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/content/SearchResults', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('organisms/content/SearchResults', module).addWithJSX(
+  'Default',
+  () => {
     const { results } = resultsTab()
     const { loadMoreLabel, loadMoreUrl, showLoadMore } = loadMoreTab()
 
@@ -67,4 +65,5 @@ storiesOf('organisms/content/SearchResults', module)
         loadMoreUrl={loadMoreUrl}
       />
     )
-  })
+  }
+)

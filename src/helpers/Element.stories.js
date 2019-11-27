@@ -1,12 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  boolean,
-  select,
-  text,
-  
-  number,
-} from '@storybook/addon-knobs'
+import { boolean, select, text, number } from '@storybook/addon-knobs'
 
 import Element, {
   Article,
@@ -405,8 +399,6 @@ export function elementTab(props) {
 }
 
 storiesOf('helpers/Element', module)
-  
-
   .addWithJSX('Default', () => {
     const title = text('Title', 'Lorem ipsum dolor sit amet', 'Content')
     const paragraph = text(
@@ -459,7 +451,6 @@ storiesOf('helpers/Element', module)
   })
 
 storiesOf("helpers/Element's Shorcuts", module)
-  
   .addWithJSX('Article (<article>)', () => {
     const content = text('Content', 'Lorem ipsum', 'Content')
     const props = elementTab({ as: false })

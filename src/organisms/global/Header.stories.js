@@ -40,21 +40,18 @@ export function headerTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/global/Header', module)
-  
+storiesOf('organisms/global/Header', module).addWithJSX('Default', () => {
+  const logo = logoTab()
+  const primaryNav = primaryNavTab()
+  const secondaryNav = secondaryNavTab()
+  const drawer = drawerTab()
 
-  .addWithJSX('Default', () => {
-    const logo = logoTab()
-    const primaryNav = primaryNavTab()
-    const secondaryNav = secondaryNavTab()
-    const drawer = drawerTab()
-
-    return (
-      <Header
-        drawer={drawer}
-        logo={logo}
-        primaryNav={primaryNav}
-        secondaryNav={secondaryNav}
-      />
-    )
-  })
+  return (
+    <Header
+      drawer={drawer}
+      logo={logo}
+      primaryNav={primaryNav}
+      secondaryNav={secondaryNav}
+    />
+  )
+})

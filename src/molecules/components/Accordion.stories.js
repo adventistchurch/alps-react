@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { } from '@storybook/addon-knobs'
 
 import Accordion from './Accordion'
 import ContentBlock from '../blocks/ContentBlock'
@@ -68,9 +67,9 @@ const defaults = {
   ],
 }
 
-storiesOf('molecules/components/Accordion', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('molecules/components/Accordion', module).addWithJSX(
+  'Default',
+  () => {
     return <Accordion items={defaults.items} />
-  })
+  }
+)

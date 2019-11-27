@@ -41,19 +41,16 @@ export function relatedPostsTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/asides/RelatedPosts', module)
-  
+storiesOf('organisms/asides/RelatedPosts', module).addWithJSX('Default', () => {
+  const { heading, linkText, url } = textsTab()
+  const { blocks } = blocksTab()
 
-  .addWithJSX('Default', () => {
-    const { heading, linkText, url } = textsTab()
-    const { blocks } = blocksTab()
-
-    return (
-      <RelatedPosts
-        blocks={blocks}
-        heading={heading}
-        linkText={linkText}
-        url={url}
-      />
-    )
-  })
+  return (
+    <RelatedPosts
+      blocks={blocks}
+      heading={heading}
+      linkText={linkText}
+      url={url}
+    />
+  )
+})

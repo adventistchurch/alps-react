@@ -62,8 +62,6 @@ function optionsTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/Pagination', module)
-  
-
   .addWithJSX('SVG Arrows (default)', () => {
     const pagesProps = pagesTab()
     const optionsProps = optionsTab()

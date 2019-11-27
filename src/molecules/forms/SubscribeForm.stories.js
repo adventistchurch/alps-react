@@ -8,20 +8,17 @@ import data from './SubscribeForm.stories.json'
 
 const propsTab = 'Props'
 
-storiesOf('molecules/forms/SubscribeForm', module)
-  
-
-  .addWithJSX('Default', () => {
-    const darkMode = boolean('Dark Mode', true, propsTab)
-    const title = text('Title', data.title, propsTab)
-    const submitLabel = text('Submit Button', data.submitLabel, propsTab)
-    const cancelLabel = text('Cancel Button', data.cancelLabel, propsTab)
-    return (
-      <SubscribeForm
-        cancelLabel={cancelLabel}
-        darkMode={darkMode}
-        submitLabel={submitLabel}
-        title={title}
-      />
-    )
-  })
+storiesOf('molecules/forms/SubscribeForm', module).addWithJSX('Default', () => {
+  const darkMode = boolean('Dark Mode', true, propsTab)
+  const title = text('Title', data.title, propsTab)
+  const submitLabel = text('Submit Button', data.submitLabel, propsTab)
+  const cancelLabel = text('Cancel Button', data.cancelLabel, propsTab)
+  return (
+    <SubscribeForm
+      cancelLabel={cancelLabel}
+      darkMode={darkMode}
+      submitLabel={submitLabel}
+      title={title}
+    />
+  )
+})

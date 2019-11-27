@@ -36,10 +36,9 @@ export function drawerTab(settings = {}) {
   }
 }
 
-storiesOf('molecules/navigation/DrawerNavigation', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('molecules/navigation/DrawerNavigation', module).addWithJSX(
+  'Default',
+  () => {
     const primaryNav = primaryNavTab()
     const secondaryNav = secondaryNavTab()
     const { aboutLeft, aboutRight } = aboutTextsTab()
@@ -52,4 +51,5 @@ storiesOf('molecules/navigation/DrawerNavigation', module)
         secondaryNav={secondaryNav}
       />
     )
-  })
+  }
+)

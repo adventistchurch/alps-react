@@ -1,12 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  boolean,
-  number,
-  object,
-  text,
-  
-} from '@storybook/addon-knobs'
+import { boolean, number, object, text } from '@storybook/addon-knobs'
 
 import range from '../../helpers/range'
 import Table from './Table'
@@ -16,8 +10,6 @@ import data from './Table.stories.json'
 const propsTab = 'Props'
 
 storiesOf('atoms/tables/Table', module)
-  
-
   .addWithJSX('Default', () => {
     const title = text('Title', data.table1.title, propsTab)
     const columns = object('Columns', data.table1.columns, propsTab)

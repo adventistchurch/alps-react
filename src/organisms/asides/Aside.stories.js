@@ -23,11 +23,8 @@ export function asideTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/asides/Aside', module)
-  
+storiesOf('organisms/asides/Aside', module).addWithJSX('Default', () => {
+  const { primary, secondary } = asideTab()
 
-  .addWithJSX('Default', () => {
-    const { primary, secondary } = asideTab()
-
-    return <Aside primary={primary} secondary={secondary} />
-  })
+  return <Aside primary={primary} secondary={secondary} />
+})

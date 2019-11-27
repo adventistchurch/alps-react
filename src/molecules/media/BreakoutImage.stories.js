@@ -9,8 +9,6 @@ import data from './BreakoutImage.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/media/BreakoutImage', module)
-  
-
   .addWithJSX('Default', () => {
     const srcSet = object('Image SrcSet *', data.srcSet, propsTab)
     const caption = text('Caption', data.caption, propsTab)

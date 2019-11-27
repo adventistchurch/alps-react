@@ -7,10 +7,7 @@ import data from './Definition.stories.json'
 
 const propsTab = 'Props'
 
-storiesOf('atoms/lists/Definition', module)
-  
-
-  .addWithJSX('Default', () => {
-    const items = object('Items', data.items, propsTab)
-    return <Definition items={items} />
-  })
+storiesOf('atoms/lists/Definition', module).addWithJSX('Default', () => {
+  const items = object('Items', data.items, propsTab)
+  return <Definition items={items} />
+})

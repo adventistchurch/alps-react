@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {  text, boolean } from '@storybook/addon-knobs'
+import { text, boolean } from '@storybook/addon-knobs'
 
 import BreakoutBlock from './BreakoutBlock'
 
@@ -9,10 +9,9 @@ import data from './BreakoutBlock.stories.json'
 const propsTab = 'Props'
 const ctaTab = 'CTA'
 
-storiesOf('molecules/blocks/BreakoutBlock', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('molecules/blocks/BreakoutBlock', module).addWithJSX(
+  'Default',
+  () => {
     const title = text('Title *', data.title, propsTab)
     const description = text('Description *', data.description, propsTab)
     const showCta = boolean('Show Call to Action', true, ctaTab)
@@ -26,4 +25,5 @@ storiesOf('molecules/blocks/BreakoutBlock', module)
         url={showCta ? url : null}
       />
     )
-  })
+  }
+)

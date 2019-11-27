@@ -9,8 +9,6 @@ import data from './FooterModal.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/components/FooterModal', module)
-  
-
   .addWithJSX('Default', () => {
     const modalText = text('Text *', data.text, propsTab)
     return <FooterModal text={modalText} />

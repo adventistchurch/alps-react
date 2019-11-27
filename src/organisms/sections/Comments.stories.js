@@ -39,12 +39,9 @@ export function commentsTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/Comments', module)
-  
+storiesOf('organisms/sections/Comments', module).addWithJSX('Default', () => {
+  const { title } = textsTab()
+  const { items } = itemsTab()
 
-  .addWithJSX('Default', () => {
-    const { title } = textsTab()
-    const { items } = itemsTab()
-
-    return <Comments title={title} items={items} />
-  })
+  return <Comments title={title} items={items} />
+})

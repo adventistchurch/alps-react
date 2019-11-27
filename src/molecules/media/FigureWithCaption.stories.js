@@ -9,8 +9,6 @@ import data from './FigureWithCaption.stories.json'
 const propsTab = 'Props'
 
 storiesOf('molecules/media/FigureWithCaption', module)
-  
-
   .addWithJSX('Default', () => {
     const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
     const alt = text('Image Alt', data.image.alt, propsTab)

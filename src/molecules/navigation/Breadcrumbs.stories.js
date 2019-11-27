@@ -26,8 +26,6 @@ export function breadcrumbsTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/Breadcrumbs', module)
-  
-
   .addWithJSX('Default', () => {
     const { items } = breadcrumbsTab()
 

@@ -39,20 +39,17 @@ export function footerTab({ tab = 'Footer' } = {}) {
   }
 }
 
-storiesOf('organisms/global/Footer', module)
-  
+storiesOf('organisms/global/Footer', module).addWithJSX('Default', () => {
+  const { copyright, textFooter } = textTab()
+  const address = addressTab()
 
-  .addWithJSX('Default', () => {
-    const { copyright, textFooter } = textTab()
-    const address = addressTab()
-
-    return (
-      <Footer
-        address={address}
-        copyright={copyright}
-        primaryNav={dataPrimaryNav}
-        secondaryNav={dataSecondaryNav}
-        text={textFooter}
-      />
-    )
-  })
+  return (
+    <Footer
+      address={address}
+      copyright={copyright}
+      primaryNav={dataPrimaryNav}
+      secondaryNav={dataSecondaryNav}
+      text={textFooter}
+    />
+  )
+})

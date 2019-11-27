@@ -9,8 +9,6 @@ import { svgFillColors } from '../global/colors'
 const propsTab = 'Props'
 
 storiesOf('atoms/images/Logo', module)
-  
-
   .addWithJSX('Default', () => {
     const logoNamesWithoutGain = logoNames.filter(item => item !== 'gain')
     const name = select(

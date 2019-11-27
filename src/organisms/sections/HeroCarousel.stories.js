@@ -24,10 +24,10 @@ export function heroCarouselTab(settings = {}) {
   }
 }
 
-storiesOf('organisms/sections/HeroCarousel', module)
-  
-
-  .addWithJSX('Default', () => {
+storiesOf('organisms/sections/HeroCarousel', module).addWithJSX(
+  'Default',
+  () => {
     const { showArrows, slides } = heroCarouselTab()
     return <HeroCarousel slides={slides} showArrows={showArrows} />
-  })
+  }
+)

@@ -64,8 +64,6 @@ export function secondaryNavTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/SecondaryNavigation', module)
-  
-
   .addWithJSX('Default', () => {
     const { showLanguages, showMenu, showSearch } = optionsTab()
     const languageProps = languagesTab()

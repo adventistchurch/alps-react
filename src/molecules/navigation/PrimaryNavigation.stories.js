@@ -25,8 +25,6 @@ export function primaryNavTab(settings = {}) {
 }
 
 storiesOf('molecules/navigation/PrimaryNavigation', module)
-  
-
   .addWithJSX('Default', () => {
     const { hasPriorityNav, items } = primaryNavTab()
     return <PrimaryNavigation items={items} hasPriorityNav={hasPriorityNav} />

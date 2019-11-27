@@ -1,12 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  boolean,
-  date as datetime,
-  select,
-  text,
-  
-} from '@storybook/addon-knobs'
+import { boolean, date as datetime, select, text } from '@storybook/addon-knobs'
 
 import { iconNames } from '../../atoms/icons/Icon'
 import { dateFormats } from '../../helpers/DateTimeFormat'
@@ -93,8 +87,6 @@ export function mediaBlockTab(settings = {}) {
 }
 
 storiesOf('molecules/blocks/MediaBlock', module)
-  
-
   .addWithJSX('Default', () => {
     const { description, kicker, title, url } = textsTab()
     const { asBackgroundImage, image } = imageTab()

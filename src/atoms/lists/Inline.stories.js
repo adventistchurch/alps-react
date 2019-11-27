@@ -7,10 +7,7 @@ import data from './Inline.stories.json'
 
 const propsTab = 'Props'
 
-storiesOf('atoms/lists/Inline', module)
-  
-
-  .addWithJSX('Default', () => {
-    const items = object('Items', data.items, propsTab)
-    return <Inline items={items} />
-  })
+storiesOf('atoms/lists/Inline', module).addWithJSX('Default', () => {
+  const items = object('Items', data.items, propsTab)
+  return <Inline items={items} />
+})
