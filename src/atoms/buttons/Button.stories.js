@@ -1,60 +1,101 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
-import {  text, select } from '@storybook/addon-knobs'
+import { boolean, text as textInput, select } from '@storybook/addon-knobs'
 
-import Button from './Button'
+import Button, { iconPositions, iconAsElements } from './Button'
 import { iconNames } from '../icons/Icon'
 
 import data from './Button.stories.json'
+import { iconSizes } from '../icons/IconWrap'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Button.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function generalTab(settings = {}) {
+  const { as, text, url, tab } = getTabData('General', settings)
+  return {
+    text: textInput('Text *', text, tab),
+    url: textInput('URL', url, tab),
+    as: select('As', iconAsElements, as, tab),
+  }
+}
+
+export function iconTab(settings = {}) {
+  const { icon, iconPosition, iconSize, tab } = getTabData('Icon', settings)
+  return {
+    icon: select('Icon', iconNames, icon, tab),
+    iconSize: select('Size', iconSizes, iconSize, tab),
+    iconPosition: select('Position', iconPositions, iconPosition, tab),
+    iconFill: select('Fill', { white: 'white', '-': null }, iconPosition, tab),
+  }
+}
+
+export function settingsTab(settings = {}) {
+  const { disabled, lighter, outline, simple, small, toggle, tab } = getTabData(
+    'Settings',
+    settings
+  )
+  return {
+    disabled: boolean('Disabled', disabled, tab),
+    lighter: boolean('Lighter', lighter, tab),
+    outline: boolean('Outline', outline, tab),
+    simple: boolean('Simple', simple, tab),
+    small: boolean('Small', small, tab),
+    toggle: boolean('Toggle', toggle, tab),
+  }
+}
+
+function allTabs(settings = {}) {
+  const generalProps = generalTab(settings)
+  const iconProps = iconTab(settings)
+  const settingsProps = settingsTab(settings)
+
+  return { ...generalProps, ...iconProps, ...settingsProps }
+}
 
 storiesOf('atoms/buttons/Button', module)
-  
-
   .addWithJSX('Default', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} />
+    const props = allTabs()
+    return <Button {...props} />
   })
 
   .addWithJSX('Disabled', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    return <Button url={null} text={textValue} disabled />
+    const props = allTabs()
+    return <Button disabled {...props} />
   })
 
   .addWithJSX('Lighter', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} lighter />
+    const props = allTabs()
+    return <Button lighter {...props} />
   })
 
   .addWithJSX('Outline', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} outline />
+    const props = allTabs()
+    return <Button outline {...props} />
   })
 
   .addWithJSX('Simple', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} simple />
+    const props = allTabs()
+    return <Button simple {...props} />
   })
 
   .addWithJSX('Small', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} small />
+    const props = allTabs()
+    return <Button small {...props} />
+  })
+
+  .addWithJSX('With Icon', () => {
+    const props = allTabs()
+    return <Button icon="plus" {...props} />
   })
 
   .addWithJSX('Toggle', () => {
     return <Button icon="plus" outline toggle small />
-  })
-
-  .addWithJSX('With Icon', () => {
-    const textValue = text('Text *', data.text, propsTab)
-    const icon = select('Icon', iconNames, data.icon, propsTab)
-    const url = text('URL', data.url, propsTab)
-    return <Button url={url} text={textValue} icon={icon} />
   })

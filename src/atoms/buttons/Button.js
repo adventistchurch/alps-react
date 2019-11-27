@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 import Element from '../../helpers/Element'
 import IconWrap from '../icons/IconWrap'
 
+export const iconAsElements = ['a', 'button', 'span']
+export const iconPositions = ['left', 'right']
+
+// TODO: ask if this can be added to ALPS (maybe with something like `.o-button--icon-right`)
+const fixRightIcon = { marginLeft: '.3125rem', marginRight: '0' }
+
 /**
  *
  * @param {string} base - Base class name
@@ -64,6 +70,7 @@ function Button({
       fill={iconFill}
       name={icon}
       size={iconSize}
+      style={iconPosition === 'right' ? fixRightIcon : null}
       {...iconProps}
     />
   ) : null
@@ -76,21 +83,21 @@ function Button({
       onClick={onClick}
       {...rest}
     >
-      {iconElem && iconPosition === 'left' && iconElem}
+      {iconPosition === 'left' && iconElem}
       {text}
-      {iconElem && iconPosition === 'right' && iconElem}
+      {iconPosition === 'right' && iconElem}
     </Element>
   )
 }
 
 Button.propTypes = {
-  as: PropTypes.oneOf(['a', 'button', 'span']),
+  as: PropTypes.oneOf(iconAsElements),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   expand: PropTypes.bool,
   icon: PropTypes.string,
   iconFill: PropTypes.string,
-  iconPosition: PropTypes.oneOf(['left', 'right']),
+  iconPosition: PropTypes.oneOf(iconPositions),
   iconProps: PropTypes.object,
   iconSize: PropTypes.string,
   lighter: PropTypes.bool,
