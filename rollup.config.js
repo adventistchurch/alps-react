@@ -119,6 +119,7 @@ export default [
     onwarn: discardWarning,
     input: 'src/index.js',
     output: {
+      dir: 'dist/umd',
       esModule: false,
       file: pkg.unpkg,
       format: 'umd',
@@ -131,7 +132,7 @@ export default [
     },
     plugins: [
       del({
-        targets: 'build/umd',
+        targets: 'dist/umd',
       }),
       ...commonPlugins(),
       env === 'production' && terser(),
@@ -144,12 +145,12 @@ export default [
     input: getChunks(srcDir),
     output: [
       {
-        dir: 'build/esm',
+        dir: 'dist/esm',
         format: 'esm',
         sourcemap: true,
       },
       {
-        dir: 'build/cjs',
+        dir: 'dist/cjs',
         format: 'cjs',
         exports: 'named',
         sourcemap: true,
@@ -157,7 +158,7 @@ export default [
     ],
     plugins: [
       del({
-        targets: ['build/cjs', 'build/esm'],
+        targets: ['dist/cjs', 'dist/esm'],
       }),
       ...commonPlugins(),
     ],
