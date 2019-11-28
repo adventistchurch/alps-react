@@ -87,12 +87,7 @@ import {
   spacingUntilSizes,
 } from '../atoms/global/spacing'
 
-/**
- * The ubiquitous Element component
- *
- * @param {Object} props All Element's props
- */
-export default function Element({ as, children, tag, forwardedRef, ...props }) {
+function getClassNameAndOtherProps(props) {
   // Extract style-related props to build `className`
   const {
     backgroundColor,
@@ -163,7 +158,8 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
   // Set classes:
   const classes = []
 
-  if (className) classes.push(className)
+  // Split className string and remove empty spaces
+  if (className) classes.push(...className.split(' ').filter(Boolean))
 
   // - Color classes
   if (backgroundColor)
@@ -304,14 +300,29 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
   if (themePathFill)
     classes.push(getBaseClass(themePathFillClass, themePathFill))
 
-  // Build all props
-  const allProps = {
+  return {
     className: classes.length > 0 ? classes.join(' ') : null,
-    ref: forwardedRef,
     ...otherProps,
   }
+}
 
-  return React.createElement(tag ? tag : as, allProps, children)
+/**
+ * The ubiquitous Element component
+ *
+ * @param {Object} props All Element's props
+ */
+export default function Element({ as, children, tag, forwardedRef, ...props }) {
+  const { className, ...otherProps } = getClassNameAndOtherProps(props)
+
+  return React.createElement(
+    tag ? tag : as,
+    {
+      ref: forwardedRef,
+      ...otherProps,
+      className,
+    },
+    children
+  )
 }
 
 export const gridItemSizePropType = PropTypes.oneOfType([
