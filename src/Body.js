@@ -2,29 +2,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { primaryColors, secondaryColors } from './atoms/global/colors'
+import { Div } from './helpers/Element'
 import useDrawerContext from './helpers/useDrawerContext'
 
-function Body({ children, hasGrid, primaryColor, secondaryColor, style }) {
+function Body({ children, hasGrid, primaryColor, secondaryColor }) {
   const { isOpen } = useDrawerContext()
 
-  const classes = ['body']
-
-  if (secondaryColor) classes.push(`u-theme--${secondaryColor}`)
-  if (hasGrid) classes.push('has-grid')
-  if (isOpen.menu) classes.push('menu-is-active')
-
   return (
-    <div className={`u-theme--${primaryColor}`} style={style}>
-      <div className={classes.join(' ')}>{children}</div>
-    </div>
+    <Div className={`u-theme--${primaryColor}`}>
+      <Div
+        className={`body ${
+          secondaryColor ? `u-theme--${secondaryColor}` : ''
+        } ${hasGrid ? 'has-grid' : ''} ${isOpen.menu ? 'menu-is-active' : ''} `}
+      >
+        {children}
+      </Div>
+    </Div>
   )
 }
+
 Body.propTypes = {
   hasGrid: PropTypes.bool,
   children: PropTypes.node,
   primaryColor: PropTypes.oneOf(primaryColors),
   secondaryColor: PropTypes.oneOf(secondaryColors),
-  style: PropTypes.object,
 }
 Body.defaultProps = {
   hasGrid: true,
