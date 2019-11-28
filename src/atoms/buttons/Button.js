@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
+import useToggle from '../../helpers/useToggle'
 import IconWrap from '../icons/IconWrap'
 
 export const iconAsElements = ['a', 'button', 'span']
@@ -54,6 +55,8 @@ function Button({
   url,
   ...rest
 }) {
+  const { openClass, onToggle } = useToggle(false)
+
   const buttonClass = getButtonClass('o-button', className, {
     disabled,
     expand,
@@ -63,6 +66,11 @@ function Button({
     small,
     toggle,
   })
+
+  function _onClick(event) {
+    if (onClick) onClick(event)
+    if (toggle) onToggle()
+  }
 
   const iconElem = icon ? (
     <IconWrap
@@ -78,9 +86,9 @@ function Button({
   return (
     <Element
       tag={as}
-      className={buttonClass}
+      className={`${buttonClass} ${openClass}`}
       href={onClick ? null : url}
-      onClick={onClick}
+      onClick={onClick || toggle ? _onClick : null}
       {...rest}
     >
       {iconPosition === 'left' && iconElem}
