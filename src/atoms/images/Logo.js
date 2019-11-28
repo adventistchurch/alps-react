@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import logos, { logoNames } from './logos/index'
-import { svgFillColors } from '../global/colors'
+import { svgFillColors, svgFillClass } from '../global/colors'
 
 function Logo({ name, ...props }) {
   const Logo = logos[name] || logos['sda']
@@ -15,5 +15,8 @@ Logo.propTypes = {
   fill: PropTypes.oneOf(svgFillColors),
   fillAccent: PropTypes.string,
 }
+
+Logo.fills = svgFillClass
+Logo.names = logoNames
 
 export default Logo
