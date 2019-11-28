@@ -27,7 +27,7 @@ function Comment({
       <Div className="c-comment__body" spacingSize="quarter">
         <div className="c-comment__meta">
           <Byline as="span">
-            {bylineLink ? <a href={bylineLink}>{byline}</a> : byline}
+            {bylineLink ? <Link href={bylineLink}>{byline}</Link> : byline}
           </Byline>
           <span className="o-divider">|</span>
           <Span
@@ -46,9 +46,9 @@ function Comment({
               fontSize="s"
               themeColor="base"
             >
-              <a className="c-comment-edit-link" href={editUrl}>
+              <Link className="c-comment-edit-link" href={editUrl}>
                 {editLabel}
-              </a>
+              </Link>
             </Span>
           )}
         </div>

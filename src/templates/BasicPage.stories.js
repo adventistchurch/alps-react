@@ -5,6 +5,7 @@ import { boolean, object, text } from '@storybook/addon-knobs'
 import BasicPage from './BasicPage'
 
 import Text from '../atoms/texts/Text'
+import { Link, Paragraph } from '../helpers/Element'
 
 // Stories and data
 import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
@@ -88,35 +89,35 @@ storiesOf('templates/BasicPage', module).addWithJSX('Default', () => {
       <Text hasDropcap spacing>
         <h1>{title1}</h1>
         {/* Tests how hasDropcap behaves with empty spaces and inline/nested tag elements */}
-        <p>
+        <Paragraph>
           <strong>
             {'  '}
             <em>
               <span>
-                <a href="#link">Lorem</a>
+                <Link href="#link">Lorem</Link>
               </span>{' '}
             </em>
             Ipsum
           </strong>
-          . {text1}. <a href="#link">This is a link</a>, and here is the rest of
-          text.
-        </p>
+          . {text1}. <Link href="#link">This is a link</Link>, and here is the
+          rest of text.
+        </Paragraph>
       </Text>
       <Text spacing>
         <h2>{title2}</h2>
-        <p>
-          {text2} <a href="#link">This is a link</a>, and here is the rest of
-          text.
-        </p>
+        <Paragraph>
+          {text2} <Link href="#link">This is a link</Link>, and here is the rest
+          of text.
+        </Paragraph>
         <h3>{title3}</h3>
         <p>{text2}</p>
       </Text>
       <Text spacing>
         <h3>{title3}</h3>
-        <p>
+        <Paragraph>
           <strong>Aperiam veritatis dolore.</strong>{' '}
-          <a href="#link">Mollitia repudiandae ipsa</a> {text3}
-        </p>
+          <Link href="#link">Mollitia repudiandae ipsa</Link> {text3}
+        </Paragraph>
         <h3>{title2}</h3>
       </Text>
     </>

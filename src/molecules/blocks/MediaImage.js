@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
-import { Div } from '../../helpers/Element'
+import { Div, Link } from '../../helpers/Element'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
@@ -37,9 +37,9 @@ function MediaImage({
         <InlineStyles styles={bgImageStyles} />
       )}
       <Div className="c-block__image-wrap" {...wrapProps}>
-        <a href={url} title={image.caption || image.alt}>
+        <Link href={url} title={image.caption || image.alt}>
           <Picture image={image} />
-        </a>
+        </Link>
       </Div>
     </Div>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { Link } from '../../helpers/Element'
 import renderItems from '../../helpers/renderItems'
 import MediaBlock from '../../molecules/blocks/MediaBlock'
 
@@ -22,7 +23,7 @@ function PageHeaderFeature({ blocks, blocksType, hasScroll }) {
       <div className="c-page-header__content">
         {renderItems(blocks, MediaBlock, { type: blocksType })}
       </div>
-      {hasScroll && <a href="#top" className="c-page-header__scroll" />}
+      {hasScroll && <Link href="#top" className="c-page-header__scroll" />}
     </header>
   )
 }
