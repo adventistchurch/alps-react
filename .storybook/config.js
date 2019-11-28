@@ -15,10 +15,6 @@ import { primaryColors, secondaryColors } from '../src/atoms/global/colors'
 
 import theme from './theme'
 
-// const style = {
-//   height: '100vh',
-// }
-
 addDecorator(story => {
   const content = story()
 
@@ -41,7 +37,6 @@ addDecorator(story => {
     hasGrid,
     primaryColor,
     secondaryColor,
-    // style,
   }
 
   return <Wrapper {...props}>{content}</Wrapper>

@@ -452,7 +452,7 @@ export function Link({ href, ...props }) {
       <LinkBase {...props} />
     </Wrapper>
   ) : (
-    <LinkBase href={href} />
+    <LinkBase {...props} href={href} />
   )
 }
 Link.propTypes = Element.propTypes

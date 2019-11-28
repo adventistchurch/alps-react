@@ -6,7 +6,7 @@ import Wrapper from './Wrapper'
 import Button from './atoms/buttons/Button'
 import Blockquote from './atoms/texts/Blockquote'
 import MediaBlock from './molecules/blocks/MediaBlock'
-import { Div, Paragraph, Link } from './helpers/Element'
+import { Div, Link } from './helpers/Element'
 
 storiesOf('helpers/Wrapper', module)
   .addWithJSX('Default', () => {
