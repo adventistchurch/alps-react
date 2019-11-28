@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element from '../../helpers/Element'
+import Element, { Link } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 import IconWrap from '../icons/IconWrap'
 
@@ -40,6 +40,7 @@ function Button({
   className,
   disabled,
   expand,
+  href,
   icon,
   iconFill,
   iconPosition,
@@ -72,6 +73,10 @@ function Button({
     if (toggle) onToggle()
   }
 
+  const link = url || href
+
+  const TheButton = link && !onClick ? Link : Element
+
   const iconElem = icon ? (
     <IconWrap
       color="white"
@@ -84,17 +89,17 @@ function Button({
   ) : null
 
   return (
-    <Element
+    <TheButton
       tag={as}
       className={`${buttonClass} ${openClass}`}
-      href={onClick ? null : url}
+      href={onClick ? null : link}
       onClick={onClick || toggle ? _onClick : null}
       {...rest}
     >
       {iconPosition === 'left' && iconElem}
       {text}
       {iconPosition === 'right' && iconElem}
-    </Element>
+    </TheButton>
   )
 }
 
@@ -103,6 +108,7 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   expand: PropTypes.bool,
+  href: PropTypes.string,
   icon: PropTypes.string,
   iconFill: PropTypes.string,
   iconPosition: PropTypes.oneOf(iconPositions),
