@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import useLinkContext from './useLinkContext'
+
 import {
   borderColors,
   borderAtBreakpoints,
@@ -435,8 +437,18 @@ LI.propTypes = Element.propTypes
 
 // - Links
 
-export function Link(props) {
-  return <Element {...props} as="a" />
+export function Link({ href, ...props }) {
+  const Wrapper = useLinkContext(href)
+
+  const ALink = () => <Element {...props} as="a" href={href} />
+
+  return Wrapper ? (
+    <Wrapper>
+      <ALink />
+    </Wrapper>
+  ) : (
+    <ALink />
+  )
 }
 Link.propTypes = Element.propTypes
 

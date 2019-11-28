@@ -2,12 +2,15 @@ import React from 'react'
 
 import Body from './Body'
 import { DrawerContextProvider } from './helpers/useDrawerContext'
+import { LinkContentProvider } from './helpers/useLinkContext'
 
-function Wrapper(props) {
+function Wrapper({ LinkWrapper, ...props }) {
   return (
-    <DrawerContextProvider>
-      <Body {...props} />
-    </DrawerContextProvider>
+    <LinkContentProvider Wrapper={LinkWrapper}>
+      <DrawerContextProvider>
+        <Body {...props} />
+      </DrawerContextProvider>
+    </LinkContentProvider>
   )
 }
 
