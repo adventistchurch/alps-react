@@ -437,17 +437,22 @@ LI.propTypes = Element.propTypes
 
 // - Links
 
+function LinkBase({ href, ...props }) {
+  return <Element {...props} as="a" href={href} />
+}
+LinkBase.propTypes = {
+  href: PropTypes.string,
+}
+
 export function Link({ href, ...props }) {
   const Wrapper = useLinkContext(href)
 
-  const ALink = () => <Element {...props} as="a" href={href} />
-
   return Wrapper ? (
     <Wrapper>
-      <ALink />
+      <LinkBase {...props} />
     </Wrapper>
   ) : (
-    <ALink />
+    <LinkBase href={href} />
   )
 }
 Link.propTypes = Element.propTypes
