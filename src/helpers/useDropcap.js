@@ -61,11 +61,11 @@ function withChildren(children, Dropcap, parentFound, setParentFound) {
 const defaults = {
   Dropcap: DefaultDropcap,
   enabled: true,
-  tag: 'p',
+  tags: ['p'],
 }
 
-function useDropcap(children, config = {}) {
-  const { Dropcap, enabled, tag } = { ...defaults, ...config }
+function useDropcap(children, config = defaults) {
+  const { Dropcap, enabled, tags } = { ...defaults, ...config }
 
   // Return children directly if it's not enabled
   if (!enabled) return children
@@ -74,7 +74,7 @@ function useDropcap(children, config = {}) {
 
   return React.Children.map(children, child => {
     // Look for first element that matches the tag (usually a <p>)
-    if (!firstTag && child.type === tag) {
+    if (!firstTag && tags.includes(child.type)) {
       // Inform we found one
       firstTag = true
       // Then look for and set the Dropcap whithin children
