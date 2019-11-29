@@ -13,11 +13,7 @@ export function HeaderSimulator({ children }) {
   return (
     <div className="c-header">
       <div className="c-header__nav-primary">
-        <PrimaryNavBase>
-          {children}
-          <span />
-          {/* This <span> makes the item in children not :last-children .c-primary-nav__list-item:last-child */}
-        </PrimaryNavBase>
+        <PrimaryNavBase>{children}</PrimaryNavBase>
       </div>
     </div>
   )
