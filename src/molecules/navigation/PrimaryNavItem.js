@@ -1,15 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from '../../helpers/Element'
+import { Link, LI } from '../../helpers/Element'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
 
-function PrimaryNavItem({ active, text, url, subnav }) {
+function getId(text, url) {
+  return text ? `${text.toLowerCase().replace(' ', '-')}-${url}` : url
+}
+
+function PrimaryNavItem({ active, linkClass, priority, text, subnav, url }) {
   const { isOpen, openSubNav, setOpenSubNav } = useDrawerContext()
 
-  const id = `${text.toLowerCase().replace(' ', '-')}-${url}`
+  const id = getId(text, url)
 
   const openClass =
     (!(isOpen.search || isOpen.menu) && active) || openSubNav === id
@@ -22,35 +26,40 @@ function PrimaryNavItem({ active, text, url, subnav }) {
   }
 
   return (
-    <li
+    <LI
       className={`c-primary-nav__list-item ${
         subnav ? 'has-subnav' : ''
       } ${openClass}`}
     >
       <Link
-        className={`c-primary-nav__link ${openClass}`}
+        className={`c-primary-nav__link ${openClass} ${linkClass} ${
+          priority ? 'is-priority' : ''
+        } `}
+        href={url}
         color="gray--dark"
         fontType="primary-nav"
         themeLinkHover="base"
         themeBorder="base"
-        href={url}
       >
         {text}
       </Link>
       {subnav && <SubNavArrow onClick={onArrowClick} fill="gray" />}
       {subnav && <SubNav items={subnav} className={openClass} type="primary" />}
-    </li>
+    </LI>
   )
 }
 
 PrimaryNavItem.propTypes = {
   active: PropTypes.bool,
+  linkClass: PropTypes.string,
+  priority: PropTypes.bool,
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 }
 PrimaryNavItem.defaultProps = {
   active: false,
+  linkClass: '',
 }
 
 export default PrimaryNavItem

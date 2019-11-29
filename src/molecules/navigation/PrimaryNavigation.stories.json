@@ -52,6 +52,7 @@
     {
       "text": "World Church",
       "url": "#",
+      "priority": true,
       "subnav": [
         {
           "text": "General Conference",
