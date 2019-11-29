@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { storiesOf } from '@storybook/react'
 import {} from '@storybook/addon-knobs'
 
@@ -7,6 +9,14 @@ import Button from './atoms/buttons/Button'
 import Blockquote from './atoms/texts/Blockquote'
 import MediaBlock from './molecules/blocks/MediaBlock'
 import { Div, Link } from './helpers/Element'
+
+function CustomLinkWrapper({ children, href }) {
+  return <span data-link={href}>{children}</span>
+}
+CustomLinkWrapper.propTypes = {
+  children: PropTypes.node,
+  href: PropTypes.string.isRequired,
+}
 
 storiesOf('helpers/Wrapper', module)
   .addWithJSX('Default', () => {
@@ -43,13 +53,7 @@ storiesOf('helpers/Wrapper', module)
 
   .addWithJSX('With LinkWrapper', () => {
     return (
-      <Wrapper
-        hasGrid
-        primaryColor="ming"
-        LinkWrapper={({ children, href }) => (
-          <span data-link={href}>{children}</span>
-        )}
-      >
+      <Wrapper hasGrid primaryColor="ming" LinkWrapper={CustomLinkWrapper}>
         <Div spacingSize="double" padding>
           <Div>
             <Button

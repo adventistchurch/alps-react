@@ -7,9 +7,8 @@ export function LinkContentProvider({ children, Wrapper }) {
   return <LinkContext.Provider value={Wrapper}>{children}</LinkContext.Provider>
 }
 
-export default function useLinkContext(href) {
-  const Wrapper = useContext(LinkContext)
-  return Wrapper ? props => <Wrapper {...props} href={href} /> : null
+export default function useLinkContext() {
+  return useContext(LinkContext)
 }
 
 LinkContentProvider.propTypes = {
