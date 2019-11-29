@@ -1,10 +1,23 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { storiesOf } from '@storybook/react'
 import { boolean, object } from '@storybook/addon-knobs'
 
 import PrimaryNavigation from './PrimaryNavigation'
 
 import data from './PrimaryNavigation.stories.json'
+
+export function HeaderSimulator({ children }) {
+  return (
+    <div className="c-header">
+      <div className="c-header__nav-primary">{children}</div>
+    </div>
+  )
+}
+HeaderSimulator.propTypes = {
+  children: PropTypes.node,
+}
 
 function getTabData(name, settings = {}) {
   return {
@@ -27,10 +40,18 @@ export function primaryNavTab(settings = {}) {
 storiesOf('molecules/navigation/PrimaryNavigation', module)
   .addWithJSX('Default', () => {
     const { hasPriorityNav, items } = primaryNavTab()
-    return <PrimaryNavigation items={items} hasPriorityNav={hasPriorityNav} />
+    return (
+      <HeaderSimulator>
+        <PrimaryNavigation items={items} hasPriorityNav={hasPriorityNav} />
+      </HeaderSimulator>
+    )
   })
 
   .addWithJSX('With Priority Nav', () => {
     const { items, hasPriorityNav } = primaryNavTab({ hasPriorityNav: true })
-    return <PrimaryNavigation items={items} hasPriorityNav={hasPriorityNav} />
+    return (
+      <HeaderSimulator>
+        <PrimaryNavigation items={items} hasPriorityNav={hasPriorityNav} />
+      </HeaderSimulator>
+    )
   })

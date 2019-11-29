@@ -8,12 +8,13 @@ import PrimaryNavigationItem from './PrimaryNavItem'
 
 export const NavContext = React.createContext()
 
-function PrimaryNavBase({
+export function PrimaryNavBase({
   children,
   hasDropdown,
   items,
   mainNavRef,
   wrapperNavRef,
+  priorityDropdown,
 }) {
   const { openSubNav } = useDrawerContext()
 
@@ -31,32 +32,31 @@ function PrimaryNavBase({
         }`}
         ref={mainNavRef}
       >
-        {renderItems(items, PrimaryNavigationItem)}
+        {children || renderItems(items, PrimaryNavigationItem)}
       </ul>
-      {children}
+      {priorityDropdown}
     </nav>
   )
 }
 PrimaryNavBase.propTypes = {
   children: PropTypes.node,
-  hasDropdown: PropTypes.bool,
   drawer: PropTypes.bool,
+  hasDropdown: PropTypes.bool,
   items: PropTypes.array.isRequired,
   mainNavRef: PropTypes.object,
+  priorityDropdown: PropTypes.node,
   wrapperNavRef: PropTypes.object,
 }
 
 function PrimaryNavWithPriority({ items }) {
+  const total = items.length
   const { openDrawer } = useDrawerContext()
   const {
     dropdownRef,
     hasDropdown,
     lastVisibleIndex,
-    // safeToShow
     ...rest
-  } = usePriorityNav({
-    total: items.length,
-  })
+  } = usePriorityNav({ total })
 
   const priorityItems = useMemo(
     () => items.filter((item, index) => index <= lastVisibleIndex),
@@ -64,24 +64,27 @@ function PrimaryNavWithPriority({ items }) {
   )
 
   return (
-    <PrimaryNavBase items={priorityItems} hasDropdown={hasDropdown} {...rest}>
-      <span
-        aria-haspopup={!hasDropdown}
-        className="c-priority-nav__dropdown-wrapper priority-nav__wrapper"
-      >
-        <button
-          aria-controls="menu"
-          className={`c-priority-nav__dropdown-toggle c-priority-nav--is-${
-            hasDropdown ? 'visible' : 'hidden'
-          }`}
-          onClick={openDrawer}
-          type="button"
-          ref={dropdownRef}
+    <PrimaryNavBase
+      hasDropdown={hasDropdown}
+      items={priorityItems}
+      priorityDropdown={
+        <span
+          aria-haspopup={!hasDropdown}
+          className="c-priority-nav__dropdown-wrapper"
         >
-          {''}
-        </button>
-      </span>
-    </PrimaryNavBase>
+          <button
+            aria-controls="menu"
+            className={`c-priority-nav__dropdown-toggle c-priority-nav--is-${
+              hasDropdown ? 'visible' : 'hidden'
+            }`}
+            onClick={openDrawer}
+            type="button"
+            ref={dropdownRef}
+          ></button>
+        </span>
+      }
+      {...rest}
+    />
   )
 }
 PrimaryNavWithPriority.propTypes = {
