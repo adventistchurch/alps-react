@@ -14,6 +14,7 @@ function BasicPage({
   aside,
   breadcrumbs,
   breakout,
+  children,
   content,
   pageHeader,
   relatedPosts,
@@ -43,7 +44,11 @@ function BasicPage({
             gridItemSizeAtXL={hasSidebar ? 3 : null}
           >
             <Div className="c-article__body">
-              <PageContent breadcrumbs={breadcrumbs}>{content}</PageContent>
+              {content ? (
+                <PageContent breadcrumbs={breadcrumbs}>{content}</PageContent>
+              ) : (
+                children
+              )}
             </Div>
           </Article>
           {hasSidebar && (
