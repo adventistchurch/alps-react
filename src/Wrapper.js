@@ -17,4 +17,6 @@ function Wrapper({ LinkWrapper, ...props }) {
 Wrapper.propTypes = Body.propTypes
 Wrapper.defaultProps = Body.defaultProps
 
+export { Body, DrawerContextProvider, LinkContentProvider }
+
 export default Wrapper

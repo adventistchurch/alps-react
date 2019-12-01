@@ -5,12 +5,16 @@ export * from './templates/index'
 
 export * from './helpers/Element'
 
+export {
+  default as Wrapper,
+  Body,
+  DrawerContextProvider,
+  LinkContentProvider,
+} from './Wrapper'
+
 export const externalAssets = {
   css: [
     '//fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i',
     '//cdn.adventist.org/alps/3/latest/css/main.css',
   ],
 }
-
-export { default as Wrapper } from './Wrapper'
-export { default as Body } from './Body'
