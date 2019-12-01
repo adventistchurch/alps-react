@@ -6,7 +6,7 @@ import { LinkContentProvider } from './helpers/useLinkContext'
 
 function Wrapper({ LinkWrapper, ...props }) {
   return (
-    <LinkContentProvider Wrapper={LinkWrapper}>
+    <LinkContentProvider LinkWrapper={LinkWrapper}>
       <DrawerContextProvider>
         <Body {...props} />
       </DrawerContextProvider>
