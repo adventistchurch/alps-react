@@ -350,7 +350,7 @@ Element.propTypes = {
   fontSize: PropTypes.oneOf(fontSizes),
   fontType: PropTypes.oneOf(fontTypes),
   fontWeight: PropTypes.oneOf(fontWeights),
-  forwardedRef: PropTypes.object,
+  forwardedRef: PropTypes.elementType,
   gridNoGutters: PropTypes.bool,
   gridItem: PropTypes.bool,
   gridItemSize: gridItemSizePropType,
