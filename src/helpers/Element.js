@@ -446,11 +446,10 @@ export function LI(props) {
 }
 LI.propTypes = Element.propTypes
 
-// - Links
-
-function LinkBase({ href, ...props }) {
-  return <Element {...props} as="a" href={href} />
-}
+// - Link
+export const LinkBase = React.forwardRef(({ href, ...props }, ref) => (
+  <Element {...props} as="a" href={href} forwardedRef={ref} />
+))
 LinkBase.propTypes = {
   href: PropTypes.string,
 }
