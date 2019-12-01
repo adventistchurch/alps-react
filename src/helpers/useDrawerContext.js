@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 const DrawerContext = React.createContext({
   closeDrawer: value => value,
   isOpen: { menu: false, search: false },
-  openDrawer: event => console.log(event),
-  openDrawerWithSearch: event => console.log(event),
+  openDrawer: event => event,
+  openDrawerWithSearch: event => event,
 })
 
 const statuses = {
@@ -20,19 +20,16 @@ function DrawerContextProvider({ children }) {
 
   function openDrawer(event) {
     event.preventDefault()
-    console.log('openDrawer', event)
     setIsOpen(statuses.open)
   }
 
   function openDrawerWithSearch(event) {
     event.preventDefault()
-    console.log('openDrawerWithSearch', event)
     setIsOpen(statuses.openSearch)
   }
 
   function closeDrawer(event) {
     event.preventDefault()
-    console.log('closeDrawer', event)
     setIsOpen(statuses.closed)
   }
 
