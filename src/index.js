@@ -13,3 +13,4 @@ export const externalAssets = {
 }
 
 export { default as Wrapper } from './Wrapper'
+export { default as Body } from './Body'
