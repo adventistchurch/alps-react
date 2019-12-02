@@ -9,7 +9,7 @@ export {
   default as Wrapper,
   Body,
   DrawerContextProvider,
-  LinkContentProvider,
+  LinkContextProvider,
 } from './Wrapper'
 
 export const externalAssets = {
