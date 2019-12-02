@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import useWindowEvent from './useWindowEvent'
 
@@ -20,40 +20,58 @@ function getElementContentWidth(element, onlyPadding = false) {
 
 /**
  * Hook to calculate the priority navigation for a menu
- * @param {Object} settings `{ enabled: boolean, total: number }`
+ * @param {array} items Menu items
  * @returns {Object}
  */
-function usePriorityNav({ total = 0 }) {
-  // Set element refs, states and variables
+function usePriorityNav(items = []) {
+  const total = items.length
   const dropdownRef = useRef()
-  const mainNavRef = useRef()
-  const wrapperNavRef = useRef()
+  const navRef = useRef()
+  const wrapperRef = useRef()
 
   const [hasDropdown, setHasDropdown] = useState(false)
   const [lastVisibleIndex, setLastVisibleIndex] = useState(total - 1)
   const [safeToShow, setSafeToShow] = useState(false)
 
   const breakpoints = []
+  let priorityWidths = []
+
+  const priorityItems = useMemo(
+    () =>
+      items.filter((item, index) => item.priority || index <= lastVisibleIndex),
+    [lastVisibleIndex]
+  )
 
   // Initializes breakpoints
   function init() {
-    const mainNav = mainNavRef.current
-
-    for (const item of mainNav.children) {
-      const itemWidth = getElementContentWidth(item)
+    const nav = navRef.current
+    let childIndex = 0
+    for (const child of nav.children) {
+      const item = items[childIndex]
+      const childWidth = getElementContentWidth(child)
 
       const breakpoint =
         breakpoints.length > 0
-          ? breakpoints[breakpoints.length - 1] + itemWidth
-          : itemWidth
+          ? breakpoints[breakpoints.length - 1] + childWidth
+          : childWidth
 
       breakpoints.push(breakpoint)
+
+      if (item.priority) {
+        const priorityWidth =
+          priorityWidths.length > 0
+            ? priorityWidths[priorityWidths.length - 1] + childWidth
+            : childWidth
+        priorityWidths.push(priorityWidth)
+      }
+
+      childIndex++
     }
   }
 
   // Recalculates lastVisibleIndex and hasDropdown values based on the visible breakpoints
   function onResize() {
-    const wrapper = wrapperNavRef.current
+    const wrapper = wrapperRef.current
     const dropdown = dropdownRef.current
 
     // [Re]calculate wrapper's width
@@ -62,9 +80,14 @@ function usePriorityNav({ total = 0 }) {
     // If present, [re]calculate dropdown's width
     const dropdownWidth = dropdown ? getElementContentWidth(dropdown, true) : 0
 
+    const priorityWidth =
+      priorityWidths
+        .filter(pw => pw <= wrapperWidth - dropdownWidth)
+        .slice(-1)[0] || 0
+
     // Get all visible breakpoints (smaller that wrapper + dropdown widths)
     const visibleBreakpoints = breakpoints.filter(
-      bp => bp < wrapperWidth - dropdownWidth
+      bp => bp < wrapperWidth - dropdownWidth - priorityWidth
     )
 
     // Calculate and set the last visible breakpoint
@@ -85,9 +108,10 @@ function usePriorityNav({ total = 0 }) {
     dropdownRef,
     hasDropdown,
     lastVisibleIndex,
-    mainNavRef,
+    navRef,
     safeToShow,
-    wrapperNavRef,
+    wrapperRef,
+    priorityItems,
   }
 }
 
