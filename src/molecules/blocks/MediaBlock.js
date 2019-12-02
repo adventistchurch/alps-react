@@ -280,7 +280,7 @@ function MediaBlock({
             )}
             {title && (
               <HeadingThree
-                className="c-media-block__title c-block__title"
+                className="c-media-block__title c-block__title u-theme--color--dark"
                 spaceSize={kicker ? 'zero' : null}
                 {...preset.title}
               >
