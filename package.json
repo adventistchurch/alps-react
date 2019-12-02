@@ -2,7 +2,19 @@
   "name": "alps-react",
   "version": "0.3.7",
   "private": false,
-  "author": "Stimme der Hoffnung e.V.",
+  "author": {
+    "name": "General Conference of Seventh-day Adventists"
+  },
+  "contributors": [
+    {
+      "name": "Eduardo Ludi",
+      "email": "eduardo.ludi@stimme-der-hoffnung.de"
+    },
+    {
+      "name": "Olivier Guy",
+      "email": "olivier.guy@stimme-der-hoffnung.de"
+    }
+  ],
   "license": "SEE LICENSE IN LICENSE",
   "description": "React implementation of the Adventist Living Pattern System (ALPS)",
   "repository": "git@github.com:adventistchurch/alps-react.git",
