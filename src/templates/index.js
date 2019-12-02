@@ -1,4 +1,4 @@
-// Tenplates:
+// Templates:
 
 export { default as BasicPage } from './BasicPage'
 export { default as ChannelMain } from './ChannelMain'
