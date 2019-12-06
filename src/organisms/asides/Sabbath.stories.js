@@ -15,11 +15,15 @@ function getTabData(name, settings = {}) {
 }
 
 function logoTab(settings = {}) {
-  const { showLogo, showLogoOnScroll, tab } = getTabData('Logo', settings)
+  const { showLogo, stickyLogo, showLogoOnScroll, tab } = getTabData(
+    'Logo',
+    settings
+  )
 
   return {
     showLogo: boolean('Show logo', showLogo, tab),
-    showLogoOnScroll: boolean('Show logo on scoll', showLogoOnScroll, tab),
+    stickyLogo: boolean('Sticky logo', stickyLogo, tab),
+    showLogoOnScroll: boolean('Show logo on Scroll', showLogoOnScroll, tab),
   }
 }
 
@@ -42,26 +46,21 @@ export function sabbathTab(settings = {}) {
 
 storiesOf('organisms/asides/Sabbath', module)
   .addWithJSX('Default', () => {
-    const { showLogo, showLogoOnScroll } = logoTab()
+    const props = sabbathTab()
 
-    return <Sabbath showLogo={showLogo} showLogoOnScroll={showLogoOnScroll} />
+    return <Sabbath {...props} />
   })
 
   .addWithJSX('with Backround', () => {
-    const { backgroundImage } = backgroundTab()
-    const { showLogo, showLogoOnScroll } = logoTab()
+    const props = sabbathTab({
+      backgroundImage: '//picsum.photos/800/1000/?nature',
+    })
 
-    return (
-      <Sabbath
-        backgroundImage={backgroundImage}
-        showLogo={showLogo}
-        showLogoOnScroll={showLogoOnScroll}
-      />
-    )
+    return <Sabbath {...props} />
   })
 
   .addWithJSX('with Show Logo On Scroll', () => {
-    const { showLogo, showLogoOnScroll } = logoTab({ showLogoOnScroll: true })
+    const props = sabbathTab({ stickyLogo: true })
 
-    return <Sabbath showLogo={showLogo} showLogoOnScroll={showLogoOnScroll} />
+    return <Sabbath {...props} />
   })

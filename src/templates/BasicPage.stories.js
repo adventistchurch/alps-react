@@ -13,6 +13,7 @@ import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
 import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
+import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import data from './BasicPage.stories.json'
 
@@ -45,11 +46,15 @@ export function mainContentTab(settings = {}) {
 }
 
 export function globalTab(settings = {}) {
-  const { globalHeader, globalFooter, tab } = getTabData('Global', settings)
+  const { globalHeader, globalFooter, globalSabbath, tab } = getTabData(
+    'Global',
+    settings
+  )
 
   return {
     header: globalHeaderTab({ ...globalHeader, tab }),
     footer: globalFooterTab({ ...globalFooter, tab }),
+    sabbath: globalSabbathTab({ ...globalSabbath, tab }),
   }
 }
 

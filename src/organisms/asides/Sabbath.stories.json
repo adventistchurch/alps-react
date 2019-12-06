@@ -1,5 +1,5 @@
 {
-  "backgroundImage": "//picsum.photos/800/1000/?nature",
   "showLogo": true,
-  "showLogoOnScroll": false
+  "showLogoOnScroll": false,
+  "stickyLogo": true
 }
