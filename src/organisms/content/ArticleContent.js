@@ -1,13 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { spacingSizes } from '../../atoms/global/spacing'
 import { Div } from '../../helpers/Element'
+import ArticleWrap from './ArticleWrap'
 
-const ArticleContent = ({ children, sidebar }) => {
+function ArticleContent({
+  children,
+  sidebar,
+  hasDropcap,
+  spacingSize,
+  ...others
+}) {
   return (
     <>
-      {children}
-      <Div className="c-sidebar" gridItemSizeAtM="2" gridItemSizeAtL="2">
+      <ArticleWrap
+        hasDropcap={hasDropcap}
+        spacingSize={spacingSize}
+        {...others}
+      >
+        {children}
+      </ArticleWrap>
+
+      <Div
+        className="c-sidebar"
+        gridItemSizeAtL="2"
+        gridItemSizeAtXL="2"
+        paddingSize="zero"
+        paddingSide="sides"
+      >
         {sidebar}
       </Div>
     </>
@@ -17,8 +38,13 @@ const ArticleContent = ({ children, sidebar }) => {
 ArticleContent.propTypes = {
   children: PropTypes.node,
   sidebar: PropTypes.node,
+  hasDropcap: PropTypes.bool,
+  spacingSize: PropTypes.oneOf(spacingSizes),
 }
 
-ArticleContent.defaultProps = {}
+ArticleContent.defaultProps = {
+  hasDropcap: true,
+  spacingSize: 'double',
+}
 
 export default ArticleContent
