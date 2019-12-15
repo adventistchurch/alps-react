@@ -41,8 +41,6 @@ function usePagination({
   // Divider object
   const divider = { isDivider: true, label: dividerLabel }
 
-  console.log({ prevLabel, prevIcon, nextLabel, nextIcon })
-
   // Generates a page object
   function setPage(number, props = {}) {
     return {
