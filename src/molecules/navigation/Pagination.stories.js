@@ -19,67 +19,42 @@ function getTabData(name, settings = {}) {
   }
 }
 
-function pagesTab(settings = {}) {
-  const { page, surrounding, total, tab } = getTabData('Pages', settings)
-
-  return {
-    total: number('Total pages', total, {}, tab),
-    page: number('Current page', page, {}, tab),
-    surrounding: number('Surrounding', surrounding, {}, tab),
-  }
-}
-
-function labelsTab({ showIconArrows, ...settings } = {}) {
+export function paginationTab(settings = {}) {
   const {
+    page,
+    surrounding,
+    total,
+    showFirstAndLast,
+    showPrevAndNext,
+    showIconArrows,
+    linkPrefix,
     dividerLabel,
     firstLabel,
     lastLabel,
     nextLabel,
     prevLabel,
     tab,
-  } = getTabData('Labels', settings)
+  } = getTabData('Pagination', settings)
+
+  const setUrl = number => `${linkPrefix} ${number}`
 
   return {
+    total: number('Total pages', total, {}, tab),
+    page: number('Current page', page, {}, tab),
+    surrounding: number('Surrounding', surrounding, {}, tab),
     firstLabel: text('First label', firstLabel, tab),
     lastLabel: text('Last label', lastLabel, tab),
     dividerLabel: text('Divider', dividerLabel, tab),
-    prevLabel: showIconArrows ? null : text('Prev label', prevLabel, tab),
-    nextLabel: showIconArrows ? null : text('Next label', nextLabel, tab),
-  }
-}
-
-function optionsTab(settings = {}) {
-  const {
-    showFirstAndLast,
-    showPrevAndNext,
-    showIconArrows,
-    linkPrefix,
-    tab,
-  } = getTabData('Options', settings)
-
-  return {
+    prevLabel: text('Prev label', prevLabel, tab),
+    nextLabel: text('Next label', nextLabel, tab),
     showFirstAndLast: boolean('Show First & Last', showFirstAndLast, tab),
     showPrevAndNext: boolean('Show Prev & Next', showPrevAndNext, tab),
     showIconArrows: boolean('Show Icon Arrows', showIconArrows, tab),
     linkPrefix: text('Link prefix', linkPrefix, tab),
-  }
-}
-
-export function paginationTab(settings = {}) {
-  const pagesProps = pagesTab(settings)
-  const optionsProps = optionsTab(settings)
-  const labelsProps = labelsTab(settings)
-
-  const setUrl = number => `${optionsProps.linkPrefix}${number}`
-
-  return {
     onPrevClick,
     onNextClick,
     onPageClick,
     setUrl,
-    ...labelsProps,
-    ...optionsProps,
-    ...pagesProps,
   }
 }
 
