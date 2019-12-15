@@ -8,9 +8,11 @@ function ListContent({ children, pagination }) {
   return (
     <>
       {children}
-      <Div space>
-        <Pagination {...pagination} />
-      </Div>
+      {pagination && (
+        <Div space>
+          <Pagination {...pagination} />
+        </Div>
+      )}
     </>
   )
 }
@@ -18,9 +20,6 @@ function ListContent({ children, pagination }) {
 ListContent.propTypes = {
   children: PropTypes.node,
   pagination: PropTypes.object,
-}
-ListContent.defaultProps = {
-  pagination: {},
 }
 
 export default ListContent

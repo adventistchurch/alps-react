@@ -18,30 +18,26 @@ function getTabData(name, settings = {}) {
     ...settings,
   }
 }
-export function contentTab(settings = {}) {
-  const { items, tab } = getTabData('Results', settings)
-
-  return {
-    children: object('Results *', items, tab),
-  }
-}
 
 export function listContentTab(settings = {}) {
-  const contentProps = contentTab(settings)
-  const paginationProps = paginationTab(data.pagination)
+  const { items, tab } = getTabData('Pagination', settings)
+  const paginationProps = settings.showPagination
+    ? paginationTab(settings.pagination)
+    : null
 
   return {
+    children: renderItems(object('Items *', items, tab), ContentBlock),
     pagination: paginationProps,
-    ...contentProps,
   }
 }
 
-storiesOf('organisms/content/ListContent', module).addWithJSX('Default', () => {
-  const { children, pagination } = listContentTab()
+storiesOf('organisms/content/ListContent', module)
+  .addWithJSX('Default', () => {
+    const props = listContentTab()
+    return <ListContent {...props} />
+  })
 
-  return (
-    <ListContent pagination={pagination}>
-      {renderItems(children, ContentBlock)}
-    </ListContent>
-  )
-})
+  .addWithJSX('With Pagination', () => {
+    const props = listContentTab({ showPagination: true })
+    return <ListContent {...props} />
+  })
