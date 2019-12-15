@@ -1,14 +1,27 @@
 {
-  "current": 7,
-  "dividerLabel": "…",
-  "firstLabel": "First",
-  "lastLabel": "Last",
-  "linkPrefix": "?page=",
-  "nextLabel": "Next",
-  "prevLabel": "Previous",
-  "surrounding": 2,
-  "surroundingOnExtremes": 0,
-  "showFirstAndLast": false,
-  "showPrevAndNext": true,
-  "total": 120
+  "default": {
+    "page": 7,
+    "dividerLabel": "…",
+    "firstLabel": "First",
+    "lastLabel": "Last",
+    "linkPrefix": "?page=",
+    "surrounding": 2,
+    "surroundingOnExtremes": 0,
+    "showFirstAndLast": false,
+    "showPrevAndNext": true,
+    "total": 120
+  },
+  "textArrows": {
+    "page": 123,
+    "dividerLabel": "--",
+    "linkPrefix": "?p=",
+    "prevLabel": "Prev",
+    "nextLabel": "Next",
+    "surrounding": 1,
+    "surroundingOnExtremes": 0,
+    "showFirstAndLast": false,
+    "showPrevAndNext": true,
+    "showIconArrows": false,
+    "total": 999
+  }
 }

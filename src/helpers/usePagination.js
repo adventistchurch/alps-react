@@ -7,24 +7,27 @@ import range from './range'
  * @returns {Array} - pages
  */
 function usePagination({
-  current,
   dividerLabel,
   firstLabel,
   lastLabel,
+  nextIcon,
   nextLabel,
   onNextClick,
   onPageClick,
   onPrevClick,
+  page,
   prevLabel,
+  prevIcon,
   setUrl,
   showFirstAndLast,
   showPrevAndNext,
+  showIconArrows,
   surrounding,
   total: last,
 }) {
   const first = 1
-  let lowerOffset = current - surrounding
-  let higerOffset = current + surrounding
+  let lowerOffset = page - surrounding
+  let higerOffset = page + surrounding
   const lowerLimit = first + surrounding
   const higerLimit = last - surrounding
 
@@ -38,13 +41,15 @@ function usePagination({
   // Divider object
   const divider = { isDivider: true, label: dividerLabel }
 
+  console.log({ prevLabel, prevIcon, nextLabel, nextIcon })
+
   // Generates a page object
   function setPage(number, props = {}) {
     return {
       ...props,
       number,
       url: setUrl(number),
-      isCurrent: number === current ? true : undefined,
+      isCurrent: number === page ? true : undefined,
     }
   }
 
@@ -56,7 +61,7 @@ function usePagination({
   // Add links and pages:
 
   // - First and Prev Links
-  if (current > first) {
+  if (page > first) {
     // - Link First
     if (showFirstAndLast) {
       pages.push(setPage(first, { label: firstLabel }))
@@ -65,8 +70,8 @@ function usePagination({
     // - Link Prev
     if (showPrevAndNext) {
       pages.push(
-        setPage(current - 1, {
-          label: prevLabel,
+        setPage(page - 1, {
+          label: showIconArrows ? prevIcon : prevLabel,
           isPrev: true,
           onClick: onPrevClick,
         })
@@ -93,12 +98,12 @@ function usePagination({
   }
 
   // - Next and Last Links
-  if (current < last) {
+  if (page < last) {
     // - Link Next
     if (showPrevAndNext) {
       pages.push(
-        setPage(current + 1, {
-          label: nextLabel,
+        setPage(page + 1, {
+          label: showIconArrows ? nextIcon : nextLabel,
           isNext: true,
           onClick: onNextClick,
         })

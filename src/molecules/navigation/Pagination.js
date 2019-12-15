@@ -42,14 +42,16 @@ function Pagination(props) {
 }
 
 Pagination.propTypes = {
-  current: PropTypes.number,
+  page: PropTypes.number,
   dividerLabel: PaginationItem.propTypes.label,
   firstLabel: PaginationItem.propTypes.label,
   lastLabel: PaginationItem.propTypes.label,
+  nextIcon: PropTypes.element,
   nextLabel: PaginationItem.propTypes.label,
   onPageClick: PropTypes.func,
   onNextClick: PropTypes.func,
   onPrevClick: PropTypes.func,
+  prevIcon: PropTypes.element,
   prevLabel: PaginationItem.propTypes.label,
   setUrl: PropTypes.func,
   showFirstAndLast: PropTypes.bool,
@@ -58,15 +60,16 @@ Pagination.propTypes = {
   total: PropTypes.number.isRequired,
 }
 Pagination.defaultProps = {
-  current: 1,
+  page: 1,
   dividerLabel: '…', // Using actual chat instead of HTLM Entity &hellip.
   firstLabel: 'First',
   lastLabel: 'Last',
-  nextLabel: nextIcon,
-  prevLabel: prevIcon,
+  nextIcon: nextIcon,
+  prevIcon: prevIcon,
   setUrl: number => `?page=${number}`,
   showFirstAndLast: false,
   showPrevAndNext: true,
+  showIconArrows: true,
   surrounding: 3,
 }
 

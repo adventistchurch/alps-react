@@ -14,22 +14,22 @@ function getTabData(name, settings = {}) {
   return {
     tab: name,
     ...Pagination.defaultProps,
-    ...data,
+    ...data.default,
     ...settings,
   }
 }
 
 function pagesTab(settings = {}) {
-  const { current, surrounding, total, tab } = getTabData('Pages', settings)
+  const { page, surrounding, total, tab } = getTabData('Pages', settings)
 
   return {
     total: number('Total pages', total, {}, tab),
-    current: number('Current page', current, {}, tab),
+    page: number('Current page', page, {}, tab),
     surrounding: number('Surrounding', surrounding, {}, tab),
   }
 }
 
-function labelsTab({ iconArrows = true, ...settings } = {}) {
+function labelsTab({ showIconArrows, ...settings } = {}) {
   const {
     dividerLabel,
     firstLabel,
@@ -43,63 +43,55 @@ function labelsTab({ iconArrows = true, ...settings } = {}) {
     firstLabel: text('First label', firstLabel, tab),
     lastLabel: text('Last label', lastLabel, tab),
     dividerLabel: text('Divider', dividerLabel, tab),
-    prevLabel: iconArrows ? null : text('Prev label', prevLabel, tab),
-    nextLabel: iconArrows ? null : text('Next label', nextLabel, tab),
+    prevLabel: showIconArrows ? null : text('Prev label', prevLabel, tab),
+    nextLabel: showIconArrows ? null : text('Next label', nextLabel, tab),
   }
 }
 
 function optionsTab(settings = {}) {
-  const { showFirstAndLast, showPrevAndNext, linkPrefix, tab } = getTabData(
-    'Options',
-    settings
-  )
+  const {
+    showFirstAndLast,
+    showPrevAndNext,
+    showIconArrows,
+    linkPrefix,
+    tab,
+  } = getTabData('Options', settings)
 
   return {
     showFirstAndLast: boolean('Show First & Last', showFirstAndLast, tab),
     showPrevAndNext: boolean('Show Prev & Next', showPrevAndNext, tab),
+    showIconArrows: boolean('Show Icon Arrows', showIconArrows, tab),
     linkPrefix: text('Link prefix', linkPrefix, tab),
+  }
+}
+
+export function paginationTab(settings = {}) {
+  const pagesProps = pagesTab(settings)
+  const optionsProps = optionsTab(settings)
+  const labelsProps = labelsTab(settings)
+
+  const setUrl = number => `${optionsProps.linkPrefix}${number}`
+
+  return {
+    onPrevClick,
+    onNextClick,
+    onPageClick,
+    setUrl,
+    ...labelsProps,
+    ...optionsProps,
+    ...pagesProps,
   }
 }
 
 storiesOf('molecules/navigation/Pagination', module)
   .addWithJSX('SVG Arrows (default)', () => {
-    const pagesProps = pagesTab()
-    const optionsProps = optionsTab()
-    const { dividerLabel, firstLabel, lastLabel } = labelsTab()
+    const props = paginationTab()
 
-    const setUrl = number => `${optionsProps.linkPrefix}${number}`
-
-    return (
-      <Pagination
-        onNextClick={onNextClick}
-        onPageClick={onPageClick}
-        onPrevClick={onPrevClick}
-        setUrl={setUrl}
-        dividerLabel={dividerLabel}
-        firstLabel={firstLabel}
-        lastLabel={lastLabel}
-        {...optionsProps}
-        {...pagesProps}
-      />
-    )
+    return <Pagination {...props} />
   })
 
   .addWithJSX('Text "Arrows"', () => {
-    const pagesProps = pagesTab()
-    const optionsProps = optionsTab()
-    const labelsProps = labelsTab({ iconArrows: false })
-
-    const setUrl = number => `${optionsProps.linkPrefix}${number}`
-
-    const props = {
-      onNextClick,
-      onPageClick,
-      onPrevClick,
-      setUrl,
-      ...labelsProps,
-      ...optionsProps,
-      ...pagesProps,
-    }
+    const props = paginationTab(data.textArrows)
 
     return <Pagination {...props} />
   })
