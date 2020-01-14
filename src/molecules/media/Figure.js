@@ -5,7 +5,7 @@ import Figcaption from './Figcaption'
 import Picture from '../../atoms/images/Picture'
 import Video from '../../atoms/media/Video'
 
-function Figure({ caption, className, image, videoSrc }) {
+function Figure({ caption, className, image, lazy, videoSrc }) {
   const classNames = ['o-figure']
   if (className) classNames.push(className)
 
@@ -13,7 +13,7 @@ function Figure({ caption, className, image, videoSrc }) {
     <figure className={classNames.join(' ')}>
       {image && (
         <div className="o-figure__image">
-          <Picture image={image} />
+          <Picture image={image} lazy={lazy} />
         </div>
       )}
       {videoSrc && (
@@ -34,6 +34,7 @@ Figure.propTypes = {
   caption: PropTypes.string,
   className: PropTypes.string,
   image: Picture.propTypes.image,
+  lazy: PropTypes.bool,
   videoSrc: PropTypes.string,
 }
 
