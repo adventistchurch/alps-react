@@ -16,7 +16,7 @@ Image.propTypes = {
   src: PropTypes.string,
 }
 Image.defaultProps = {
-  lazy: true,
+  lazy: false,
 }
 
 export default Image
