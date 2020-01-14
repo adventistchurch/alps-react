@@ -5,20 +5,10 @@ import { spacingSizes } from '../../atoms/global/spacing'
 import { Div } from '../../helpers/Element'
 import ArticleWrap from './ArticleWrap'
 
-function ArticleContent({
-  children,
-  sidebar,
-  hasDropcap,
-  spacingSize,
-  ...others
-}) {
+function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
   return (
     <>
-      <ArticleWrap
-        hasDropcap={hasDropcap}
-        spacingSize={spacingSize}
-        {...others}
-      >
+      <ArticleWrap hasDropcap={hasDropcap} spacingSize={spacingSize}>
         {children}
       </ArticleWrap>
 
