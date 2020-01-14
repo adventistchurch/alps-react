@@ -27,13 +27,13 @@ function usePagination({
 }) {
   const first = 1
   let lowerOffset = page - surrounding
-  let higerOffset = page + surrounding
+  let higherOffset = page + surrounding
   const lowerLimit = first + surrounding
-  const higerLimit = last - surrounding
+  const higherLimit = last - surrounding
 
   // Recalculate offsets
   lowerOffset = lowerOffset - 1 > lowerLimit ? lowerOffset : first
-  higerOffset = higerOffset + 1 < higerLimit ? higerOffset : last
+  higherOffset = higherOffset + 1 < higherLimit ? higherOffset : last
 
   // Initialize pages array
   const pages = []
@@ -85,11 +85,11 @@ function usePagination({
   }
 
   // - Middle numbered pages
-  const middleRange = range(lowerOffset, higerOffset)
+  const middleRange = range(lowerOffset, higherOffset)
   pages.push(setPagesForRange(middleRange))
 
   // - Last numbered pages
-  if (higerOffset < last) {
+  if (higherOffset < last) {
     const lastRange = range(last - surrounding, last)
     pages.push(divider)
     pages.push(setPagesForRange(lastRange))
