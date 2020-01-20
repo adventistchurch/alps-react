@@ -9,6 +9,5 @@ function SearchField({ ...props }) {
 SearchField.propTypes = {
   ...BaseTextField.propTypes,
 }
-SearchField.defaultProps = {}
 
 export default SearchField

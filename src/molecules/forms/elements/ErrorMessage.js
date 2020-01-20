@@ -20,6 +20,5 @@ function ErrorMessage({ text }) {
 ErrorMessage.propTypes = {
   text: PropTypes.string.isRequired,
 }
-ErrorMessage.defaultProps = {}
 
 export default ErrorMessage

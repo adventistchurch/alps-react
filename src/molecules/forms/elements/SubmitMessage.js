@@ -16,6 +16,5 @@ function SubmitMessage({ text }) {
 SubmitMessage.propTypes = {
   text: PropTypes.string.isRequired,
 }
-SubmitMessage.defaultProps = {}
 
 export default SubmitMessage

@@ -31,7 +31,6 @@ ArticleContent.propTypes = {
   hasDropcap: PropTypes.bool,
   spacingSize: PropTypes.oneOf(spacingSizes),
 }
-
 ArticleContent.defaultProps = {
   hasDropcap: true,
   spacingSize: 'double',

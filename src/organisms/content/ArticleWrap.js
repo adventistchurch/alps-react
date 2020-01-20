@@ -27,6 +27,5 @@ ArticleWrap.propTypes = {
   children: PropTypes.node,
   ...Text.propTypes,
 }
-ArticleWrap.defaultProps = {}
 
 export default ArticleWrap

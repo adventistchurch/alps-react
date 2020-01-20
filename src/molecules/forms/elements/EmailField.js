@@ -9,6 +9,5 @@ function TextField({ ...props }) {
 TextField.propTypes = {
   ...BaseTextField.propTypes,
 }
-TextField.defaultProps = {}
 
 export default TextField

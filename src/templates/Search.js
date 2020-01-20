@@ -27,6 +27,5 @@ function Search() {
 }
 
 Search.propTypes = {}
-Search.defaultProps = {}
 
 export default Search

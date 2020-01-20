@@ -9,6 +9,5 @@ function PasswordField({ ...props }) {
 PasswordField.propTypes = {
   ...BaseTextField.propTypes,
 }
-PasswordField.defaultProps = {}
 
 export default PasswordField

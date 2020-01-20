@@ -31,6 +31,5 @@ TemplateWrap.propTypes = {
   header: PropTypes.object,
   sabbath: PropTypes.object,
 }
-TemplateWrap.defaultProps = {}
 
 export default TemplateWrap

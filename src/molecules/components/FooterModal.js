@@ -37,6 +37,5 @@ FooterModal.propTypes = {
   text: PropTypes.string,
   children: PropTypes.node,
 }
-FooterModal.defaultProps = {}
 
 export default FooterModal
