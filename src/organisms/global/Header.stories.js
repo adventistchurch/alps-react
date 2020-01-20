@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, select } from '@storybook/addon-knobs'
+import { boolean, select, text } from '@storybook/addon-knobs'
 
 import Header from './Header'
 import { logoNames } from '../../atoms/images/logos'
@@ -11,15 +11,17 @@ import { primaryNavTab } from '../../molecules/navigation/PrimaryNavigation.stor
 import { secondaryNavTab } from '../../molecules/navigation/SecondaryNavigation.stories.js'
 
 function logoTab(settings = {}) {
-  const { canBeDark, name, useFillTheme, tab } = {
+  const { canBeDark, link, name, useFillTheme, tab } = {
     tab: 'Logo',
     ...Header.defaultProps.logo,
     name: data.logo.name,
+    link: data.logo.link,
     ...settings,
   }
 
   return {
     name: select('Logo Name', logoNames, name, tab),
+    link: text('Link', link, tab),
     canBeDark: boolean('Logo can be dark', canBeDark, tab),
     useFillTheme: boolean('Logo Use Fill Theme', useFillTheme, tab),
   }
