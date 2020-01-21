@@ -7,7 +7,6 @@ import { Div } from '../../helpers/Element'
 import Text from '../../atoms/texts/Text'
 import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
-// import ArticleWrap from './ArticleWrap'
 
 function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
   return (
