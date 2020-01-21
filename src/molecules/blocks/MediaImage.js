@@ -29,6 +29,7 @@ function MediaImage({
     classNames.push(`c-block__icon c-block__icon--${blockIconType}`)
   if (asBackgroundImage)
     classNames.push('o-background-image u-background--cover')
+
   if (className) classNames.push(className)
 
   return (
@@ -38,7 +39,11 @@ function MediaImage({
       )}
       <Div className="c-block__image-wrap" {...wrapProps}>
         <Link href={url} title={image.caption || image.alt}>
-          <Picture image={image} />
+          <Picture
+            image={image}
+            // TODO: FIX: find a better way tide picture when asBackgroundImage is enabled
+            style={asBackgroundImage ? { visibility: 'hidden' } : null}
+          />
         </Link>
       </Div>
     </Div>

@@ -47,14 +47,15 @@ function imageTab(settings = {}) {
 
   return {
     asBackgroundImage,
-    ...(showImage ? pictureTab({ image, tab }) : {}),
+    ...(showImage ? pictureTab({ ...image, tab }) : {}),
   }
 }
 
 function displayTab(settings = {}) {
-  const { border, reversed, tab } = getTabData('Display', settings)
+  const { reversed, type, tab } = getTabData('Display', settings)
+
   return {
-    border: select('Content Border', ['none', 'left'], border, tab),
+    type: select('Type', mediaBlocksTypes, type, tab),
     reversed: boolean('Reversed', reversed, tab),
   }
 }
@@ -75,149 +76,44 @@ function ctaTab(settings = {}) {
     : {}
 }
 
+function allTabs(settings = {}) {
+  return {
+    ...textsTab(settings),
+    ...metaTab(settings),
+    ...imageTab(settings),
+    ...ctaTab(settings),
+    ...displayTab(settings),
+  }
+}
+
 export function mediaBlockTab(settings = {}) {
   const mediaBlock = getTabData('MediaBlock', settings)
 
-  return {
-    ...textsTab(mediaBlock),
-    ...metaTab(mediaBlock),
-    ...imageTab(mediaBlock),
-    ...ctaTab(mediaBlock),
-  }
+  return allTabs(mediaBlock)
 }
 
 storiesOf('molecules/blocks/MediaBlock', module)
   .addWithJSX('Default', () => {
-    const { description, kicker, title, url } = textsTab()
-    const { asBackgroundImage, image } = imageTab()
-    const { category, date, dateFormat } = metaTab()
-    const { cta, ctaIcon } = ctaTab()
-    const { reversed } = displayTab()
-    const type = select(
-      'Type',
-      mediaBlocksTypes,
-      MediaBlock.defaultProps.type,
-      'Type'
-    )
-
-    return (
-      <MediaBlock
-        asBackgroundImage={asBackgroundImage}
-        category={category}
-        cta={cta}
-        ctaIcon={ctaIcon}
-        date={date}
-        dateFormat={dateFormat}
-        description={description}
-        image={image}
-        kicker={kicker}
-        reversed={reversed}
-        title={title}
-        type={type}
-        url={url}
-      />
-    )
+    const props = allTabs()
+    return <MediaBlock {...props} />
   })
 
   .addWithJSX('Inline', () => {
-    const { description, kicker, title, url } = textsTab()
-    const { asBackgroundImage, image } = imageTab()
-    const { category, date, dateFormat } = metaTab()
-    const { cta, ctaIcon } = ctaTab()
-    const { border, reversed } = displayTab()
+    const props = allTabs()
+    return <MediaBlock {...props} type="inline" />
+  })
 
-    return (
-      <MediaBlock
-        asBackgroundImage={asBackgroundImage}
-        border={border}
-        category={category}
-        cta={cta}
-        ctaIcon={ctaIcon}
-        date={date}
-        dateFormat={dateFormat}
-        description={description}
-        image={image}
-        kicker={kicker}
-        reversed={reversed}
-        title={title}
-        type="inline"
-        url={url}
-      />
-    )
+  .addWithJSX('Feature', () => {
+    const props = allTabs()
+    return <MediaBlock {...props} type="feature" />
   })
 
   .addWithJSX('Inset', () => {
-    const { description, kicker, title, url } = textsTab()
-    const { asBackgroundImage, image } = imageTab()
-    const { category, date, dateFormat } = metaTab()
-    const { reversed } = displayTab()
-
-    return (
-      <MediaBlock
-        asBackgroundImage={asBackgroundImage}
-        category={category}
-        date={date}
-        dateFormat={dateFormat}
-        description={description}
-        image={image}
-        kicker={kicker}
-        reversed={reversed}
-        title={title}
-        type="inset"
-        url={url}
-      />
-    )
-  })
-
-  .addWithJSX('Reversed', () => {
-    const { description, kicker, title, url } = textsTab()
-    const { asBackgroundImage, image } = imageTab()
-    const { category, date, dateFormat } = metaTab()
-    const { cta, ctaIcon } = ctaTab()
-    const { border, reversed } = displayTab({ reversed: true })
-
-    return (
-      <MediaBlock
-        asBackgroundImage={asBackgroundImage}
-        border={border}
-        category={category}
-        cta={cta}
-        ctaIcon={ctaIcon}
-        date={date}
-        dateFormat={dateFormat}
-        description={description}
-        image={image}
-        kicker={kicker}
-        reversed={reversed}
-        title={title}
-        url={url}
-      />
-    )
+    const props = allTabs()
+    return <MediaBlock {...props} type="inset" />
   })
 
   .addWithJSX('Stacked', () => {
-    const { description, kicker, title, url } = textsTab()
-    const { asBackgroundImage, image } = imageTab()
-    const { category, date, dateFormat } = metaTab()
-    const { cta, ctaIcon } = ctaTab()
-    const { border, reversed } = displayTab()
-
-    return (
-      <MediaBlock
-        asBackgroundImage={asBackgroundImage}
-        border={border}
-        category={category}
-        cta={cta}
-        ctaIcon={ctaIcon}
-        date={date}
-        dateFormat={dateFormat}
-        description={description}
-        image={image}
-        kicker={kicker}
-        reversed={reversed}
-        title={title}
-        type="stacked"
-        url={url}
-      />
-    )
+    const props = allTabs()
+    return <MediaBlock {...props} type="stacked" />
   })

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
@@ -49,9 +49,6 @@ const presets = {
       seven: true,
     },
     content: {
-      borderAt: 'large',
-      borderColor: 'black',
-      borderSide: 'left',
       gridItem: true,
       paddingSide: ['top', 'bottom'],
       themeBackground: 'darker',
@@ -68,6 +65,9 @@ const presets = {
       color: 'white',
       fontType: 'primary',
       fontWeight: 'bold',
+    },
+    titleLink: {
+      themeLinkHover: 'light',
     },
   },
 
@@ -95,6 +95,7 @@ const presets = {
   },
 
   inline: {
+    reversed: true,
     image: {
       paddingSide: 'sides',
       paddingSize: 'zero',
@@ -103,6 +104,13 @@ const presets = {
       backgroundColor: 'gray--light',
       color: 'gray',
       padding: ['top', 'bottom'],
+    },
+    contentReversed: {
+      borderAt: 'large',
+      borderColor: 'black',
+      borderSide: 'left',
+      themeBorder: 'darker',
+      themeBorderSide: 'left',
     },
     title: {
       themeColor: 'darker',
@@ -154,6 +162,9 @@ const presets = {
       fontSize: 'l',
       fontType: 'primary',
     },
+    titleLink: {
+      themeLinkHover: 'light',
+    },
   },
 
   row: {
@@ -171,38 +182,29 @@ const presets = {
   stacked: {},
 }
 
-// Border preset props
-const borderProps = {
-  left: {
-    borderSide: 'left',
-    themeBorder: 'darker',
-    themeBorderSide: 'left',
-  },
-  leftAtLarge: {
-    borderAt: 'large',
-    borderColor: 'black',
-    borderSide: 'left',
-    themeBorder: 'darker',
-    themeBorderSide: 'left',
-  },
-}
-
-function getBlockClass(blocks = [], type, reversed = false) {
-  const classes = []
-
-  for (const block of blocks) {
-    classes.push(block)
-    classes.push(`${block}__${type}`)
-    if (reversed) classes.push(`${block}--reversed`)
-  }
-
-  return classes.join(' ')
+/**
+ * Returns main classes for a MediaBlock element
+ * @param {string} type
+ * @param {boolean} reversed
+ */
+function useMediaBlockClass(type, reversed = false) {
+  return useMemo(
+    () =>
+      ['c-block', 'c-media-block']
+        .flatMap(className => [
+          className,
+          `${className}__${type}`,
+          reversed ? `${className}--reversed` : null,
+        ])
+        .filter(Boolean)
+        .join(' '),
+    [type, reversed]
+  )
 }
 
 function MediaBlock({
   asBackgroundImage,
   blockIconType,
-  border,
   category,
   cta,
   ctaIcon,
@@ -220,25 +222,10 @@ function MediaBlock({
   // Get preset props current type
   const preset = presets[type]
 
-  // Set border props for content, if required
-  const contentProps =
-    border === 'left'
-      ? type === 'stacked'
-        ? borderProps.left
-        : type === 'inline' || reversed || presets[type].reversed
-        ? borderProps.leftAtLarge
-        : ''
-      : {}
-
+  const isReversed = reversed !== undefined ? reversed : preset.reversed
   const blockType = preset.type || type
-  const isReversed = preset.reversed || reversed
 
-  // Set block classes
-  const blockClass = getBlockClass(
-    ['c-block', 'c-media-block'],
-    blockType,
-    isReversed
-  )
+  const blockClass = useMediaBlockClass(blockType, isReversed)
 
   return (
     <Div className={blockClass} {...preset.block}>
@@ -259,8 +246,8 @@ function MediaBlock({
       <Div
         className="c-media-block__content c-block__content"
         spacing
-        {...contentProps}
         {...preset.content}
+        {...(isReversed ? preset.contentReversed : {})}
       >
         <Div
           className="c-block__group c-media-block__group"
@@ -289,6 +276,7 @@ function MediaBlock({
                     className="c-block__title-link"
                     href={url}
                     themeLinkHover="dark"
+                    {...preset.titleLink}
                   >
                     {title}
                   </Link>
@@ -338,7 +326,6 @@ function MediaBlock({
 MediaBlock.propTypes = {
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.oneOf(['audio', 'gallery', 'video']),
-  border: PropTypes.oneOf(['left', 'none']),
   category: PropTypes.string,
   column: PropTypes.bool,
   cta: PropTypes.string,
@@ -361,7 +348,6 @@ MediaBlock.propTypes = {
 
 MediaBlock.defaultProps = {
   asBackgroundImage: false,
-  border: 'none',
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
   type: 'row',

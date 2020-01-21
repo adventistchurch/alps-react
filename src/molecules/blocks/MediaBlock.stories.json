@@ -6,5 +6,13 @@
   "cta": "Find out more",
   "ctaIcon": "arrow-long-right",
   "url": "https://www.adventist.org",
-  "kicker": "Eligendi quod dolorem"
+  "kicker": "Eligendi quod dolorem",
+  "image": {
+    "alt": "Eligendi quod dolorem",
+    "srcSet": {
+      "default": "https://picsum.photos/500/375/",
+      "500": "https://picsum.photos/700/600/",
+      "900": "https://picsum.photos/900/700/"
+    }
+  }
 }
