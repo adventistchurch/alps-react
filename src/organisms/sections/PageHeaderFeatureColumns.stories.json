@@ -9,7 +9,8 @@
           "700": "//picsum.photos/450/900?image=1067",
           "1100": "//picsum.photos/600/1200?image=1067"
         }
-      }
+      },
+      "url": "#"
     },
     {
       "title": "Blog - Son Rise Over the Land of the Rising Sun: My Eyewitness Account",
@@ -20,7 +21,8 @@
           "700": "//picsum.photos/450/900?image=1066",
           "1100": "//picsum.photos/600/1200?image=1066"
         }
-      }
+      },
+      "url": "#"
     },
     {
       "title": "Event - Religious Liberty – The Freedom to Beleive",
@@ -31,7 +33,8 @@
           "700": "//picsum.photos/450/900?image=1043",
           "1100": "//picsum.photos/600/1200?image=1043"
         }
-      }
+      },
+      "url": "#"
     }
   ]
 }

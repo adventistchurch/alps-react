@@ -5,23 +5,22 @@ import { Link } from '../../helpers/Element'
 import renderItems from '../../helpers/renderItems'
 import MediaBlock from '../../molecules/blocks/MediaBlock'
 
-export const pageHeaderFeatureBlockTypes = [
-  'feature',
-  'column',
-  'full',
-  'longform',
-]
+export const blockTypes = ['feature', 'column', 'full', 'longform']
 
-function PageHeaderFeature({ blocks, blocksType, hasScroll }) {
+function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
   const classes = []
-  if (blocksType === 'column') classes.push('c-page-header__3-col')
+  if (blockType === 'column') classes.push('c-page-header__3-col')
   if (hasScroll) classes.push('has-scroll')
   const headerClasses = classes.join(' ')
 
   return (
     <header className={`c-page-header c-page-header__feature ${headerClasses}`}>
       <div className="c-page-header__content">
-        {renderItems(blocks, MediaBlock, { type: blocksType })}
+        {blocks ? (
+          renderItems(blocks, MediaBlock, { type: blockType })
+        ) : (
+          <MediaBlock {...props} type={blockType} />
+        )}
       </div>
       {hasScroll && <Link href="#top" className="c-page-header__scroll" />}
     </header>
@@ -30,13 +29,13 @@ function PageHeaderFeature({ blocks, blocksType, hasScroll }) {
 
 PageHeaderFeature.propTypes = {
   blocks: PropTypes.array,
-  blocksType: PropTypes.oneOf(pageHeaderFeatureBlockTypes),
+  blockType: PropTypes.oneOf(blockTypes),
   hasScroll: PropTypes.bool,
+  ...MediaBlock.propTypes,
 }
 
 PageHeaderFeature.defaultProps = {
-  blocks: [],
-  blocksType: 'feature',
+  blockType: 'feature',
   hasScroll: false,
 }
 

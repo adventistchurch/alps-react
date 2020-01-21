@@ -1,19 +1,16 @@
 {
-  "blocks": [
-    {
-      "kicker": "Feature",
-      "title": "Nulla finibus ligula ut nisl facilisis",
-      "description": "Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum. Aenean pretium augue sit amet nunc consequat vulputate.",
-      "category": "Culture",
-      "date": "2019-02-28",
-      "image": {
-        "alt": "Aut blanditiis qui",
-        "srcSet": {
-          "default": "//picsum.photos/500/375?image=1067",
-          "700": "//picsum.photos/700/600?image=1067",
-          "900": "//picsum.photos/900/700?image=1067"
-        }
-      }
+  "kicker": "Featured block",
+  "title": "Nulla finibus ligula ut nisl facilisis",
+  "description": "Curabitur non est vulputate, euismod nibh non, sollicitudin nisi. Morbi ullamcorper purus et massa mattis fermentum. Aenean pretium augue sit amet nunc consequat vulputate.",
+  "category": "Culture",
+  "date": "2019-02-28",
+  "url": "#",
+  "image": {
+    "alt": "Aut blanditiis qui",
+    "srcSet": {
+      "default": "//picsum.photos/500/375?image=1067",
+      "700": "//picsum.photos/700/600?image=1067",
+      "900": "//picsum.photos/900/700?image=1067"
     }
-  ]
+  }
 }

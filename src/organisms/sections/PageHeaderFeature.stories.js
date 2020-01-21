@@ -2,9 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean, object, select } from '@storybook/addon-knobs'
 
-import PageHeaderFeature, {
-  pageHeaderFeatureBlockTypes,
-} from './PageHeaderFeature'
+import PageHeaderFeature, { blockTypes } from './PageHeaderFeature'
 
 import dataFeature from './PageHeaderFeature.stories.json'
 import dataColumns from './PageHeaderFeatureColumns.stories.json'
@@ -31,14 +29,9 @@ function getTabData(name, settings = {}) {
 }
 
 export function pageHeaderFeatureTab(settings = {}) {
-  const type = select(
-    'Blocks Type',
-    pageHeaderFeatureBlockTypes,
-    settings.blocksType,
-    'Blocks'
-  )
+  const type = select('Blocks Type', blockTypes, settings.blocksType, 'Blocks')
 
-  const { blocks, blocksType, hasScroll, tab } = getTabData('Blocks', {
+  const { blocks, blocksType, hasScroll, tab, ...rest } = getTabData('Blocks', {
     blocksType: type,
     ...settings,
   })
@@ -47,12 +40,13 @@ export function pageHeaderFeatureTab(settings = {}) {
     blocksType,
     blocks: object('Blocks', blocks, tab),
     hasScroll: boolean('Show Scroll to top', hasScroll, tab),
+    ...rest,
   }
 }
 
 storiesOf('organisms/sections/PageHeaderFeature', module)
-  .addWithJSX('Default', () => {
-    const { blocks, blocksType, hasScroll } = pageHeaderFeatureTab({
+  .addWithJSX('Feature (Default)', () => {
+    const { blocks, blocksType, hasScroll, ...rest } = pageHeaderFeatureTab({
       blocksType: 'feature',
       tab: 'Props',
     })
@@ -62,6 +56,7 @@ storiesOf('organisms/sections/PageHeaderFeature', module)
         blocks={blocks}
         blocksType={blocksType}
         hasScroll={hasScroll}
+        {...rest}
       />
     )
   })
