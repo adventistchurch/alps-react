@@ -55,7 +55,7 @@ Header.propTypes = {
   logo: PropTypes.shape({
     canBeDark: PropTypes.bool,
     link: PropTypes.string,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     useFillTheme: PropTypes.bool,
   }),
   primaryNav: PropTypes.object,
@@ -63,7 +63,9 @@ Header.propTypes = {
 }
 Header.defaultProps = {
   drawer: {},
-  logo: {},
+  logo: {
+    name: 'sda',
+  },
   primaryNav: {},
   secondaryNav: {},
 }
