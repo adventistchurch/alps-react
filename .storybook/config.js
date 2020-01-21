@@ -51,7 +51,9 @@ addDecorator(
 setAddon(JSXAddon)
 
 addParameters({
-  viewport: { defaultViewport: 'responsive', viewports: INITIAL_VIEWPORTS },
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
+  },
 
   options: {
     theme,
