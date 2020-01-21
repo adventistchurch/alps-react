@@ -3,25 +3,44 @@ import PropTypes from 'prop-types'
 
 import { spacingSizes } from '../../atoms/global/spacing'
 import { Div } from '../../helpers/Element'
-import ArticleWrap from './ArticleWrap'
+
+import Text from '../../atoms/texts/Text'
+import GridSeven from '../../atoms/grids/GridSeven'
+import GridItem from '../../atoms/grids/GridItem'
+// import ArticleWrap from './ArticleWrap'
 
 function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
   return (
-    <>
-      <ArticleWrap hasDropcap={hasDropcap} spacingSize={spacingSize}>
-        {children}
-      </ArticleWrap>
+    <GridSeven
+      as="section"
+      shiftSide="left"
+      shiftAt="xxlarge"
+      spacingSize="double"
+      spacingUntil="large"
+    >
+      <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">
+        <Text
+          as="article"
+          className="c-article__body"
+          hasDropcap={hasDropcap}
+          spacingSize={spacingSize}
+        >
+          {children}
+        </Text>
+      </GridItem>
 
-      <Div
-        className="c-sidebar"
-        gridItemSizeAtL="2"
-        gridItemSizeAtXL="2"
-        paddingSize="zero"
-        paddingSide="sides"
-      >
-        {sidebar}
-      </Div>
-    </>
+      {sidebar && (
+        <Div
+          className="c-sidebar"
+          gridItemSizeAtL="2"
+          gridItemSizeAtXL="2"
+          paddingSize="zero"
+          paddingSide="sides"
+        >
+          {sidebar}
+        </Div>
+      )}
+    </GridSeven>
   )
 }
 

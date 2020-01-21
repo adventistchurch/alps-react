@@ -3,7 +3,6 @@ import React from 'react'
 
 import SearchHeader from '../molecules/forms/SearchHeader'
 import SearchResults from '../organisms/content/SearchResults'
-import ArticleWrap from '../organisms/content/ArticleWrap'
 import Main from './Main'
 import TemplateWrap from './TemplateWrap'
 
@@ -12,15 +11,7 @@ function Search() {
     <TemplateWrap>
       <Main>
         <SearchHeader />
-        <ArticleWrap
-          paddingSize="zero"
-          paddingSide="sides"
-          shiftAt="large"
-          spacingUntil="xxlarge"
-          wrap="6"
-        >
-          <SearchResults />
-        </ArticleWrap>
+        <SearchResults />
       </Main>
     </TemplateWrap>
   )
