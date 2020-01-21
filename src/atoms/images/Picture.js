@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-function Picture({ image, lazy }) {
+function Picture({ image, lazy, style }) {
   if (!image || !image.srcSet) return null
   const { alt, srcSet } = image
 
@@ -20,7 +20,7 @@ function Picture({ image, lazy }) {
     ))
 
   return (
-    <picture className="picture">
+    <picture className="picture" style={style}>
       {sources}
       <Image alt={alt} lazy={lazy} src={defaultImage} />
     </picture>
@@ -33,9 +33,10 @@ Picture.propTypes = {
     srcSet: PropTypes.object.isRequired,
   }),
   lazy: PropTypes.bool,
+  style: PropTypes.object,
 }
 Picture.defaultProps = {
-  image: { default: '' },
+  image: { srcSet: {}, alt: '' },
 }
 
 export default Picture

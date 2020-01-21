@@ -19,7 +19,9 @@ function getTabData(name, settings = {}) {
 export function pictureTab(settings = {}) {
   const { alt, srcSet, lazy, tab } = getTabData('Picture', settings)
 
-  const imageMode = select(' Mode', imageModes, 'Landscape', tab)
+  const imageMode = srcSet
+    ? null
+    : select(' Mode', imageModes, 'Landscape', tab)
   const src = srcSet || data[imageMode]
 
   return {
