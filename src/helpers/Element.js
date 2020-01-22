@@ -514,6 +514,7 @@ export function Form(props) {
 }
 Form.propTypes = Element.propTypes
 
+// - Elements with Ref
 // Use this component when a ref need to be passed to the element
 export const ElementWithRef = React.forwardRef((props, ref) => (
   <Element {...props} forwardedRef={ref} />
@@ -523,3 +524,15 @@ export const ElementWithRef = React.forwardRef((props, ref) => (
 export const DivWithRef = React.forwardRef((props, ref) => (
   <Div {...props} forwardedRef={ref} />
 ))
+
+// - Markers
+
+export function Em(props) {
+  return <Element {...props} as="em" />
+}
+Em.propTypes = Element.propTypes
+
+export function Strong(props) {
+  return <Element {...props} as="strong" />
+}
+Strong.propTypes = Element.propTypes
