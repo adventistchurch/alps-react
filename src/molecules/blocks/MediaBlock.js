@@ -215,6 +215,7 @@ function MediaBlock({
   kicker,
   reversed,
   title,
+  titleSize,
   type,
   video,
   url,
@@ -267,8 +268,10 @@ function MediaBlock({
             )}
             {title && (
               <HeadingThree
-                className="c-media-block__title c-block__title u-theme--color--dark"
+                className="c-media-block__title c-block__title"
                 spaceSize={kicker ? 'zero' : null}
+                themeColor="dark"
+                fontSize={titleSize}
                 {...preset.title}
               >
                 {url ? (
@@ -341,15 +344,17 @@ MediaBlock.propTypes = {
   kicker: PropTypes.string,
   url: PropTypes.string,
   reversed: PropTypes.bool,
-  type: PropTypes.oneOf(mediaBlocksTypes),
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  titleSize: PropTypes.oneOf(['m', 'l', 'xl']),
+  type: PropTypes.oneOf(mediaBlocksTypes),
   video: PropTypes.node,
 }
 
 MediaBlock.defaultProps = {
-  asBackgroundImage: false,
+  asBackgroundImage: true,
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
+  titleSize: 'l',
   type: 'row',
 }
 

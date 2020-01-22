@@ -41,21 +41,21 @@ function metaTab(settings = {}) {
 }
 
 function imageTab(settings = {}) {
-  const { image, tab } = getTabData('Image', settings)
+  const { asBackgroundImage, image, tab } = getTabData('Image', settings)
   const showImage = boolean('Show Image', true, tab)
-  const asBackgroundImage = boolean('As Background Image', false, tab)
 
   return {
-    asBackgroundImage,
+    asBackgroundImage: boolean('As Background Image', asBackgroundImage, tab),
     ...(showImage ? pictureTab({ ...image, tab }) : {}),
   }
 }
 
 function displayTab(settings = {}) {
-  const { reversed, type, tab } = getTabData('Display', settings)
+  const { reversed, titleSize, type, tab } = getTabData('Display', settings)
 
   return {
     type: select('Type', mediaBlocksTypes, type, tab),
+    titleSize: select('Title size', ['m', 'l', 'xl'], titleSize, tab),
     reversed: boolean('Reversed', reversed, tab),
   }
 }
