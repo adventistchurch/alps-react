@@ -23,7 +23,6 @@ const CODES = [
 const excludePaths = [
   '.stories.js', // Storybook stories
   'atoms/icons/library', // Icons in library
-  'helpers/lazy', // using react-lazyload for now
   'helpers/renderTimes', // not used
 ]
 
