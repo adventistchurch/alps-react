@@ -5,6 +5,7 @@ import Button from '../../atoms/buttons/Button'
 import Figure from '../../molecules/media/Figure'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 import Element, {
+  Em,
   Div,
   HeadingFour,
   HeadingThree,
@@ -216,6 +217,7 @@ function MediaBlock({
   reversed,
   title,
   titleSize,
+  titlePrefix,
   type,
   video,
   url,
@@ -227,6 +229,13 @@ function MediaBlock({
   const blockType = preset.type || type
 
   const blockClass = useMediaBlockClass(blockType, isReversed)
+
+  const _title = title ? (
+    <>
+      {titlePrefix && <Em themeColor="lighter">{titlePrefix}&nbsp;</Em>}
+      {title}
+    </>
+  ) : null
 
   return (
     <Div className={blockClass} {...preset.block}>
@@ -274,6 +283,7 @@ function MediaBlock({
                 fontSize={titleSize}
                 {...preset.title}
               >
+                {}
                 {url ? (
                   <Link
                     className="c-block__title-link"
@@ -281,10 +291,10 @@ function MediaBlock({
                     themeLinkHover="dark"
                     {...preset.titleLink}
                   >
-                    {title}
+                    {_title}
                   </Link>
                 ) : (
-                  title
+                  _title
                 )}
               </HeadingThree>
             )}
@@ -345,6 +355,7 @@ MediaBlock.propTypes = {
   url: PropTypes.string,
   reversed: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  titlePrefix: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   titleSize: PropTypes.oneOf(['m', 'l', 'xl']),
   type: PropTypes.oneOf(mediaBlocksTypes),
   video: PropTypes.node,

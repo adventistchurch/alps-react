@@ -20,11 +20,15 @@ function getTabData(name, settings = {}) {
 }
 
 function textsTab(settings = {}) {
-  const { description, kicker, title, tab } = getTabData('Texts', settings)
+  const { description, kicker, title, titlePrefix, tab } = getTabData(
+    'Texts',
+    settings
+  )
 
   return {
     kicker: text('Kicker', kicker, tab),
     title: text('Title', title, tab),
+    titlePrefix: text('Title prefix', titlePrefix, tab),
     description: text('Description', description, tab),
   }
 }
