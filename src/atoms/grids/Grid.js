@@ -2,14 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
+import { wrapSizes } from '../global/grids'
 
-function Grid({ as, children, noWrapClass, noGutters, wrap, ...props }) {
+function Grid({
+  as,
+  children,
+  noWrapClass,
+  noGutters,
+  seven,
+  sevenInner,
+  wrap,
+  ...props
+}) {
   return (
     <Element
-      tag={as}
       gridNoGutters={noGutters}
       gridWrap={wrap}
       noGridWrapClass={noWrapClass}
+      seven={seven}
+      sevenInner={sevenInner}
+      tag={as}
       {...props}
     >
       {children}
@@ -22,14 +34,18 @@ export const asOptions = ['article', 'div', 'section']
 Grid.propTypes = {
   as: PropTypes.oneOf(asOptions),
   children: PropTypes.node,
-  className: PropTypes.string,
   noWrapClass: Element.propTypes.noGridWrapClass,
   noGutters: Element.propTypes.gridNoGutters,
-  wrap: Element.propTypes.gridWrap,
+  wrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
+  seven: PropTypes.bool,
+  sevenInner: PropTypes.bool,
   ...Element.propTypes,
 }
 Grid.defaultProps = {
   as: 'div',
+  wrap: true,
 }
+
+export { wrapSizes }
 
 export default Grid
