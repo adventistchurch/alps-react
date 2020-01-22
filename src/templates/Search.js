@@ -3,17 +3,14 @@ import React from 'react'
 
 import SearchHeader from '../molecules/forms/SearchHeader'
 import SearchResults from '../organisms/content/SearchResults'
-import Main from './Main'
-import TemplateWrap from './TemplateWrap'
+import BlankTemplate from './BlankTemplate'
 
 function Search() {
   return (
-    <TemplateWrap>
-      <Main>
-        <SearchHeader />
-        <SearchResults />
-      </Main>
-    </TemplateWrap>
+    <BlankTemplate>
+      <SearchHeader />
+      <SearchResults />
+    </BlankTemplate>
   )
 }
 

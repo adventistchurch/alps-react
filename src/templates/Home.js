@@ -1,19 +1,12 @@
 import React from 'react'
 
-import BasicPage from './BasicPage'
+import BlankTemplate from './BlankTemplate'
+import TemplateWrap from './TemplateWrap'
 
-function Home({ ...props }) {
-  return <BasicPage {...props} />
+function Home({ children, ...templateProps }) {
+  return <BlankTemplate {...templateProps}>{children}</BlankTemplate>
 }
 
-// {% if has_short_body %}
-// {% include '@organisms/content/body-content-short.twig' %}
-// {% else %}
-// {% include '@organisms/content/body-content.twig' %}
-// {% endif %}
-
-Home.propTypes = {
-  ...BasicPage.props,
-}
+Home.propTypes = TemplateWrap.propTypes
 
 export default Home
