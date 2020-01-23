@@ -70,6 +70,7 @@ import {
 import {
   getGridClass,
   getGridItemClass,
+  gridBreaks,
   shiftBreakpoints,
   shiftSides,
   wrapSizes,
@@ -110,6 +111,7 @@ function getClassNameAndOtherProps(props) {
     fontSize,
     fontType,
     fontWeight,
+    gridBreak,
     gridItem,
     gridItemSize,
     gridItemSizeAtS,
@@ -244,14 +246,15 @@ function getClassNameAndOtherProps(props) {
   ) {
     classes.push(
       ...getGridClass({
+        gridBreak,
+        noGridClass,
+        noWrapClass: noGridWrapClass,
+        noGutters: gridNoGutters,
         seven,
         sevenInner,
         shiftAt,
         shiftSide,
         wrap: gridWrap,
-        noGridClass,
-        noWrapClass: noGridWrapClass,
-        noGutters: gridNoGutters,
       })
     )
   }
@@ -354,6 +357,7 @@ Element.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),
+  gridBreak: PropTypes.oneOf(gridBreaks),
   gridNoGutters: PropTypes.bool,
   gridItem: PropTypes.bool,
   gridItemSize: gridItemSizePropType,

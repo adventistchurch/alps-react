@@ -10,6 +10,9 @@ const shiftClass = 'u-shift'
 const shiftSides = ['left', 'right']
 const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
+const gridBreaks = ['standard', 'large']
+const gridBreakClass = 'l-#-break'
+
 const noGuttersClass = 'u-no-gutters'
 
 const wrapRange = [1, 2, 3, 4, 5, 6, 7]
@@ -40,14 +43,15 @@ function getGridWrapClass(size, noWrapClass) {
 }
 
 function getGridClass({
+  gridBreak,
+  noGridClass,
   noGutters,
+  noWrapClass,
   seven,
   sevenInner,
-  shiftSide,
   shiftAt,
+  shiftSide,
   wrap,
-  noGridClass,
-  noWrapClass,
 }) {
   const classes = []
 
@@ -55,6 +59,7 @@ function getGridClass({
   if (seven) classes.push(sevenClass)
   if (sevenInner) classes.push(sevenInnerClass)
   if (noGutters) classes.push(noGuttersClass)
+  if (gridBreak) classes.push(gridBreakClass.replace('#', gridBreak))
   if (wrap) classes.push(getGridWrapClass(wrap, noWrapClass))
   if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
 
@@ -91,6 +96,7 @@ function getGridItemClass({
 }
 
 export {
+  gridBreaks,
   getGridClass,
   getGridItemClass,
   getGridWrapClass,
