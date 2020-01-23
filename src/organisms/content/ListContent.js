@@ -5,13 +5,20 @@ import { Div } from '../../helpers/Element'
 import HeadingBlock from '../../molecules/blocks/HeadingBlock'
 import Pagination from '../../molecules/navigation/Pagination'
 
-function ListContent({ children, pagination, title, linkUrl, linkLabel }) {
+function ListContent({
+  children,
+  contentSpacing,
+  pagination,
+  title,
+  linkUrl,
+  linkLabel,
+}) {
   return (
     <Div className="c-block-wrap" spacingSize="double" paddingSide="right">
       {title && (
         <HeadingBlock title={title} linkText={linkLabel} url={linkUrl} />
       )}
-      <Div className="c-block-wrap__content" spacingSize="double">
+      <Div className="c-block-wrap__content" spacingSize={contentSpacing}>
         {children}
       </Div>
       {pagination && <Pagination {...pagination} />}
@@ -21,12 +28,14 @@ function ListContent({ children, pagination, title, linkUrl, linkLabel }) {
 
 ListContent.propTypes = {
   children: PropTypes.node,
+  contentSpacing: PropTypes.string,
   linkLabel: PropTypes.string,
   linkUrl: PropTypes.string,
   pagination: PropTypes.object,
   title: PropTypes.string,
 }
-ListContent.propTypes = {
+ListContent.defaultProps = {
+  contentSpacing: 'double',
   linkLabel: 'See all',
   linkUrl: '#',
 }
