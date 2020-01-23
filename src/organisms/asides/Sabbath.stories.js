@@ -15,7 +15,7 @@ function getTabData(name, settings = {}) {
 }
 
 function logoTab(settings = {}) {
-  const { showLogo, stickyLogo, showLogoOnScroll, tab } = getTabData(
+  const { showLogo, stickyLogo, hideLogoOnTop, tab } = getTabData(
     'Logo',
     settings
   )
@@ -23,7 +23,7 @@ function logoTab(settings = {}) {
   return {
     showLogo: boolean('Show logo', showLogo, tab),
     stickyLogo: boolean('Sticky logo', stickyLogo, tab),
-    showLogoOnScroll: boolean('Show logo on Scroll', showLogoOnScroll, tab),
+    hideLogoOnTop: boolean('Show logo on Scroll', hideLogoOnTop, tab),
   }
 }
 

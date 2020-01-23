@@ -9,7 +9,7 @@ import useWindowEvent from '../../helpers/useWindowEvent'
 
 const stickyBaseStyle = { zIndex: 99999, top: 0, position: 'fixed' }
 
-function useStickyLogo(showLogoOnScroll) {
+function useStickyLogo(hideLogoOnTop) {
   const logoWrapRef = useRef()
   const logoRef = useRef()
   const [logoSize, setlogoSize] = useState(null)
@@ -47,7 +47,7 @@ function useStickyLogo(showLogoOnScroll) {
     setOpacity(1 - scrollpercent)
 
     // Set inner logo visibiliy class when vertical offset is higher than header
-    if (showLogoOnScroll) {
+    if (hideLogoOnTop) {
       const scrolling = vericalOffset > headerHeight
       setLogoInnerClass(scrolling ? 'is-visible' : 'is-hidden')
     }
@@ -73,7 +73,7 @@ function Sabbath({
   backgroundImage,
   logo,
   showLogo,
-  showLogoOnScroll,
+  hideLogoOnTop,
   stickyLogo,
 }) {
   const { openDrawer } = useDrawerContext()
@@ -83,7 +83,7 @@ function Sabbath({
     logoInnerClass,
     logoRef,
     logoWrapRef,
-  } = useStickyLogo(showLogoOnScroll)
+  } = useStickyLogo(hideLogoOnTop)
 
   return (
     <aside
@@ -147,13 +147,13 @@ Sabbath.propTypes = {
   backgroundImage: PropTypes.string,
   logo: PropTypes.oneOf(iconNames),
   showLogo: PropTypes.bool,
-  showLogoOnScroll: PropTypes.bool,
+  hideLogoOnTop: PropTypes.bool,
   stickyLogo: PropTypes.bool,
 }
 Sabbath.defaultProps = {
   showLogo: true,
-  showLogoOnScroll: false,
-  stickyLogo: false,
+  hideLogoOnTop: false,
+  stickyLogo: true,
 }
 
 export default Sabbath
