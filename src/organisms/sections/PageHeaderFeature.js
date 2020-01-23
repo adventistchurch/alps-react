@@ -17,9 +17,12 @@ function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
     <header className={`c-page-header c-page-header__feature ${headerClasses}`}>
       <div className="c-page-header__content">
         {blocks ? (
-          renderItems(blocks, MediaBlock, { type: blockType })
+          renderItems(blocks, MediaBlock, {
+            asBackgroundImage: true,
+            type: blockType,
+          })
         ) : (
-          <MediaBlock {...props} type={blockType} />
+          <MediaBlock {...props} type={blockType} asBackgroundImage />
         )}
       </div>
       {hasScroll && <Link href="#top" className="c-page-header__scroll" />}
