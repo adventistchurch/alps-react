@@ -17,10 +17,13 @@ import MediaImage from './MediaImage'
 export const mediaBlocksTypes = [
   'column',
   'feature',
+  'featuredNews',
   'full',
   'inline',
   'inset',
   'longform',
+  'mediaContent',
+  'mediaRow',
   'row',
   'stacked',
 ]
@@ -30,7 +33,11 @@ const mediaBlockClass = 'c-media-block'
 
 // Types presets
 const presets = {
-  default: {},
+  default: {
+    title: {
+      fontSize: 'l',
+    },
+  },
 
   column: {
     content: {
@@ -163,6 +170,82 @@ const presets = {
     },
   },
 
+  mediaContent: {
+    type: 'inline',
+    reversed: true,
+    seven: true,
+
+    block: {
+      gridWrap: 6,
+      seven: true,
+    },
+    image: {
+      gridItemSizeAtS: 3,
+      paddingSize: 'zero',
+      paddingSide: 'sides',
+    },
+    content: {
+      gridItemSizeAtS: 3,
+      flexJustify: 'between',
+      spacing: true,
+      borderColor: 'black',
+      borderSide: 'left',
+      borderAt: 'large',
+      themeBorder: 'darker',
+      themeBorderSide: 'left',
+      color: 'gray',
+      backgroundColor: 'gray--light',
+      canBe: 'dark-dark',
+      paddingSide: ['top', 'bottom'],
+    },
+    title: {
+      fontSize: 'l',
+    },
+    meta: {
+      themeColor: 'base',
+    },
+  },
+
+  mediaRow: {
+    type: 'stacked',
+    seven: true,
+
+    block: {
+      gridWrap: true,
+      gridItemSize: 3,
+      gridItemSizeAtM: 2,
+      gridItemSizeAtXL: 1,
+      noGridItemClass: true,
+      seven: true,
+    },
+    image: {
+      blockIconType: 'gallery',
+      gridItemSize: 3,
+      gridItemSizeAtM: 2,
+      gridItemSizeAtXL: 1,
+      noGridItemClass: true,
+      paddingSide: 'sides',
+      paddingSize: 'zero',
+      spaceSide: 'right',
+    },
+    content: {
+      gridItemSize: 3,
+      gridItemSizeAtM: 2,
+      gridItemSizeAtXL: 1,
+      borderSide: 'left',
+      noGridItemClass: true,
+      spacing: true,
+    },
+    title: {
+      fontSize: 's',
+    },
+    meta: {
+      fontType: 'secondary',
+      fontSize: 'xs',
+      themeColor: 'base',
+    },
+  },
+
   longform: {
     type: 'inline',
     block: {
@@ -257,7 +340,6 @@ function MediaBlock({
   reversed,
   stackedUntilSmall,
   title,
-  titleSize,
   titlePrefix,
   type,
   video,
@@ -286,10 +368,10 @@ function MediaBlock({
     <Div className={blockClass} {...preset.block} {...blockProps}>
       {image && (
         <MediaImage
+          blockIconType={blockIconType}
+          asBackgroundImage={asBackgroundImage}
           {...preset.image}
           {...imageProps}
-          asBackgroundImage={asBackgroundImage}
-          blockIconType={blockIconType}
           image={image}
           url={url}
         />
@@ -327,7 +409,7 @@ function MediaBlock({
                 className="c-media-block__title c-block__title"
                 spaceSize={kicker ? 'zero' : null}
                 themeColor="dark"
-                fontSize={titleSize}
+                fontType="primary"
                 {...preset.title}
               >
                 {}
@@ -407,7 +489,6 @@ MediaBlock.propTypes = {
   stackedUntilSmall: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   titlePrefix: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  titleSize: PropTypes.oneOf(['m', 'l', 'xl']),
   type: PropTypes.oneOf(mediaBlocksTypes),
   video: PropTypes.node,
 }
@@ -416,7 +497,6 @@ MediaBlock.defaultProps = {
   asBackgroundImage: false,
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
-  titleSize: 'l',
 }
 
 export default MediaBlock
