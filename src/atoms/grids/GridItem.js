@@ -16,6 +16,7 @@ function GridItem({
   return (
     <Element
       {...props}
+      gridItem
       gridItemSize={size}
       gridItemSizeAtS={sizeAtS}
       gridItemSizeAtM={sizeAtM}
