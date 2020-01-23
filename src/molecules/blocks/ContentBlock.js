@@ -6,22 +6,24 @@ import Button from '../../atoms/buttons/Button'
 import { Div, HeadingThree, Link, Paragraph, Span } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
+const baseClasses = ['c-block', 'c-block__text']
+
 function ContentBlock({
   category,
   className,
   cta,
   description,
-  descriptionClass,
   image,
   more,
   title,
   titleProps,
+  titleSize,
   url,
   ...props
 }) {
   const { onToggle, openClass } = useToggle()
 
-  const classes = ['c-block', 'c-block__text']
+  const classes = baseClasses
 
   if (more) classes.push('c-block__text-expand')
   if (image) classes.push('has-image')
@@ -52,7 +54,7 @@ function ContentBlock({
 
       <HeadingThree
         fontType="primary"
-        fontSize="m"
+        fontSize={titleSize}
         themeColor="darker"
         {...titleProps}
       >
@@ -70,9 +72,7 @@ function ContentBlock({
       </HeadingThree>
 
       {description && (
-        <Paragraph className={`c-block__body ${descriptionClass}`}>
-          {description}
-        </Paragraph>
+        <Paragraph className={`c-block__body`}>{description}</Paragraph>
       )}
 
       {category && (
@@ -126,16 +126,14 @@ ContentBlock.propTypes = {
   className: PropTypes.string,
   cta: PropTypes.string,
   description: PropTypes.string,
-  descriptionClass: PropTypes.string,
   image: MediaImage.propTypes.image,
   more: PropTypes.string,
   title: PropTypes.string.isRequired,
   titleProps: PropTypes.object,
+  titleSize: PropTypes.oneOf(['s', 'm', 'l']),
   url: PropTypes.string,
 }
 
-ContentBlock.defaultProps = {
-  descriptionClass: '',
-}
+ContentBlock.defaultProps = {}
 
 export default ContentBlock
