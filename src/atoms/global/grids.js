@@ -1,22 +1,24 @@
 const gridClass = 'l-grid'
 const col = 'col'
 
-const sevenClass = `${gridClass}--7-${col}`
+export const sevenClass = `${gridClass}--7-${col}`
 const sevenInnerClass = `${sevenClass}--inner` // Class is available in CSS, but not not used in twig/json templates
 const wrapClass = `${gridClass}-wrap`
 const itemClass = `${gridClass}-item`
 
 const shiftClass = 'u-shift'
-const shiftSides = ['left', 'right']
-const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
+export const shiftSides = ['left', 'right']
+export const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
-const gridBreaks = ['standard', 'large']
+export const gridBreaks = ['standard', 'large']
 const gridBreakClass = 'l-#-break'
+
+const blockRowClass = 'l-section__block-row'
 
 const noGuttersClass = 'u-no-gutters'
 
 const wrapRange = [1, 2, 3, 4, 5, 6, 7]
-const wrapSizes = [
+export const wrapSizes = [
   ...wrapRange, // numeric versions
   ...wrapRange.map(ws => `${ws}`), // string versions
 ]
@@ -36,17 +38,22 @@ function getShiftClass(side, at) {
   } ` // TODO: Ask if, to avoid this special case, `.u-shift--left--1-col--standard` is meant used, and if can be renamed to a more "standard" name like `.u-shift--left--1-col--at-standard` (note the added `at`).
 }
 
-function getGridWrapClass(size, noWrapClass) {
+export function getGridWrapClass(size, noWrapClass) {
   return `${noWrapClass ? '' : wrapClass}${
     wrapSizes.includes(size) ? ` ${wrapClass}--${size}-of-7` : ''
   }`
 }
 
-function getGridClass({
+function getBlockRowClass() {
+  return `${blockRowClass} ${blockRowClass}--6-col`
+}
+
+export function getGridClass({
   gridBreak,
   noGridClass,
   noGutters,
   noWrapClass,
+  blockRow,
   seven,
   sevenInner,
   shiftAt,
@@ -60,13 +67,14 @@ function getGridClass({
   if (sevenInner) classes.push(sevenInnerClass)
   if (noGutters) classes.push(noGuttersClass)
   if (gridBreak) classes.push(gridBreakClass.replace('#', gridBreak))
+  if (blockRow) classes.push(getBlockRowClass())
   if (wrap) classes.push(getGridWrapClass(wrap, noWrapClass))
   if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
 
   return classes
 }
 
-function getGridItemClass({
+export function getGridItemClass({
   noItemClass,
   size,
   sizeAtL,
@@ -93,15 +101,4 @@ function getGridItemClass({
   }
 
   return classes
-}
-
-export {
-  gridBreaks,
-  getGridClass,
-  getGridItemClass,
-  getGridWrapClass,
-  sevenClass,
-  shiftBreakpoints,
-  shiftSides,
-  wrapSizes,
 }

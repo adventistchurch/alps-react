@@ -6,6 +6,7 @@ import { wrapSizes } from '../global/grids'
 
 function Grid({
   as,
+  blockRow,
   children,
   noWrapClass,
   noGutters,
@@ -16,6 +17,7 @@ function Grid({
 }) {
   return (
     <Element
+      blockRow={blockRow}
       gridNoGutters={noGutters}
       gridWrap={wrap}
       noGridWrapClass={noWrapClass}
@@ -33,6 +35,7 @@ export const asOptions = ['article', 'div', 'section']
 
 Grid.propTypes = {
   as: PropTypes.oneOf(asOptions),
+  blockRow: Element.propTypes.blockRow,
   children: PropTypes.node,
   noWrapClass: Element.propTypes.noGridWrapClass,
   noGutters: Element.propTypes.gridNoGutters,

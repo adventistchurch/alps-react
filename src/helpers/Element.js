@@ -92,6 +92,7 @@ function getClassNameAndOtherProps(props) {
   // Extract style-related props to build `className`
   const {
     backgroundColor,
+    blockRow,
     border,
     borderAt,
     borderColor,
@@ -242,10 +243,12 @@ function getClassNameAndOtherProps(props) {
     shiftAt ||
     shiftSide ||
     gridWrap ||
-    gridNoGutters
+    gridNoGutters ||
+    blockRow
   ) {
     classes.push(
       ...getGridClass({
+        blockRow,
         gridBreak,
         noGridClass,
         noWrapClass: noGridWrapClass,
@@ -336,6 +339,7 @@ export const gridItemSizePropType = PropTypes.oneOfType([
 Element.propTypes = {
   as: PropTypes.string,
   backgroundColor: PropTypes.oneOf(backgroundColors),
+  blockRow: PropTypes.bool,
   border: PropTypes.bool,
   borderAt: PropTypes.oneOf(borderAtBreakpoints),
   borderColor: PropTypes.oneOf(borderColors),
