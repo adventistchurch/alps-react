@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
@@ -25,8 +25,13 @@ export const mediaBlocksTypes = [
   'stacked',
 ]
 
+const blockClass = 'c-block'
+const mediaBlockClass = 'c-media-block'
+
 // Types presets
 const presets = {
+  default: {},
+
   column: {
     content: {
       color: 'white',
@@ -45,7 +50,6 @@ const presets = {
   feature: {
     type: 'inline',
     reversed: true,
-
     block: {
       seven: true,
     },
@@ -69,6 +73,29 @@ const presets = {
     },
     titleLink: {
       themeLinkHover: 'light',
+    },
+  },
+
+  featuredNews: {
+    stackedUntilSmall: true,
+    seven: true,
+    block: {
+      gridBreak: 'large',
+      gridWrap: true,
+      seven: true,
+      spacingUntil: 'small',
+    },
+    image: {
+      gridItemSizeAtS: 2,
+      gridItemSizeAtL: 1,
+      paddingSize: 'zero',
+      paddingSide: 'sides',
+    },
+    content: {
+      gridItemSizeAtS: 4,
+      gridItemSizeAtL: 3,
+      paddingSide: 'left',
+      flexJustify: 'start',
     },
   },
 
@@ -185,36 +212,50 @@ const presets = {
 
 /**
  * Returns main classes for a MediaBlock element
+ * TODO: Check this again if this PR https://github.com/adventistchurch/alps/pull/435 gets merged into ALPS.
  * @param {string} type
  * @param {boolean} reversed
  */
-function useMediaBlockClass(type, reversed = false) {
-  return useMemo(
-    () =>
-      ['c-block', 'c-media-block']
-        .flatMap(className => [
-          className,
-          `${className}__${type}`,
-          reversed ? `${className}--reversed` : null,
-        ])
-        .filter(Boolean)
-        .join(' '),
-    [type, reversed]
-  )
+function useMediaBlockClass(type, reversed = false, stackedUntilSmall = false) {
+  const classes = [mediaBlockClass, blockClass]
+
+  if (type) {
+    classes.push(`${blockClass}__${type}`)
+
+    if (stackedUntilSmall) {
+      classes.push(`${blockClass}__stacked--until-small`)
+    }
+
+    if (type === 'row') {
+      classes.push(`${mediaBlockClass}__${type}`)
+    }
+  }
+  if (reversed) {
+    classes.push(`${mediaBlockClass}--reversed`)
+  }
+
+  return classes.join(' ')
 }
 
+/**
+ * The MediaBlock Component
+ */
 function MediaBlock({
   asBackgroundImage,
   blockIconType,
+  blockProps,
   category,
+  contentProps,
   cta,
   ctaIcon,
   date,
   dateFormat,
   description,
   image,
+  imageProps,
   kicker,
   reversed,
+  stackedUntilSmall,
   title,
   titleSize,
   titlePrefix,
@@ -223,12 +264,16 @@ function MediaBlock({
   url,
 }) {
   // Get preset props current type
-  const preset = presets[type]
+  const preset = presets[type || 'default']
 
   const isReversed = reversed !== undefined ? reversed : preset.reversed
   const blockType = preset.type || type
 
-  const blockClass = useMediaBlockClass(blockType, isReversed)
+  const blockClass = useMediaBlockClass(
+    blockType,
+    isReversed,
+    stackedUntilSmall || preset.stackedUntilSmall
+  )
 
   const _title = title ? (
     <>
@@ -238,10 +283,11 @@ function MediaBlock({
   ) : null
 
   return (
-    <Div className={blockClass} {...preset.block}>
+    <Div className={blockClass} {...preset.block} {...blockProps}>
       {image && (
         <MediaImage
           {...preset.image}
+          {...imageProps}
           asBackgroundImage={asBackgroundImage}
           blockIconType={blockIconType}
           image={image}
@@ -249,7 +295,7 @@ function MediaBlock({
         />
       )}
       {video && (
-        <div className="c-block__image-wrap">
+        <div className="c-block__image-wrap" {...imageProps}>
           <Figure videoSrc={video} />
         </div>
       )}
@@ -258,6 +304,7 @@ function MediaBlock({
         spacing
         {...preset.content}
         {...(isReversed ? preset.contentReversed : {})}
+        {...contentProps}
       >
         <Div
           className="c-block__group c-media-block__group"
@@ -339,8 +386,10 @@ function MediaBlock({
 MediaBlock.propTypes = {
   asBackgroundImage: PropTypes.bool,
   blockIconType: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  blockProps: PropTypes.shape(Element.propTypes),
   category: PropTypes.string,
   column: PropTypes.bool,
+  contentProps: PropTypes.shape(Element.propTypes),
   cta: PropTypes.string,
   ctaIcon: Button.propTypes.icon,
   description: PropTypes.string,
@@ -351,9 +400,11 @@ MediaBlock.propTypes = {
   ]),
   dateFormat: PropTypes.oneOf(dateFormats),
   image: MediaImage.propTypes.image,
+  imageProps: PropTypes.shape(Element.propTypes),
   kicker: PropTypes.string,
   url: PropTypes.string,
   reversed: PropTypes.bool,
+  stackedUntilSmall: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   titlePrefix: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   titleSize: PropTypes.oneOf(['m', 'l', 'xl']),
@@ -362,11 +413,10 @@ MediaBlock.propTypes = {
 }
 
 MediaBlock.defaultProps = {
-  asBackgroundImage: true,
+  asBackgroundImage: false,
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
   titleSize: 'l',
-  type: 'row',
 }
 
 export default MediaBlock
