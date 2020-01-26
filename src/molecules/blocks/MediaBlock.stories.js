@@ -8,7 +8,7 @@ import { dateFormats } from '../../helpers/DateTimeFormat'
 import MediaBlock, { mediaBlocksTypes } from './MediaBlock'
 
 import data from './MediaBlock.stories.json'
-import { pictureTab } from '../../atoms/images/Picture.stories'
+import { pictureTab } from '../../atoms/images/Picture.stories.js'
 
 function getTabData(name, settings = {}) {
   return {

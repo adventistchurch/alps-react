@@ -1,6 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text } from '@storybook/addon-knobs'
+import {
+  boolean,
+  date as datepicker,
+  object,
+  text,
+} from '@storybook/addon-knobs'
 
 import Article from './Article'
 
@@ -8,14 +13,22 @@ import Text from '../atoms/texts/Text'
 import { Paragraph } from '../helpers/Element'
 
 // Stories and data
-import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
-import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
-import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
 import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
 import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
-import { pageHeaderFeatureTab } from '../organisms/sections/PageHeaderFeature.stories.js'
+import { pictureTab } from '../atoms/images/Picture.stories.js'
 import data from './Article.stories.json'
+
+/* Note: This is just a simple demo content. */
+function DemoContent({ title = '', text = '' }) {
+  const paragraphs = text.split('\n')
+  return paragraphs.map((pText, k) => (
+    <Text key={k} hasDropcap={k === 0} spacing>
+      <h2>{title}</h2>
+      <Paragraph>{pText}</Paragraph>
+    </Text>
+  ))
+}
 
 function getTabData(name, settings = {}) {
   return {
@@ -26,20 +39,28 @@ function getTabData(name, settings = {}) {
   }
 }
 
-export { pageHeaderFeatureTab }
+export function articleHeaderTab(settings = {}) {
+  const { title, category, kicker, date, tab } = getTabData('Header', settings)
 
-export function pageHeaderTab(settings = {}) {
-  const { pageHeader, tab } = getTabData('Breadcrumbs', settings)
-
-  return pageHeaderFeatureTab({ ...pageHeader, tab })
+  return {
+    title: text('Title ', title, tab),
+    kicker: text('Title ', kicker, tab),
+    date: datepicker('Date ', new Date(date), tab),
+    category: text('Category', category, tab),
+  }
 }
 
-export function pageBreadcrumbsTab(settings = {}) {
-  const { breadcrumbs, tab } = getTabData('Breadcrumbs', settings)
-  return breadcrumbsTab({ breadcrumbs, tab })
+function imageTab(settings = {}) {
+  const { asBackgroundImage, image, tab } = getTabData('Image', settings)
+  const showImage = boolean('Show Image', true, tab)
+
+  return {
+    asBackgroundImage: boolean('As Background Image', asBackgroundImage, tab),
+    ...(showImage ? pictureTab({ ...image, tab }) : {}),
+  }
 }
 
-export function mainContentTab(settings = {}) {
+export function contentTab(settings = {}) {
   const { content, tab } = getTabData('Content', settings)
   return {
     title: text('Content Title ', content.title, tab),
@@ -60,56 +81,45 @@ export function globalTab(settings = {}) {
   }
 }
 
-export function sidebarTab(settings = {}) {
-  const { aside, tab } = getTabData('Sidebar', settings)
+export function relatedTab(settings = {}) {
+  const { relatedTitle, relatedPosts, tab } = getTabData('Related', settings)
 
-  return {
-    showSidebar: boolean('Show Sidebar', true, tab),
-    breakout: object('Breakout', breakoutData, tab),
-    aside: asideTab({ aside, tab }),
-  }
+  const showSidebar = boolean('Show Related', true, tab)
+
+  return showSidebar
+    ? {
+        relatedTitle: text('Title', relatedTitle, tab),
+        relatedPosts: object('Posts', relatedPosts, tab),
+      }
+    : null
 }
 
 export function articleTabs(settings = {}) {
-  const props = getTabData('Article', settings)
-
   return {
-    pageHeader: pageHeaderFeatureTab(props),
-    breadcrumbs: pageBreadcrumbsTab(props),
-    mainContent: mainContentTab(props),
-    sidebar: sidebarTab(props),
-    global: globalTab(props),
+    ...articleHeaderTab(settings),
+    ...imageTab(settings),
+    content: contentTab(settings),
+    sidebar: relatedTab(settings),
+    global: globalTab(settings),
   }
 }
 
-storiesOf('templates/Article', module).addWithJSX('Default', () => {
-  const pageHeader = pageHeaderTab()
-  const { breadcrumbs } = pageBreadcrumbsTab()
-  const { title, text } = mainContentTab()
-  const { showSidebar, breakout, aside } = sidebarTab()
-  const templateProps = globalTab()
+storiesOf('templates/Article', module)
+  .addWithJSX('Default', () => {
+    const { content, ...props } = articleTabs()
 
-  return (
-    <Article
-      aside={showSidebar ? aside : null}
-      breadcrumbs={breadcrumbs}
-      breakout={showSidebar ? breakout : null}
-      pageHeader={pageHeader}
-      {...templateProps}
-    >
-      {/* Note: This is just a simple demo content. */}
-      <Text hasDropcap spacing>
-        <h1>{title}</h1>
-        <Paragraph>{text}</Paragraph>
-      </Text>
-      <Text spacing>
-        <h2>{title}</h2>
-        <Paragraph>{text}</Paragraph>
-      </Text>
-      <Text spacing>
-        <h3>{title}</h3>
-        <Paragraph>{text}</Paragraph>
-      </Text>
-    </Article>
-  )
-})
+    return (
+      <Article {...props}>
+        <DemoContent {...content} />
+      </Article>
+    )
+  })
+  .addWithJSX('With related', () => {
+    const { content, ...props } = articleTabs()
+
+    return (
+      <Article {...props}>
+        <DemoContent {...content} />
+      </Article>
+    )
+  })
