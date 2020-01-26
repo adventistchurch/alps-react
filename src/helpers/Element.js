@@ -462,7 +462,7 @@ export const LinkBase = React.forwardRef(({ href, ...props }, ref) => (
   <Element {...props} as="a" href={href} forwardedRef={ref} />
 ))
 LinkBase.propTypes = {
-  href: PropTypes.string,
+  href: PropTypes.oneOf([PropTypes.string, PropTypes.object]),
 }
 
 export function Link({ href, ...props }) {
@@ -476,7 +476,7 @@ export function Link({ href, ...props }) {
     <LinkBase {...props} href={href} />
   )
 }
-Link.propTypes = Element.propTypes
+Link.propTypes = LinkBase.propTypes
 
 // - Sections
 
