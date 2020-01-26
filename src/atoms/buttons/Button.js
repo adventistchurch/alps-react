@@ -108,7 +108,7 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   expand: PropTypes.bool,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
   iconFill: PropTypes.string,
   iconPosition: PropTypes.oneOf(iconPositions),
@@ -121,7 +121,7 @@ Button.propTypes = {
   small: PropTypes.bool,
   text: PropTypes.string,
   toggle: PropTypes.bool,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 Button.defaultProps = {

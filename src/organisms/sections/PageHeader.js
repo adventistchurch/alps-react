@@ -42,7 +42,7 @@ PageHeader.propTypes = {
   background: PropTypes.object,
   kicker: PropTypes.string,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 export default PageHeader

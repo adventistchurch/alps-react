@@ -35,7 +35,7 @@ FooterSecondaryNavigation.propTypes = {
     PropTypes.shape({
       icon: PropTypes.string,
       text: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
+      url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     })
   ),
   defaultItemIcon: PropTypes.string,

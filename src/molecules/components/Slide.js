@@ -87,7 +87,7 @@ Slide.propTypes = {
   imageIsLazy: Picture.propTypes.lazy,
   subtitle: PropTypes.string,
   textClass: PropTypes.string,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 export default Slide

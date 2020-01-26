@@ -56,7 +56,7 @@ MediaImage.propTypes = {
   blockIconType: PropTypes.string,
   className: PropTypes.string,
   image: Picture.propTypes.image,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   wrapProps: PropTypes.object,
 }
 

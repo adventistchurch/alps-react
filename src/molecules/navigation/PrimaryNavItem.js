@@ -55,7 +55,7 @@ PrimaryNavItem.propTypes = {
   priority: PropTypes.bool,
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 }
 PrimaryNavItem.defaultProps = {
   active: false,

@@ -131,7 +131,7 @@ ContentBlock.propTypes = {
   title: PropTypes.string.isRequired,
   titleProps: PropTypes.object,
   titleSize: PropTypes.oneOf(['s', 'm', 'l']),
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 ContentBlock.defaultProps = {}

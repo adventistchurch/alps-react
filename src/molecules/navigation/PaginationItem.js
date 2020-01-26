@@ -58,7 +58,7 @@ PaginationItem.propTypes = {
   isPrev: PropTypes.bool,
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   onClick: PropTypes.func,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 PaginationItem.defaultProps = {
   number: 1,

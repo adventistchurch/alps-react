@@ -25,7 +25,7 @@ FooterPrimaryNavigation.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
+      url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
     })
   ),
 }

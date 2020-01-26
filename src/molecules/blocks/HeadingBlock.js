@@ -26,7 +26,7 @@ function HeadingBlock({ linkText, title, url }) {
 HeadingBlock.propTypes = {
   linkText: PropTypes.string,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 export default HeadingBlock

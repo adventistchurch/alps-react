@@ -37,7 +37,7 @@ BlockWrap.propTypes = {
   heading: PropTypes.string,
   linkText: PropTypes.string,
   type: PropTypes.oneOf(['mediaBlock', 'contentBlock', 'relatedPosts']),
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 BlockWrap.defaultProps = {
   type: 'mediaBlock',

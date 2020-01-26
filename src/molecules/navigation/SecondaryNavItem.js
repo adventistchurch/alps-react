@@ -53,7 +53,7 @@ SecondaryNavItem.propTypes = {
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['search', 'menu']),
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 SecondaryNavItem.defaultProps = {
   isPriority: false,

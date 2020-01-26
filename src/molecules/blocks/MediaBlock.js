@@ -491,7 +491,7 @@ MediaBlock.propTypes = {
   image: MediaImage.propTypes.image,
   imageProps: PropTypes.shape(Element.propTypes),
   kicker: PropTypes.string,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   reversed: PropTypes.bool,
   stackedUntilSmall: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

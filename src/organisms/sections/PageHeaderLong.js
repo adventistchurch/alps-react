@@ -87,7 +87,7 @@ PageHeaderLong.propTypes = {
   kicker: PropTypes.string,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 export default PageHeaderLong

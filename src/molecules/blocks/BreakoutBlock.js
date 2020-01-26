@@ -30,7 +30,7 @@ BreakoutBlock.propTypes = {
   cta: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 BreakoutBlock.defaultProps = {

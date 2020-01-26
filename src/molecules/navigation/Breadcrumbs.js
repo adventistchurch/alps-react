@@ -31,7 +31,7 @@ function BreadcrumbItem({ text, url }) {
 
 BreadcrumbItem.propTypes = {
   text: PropTypes.string.isRequired,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 function Breadcrumbs({ items }) {

@@ -77,7 +77,7 @@ CtaBlock.propTypes = {
   asBackgroundImage: PropTypes.bool,
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
-      url: PropTypes.string,
+      url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
       label: PropTypes.string.isRequired,
     })
   ),

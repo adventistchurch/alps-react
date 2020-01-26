@@ -23,7 +23,7 @@ ShareToolItem.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 // TODO: discuss about AddThis
@@ -64,7 +64,7 @@ function ShareTools({ services, url }) {
 
 ShareTools.propTypes = {
   services: PropTypes.array,
-  url: PropTypes.string,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 ShareTools.defaultProps = {
