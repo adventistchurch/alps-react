@@ -77,6 +77,8 @@ const presets = {
       color: 'white',
       fontType: 'primary',
       fontWeight: 'bold',
+      themeColor: 'lighter',
+      fontSize: 'l',
     },
     titleLink: {
       themeLinkHover: 'light',
@@ -103,6 +105,12 @@ const presets = {
       gridItemSizeAtL: 3,
       paddingSide: 'left',
       flexJustify: 'start',
+    },
+    title: {
+      fontSize: 'l',
+    },
+    meta: {
+      themeColor: 'base',
     },
   },
 
@@ -412,7 +420,6 @@ function MediaBlock({
                 fontType="primary"
                 {...preset.title}
               >
-                {}
                 {url ? (
                   <Link
                     className="c-block__title-link"
