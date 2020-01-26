@@ -17,29 +17,14 @@ import theme from './theme'
 
 addDecorator(story => {
   const content = story()
-
-  const primaryColor = select(
-    'Primary color',
-    primaryColors,
-    primaryColors[0],
-    'Theme'
-  )
-  const secondaryColor = select(
-    'Secondary color',
-    secondaryColors,
-    secondaryColors[0],
-    'Theme'
-  )
-
-  const hasGrid = boolean('Has Grid', true, 'Theme')
-
-  const props = {
-    hasGrid,
-    primaryColor,
-    secondaryColor,
+  const tab = 'Theme' // Tab Name
+  const wrapperProps = {
+    hasGrid: boolean('Has Grid', true, tab),
+    primaryColor: select('Primary color', primaryColors, 'ming', tab),
+    secondaryColor: select('Secondary color', secondaryColors, null, tab),
   }
 
-  return <Wrapper {...props}>{content}</Wrapper>
+  return <Wrapper {...wrapperProps}>{content}</Wrapper>
 })
 
 addDecorator(
