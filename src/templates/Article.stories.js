@@ -40,11 +40,15 @@ function getTabData(name, settings = {}) {
 }
 
 export function articleHeaderTab(settings = {}) {
-  const { title, category, kicker, date, tab } = getTabData('Header', settings)
+  const { title, description, category, kicker, date, tab } = getTabData(
+    'Header',
+    settings
+  )
 
   return {
     title: text('Title ', title, tab),
-    kicker: text('Title ', kicker, tab),
+    kicker: text('Kicker ', kicker, tab),
+    description: text('Description ', description, tab),
     date: datepicker('Date ', new Date(date), tab),
     category: text('Category', category, tab),
   }
