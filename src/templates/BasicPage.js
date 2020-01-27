@@ -5,7 +5,7 @@ import { Article, Div, Section } from '../helpers/Element'
 import Aside from '../organisms/asides/Aside'
 import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
 import PageContent from '../organisms/content/PageContent'
-import PageHeader from '../organisms/sections/PageHeader'
+import PageHeaderLong from '../organisms/sections/PageHeaderLong'
 import RelatedPosts from '../organisms/asides/RelatedPosts'
 import Main from './Main'
 import TemplateWrap from './TemplateWrap'
@@ -25,7 +25,7 @@ function BasicPage({
   return (
     <TemplateWrap {...templateProps}>
       <Main>
-        <PageHeader {...pageHeader} />
+        <PageHeaderLong {...pageHeader} />
         <Section
           className="l-main__content"
           gridWrap="6"
@@ -76,7 +76,7 @@ BasicPage.propTypes = {
   breadcrumbs: PageContent.propTypes.breadcrumbs,
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
   content: PropTypes.node,
-  pageHeader: PropTypes.shape(PageHeader.propTypes),
+  pageHeader: PropTypes.shape(PageHeaderLong.propTypes),
   relatedPosts: PropTypes.oneOfType([PropTypes.element]),
   ...TemplateWrap.propTypes,
 }
