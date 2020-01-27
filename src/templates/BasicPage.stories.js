@@ -14,7 +14,7 @@ import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
 import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
 import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
-import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
+import { pageHeaderTab } from '../organisms/sections/PageHeaderLong.stories.js'
 import data from './BasicPage.stories.json'
 
 function getTabData(name, settings = {}) {
