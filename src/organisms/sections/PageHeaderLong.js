@@ -17,7 +17,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
     : ''
 
   return (
-    <>
+    <div>
       <Header
         className={`c-page-header c-page-header__long ${backgroundClass}`}
         themeBackground="dark"
@@ -79,7 +79,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
           </Div>
         </Div>
       )}
-    </>
+    </div>
   )
 }
 
