@@ -32,7 +32,10 @@
     "dev": "rollup --config --watch",
     "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
     "sb": "yarn storybook",
-    "deploy": "npm build && npm publish",
+    "deploy": "npm run-script build && npm publish",
+    "deploy:patch": "npm version patch && npm run deploy",
+    "deploy:minor": "npm version minor && npm run deploy",
+    "deploy:major": "npm version major && npm run deploy",
     "build-storybook": "build-storybook -s public -o .storybook-build",
     "deploy-storybook": "storybook-to-ghpages"
   },
