@@ -36,6 +36,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
             borderAt={background ? 'medium' : null}
             shiftSide="left"
             shiftAt="medium"
+            noGridClass
             gridWrap={5}
           >
             {kicker && (
