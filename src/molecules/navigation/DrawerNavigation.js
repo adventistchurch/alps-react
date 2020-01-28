@@ -67,9 +67,11 @@ function DrawerNavigation({
           <IconWrap name="logo" fill="white" size="l" />
         </div>
         <div className="c-drawer__about">
-          <Div className="c-drawer__about-left" spacing>
-            {aboutLeft}
-          </Div>
+          {aboutLeft && (
+            <Div className="c-drawer__about-left" spacing>
+              {aboutLeft}
+            </Div>
+          )}
           <Div className="c-drawer__about-right" spacingSize="half">
             {aboutRight}
           </Div>
@@ -85,38 +87,6 @@ DrawerNavigation.propTypes = {
   onSearch: PropTypes.func,
   primaryNav: PropTypes.object,
   secondaryNav: PropTypes.object,
-}
-DrawerNavigation.defaultProps = {
-  aboutLeft: (
-    <>
-      <p>
-        Tell the world is an offical media production of the Seventh-day
-        Adventist world church.
-      </p>
-      <p>
-        Seventh-day Adventists are devoted to helping people understand the
-        Bible to find freedom, healing and hope.
-      </p>
-    </>
-  ),
-  aboutRight: (
-    <>
-      <HeadingThree fontType="secondary" fontSize="s" transform="upper">
-        <strong>Learn More:</strong>
-      </HeadingThree>
-      <Paragraph spacingSize="half">
-        <Link href="https://adventist.org" target="_blank" linkColor="white">
-          Adventist.org
-        </Link>
-        <Link href="https://nadadventist.org" target="_blank" linkColor="white">
-          North American Division of Seventh-day Adventists
-        </Link>
-        <Link href="https://adra.org" target="_blank" linkColor="white">
-          ADRA International
-        </Link>
-      </Paragraph>
-    </>
-  ),
 }
 
 export default DrawerNavigation
