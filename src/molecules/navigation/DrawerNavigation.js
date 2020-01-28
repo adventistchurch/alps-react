@@ -56,8 +56,8 @@ function DrawerNavigation({
           </div>
           <div className="c-drawer__nav-secondary">
             <SecondaryNavigation
-              {...secondaryNav}
               showLanguages={false}
+              {...secondaryNav}
               showMenu={false}
               showSearch={false}
             />
