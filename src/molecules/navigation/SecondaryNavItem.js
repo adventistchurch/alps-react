@@ -39,9 +39,14 @@ function SecondaryNavItem({
           </>
         )}
         {text}&nbsp;
-        {subnav && <SubNavArrow />}
       </Link>
-      {subnav && <SubNav items={subnav} type="secondary" />}
+
+      {subnav && (
+        <>
+          <SubNavArrow />
+          <SubNav items={subnav} type="secondary" />
+        </>
+      )}
     </li>
   )
 }

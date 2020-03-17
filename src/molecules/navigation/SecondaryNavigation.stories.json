@@ -1,6 +1,29 @@
 {
   "items": [
     {
+      "text": "Language",
+      "icon": "language",
+      "url": "#",
+      "subnav": [
+        {
+          "text": "English",
+          "url": "/en"
+        },
+        {
+          "text": "Español",
+          "url": "/es"
+        },
+        {
+          "text": "Português",
+          "url": "/pt"
+        },
+        {
+          "text": "Français",
+          "url": "/fr"
+        }
+      ]
+    },
+    {
       "text": "Sitemap",
       "icon": "subscribe",
       "url": "#"
@@ -89,13 +112,5 @@
       ]
     }
   ],
-  "languageLabel": "Language",
-  "languages": {
-    "english": "English",
-    "french": "Français",
-    "german": "Deutsch",
-    "spanish": "Español",
-    "chineseTraditional": "中文",
-    "arabic": "عربى"
-  }
+  "languageLabel": "Language"
 }

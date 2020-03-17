@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, object, text } from '@storybook/addon-knobs'
+import { boolean, object } from '@storybook/addon-knobs'
 
 import SecondaryNavigation from './SecondaryNavigation'
 
@@ -27,53 +27,34 @@ function itemsTab({ withSubmenues, ...settings } = {}) {
 }
 
 function optionsTab(settings = {}) {
-  const { showLanguages, showMenu, showSearch, tab } = getTabData(
-    'Options',
-    settings
-  )
+  const { showMenu, showSearch, tab } = getTabData('Options', settings)
 
   return {
-    showLanguages: boolean('Show Languages', showLanguages, tab),
     showMenu: boolean('Show Menu', showMenu, tab),
     showSearch: boolean('Show Search', showSearch, tab),
   }
 }
 
-function languagesTab(settings = {}) {
-  const { languages, languageLabel, tab } = getTabData('Languages', settings)
-
-  return {
-    label: text('Language Label', languageLabel, tab),
-    languages: object('Languages', languages, tab),
-  }
-}
-
 export function secondaryNavTab(settings = {}) {
-  const {
-    showLanguages,
-    showMenu,
-    showSearch,
-    withSubmenues,
-    tab,
-  } = getTabData('Secondary Nav', settings)
+  const { showMenu, showSearch, withSubmenues, tab } = getTabData(
+    'Secondary Nav',
+    settings
+  )
 
   return {
-    ...optionsTab({ showLanguages, showMenu, showSearch, tab }),
+    ...optionsTab({ showMenu, showSearch, tab }),
     ...itemsTab({ withSubmenues, tab }),
   }
 }
 
 storiesOf('molecules/navigation/SecondaryNavigation', module)
   .addWithJSX('Default', () => {
-    const { showLanguages, showMenu, showSearch } = optionsTab()
-    const languageProps = languagesTab()
+    const { showMenu, showSearch } = optionsTab()
     const { items } = itemsTab()
 
     return (
       <SecondaryNavigation
         items={items}
-        showLanguages={showLanguages}
-        languageProps={languageProps}
         showMenu={showMenu}
         showSearch={showSearch}
       />
@@ -81,8 +62,7 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
   })
 
   .addWithJSX('With submenues', () => {
-    const { showLanguages, showMenu, showSearch } = optionsTab()
-    const languageProps = languagesTab()
+    const { showMenu, showSearch } = optionsTab()
     const { items } = itemsTab({
       withSubmenues: true,
     })
@@ -90,8 +70,6 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
     return (
       <SecondaryNavigation
         items={items}
-        showLanguages={showLanguages}
-        languageProps={languageProps}
         showMenu={showMenu}
         showSearch={showSearch}
       />
@@ -99,34 +77,15 @@ storiesOf('molecules/navigation/SecondaryNavigation', module)
   })
 
   .addWithJSX('Without menu and search toggles', () => {
-    const { showLanguages, showMenu, showSearch } = optionsTab({
+    const { showMenu, showSearch } = optionsTab({
       showMenu: false,
       showSearch: false,
     })
-    const languageProps = languagesTab()
     const { items } = itemsTab()
 
     return (
       <SecondaryNavigation
         items={items}
-        showLanguages={showLanguages}
-        languageProps={languageProps}
-        showMenu={showMenu}
-        showSearch={showSearch}
-      />
-    )
-  })
-
-  .addWithJSX('Without languages', () => {
-    const { showLanguages, showMenu, showSearch } = optionsTab({
-      showLanguages: false,
-    })
-    const { items } = itemsTab()
-
-    return (
-      <SecondaryNavigation
-        items={items}
-        showLanguages={showLanguages}
         showMenu={showMenu}
         showSearch={showSearch}
       />

@@ -5,14 +5,11 @@ import renderItems from '../../helpers/renderItems'
 import useDrawerContext from '../../helpers/useDrawerContext'
 
 import SecondaryNavItem from './SecondaryNavItem'
-import SecondaryNavLanguageItem from './SecondaryNavLanguageItem'
 
 function SecondaryNavigation({
   items,
-  languageProps,
   menuLabel,
   searchLabel,
-  showLanguages,
   showMenu,
   showSearch,
 }) {
@@ -21,7 +18,6 @@ function SecondaryNavigation({
   return (
     <nav className="c-secondary-nav" role="navigation">
       <ul className="c-secondary-nav__list">
-        {showLanguages && <SecondaryNavLanguageItem {...languageProps} />}
         {renderItems(items, SecondaryNavItem)}
         {showSearch && (
           <SecondaryNavItem
@@ -47,10 +43,8 @@ function SecondaryNavigation({
 }
 SecondaryNavigation.propTypes = {
   items: PropTypes.array,
-  languageProps: PropTypes.shape(SecondaryNavLanguageItem.propTypes),
   menuLabel: PropTypes.string,
   searchLabel: PropTypes.string,
-  showLanguages: PropTypes.bool,
   showMenu: PropTypes.bool,
   showSearch: PropTypes.bool,
 }
@@ -58,7 +52,6 @@ SecondaryNavigation.defaultProps = {
   items: [],
   menuLabel: 'Menu',
   searchLabel: 'Search',
-  showLanguages: true,
   showMenu: true,
   showSearch: true,
 }
