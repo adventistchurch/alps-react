@@ -63,12 +63,12 @@ storiesOf('helpers/Wrapper', module)
             />
           </Div>
           <Div>
-            <Link href="#link-demo-1" title="Test">
+            <Link href="http://alps.adventist.io/v3" title="Test">
               A simple Link
             </Link>
           </Div>
           <Div>
-            <Link href="#link-demo-2">Another Link</Link>
+            <Link href="#link-demo-1">Another Link</Link>
           </Div>
         </Div>
       </Wrapper>
