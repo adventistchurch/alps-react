@@ -6,7 +6,7 @@ import useToggle from '../../helpers/useToggle'
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
 
-function SubNavItem({ active, level, subnav, text, url, type }) {
+function SubNavItem({ active, level, subnav, text, url, type, onClick }) {
   const { onToggle, openClass } = useToggle(false)
   const hasSubnav = Array.isArray(subnav) && subnav.length > 0
   const isTertiary = level === 'tertiary'
@@ -32,6 +32,7 @@ function SubNavItem({ active, level, subnav, text, url, type }) {
         href={url}
         color={`gray${type === 'primary' ? '--dark' : ''}`}
         themeLinkHover={isTertiary ? 'lighter' : 'base'}
+        onClick={onClick}
       >
         {text}
       </Link>
@@ -52,6 +53,7 @@ function SubNavItem({ active, level, subnav, text, url, type }) {
 SubNavItem.propTypes = {
   active: PropTypes.bool,
   level: PropTypes.oneOf(['secondary', 'tertiary']),
+  onClick: PropTypes.func,
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['primary', 'secondary']).isRequired,
