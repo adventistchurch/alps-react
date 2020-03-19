@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 import { LI, Link } from '../../helpers/Element'
@@ -12,10 +12,10 @@ function SubNavItem({ active, level, subnav, text, url, type, onClick }) {
   const isTertiary = level === 'tertiary'
   const navLevel = isTertiary ? 'subnav__subnav' : 'subnav'
 
-  function onArrowClick(e) {
+  const onArrowClick = useCallback(e => {
     e.stopPropagation()
     onToggle()
-  }
+  }, [])
 
   return (
     <LI
@@ -57,7 +57,7 @@ SubNavItem.propTypes = {
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['primary', 'secondary']).isRequired,
-  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 SubNavItem.defaultProps = {
   active: false,
