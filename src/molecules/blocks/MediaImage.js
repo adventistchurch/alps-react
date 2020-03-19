@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
 import { Div, Link } from '../../helpers/Element'
-import useUUID from '../../helpers/useUUID'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
@@ -16,15 +15,14 @@ function MediaImage({
   wrapProps,
   ...otherProps
 }) {
-  const uuid = useUUID('c-media-block__image-')
   const bgImageStyles = useResponsiveStyles(
-    url => `.${uuid}.o-background-image {
+    url => `.o-background-image {
       background-image: url('${url}');
     }`,
     image.srcSet
   )
 
-  const classNames = ['c-media-block__image', 'c-block__image', uuid]
+  const classNames = ['c-media-block__image', 'c-block__image']
 
   if (blockIconType)
     classNames.push(`c-block__icon c-block__icon--${blockIconType}`)
