@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
 import { Div, Link } from '../../helpers/Element'
+import useUUID from '../../helpers/useUUID'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
-
-const getBackgroundImageRule = url => `.o-background-image {
-  background-image: url('${url}');
-}`
 
 function MediaImage({
   asBackgroundImage,
@@ -19,14 +16,19 @@ function MediaImage({
   wrapProps,
   ...otherProps
 }) {
+  const uuid = useUUID('c-media-block__image-')
   const bgImageStyles = useResponsiveStyles(
-    getBackgroundImageRule,
+    url => `.${uuid}.o-background-image {
+      background-image: url('${url}');
+    }`,
     image.srcSet
   )
 
-  const classNames = ['c-media-block__image', 'c-block__image']
+  const classNames = ['c-media-block__image', 'c-block__image', uuid]
+
   if (blockIconType)
     classNames.push(`c-block__icon c-block__icon--${blockIconType}`)
+
   if (asBackgroundImage)
     classNames.push('o-background-image u-background--cover')
 
@@ -41,7 +43,7 @@ function MediaImage({
         <Link href={url} title={image.caption || image.alt}>
           <Picture
             image={image}
-            // TODO: FIX: find a better way tide picture when asBackgroundImage is enabled
+            // TODO: FIX: find a better way to hide picture when asBackgroundImage is enabled
             style={asBackgroundImage ? { visibility: 'hidden' } : null}
           />
         </Link>
