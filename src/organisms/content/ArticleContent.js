@@ -12,6 +12,8 @@ function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
   return (
     <GridSeven
       as="section"
+      gridWrap="6"
+      noWrapClass
       shiftSide="left"
       shiftAt="xxlarge"
       spacingSize="double"
