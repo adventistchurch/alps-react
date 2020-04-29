@@ -91,6 +91,7 @@ import {
 function getClassNameAndOtherProps(props) {
   // Extract style-related props to build `className`
   const {
+    allowSelect,
     backgroundColor,
     blockRow,
     border,
@@ -307,7 +308,8 @@ function getClassNameAndOtherProps(props) {
     classes.push(getBaseClass(themePathFillClass, themePathFill))
 
   return {
-    className: classes.length > 0 ? classes.join(' ') : null,
+    className: classes.length > 0 ? classes.join(' ') : undefined,
+    style: allowSelect ? undefined : { userSelect: 'none' },
     ...otherProps,
   }
 }
@@ -337,6 +339,7 @@ export const gridItemSizePropType = PropTypes.oneOfType([
 ])
 
 Element.propTypes = {
+  allowSelect: PropTypes.bool,
   as: PropTypes.string,
   backgroundColor: PropTypes.oneOf(backgroundColors),
   blockRow: PropTypes.bool,
@@ -410,6 +413,7 @@ Element.propTypes = {
   vishidden: PropTypes.bool,
 }
 Element.defaultProps = {
+  allowSelect: true,
   as: 'div',
   noGridClass: false,
   noGridItemClass: false,
