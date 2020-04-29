@@ -1,4 +1,5 @@
 export { default as Accordion } from './Accordion'
+export { default as AccordionItem } from './AccordionItem'
 export { default as Carousel } from './Carousel'
 export { default as Comment } from './Comment'
 export { default as FooterModal } from './FooterModal'
