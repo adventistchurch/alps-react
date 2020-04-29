@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Picture from '../../atoms/images/Picture'
+import Image from '../../atoms/images/Image'
 import Byline from '../../molecules/text/Byline'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 import { Div, Link, Span } from '../../helpers/Element'
@@ -20,9 +20,14 @@ function Comment({
   text,
 }) {
   return (
-    <Div className="c-comment--inner" borderSide="left" themeBorder="darker">
+    <Div
+      className="c-comment--inner"
+      borderSide="left"
+      themeBorder="darker"
+      spaceSide="bottom"
+    >
       <Div className="c-comment__avatar" spaceSide="right">
-        <Picture image={avatar} />
+        <Image alt={byline} src={avatar} />
       </Div>
       <Div className="c-comment__body" spacingSize="quarter">
         <div className="c-comment__meta">
@@ -71,7 +76,7 @@ function Comment({
 }
 
 Comment.propTypes = {
-  avatar: Picture.propTypes.image,
+  avatar: Image.propTypes.src,
   byline: PropTypes.string,
   bylineLink: PropTypes.string,
   children: PropTypes.node,
@@ -86,7 +91,7 @@ Comment.propTypes = {
 
 Comment.defaultProps = {
   dateFormat: 'datetime',
-  editLabel: 'Edit',
+  editLabel: '(Edit)',
   replyLabel: 'Reply',
 }
 

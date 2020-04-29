@@ -1,13 +1,6 @@
 {
-  "avatar": {
-    "srcSet": {
-      "default": "//picsum.photos/100/100",
-      "500": "//picsum.photos/150/150",
-      "750": "//picsum.photos/200/200",
-      "1200": "//picsum.photos/300/300"
-    },
-    "alt": "Placeholder image"
-  },
+  "avatar": "//picsum.photos/50/50",
   "byline": "Bob Smith",
+  "bylineLink": "#Bob-Smith",
   "comment": "Vivamus sollicitudin ipsum vel rutrum facilisis. Vestibulum eu cursus massa. Donec faucibus velit eu enim dapibus, sed scelerisque nibh finibus. Praesent imperdiet, leo ut ullamcorper facilisis, felis neque vestibulum mi, in vehicula turpis libero vestibulum eros. Nunc ac lectus id dui eleifend dignissim."
 }

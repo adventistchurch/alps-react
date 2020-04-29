@@ -21,14 +21,15 @@ function getTabData(name, settings = {}) {
 }
 
 function dataTab(settings = {}) {
-  const { byline, comment, date, dateFormat, tab } = getTabData(
+  const { byline, bylineLink, comment, date, dateFormat, tab } = getTabData(
     'Data',
     settings
   )
 
   return {
     byline: text('Byline *', byline, tab),
-    comment: text('Comment *', comment, tab),
+    bylineLink: text('Byline Link', bylineLink, tab),
+    text: text('Comment *', comment, tab),
     date: datePicker('Date Time *', date || new Date(), tab),
     dateFormat: select(
       'Date Format',
@@ -42,10 +43,7 @@ function dataTab(settings = {}) {
 function avatarTab(settings = {}) {
   const { avatar, tab } = getTabData('Avatar', settings)
 
-  return {
-    alt: text('Avatar Alt', avatar.alt, tab),
-    srcSet: object('Avatar SrcSet', avatar.srcSet, tab),
-  }
+  return text('Avatar URL', avatar, tab)
 }
 
 function linksTab(settings = {}) {
@@ -62,66 +60,29 @@ export function commentTab(settings = {}) {
 
   return {
     ...dataTab(props),
-    ...avatarTab(props),
     ...linksTab(props),
+    avatar: avatarTab(props),
   }
 }
 
 storiesOf('molecules/components/Comment', module)
   .addWithJSX('Default', () => {
-    const { byline, comment, date, dateFormat } = dataTab()
-    const avatar = avatarTab()
-    const { editUrl, replyUrl } = linksTab()
+    const props = commentTab()
 
-    return (
-      <Comment
-        avatar={avatar}
-        date={date}
-        dateFormat={dateFormat}
-        byline={byline}
-        text={comment}
-        editUrl={editUrl}
-        replyUrl={replyUrl}
-      />
-    )
+    return <Comment {...props} />
   })
 
   .addWithJSX('With links', () => {
-    const { byline, comment, date, dateFormat } = dataTab()
-    const avatar = avatarTab()
-    const { editUrl, replyUrl } = linksTab({
+    const props = commentTab({
       editUrl: '#edit',
       replyUrl: '#reply',
     })
 
-    return (
-      <Comment
-        avatar={avatar}
-        date={date}
-        dateFormat={dateFormat}
-        byline={byline}
-        text={comment}
-        editUrl={editUrl}
-        replyUrl={replyUrl}
-      />
-    )
+    return <Comment {...props} />
   })
 
   .addWithJSX('As Children', () => {
-    const { byline, comment, date, dateFormat } = dataTab()
-    const avatar = avatarTab()
-    const { editUrl, replyUrl } = linksTab()
+    const { text, ...props } = commentTab()
 
-    return (
-      <Comment
-        avatar={avatar}
-        date={date}
-        dateFormat={dateFormat}
-        byline={byline}
-        editUrl={editUrl}
-        replyUrl={replyUrl}
-      >
-        {comment}
-      </Comment>
-    )
+    return <Comment {...props}>{text}</Comment>
   })
