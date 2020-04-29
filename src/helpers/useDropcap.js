@@ -74,7 +74,7 @@ function useDropcap(children, config = defaults) {
 
   return React.Children.map(children, child => {
     // Look for first element that matches the tag (usually a <p>)
-    if (!firstTag && tags.includes(child.type)) {
+    if (!firstTag && child && tags.includes(child.type)) {
       // Inform we found one
       firstTag = true
       // Then look for and set the Dropcap whithin children
