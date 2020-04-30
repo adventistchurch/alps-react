@@ -14,20 +14,6 @@ import Element, {
 
 import MediaImage from './MediaImage'
 
-export const mediaBlocksTypes = [
-  'column',
-  'feature',
-  'featuredNews',
-  'full',
-  'inline',
-  'inset',
-  'longform',
-  'mediaContent',
-  'mediaRow',
-  'row',
-  'stacked',
-]
-
 const blockClass = 'c-block'
 const mediaBlockClass = 'c-media-block'
 
@@ -299,7 +285,49 @@ const presets = {
   },
 
   stacked: {},
+
+  relatedPost: {
+    reversed: true,
+    // "block_class": "c-block--reversed l-grid--7-col",
+    block: {
+      seven: true,
+      noGridClass: true,
+    },
+
+    // l-grid-item--2-col l-grid-item--m--1-col l-grid-item--l--1-col u-padding--right
+    image: {
+      gridItemSize: 2,
+      gridItemSizeAtM: 1,
+      gridItemSizeAtL: 1,
+      paddingSide: 'right',
+    },
+    // l-grid-item--4-col l-grid-item--m--3-col l-grid-item--l--1-col u-border--left u-theme--border-color--darker--left u-color--gray u-spacing--half
+    content: {
+      gridItemSize: 4,
+      gridItemSizeAtM: 3,
+      gridItemSizeAtL: 1,
+      borderSide: 'left',
+      themeBorder: 'darker',
+      themeBorderSide: 'left',
+      color: 'gray',
+      spacingSize: 'half',
+    },
+    // u-theme--color--dark u-font--primary--s
+    title: {
+      themeColor: 'dark',
+      fontType: 'primary',
+      fontSize: 's',
+    },
+    // u-theme--color--base u-font--secondary--xs"
+    meta: {
+      themeColor: 'base',
+      fontType: 'secondary',
+      fontSize: 'xs',
+    },
+  },
 }
+
+export const mediaBlocksTypes = Object.keys(presets)
 
 /**
  * Returns main classes for a MediaBlock element
@@ -322,7 +350,7 @@ function useMediaBlockClass(type, reversed = false, stackedUntilSmall = false) {
     }
   }
   if (reversed) {
-    classes.push(`${mediaBlockClass}--reversed`)
+    classes.push(`${blockClass}--reversed`)
   }
 
   return classes.join(' ')
@@ -357,6 +385,7 @@ function MediaBlock({
   const preset = presets[type || 'default']
 
   const isReversed = reversed !== undefined ? reversed : preset.reversed
+
   const blockType = preset.type || type
 
   const blockClass = useMediaBlockClass(
