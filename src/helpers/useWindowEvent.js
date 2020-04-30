@@ -16,16 +16,24 @@ function useWindowEvent(event, callback, wait = 100, inmediate = false) {
 
   useEffect(() => {
     // If window is not available (SSR), or event nor callback are not present, bail out
-    if (!window || !event || !callback) return () => null
+    if (!window || !event || !callback) return
 
-    // Inmediate run
-    inmediate && callback()
+    // Call it as soon as possible run
+    if (inmediate) callback()
 
-    // Set the event listener
-    window.addEventListener(event, debouncedCallback)
+    const events = Array.isArray(event) ? event : [event]
 
-    // Cleanup listener on unmount
-    return () => window.removeEventListener(event, debouncedCallback)
+    // Set the event(s) listener(s)
+    for (const e of events) {
+      window.addEventListener(e, debouncedCallback)
+    }
+
+    // Cleanup listener(s) on unmount
+    return () => {
+      for (const e of events) {
+        window.removeEventListener(e, debouncedCallback)
+      }
+    }
   }, [])
 }
 
