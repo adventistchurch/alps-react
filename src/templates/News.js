@@ -33,7 +33,6 @@ function News({
         />
       </div>
 
-      {/* Featured && Aside */}
       <Grid
         seven
         as="section"
@@ -41,7 +40,6 @@ function News({
         spacingSize="double"
         spacingUntil="large"
       >
-        {/* Featured */}
         <GridItem sizeAtL={4} paddingSide="sides" paddingSize="zero">
           <ListContent
             title={featured.title}
@@ -64,8 +62,7 @@ function News({
           </ListContent>
         </GridItem>
 
-        {/* Aside */
-        aside && (
+        {aside && (
           <GridItem sizeAtL={2} paddingSide="sides" paddingSize="zero">
             <ListContent
               title={aside.title}
@@ -73,13 +70,12 @@ function News({
               linkUrl={aside.linkUrl}
               contentSpacing={null}
             >
-              {aside.items.map(({ title, category, url, date }, key) => (
+              {aside.items.map(({ title, category, url }, key) => (
                 <ContentBlock
                   key={`aside-item-${key}`}
                   title={title}
                   category={category}
                   url={url}
-                  date={date}
                   titleSize="s"
                   spacingSize="half"
                   paddingSize="double"
@@ -91,8 +87,7 @@ function News({
         )}
       </Grid>
 
-      {/* MEDIA CONTENT */
-      mediaContent && (
+      {mediaContent && (
         <Grid
           seven
           as="section"
@@ -127,8 +122,7 @@ function News({
         </Grid>
       )}
 
-      {/* MEDIA ROWS */
-      mediaRows.length > 0 && (
+      {mediaRows.length > 0 && (
         <Grid
           as="section"
           blockRow
