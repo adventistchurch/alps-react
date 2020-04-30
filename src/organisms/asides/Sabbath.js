@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon, { iconNames } from '../../atoms/icons/Icon'
@@ -10,25 +10,28 @@ import useWindowEvent from '../../helpers/useWindowEvent'
 const stickyBaseStyle = { zIndex: 99999, top: 0, position: 'fixed' }
 
 function useStickyLogo(hideLogoOnTop) {
+  const parentRef = useRef()
   const logoWrapRef = useRef()
   const logoRef = useRef()
-  const [logoSize, setlogoSize] = useState(null)
+  const [logoSize, setLogoSize] = useState(null)
   const [logoMarginTop, setLogoMarginTop] = useState()
-  const [logoInnerClass, setLogoInnerClass] = useState()
+  const [logoInnerClass, setLogoInnerClass] = useState('')
   const [opacity, setOpacity] = useState()
 
-  function onScroll() {
+  const onScroll = useCallback(() => {
+    const parentElem = parentRef.current
     const logoElem = logoRef.current
     const logoWrapElem = logoWrapRef.current
 
-    const { height, width } = logoElem.getBoundingClientRect()
+    const { width: parentWidth } = parentElem.getBoundingClientRect()
 
-    setlogoSize({ height, width })
+    const { height } = logoElem.getBoundingClientRect()
 
-    if (logoWrapElem) {
-      const { height: wrapHeight } = logoWrapElem.getBoundingClientRect()
-      setLogoMarginTop(wrapHeight)
-    }
+    setLogoSize({ height, width: parentWidth - 40 })
+
+    const { height: wrapHeight } = logoWrapElem.getBoundingClientRect()
+
+    setLogoMarginTop(wrapHeight)
 
     const vericalOffset = window.pageYOffset
     const headerHeight = 0 //'.c-header'.outerHeight()
@@ -51,21 +54,25 @@ function useStickyLogo(hideLogoOnTop) {
       const scrolling = vericalOffset > headerHeight
       setLogoInnerClass(scrolling ? 'is-visible' : 'is-hidden')
     }
-  }
+  }, [])
 
-  useWindowEvent('scroll', onScroll, 0)
+  useWindowEvent(['scroll', 'resize'], onScroll)
 
   const opacityStyle = { opacity }
-  const stickyLogoStyle = logoSize
+  const logoLightStyle = { ...opacityStyle, ...logoSize }
+  const logoInnerStyle = logoSize
     ? { ...stickyBaseStyle, ...logoSize, marginTop: logoMarginTop }
     : null
 
   return {
     opacityStyle,
-    stickyLogoStyle,
+    logoInnerStyle,
+    logoSize,
+    logoLightStyle,
     logoInnerClass,
     logoRef,
     logoWrapRef,
+    parentRef,
   }
 }
 
@@ -79,10 +86,12 @@ function Sabbath({
   const { openDrawer } = useDrawerContext()
   const {
     opacityStyle,
-    stickyLogoStyle,
+    logoInnerStyle,
     logoInnerClass,
+    logoLightStyle,
     logoRef,
     logoWrapRef,
+    parentRef,
   } = useStickyLogo(hideLogoOnTop)
 
   return (
@@ -91,6 +100,7 @@ function Sabbath({
         backgroundImage ? 'u-background-image--sabbath' : ''
       }`}
       onClick={openDrawer}
+      ref={parentRef}
     >
       {backgroundImage ? (
         <>
@@ -102,7 +112,7 @@ function Sabbath({
               className="l-sabbath__logo"
               pathFill="white"
               ref={logoRef}
-              style={stickyLogo ? stickyLogoStyle : null}
+              style={stickyLogo ? logoInnerStyle : null}
             >
               <Icon name={logo} />
             </DivWithRef>
@@ -117,12 +127,12 @@ function Sabbath({
                   stickyLogo ? logoInnerClass : ''
                 }`}
                 ref={logoRef}
-                style={stickyLogo ? stickyLogoStyle : null}
+                style={stickyLogo ? logoInnerStyle : null}
               >
                 <Div
                   className="l-sabbath__logo-light"
                   pathFill="white"
-                  style={opacityStyle}
+                  style={logoLightStyle}
                 >
                   <Icon name={logo} />
                 </Div>

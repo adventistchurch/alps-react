@@ -1,11 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import {
-  date as datePicker,
-  object,
-  select,
-  text,
-} from '@storybook/addon-knobs'
+import { date as datePicker, select, text } from '@storybook/addon-knobs'
 
 import Comment from './Comment'
 import { dateFormats } from '../../helpers/DateTimeFormat'
