@@ -86,11 +86,12 @@ export function globalTab(settings = {}) {
 }
 
 export function relatedTab(settings = {}) {
-  const { relatedTitle, relatedPosts, tab } = getTabData('Related', settings)
+  const { relatedTitle, relatedPosts, showRelated, tab } = getTabData(
+    'Related',
+    settings
+  )
 
-  const showSidebar = boolean('Show Related', true, tab)
-
-  return showSidebar
+  return boolean('Show Related', showRelated, tab)
     ? {
         relatedTitle: text('Title', relatedTitle, tab),
         relatedPosts: object('Posts', relatedPosts, tab),
@@ -99,11 +100,13 @@ export function relatedTab(settings = {}) {
 }
 
 export function articleTabs(settings = {}) {
+  const related = relatedTab(settings)
+
   return {
     ...articleHeaderTab(settings),
     ...imageTab(settings),
+    ...related,
     content: contentTab(settings),
-    sidebar: relatedTab(settings),
     global: globalTab(settings),
   }
 }
@@ -119,7 +122,7 @@ storiesOf('templates/Article', module)
     )
   })
   .addWithJSX('With related', () => {
-    const { content, ...props } = articleTabs()
+    const { content, ...props } = articleTabs({ showRelated: true })
 
     return (
       <Article {...props}>
