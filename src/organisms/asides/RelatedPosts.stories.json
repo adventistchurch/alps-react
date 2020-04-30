@@ -14,9 +14,7 @@
           "1200": "//picsum.photos/900/600?random"
         },
         "alt": "A nostrum labore"
-      },
-      "reversed": true,
-      "border": "left"
+      }
     },
     {
       "title": "Proin sed nisl ac velit aliquam euismod non tincidunt lectus ",
@@ -29,9 +27,7 @@
           "1200": "//picsum.photos/900/600?random"
         },
         "alt": "At praesentium doloribus"
-      },
-      "reversed": true,
-      "border": "left"
+      }
     }
   ]
 }

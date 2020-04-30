@@ -8,20 +8,13 @@ import renderItems from '../../helpers/renderItems'
 import { Div } from '../../helpers/Element'
 
 function BlockWrap({ blocks, heading, linkText, type, url }) {
-  const wrapperClass =
-    type == 'relatedPosts' ? 'c-related-posts' : 'c-block-wrap'
-
   const blockProps =
-    type == 'relatedPosts'
-      ? { reversed: true }
-      : type === 'mediaBlock'
-      ? { type: 'stacked', border: 'left' }
-      : {}
+    type === 'mediaBlock' ? { type: 'stacked', border: 'left' } : {}
 
   return (
-    <Div className={wrapperClass} spacing>
+    <Div className="c-block-wrap" spacing>
       <HeadingBlock title={heading} linkText={linkText} url={url} />
-      <Div className={`${wrapperClass}__content`} spacing>
+      <Div className="c-block-wrap__content" spacing>
         {renderItems(
           blocks,
           type == 'contentBlock' ? ContentBlock : MediaBlock,
@@ -36,7 +29,7 @@ BlockWrap.propTypes = {
   blocks: PropTypes.array,
   heading: PropTypes.string,
   linkText: PropTypes.string,
-  type: PropTypes.oneOf(['mediaBlock', 'contentBlock', 'relatedPosts']),
+  type: PropTypes.oneOf(['mediaBlock', 'contentBlock']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 BlockWrap.defaultProps = {
