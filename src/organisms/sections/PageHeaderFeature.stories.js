@@ -10,10 +10,12 @@ import dataFull from './PageHeaderFeatureFull.stories.json'
 import dataLongform from './PageHeaderFeatureLongform.stories.json'
 
 function getTabData(name, settings = {}) {
-  const { blocksType, ...rest } = settings
+  const { blockType, ...rest } = settings
 
   const data = {
     feature: dataFeature,
+    featureHalf: dataFeature,
+    featureWide: dataFeature,
     column: dataColumns,
     full: dataFull,
     longform: dataLongform,
@@ -22,22 +24,19 @@ function getTabData(name, settings = {}) {
   return {
     tab: name,
     ...PageHeaderFeature.defaultProps,
-    ...data[blocksType],
+    ...data[blockType],
     ...rest,
-    blocksType,
+    blockType,
   }
 }
 
 export function pageHeaderFeatureTab(settings = {}) {
-  const type = select('Blocks Type', blockTypes, settings.blocksType, 'Blocks')
-
-  const { blocks, blocksType, hasScroll, tab, ...rest } = getTabData('Blocks', {
-    blocksType: type,
+  const { blocks, blockType, hasScroll, tab, ...rest } = getTabData('Blocks', {
     ...settings,
   })
 
   return {
-    blocksType,
+    blockType: select('Blocks Type', blockTypes, blockType, 'Blocks'),
     blocks: object('Blocks', blocks, tab),
     hasScroll: boolean('Show Scroll to top', hasScroll, tab),
     ...rest,
@@ -46,15 +45,15 @@ export function pageHeaderFeatureTab(settings = {}) {
 
 storiesOf('organisms/sections/PageHeaderFeature', module)
   .addWithJSX('Feature (Default)', () => {
-    const { blocks, blocksType, hasScroll, ...rest } = pageHeaderFeatureTab({
-      blocksType: 'feature',
+    const { blocks, blockType, hasScroll, ...rest } = pageHeaderFeatureTab({
+      blockType: 'feature',
       tab: 'Props',
     })
 
     return (
       <PageHeaderFeature
         blocks={blocks}
-        blocksType={blocksType}
+        blockType={blockType}
         hasScroll={hasScroll}
         {...rest}
       />
@@ -62,45 +61,45 @@ storiesOf('organisms/sections/PageHeaderFeature', module)
   })
 
   .addWithJSX('3 Columns', () => {
-    const { blocks, blocksType, hasScroll } = pageHeaderFeatureTab({
-      blocksType: 'column',
+    const { blocks, blockType, hasScroll } = pageHeaderFeatureTab({
+      blockType: 'column',
       tab: 'Props',
     })
 
     return (
       <PageHeaderFeature
         blocks={blocks}
-        blocksType={blocksType}
+        blockType={blockType}
         hasScroll={hasScroll}
       />
     )
   })
 
   .addWithJSX('Full', () => {
-    const { blocks, blocksType, hasScroll } = pageHeaderFeatureTab({
-      blocksType: 'full',
+    const { blocks, blockType, hasScroll } = pageHeaderFeatureTab({
+      blockType: 'full',
       tab: 'Props',
     })
 
     return (
       <PageHeaderFeature
         blocks={blocks}
-        blocksType={blocksType}
+        blockType={blockType}
         hasScroll={hasScroll}
       />
     )
   })
 
   .addWithJSX('Longform', () => {
-    const { blocks, blocksType, hasScroll } = pageHeaderFeatureTab({
-      blocksType: 'longform',
+    const { blocks, blockType, hasScroll } = pageHeaderFeatureTab({
+      blockType: 'longform',
       tab: 'Props',
     })
 
     return (
       <PageHeaderFeature
         blocks={blocks}
-        blocksType={blocksType}
+        blockType={blockType}
         hasScroll={hasScroll}
       />
     )
