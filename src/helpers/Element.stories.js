@@ -299,6 +299,7 @@ function paddingAndSpacingTab(settings = {}) {
 
 function displayAndFlexTab(settings = {}) {
   const {
+    allowSelect,
     as,
     display,
     clearFix,
@@ -329,6 +330,7 @@ function displayAndFlexTab(settings = {}) {
       tab
     ),
     flexColumn: boolean('Flex Column', flexColumn, tab),
+    allowSelect: boolean('Allow text select', allowSelect, tab),
   }
 }
 function gridTab(settings = {}) {
