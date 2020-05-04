@@ -26,11 +26,9 @@ const feature = {
 
   block: {
     seven: true,
-    gridWrap: 6,
   },
   content: {
     gridItem: true,
-    gridItemSizeAtM: 3,
     paddingSide: ['top', 'bottom'],
     themeBackground: 'darker',
     themeBorder: 'darker',
@@ -39,7 +37,6 @@ const feature = {
   },
   image: {
     gridItem: true,
-    gridItemSizeAtM: 3,
     paddingSide: 'sides',
     paddingSize: 'zero',
   },
@@ -55,15 +52,32 @@ const feature = {
   },
 }
 
-const featureWide = {
+const featureHalf = {
   ...feature,
 
+  block: {
+    ...feature.block,
+    gridWrap: 6,
+  },
   content: {
     ...feature.content,
-    gridItemSizeAtL: 2,
+    gridItemSizeAtM: 3,
   },
   image: {
     ...feature.image,
+    gridItemSizeAtM: 3,
+  },
+}
+
+const featureWide = {
+  ...featureHalf,
+
+  content: {
+    ...featureHalf.content,
+    gridItemSizeAtL: 2,
+  },
+  image: {
+    ...featureHalf.image,
     gridItemSizeAtL: 4,
   },
 }
@@ -321,6 +335,7 @@ export default {
   default: defaultBlock,
   column,
   feature,
+  featureHalf,
   featureWide,
   featuredNews,
   full,
