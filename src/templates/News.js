@@ -15,8 +15,7 @@ function News({
   latest,
   pageHeader,
   featured,
-  mediaContent,
-  mediaRows,
+  media,
   ...templateProps
 }) {
   return (
@@ -88,22 +87,25 @@ function News({
         )}
       </Grid>
 
-      {mediaContent && (
-        <Grid
-          seven
-          as="section"
-          wrap={6}
-          spacingSize="double"
-          spacingUntil="large"
-        >
-          <GridItem paddingSide="sides" paddingSize="zero">
-            <ListContent
-              title={mediaContent.title}
-              linkLabel={mediaContent.linkLabel}
-              linkUrl={mediaContent.linkUrl}
-            >
-              {mediaContent.items.map(
-                ({ title, description, category, url, image, date }, key) => (
+      <ListContent
+        title={media.title}
+        linkLabel={media.linkLabel}
+        linkUrl={media.linkUrl}
+      >
+        {media.primaryItems && media.primaryItems.length > 0 && (
+          <Grid
+            seven
+            as="section"
+            wrap={6}
+            spacingSize="double"
+            spacingUntil="large"
+          >
+            <GridItem paddingSide="sides" paddingSize="zero">
+              {media.primaryItems.map(
+                (
+                  { title, description, category, url, image, date, icon },
+                  key
+                ) => (
                   <MediaBlock
                     key={`media-content-${key}`}
                     asBackgroundImage
@@ -114,38 +116,40 @@ function News({
                     image={image}
                     type="mediaContent"
                     date={date}
-                    blockIconType="gallery"
+                    blockIconType={icon}
                   />
                 )
               )}
-            </ListContent>
-          </GridItem>
-        </Grid>
-      )}
+            </GridItem>
+          </Grid>
+        )}
 
-      {mediaRows.length > 0 && (
-        <Grid
-          as="section"
-          blockRow
-          seven
-          wrap={6}
-          spacingSize="double"
-          spacingUntil="large"
-        >
-          <GridItem flex paddingSide="sides" paddingSize="zero">
-            {mediaRows.map(({ title, category, url, image }, key) => (
-              <MediaBlock
-                key={`media-row-${key}`}
-                title={title}
-                category={category}
-                url={url}
-                image={image}
-                type="mediaRow"
-              />
-            ))}
-          </GridItem>
-        </Grid>
-      )}
+        {media.secondaryItems && media.secondaryItems.length > 0 && (
+          <Grid
+            as="section"
+            blockRow
+            seven
+            wrap={6}
+            spacingSize="double"
+            spacingUntil="large"
+          >
+            <GridItem flex paddingSide="sides" paddingSize="zero">
+              {media.secondaryItems.map(
+                ({ title, category, url, image }, key) => (
+                  <MediaBlock
+                    key={`media-row-${key}`}
+                    title={title}
+                    category={category}
+                    url={url}
+                    image={image}
+                    type="mediaRow"
+                  />
+                )
+              )}
+            </GridItem>
+          </Grid>
+        )}
+      </ListContent>
     </BlankTemplate>
   )
 }
@@ -164,13 +168,13 @@ News.propTypes = {
     linkUrl: PropTypes.string,
     items: PropTypes.array,
   }),
-  mediaContent: PropTypes.shape({
+  media: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
     linkUrl: PropTypes.string,
-    items: PropTypes.array,
+    primary: PropTypes.array,
+    secondary: PropTypes.array,
   }),
-  mediaRows: PropTypes.array,
   ...BlankTemplate.propTypes,
 }
 News.defaultProps = {
@@ -186,13 +190,13 @@ News.defaultProps = {
     linkUrl: '#',
     items: [],
   },
-  mediaContent: {
+  media: {
     title: 'Media',
     linkLabel: 'See all',
     linkUrl: '#',
-    items: [],
+    primaryItems: [],
+    secondaryItems: [],
   },
-  mediaRows: [],
 }
 
 export default News

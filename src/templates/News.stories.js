@@ -60,22 +60,21 @@ export function asideTab(settings = {}) {
   }
 }
 
-export function mediaContentTab(settings = {}) {
-  const { mediaContent, tab } = getTabData('Media Content', settings)
-  const { title, linkLabel, linkUrl, items } = mediaContent
+export function mediaTab(settings = {}) {
+  const { media, tab } = getTabData('Media Content', settings)
+  const { title, linkLabel, linkUrl, primaryItems, secondaryItems } = media
 
   return {
     title: text('Title', title, tab),
     linkLabel: text('Link Label', linkLabel, tab),
     linkUrl: text('Link Url', linkUrl, tab),
-    items: object('Items', items, tab),
+    primaryItems: settings.hidePrimaryMedia
+      ? null
+      : object('Primary Items', primaryItems, tab),
+    secondaryItems: settings.hideSecondaryMedia
+      ? null
+      : object('Secondary Items', secondaryItems, tab),
   }
-}
-
-export function mediaRowsTab(settings = {}) {
-  const { mediaRows, tab } = getTabData('Media Rows', settings)
-
-  return object('Items', mediaRows, tab)
 }
 
 export function globalTab(settings = {}) {
@@ -99,14 +98,24 @@ export function newsTabs(settings = {}) {
     latest: latestTab(settings),
     featured: featuredTab(settings),
     aside: asideTab(settings),
-    mediaContent: mediaContentTab(settings),
-    mediaRows: mediaRowsTab(settings),
+    media: mediaTab(settings),
     global: globalTab(settings),
   }
 }
 
-storiesOf('templates/News', module).addWithJSX('Default', () => {
-  const props = newsTabs()
+storiesOf('templates/News', module)
+  .addWithJSX('Default', () => {
+    const props = newsTabs()
 
-  return <News {...props} />
-})
+    return <News {...props} />
+  })
+  .addWithJSX('No primary media', () => {
+    const props = newsTabs({ hidePrimaryMedia: true })
+
+    return <News {...props} />
+  })
+  .addWithJSX('No secondary media', () => {
+    const props = newsTabs({ hideSecondaryMedia: true })
+
+    return <News {...props} />
+  })
