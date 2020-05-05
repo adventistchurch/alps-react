@@ -7,70 +7,85 @@ import InlineStyles from '../../helpers/InlineStyles'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import useWindowEvent from '../../helpers/useWindowEvent'
 
-const stickyBaseStyle = { zIndex: 99999, top: 0, position: 'fixed' }
+const stickyBaseStyle = {
+  zIndex: 99999,
+  top: 0,
+  position: 'fixed',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  right: 0,
+  transition: 'none', // Disable ALPS CSS transision
+}
 
-function useStickyLogo(hideLogoOnTop) {
+function useStickyLogo(sticky, hideLogoOnTop) {
   const parentRef = useRef()
   const logoWrapRef = useRef()
-  const logoRef = useRef()
-  const [logoSize, setLogoSize] = useState(null)
-  const [logoMarginTop, setLogoMarginTop] = useState()
+  const logoInnerRef = useRef()
+  const [logoHeight, setLogoHeight] = useState()
+  const [logoLeft, setLogoLeft] = useState()
+  const [logoMargin, setLogoMargin] = useState()
   const [logoInnerClass, setLogoInnerClass] = useState('')
   const [opacity, setOpacity] = useState()
 
   const onScroll = useCallback(() => {
     const parentElem = parentRef.current
-    const logoElem = logoRef.current
+    const logoInnerElem = logoInnerRef.current
     const logoWrapElem = logoWrapRef.current
 
-    const { width: parentWidth } = parentElem.getBoundingClientRect()
+    const { left: parentLeft } = parentElem.getBoundingClientRect()
+    const { height: wrapMargin } = logoWrapElem.getBoundingClientRect()
+    const { height } = logoInnerElem.getBoundingClientRect()
 
-    const { height } = logoElem.getBoundingClientRect()
-
-    setLogoSize({ height, width: parentWidth - 40 })
-
-    const { height: wrapHeight } = logoWrapElem.getBoundingClientRect()
-
-    setLogoMarginTop(wrapHeight)
+    setLogoMargin(wrapMargin)
+    setLogoLeft(parentLeft)
+    setLogoHeight(height)
 
     const vericalOffset = window.pageYOffset
-    const headerHeight = 0 //'.c-header'.outerHeight()
+    const headerHeight = 0
 
     // Calculate scroll percent
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop
-
-    const scrollHeight =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight
-
-    const scrollpercent = winScroll / scrollHeight
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+    const winScroll = document.body.scrollTop || scrollTop
+    const scrollPercent = winScroll / (scrollHeight - clientHeight)
 
     // Set opacity
-    setOpacity(1 - scrollpercent)
+    setOpacity(1 - scrollPercent)
 
     // Set inner logo visibiliy class when vertical offset is higher than header
-    if (hideLogoOnTop) {
+    if (sticky && hideLogoOnTop) {
       const scrolling = vericalOffset > headerHeight
       setLogoInnerClass(scrolling ? 'is-visible' : 'is-hidden')
     }
-  }, [])
+  }, [hideLogoOnTop, sticky])
 
-  useWindowEvent(['scroll', 'resize'], onScroll)
+  useWindowEvent(['scroll', 'resize'], onScroll, 0)
 
   const opacityStyle = { opacity }
-  const logoLightStyle = { ...opacityStyle, ...logoSize }
-  const logoInnerStyle = logoSize
-    ? { ...stickyBaseStyle, ...logoSize, marginTop: logoMarginTop }
-    : null
+
+  const logoLightStyle = {
+    ...opacityStyle,
+    height: logoHeight,
+  }
+
+  const logoInnerStyle =
+    sticky && logoHeight && logoLeft
+      ? {
+          ...stickyBaseStyle,
+          height: logoHeight,
+          left: logoLeft,
+          marginTop: logoMargin,
+          marginLeft: logoMargin,
+          marginRight: logoMargin,
+        }
+      : {}
 
   return {
     opacityStyle,
-    logoInnerStyle,
-    logoSize,
-    logoLightStyle,
     logoInnerClass,
-    logoRef,
+    logoInnerRef,
+    logoInnerStyle,
+    logoLightStyle,
     logoWrapRef,
     parentRef,
   }
@@ -89,10 +104,10 @@ function Sabbath({
     logoInnerStyle,
     logoInnerClass,
     logoLightStyle,
-    logoRef,
+    logoInnerRef,
     logoWrapRef,
     parentRef,
-  } = useStickyLogo(hideLogoOnTop)
+  } = useStickyLogo(stickyLogo, hideLogoOnTop)
 
   return (
     <aside
@@ -111,8 +126,8 @@ function Sabbath({
             <DivWithRef
               className="l-sabbath__logo"
               pathFill="white"
-              ref={logoRef}
-              style={stickyLogo ? logoInnerStyle : null}
+              ref={logoInnerRef}
+              style={logoInnerStyle}
             >
               <Icon name={logo} />
             </DivWithRef>
@@ -123,11 +138,9 @@ function Sabbath({
           <DivWithRef className="l-sabbath__logo" ref={logoWrapRef}>
             {showLogo && (
               <DivWithRef
-                className={`l-sabbath__logo--inner ${
-                  stickyLogo ? logoInnerClass : ''
-                }`}
-                ref={logoRef}
-                style={stickyLogo ? logoInnerStyle : null}
+                className={`l-sabbath__logo--inner ${logoInnerClass}`}
+                ref={logoInnerRef}
+                style={logoInnerStyle}
               >
                 <Div
                   className="l-sabbath__logo-light"
