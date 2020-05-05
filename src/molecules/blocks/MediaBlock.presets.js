@@ -211,6 +211,37 @@ const mediaContent = {
   },
 }
 
+const longform = {
+  type: 'inline',
+  block: {
+    canBe: 'dark-dark',
+    gridWrap: 6,
+    noGridClass: true,
+    paddingSide: ['top', 'bottom'],
+    seven: true,
+    themeBackground: 'darker',
+  },
+  content: {
+    borderSide: 'left',
+    gridItemSizeAtM: 6,
+    gridItemSizeAtL: 4,
+    gridItemSizeAtXL: 3,
+    noGridClass: true,
+    shiftAt: 'large',
+    shiftSide: 'left',
+    themeBorder: 'light',
+    themeBorderSide: 'left',
+    themeColor: 'lighter',
+  },
+  title: {
+    color: 'white',
+    fontType: 'primary',
+  },
+  titleLink: {
+    themeLinkHover: 'light',
+  },
+}
+
 const mediaRow = {
   type: 'stacked',
   seven: true,
@@ -248,37 +279,6 @@ const mediaRow = {
     fontType: 'secondary',
     fontSize: 'xs',
     themeColor: 'base',
-  },
-}
-
-const longform = {
-  type: 'inline',
-  block: {
-    canBe: 'dark-dark',
-    gridWrap: true,
-    noGridClass: true,
-    paddingSide: ['top', 'bottom'],
-    seven: true,
-    themeBackground: 'darker',
-  },
-  content: {
-    borderSide: 'left',
-    gridItemSizeAtM: 6,
-    gridItemSizeAtL: 4,
-    gridItemSizeAtXL: 3,
-    noGridClass: true,
-    shiftAt: 'large',
-    shiftSide: 'left',
-    themeBorder: 'light',
-    themeBorderSide: 'left',
-    themeColor: 'lighter',
-  },
-  title: {
-    color: 'white',
-    fontType: 'primary',
-  },
-  titleLink: {
-    themeLinkHover: 'light',
   },
 }
 
