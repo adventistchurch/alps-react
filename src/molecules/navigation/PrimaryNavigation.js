@@ -42,7 +42,7 @@ PrimaryNavBase.propTypes = {
   children: PropTypes.node,
   drawer: PropTypes.bool,
   hasDropdown: PropTypes.bool,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
   navRef: PropTypes.object,
   priorityDropdown: PropTypes.node,
   wrapperRef: PropTypes.object,
