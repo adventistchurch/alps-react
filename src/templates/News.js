@@ -12,7 +12,7 @@ import BlankTemplate from './BlankTemplate'
 
 function News({
   aside,
-  breaking,
+  latest,
   pageHeader,
   featured,
   mediaContent,
@@ -24,12 +24,13 @@ function News({
       <div>
         <PageHeader {...pageHeader} />
         <PageHeaderFeature
-          title={breaking.title}
-          titlePrefix={breaking.prefix}
-          category={breaking.category}
-          image={breaking.image}
-          date={breaking.date}
-          url={breaking.url}
+          blockType="featureWide"
+          title={latest.title}
+          titlePrefix={latest.prefix}
+          category={latest.category}
+          image={latest.image}
+          date={latest.date}
+          url={latest.url}
         />
       </div>
 

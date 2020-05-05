@@ -23,9 +23,9 @@ function getTabData(name, settings = {}) {
 
 export { pageHeaderTab }
 
-export function breakingTab(settings = {}) {
-  const { breaking, tab } = getTabData('Breaking', settings)
-  const { title, image, category, date, url } = breaking
+export function latestTab(settings = {}) {
+  const { latest, tab } = getTabData('Latest', settings)
+  const { title, image, category, date, url } = latest
 
   return {
     title: text('Title', title, tab),
@@ -96,7 +96,7 @@ export function newsTabs(settings = {}) {
 
   return {
     pageHeader: pageHeaderTab(pageHeader),
-    breaking: breakingTab(settings),
+    latest: latestTab(settings),
     featured: featuredTab(settings),
     aside: asideTab(settings),
     mediaContent: mediaContentTab(settings),
