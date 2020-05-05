@@ -8,6 +8,8 @@ import RelatedPosts from '../organisms/asides/RelatedPosts'
 import Main from './Main'
 import TemplateWrap from './TemplateWrap'
 
+export const headerTypes = ['featureHalf', 'featureWide', 'longform']
+
 function Article({
   asBackgroundImage,
   breadcrumbs,
@@ -16,6 +18,7 @@ function Article({
   content,
   description,
   date,
+  headerType,
   image,
   kicker,
   relatedTitle,
@@ -27,13 +30,14 @@ function Article({
     <TemplateWrap {...templateProps}>
       <Main>
         <PageHeaderFeature
+          blockType={headerType}
           asBackgroundImage={asBackgroundImage}
           kicker={kicker}
           title={title}
           description={description}
           date={date}
           category={category}
-          image={image}
+          image={headerType === 'longform' ? undefined : image}
         />
         <ArticleContent
           breadcrumbs={breadcrumbs}
@@ -59,6 +63,7 @@ Article.propTypes = {
   content: PropTypes.node,
   description: PropTypes.node,
   date: PropTypes.node,
+  headerType: PropTypes.oneOf(headerTypes),
   image: PropTypes.object,
   kicker: PropTypes.node,
   relatedTitle: PropTypes.string,
@@ -67,6 +72,7 @@ Article.propTypes = {
 }
 Article.defaultProps = {
   asBackgroundImage: true,
+  headerType: 'featureHalf',
   breadcrumbs: [],
 }
 

@@ -4,10 +4,11 @@ import {
   boolean,
   date as datepicker,
   object,
+  select,
   text,
 } from '@storybook/addon-knobs'
 
-import Article from './Article'
+import Article, { headerTypes } from './Article'
 
 import Text from '../atoms/texts/Text'
 import { Paragraph } from '../helpers/Element'
@@ -40,12 +41,18 @@ function getTabData(name, settings = {}) {
 }
 
 export function articleHeaderTab(settings = {}) {
-  const { title, description, category, kicker, date, tab } = getTabData(
-    'Header',
-    settings
-  )
+  const {
+    title,
+    description,
+    category,
+    kicker,
+    date,
+    headerType,
+    tab,
+  } = getTabData('Header', settings)
 
   return {
+    headerType: select('Type ', headerTypes, headerType, tab),
     title: text('Title ', title, tab),
     kicker: text('Kicker ', kicker, tab),
     description: text('Description ', description, tab),
