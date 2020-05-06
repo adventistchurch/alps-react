@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Element, { Div } from '../../../helpers/Element'
+import Element, { Div, Span } from '../../../helpers/Element'
 import ErrorMessage from './ErrorMessage'
+import useFormContext from './FormContext'
 
 function FormLabel({
   children: field,
@@ -14,20 +15,25 @@ function FormLabel({
   className,
   ...props
 }) {
+  const { darkMode } = useFormContext()
+
+  const fieldInTop = darkMode || position === 'bottom'
+
+  if (!text) return field
   return (
     <Div className={className} {...props}>
-      {position == 'bottom' && field}
+      {fieldInTop && field}
 
-      <Element as="label" htmlFor={htmlFor}>
+      <Element as="label" htmlFor={htmlFor} fontType="secondary" fontSize="s">
         {text}{' '}
         {textOptional && (
-          <span className="type-alpha--s text-color--gray">
-            ({textOptional})
-          </span>
+          <Span fontType="secondary" fontSize="xs" themeColor="lighter">
+            {textOptional}
+          </Span>
         )}
       </Element>
 
-      {position == 'top' && field}
+      {!fieldInTop && field}
 
       {error && <ErrorMessage text={error} />}
     </Div>
@@ -35,19 +41,17 @@ function FormLabel({
 }
 
 FormLabel.propTypes = {
+  ...Div.propTypes,
   children: PropTypes.node,
   className: PropTypes.string,
   error: PropTypes.string,
   htmlFor: PropTypes.string,
-  position: PropTypes.oneOf(['top', 'bottom']),
   text: PropTypes.string,
   textOptional: PropTypes.string,
-  ...Div.propTypes,
+  position: PropTypes.oneOf(['top', 'bottom']),
 }
 FormLabel.defaultProps = {
   className: 'c-form-group',
-  fontSize: 's',
-  fontType: 'secondary',
   position: 'top',
   spacingSize: 'quarter',
 }

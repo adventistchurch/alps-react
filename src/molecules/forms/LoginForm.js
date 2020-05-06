@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import { Div } from '../../helpers/Element'
 import Form from './elements/Form'
-import PasswordField from './elements/PasswordField'
 import SubmitMessage from './elements/SubmitMessage'
 import TextField from './elements/TextField'
 import Title from '../../atoms/texts/Title'
@@ -30,7 +29,11 @@ function LoginForm({
       />
       {submitMessage && <SubmitMessage text={submitMessage} />}
       <TextField name="username" placeholder={`${usernameLabel}*`} />
-      <PasswordField name="password" placeholder={`${passwordLabel}*`} />
+      <TextField
+        name="password"
+        type="password"
+        placeholder={`${passwordLabel}*`}
+      />
       <Div flex flexAlign="center">
         <Button text={submitLabel} onSubmit={onSubmit} />
         <Button url={forgotPwdUrl} text={forgotPwdLabel} simple />

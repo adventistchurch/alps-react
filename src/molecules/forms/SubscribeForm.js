@@ -2,9 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import EmailField from './elements/EmailField'
 import Form from './elements/Form'
-import FormTitle from './elements/FormTitle'
 import OptionGroup from './elements/OptionGroup'
 import RadioButton from './elements/RadioButton'
 import TextField from './elements/TextField'
@@ -18,25 +16,25 @@ function SubscribeForm({
   title,
 }) {
   return (
-    <Form darkMode={darkMode} padding spacing>
-      <FormTitle text={title} darkMode={darkMode} />
+    <Form title={title} darkMode={darkMode} labelPosition="top" padding spacing>
       <TextField
-        darkMode={darkMode}
         label="First Name"
         name="first_name"
         placeholder="First Name"
       />
+      <TextField label="Last Name" name="last_name" placeholder="Last Name" />
       <TextField
-        darkMode={darkMode}
-        label="Last Name"
-        name="last_name"
-        placeholder="Last Name"
-      />
-      <EmailField
-        darkMode={darkMode}
+        type="email"
         label="Email Address"
         name="email"
         placeholder="Email Address"
+      />
+      <TextField
+        type="textarea"
+        label="Comments"
+        name="comments"
+        placeholder="Place some comments here"
+        labelOptional="Optional"
       />
       <OptionGroup title="Frequency">
         <RadioButton

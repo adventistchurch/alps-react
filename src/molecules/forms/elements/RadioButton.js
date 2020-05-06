@@ -19,8 +19,8 @@ function RadioButton({
   return (
     <FormLabel
       className={labelClass}
-      error={error}
-      htmlFor={id}
+      error={props.error}
+      htmlFor={props.id || props.name}
       position="bottom"
       text={label}
       textOptional={labelOptional}
@@ -41,7 +41,6 @@ function RadioButton({
 
 RadioButton.propTypes = {
   checked: PropTypes.bool,
-  darkMode: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string.isRequired,

@@ -1,39 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import useClasses from '../../../helpers/useClasses'
 import useInputFocus from '../../../helpers/useInputFocus'
 
-function BaseInput({
-  checked,
-  error,
-  id,
-  inline,
-  name,
-  placeholder,
-  type,
-  value,
-  hasFocus,
-  ...props
-}) {
+function BaseInput({ checked, error, type, value, hasFocus, ...props }) {
+  const inputClass = useClasses('form-input', {
+    'has-error': error,
+  })
   const inputFocusRef = useInputFocus(hasFocus)
 
-  const classes = []
-  if (error) classes.push('has-error')
-  if (inline) classes.push('form-input')
-  const inputClass = classes.length > 0 ? classes.join(' ') : null
+  const isTextArea = type === 'textarea'
 
-  return (
-    <input
-      className={inputClass}
-      defaultChecked={checked}
-      defaultValue={value}
-      id={id}
-      name={name}
-      placeholder={placeholder}
-      type={type}
-      ref={inputFocusRef}
-      {...props}
-    />
+  return React.createElement(
+    isTextArea ? 'textarea' : 'input',
+    {
+      className: inputClass,
+      defaultChecked: checked,
+      defaultValue: value,
+      ref: inputFocusRef,
+      type,
+      ...props,
+    },
+    isTextArea ? value : null
   )
 }
 
@@ -42,13 +31,13 @@ BaseInput.propTypes = {
   error: PropTypes.string,
   hasFocus: PropTypes.bool,
   id: PropTypes.string,
-  inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf([
     'checkbox',
     'email',
     'password',
+    'number',
     'radio',
     'search',
     'text',

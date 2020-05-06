@@ -8,7 +8,7 @@ import TextField from './elements/TextField'
 function InlineForm({ onSubmit, submitLabel, ...props }) {
   return (
     <Form inline noValidate {...props}>
-      <TextField aria-required={true} name="text" required inline />
+      <TextField aria-required={true} name="text" required />
       <Button text={submitLabel} onSubmit={onSubmit} spaceSide="left" />
     </Form>
   )

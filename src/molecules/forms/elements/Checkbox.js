@@ -6,42 +6,29 @@ import FormLabel from './FormLabel'
 
 function Checkbox({
   checked,
-  error,
-  id,
   label,
   labelOptional,
   labelClass,
   labelSpacingSize,
-  name,
-  value,
   ...props
 }) {
   return (
     <FormLabel
       className={labelClass}
-      error={error}
-      htmlFor={id}
+      error={props.error}
+      htmlFor={props.id || props.name}
       position="bottom"
       text={label}
       textOptional={labelOptional}
       spacingSize={labelSpacingSize}
     >
-      <BaseInput
-        checked={checked}
-        error={error}
-        id={id}
-        name={name}
-        type="checkbox"
-        value={value}
-        {...props}
-      />
+      <BaseInput checked={checked} type="checkbox" {...props} />
     </FormLabel>
   )
 }
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
-  darkMode: PropTypes.bool,
   error: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string.isRequired,

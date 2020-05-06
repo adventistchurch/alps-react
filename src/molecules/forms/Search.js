@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Fieldset from './elements/Fieldset'
 import Form from './elements/Form'
-import SearchField from './elements/SearchField'
+import TextField from './elements/TextField'
 import SubmitButton from './elements/SubmitButton'
 
 function Search({
@@ -17,7 +17,8 @@ function Search({
   return (
     <Form className="search-form" role="search" onSubmit={onSearch} {...props}>
       <Fieldset legend={title} legendVishidden>
-        <SearchField
+        <TextField
+          type="search"
           className="search-form__input"
           name="search"
           placeholder={placeholder}

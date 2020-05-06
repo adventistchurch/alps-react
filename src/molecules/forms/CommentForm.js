@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import TextArea from './elements/TextArea'
+import TextField from './elements/TextField'
 import Title from '../../atoms/texts/Title'
 import Form from './elements/Form'
 
@@ -18,9 +18,10 @@ const CommentForm = ({ onSubmit, rows, submitLabel, title, ...props }) => {
         strong
         transform="upper"
       />
-      <TextArea
+      <TextField
         aria-required={true}
         name="comment"
+        type="textarea"
         required="required"
         rows={rows}
       />

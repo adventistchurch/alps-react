@@ -4,39 +4,47 @@ import PropTypes from 'prop-types'
 import FormLabel from './FormLabel'
 
 function Dropdown({
+  allowNone,
   defaultValue,
   error,
+  hideNone,
   id,
   label,
   labelOptional,
   labelClass,
   labelSpacingSize,
   name,
+  noneLabel,
+  noneValue,
   options,
+  ...props
 }) {
-  const Dropdown = (
-    <select defaultValue={defaultValue} id={id} name={name}>
-      {options.map(({ text, value }, key) => (
-        <option key={key} value={value}>
-          {text}
-        </option>
-      ))}
-    </select>
-  )
-
-  return label ? (
+  return (
     <FormLabel
       className={labelClass}
       error={error}
-      htmlFor={id}
+      htmlFor={id || name}
       text={label}
       textOptional={labelOptional}
       spacingSize={labelSpacingSize}
     >
-      {Dropdown}
+      <select defaultValue={defaultValue} id={id} name={name} {...props}>
+        {!hideNone && (
+          <option
+            key={`${name}-option-none`}
+            value={noneValue}
+            disabled={!allowNone}
+          >
+            {noneLabel}
+          </option>
+        )}
+        {options.map(({ text, value }, key) => (
+          <option key={`${name}-option-${key}`} value={value}>
+            {text}
+          </option>
+        ))}
+      </select>
     </FormLabel>
-  ) : (
-    <>{Dropdown}</>
   )
 }
 
@@ -47,8 +55,10 @@ const valueTypes = PropTypes.oneOfType([
 ])
 
 Dropdown.propTypes = {
+  allowNone: PropTypes.bool,
   defaultValue: valueTypes,
   error: PropTypes.string,
+  hideNone: PropTypes.bool,
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
@@ -62,8 +72,12 @@ Dropdown.propTypes = {
       value: valueTypes.isRequired,
     })
   ),
+  noneLabel: PropTypes.node,
+  noneValue: PropTypes.any,
 }
 Dropdown.defaultProps = {
+  allowNone: true,
+  noneLabel: '-',
   options: [],
 }
 

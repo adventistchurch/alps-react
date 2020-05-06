@@ -1,16 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Button from '../../../atoms/buttons/Button'
 
-function SubmitButton({ vishidden, ...props }) {
-  return <Button vishidden={vishidden} {...props} />
+function SubmitButton({ label, ...props }) {
+  return <Button text={label} {...props} />
 }
 
 SubmitButton.propTypes = {
+  label: PropTypes.string,
   ...Button.propTypes,
 }
 SubmitButton.defaultProps = {
-  vishidden: true,
+  label: 'Submit',
 }
 
 export default SubmitButton
