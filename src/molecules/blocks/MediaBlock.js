@@ -11,6 +11,7 @@ import Element, {
   HeadingThree,
   Link,
 } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 
 import MediaImage from './MediaImage'
 import presets from './MediaBlock.presets'
@@ -19,34 +20,6 @@ const blockClass = 'c-block'
 const mediaBlockClass = 'c-media-block'
 
 export const mediaBlocksTypes = Object.keys(presets)
-
-/**
- * Returns main classes for a MediaBlock element
- * TODO: Check this again if this PR https://github.com/adventistchurch/alps/pull/435 gets merged into ALPS.
- * @param {string} type
- * @param {boolean} reversed
- */
-function useMediaBlockClass(type, reversed = false, stackedUntilSmall = false) {
-  const classes = [mediaBlockClass, blockClass]
-
-  if (type) {
-    classes.push(`${blockClass}__${type}`)
-
-    if (stackedUntilSmall) {
-      classes.push(`${blockClass}__stacked--until-small`)
-    }
-
-    if (type === 'row') {
-      classes.push(`${mediaBlockClass}__${type}`)
-    }
-  }
-  if (reversed) {
-    classes.push(`${mediaBlockClass}--reversed`)
-    classes.push(`${blockClass}--reversed`)
-  }
-
-  return classes.join(' ')
-}
 
 /**
  * The MediaBlock Component
@@ -80,14 +53,16 @@ function MediaBlock({
 
   const blockType = preset.type || type
 
-  const blockClass = useMediaBlockClass(
-    blockType,
-    isReversed,
-    stackedUntilSmall || preset.stackedUntilSmall
-  )
+  const wrapClasses = useClasses(`${mediaBlockClass} ${blockClass}`, {
+    [`${blockClass}__${blockType}`]: blockType,
+    [`${blockClass}__stacked--until-small`]:
+      blockType && (stackedUntilSmall || preset.stackedUntilSmall),
+    [`${mediaBlockClass}--reversed`]: blockType && isReversed,
+    [`${blockClass}--reversed`]: blockType && isReversed,
+  })
 
   return (
-    <Div className={blockClass} {...preset.block} {...blockProps}>
+    <Div className={wrapClasses} {...preset.block} {...blockProps}>
       {image && (
         <MediaImage
           blockIconType={blockIconType}

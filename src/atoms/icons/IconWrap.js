@@ -5,6 +5,7 @@ import { themeBackgroundColors } from '../../atoms/global/colors'
 
 import Icon from '../../atoms/icons/Icon'
 import Element from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 
 // Available icons sizes
 export const iconSizes = ['xs', 's', 'm', 'l', 'xl']
@@ -19,15 +20,13 @@ export default function IconWrap({
   size,
   ...props
 }) {
-  const classes = ['u-icon', `u-icon--${size}`]
-  if (className) classes.push(className)
+  const classes = useClasses('u-icon', {
+    [`u-icon--${size}`]: size,
+    [className]: className,
+  })
 
   return (
-    <Element
-      className={classes.join(' ')}
-      themeBackground={background}
-      {...props}
-    >
+    <Element className={classes} themeBackground={background} {...props}>
       <Icon name={name} color={color} fill={fill} themeColor={themeColor} />
     </Element>
   )

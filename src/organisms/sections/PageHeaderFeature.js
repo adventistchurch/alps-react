@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Link } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 import renderItems from '../../helpers/renderItems'
 import MediaBlock from '../../molecules/blocks/MediaBlock'
 
@@ -14,20 +15,14 @@ export const blockTypes = [
   'longform',
 ]
 
-function useHeaderClasses(blockType, hasScroll = false) {
-  return useMemo(() => {
-    const classes = []
-    if (blockType === 'column') classes.push('c-page-header__3-col')
-    if (hasScroll) classes.push('has-scroll')
-    return classes.join(' ')
-  }, [blockType, hasScroll])
-}
-
 function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
-  const headerClasses = useHeaderClasses(blockType, hasScroll)
+  const headerClasses = useClasses('c-page-header c-page-header__feature', {
+    'c-page-header__3-col': blockType,
+    'has-scroll': hasScroll,
+  })
 
   return (
-    <header className={`c-page-header c-page-header__feature ${headerClasses}`}>
+    <header className={headerClasses}>
       <div className="c-page-header__content">
         {blocks ? (
           renderItems(blocks, MediaBlock, { type: blockType })

@@ -4,9 +4,8 @@ import PropTypes from 'prop-types'
 import MediaImage from './MediaImage'
 import Button from '../../atoms/buttons/Button'
 import { Div, HeadingThree, Link, Paragraph, Span } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
-
-const baseClasses = ['c-block', 'c-block__text']
 
 function ContentBlock({
   category,
@@ -23,14 +22,12 @@ function ContentBlock({
 }) {
   const { onToggle, openClass } = useToggle()
 
-  const classes = baseClasses
-
-  if (more) classes.push('c-block__text-expand')
-  if (image) classes.push('has-image')
-  if (openClass) classes.push(openClass)
-  if (className) classes.push(className)
-
-  const classNames = classes.join(' ')
+  const classes = useClasses('c-block c-block__text', {
+    'c-block__text-expand': more,
+    'has-image': image,
+    [openClass]: openClass,
+    [className]: className,
+  })
 
   const moreProps = more
     ? {
@@ -43,7 +40,7 @@ function ContentBlock({
 
   return (
     <Div
-      className={classNames}
+      className={classes}
       borderSide="left"
       spacing
       themeBorder="darker"

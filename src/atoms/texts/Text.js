@@ -2,22 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element, { Paragraph } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 import useDropcap from '../../helpers/useDropcap'
 import Dropcap from './Dropcap'
 
 function Text({ children, className, hasDropcap, ...props }) {
+  const classes = useClasses('text', {
+    [className]: className,
+    'has-dropcap': hasDropcap,
+  })
   const content = useDropcap(children, {
     Dropcap,
     enabled: hasDropcap,
     tags: ['p', Paragraph],
   })
-  const classes = ['text']
-
-  if (className) classes.push(className)
-  if (hasDropcap) classes.push('has-dropcap')
 
   return (
-    <Element {...props} className={classes.join(' ')}>
+    <Element {...props} className={classes}>
       {content}
     </Element>
   )
