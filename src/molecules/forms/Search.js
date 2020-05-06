@@ -26,7 +26,11 @@ function Search({
           required
         />
         {/* TODO: create component for screen readers? */}
-        <SubmitButton className="search-form__submit" label={submitLabel} />
+        <SubmitButton
+          className="search-form__submit"
+          label={submitLabel}
+          vishidden
+        />
       </Fieldset>
     </Form>
   )
