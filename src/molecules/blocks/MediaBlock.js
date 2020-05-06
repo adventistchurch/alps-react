@@ -86,13 +86,6 @@ function MediaBlock({
     stackedUntilSmall || preset.stackedUntilSmall
   )
 
-  const _title = title ? (
-    <>
-      {titlePrefix && <Em themeColor="lighter">{titlePrefix}&nbsp;</Em>}
-      {title}
-    </>
-  ) : null
-
   return (
     <Div className={blockClass} {...preset.block} {...blockProps}>
       {image && (
@@ -141,18 +134,15 @@ function MediaBlock({
                 fontType="primary"
                 {...preset.title}
               >
-                {url ? (
-                  <Link
-                    className="c-block__title-link"
-                    href={url}
-                    themeLinkHover="dark"
-                    {...preset.titleLink}
-                  >
-                    {_title}
-                  </Link>
-                ) : (
-                  _title
-                )}
+                <Link
+                  className="c-block__title-link"
+                  href={url}
+                  themeLinkHover="dark"
+                  {...preset.titleLink}
+                >
+                  {titlePrefix && <Em themeColor="lighter">{titlePrefix}: </Em>}
+                  {title}
+                </Link>
               </HeadingThree>
             )}
             {description && (
