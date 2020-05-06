@@ -17,11 +17,11 @@ function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
       shiftSide="left"
       shiftAt="large"
       spacingSize="double"
-      spacingUntil="xxlarge"
+      spacingUntil="large"
       paddingSize="zero"
       paddingSide="sides"
     >
-      <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">
+      <GridItem className="c-article" sizeAtL="3" sizeAtXL="3">
         <Text
           as="article"
           className="c-article__body"
