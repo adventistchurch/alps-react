@@ -111,6 +111,15 @@ const featuredNews = {
   },
 }
 
+const archive = {
+  ...featuredNews,
+
+  content: {
+    ...featuredNews.content,
+    borderSide: 'left',
+  },
+}
+
 const full = {
   content: {
     color: 'white',
@@ -338,6 +347,7 @@ export default {
   featureHalf,
   featureWide,
   featuredNews,
+  archive,
   full,
   inline,
   inset,
