@@ -25,10 +25,11 @@ export { pageHeaderTab }
 
 export function latestTab(settings = {}) {
   const { latest, tab } = getTabData('Latest', settings)
-  const { title, image, category, date, url } = latest
+  const { title, titlePrefix, image, category, date, url } = latest
 
   return {
     title: text('Title', title, tab),
+    prefix: text('Title prefix', titlePrefix, tab),
     url: text('Url', url, tab),
     category: text('Category', category, tab),
     date: datePicker('Date', new Date(date), tab),
