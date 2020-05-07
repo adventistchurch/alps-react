@@ -1,9 +1,10 @@
 {
+  "search": {},
   "primary": {
-    "heading": "News",
-    "linkText": "See All",
-    "url": "#/news/all",
-    "blocks": [
+    "title": "News",
+    "linkLabel": "See All",
+    "linkUrl": "#/news/all",
+    "items": [
       {
         "title": "Sed quod corrupti qui reiciendis qui sequi iure deleniti atque.",
         "description": "Quidem ab magnam quae cumque dolorum ipsam totam facilis totam. Et atque eum quis temporibus voluptates itaque excepturi quo facere. Ea ab ut minima voluptatum animi consequatur rerum. ",
@@ -18,9 +19,7 @@
             "1200": "//picsum.photos/900/600?random"
           },
           "alt": "Placeholder image"
-        },
-        "type": "stacked",
-        "border": "left"
+        }
       },
       {
         "title": "Nulla finibus ligula ut nisl facilisis",
@@ -36,17 +35,15 @@
             "1200": "//picsum.photos/900/600?random"
           },
           "alt": "Placeholder image"
-        },
-        "type": "stacked",
-        "border": "left"
+        }
       }
     ]
   },
   "secondary": {
-    "heading": "More News",
-    "linkText": "See All",
-    "url": "#/news/all",
-    "blocks": [
+    "title": "More News",
+    "linkLabel": "See All",
+    "linkUrl": "#/news/all",
+    "items": [
       {
         "title": "Dicta maxime enim impedit harum et nulla praesentium aut.",
         "date": "2019-02-09",
