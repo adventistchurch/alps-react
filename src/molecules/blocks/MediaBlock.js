@@ -26,7 +26,7 @@ export const mediaBlocksTypes = Object.keys(presets)
  */
 function MediaBlock({
   asBackgroundImage,
-  blockIconType,
+  mediaIcon,
   blockProps,
   category,
   contentProps,
@@ -66,7 +66,7 @@ function MediaBlock({
     <Div className={wrapClasses} {...preset.block} {...blockProps}>
       {image && (
         <MediaImage
-          blockIconType={blockIconType}
+          icon={mediaIcon}
           asBackgroundImage={asBackgroundImage}
           {...preset.image}
           {...imageProps}
@@ -165,7 +165,7 @@ function MediaBlock({
 
 MediaBlock.propTypes = {
   asBackgroundImage: PropTypes.bool,
-  blockIconType: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  mediaIcon: PropTypes.oneOf(['audio', 'gallery', 'video']),
   blockProps: PropTypes.shape(Element.propTypes),
   category: PropTypes.string,
   column: PropTypes.bool,

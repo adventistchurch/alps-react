@@ -264,7 +264,7 @@ const mediaRow = {
     seven: true,
   },
   image: {
-    blockIconType: 'gallery',
+    icon: 'gallery',
     gridItemSize: 3,
     gridItemSizeAtM: 2,
     gridItemSizeAtXL: 1,

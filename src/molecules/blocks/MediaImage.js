@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 import Picture from '../../atoms/images/Picture'
 import { Div, Link } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
 function MediaImage({
   asBackgroundImage,
-  blockIconType,
+  icon,
   className,
   image,
   url,
@@ -22,18 +23,14 @@ function MediaImage({
     image.srcSet
   )
 
-  const classNames = ['c-media-block__image', 'c-block__image']
-
-  if (blockIconType)
-    classNames.push(`c-block__icon c-block__icon--${blockIconType}`)
-
-  if (asBackgroundImage)
-    classNames.push('o-background-image u-background--cover')
-
-  if (className) classNames.push(className)
+  const classNames = useClasses('c-media-block__image c-block__image', {
+    [`c-block__icon c-block__icon--${icon}`]: icon,
+    ['o-background-image u-background--cover']: asBackgroundImage,
+    [className]: className,
+  })
 
   return (
-    <Div {...otherProps} className={classNames.join(' ')}>
+    <Div {...otherProps} className={classNames}>
       {asBackgroundImage && bgImageStyles && (
         <InlineStyles styles={bgImageStyles} />
       )}
@@ -53,7 +50,7 @@ function MediaImage({
 MediaImage.propTypes = {
   ...Div.propTypes,
   asBackgroundImage: PropTypes.bool,
-  blockIconType: PropTypes.string,
+  icon: PropTypes.string,
   className: PropTypes.string,
   image: Picture.propTypes.image,
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
