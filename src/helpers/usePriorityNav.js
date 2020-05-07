@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import useWindowEvent from './useWindowEvent'
 
@@ -39,38 +39,11 @@ function usePriorityNav(items = []) {
   const priorityItems = useMemo(
     () =>
       items.filter((item, index) => item.priority || index <= lastVisibleIndex),
-    [lastVisibleIndex]
+    [items, lastVisibleIndex]
   )
 
-  // Initializes breakpoints
-  function init() {
-    const nav = navRef.current
-    let childIndex = 0
-    for (const child of nav.children) {
-      const item = items[childIndex]
-      const childWidth = getElementContentWidth(child)
-
-      const breakpoint =
-        breakpoints.length > 0
-          ? breakpoints[breakpoints.length - 1] + childWidth
-          : childWidth
-
-      breakpoints.push(breakpoint)
-
-      if (item.priority) {
-        const priorityWidth =
-          priorityWidths.length > 0
-            ? priorityWidths[priorityWidths.length - 1] + childWidth
-            : childWidth
-        priorityWidths.push(priorityWidth)
-      }
-
-      childIndex++
-    }
-  }
-
   // Recalculates lastVisibleIndex and hasDropdown values based on the visible breakpoints
-  function onResize() {
+  const onResize = useCallback(() => {
     const wrapper = wrapperRef.current
     const dropdown = dropdownRef.current
 
@@ -95,12 +68,35 @@ function usePriorityNav(items = []) {
 
     // Calculate and set if dropdown is visible
     setHasDropdown(visibleBreakpoints.length < breakpoints.length)
-  }
+  }, [breakpoints, priorityWidths])
 
   useEffect(() => {
-    init()
+    const nav = navRef.current
+    let childIndex = 0
+    for (const child of nav.children) {
+      const item = items[childIndex]
+      const childWidth = getElementContentWidth(child)
+
+      const breakpoint =
+        breakpoints.length > 0
+          ? breakpoints[breakpoints.length - 1] + childWidth
+          : childWidth
+
+      breakpoints.push(breakpoint)
+
+      if (item.priority) {
+        const priorityWidth =
+          priorityWidths.length > 0
+            ? priorityWidths[priorityWidths.length - 1] + childWidth
+            : childWidth
+        priorityWidths.push(priorityWidth)
+      }
+
+      childIndex++
+    }
+
     setSafeToShow(true) // Let the user know that menu is safe to display (to avoid flickering)
-  }, [])
+  }, [breakpoints, items, priorityWidths])
 
   useWindowEvent('resize', onResize, 50, true)
 
