@@ -472,7 +472,7 @@ LinkBase.propTypes = {
 export function Link({ href, ...props }) {
   const LinkWrapper = useLinkContext()
 
-  if (!href) return props.children
+  if (!href) return <LinkBase {...props} />
 
   return LinkWrapper ? (
     <LinkWrapper href={href} {...props}>
