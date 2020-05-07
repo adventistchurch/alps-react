@@ -34,6 +34,7 @@ function MediaBlock({
   ctaIcon,
   date,
   dateFormat,
+  dateStyle,
   description,
   image,
   imageProps,
@@ -136,7 +137,11 @@ function MediaBlock({
                   dateTime={date}
                   transform="upper"
                 >
-                  <DateTimeFormat datetime={date} format={dateFormat} />
+                  <DateTimeFormat
+                    datetime={date}
+                    format={dateFormat}
+                    style={dateStyle}
+                  />
                 </Element>
               )}
             </Div>
@@ -174,6 +179,7 @@ MediaBlock.propTypes = {
     PropTypes.string,
   ]),
   dateFormat: PropTypes.oneOf(dateFormats),
+  dateStyle: PropTypes.object,
   image: MediaImage.propTypes.image,
   imageProps: PropTypes.shape(Element.propTypes),
   kicker: PropTypes.string,
@@ -190,6 +196,7 @@ MediaBlock.defaultProps = {
   asBackgroundImage: false,
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
+  dateStyle: { date: 'long' },
 }
 
 export default MediaBlock

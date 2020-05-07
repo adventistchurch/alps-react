@@ -3,16 +3,16 @@ import { storiesOf } from '@storybook/react'
 import { boolean, date as datetime, select, text } from '@storybook/addon-knobs'
 
 import { iconNames } from '../../atoms/icons/Icon'
-import { dateFormats } from '../../helpers/DateTimeFormat'
+import { dateFormats, dateStyles } from '../../helpers/DateTimeFormat'
 
 import MediaBlock, { mediaBlocksTypes } from './MediaBlock'
 
 import data from './MediaBlock.stories.json'
 import { pictureTab } from '../../atoms/images/Picture.stories.js'
 
-function getTabData(name, settings = {}) {
+function getTabData(tab, settings = {}) {
   return {
-    tab: name,
+    tab,
     ...MediaBlock.defaultProps,
     ...data,
     ...settings,
@@ -34,12 +34,19 @@ function textsTab(settings = {}) {
 }
 
 function metaTab(settings = {}) {
-  const { category, date, url, tab } = getTabData('Meta', settings)
+  const { category, date, dateFormat, dateStyle, url, tab } = getTabData(
+    'Meta',
+    settings
+  )
 
   return {
     category: text('Category', category, tab),
     date: datetime('Date Time', new Date(date), tab),
-    dateFormat: select('Date Format', dateFormats, 'date', tab),
+    dateFormat: select('Date Format', dateFormats, dateFormat, tab),
+    dateStyle: {
+      date: select('Date Style', dateStyles, dateStyle.date, tab),
+      time: select('Time Style', dateStyles, dateStyle.time, tab),
+    },
     url: text('URL', url, tab),
   }
 }
