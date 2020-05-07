@@ -3,19 +3,22 @@ import PropTypes from 'prop-types'
 
 import Grid from '../atoms/grids/Grid'
 import GridItem from '../atoms/grids/GridItem'
-import ContentBlock from '../molecules/blocks/ContentBlock'
+import GridSeven from '../atoms/grids/GridSeven'
 import MediaBlock from '../molecules/blocks/MediaBlock'
+import Aside from '../organisms/asides/Aside'
 import ListContent from '../organisms/content/ListContent'
 import PageHeader from '../organisms/sections/PageHeader'
 import PageHeaderFeature from '../organisms/sections/PageHeaderFeature'
 import BlankTemplate from './BlankTemplate'
 
 function News({
+  archive,
   aside,
   latest,
   pageHeader,
   featured,
   media,
+  subscribeForm,
   ...templateProps
 }) {
   return (
@@ -46,43 +49,26 @@ function News({
             linkLabel={featured.linkLabel}
             linkUrl={featured.linkUrl}
           >
-            {featured.items.map(
-              ({ title, category, url, image, date }, key) => (
-                <MediaBlock
-                  key={`featured-item-${key}`}
-                  title={title}
-                  category={category}
-                  url={url}
-                  image={image}
-                  type="featuredNews"
-                  date={date}
-                />
-              )
-            )}
+            {featured.items &&
+              featured.items.map(
+                ({ title, category, url, image, date }, key) => (
+                  <MediaBlock
+                    key={`featured-item-${key}`}
+                    title={title}
+                    category={category}
+                    url={url}
+                    image={image}
+                    type="featuredNews"
+                    date={date}
+                  />
+                )
+              )}
           </ListContent>
         </GridItem>
 
         {aside && (
           <GridItem sizeAtL={2} paddingSide="sides" paddingSize="zero">
-            <ListContent
-              title={aside.title}
-              linkLabel={aside.linkLabel}
-              linkUrl={aside.linkUrl}
-              contentSpacing={null}
-            >
-              {aside.items.map(({ title, category, url }, key) => (
-                <ContentBlock
-                  key={`aside-item-${key}`}
-                  title={title}
-                  category={category}
-                  url={url}
-                  titleSize="s"
-                  spacingSize="half"
-                  paddingSize="double"
-                  paddingSide="bottom"
-                />
-              ))}
-            </ListContent>
+            <Aside {...aside} />
           </GridItem>
         )}
       </Grid>
@@ -116,7 +102,7 @@ function News({
                     image={image}
                     type="mediaContent"
                     date={date}
-                    blockIconType={icon}
+                    mediaIcon={icon}
                   />
                 )
               )}
@@ -150,17 +136,55 @@ function News({
           </Grid>
         )}
       </ListContent>
+      <GridSeven
+        as="section"
+        gridWrap="6"
+        noWrapClass
+        shiftSide="left"
+        shiftAt="large"
+      >
+        <GridItem className="c-article" sizeAtL="4" spacingSize="triple">
+          {subscribeForm}
+          {archive && (
+            <ListContent
+              title={archive.title}
+              linkLabel={archive.linkLabel}
+              linkUrl={archive.linkUrl}
+            >
+              {archive.items &&
+                archive.items.map(
+                  ({ title, category, url, image, date }, key) => (
+                    <MediaBlock
+                      key={`archive-item-${key}`}
+                      title={title}
+                      category={category}
+                      url={url}
+                      image={image}
+                      type="archive"
+                      date={date}
+                    />
+                  )
+                )}
+            </ListContent>
+          )}
+        </GridItem>
+      </GridSeven>
     </BlankTemplate>
   )
 }
 
 News.propTypes = {
   pageHeader: PropTypes.shape(PageHeader.propTypes),
-  aside: PropTypes.shape({
+  archive: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
     linkUrl: PropTypes.string,
-    items: PropTypes.array,
+    content: PropTypes.node,
+  }),
+  aside: PropTypes.shape({
+    primary: PropTypes.object,
+    secondary: PropTypes.object,
+    search: PropTypes.object,
   }),
   featured: PropTypes.shape({
     title: PropTypes.string,
@@ -175,6 +199,7 @@ News.propTypes = {
     primary: PropTypes.array,
     secondary: PropTypes.array,
   }),
+  subscribeForm: PropTypes.node,
   ...BlankTemplate.propTypes,
 }
 News.defaultProps = {
@@ -182,20 +207,21 @@ News.defaultProps = {
     title: 'Aside',
     linkLabel: 'See all',
     linkUrl: '#',
-    items: [],
   },
   featured: {
     title: 'Featured',
     linkLabel: 'See all',
     linkUrl: '#',
-    items: [],
+  },
+  archive: {
+    title: 'Archive',
+    linkLabel: 'See all',
+    linkUrl: '#',
   },
   media: {
     title: 'Media',
     linkLabel: 'See all',
     linkUrl: '#',
-    primaryItems: [],
-    secondaryItems: [],
   },
 }
 
