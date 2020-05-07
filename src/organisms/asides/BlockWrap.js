@@ -7,16 +7,17 @@ import ContentBlock from '../../molecules/blocks/ContentBlock'
 import renderItems from '../../helpers/renderItems'
 import { Div } from '../../helpers/Element'
 
-function BlockWrap({ blocks, heading, linkText, type, url }) {
-  const blockProps =
-    type === 'mediaBlock' ? { type: 'stacked', border: 'left' } : {}
+function BlockWrap({ items, title, linkLabel, linkUrl, type }) {
+  const blockProps = type === 'mediaBlock' ? { type: 'stacked' } : {}
 
   return (
     <Div className="c-block-wrap" spacing>
-      <HeadingBlock title={heading} linkText={linkText} url={url} />
+      {title && (
+        <HeadingBlock title={title} linkText={linkLabel} url={linkUrl} />
+      )}
       <Div className="c-block-wrap__content" spacing>
         {renderItems(
-          blocks,
+          items,
           type == 'contentBlock' ? ContentBlock : MediaBlock,
           blockProps
         )}
@@ -26,15 +27,15 @@ function BlockWrap({ blocks, heading, linkText, type, url }) {
 }
 
 BlockWrap.propTypes = {
-  blocks: PropTypes.array,
-  heading: PropTypes.string,
-  linkText: PropTypes.string,
+  items: PropTypes.array,
+  title: PropTypes.string,
+  linkLabel: PropTypes.string,
+  linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   type: PropTypes.oneOf(['mediaBlock', 'contentBlock']),
-  url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 BlockWrap.defaultProps = {
+  items: [],
   type: 'mediaBlock',
-  blocks: [],
 }
 
 export default BlockWrap
