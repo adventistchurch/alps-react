@@ -17,14 +17,12 @@ function Slide({
   textClass,
   ...others
 }) {
-  const classNames = ['c-carousel__item']
-  if (className) classNames.push(className)
-
-  const textClassNames = ['c-carousel__item-text']
-  if (textClass) textClassNames.push(textClass)
-
   return (
-    <Div className={classNames.join(' ')} position="relative" {...others}>
+    <Div
+      className={`c-carousel__item ${className}`}
+      position="relative"
+      {...others}
+    >
       <Picture image={image} lazy={imageIsLazy} />
       {heading && (
         <Div
@@ -35,7 +33,7 @@ function Slide({
         >
           <Div gridItemSizeAtM={4} gridItemSizeAtXL={3}>
             <Div
-              className={textClassNames.join(' ')}
+              className={`c-carousel__item-text ${textClass}`}
               paddingSide={['top', 'bottom']}
               paddingSize="double"
               spacing
@@ -88,6 +86,9 @@ Slide.propTypes = {
   subtitle: PropTypes.string,
   textClass: PropTypes.string,
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+}
+Slide.defaultProps = {
+  className: '',
 }
 
 export default Slide

@@ -8,31 +8,21 @@ import SecondaryNavigation from '../../molecules/navigation/SecondaryNavigation'
 import DrawerNavigation from '../../molecules/navigation/DrawerNavigation'
 
 function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
-  const {
-    canBeDark = false,
-    link = '/',
-    name: logoName = 'sda',
-    useFillTheme = true,
-  } = logo
-
-  const classNames = ['c-header']
-  if (className) classNames.push(className)
-
   return (
     <>
-      <header className={classNames.join(' ')} role="banner" id="header">
+      <header className={`c-header ${className}`} role="banner" id="header">
         <div className="c-header--inner">
           <div className="c-header__nav-secondary">
             <SecondaryNavigation {...secondaryNav} />
           </div>
           <div className="c-header__logo c-logo">
             <Link
-              canBe={canBeDark ? 'dark-dark' : null}
+              canBe={logo.canBeDark ? 'dark-dark' : null}
               className="c-logo__link"
-              href={link}
-              themePathFill={useFillTheme ? 'base' : null}
+              href={logo.link}
+              themePathFill={logo.useFillTheme ? 'base' : null}
             >
-              <Logo name={logoName} />
+              <Logo name={logo.name} />
             </Link>
           </div>
           <div className="c-header__nav-primary">
@@ -62,9 +52,13 @@ Header.propTypes = {
   secondaryNav: PropTypes.object,
 }
 Header.defaultProps = {
+  className: '',
   drawer: {},
   logo: {
+    canBeDark: false,
+    link: '/',
     name: 'sda',
+    useFillTheme: true,
   },
   primaryNav: {},
   secondaryNav: {},

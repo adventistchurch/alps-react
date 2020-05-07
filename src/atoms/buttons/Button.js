@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 import Element, { Link } from '../../helpers/Element'
+import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
 import IconWrap from '../icons/IconWrap'
 
@@ -14,21 +15,17 @@ const fixRightIcon = { marginLeft: '.3125rem', marginRight: '0' }
 /**
  *
  * @param {string} base - Base class name
- * @param {string} extra - Extra class name
+ * @param {string} className - Extra class name
  * @param {object} flags - Button flags
  */
-function getButtonClass(base, extra, { disabled, ...flags }) {
-  const classNames = [base]
-
-  if (extra) classNames.push(extra)
-
-  if (disabled) classNames.push('disabled')
-
-  for (const flag in flags) {
-    if (flags[flag]) classNames.push(`${base}--${flag}`)
-  }
-
-  return classNames.join(' ')
+function useButtonClass(base, { disabled, ...flags }) {
+  return useClasses(base, {
+    disabled,
+    ...Object.keys(flags).reduce((acc, flag) => {
+      if (flags[flag]) acc[`${base}--${flag}`] = flags[flag]
+      return acc
+    }, {}),
+  })
 }
 
 /**
@@ -58,7 +55,7 @@ function Button({
 }) {
   const { openClass, onToggle } = useToggle(false)
 
-  const buttonClass = getButtonClass('o-button', className, {
+  const buttonClass = useButtonClass(`o-button ${openClass} ${className}`, {
     disabled,
     expand,
     lighter,
@@ -68,10 +65,13 @@ function Button({
     toggle,
   })
 
-  function _onClick(event) {
-    if (onClick) onClick(event)
-    if (toggle) onToggle()
-  }
+  const _onClick = useCallback(
+    event => {
+      if (onClick) onClick(event)
+      if (toggle) onToggle()
+    },
+    [onClick, onToggle, toggle]
+  )
 
   const link = url || href
 
@@ -126,6 +126,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   as: 'button',
+  className: '',
   iconFill: 'white',
   iconPosition: 'left',
   iconSize: 'xs',

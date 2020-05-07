@@ -17,13 +17,10 @@ function SliderArrow({
   const arrow = isPrev ? '‹' : '›' // prev: '‹' == &#8249; next: '›' == &#8250;
   const label = isPrev ? labelPrev : labelNext
 
-  const classNames = ['c-arrow', `c-arrow--${dir}`, `slick-arrow slick-${dir}`]
-  if (className) classNames.push(className)
-
   return (
     <Span
       {...props}
-      className={classNames.join(' ')} // u-icon u-icon--s
+      className={`c-arrow c-arrow--${dir} slick-arrow slick-${dir} ${className}`} // u-icon u-icon--s ?
       aria-label={label}
       themeColor="darker"
     >
@@ -39,6 +36,7 @@ SliderArrow.propTypes = {
   next: PropTypes.bool,
 }
 SliderArrow.defaultProps = {
+  className: '',
   prev: true,
   next: false,
   labelPrev: 'Previous',

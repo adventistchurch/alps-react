@@ -6,11 +6,8 @@ import Picture from '../../atoms/images/Picture'
 import Video from '../../atoms/media/Video'
 
 function Figure({ caption, className, image, lazy, videoSrc }) {
-  const classNames = ['o-figure']
-  if (className) classNames.push(className)
-
   return (
-    <figure className={classNames.join(' ')}>
+    <figure className={`o-figure ${className}`}>
       {image && (
         <div className="o-figure__image">
           <Picture image={image} lazy={lazy} />
@@ -36,6 +33,9 @@ Figure.propTypes = {
   image: Picture.propTypes.image,
   lazy: PropTypes.bool,
   videoSrc: PropTypes.string,
+}
+Figure.defaultProps = {
+  className: '',
 }
 
 export default Figure

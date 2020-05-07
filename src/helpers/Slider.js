@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { DivWithRef } from './Element'
+import useClasses from './useClasses'
 import SliderArrow from './SliderArrow'
 import useSlider from './useSlider'
 
@@ -83,13 +84,12 @@ function Slider({
     ...settings,
   })
 
-  const classNames = ['slick-slider']
-
-  if (initialized) classNames.push('slick-initialized')
-  if (className) classNames.push(className)
+  const classNames = useClasses(`slick-slider ${className}`, {
+    'slick-initialized': initialized,
+  })
 
   return (
-    <DivWithRef className={classNames.join(' ')} ref={sliderRef} {...props}>
+    <DivWithRef className={classNames} ref={sliderRef} {...props}>
       <div
         className="slick-list"
         aria-live="polite"
