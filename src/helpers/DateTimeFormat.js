@@ -1,25 +1,32 @@
 import PropTypes from 'prop-types'
 
-const dateFormats = ['date', 'time', 'datetime']
+export const dateFormats = ['date', 'time', 'datetime']
+export const dateStyles = ['full', 'long', 'medium', 'short']
 
 /**
  * Converts a date/string into a formatted one
+ * (read more about format and styles here here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat)
  *
- * @param {String} datetime Timestamp, String
- * @param {String} format One of `date`, `time` or `datetime`
+ * @param {string} datetime Timestamp, string
+ * @param {string} format One of `date`, `time` or `datetime`
+ * @param {object} style Options format the date
+ * @param {array} locales Array with prefered locales. An empty array uses browser's default locale.
  *
- * @returns {String}
+ * @returns {string}
  */
-function dateTimeFormat(datetime, format) {
+export function dateTimeFormat(datetime, format, style = {}, locales = []) {
   const date = new Date(datetime)
+
+  const { date: dateStyle = 'short', time: timeStyle = 'short' } = style
 
   switch (format) {
     case 'date':
-      return date.toLocaleDateString()
+      return date.toLocaleDateString(locales, { dateStyle })
     case 'time':
-      return date.toLocaleTimeString()
-    default:
-      return date.toLocaleString()
+      return date.toLocaleTimeString(locales, { timeStyle })
+    default: {
+      return date.toLocaleString(locales, { dateStyle, timeStyle })
+    }
   }
 }
 
@@ -28,15 +35,16 @@ function dateTimeFormat(datetime, format) {
  *
  * @param {object} props
  */
-function DateTimeFormat({ datetime, format }) {
-  return dateTimeFormat(datetime, format)
+export default function DateTimeFormat({ datetime, format, style, locales }) {
+  return dateTimeFormat(datetime, format, style, locales)
 }
 
 DateTimeFormat.propTypes = {
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  dateFormat: PropTypes.oneOf(dateFormats),
+  format: PropTypes.oneOf(dateFormats),
+  style: PropTypes.shape({
+    date: PropTypes.oneOf(dateStyles),
+    time: PropTypes.oneOf(dateStyles),
+  }),
+  locales: PropTypes.array,
 }
-
-export { dateFormats, dateTimeFormat }
-
-export default DateTimeFormat
