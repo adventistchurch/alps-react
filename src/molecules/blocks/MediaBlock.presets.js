@@ -303,7 +303,21 @@ const row = {
   },
 }
 
-const stacked = {}
+const stacked = {
+  content: {
+    borderSide: 'left',
+  },
+  title: {
+    themeColor: 'darker',
+    fontType: 'primary',
+    fontSize: 'm',
+  },
+  meta: {
+    fontType: 'secondary',
+    fontSize: 'xs',
+    themeColor: 'dark',
+  },
+}
 
 const relatedPost = {
   type: 'inline',
