@@ -13,18 +13,20 @@ export const iconPositions = ['left', 'right']
 const fixRightIcon = { marginLeft: '.3125rem', marginRight: '0' }
 
 /**
- *
- * @param {string} base - Base class name
- * @param {string} className - Extra class name
- * @param {object} flags - Button flags
+ * Returns classes for a button depending the provided flags
+ * @param {string} base Base class name
+ * @param {object} extras Extra class names
+ * @param {object} flags Button flags
+ * @returns `string`
  */
-function useButtonClass(base, { disabled, ...flags }) {
+function useButtonClass(base, extras, { disabled, ...flags }) {
   return useClasses(base, {
-    disabled,
     ...Object.keys(flags).reduce((acc, flag) => {
       if (flags[flag]) acc[`${base}--${flag}`] = flags[flag]
       return acc
     }, {}),
+    disabled,
+    ...extras,
   })
 }
 
@@ -55,15 +57,22 @@ function Button({
 }) {
   const { openClass, onToggle } = useToggle(false)
 
-  const buttonClass = useButtonClass(`o-button ${openClass} ${className}`, {
-    disabled,
-    expand,
-    lighter,
-    outline,
-    simple,
-    small,
-    toggle,
-  })
+  const buttonClass = useButtonClass(
+    'o-button',
+    {
+      [openClass]: openClass,
+      [className]: className,
+    },
+    {
+      disabled,
+      expand,
+      lighter,
+      outline,
+      simple,
+      small,
+      toggle,
+    }
+  )
 
   const _onClick = useCallback(
     event => {
@@ -73,11 +82,11 @@ function Button({
     [onClick, onToggle, toggle]
   )
 
-  const link = url || href
+  const link = onClick ? null : url || href
 
-  const TheButton = link && !onClick ? Link : Element
+  const TheButton = link ? Link : Element
 
-  const iconElem = icon ? (
+  const iconElem = icon && (
     <IconWrap
       color="white"
       fill={iconFill}
@@ -86,13 +95,13 @@ function Button({
       style={iconPosition === 'right' ? fixRightIcon : null}
       {...iconProps}
     />
-  ) : null
+  )
 
   return (
     <TheButton
       tag={as}
       className={`${buttonClass} ${openClass}`}
-      href={onClick ? null : link}
+      href={link}
       onClick={onClick || toggle ? _onClick : null}
       {...rest}
     >
