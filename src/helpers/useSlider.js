@@ -1,4 +1,4 @@
-import React, { cloneElement, useEffect, useState, useRef } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 
 import useInterval from './useInterval'
 import useWindowEvent from './useWindowEvent'
@@ -32,6 +32,13 @@ export const getSwipeDirection = (start = [], end = [], minSwipe = 0) => {
   }
 
   return 0
+}
+
+function getTouchPos(event) {
+  const { touches, clientX, clientY } = event
+  const { pageX: x = clientX, pageY: y = clientY } = touches ? touches[0] : {}
+
+  return [x, y]
 }
 
 /**
@@ -89,17 +96,13 @@ export default function useSlider(children = [], settings = {}) {
 
   // Autoplay methods
 
-  function onPause() {
-    setPaused(true)
-  }
+  const onPause = useCallback(() => setPaused(true), [])
 
-  function onPlay() {
-    setPaused(false)
-  }
+  const onPlay = useCallback(() => setPaused(false), [])
 
   // Nav methods
 
-  function onPrev() {
+  const onPrev = useCallback(() => {
     const prevIndex =
       index - itemsToScroll < 0
         ? totalSlides -
@@ -107,34 +110,27 @@ export default function useSlider(children = [], settings = {}) {
         : index - itemsToScroll
 
     setIndex(prevIndex)
-  }
+  }, [index, itemsToScroll, totalSlides])
 
-  function onNext() {
+  const onNext = useCallback(() => {
     const nextIndex =
       index + itemsToScroll >= totalSlides ? 0 : index + itemsToScroll
 
     setIndex(nextIndex)
-  }
+  }, [index, itemsToScroll, totalSlides])
 
   // Drag/Swipe methods
 
-  function getTouchPos(event) {
-    const { touches, clientX, clientY } = event
-    const { pageX: x = clientX, pageY: y = clientY } = touches ? touches[0] : {}
-
-    return [x, y]
-  }
-
-  function onSwipeStart(e) {
+  const onSwipeStart = useCallback(e => {
     setTouchStartPos(getTouchPos(e))
     setPaused(true)
-  }
+  }, [])
 
-  function onSwipeMove(e) {
+  const onSwipeMove = useCallback(e => {
     setTouchEndPos(getTouchPos(e))
-  }
+  }, [])
 
-  function onSwipeEnd() {
+  const onSwipeEnd = useCallback(() => {
     const direction = getSwipeDirection(touchStartPos, touchEndPos, minSwipe)
 
     if (direction > 0) {
@@ -146,7 +142,7 @@ export default function useSlider(children = [], settings = {}) {
     setTouchStartPos([])
     setTouchEndPos([])
     setPaused(false)
-  }
+  }, [minSwipe, onNext, onPrev, touchEndPos, touchStartPos])
 
   // Set touch events
   const touchEvents = touchMove
@@ -162,92 +158,7 @@ export default function useSlider(children = [], settings = {}) {
       }
     : {}
 
-  // Set slide mouse events
-  const slideEvents = pauseOnHover
-    ? {
-        onMouseEnter: onPause,
-        onMouseLeave: onPlay,
-      }
-    : {}
-
-  // UI Updaters
-
-  function updateDots() {
-    setDots(
-      range(1, totalSlides).map((label, key) => ({
-        active: key === index,
-        key,
-        label: `${label}`,
-        onClick: () => setIndex(key),
-      }))
-    )
-  }
-
-  function cloneSlide(slide, { active, current, style }) {
-    const { className, ...childProps } = slide.props
-
-    // Set clases
-    const classes = [className, 'slick-slide']
-    if (active) classes.push('slick-active')
-    if (current) classes.push('slick-current')
-
-    const slideProps = {
-      'aria-hidden': !active,
-      className: classes.join(' '),
-      role: 'option',
-      style,
-      tabIndex: -1,
-      ...slideEvents,
-    }
-
-    return cloneElement(slide, { ...slideProps, ...childProps })
-  }
-
-  function updateSlides() {
-    const slides = React.Children.map(children, (slide, i) => {
-      // calculate if is current
-      const current = i === index
-
-      let active
-      let style
-
-      if (fade) {
-        // Only current is active
-        active = current
-
-        // - Fade Styles
-        style = {
-          left: i === 0 ? 0 : -(slideWidth * i),
-          opacity: current ? 1 : 0.25,
-          position: 'relative',
-          top: 0,
-          transition: current ? transition : 'none',
-          zIndex: current ? zIndex + totalSlides + 10 : zIndex + i,
-        }
-      } else {
-        // Is active if is within the window (index <-> index + itemsToShow)
-        active = i >= index && index + itemsToShow > i
-
-        // - Slide styles (default)
-        let xPos = -slideWidth * index
-
-        style = {
-          transition: transition,
-          transform: `translate3d(${xPos}px, 0, 0)`,
-        }
-      }
-
-      return cloneSlide(slide, {
-        active,
-        current,
-        style: { width: slideWidth, ...style },
-      })
-    })
-
-    setSlides(slides)
-  }
-
-  function onResize() {
+  const onResize = useCallback(() => {
     const sliderElem = sliderRef.current
     const trackElem = trackRef.current
     const listElem = listRef.current
@@ -306,7 +217,7 @@ export default function useSlider(children = [], settings = {}) {
 
     // Set track width
     trackElem.style.width = `${trackWidth}px`
-  }
+  }, [fade, responsive, slidesToShow, totalSlides, touchThreshold])
 
   // Effects:
 
@@ -318,11 +229,100 @@ export default function useSlider(children = [], settings = {}) {
 
   // Set slides and dots when index or slideWidth changes
   useEffect(() => {
-    updateSlides()
-    updateDots()
+    // Set slide mouse events
+    const slideEvents = pauseOnHover
+      ? {
+          onMouseEnter: onPause,
+          onMouseLeave: onPlay,
+        }
+      : {}
+
+    function cloneSlide(slide, { active, current, style }) {
+      const { className, ...childProps } = slide.props
+
+      // Set clases
+      const classes = [className, 'slick-slide']
+      if (active) classes.push('slick-active')
+      if (current) classes.push('slick-current')
+
+      const slideProps = {
+        'aria-hidden': !active,
+        className: classes.join(' '),
+        role: 'option',
+        style,
+        tabIndex: -1,
+        ...slideEvents,
+      }
+
+      return React.cloneElement(slide, { ...slideProps, ...childProps })
+    }
+
+    const slides = React.Children.map(children, (slide, i) => {
+      // calculate if is current
+      const current = i === index
+
+      let active
+      let style
+
+      if (fade) {
+        // Only current is active
+        active = current
+
+        // - Fade Styles
+        style = {
+          left: i === 0 ? 0 : -(slideWidth * i),
+          opacity: current ? 1 : 0.25,
+          position: 'relative',
+          top: 0,
+          transition: current ? transition : 'none',
+          zIndex: current ? zIndex + totalSlides + 10 : zIndex + i,
+        }
+      } else {
+        // Is active if is within the window (index <-> index + itemsToShow)
+        active = i >= index && index + itemsToShow > i
+
+        // - Slide styles (default)
+        let xPos = -slideWidth * index
+
+        style = {
+          transition: transition,
+          transform: `translate3d(${xPos}px, 0, 0)`,
+        }
+      }
+
+      return cloneSlide(slide, {
+        active,
+        current,
+        style: { width: slideWidth, ...style },
+      })
+    })
+
+    setSlides(slides)
+
+    setDots(
+      range(1, totalSlides).map((label, key) => ({
+        active: key === index,
+        key,
+        label: `${label}`,
+        onClick: () => setIndex(key),
+      }))
+    )
 
     if (!initialized) setInitialized(true)
-  }, [index, slideWidth])
+  }, [
+    children,
+    fade,
+    index,
+    initialized,
+    itemsToShow,
+    onPause,
+    onPlay,
+    pauseOnHover,
+    slideWidth,
+    totalSlides,
+    transition,
+    zIndex,
+  ])
 
   return {
     dots,
