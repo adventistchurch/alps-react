@@ -112,11 +112,35 @@ const featuredNews = {
 }
 
 const archive = {
-  ...featuredNews,
+  // reversed: true, // TODO: Template says .c-block--reversed
+
+  block: {
+    gridWrap: 6,
+    seven: true,
+  },
+
+  image: {
+    noGridItemClass: true,
+    gridItemSize: 2,
+    gridItemSizeAtM: 1,
+    gridItemSizeAtL: 1,
+    paddingSize: 'zero',
+    paddingSide: 'sides',
+  },
 
   content: {
-    ...featuredNews.content,
+    noGridItemClass: true,
+    gridItemSize: 4,
+    gridItemSizeAtM: 3,
+    gridItemSizeAtL: 3,
     borderSide: 'left',
+    flexJustify: 'start',
+  },
+  title: {
+    fontSize: 'l',
+  },
+  meta: {
+    themeColor: 'base',
   },
 }
 
@@ -264,7 +288,6 @@ const mediaRow = {
     seven: true,
   },
   image: {
-    icon: 'gallery',
     gridItemSize: 3,
     gridItemSizeAtM: 2,
     gridItemSizeAtXL: 1,
@@ -321,8 +344,9 @@ const stacked = {
 
 const relatedPost = {
   type: 'inline',
+  // reversed: true, // TODO: Template says .c-block--reversed
+
   block: {
-    reversed: true,
     seven: true,
     noGridClass: true,
   },

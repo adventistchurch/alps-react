@@ -55,7 +55,7 @@ function MediaBlock({
     [`c-block__${blockType}`]: blockType,
     [`c-block__stacked--until-small`]:
       blockType && (stackedUntilSmall || preset.stackedUntilSmall),
-    [`c-media-block--reversed`]: blockType && isReversed,
+    [`c-media-block--reversed`]: blockType && isReversed, // TODO: Ask how reverse clases works in ALPS?
     [`c-block--reversed`]: blockType && isReversed,
   })
 
