@@ -12,9 +12,10 @@ function ListContent({
   title,
   linkUrl,
   linkLabel,
+  ...props
 }) {
   return (
-    <Div className="c-block-wrap" spacingSize="double" paddingSide="right">
+    <Div className="c-block-wrap" {...props}>
       {title && (
         <HeadingBlock title={title} linkText={linkLabel} url={linkUrl} />
       )}
@@ -35,6 +36,7 @@ ListContent.propTypes = {
   title: PropTypes.string,
 }
 ListContent.defaultProps = {
+  spacing: true,
   contentSpacing: 'double',
   linkLabel: 'See all',
   linkUrl: '#',
