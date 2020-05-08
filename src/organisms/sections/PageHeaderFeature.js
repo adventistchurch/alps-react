@@ -27,7 +27,7 @@ function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
         {blocks ? (
           renderItems(blocks, MediaBlock, { type: blockType })
         ) : (
-          <MediaBlock {...props} type={blockType} />
+          <MediaBlock {...props} type={blockType} asBackgroundImage />
         )}
       </div>
       {hasScroll && <Link href="#top" className="c-page-header__scroll" />}
