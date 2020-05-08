@@ -34,9 +34,9 @@ storiesOf('helpers/Wrapper', module)
             date={new Date()}
             image={{
               srcSet: {
-                default: '//picsum.photos/500/375?image=248',
-                '500': '//picsum.photos/700/600?image=248',
-                '900': '//picsum.photos/900/700?image=248',
+                default: '//picsum.photos/480/270?image=248',
+                '500': '//picsum.photos/720/405?image=248',
+                '900': '//picsum.photos/960/540?image=248',
               },
               alt: 'Placeholder image',
             }}

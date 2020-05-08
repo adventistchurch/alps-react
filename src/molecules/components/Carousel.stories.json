@@ -8,7 +8,7 @@
       "url": "https://www.adventist.org",
       "image": {
         "srcSet": {
-          "default": "//picsum.photos/500/375?image=1041",
+          "default": "//picsum.photos/480/270?image=1041",
           "500": "//picsum.photos/750/350?image=1041",
           "750": "//picsum.photos/1200/800?image=1041",
           "1200": "//picsum.photos/1500/900?image=1041"
@@ -24,7 +24,7 @@
       "url": "https://www.adventist.org",
       "image": {
         "srcSet": {
-          "default": "//picsum.photos/500/375?image=1044",
+          "default": "//picsum.photos/480/270?image=1044",
           "500": "//picsum.photos/750/350?image=1044",
           "750": "//picsum.photos/1200/800?image=1044",
           "1200": "//picsum.photos/1500/900?image=1044"
@@ -40,7 +40,7 @@
       "url": "https://www.adventist.org",
       "image": {
         "srcSet": {
-          "default": "//picsum.photos/500/375?image=1002",
+          "default": "//picsum.photos/480/270?image=1002",
           "500": "//picsum.photos/750/350?image=1002",
           "750": "//picsum.photos/1200/800?image=1002",
           "1200": "//picsum.photos/1500/900?image=1002"
@@ -56,7 +56,7 @@
       "url": "https://www.adventist.org",
       "image": {
         "srcSet": {
-          "default": "//picsum.photos/500/375?image=832",
+          "default": "//picsum.photos/480/270?image=832",
           "500": "//picsum.photos/750/350?image=832",
           "750": "//picsum.photos/1200/800?image=832",
           "1200": "//picsum.photos/1500/900?image=832"

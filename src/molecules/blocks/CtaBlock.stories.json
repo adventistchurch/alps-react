@@ -3,9 +3,9 @@
   "description": "Mauris sit amet augue gravida, dignissim sem maximus, aliquam metus. Maecenas eu consectetur orci, id auctor dui.",
   "picture": {
     "default": "//picsum.photos/300/282?random",
-    "500": "//picsum.photos/500/375?random",
-    "750": "//picsum.photos/700/600?random",
-    "1200": "//picsum.photos/900/700?random"
+    "500": "//picsum.photos/480/270?random",
+    "750": "//picsum.photos/720/405?random",
+    "1200": "//picsum.photos/960/540?random"
   },
   "buttons": [
     {

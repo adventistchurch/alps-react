@@ -4,7 +4,6 @@
 
 [![ALPS-React Storybook](https://cdn.jsdelivr.net/gh/storybooks/brand@master/badge/badge-storybook.svg)](https://alps-react.adventist.io/)
 
-
 Translations:
 
 - [🇧🇷 Português do Brasil](https://github.com/adventistchurch/alps-react/blob/master/README-pt-br.md)
@@ -51,9 +50,9 @@ function MyApp(props) {
           date={new Date()}
           image={{
             srcSet: {
-              default: '//picsum.photos/500/375?image=248',
-              '500': '//picsum.photos/700/600?image=248',
-              '900': '//picsum.photos/900/700?image=248',
+              default: '//picsum.photos/480/270?image=248',
+              '500': '//picsum.photos/720/405?image=248',
+              '900': '//picsum.photos/960/540?image=248',
             },
             alt: 'Placeholder image',
           }}
@@ -169,14 +168,15 @@ If you want to develop the project using Docker, follow the below instructions.
 ### Requirements
 
 - Docker
-    - [Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-    - [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
-    - **Docker for Linux**: Please see your distributions package management system
+
+  - [Docker for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+  - [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+  - **Docker for Linux**: Please see your distributions package management system
 
 - docker-compose
-    - docker-compose **is included with Docker** on default installation for both **Mac OS** and **Windows** version
-    - docker-compose for linux: Please see your distributions package management system
-    
+  - docker-compose **is included with Docker** on default installation for both **Mac OS** and **Windows** version
+  - docker-compose for linux: Please see your distributions package management system
+
 #### Advice about docker-compose
 
 We are using Node through Docker. In order to use tools like Yarn through Docker, we must pass our commands to the Docker container. This is a really long command:

@@ -8,10 +8,10 @@
   "image": {
     "srcSet": {
       "Landscape": {
-        "default": "//picsum.photos/500/375",
-        "500": "//picsum.photos/900/700",
-        "750": "//picsum.photos/700/600",
-        "1200": "//picsum.photos/500/375"
+        "default": "//picsum.photos/480/270",
+        "500": "//picsum.photos/960/540",
+        "750": "//picsum.photos/720/405",
+        "1200": "//picsum.photos/480/270"
       },
       "Portrait": {
         "default": "//picsum.photos/150/200",

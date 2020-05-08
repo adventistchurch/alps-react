@@ -48,9 +48,9 @@ function MyApp(props) {
           date={new Date()}
           image={{
             srcSet: {
-              default: '//picsum.photos/500/375?image=248',
-              '500': '//picsum.photos/700/600?image=248',
-              '900': '//picsum.photos/900/700?image=248',
+              default: '//picsum.photos/480/270?image=248',
+              '500': '//picsum.photos/720/405?image=248',
+              '900': '//picsum.photos/960/540?image=248',
             },
             alt: 'Placeholder image',
           }}
@@ -90,7 +90,7 @@ Você deve incluir também, na tag `<head>` do seu HTML as fontes e os arquivos 
 />
 ```
 
-Caso você queira adicionar programaticamente, a variável `externalAssets` é exposta em `alps-react`: 
+Caso você queira adicionar programaticamente, a variável `externalAssets` é exposta em `alps-react`:
 
 ```jsx
 import { Helmet } from "react-helmet"
@@ -166,22 +166,22 @@ Se você quiser desenvolver o projeto utilizando Docker, siga as instruções ab
 ### Requisitos
 
 - Docker
-    - [Docker para Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-    - [Docker para Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
-    - **Docker para Linux**: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
+
+  - [Docker para Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+  - [Docker para Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
+  - **Docker para Linux**: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
 
 - docker-compose
-    - docker-compose **vem incluso na instalação do Docker** por padrão tanto nas versões de **Mac OS** como de **Windows**
-    - docker-compose para linux: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
-    
+  - docker-compose **vem incluso na instalação do Docker** por padrão tanto nas versões de **Mac OS** como de **Windows**
+  - docker-compose para linux: Por favor verifique a versão disponível para o sistema de gerenciamento de pacotes da sua distribuição
+
 #### Uma sugestão sobre docker-compose
 
-Nós executamos o Node através do Docker. Para utilizar ferramentas como o Yarn, é preciso passar os comandos para o container do Docker. Por esse motivo comando se torna bem grande: 
+Nós executamos o Node através do Docker. Para utilizar ferramentas como o Yarn, é preciso passar os comandos para o container do Docker. Por esse motivo comando se torna bem grande:
 
 `docker-compose -f docker-compose.cli.yml run --rm <command>`
 
 Por isso recomendamos criar um alias para `docker-compose -f docker-compose.cli.yml run --rm` e chamá-lo de `dcli` (Docker CLI).
-
 
 ### Instale as dependências
 
