@@ -16,9 +16,6 @@ import useClasses from '../../helpers/useClasses'
 import MediaImage from './MediaImage'
 import presets from './MediaBlock.presets'
 
-const blockClass = 'c-block'
-const mediaBlockClass = 'c-media-block'
-
 export const mediaBlocksTypes = Object.keys(presets)
 
 /**
@@ -54,12 +51,12 @@ function MediaBlock({
 
   const blockType = preset.type || type
 
-  const wrapClasses = useClasses(`${mediaBlockClass} ${blockClass}`, {
-    [`${blockClass}__${blockType}`]: blockType,
-    [`${blockClass}__stacked--until-small`]:
+  const wrapClasses = useClasses(`c-media-block c-block`, {
+    [`c-block__${blockType}`]: blockType,
+    [`c-block__stacked--until-small`]:
       blockType && (stackedUntilSmall || preset.stackedUntilSmall),
-    [`${mediaBlockClass}--reversed`]: blockType && isReversed,
-    [`${blockClass}--reversed`]: blockType && isReversed,
+    [`c-media-block--reversed`]: blockType && isReversed,
+    [`c-block--reversed`]: blockType && isReversed,
   })
 
   return (
@@ -80,21 +77,17 @@ function MediaBlock({
         </div>
       )}
       <Div
-        className="c-media-block__content c-block__content"
+        className="c-block__content"
         spacing
         {...preset.content}
         {...(isReversed ? preset.contentReversed : {})}
         {...contentProps}
       >
-        <Div
-          className="c-block__group c-media-block__group"
-          spacing
-          {...preset.group}
-        >
+        <Div className="c-block__group" spacing {...preset.group}>
           <Div className="u-width--100p" spacing>
             {kicker && (
               <HeadingFour
-                className="c-media-block__kicker c-block__kicker"
+                className="c-block__kicker"
                 spaceSide="bottom"
                 spaceSize="quarter"
                 {...preset.kicker}
@@ -104,9 +97,9 @@ function MediaBlock({
             )}
             {title && (
               <HeadingThree
-                className="c-media-block__title c-block__title"
+                className="c-block__title"
                 spaceSize={kicker ? 'zero' : null}
-                // themeColor="dark"
+                themeColor="dark"
                 fontType="primary"
                 {...preset.title}
               >
@@ -122,14 +115,16 @@ function MediaBlock({
               </HeadingThree>
             )}
             {description && (
-              <p className="c-media-block__description c-block__description">
-                {description}
-              </p>
+              <p className="c-block__description">{description}</p>
             )}
           </Div>
           {(category || date) && (
-            <Div className="c-media-block__meta c-block__meta" {...preset.meta}>
-              {category && <Div className="c-block__category">{category}</Div>}
+            <Div className="c-block__meta" {...preset.meta}>
+              {category && (
+                <Div className="c-block__category" transform="upper">
+                  {category}
+                </Div>
+              )}
               {date && (
                 <Element
                   as="time"
