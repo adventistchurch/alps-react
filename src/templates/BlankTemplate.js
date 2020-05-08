@@ -3,7 +3,7 @@ import React from 'react'
 import Main from './Main'
 import TemplateWrap from './TemplateWrap'
 
-function BlankTemmplate({ children, ...props }) {
+function BlankTemplate({ children, ...props }) {
   return (
     <TemplateWrap {...props}>
       <Main>{children}</Main>
@@ -11,6 +11,6 @@ function BlankTemmplate({ children, ...props }) {
   )
 }
 
-BlankTemmplate.propTypes = TemplateWrap.propTypes
+BlankTemplate.propTypes = TemplateWrap.propTypes
 
-export default BlankTemmplate
+export default BlankTemplate
