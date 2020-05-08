@@ -23,11 +23,14 @@ function MediaImage({
     image.srcSet
   )
 
-  const classNames = useClasses('c-block__image', {
-    [`c-block__icon c-block__icon--${icon}`]: icon,
-    ['o-background-image u-background--cover']: asBackgroundImage,
-    [className]: className,
-  })
+  const classNames = useClasses(
+    'c-block__image',
+    {
+      [`c-block__icon c-block__icon--${icon}`]: icon,
+      ['o-background-image u-background--cover']: asBackgroundImage,
+    },
+    className
+  )
 
   return (
     <Div {...otherProps} className={classNames}>

@@ -22,12 +22,14 @@ function ContentBlock({
 }) {
   const { onToggle, openClass } = useToggle()
 
-  const classes = useClasses('c-block c-block__text', {
-    'c-block__text-expand': more,
-    'has-image': image,
-    [openClass]: openClass,
-    [className]: className,
-  })
+  const classes = useClasses(
+    'c-block c-block__text',
+    {
+      'c-block__text-expand': more,
+      'has-image': image,
+    },
+    `${className} ${openClass}`
+  )
 
   const moreProps = more
     ? {

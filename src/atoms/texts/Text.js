@@ -7,10 +7,13 @@ import useDropcap from '../../helpers/useDropcap'
 import Dropcap from './Dropcap'
 
 function Text({ children, className, hasDropcap, ...props }) {
-  const classes = useClasses('text', {
-    [className]: className,
-    'has-dropcap': hasDropcap,
-  })
+  const classes = useClasses(
+    'text',
+    {
+      'has-dropcap': hasDropcap,
+    },
+    className
+  )
   const content = useDropcap(children, {
     Dropcap,
     enabled: hasDropcap,

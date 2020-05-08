@@ -20,10 +20,13 @@ export default function IconWrap({
   size,
   ...props
 }) {
-  const classes = useClasses('u-icon', {
-    [`u-icon--${size}`]: size,
-    [className]: className,
-  })
+  const classes = useClasses(
+    'u-icon',
+    {
+      [`u-icon--${size}`]: size,
+    },
+    className
+  )
 
   return (
     <Element className={classes} themeBackground={background} {...props}>

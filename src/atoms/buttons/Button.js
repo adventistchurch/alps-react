@@ -15,19 +15,22 @@ const fixRightIcon = { marginLeft: '.3125rem', marginRight: '0' }
 /**
  * Returns classes for a button depending the provided flags
  * @param {string} base Base class name
- * @param {object} extras Extra class names
  * @param {object} flags Button flags
+ * @param {object} extras Extra class(es) name(s)
  * @returns `string`
  */
-function useButtonClass(base, extras, { disabled, ...flags }) {
-  return useClasses(base, {
-    ...Object.keys(flags).reduce((acc, flag) => {
-      if (flags[flag]) acc[`${base}--${flag}`] = flags[flag]
-      return acc
-    }, {}),
-    disabled,
-    ...extras,
-  })
+function useButtonClass(base, { disabled, ...flags }, extras) {
+  return useClasses(
+    base,
+    {
+      ...Object.keys(flags).reduce((acc, flag) => {
+        if (flags[flag]) acc[`${base}--${flag}`] = flags[flag]
+        return acc
+      }, {}),
+      disabled,
+    },
+    extras
+  )
 }
 
 /**
@@ -60,10 +63,6 @@ function Button({
   const buttonClass = useButtonClass(
     'o-button',
     {
-      [openClass]: openClass,
-      [className]: className,
-    },
-    {
       disabled,
       expand,
       lighter,
@@ -71,7 +70,8 @@ function Button({
       simple,
       small,
       toggle,
-    }
+    },
+    `${className} ${openClass}`
   )
 
   const _onClick = useCallback(

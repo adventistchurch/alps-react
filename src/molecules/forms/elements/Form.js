@@ -49,11 +49,14 @@ function Form({
   title,
   ...props
 }) {
-  const formClass = useClasses('c-form', {
-    'c-form--inline': inline,
-    [darkThemeClass]: darkMode,
-    [className]: className,
-  })
+  const formClass = useClasses(
+    'c-form',
+    {
+      'c-form--inline': inline,
+      [darkThemeClass]: darkMode,
+    },
+    className
+  )
 
   const formFields = useFormFields(fields, children)
 
