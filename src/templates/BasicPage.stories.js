@@ -33,13 +33,15 @@ export function pageBreadcrumbsTab(settings = {}) {
 
 export function contentTab(settings = {}) {
   const { content, tab } = getTabData('Content', settings)
+  const { title1, title2, title3, text1, text2, text3 } = content || {}
+
   return {
-    title1: text('Content Title 1', content.title1, tab),
-    text1: text('Content Text 1', content.text1, tab),
-    title2: text('Content Title 2', content.title2, tab),
-    text2: text('Content Text 2', content.text2, tab),
-    title3: text('Content Title 3', content.title3, tab),
-    text3: text('Content Text 3', content.text3, tab),
+    title1: text('Content Title 1', title1, tab),
+    text1: text('Content Text 1', text1, tab),
+    title2: text('Content Title 2', title2, tab),
+    text2: text('Content Text 2', text2, tab),
+    title3: text('Content Title 3', title3, tab),
+    text3: text('Content Text 3', text3, tab),
   }
 }
 
@@ -69,7 +71,7 @@ export function basicPageTabs(settings = {}) {
 }
 
 storiesOf('templates/BasicPage', module).addWithJSX('Default', () => {
-  const { content, ...rest } = basicPageTabs
+  const { content, ...rest } = basicPageTabs()
   const { title1, title2, title3, text1, text2, text3 } = content
 
   // Note: This is just a simple demo content.
