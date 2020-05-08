@@ -11,10 +11,8 @@ import { Link, Paragraph } from '../helpers/Element'
 import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
 import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
-import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
-import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
-import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeaderLong.stories.js'
+import { globalTab } from './TemplateWrap.stories.js'
 import data from './BasicPage.stories.json'
 
 function getTabData(name, settings = {}) {
@@ -33,7 +31,7 @@ export function pageBreadcrumbsTab(settings = {}) {
   return breadcrumbsTab({ breadcrumbs, tab })
 }
 
-export function mainContentTab(settings = {}) {
+export function contentTab(settings = {}) {
   const { content, tab } = getTabData('Content', settings)
   return {
     title1: text('Content Title 1', content.title1, tab),
@@ -45,27 +43,17 @@ export function mainContentTab(settings = {}) {
   }
 }
 
-export function globalTab(settings = {}) {
-  const { globalHeader, globalFooter, globalSabbath, tab } = getTabData(
-    'Global',
-    settings
-  )
-
-  return {
-    header: globalHeaderTab({ ...globalHeader, tab }),
-    footer: globalFooterTab({ ...globalFooter, tab }),
-    sabbath: globalSabbathTab({ ...globalSabbath, tab }),
-  }
-}
-
 export function sidebarTab(settings = {}) {
   const { aside, tab } = getTabData('Sidebar', settings)
 
-  return {
-    showSidebar: boolean('Show Sidebar', true, tab),
-    breakout: object('Breakout', breakoutData, tab),
-    aside: asideTab({ aside, tab }),
-  }
+  const showSidebar = boolean('Show Sidebar', true, tab)
+
+  return showSidebar
+    ? {
+        breakout: object('Breakout', breakoutData, tab),
+        aside: asideTab({ aside, tab }),
+      }
+    : null
 }
 
 export function basicPageTabs(settings = {}) {
@@ -73,23 +61,20 @@ export function basicPageTabs(settings = {}) {
 
   return {
     pageHeader: pageHeaderTab(props),
-    breadcrumbs: pageBreadcrumbsTab(props),
-    mainContent: mainContentTab(props),
-    sidebar: sidebarTab(props),
-    global: globalTab(props),
+    ...pageBreadcrumbsTab(props),
+    ...sidebarTab(props),
+    content: contentTab(props),
+    ...globalTab(props),
   }
 }
 
 storiesOf('templates/BasicPage', module).addWithJSX('Default', () => {
-  const pageHeader = pageHeaderTab()
-  const { breadcrumbs } = pageBreadcrumbsTab()
-  const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
-  const { showSidebar, breakout, aside } = sidebarTab()
-  const templateProps = globalTab()
+  const { content, ...rest } = basicPageTabs
+  const { title1, title2, title3, text1, text2, text3 } = content
 
   // Note: This is just a simple demo content.
   // The `content` prop should be provided to BasicPage with actual React components
-  const content = (
+  const demoContent = (
     <>
       <Text hasDropcap spacing>
         <h1>{title1}</h1>
@@ -128,14 +113,5 @@ storiesOf('templates/BasicPage', module).addWithJSX('Default', () => {
     </>
   )
 
-  return (
-    <BasicPage
-      aside={showSidebar ? aside : null}
-      breadcrumbs={breadcrumbs}
-      breakout={showSidebar ? breakout : null}
-      content={content}
-      pageHeader={pageHeader}
-      {...templateProps}
-    />
-  )
+  return <BasicPage content={demoContent} {...rest} />
 })

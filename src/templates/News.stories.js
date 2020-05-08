@@ -6,9 +6,8 @@ import News from './News'
 
 // Stories and data
 import { pictureTab } from '../atoms/images/Picture.stories.js'
-import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
-import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
-import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
+import { globalTab } from './TemplateWrap.stories.js'
+import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import data from './News.stories.json'
 
@@ -39,7 +38,7 @@ export function latestTab(settings = {}) {
 
 export function featuredTab(settings = {}) {
   const { featured, tab } = getTabData('Featured', settings)
-  const { title, linkLabel, linkUrl, items } = featured
+  const { title, linkLabel, linkUrl, items } = featured || {}
 
   return {
     title: text('Title', title, tab),
@@ -49,32 +48,21 @@ export function featuredTab(settings = {}) {
   }
 }
 
-export function asideTab(settings = {}) {
-  const { aside, tab } = getTabData('Aside', settings)
-  const { title, linkLabel, linkUrl, items } = aside.primary || {}
-
-  return {
-    primary: {
-      title: text('Title', title, tab),
-      linkLabel: text('Link Label', linkLabel, tab),
-      linkUrl: text('Link Url', linkUrl, tab),
-      items: object('Items', items, tab),
-    },
-  }
-}
-
 export function mediaTab(settings = {}) {
-  const { media, tab } = getTabData('Media Content', settings)
+  const { media, hidePrimaryMedia, hideSecondaryMedia, tab } = getTabData(
+    'Media Content',
+    settings
+  )
   const { title, linkLabel, linkUrl, primaryItems, secondaryItems } = media
 
   return {
     title: text('Title', title, tab),
     linkLabel: text('Link Label', linkLabel, tab),
     linkUrl: text('Link Url', linkUrl, tab),
-    primaryItems: settings.noPrimaryMedia
+    primaryItems: hidePrimaryMedia
       ? null
       : object('Primary Items', primaryItems, tab),
-    secondaryItems: settings.noSecondaryMedia
+    secondaryItems: hideSecondaryMedia
       ? null
       : object('Secondary Items', secondaryItems, tab),
   }
@@ -92,30 +80,17 @@ export function archiveTab(settings = {}) {
   }
 }
 
-export function globalTab(settings = {}) {
-  const { globalHeader, globalFooter, globalSabbath, tab } = getTabData(
-    'Global',
-    settings
-  )
-
-  return {
-    header: globalHeaderTab({ ...globalHeader, tab }),
-    footer: globalFooterTab({ ...globalFooter, tab }),
-    sabbath: globalSabbathTab({ ...globalSabbath, tab }),
-  }
-}
-
 export function newsTabs(settings = {}) {
-  const { pageHeader } = getTabData(null, settings)
+  const { pageHeader, aside } = getTabData(null, settings)
 
   return {
     pageHeader: pageHeaderTab(pageHeader),
     latest: latestTab(settings),
     featured: featuredTab(settings),
-    aside: asideTab(settings),
+    aside: aside ? asideTab(settings) : null,
     media: mediaTab(settings),
     archive: archiveTab(settings),
-    global: globalTab(settings),
+    ...globalTab(settings),
   }
 }
 
@@ -131,12 +106,12 @@ storiesOf('templates/News', module)
     return <News {...props} />
   })
   .addWithJSX('No primary media', () => {
-    const props = newsTabs({ noPrimaryMedia: true })
+    const props = newsTabs({ hidePrimaryMedia: true })
 
     return <News {...props} />
   })
   .addWithJSX('No secondary media', () => {
-    const props = newsTabs({ noSecondaryMedia: true })
+    const props = newsTabs({ hideSecondaryMedia: true })
 
     return <News {...props} />
   })

@@ -3,22 +3,13 @@ import { storiesOf } from '@storybook/react'
 
 import ChannelMain from './ChannelMain'
 
-import {
-  pageHeaderTab,
-  pageBreadcrumbsTab,
-  mainContentTab,
-  sidebarTab,
-  globalTab,
-} from './BasicPage.stories'
+import { basicPageTabs } from './BasicPage.stories'
 
 storiesOf('templates/ChannelMain', module).addWithJSX('Default', () => {
-  const pageHeader = pageHeaderTab({ kicker: 'Kicker' })
-  const { breadcrumbs } = pageBreadcrumbsTab()
-  const { title1, title2, title3, text1, text2, text3 } = mainContentTab()
-  const { showSidebar, breakout, aside } = sidebarTab()
-  const templateProps = globalTab()
+  const { content, ...rest } = basicPageTabs({ kicker: 'Kicker' })
+  const { title1, title2, title3, text1, text2, text3 } = content
 
-  const content = (
+  const demoContent = (
     <>
       <h2>{title1}</h2>
       <p>{text1}</p>
@@ -31,15 +22,5 @@ storiesOf('templates/ChannelMain', module).addWithJSX('Default', () => {
     </>
   )
 
-  return (
-    <ChannelMain
-      aside={showSidebar ? aside : null}
-      breadcrumbs={breadcrumbs}
-      breakout={breakout}
-      content={content}
-      pageHeader={pageHeader}
-      // relatedPosts={relatedPosts}
-      {...templateProps}
-    />
-  )
+  return <ChannelMain content={demoContent} {...rest} />
 })

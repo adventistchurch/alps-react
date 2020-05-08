@@ -14,9 +14,7 @@ import Text from '../atoms/texts/Text'
 import { Paragraph } from '../helpers/Element'
 
 // Stories and data
-import { headerTab as globalHeaderTab } from '../organisms/global/Header.stories.js'
-import { footerTab as globalFooterTab } from '../organisms/global/Footer.stories.js'
-import { sabbathTab as globalSabbathTab } from '../organisms/asides/Sabbath.stories.js'
+import { globalTab } from './TemplateWrap.stories.js'
 import { pictureTab } from '../atoms/images/Picture.stories.js'
 import data from './Article.stories.json'
 
@@ -79,19 +77,6 @@ export function contentTab(settings = {}) {
   }
 }
 
-export function globalTab(settings = {}) {
-  const { globalHeader, globalFooter, globalSabbath, tab } = getTabData(
-    'Global',
-    settings
-  )
-
-  return {
-    header: globalHeaderTab({ ...globalHeader, tab }),
-    footer: globalFooterTab({ ...globalFooter, tab }),
-    sabbath: globalSabbathTab({ ...globalSabbath, tab }),
-  }
-}
-
 export function relatedTab(settings = {}) {
   const { relatedTitle, relatedPosts, showRelated, tab } = getTabData(
     'Related',
@@ -114,7 +99,7 @@ export function articleTabs(settings = {}) {
     ...imageTab(settings),
     ...related,
     content: contentTab(settings),
-    global: globalTab(settings),
+    ...globalTab(settings),
   }
 }
 
