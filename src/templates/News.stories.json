@@ -11,9 +11,9 @@
     "image": {
       "alt": "Eligendi quod dolorem",
       "srcSet": {
-        "default": "https://picsum.photos/500/375?random=0",
-        "500": "https://picsum.photos/700/600?random=0",
-        "900": "https://picsum.photos/900/700?random=0"
+        "default": "https://picsum.photos/480/270?random=0",
+        "500": "https://picsum.photos/720/405?random=0",
+        "900": "https://picsum.photos/960/540?random=0"
       }
     }
   },
@@ -30,9 +30,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=1",
-            "500": "https://picsum.photos/700/600?random=1",
-            "900": "https://picsum.photos/900/700?random=1"
+            "default": "https://picsum.photos/480/270?random=1",
+            "500": "https://picsum.photos/720/405?random=1",
+            "900": "https://picsum.photos/960/540?random=1"
           }
         }
       },
@@ -44,9 +44,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=2",
-            "500": "https://picsum.photos/700/600?random=2",
-            "900": "https://picsum.photos/900/700?random=2"
+            "default": "https://picsum.photos/480/270?random=2",
+            "500": "https://picsum.photos/720/405?random=2",
+            "900": "https://picsum.photos/960/540?random=2"
           }
         }
       },
@@ -58,9 +58,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=3",
-            "500": "https://picsum.photos/700/600?random=3",
-            "900": "https://picsum.photos/900/700?random=3"
+            "default": "https://picsum.photos/480/270?random=3",
+            "500": "https://picsum.photos/720/405?random=3",
+            "900": "https://picsum.photos/960/540?random=3"
           }
         }
       },
@@ -72,9 +72,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=4",
-            "500": "https://picsum.photos/700/600?random=4",
-            "900": "https://picsum.photos/900/700?random=4"
+            "default": "https://picsum.photos/480/270?random=4",
+            "500": "https://picsum.photos/720/405?random=4",
+            "900": "https://picsum.photos/960/540?random=4"
           }
         }
       },
@@ -86,9 +86,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=5",
-            "500": "https://picsum.photos/700/600?random=5",
-            "900": "https://picsum.photos/900/700?random=5"
+            "default": "https://picsum.photos/480/270?random=5",
+            "500": "https://picsum.photos/720/405?random=5",
+            "900": "https://picsum.photos/960/540?random=5"
           }
         }
       }
@@ -156,12 +156,13 @@
         "description": "Church leaders pray for the two titles during Euro-Asia Division year-end meetings.",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "gallery",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=1",
-            "500": "https://picsum.photos/700/600?random=1",
-            "900": "https://picsum.photos/900/700?random=1"
+            "default": "https://picsum.photos/480/270?random=1",
+            "500": "https://picsum.photos/720/405?random=1",
+            "900": "https://picsum.photos/960/540?random=1"
           }
         }
       }
@@ -172,12 +173,13 @@
         "category": "facilis nesciunt suscipit",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=2",
-            "500": "https://picsum.photos/700/600?random=2",
-            "900": "https://picsum.photos/900/700?random=2"
+            "default": "https://picsum.photos/480/270?random=2",
+            "500": "https://picsum.photos/720/405?random=2",
+            "900": "https://picsum.photos/960/540?random=2"
           }
         }
       },
@@ -186,12 +188,13 @@
         "category": "fugiat quis quisquam",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=3",
-            "500": "https://picsum.photos/700/600?random=3",
-            "900": "https://picsum.photos/900/700?random=3"
+            "default": "https://picsum.photos/480/270?random=3",
+            "500": "https://picsum.photos/720/405?random=3",
+            "900": "https://picsum.photos/960/540?random=3"
           }
         }
       },
@@ -200,12 +203,13 @@
         "category": "quo",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=4",
-            "500": "https://picsum.photos/700/600?random=4",
-            "900": "https://picsum.photos/900/700?random=4"
+            "default": "https://picsum.photos/480/270?random=4",
+            "500": "https://picsum.photos/720/405?random=4",
+            "900": "https://picsum.photos/960/540?random=4"
           }
         }
       },
@@ -214,12 +218,13 @@
         "category": "omnis",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=5",
-            "500": "https://picsum.photos/700/600?random=5",
-            "900": "https://picsum.photos/900/700?random=5"
+            "default": "https://picsum.photos/480/270?random=5",
+            "500": "https://picsum.photos/720/405?random=5",
+            "900": "https://picsum.photos/960/540?random=5"
           }
         }
       },
@@ -228,12 +233,13 @@
         "category": "NORTH AMERICAN DIVISION",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=1",
-            "500": "https://picsum.photos/700/600?random=1",
-            "900": "https://picsum.photos/900/700?random=1"
+            "default": "https://picsum.photos/480/270?random=1",
+            "500": "https://picsum.photos/720/405?random=1",
+            "900": "https://picsum.photos/960/540?random=1"
           }
         }
       },
@@ -242,12 +248,13 @@
         "category": "facilis nesciunt suscipit",
         "date": "2017-12-28 10:30",
         "url": "#",
+        "mediaIcon": "video",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=2",
-            "500": "https://picsum.photos/700/600?random=2",
-            "900": "https://picsum.photos/900/700?random=2"
+            "default": "https://picsum.photos/480/270?random=2",
+            "500": "https://picsum.photos/720/405?random=2",
+            "900": "https://picsum.photos/960/540?random=2"
           }
         }
       }
@@ -259,43 +266,43 @@
     "items": [
       {
         "title": "Adventist student’s incredible story of survival",
-        "category": "NORTH AMERICAN DIVISION",
+        "category": "North-American Division",
         "date": "2017-12-28 10:30",
         "url": "#",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=1",
-            "500": "https://picsum.photos/700/600?random=1",
-            "900": "https://picsum.photos/900/700?random=1"
+            "default": "https://picsum.photos/480/270?random=1",
+            "500": "https://picsum.photos/720/405?random=1",
+            "900": "https://picsum.photos/960/540?random=1"
           }
         }
       },
       {
         "title": "In dicta qui earum",
-        "category": "facilis nesciunt suscipit",
+        "category": "Suscipit",
         "date": "2017-12-28 10:30",
         "url": "#",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=2",
-            "500": "https://picsum.photos/700/600?random=2",
-            "900": "https://picsum.photos/900/700?random=2"
+            "default": "https://picsum.photos/480/270?random=2",
+            "500": "https://picsum.photos/720/405?random=2",
+            "900": "https://picsum.photos/960/540?random=2"
           }
         }
       },
       {
         "title": "Iure similique pariatur odio",
-        "category": "fugiat quis quisquam",
+        "category": "fugiat",
         "date": "2017-12-28 10:30",
         "url": "#",
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=3",
-            "500": "https://picsum.photos/700/600?random=3",
-            "900": "https://picsum.photos/900/700?random=3"
+            "default": "https://picsum.photos/480/270?random=3",
+            "500": "https://picsum.photos/720/405?random=3",
+            "900": "https://picsum.photos/960/540?random=3"
           }
         }
       },
@@ -307,9 +314,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=4",
-            "500": "https://picsum.photos/700/600?random=4",
-            "900": "https://picsum.photos/900/700?random=4"
+            "default": "https://picsum.photos/480/270?random=4",
+            "500": "https://picsum.photos/720/405?random=4",
+            "900": "https://picsum.photos/960/540?random=4"
           }
         }
       },
@@ -321,9 +328,9 @@
         "image": {
           "alt": "Eligendi quod dolorem",
           "srcSet": {
-            "default": "https://picsum.photos/500/375?random=5",
-            "500": "https://picsum.photos/700/600?random=5",
-            "900": "https://picsum.photos/900/700?random=5"
+            "default": "https://picsum.photos/480/270?random=5",
+            "500": "https://picsum.photos/720/405?random=5",
+            "900": "https://picsum.photos/960/540?random=5"
           }
         }
       }

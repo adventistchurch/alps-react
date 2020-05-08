@@ -48,21 +48,16 @@ function News({
             title={featured.title}
             linkLabel={featured.linkLabel}
             linkUrl={featured.linkUrl}
+            paddingSide="right"
           >
             {featured.items &&
-              featured.items.map(
-                ({ title, category, url, image, date }, key) => (
-                  <MediaBlock
-                    key={`featured-item-${key}`}
-                    title={title}
-                    category={category}
-                    url={url}
-                    image={image}
-                    type="featuredNews"
-                    date={date}
-                  />
-                )
-              )}
+              featured.items.map((item, key) => (
+                <MediaBlock
+                  key={`featured-item-${key}`}
+                  type="featuredNews"
+                  {...item}
+                />
+              ))}
           </ListContent>
         </GridItem>
 
@@ -87,25 +82,14 @@ function News({
             spacingUntil="large"
           >
             <GridItem paddingSide="sides" paddingSize="zero">
-              {media.primaryItems.map(
-                (
-                  { title, description, category, url, image, date, icon },
-                  key
-                ) => (
-                  <MediaBlock
-                    key={`media-content-${key}`}
-                    asBackgroundImage
-                    title={title}
-                    description={description}
-                    category={category}
-                    url={url}
-                    image={image}
-                    type="mediaContent"
-                    date={date}
-                    mediaIcon={icon}
-                  />
-                )
-              )}
+              {media.primaryItems.map((item, key) => (
+                <MediaBlock
+                  key={`media-content-${key}`}
+                  asBackgroundImage
+                  type="mediaContent"
+                  {...item}
+                />
+              ))}
             </GridItem>
           </Grid>
         )}
@@ -120,18 +104,13 @@ function News({
             spacingUntil="large"
           >
             <GridItem flex paddingSide="sides" paddingSize="zero">
-              {media.secondaryItems.map(
-                ({ title, category, url, image }, key) => (
-                  <MediaBlock
-                    key={`media-row-${key}`}
-                    title={title}
-                    category={category}
-                    url={url}
-                    image={image}
-                    type="mediaRow"
-                  />
-                )
-              )}
+              {media.secondaryItems.map((item, key) => (
+                <MediaBlock
+                  key={`media-row-${key}`}
+                  type="mediaRow"
+                  {...item}
+                />
+              ))}
             </GridItem>
           </Grid>
         )}
