@@ -26,6 +26,7 @@ function News({
       <div>
         <PageHeader {...pageHeader} />
         <PageHeaderFeature
+          asBackgroundImage
           blockType="featureWide"
           title={latest.title}
           titlePrefix={latest.prefix}
