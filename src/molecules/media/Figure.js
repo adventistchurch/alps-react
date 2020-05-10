@@ -14,7 +14,7 @@ function Figure({ caption, className, image, lazy, videoSrc }) {
         </div>
       )}
       {videoSrc && (
-        <div className="u-image--wrap fitvid">
+        <div className="u-image--wrap">
           <Video src={videoSrc} />
         </div>
       )}

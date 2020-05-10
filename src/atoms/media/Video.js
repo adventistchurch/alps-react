@@ -1,28 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Video({ src, width, height }) {
+const wrapStyle = {
+  paddingTop: `${(100 / 16) * 9}%`, // enforces 16:9 aspect ratio. TODO: Make this calculated based on video's original aspect ratio?
+}
+
+const iframeStyle = {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  top: 0,
+  left: 0,
+}
+
+function Video({ src, ...rest }) {
   return (
-    <iframe
-      src={src}
-      width={width}
-      height={height}
-      frameBorder="0"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
-      allowFullScreen
-    />
+    <div style={wrapStyle}>
+      <iframe
+        src={src}
+        frameBorder="0"
+        webkitallowfullscreen="true"
+        mozallowfullscreen="true"
+        allowFullScreen
+        style={iframeStyle}
+        {...rest}
+      />
+    </div>
   )
 }
 
 Video.propTypes = {
   src: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-}
-Video.defaultProps = {
-  width: 600,
-  height: 338,
 }
 
 export default Video
