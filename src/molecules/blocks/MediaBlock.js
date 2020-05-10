@@ -45,11 +45,12 @@ function MediaBlock({
   url,
 }) {
   // Get preset props current type
-  const preset = presets[type || 'default']
+  const preset = presets[type] || presets['default']
 
   const isReversed = reversed !== undefined ? reversed : preset.reversed
 
   const blockType = preset.type || type
+  const icon = mediaIcon || preset.icon
 
   const wrapClasses = useClasses(`c-media-block c-block`, {
     [`c-block__${blockType}`]: blockType,
@@ -63,7 +64,7 @@ function MediaBlock({
     <Div className={wrapClasses} {...preset.block} {...blockProps}>
       {image && (
         <MediaImage
-          icon={mediaIcon}
+          icon={icon}
           asBackgroundImage={asBackgroundImage}
           {...preset.image}
           {...imageProps}
