@@ -6,13 +6,28 @@ import VideoFigureWithCaption from './VideoFigureWithCaption'
 
 import data from './VideoFigureWithCaption.stories.json'
 
-const propsTab = 'Props'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...VideoFigureWithCaption.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function videoFigureWithCaptionTab(settings = {}) {
+  const { videoSrc, caption, tab } = getTabData('Video', settings)
+
+  return {
+    videoSrc: text('Source *', videoSrc, tab),
+    caption: text('Caption', caption, tab),
+  }
+}
 
 storiesOf('molecules/media/VideoFigureWithCaption', module).addWithJSX(
   'Default',
   () => {
-    const videoSrc = text('Video Source *', data.videoSrc, propsTab)
-    const caption = text('Caption', data.caption, propsTab)
-    return <VideoFigureWithCaption caption={caption} videoSrc={videoSrc} />
+    const props = videoFigureWithCaptionTab()
+    return <VideoFigureWithCaption {...props} />
   }
 )
