@@ -14,7 +14,7 @@ function BlockFeed({ blocks, blocksProps, blocksType, grid }) {
   }
 
   return (
-    <Section className="c-section c-section__block-feed" spacing="double">
+    <Section className="c-section c-section__block-feed" spacingSize="double">
       {grid ? (
         <GridSeven noGutters>
           {renderItems(blocks, block => (
