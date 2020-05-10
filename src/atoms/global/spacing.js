@@ -26,12 +26,21 @@ const afterMod = after => (after ? `after-${after}` : null)
 const untilMod = until => (until ? `until-${until}` : null)
 
 export function getPaddingClass({ size, side } = {}) {
-  const sides = Array.isArray(side) ? side : [side] // side can be an array
+  // side can be an array
+  const sides = Array.isArray(side) ? side : [side]
   return sides.map(side => getBaseClass('u-padding', [size, side])).join(' ')
 }
 
 export function getSpaceClass({ after, size, side } = {}) {
-  return getBaseClass('u-space', [size, side, afterMod(after)])
+  // To support multiple sides, `side` can be an `array`
+  const sides = Array.isArray(side) ? side : [side]
+  return sides
+    .map((side, i) => {
+      // size can be an array where every item correspond to one in the array of sides.
+      const _size = Array.isArray(size) ? size[i] : size
+      return getBaseClass('u-space', [_size, side, afterMod(after)])
+    })
+    .join(' ')
 }
 
 export function getSpacingClass({ after, size, until } = {}) {
