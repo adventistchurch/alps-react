@@ -393,8 +393,14 @@ Element.propTypes = {
   shiftSide: PropTypes.oneOf(shiftSides),
   space: PropTypes.bool,
   spaceAfter: PropTypes.oneOf(spaceAfterSizes),
-  spaceSide: PropTypes.oneOf(spaceSides),
-  spaceSize: PropTypes.oneOf(spacingSizes),
+  spaceSide: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.oneOf(spaceSides),
+  ]),
+  spaceSize: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.oneOf(spacingSizes),
+  ]),
   spacing: PropTypes.bool,
   spacingAfter: PropTypes.oneOf(spacingAfterSizes),
   spacingSize: PropTypes.oneOf(spacingSizes),
