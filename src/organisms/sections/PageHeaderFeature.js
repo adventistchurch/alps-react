@@ -17,7 +17,7 @@ export const blockTypes = [
 
 function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
   const headerClasses = useClasses('c-page-header c-page-header__feature', {
-    'c-page-header__3-col': blockType,
+    'c-page-header__3-col': blockType === 'column',
     'has-scroll': hasScroll,
   })
 
