@@ -127,7 +127,7 @@ ContentBlock.propTypes = {
   description: PropTypes.string,
   image: MediaImage.propTypes.image,
   more: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   titleProps: PropTypes.object,
   titleSize: PropTypes.oneOf(['s', 'm', 'l']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
