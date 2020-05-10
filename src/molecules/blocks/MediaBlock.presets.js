@@ -342,6 +342,27 @@ const stacked = {
   },
 }
 
+const video = {
+  type: 'stacked',
+  icon: 'video',
+
+  block: {
+    spaceSide: ['right', 'bottom'],
+    spaceSize: ['', 'double'],
+  },
+  content: {
+    borderSide: 'left',
+    color: 'gray',
+    themeBorder: 'darker',
+    themeBorderSide: 'left',
+  },
+  title: {
+    themeColor: 'darker',
+    fontType: 'primary',
+    fontSize: 'm',
+  },
+}
+
 const relatedPost = {
   type: 'inline',
   // reversed: true, // TODO: Template says .c-block--reversed
@@ -395,4 +416,5 @@ export default {
   row,
   stacked,
   relatedPost,
+  video,
 }
