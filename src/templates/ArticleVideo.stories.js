@@ -53,13 +53,13 @@ export function articleHeaderTab(settings = {}) {
 }
 
 export function videoTab(settings = {}) {
-  const { videoDuration, tab } = getTabData('Video', settings)
+  const { duration, tab } = getTabData('Video', settings)
   const { videoSrc, caption } = videoFigureWithCaptionTab(settings)
 
   return {
     src: text('Source ', videoSrc, tab),
     caption: text('Caption', caption, tab),
-    duration: text('Duration', videoDuration, tab),
+    duration: text('Duration', duration, tab),
   }
 }
 
