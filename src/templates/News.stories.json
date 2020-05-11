@@ -18,7 +18,7 @@
     }
   },
   "featured": {
-    "title": "Featured",
+    "title": "Latest news",
     "linkLabel": "See all",
     "linkUrl": "#",
     "items": [
@@ -96,7 +96,7 @@
   },
   "aside": {
     "primary": {
-      "title": "Aside",
+      "title": "Videos",
       "linkLabel": "See all",
       "linkUrl": "#",
       "items": [
@@ -106,6 +106,7 @@
           "description": "Eligendi vel voluptas repudiandae voluptatibus laboriosam tenetur occaecati et consequatur",
           "date": "2017-12-28 10:30",
           "url": "#",
+          "mediaIcon": "video",
           "image": {
             "alt": "Eligendi quod dolorem",
             "srcSet": {
@@ -120,6 +121,7 @@
           "description": "The Coachella Valley community is officially home to Loma Linda University Children’s Health – Indio, Jill and Barry Golden Pavilion, the largest pediatric clinic in the area. The grand opening was...",
           "date": "2017-12-28 10:30",
           "url": "#",
+          "mediaIcon": "video",
           "image": {
             "alt": "Eligendi quod dolorem",
             "srcSet": {
@@ -134,6 +136,7 @@
           "description": "In dicta qui earum",
           "date": "2017-12-28 10:30",
           "url": "#",
+          "mediaIcon": "video",
           "image": {
             "alt": "Eligendi quod dolorem",
             "srcSet": {

@@ -25,16 +25,13 @@ function News({
     <BlankTemplate {...templateProps}>
       <div>
         <PageHeader {...pageHeader} />
-        <PageHeaderFeature
-          asBackgroundImage
-          blockType="featureWide"
-          title={latest.title}
-          titlePrefix={latest.prefix}
-          category={latest.category}
-          image={latest.image}
-          date={latest.date}
-          url={latest.url}
-        />
+        {featured && (
+          <PageHeaderFeature
+            asBackgroundImage
+            {...featured}
+            blockType="featureWide"
+          />
+        )}
       </div>
 
       <Grid
@@ -46,13 +43,13 @@ function News({
       >
         <GridItem sizeAtL={4} paddingSide="sides" paddingSize="zero">
           <ListContent
-            title={featured.title}
-            linkLabel={featured.linkLabel}
-            linkUrl={featured.linkUrl}
+            title={latest.title}
+            linkLabel={latest.linkLabel}
+            linkUrl={latest.linkUrl}
             paddingSide="right"
           >
-            {featured.items &&
-              featured.items.map((item, key) => (
+            {latest.items &&
+              latest.items.map((item, key) => (
                 <MediaBlock
                   key={`featured-item-${key}`}
                   type="featuredNews"
@@ -166,7 +163,8 @@ News.propTypes = {
     secondary: PropTypes.object,
     search: PropTypes.object,
   }),
-  featured: PropTypes.shape({
+  featured: PropTypes.object,
+  latest: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
     linkUrl: PropTypes.string,
@@ -188,8 +186,8 @@ News.defaultProps = {
     linkLabel: 'See all',
     linkUrl: '#',
   },
-  featured: {
-    title: 'Featured',
+  latest: {
+    title: 'Latest',
     linkLabel: 'See all',
     linkUrl: '#',
   },

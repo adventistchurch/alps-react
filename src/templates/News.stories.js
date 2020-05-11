@@ -22,13 +22,13 @@ function getTabData(name, settings = {}) {
 
 export { pageHeaderTab }
 
-export function latestTab(settings = {}) {
-  const { latest, tab } = getTabData('Latest', settings)
+export function featuredTab(settings = {}) {
+  const { latest, tab } = getTabData('Featured', settings)
   const { title, titlePrefix, image, category, date, url } = latest
 
   return {
+    titlePrefix: text('Title prefix', titlePrefix, tab),
     title: text('Title', title, tab),
-    prefix: text('Title prefix', titlePrefix, tab),
     url: text('Url', url, tab),
     category: text('Category', category, tab),
     date: datePicker('Date', new Date(date), tab),
@@ -36,8 +36,8 @@ export function latestTab(settings = {}) {
   }
 }
 
-export function featuredTab(settings = {}) {
-  const { featured, tab } = getTabData('Featured', settings)
+export function latestTab(settings = {}) {
+  const { featured, tab } = getTabData('Latest news', settings)
   const { title, linkLabel, linkUrl, items } = featured || {}
 
   return {
@@ -83,11 +83,13 @@ export function archiveTab(settings = {}) {
 export function newsTabs(settings = {}) {
   const { pageHeader, aside } = getTabData(null, settings)
 
+  const asideData = aside ? asideTab(aside) : null
+
   return {
     pageHeader: pageHeaderTab(pageHeader),
-    latest: latestTab(settings),
     featured: featuredTab(settings),
-    aside: aside ? asideTab(settings) : null,
+    latest: latestTab(settings),
+    aside: asideData,
     media: mediaTab(settings),
     archive: archiveTab(settings),
     ...globalTab(settings),
