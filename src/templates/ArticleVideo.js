@@ -59,7 +59,9 @@ function ArticleVideo({
         <ArticleContentShort
           breadcrumbs={breadcrumbs}
           sidebar={
-            <ContentBlock description={`${durationLabel}: ${duration}`} />
+            duration && (
+              <ContentBlock description={`${durationLabel}: ${duration}`} />
+            )
           }
         >
           {content || children}
