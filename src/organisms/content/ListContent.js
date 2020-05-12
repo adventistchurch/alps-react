@@ -31,7 +31,7 @@ ListContent.propTypes = {
   children: PropTypes.node,
   contentSpacing: PropTypes.string,
   linkLabel: PropTypes.string,
-  linkUrl: PropTypes.string,
+  linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   pagination: PropTypes.object,
   title: PropTypes.string,
 }

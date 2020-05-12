@@ -73,7 +73,7 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
 Testimonies.propTypes = {
   items: PropTypes.array,
   linkText: PropTypes.string,
-  linkUrl: PropTypes.string,
+  linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   shareText: PropTypes.string,
   shareUrl: PropTypes.string,
   title: PropTypes.string,
