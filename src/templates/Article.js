@@ -30,7 +30,7 @@ function Article({
     <TemplateWrap {...templateProps}>
       <Main>
         <PageHeaderFeature
-          blockType={headerType}
+          blockType={image ? headerType : 'longform'}
           asBackgroundImage={asBackgroundImage}
           kicker={kicker}
           title={title}
