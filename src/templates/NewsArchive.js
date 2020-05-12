@@ -58,12 +58,7 @@ function NewsArchive({
           paddingSize="zero"
           spacingSize="double"
         >
-          <ListContent
-            title={filtersTitle}
-            linkUrl={null}
-            paddingSide="right"
-            paddingAr
-          >
+          <ListContent title={filtersTitle} linkUrl={null} paddingSide="right">
             <FacetFilter {...filtersProps} title={null} />
           </ListContent>
           {aside && <Aside {...aside} />}
