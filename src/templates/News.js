@@ -155,7 +155,7 @@ News.propTypes = {
   archive: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
-    linkUrl: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+    linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     content: PropTypes.node,
   }),
   aside: PropTypes.shape({
@@ -167,13 +167,13 @@ News.propTypes = {
   latest: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
-    linkUrl: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+    linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     items: PropTypes.array,
   }),
   media: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
-    linkUrl: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+    linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     primary: PropTypes.array,
     secondary: PropTypes.array,
   }),
