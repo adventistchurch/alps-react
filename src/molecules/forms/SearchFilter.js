@@ -3,14 +3,16 @@ import PropTypes from 'prop-types'
 
 import BaseSearch from './elements/BaseSearch'
 
-function SearchFilter({ ...props }) {
+const contentProps = {
+  className: 'l-field-container',
+  spacing: true,
+}
+
+function SearchFilter(props) {
   return (
     <BaseSearch
       borderSide="left"
-      contentProps={{
-        className: 'l-field-container',
-        spacing: true,
-      }}
+      contentProps={contentProps}
       padding
       spacing
       themeBorder="darker"

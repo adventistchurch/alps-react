@@ -60,7 +60,7 @@ Dropdown.propTypes = {
   error: PropTypes.string,
   hideNone: PropTypes.bool,
   id: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   labelOptional: PropTypes.string,
   labelClass: PropTypes.string,
   labelSpacingSize: FormLabel.propTypes.spacingSize,
