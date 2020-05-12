@@ -1,27 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import VideoFigureWithCaption from './VideoFigureWithCaption'
 
-import data from './VideoFigureWithCaption.stories.json'
-
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...VideoFigureWithCaption.defaultProps,
-    ...data,
-    ...settings,
-  }
-}
+import { figureTab } from './Figure.stories.js'
 
 export function videoFigureWithCaptionTab(settings = {}) {
-  const { videoSrc, caption, tab } = getTabData('Video', settings)
-
-  return {
-    videoSrc: text('Source *', videoSrc, tab),
-    caption: text('Caption', caption, tab),
-  }
+  return figureTab({ ...settings, type: 'video' })
 }
 
 storiesOf('molecules/media/VideoFigureWithCaption', module).addWithJSX(

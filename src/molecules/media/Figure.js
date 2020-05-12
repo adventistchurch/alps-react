@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Figcaption from './Figcaption'
 import Picture from '../../atoms/images/Picture'
 import Video from '../../atoms/media/Video'
+import {
+  getFigureClasses,
+  figureAlignPositions,
+  figureSizes,
+} from '../../atoms/global/figures'
 
-function Figure({ caption, className, image, lazy, videoSrc }) {
+function Figure({ caption, className, image, lazy, videoSrc, align, size }) {
+  const classes = useMemo(() => getFigureClasses(align, size), [align, size])
+
   return (
-    <figure className={`o-figure ${className}`}>
+    <figure className={`o-figure ${classes} ${className}`}>
       {image && (
         <div className="o-figure__image">
           <Picture image={image} lazy={lazy} />
@@ -29,9 +36,11 @@ function Figure({ caption, className, image, lazy, videoSrc }) {
 
 Figure.propTypes = {
   caption: PropTypes.string,
+  align: PropTypes.oneOf(figureAlignPositions),
   className: PropTypes.string,
   image: Picture.propTypes.image,
   lazy: PropTypes.bool,
+  size: PropTypes.oneOf(figureSizes),
   videoSrc: PropTypes.string,
 }
 Figure.defaultProps = {

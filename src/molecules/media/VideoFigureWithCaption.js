@@ -1,16 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import Figure from './Figure'
 
-function VideoFigureWithCaption({ videoSrc, caption, className }) {
-  return <Figure videoSrc={videoSrc} caption={caption} className={className} />
+function VideoFigureWithCaption(props) {
+  return <Figure {...props} />
 }
 
-VideoFigureWithCaption.propTypes = {
-  videoSrc: PropTypes.string.isRequired,
-  caption: PropTypes.string,
-  className: PropTypes.string,
-}
+VideoFigureWithCaption.propTypes = Figure.propTypes
 
 export default VideoFigureWithCaption

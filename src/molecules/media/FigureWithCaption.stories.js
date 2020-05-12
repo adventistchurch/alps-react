@@ -1,27 +1,18 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, text, object } from '@storybook/addon-knobs'
 
 import FigureWithCaption from './FigureWithCaption'
 
-import data from './FigureWithCaption.stories.json'
+import { figureTab } from './Figure.stories.js'
 
-const propsTab = 'Props'
+export function figureWithCaptionTab(settings = {}) {
+  return figureTab({ ...settings, type: 'image' })
+}
 
 storiesOf('molecules/media/FigureWithCaption', module).addWithJSX(
   'Default',
   () => {
-    const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
-    const alt = text('Image Alt', data.image.alt, propsTab)
-    const caption = text('Caption', data.caption, propsTab)
-    const lazy = boolean('Lazyload Image', data.lazy, propsTab)
-
-    const image = {
-      alt,
-      srcSet,
-      lazy,
-    }
-
-    return <FigureWithCaption caption={caption} image={image} />
+    const props = figureWithCaptionTab()
+    return <FigureWithCaption {...props} />
   }
 )
