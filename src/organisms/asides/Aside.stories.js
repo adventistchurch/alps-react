@@ -16,16 +16,21 @@ function getTabData(name, settings = {}) {
 
 // TODO: Add search and content knobs
 export function asideTab(settings = {}) {
-  const { primary, secondary, tab } = getTabData('Aside', settings)
+  const { primary, secondary, hidePrimary, hideSecondary, tab } = getTabData(
+    'Aside',
+    settings
+  )
 
   return {
-    primary: object('Primary Blocks *', primary, tab),
-    secondary: object('Secondary Blocks', secondary, tab),
+    primary: hidePrimary ? null : object('Primary Blocks *', primary, tab),
+    secondary: hideSecondary
+      ? null
+      : object('Secondary Blocks', secondary, tab),
   }
 }
 
 storiesOf('organisms/asides/Aside', module).addWithJSX('Default', () => {
-  const { primary, secondary } = asideTab()
+  const props = asideTab()
 
-  return <Aside primary={primary} secondary={secondary} />
+  return <Aside {...props} />
 })
