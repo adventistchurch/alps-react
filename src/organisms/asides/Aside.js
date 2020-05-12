@@ -11,9 +11,9 @@ function Aside({ content, contentPosition, primary, secondary, search }) {
       {contentPosition === 'top' && content}
       {search && <SearchFilter {...search} />}
       {contentPosition === 'afterSearch' && content}
-      {primary && <BlockWrap {...primary} type="mediaBlock" />}
+      {primary && <BlockWrap type="mediaBlock" {...primary} />}
       {contentPosition === 'afterPrimary' && content}
-      {secondary && <BlockWrap {...secondary} type="contentBlock" />}
+      {secondary && <BlockWrap type="contentBlock" {...secondary} />}
       {contentPosition === 'bottom' && content}
     </Div>
   )
