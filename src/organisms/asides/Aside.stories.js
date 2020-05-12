@@ -14,8 +14,9 @@ function getTabData(name, settings = {}) {
   }
 }
 
+// TODO: Add search and content knobs
 export function asideTab(settings = {}) {
-  const { primary, secondary, tab } = getTabData('Blocks', settings)
+  const { primary, secondary, tab } = getTabData('Aside', settings)
 
   return {
     primary: object('Primary Blocks *', primary, tab),
