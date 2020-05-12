@@ -59,14 +59,12 @@ export function sidebarTab(settings = {}) {
 }
 
 export function basicPageTabs(settings = {}) {
-  const props = getTabData('Global', settings)
-
   return {
-    pageHeader: pageHeaderTab(props),
-    ...pageBreadcrumbsTab(props),
-    ...sidebarTab(props),
-    content: contentTab(props),
-    ...globalTab(props),
+    pageHeader: pageHeaderTab(settings),
+    ...pageBreadcrumbsTab(settings),
+    ...sidebarTab(settings),
+    content: contentTab(settings),
+    ...globalTab(settings),
   }
 }
 

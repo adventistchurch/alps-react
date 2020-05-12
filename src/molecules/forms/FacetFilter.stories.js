@@ -6,7 +6,6 @@ import FacetFilter from './FacetFilter'
 
 import data from './FacetFilter.stories.json'
 
-const currentDate = new Date()
 const yearFacet = {
   name: 'years',
   options: [
@@ -15,23 +14,33 @@ const yearFacet = {
       value: 0,
     },
     ...Array.from(Array(6), (x, index) => {
-      const year = currentDate.getFullYear() - index
+      const year = new Date().getFullYear() - index
       return { text: year, value: year }
     }),
   ],
   defaultValue: 0,
 }
 
-const propsTab = 'Props'
-const dataTab = 'Data'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...FacetFilter.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function facetsTab(settings = {}) {
+  const { title, filterLabel, facets, tab } = getTabData('Facets', settings)
+
+  return {
+    title: text('Title', title, tab),
+    filterLabel: text('Label', filterLabel, tab),
+    facets: object('Facets (filters)', [yearFacet, ...facets], tab),
+  }
+}
 
 storiesOf('molecules/forms/FacetFilter', module).addWithJSX('Default', () => {
-  const title = text('Form Title *', data.title, propsTab)
-  const filterLabel = text(
-    'Filter Button (visible only for screen readers)',
-    'Filter',
-    propsTab
-  )
-  const facets = object('Facets *', [yearFacet, ...data.facets], dataTab)
-  return <FacetFilter title={title} facets={facets} filterLabel={filterLabel} />
+  const props = facetsTab()
+  return <FacetFilter {...props} />
 })
