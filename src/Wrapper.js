@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Body from './Body'
@@ -9,9 +9,7 @@ function Wrapper({ LinkWrapper, ...props }) {
   return (
     <LinkContextProvider LinkWrapper={LinkWrapper}>
       <DrawerContextProvider>
-        <Suspense fallback={<span />}>
-          <Body {...props} />
-        </Suspense>
+        <Body {...props} />
       </DrawerContextProvider>
     </LinkContextProvider>
   )
