@@ -16,7 +16,14 @@ function SubscribeForm({
   title,
 }) {
   return (
-    <Form title={title} darkMode={darkMode} labelPosition="top" padding spacing>
+    <Form
+      title={title}
+      darkMode={darkMode}
+      onSubmit={onSubmit}
+      labelPosition="top"
+      padding
+      spacing
+    >
       <TextField
         label="First Name"
         name="first_name"
@@ -51,7 +58,7 @@ function SubscribeForm({
           value="seasonal"
         />
       </OptionGroup>
-      <Button text={submitLabel} onSubmit={onSubmit} outline />
+      <Button text={submitLabel} outline type="submit" />
       <Button icon="close" text={cancelLabel} onCancel={onCancel} simple />
     </Form>
   )
