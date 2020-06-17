@@ -475,12 +475,12 @@ LinkBase.propTypes = {
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
-export function Link({ href, ...props }) {
+export function Link({ href, noWrap, ...props }) {
   const LinkWrapper = useLinkContext()
 
   if (!href) return <LinkBase {...props} />
 
-  return LinkWrapper ? (
+  return LinkWrapper && !noWrap ? (
     <LinkWrapper href={href} {...props}>
       <LinkBase {...props} />
     </LinkWrapper>
