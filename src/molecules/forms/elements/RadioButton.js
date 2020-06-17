@@ -20,7 +20,7 @@ function RadioButton({
     <FormLabel
       className={labelClass}
       error={props.error}
-      htmlFor={props.id || props.name}
+      htmlFor={id || name}
       position="bottom"
       text={label}
       textOptional={labelOptional}
