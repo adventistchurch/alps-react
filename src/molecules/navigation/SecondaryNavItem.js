@@ -10,6 +10,7 @@ import SubNavArrow from './SubNavArrow'
 function SecondaryNavItem({
   icon,
   isPriority,
+  noWrap,
   onClick,
   subnav,
   type,
@@ -32,13 +33,10 @@ function SecondaryNavItem({
         href={onClick ? '#' : url}
         onClick={onClick}
         themeLinkHover="base"
+        noWrap={noWrap}
       >
-        {icon && (
-          <>
-            <IconWrap name={icon} size="xs" fill="gray" />{' '}
-          </>
-        )}
-        {text}&nbsp;
+        {icon && <IconWrap name={icon} size="xs" fill="gray" />}
+        {text}
       </Link>
 
       {subnav && (
@@ -54,6 +52,7 @@ function SecondaryNavItem({
 SecondaryNavItem.propTypes = {
   icon: PropTypes.string,
   isPriority: PropTypes.bool,
+  noWrap: PropTypes.bool,
   onClick: PropTypes.func,
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,

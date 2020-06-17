@@ -10,7 +10,16 @@ function getId(text, url) {
   return text ? `${text.toLowerCase().replace(' ', '-')}-${url}` : url
 }
 
-function PrimaryNavItem({ active, linkClass, priority, text, subnav, url }) {
+function PrimaryNavItem({
+  active,
+  linkClass,
+  priority,
+  text,
+  subnav,
+  url,
+  onClick,
+  noWrap,
+}) {
   const { isOpen, openSubNav, setOpenSubNav } = useDrawerContext()
 
   const id = getId(text, url)
@@ -40,6 +49,8 @@ function PrimaryNavItem({ active, linkClass, priority, text, subnav, url }) {
         fontType="primary-nav"
         themeLinkHover="base"
         themeBorder="base"
+        onClick={onClick}
+        noWrap={noWrap}
       >
         {text}
       </Link>
@@ -52,10 +63,12 @@ function PrimaryNavItem({ active, linkClass, priority, text, subnav, url }) {
 PrimaryNavItem.propTypes = {
   active: PropTypes.bool,
   linkClass: PropTypes.string,
+  onClick: PropTypes.func,
   priority: PropTypes.bool,
   subnav: PropTypes.array,
   text: PropTypes.string.isRequired,
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  noWrap: PropTypes.bool,
 }
 PrimaryNavItem.defaultProps = {
   active: false,

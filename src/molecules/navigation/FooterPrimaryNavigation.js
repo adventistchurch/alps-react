@@ -6,13 +6,15 @@ import { Link, Nav } from '../../helpers/Element'
 function FooterPrimaryNavigation({ items }) {
   return (
     <Nav className="c-footer__primary-nav__list" spacingSize="half">
-      {items.map(({ text, url }, key) => (
+      {items.map(({ text, url, className, onClick, noWrap }, key) => (
         <Link
           href={url}
-          className="c-footer__primary-nav__link"
+          className={`c-footer__primary-nav__link ${className}`}
           linkColor="white"
           themeLinkHover="light"
           key={`footer-nav-link-${key}`}
+          onClick={onClick}
+          noWrap={noWrap}
         >
           <strong>{text}</strong>
         </Link>
