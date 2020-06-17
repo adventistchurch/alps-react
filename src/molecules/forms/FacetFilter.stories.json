@@ -25,7 +25,7 @@
           "value": 4
         },
         {
-          "text": "Mai",
+          "text": "May",
           "value": 5
         },
         {
@@ -93,20 +93,24 @@
           "value": "all"
         },
         {
-          "text": "United States",
-          "value": "us"
+          "text": "Argentina",
+          "value": "ar"
         },
         {
           "text": "Germany",
           "value": "de"
         },
         {
+          "text": "Norway",
+          "value": "no"
+        },
+        {
           "text": "Switzerland",
           "value": "ch"
         },
         {
-          "text": "Norway",
-          "value": "no"
+          "text": "United States",
+          "value": "us"
         }
       ],
       "defaultValue": "ch"
