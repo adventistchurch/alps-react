@@ -5,9 +5,6 @@ import commonjs from 'rollup-plugin-commonjs'
 import del from 'rollup-plugin-delete'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
-import { terser } from 'rollup-plugin-terser'
-
-import pkg from './package.json'
 
 // Sets some constants
 const env = process.env.NODE_ENV
@@ -42,7 +39,7 @@ function shouldIncludePath(path) {
 const walkFolder = dir => {
   var results = []
   var list = readdirSync(dir)
-  list.forEach(function(file) {
+  list.forEach(function (file) {
     file = `${dir}/${file}`
 
     var stat = statSync(file)
@@ -113,31 +110,6 @@ const commonPlugins = () => [
 
 // Actual Rollup configuration
 export default [
-  // UMD
-  {
-    onwarn: discardWarning,
-    input: 'src/index.js',
-    output: {
-      dir: 'dist/umd',
-      esModule: false,
-      file: pkg.unpkg,
-      format: 'umd',
-      name: pkg.name,
-      exports: 'named',
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      },
-    },
-    plugins: [
-      del({
-        targets: 'dist/umd',
-      }),
-      ...commonPlugins(),
-      env === 'production' && terser(),
-    ],
-    external: ['react', 'react-dom', 'prop-types'],
-  },
   // CJS and ESM
   {
     onwarn: discardWarning,
