@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { boolean, text as textInput, select } from '@storybook/addon-knobs'
 
-import Button, { iconPositions, iconAsElements } from './Button'
+import Button, { iconPositions, asOptions } from './Button'
 import { iconNames } from '../icons/Icon'
 
 import data from './Button.stories.json'
@@ -22,7 +22,7 @@ export function generalTab(settings = {}) {
   return {
     text: textInput('Text *', text, tab),
     url: textInput('URL', url, tab),
-    as: select('As', iconAsElements, as, tab),
+    as: select('As', asOptions, as, tab),
   }
 }
 
