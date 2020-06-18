@@ -6,7 +6,7 @@ import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
 import IconWrap from '../icons/IconWrap'
 
-export const iconAsElements = ['a', 'button', 'span']
+export const asOptions = ['a', 'button', 'span']
 export const iconPositions = ['left', 'right']
 
 // TODO: ask if this can be added to ALPS (maybe with something like `.o-button--icon-right`)
@@ -113,7 +113,7 @@ function Button({
 }
 
 Button.propTypes = {
-  as: PropTypes.oneOf(iconAsElements),
+  as: PropTypes.oneOf(asOptions),
   className: PropTypes.string,
   disabled: PropTypes.bool,
   expand: PropTypes.bool,

@@ -35,7 +35,7 @@ export const wrapSizes = [
 function getShiftClass(side, at) {
   return `${shiftClass}--${side}--1-${col}--${
     at === 'standard' ? at : `at-${at}`
-  } ` // TODO: Ask if, to avoid this special case, `.u-shift--left--1-col--standard` is meant used, and if can be renamed to a more "standard" name like `.u-shift--left--1-col--at-standard` (note the added `at`).
+  }`
 }
 
 export function getGridWrapClass(size, noWrapClass) {
