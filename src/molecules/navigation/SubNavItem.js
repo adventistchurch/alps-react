@@ -12,10 +12,13 @@ function SubNavItem({ active, level, subnav, text, url, type, onClick }) {
   const isTertiary = level === 'tertiary'
   const navLevel = isTertiary ? 'subnav__subnav' : 'subnav'
 
-  const onArrowClick = useCallback(e => {
-    e.stopPropagation()
-    onToggle()
-  }, [])
+  const onArrowClick = useCallback(
+    e => {
+      e.stopPropagation()
+      onToggle()
+    },
+    [onToggle]
+  )
 
   return (
     <LI
