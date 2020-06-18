@@ -5,7 +5,7 @@ import IconWrap from '../../atoms/icons/IconWrap'
 import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 import SearchForm from '../forms/Search'
-import { Div, UL } from '../../helpers/Element'
+import { Div } from '../../helpers/Element'
 import useDrawerContext from '../../helpers/useDrawerContext'
 import PrimaryNavigation from './PrimaryNavigation'
 import SecondaryNavigation from './SecondaryNavigation'
@@ -15,6 +15,7 @@ function DrawerNavigation({
   aboutRight,
   onSearch,
   primaryNav,
+  renderSearchBox,
   secondaryNav,
 }) {
   const { closeDrawer, isOpen, setOpenSubNav } = useDrawerContext()
@@ -45,14 +46,15 @@ function DrawerNavigation({
         themeBackground="darker"
       >
         <div className="c-drawer__search">
-          <SearchForm onSearch={onSearch} hasFocus={isOpen.search} />
+          {renderSearchBox ? (
+            renderSearchBox(isOpen.search)
+          ) : (
+            <SearchForm onSearch={onSearch} hasFocus={isOpen.search} />
+          )}
         </div>
         <div className="c-drawer__nav">
           <div className="c-drawer__nav-primary">
             <PrimaryNavigation {...primaryNav} />
-            <UL className="c-drawer__subnav" themeBackground="darker">
-              {/* TODO: What is this subnav for? Any examples? */}
-            </UL>
           </div>
           <div className="c-drawer__nav-secondary">
             <SecondaryNavigation
@@ -86,6 +88,7 @@ DrawerNavigation.propTypes = {
   aboutRight: PropTypes.node,
   onSearch: PropTypes.func,
   primaryNav: PropTypes.object,
+  renderSearchBox: PropTypes.func,
   secondaryNav: PropTypes.object,
 }
 
