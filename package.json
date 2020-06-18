@@ -51,6 +51,7 @@
     "@storybook/storybook-deployer": "^2.8.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "eslint": "^7.2.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-react": "^7.20.0",
