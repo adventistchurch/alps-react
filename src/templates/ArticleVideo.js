@@ -69,7 +69,7 @@ function ArticleVideo({
         {segments && segments.length > 0 && (
           <>
             <HeadingBlock title={segmentsTitle} />
-            <BlockFeed blocks={segments} blocksType="video" grid />
+            <BlockFeed blocks={segments} blocksType="video" grid gridNoWrap />
           </>
         )}
       </Main>
