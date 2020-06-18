@@ -87,27 +87,6 @@ const discardWarning = warning => {
   console.error(warning) // eslint-disable-line no-console
 }
 
-// Setup common plugins
-const commonPlugins = () => [
-  babel({
-    babelrc: false,
-    presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
-    extensions: EXTENSIONS,
-    exclude: 'node_modules/**',
-  }),
-  commonjs({
-    include: /node_modules/,
-  }),
-  replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
-  resolve({
-    extensions: EXTENSIONS,
-    preferBuiltins: false,
-    customResolveOptions: {
-      moduleDirectory: 'node_modules',
-    },
-  }),
-]
-
 // Actual Rollup configuration
 export default [
   // CJS and ESM
@@ -131,7 +110,29 @@ export default [
       del({
         targets: ['dist/cjs', 'dist/esm'],
       }),
-      ...commonPlugins(),
+      babel({
+        babelrc: false,
+        presets: [
+          ['@babel/preset-env', { modules: false }],
+          '@babel/preset-react',
+        ],
+        extensions: EXTENSIONS,
+        exclude: 'node_modules/**',
+        plugins: [
+          // ['transform-react-remove-prop-types', { removeImport: true }],
+        ],
+      }),
+      commonjs({
+        include: /node_modules/,
+      }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+      resolve({
+        extensions: EXTENSIONS,
+        preferBuiltins: false,
+        customResolveOptions: {
+          moduleDirectory: 'node_modules',
+        },
+      }),
     ],
     external: ['react', 'react-dom', 'prop-types'],
   },
