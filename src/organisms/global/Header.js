@@ -45,7 +45,7 @@ Header.propTypes = {
   logo: PropTypes.shape({
     canBeDark: PropTypes.bool,
     link: PropTypes.string,
-    element: PropTypes.string,
+    element: PropTypes.node,
     useFillTheme: PropTypes.bool,
   }),
   primaryNav: PropTypes.object,
