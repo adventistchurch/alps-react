@@ -8,7 +8,6 @@ import SecondaryNavigation from '../../molecules/navigation/SecondaryNavigation'
 import DrawerNavigation from '../../molecules/navigation/DrawerNavigation'
 
 function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
-  console.log(logo)
   return (
     <>
       <header className={`c-header ${className}`} role="banner" id="header">
