@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Link } from '../../helpers/Element'
-import Logo from '../../atoms/images/Logo'
+import SDALogo from '../../atoms/images/logos/SDA'
 import PrimaryNavigation from '../../molecules/navigation/PrimaryNavigation'
 import SecondaryNavigation from '../../molecules/navigation/SecondaryNavigation'
 import DrawerNavigation from '../../molecules/navigation/DrawerNavigation'
 
 function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
+  console.log(logo)
   return (
     <>
       <header className={`c-header ${className}`} role="banner" id="header">
@@ -22,7 +23,7 @@ function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
               href={logo.link}
               themePathFill={logo.useFillTheme ? 'base' : null}
             >
-              <Logo name={logo.name} />
+              {logo.element}
             </Link>
           </div>
           <div className="c-header__nav-primary">
@@ -45,7 +46,7 @@ Header.propTypes = {
   logo: PropTypes.shape({
     canBeDark: PropTypes.bool,
     link: PropTypes.string,
-    name: PropTypes.string,
+    element: PropTypes.string,
     useFillTheme: PropTypes.bool,
   }),
   primaryNav: PropTypes.object,
@@ -57,7 +58,7 @@ Header.defaultProps = {
   logo: {
     canBeDark: false,
     link: '/',
-    name: 'sda',
+    element: <SDALogo />,
     useFillTheme: true,
   },
   primaryNav: {},

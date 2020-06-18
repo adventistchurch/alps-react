@@ -3,7 +3,17 @@ import { storiesOf } from '@storybook/react'
 import { boolean, select, text } from '@storybook/addon-knobs'
 
 import Header from './Header'
-import { logoNames } from '../../atoms/images/logos'
+import SDA from '../../atoms/images/logos/SDA'
+import SDAArabic from '../../atoms/images/logos/SDAArabic'
+import SDAWithIcon from '../../atoms/images/logos/SDAWithIcon'
+import Gain from '../../atoms/images/logos/Gain'
+
+const logos = {
+  SDA: <SDA />,
+  SDAArabic: <SDAArabic />,
+  SDAWithIcon: <SDAWithIcon />,
+  Gain: <Gain />,
+}
 
 import data from './Header.stories.json'
 import { drawerTab } from '../../molecules/navigation/DrawerNavigation.stories.js'
@@ -11,16 +21,16 @@ import { primaryNavTab } from '../../molecules/navigation/PrimaryNavigation.stor
 import { secondaryNavTab } from '../../molecules/navigation/SecondaryNavigation.stories.js'
 
 function logoTab(settings = {}) {
-  const { canBeDark, link, name, useFillTheme, tab } = {
+  const { canBeDark, link, useFillTheme, tab } = {
     tab: 'Logo',
     ...Header.defaultProps.logo,
-    name: data.logo.name,
     link: data.logo.link,
     ...settings,
   }
+  const logoName = select('Logo', Object.keys(logos), 'SDA', tab)
 
   return {
-    name: select('Logo Name', logoNames, name, tab),
+    element: logos[logoName],
     link: text('Link', link, tab),
     canBeDark: boolean('Logo can be dark', canBeDark, tab),
     useFillTheme: boolean('Logo Use Fill Theme', useFillTheme, tab),
