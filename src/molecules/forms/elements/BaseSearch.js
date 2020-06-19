@@ -2,11 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../../atoms/buttons/Button'
-import FilterGroup from './FilterGroup'
-import Form from './Form'
 import Element, { Div } from '../../../helpers/Element'
 import renderItems from '../../../helpers/renderItems'
 import useToggle from '../../../helpers/useToggle'
+import FilterGroup from './FilterGroup'
+import Form from './Form'
+import Suggestions from './Suggestions'
+
+const styles = {
+  inputWrap: { position: 'relative' },
+}
 
 function BaseSearch({
   contentProps,
@@ -17,6 +22,9 @@ function BaseSearch({
   searchLabel,
   showSearchAgain,
   sorting,
+  suggestions,
+  onSearch,
+  onSubmit,
   ...props
 }) {
   const { onToggle, openClass } = useToggle(false, 'c-filter-is-active', '')
@@ -27,20 +35,25 @@ function BaseSearch({
       backgroundColor="gray--light"
       {...props}
     >
-      <Form className="c-filter__search" role="search">
+      <Form className="c-filter__search" role="search" onSubmit={onSubmit}>
         <Div {...contentProps}>
           <Div {...nestedProps}>
-            <Element
-              as="input"
-              className="o-input__search"
-              color="gray"
-              fontType="secondary"
-              fontSize="s"
-              name="s"
-              placeholder={placeholder}
-              themeColor="darker"
-              type="search"
-            />
+            <div style={styles.inputWrap}>
+              <Element
+                as="input"
+                className="o-input__search"
+                color="gray"
+                fontType="secondary"
+                fontSize="s"
+                name="s"
+                onChange={onSearch}
+                placeholder={placeholder}
+                themeColor="darker"
+                autoComplete="off"
+                type="search"
+              />
+              {suggestions && <Suggestions items={suggestions} />}
+            </div>
           </Div>
           <Div {...nestedProps}>
             <Div flex>
@@ -50,6 +63,7 @@ function BaseSearch({
                 text={searchLabel}
                 outline={!showSearchAgain}
                 spaceSide="right"
+                type="submut"
               />
               {(filters || sorting) && (
                 <Button
@@ -88,15 +102,17 @@ function BaseSearch({
 
 BaseSearch.propTypes = {
   filters: PropTypes.array,
+  onSearch: PropTypes.func,
+  onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
   searchAgainLabel: PropTypes.string,
   searchLabel: PropTypes.string,
   showSearchAgain: PropTypes.bool,
   sorting: PropTypes.object,
+  suggestions: PropTypes.array,
   ...Div.propTypes,
 }
 BaseSearch.defaultProps = {
-  filters: [],
   searchAgainLabel: 'Search Again',
   searchLabel: 'Search',
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { storiesOf } from '@storybook/react'
 import { object, text, boolean } from '@storybook/addon-knobs'
 
@@ -6,31 +6,75 @@ import SearchHeader from './SearchHeader'
 
 import data from './SearchHeader.stories.json'
 
-const propsTab = 'Props'
-const filtersTab = 'Filters'
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...SearchHeader.defaultProps,
+    ...data,
+    ...settings,
+  }
+}
+
+export function searchHeaderTab(settings = {}) {
+  const {
+    placeholder,
+    title,
+    submitLabel,
+    filters,
+    suggestions,
+    searchAgainLabel,
+    tab,
+    withFilters = false,
+    withSuggestions = false,
+  } = getTabData('Search Header', settings)
+
+  const showFilters = boolean('Show filters', withFilters, tab)
+
+  return {
+    placeholder: text('Placeholder', placeholder, tab),
+    title: text('Form Title (screen readers only)', title, tab),
+    searchLabel: text('Search Button (screen readers only)', submitLabel, tab),
+    filters: showFilters ? object('Filters', filters, tab) : null,
+    suggestions: withSuggestions
+      ? object('Suggestions', suggestions, tab)
+      : null,
+    searchAgainLabel: showFilters
+      ? text('Search Again (screen readers only)', searchAgainLabel, tab)
+      : null,
+  }
+}
 
 storiesOf('molecules/forms/SearchHeader', module).addWithJSX('Default', () => {
-  const placeholder = text('Placeholder', data.placeholder, propsTab)
-  const searchLabel = text('Search Button', data.searchLabel, propsTab)
-  // const settingsLabel = text(
-  //   'Settings Button',
-  //   'n/a (the text is set in the css)',
-  //   propsTab
-  // )
-  const showSearchAgain = boolean('Show Search Again Button', true, filtersTab)
-  const searchAgainLabel = text(
-    'Search Again Button',
-    data.searchAgainLabel,
-    propsTab
-  )
-  const filters = object('Filters', data.filters, filtersTab)
-  return (
-    <SearchHeader
-      filters={filters}
-      placeholder={placeholder}
-      searchAgainLabel={searchAgainLabel}
-      searchLabel={searchLabel}
-      showSearchAgain={showSearchAgain}
-    />
-  )
+  const props = searchHeaderTab()
+
+  return <SearchHeader {...props} />
 })
+
+storiesOf('molecules/forms/SearchHeader', module).addWithJSX(
+  'with suggestions',
+  () => {
+    const { suggestions, ...props } = searchHeaderTab({ withSuggestions: true })
+
+    const [term, setTerm] = useState()
+
+    const onSearch = e => setTerm(e.target.value)
+
+    return (
+      <SearchHeader
+        {...props}
+        onSearch={onSearch}
+        value={term}
+        suggestions={term ? suggestions : null}
+      />
+    )
+  }
+)
+
+storiesOf('molecules/forms/SearchHeader', module).addWithJSX(
+  'with filters',
+  () => {
+    const props = searchHeaderTab({ withFilters: true })
+
+    return <SearchHeader {...props} />
+  }
+)

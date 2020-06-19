@@ -2,6 +2,14 @@
   "placeholder": "Search...",
   "searchAgainLabel": "Search Again",
   "searchLabel": "Search",
+  "suggestions": [
+    { "key": "abc1", "label": "Hi", "href": "#" },
+    { "key": "abc2", "label": "Hello", "href": "#" },
+    { "key": "abc3", "label": "Hola", "href": "#" },
+    { "key": "abc4", "label": "Hallo", "href": "#" },
+    { "key": "abc5", "label": "Hallo", "href": "#" },
+    { "key": "abc6", "label": "Hallooo", "href": "#" }
+  ],
   "filters": [
     {
       "title": "Media",

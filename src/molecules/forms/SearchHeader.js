@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 
 import BaseSearch from './elements/BaseSearch'
 
+const baseProps = {
+  contentProps: {
+    seven: true,
+    shiftAt: 'large',
+    shiftSide: 'left',
+    spacingUntil: 'medium',
+  },
+  nestedProps: {
+    gridItemSizeAtM: 3,
+  },
+  paddingSide: ['top', 'bottom'],
+  paddingSize: 'double',
+}
+
 function SearchHeader({ ...props }) {
-  return (
-    <BaseSearch
-      contentProps={{
-        seven: true,
-        shiftAt: 'large',
-        shiftSide: 'left',
-        spacingUntil: 'medium',
-      }}
-      nestedProps={{
-        gridItemSizeAtM: 3,
-      }}
-      paddingSide={['top', 'bottom']}
-      paddingSize="double"
-      {...props}
-    />
-  )
+  return <BaseSearch {...baseProps} {...props} />
 }
 
 SearchHeader.propTypes = {
@@ -30,7 +29,6 @@ SearchHeader.propTypes = {
   showSearchAgain: PropTypes.bool,
 }
 SearchHeader.defaultProps = {
-  filters: [],
   placeholder: 'Search...',
   searchAgainLabel: 'Search Again',
   searchLabel: 'Search',

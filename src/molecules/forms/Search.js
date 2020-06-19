@@ -5,27 +5,41 @@ import Fieldset from './elements/Fieldset'
 import Form from './elements/Form'
 import TextField from './elements/TextField'
 import SubmitButton from './elements/SubmitButton'
+import Suggestions from './elements/Suggestions'
+
+const styles = {
+  inputWrap: { position: 'relative' },
+}
 
 function Search({
   hasFocus,
-  onSearch,
+  onSubmit,
   placeholder,
   submitLabel,
+  onSearch,
+  suggestions,
   title,
+  value,
   ...props
 }) {
   return (
-    <Form className="search-form" role="search" onSubmit={onSearch} {...props}>
+    <Form className="search-form" role="search" onSubmit={onSubmit} {...props}>
       <Fieldset legend={title} legendVishidden>
-        <TextField
-          type="search"
-          className="search-form__input"
-          name="search"
-          placeholder={placeholder}
-          hasFocus={hasFocus}
-          required
-        />
-        {/* TODO: create component for screen readers? */}
+        <div styles={styles.inputWrap}>
+          <TextField
+            type="search"
+            className="search-form__input"
+            name="search"
+            placeholder={placeholder}
+            hasFocus={hasFocus}
+            onChange={onSearch}
+            value={value}
+            required
+            autoComplete="off"
+          />
+          {suggestions && <Suggestions items={suggestions} />}
+        </div>
+
         <SubmitButton
           className="search-form__submit"
           label={submitLabel}
@@ -39,9 +53,12 @@ function Search({
 Search.propTypes = {
   hasFocus: PropTypes.bool,
   onSearch: PropTypes.func,
+  onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
   submitLabel: PropTypes.string,
+  suggestions: PropTypes.array,
   title: PropTypes.string,
+  value: PropTypes.string,
 }
 
 Search.defaultProps = {
