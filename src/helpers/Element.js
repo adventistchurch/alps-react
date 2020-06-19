@@ -138,6 +138,7 @@ function getClassNameAndOtherProps(props) {
     shiftAt,
     shiftSide,
     space,
+    spaceAfter,
     spaceSide,
     spaceSize,
     spacing,
@@ -211,9 +212,10 @@ function getClassNameAndOtherProps(props) {
       })
     )
 
-  if (space || spaceSide || spaceSize)
+  if (space || spaceAfter || spaceSide || spaceSize)
     classes.push(
       getSpaceClass({
+        after: spaceAfter,
         side: spaceSide,
         size: spaceSize,
       })
