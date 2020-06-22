@@ -25,7 +25,7 @@ function Search({
   return (
     <Form className="search-form" role="search" onSubmit={onSubmit} {...props}>
       <Fieldset legend={title} legendVishidden>
-        <div styles={styles.inputWrap}>
+        <div style={styles.inputWrap}>
           <TextField
             type="search"
             className="search-form__input"
