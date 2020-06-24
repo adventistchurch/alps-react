@@ -40,7 +40,7 @@ SearchResults.propTypes = {
 SearchResults.defaultProps = {
   results: [],
   loadMoreLabel: 'Load More',
-  showLoadMore: true,
+  showLoadMore: false,
 }
 
 export default SearchResults
