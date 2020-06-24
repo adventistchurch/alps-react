@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import del from 'rollup-plugin-delete'
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
+import { terser } from 'rollup-plugin-terser'
 
 // Sets some constants
 const env = process.env.NODE_ENV
@@ -104,6 +105,7 @@ export default [
         format: 'cjs',
         exports: 'named',
         sourcemap: true,
+        plugins: [terser()],
       },
     ],
     plugins: [
