@@ -18,13 +18,14 @@ function BaseSearch({
   nestedProps,
   filters,
   placeholder,
+  onSearch,
+  onSubmit,
   searchAgainLabel,
   searchLabel,
   showSearchAgain,
   sorting,
   suggestions,
-  onSearch,
-  onSubmit,
+  term,
   ...props
 }) {
   const { onToggle, openClass } = useToggle(false, 'c-filter-is-active', '')
@@ -45,12 +46,12 @@ function BaseSearch({
                 color="gray"
                 fontType="secondary"
                 fontSize="s"
-                name="s"
                 onChange={onSearch}
                 placeholder={placeholder}
                 themeColor="darker"
                 autoComplete="off"
                 type="search"
+                value={term}
               />
               {suggestions && <Suggestions items={suggestions} />}
             </div>
