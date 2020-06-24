@@ -17,7 +17,7 @@ const baseProps = {
   paddingSize: 'double',
 }
 
-function SearchHeader({ ...props }) {
+function SearchHeader(props) {
   return <BaseSearch {...baseProps} {...props} />
 }
 

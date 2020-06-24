@@ -6,7 +6,7 @@ import SearchHeader from './SearchHeader'
 
 import data from './SearchHeader.stories.json'
 
-function getTabData(name, settings = {}) {
+function useTabData(name, settings = {}) {
   return {
     tab: name,
     ...SearchHeader.defaultProps,
@@ -15,7 +15,7 @@ function getTabData(name, settings = {}) {
   }
 }
 
-export function searchHeaderTab(settings = {}) {
+export function useSearchHeaderTab(settings = {}) {
   const {
     placeholder,
     title,
@@ -23,10 +23,17 @@ export function searchHeaderTab(settings = {}) {
     filters,
     suggestions,
     searchAgainLabel,
+    defaultTerm,
     tab,
     withFilters = false,
     withSuggestions = false,
-  } = getTabData('Search Header', settings)
+  } = useTabData('Search Header', settings)
+
+  const initialTerm = withSuggestions
+    ? text('Default Term', defaultTerm, tab)
+    : undefined
+
+  const [term, setTerm] = useState(initialTerm)
 
   const showFilters = boolean('Show filters', withFilters, tab)
 
@@ -34,18 +41,20 @@ export function searchHeaderTab(settings = {}) {
     placeholder: text('Placeholder', placeholder, tab),
     title: text('Form Title (screen readers only)', title, tab),
     searchLabel: text('Search Button (screen readers only)', submitLabel, tab),
-    filters: showFilters ? object('Filters', filters, tab) : null,
+    filters: showFilters ? object('Filters', filters, tab) : undefined,
     suggestions: withSuggestions
       ? object('Suggestions', suggestions, tab)
-      : null,
+      : undefined,
+    onSearch: withSuggestions ? e => setTerm(e.target.value) : undefined,
+    term: withSuggestions ? term : undefined,
     searchAgainLabel: showFilters
       ? text('Search Again (screen readers only)', searchAgainLabel, tab)
-      : null,
+      : undefined,
   }
 }
 
 storiesOf('molecules/forms/SearchHeader', module).addWithJSX('Default', () => {
-  const props = searchHeaderTab()
+  const props = useSearchHeaderTab()
 
   return <SearchHeader {...props} />
 })
@@ -53,27 +62,19 @@ storiesOf('molecules/forms/SearchHeader', module).addWithJSX('Default', () => {
 storiesOf('molecules/forms/SearchHeader', module).addWithJSX(
   'with suggestions',
   () => {
-    const { suggestions, ...props } = searchHeaderTab({ withSuggestions: true })
+    const props = useSearchHeaderTab({
+      withSuggestions: true,
+      defaultTerm: 'Hi',
+    })
 
-    const [term, setTerm] = useState()
-
-    const onSearch = e => setTerm(e.target.value)
-
-    return (
-      <SearchHeader
-        {...props}
-        onSearch={onSearch}
-        value={term}
-        suggestions={term ? suggestions : null}
-      />
-    )
+    return <SearchHeader {...props} />
   }
 )
 
 storiesOf('molecules/forms/SearchHeader', module).addWithJSX(
   'with filters',
   () => {
-    const props = searchHeaderTab({ withFilters: true })
+    const props = useSearchHeaderTab({ withFilters: true })
 
     return <SearchHeader {...props} />
   }
