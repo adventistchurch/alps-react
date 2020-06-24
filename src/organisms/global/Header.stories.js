@@ -15,18 +15,25 @@ const logos = {
   Gain: <Gain />,
 }
 
-import data from './Header.stories.json'
-import { drawerTab } from '../../molecules/navigation/DrawerNavigation.stories.js'
+import { useDrawerTab } from '../../molecules/navigation/DrawerNavigation.stories.js'
 import { primaryNavTab } from '../../molecules/navigation/PrimaryNavigation.stories.js'
 import { secondaryNavTab } from '../../molecules/navigation/SecondaryNavigation.stories.js'
+import data from './Header.stories.json'
 
-function logoTab(settings = {}) {
-  const { canBeDark, link, useFillTheme, tab } = {
-    tab: 'Logo',
-    ...Header.defaultProps.logo,
-    link: data.logo.link,
+function getTabData(name, settings = {}) {
+  return {
+    tab: name,
+    ...Header.defaultProps,
+    ...data,
     ...settings,
   }
+}
+
+function logoTab(settings = {}) {
+  const { logo, tab } = getTabData('Logo', settings)
+
+  const { canBeDark, link, useFillTheme } = logo
+
   const logoName = select('Logo', Object.keys(logos), 'SDA', tab)
 
   return {
@@ -37,33 +44,28 @@ function logoTab(settings = {}) {
   }
 }
 
-export function headerTab(settings = {}) {
-  const tabProps = {
-    tab: 'Header',
-    ...Header.defaultProps,
-    ...settings,
-  }
-
+function useTabs(settings = {}) {
   return {
-    logo: logoTab(tabProps),
-    primaryNav: primaryNavTab(tabProps),
-    secondaryNav: secondaryNavTab(tabProps),
-    drawer: drawerTab(tabProps),
+    logo: logoTab(settings),
+    primaryNav: primaryNavTab(settings),
+    secondaryNav: secondaryNavTab(settings),
+    drawer: useDrawerTab(settings),
   }
 }
 
-storiesOf('organisms/global/Header', module).addWithJSX('Default', () => {
-  const logo = logoTab()
-  const primaryNav = primaryNavTab()
-  const secondaryNav = secondaryNavTab()
-  const drawer = drawerTab()
+export function useHeaderTab(settings = {}) {
+  const props = getTabData('Header', settings)
+  return useTabs(props)
+}
 
-  return (
-    <Header
-      drawer={drawer}
-      logo={logo}
-      primaryNav={primaryNav}
-      secondaryNav={secondaryNav}
-    />
-  )
-})
+storiesOf('organisms/global/Header', module)
+  .addWithJSX('Default', () => {
+    const props = useTabs()
+
+    return <Header {...props} />
+  })
+  .addWithJSX('with search suggestions', () => {
+    const props = useTabs({ withSuggestions: true })
+
+    return <Header {...props} />
+  })

@@ -14,7 +14,7 @@ import Text from '../atoms/texts/Text'
 import { Paragraph } from '../helpers/Element'
 
 // Stories and data
-import { globalTab } from './TemplateWrap.stories.js'
+import { useGlobalTab } from './TemplateWrap.stories.js'
 import { pictureTab } from '../atoms/images/Picture.stories.js'
 import data from './Article.stories.json'
 
@@ -91,7 +91,7 @@ export function relatedTab(settings = {}) {
     : null
 }
 
-export function articleTabs(settings = {}) {
+export function useArticleTabs(settings = {}) {
   const related = relatedTab(settings)
 
   return {
@@ -99,13 +99,13 @@ export function articleTabs(settings = {}) {
     ...imageTab(settings),
     ...related,
     content: contentTab(settings),
-    ...globalTab(settings),
+    ...useGlobalTab(settings),
   }
 }
 
 storiesOf('templates/Article', module)
   .addWithJSX('Default', () => {
-    const { content, ...props } = articleTabs()
+    const { content, ...props } = useArticleTabs()
 
     return (
       <Article {...props}>
@@ -114,7 +114,7 @@ storiesOf('templates/Article', module)
     )
   })
   .addWithJSX('With related', () => {
-    const { content, ...props } = articleTabs({ showRelated: true })
+    const { content, ...props } = useArticleTabs({ showRelated: true })
 
     return (
       <Article {...props}>

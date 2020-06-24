@@ -3,10 +3,10 @@ import { storiesOf } from '@storybook/react'
 
 import ChannelMain from './ChannelMain'
 
-import { basicPageTabs } from './BasicPage.stories'
+import { useBasicPageTabs } from './BasicPage.stories'
 
 storiesOf('templates/ChannelMain', module).addWithJSX('Default', () => {
-  const { content, ...rest } = basicPageTabs({ kicker: 'Kicker' })
+  const { content, ...rest } = useBasicPageTabs({ kicker: 'Kicker' })
   const { title1, title2, title3, text1, text2, text3 } = content
 
   const demoContent = (

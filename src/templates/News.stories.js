@@ -6,7 +6,7 @@ import News from './News'
 
 // Stories and data
 import { pictureTab } from '../atoms/images/Picture.stories.js'
-import { globalTab } from './TemplateWrap.stories.js'
+import { useGlobalTab } from './TemplateWrap.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import data from './News.stories.json'
@@ -80,7 +80,7 @@ export function archiveTab(settings = {}) {
   }
 }
 
-export function newsTabs(settings = {}) {
+export function useNewsTabs(settings = {}) {
   const { pageHeader, aside } = getTabData(null, settings)
 
   const asideData = aside ? asideTab(aside) : null
@@ -92,28 +92,28 @@ export function newsTabs(settings = {}) {
     aside: asideData,
     media: mediaTab(settings),
     archive: archiveTab(settings),
-    ...globalTab(settings),
+    ...useGlobalTab(settings),
   }
 }
 
 storiesOf('templates/News', module)
   .addWithJSX('Default', () => {
-    const props = newsTabs()
+    const props = useNewsTabs()
 
     return <News {...props} />
   })
   .addWithJSX('No Aside', () => {
-    const props = newsTabs({ aside: null })
+    const props = useNewsTabs({ aside: null })
 
     return <News {...props} />
   })
   .addWithJSX('No primary media', () => {
-    const props = newsTabs({ hidePrimaryMedia: true })
+    const props = useNewsTabs({ hidePrimaryMedia: true })
 
     return <News {...props} />
   })
   .addWithJSX('No secondary media', () => {
-    const props = newsTabs({ hideSecondaryMedia: true })
+    const props = useNewsTabs({ hideSecondaryMedia: true })
 
     return <News {...props} />
   })

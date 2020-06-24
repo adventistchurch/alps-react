@@ -12,7 +12,7 @@ import breakoutData from '../molecules/blocks/BreakoutBlock.stories.json'
 import { breadcrumbsTab } from '../molecules/navigation/Breadcrumbs.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeaderLong.stories.js'
-import { globalTab } from './TemplateWrap.stories.js'
+import { useGlobalTab } from './TemplateWrap.stories.js'
 import data from './BasicPage.stories.json'
 
 function getTabData(name, settings = {}) {
@@ -58,18 +58,18 @@ export function sidebarTab(settings = {}) {
     : null
 }
 
-export function basicPageTabs(settings = {}) {
+export function useBasicPageTabs(settings = {}) {
   return {
     pageHeader: pageHeaderTab(settings),
     ...pageBreadcrumbsTab(settings),
     ...sidebarTab(settings),
     content: contentTab(settings),
-    ...globalTab(settings),
+    ...useGlobalTab(settings),
   }
 }
 
 storiesOf('templates/BasicPage', module).addWithJSX('Default', () => {
-  const { content, ...rest } = basicPageTabs()
+  const { content, ...rest } = useBasicPageTabs()
   const { title1, title2, title3, text1, text2, text3 } = content
 
   // Note: This is just a simple demo content.

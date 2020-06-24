@@ -5,7 +5,7 @@ import { object, text } from '@storybook/addon-knobs'
 import NewsArchive from './NewsArchive'
 
 // Stories and data
-import { globalTab } from './TemplateWrap.stories.js'
+import { useGlobalTab } from './TemplateWrap.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { paginationTab } from '../molecules/navigation/Pagination.stories.js'
 import { facetsTab } from '../molecules/forms/FacetFilter.stories.js'
@@ -32,7 +32,7 @@ export function articlesTab(settings = {}) {
   }
 }
 
-export function newsArchiveTabs(settings = {}) {
+export function useNewsArchiveTabs(settings = {}) {
   const { pageHeader, aside, pagination } = getTabData(null, settings)
 
   return {
@@ -41,12 +41,12 @@ export function newsArchiveTabs(settings = {}) {
     filters: facetsTab(settings),
     pagination: paginationTab(pagination),
     ...articlesTab(settings),
-    ...globalTab(settings),
+    ...useGlobalTab(settings),
   }
 }
 
 storiesOf('templates/NewsArchive', module).addWithJSX('Default', () => {
-  const props = newsArchiveTabs()
+  const props = useNewsArchiveTabs()
 
   return <NewsArchive {...props} />
 })

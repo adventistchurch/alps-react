@@ -13,12 +13,13 @@ import SecondaryNavigation from './SecondaryNavigation'
 function DrawerNavigation({
   aboutLeft,
   aboutRight,
-  onSearch,
   primaryNav,
   renderSearchBox,
+  search,
   secondaryNav,
 }) {
   const { closeDrawer, isOpen, setOpenSubNav } = useDrawerContext()
+  const searchProps = { hasFocus: isOpen.search, ...search }
 
   return (
     <GridSeven
@@ -47,9 +48,9 @@ function DrawerNavigation({
       >
         <div className="c-drawer__search">
           {renderSearchBox ? (
-            renderSearchBox(isOpen.search)
+            renderSearchBox(searchProps)
           ) : (
-            <SearchForm onSearch={onSearch} hasFocus={isOpen.search} />
+            <SearchForm {...searchProps} />
           )}
         </div>
         <div className="c-drawer__nav">
@@ -86,9 +87,9 @@ function DrawerNavigation({
 DrawerNavigation.propTypes = {
   aboutLeft: PropTypes.node,
   aboutRight: PropTypes.node,
-  onSearch: PropTypes.func,
   primaryNav: PropTypes.object,
   renderSearchBox: PropTypes.func,
+  search: PropTypes.object,
   secondaryNav: PropTypes.object,
 }
 

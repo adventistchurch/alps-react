@@ -14,7 +14,7 @@ import { videoFigureWithCaptionTab } from '../molecules/media/VideoFigureWithCap
 import { Paragraph } from '../helpers/Element'
 
 // Stories and data
-import { globalTab } from './TemplateWrap.stories.js'
+import { useGlobalTab } from './TemplateWrap.stories.js'
 import data from './ArticleVideo.stories.json'
 
 /* Note: This is just a simple demo content. */
@@ -84,19 +84,19 @@ export function segmentsTab(settings = {}) {
     : null
 }
 
-export function articleTabs(settings = {}) {
+export function useArticleTabs(settings = {}) {
   return {
     ...articleHeaderTab(settings),
     ...videoTab(settings),
     ...segmentsTab(settings),
     content: contentTab(settings),
-    ...globalTab(settings),
+    ...useGlobalTab(settings),
   }
 }
 
 storiesOf('templates/ArticleVideo', module)
   .addWithJSX('Default', () => {
-    const { content, ...props } = articleTabs()
+    const { content, ...props } = useArticleTabs()
 
     return (
       <ArticleVideo {...props}>
@@ -105,7 +105,7 @@ storiesOf('templates/ArticleVideo', module)
     )
   })
   .addWithJSX('With segments', () => {
-    const { content, ...props } = articleTabs({ showSegments: true })
+    const { content, ...props } = useArticleTabs({ showSegments: true })
 
     return (
       <ArticleVideo {...props}>
