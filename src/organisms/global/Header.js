@@ -44,7 +44,7 @@ Header.propTypes = {
   drawer: PropTypes.object,
   logo: PropTypes.shape({
     canBeDark: PropTypes.bool,
-    link: PropTypes.string,
+    link: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     element: PropTypes.node,
     useFillTheme: PropTypes.bool,
   }),
