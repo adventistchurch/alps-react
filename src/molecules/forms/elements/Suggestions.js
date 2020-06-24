@@ -3,27 +3,19 @@ import PropTypes from 'prop-types'
 
 import { UL, LI, Link } from '../../../helpers/Element'
 
-const styles = {
-  autocomlete: {
-    list: {
-      position: 'absolute',
-      width: '100%',
-    },
-  },
-}
-
 export default function Suggestions({ items }) {
   return (
-    <UL
-      style={styles.autocomlete.list}
-      themeBorder="dark"
-      borderSide="bottom"
-      backgroundColor="white"
-    >
-      {items.map(({ label, href, onClick, key }) => (
-        <LI key={key} paddingSize="half">
-          <Link onClick={onClick} href={href} themeColor="darker">
-            {label}
+    <UL className="o-suggestions">
+      {items.map(({ text, href, onClick, key }) => (
+        <LI
+          key={key}
+          className="o-suggestions__item"
+          fontType="secondary"
+          paddingSide={['top', 'bottom']}
+          paddingSize="half"
+        >
+          <Link className="o-suggestions__link" onClick={onClick} href={href}>
+            {text}
           </Link>
         </LI>
       ))}
