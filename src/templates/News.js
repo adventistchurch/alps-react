@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import Grid from '../atoms/grids/Grid'
 import GridItem from '../atoms/grids/GridItem'
 import GridSeven from '../atoms/grids/GridSeven'
+import { Div } from '../helpers/Element'
 import MediaBlock from '../molecules/blocks/MediaBlock'
+import Pagination from '../molecules/navigation/Pagination'
 import Aside from '../organisms/asides/Aside'
 import ListContent from '../organisms/content/ListContent'
 import PageHeader from '../organisms/sections/PageHeader'
@@ -18,6 +20,7 @@ function News({
   pageHeader,
   featured,
   media,
+  pagination,
   subscribeForm,
   ...templateProps
 }) {
@@ -57,6 +60,11 @@ function News({
                 />
               ))}
           </ListContent>
+          {pagination && (
+            <Div paddingSide="top" paddingSize="double">
+              <Pagination {...pagination} />
+            </Div>
+          )}
         </GridItem>
 
         {aside && (

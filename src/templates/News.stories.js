@@ -9,6 +9,7 @@ import { pictureTab } from '../atoms/images/Picture.stories.js'
 import { useGlobalTab } from './TemplateWrap.stories.js'
 import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
+import { paginationTab } from '../molecules/navigation/Pagination.stories.js'
 import data from './News.stories.json'
 
 function getTabData(name, settings = {}) {
@@ -81,7 +82,10 @@ export function archiveTab(settings = {}) {
 }
 
 export function useNewsTabs(settings = {}) {
-  const { pageHeader, aside } = getTabData(null, settings)
+  const { pageHeader, pagination, aside, withPagination } = getTabData(
+    null,
+    settings
+  )
 
   const asideData = aside ? asideTab(aside) : null
 
@@ -92,6 +96,7 @@ export function useNewsTabs(settings = {}) {
     aside: asideData,
     media: mediaTab(settings),
     archive: archiveTab(settings),
+    pagination: withPagination ? paginationTab(pagination) : undefined,
     ...useGlobalTab(settings),
   }
 }
@@ -114,6 +119,11 @@ storiesOf('templates/News', module)
   })
   .addWithJSX('No secondary media', () => {
     const props = useNewsTabs({ hideSecondaryMedia: true })
+
+    return <News {...props} />
+  })
+  .addWithJSX('with pagination', () => {
+    const props = useNewsTabs({ withPagination: true })
 
     return <News {...props} />
   })
