@@ -5,7 +5,7 @@ import { text, object } from '@storybook/addon-knobs'
 import Search from './Search'
 import data from './Search.stories.json'
 
-function getTabData(name, settings = {}) {
+function useTabData(name, settings = {}) {
   return {
     tab: name,
     ...Search.defaultProps,
@@ -14,48 +14,47 @@ function getTabData(name, settings = {}) {
   }
 }
 
-export function generalTab(settings = {}) {
+export function useSearchTab(settings = {}) {
   const {
     placeholder,
     title,
-    submitLabel,
     suggestions,
-    withSuggestions,
+    defaultTerm,
     tab,
-  } = getTabData('General', settings)
+    withSuggestions = false,
+  } = useTabData('Search', settings)
+
+  const initialTerm = withSuggestions
+    ? text('Default Term', defaultTerm, tab)
+    : undefined
+
+  const [term, setTerm] = useState(initialTerm)
+
+  const onSearch = e => {
+    setTerm(e.target.value)
+  }
 
   return {
     placeholder: text('Placeholder', placeholder, tab),
     title: text('Form Title (screen readers only)', title, tab),
-    submitLabel: text('Submit Button (screen readers only)', submitLabel, tab),
     suggestions: withSuggestions
-      ? object('Suggestions', suggestions, 'Suggestions')
-      : null,
+      ? object('Suggestions', term ? suggestions : null, tab)
+      : undefined,
+    onSearch: withSuggestions ? onSearch : undefined,
+    term,
   }
 }
 
 storiesOf('molecules/forms/Search', module).addWithJSX('Default', () => {
-  const props = generalTab()
+  const props = useSearchTab()
   return <Search {...props} />
 })
 
 storiesOf('molecules/forms/Search', module).addWithJSX(
   'with suggestions',
   () => {
-    const { suggestions, ...props } = generalTab({ withSuggestions: true })
+    const props = useSearchTab({ withSuggestions: true, defaultTerm: 'Hi' })
 
-    const [term, setTerm] = useState()
-
-    const onSearch = e => setTerm(e.target.value)
-
-    return (
-      <Search
-        {...props}
-        hasFocus
-        onSearch={onSearch}
-        value={term}
-        suggestions={term ? suggestions : null}
-      />
-    )
+    return <Search {...props} hasFocus />
   }
 )

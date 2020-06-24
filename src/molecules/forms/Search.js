@@ -12,6 +12,7 @@ const styles = {
 }
 
 function Search({
+  term,
   hasFocus,
   onSubmit,
   placeholder,
@@ -19,7 +20,6 @@ function Search({
   onSearch,
   suggestions,
   title,
-  value,
   ...props
 }) {
   return (
@@ -33,7 +33,7 @@ function Search({
             placeholder={placeholder}
             hasFocus={hasFocus}
             onChange={onSearch}
-            value={value}
+            value={term}
             required
             autoComplete="off"
           />
@@ -57,8 +57,8 @@ Search.propTypes = {
   placeholder: PropTypes.string,
   submitLabel: PropTypes.string,
   suggestions: PropTypes.array,
+  term: PropTypes.string,
   title: PropTypes.string,
-  value: PropTypes.string,
 }
 
 Search.defaultProps = {
