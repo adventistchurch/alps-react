@@ -1,6 +1,5 @@
 {
-  "search": {},
-  "primary": {
+  "media": {
     "title": "News",
     "linkLabel": "See All",
     "linkUrl": "#/news/all",
@@ -39,8 +38,8 @@
       }
     ]
   },
-  "secondary": {
-    "title": "More News",
+  "comments": {
+    "title": "Comments",
     "linkLabel": "See All",
     "linkUrl": "#/news/all",
     "items": [
