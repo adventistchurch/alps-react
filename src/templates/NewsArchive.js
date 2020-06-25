@@ -58,10 +58,16 @@ function NewsArchive({
           paddingSize="zero"
           spacingSize="double"
         >
-          <ListContent title={filtersTitle} linkUrl={null} paddingSide="right">
-            <FacetFilter {...filtersProps} title={null} />
-          </ListContent>
-          {aside && <Aside {...aside} />}
+          <Aside>
+            <ListContent
+              title={filtersTitle}
+              linkUrl={null}
+              paddingSide="right"
+            >
+              <FacetFilter {...filtersProps} title={null} />
+            </ListContent>
+            {aside && aside.children}
+          </Aside>
         </GridItem>
       </Grid>
     </BlankTemplate>

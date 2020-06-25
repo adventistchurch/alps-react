@@ -37,7 +37,7 @@ export function useNewsArchiveTabs(settings = {}) {
 
   return {
     pageHeader: pageHeaderTab(pageHeader),
-    aside: aside ? asideTab({ aside, hideSecondary: true }) : null,
+    aside: aside ? asideTab(aside) : null,
     filters: facetsTab(settings),
     pagination: paginationTab(pagination),
     ...articlesTab(settings),
