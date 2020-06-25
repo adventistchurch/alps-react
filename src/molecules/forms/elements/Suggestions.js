@@ -5,7 +5,7 @@ import { UL, LI, Link } from '../../../helpers/Element'
 
 export default function Suggestions({ items }) {
   return (
-    <UL className="o-suggestions" borderSide="bottom">
+    <UL className="o-suggestions" borderSide="bottom" themeColor="base">
       {items.map(({ text, href, onClick, key }) => (
         <LI
           key={key}
