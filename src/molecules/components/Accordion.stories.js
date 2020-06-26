@@ -69,7 +69,7 @@ const items = [
   },
   {
     heading: 'With onChange',
-    onChange: open => console.log('Is open?', open),
+    onChange: open => console.log('Is open?', open), // eslint-disable-line no-console
     content: (
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam
