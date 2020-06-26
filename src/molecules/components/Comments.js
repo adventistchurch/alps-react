@@ -5,7 +5,7 @@ import Accordion from './Accordion'
 
 import AccordionItem from './AccordionItem'
 
-function Comments({ heading, content, icon, expanded }) {
+function Comments({ heading, content, icon, expanded, onChange }) {
   return (
     <Accordion>
       <AccordionItem
@@ -13,6 +13,7 @@ function Comments({ heading, content, icon, expanded }) {
         content={content}
         icon={icon}
         open={expanded}
+        onChange={onChange}
       />
     </Accordion>
   )
@@ -23,6 +24,7 @@ Comments.propTypes = {
   content: PropTypes.node,
   icon: PropTypes.string,
   expanded: PropTypes.bool,
+  onChange: PropTypes.func,
 }
 
 Comments.defaultProps = {
