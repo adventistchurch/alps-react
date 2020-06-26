@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
@@ -10,9 +10,16 @@ export default function AccordionItem({
   content,
   icon,
   heading,
-  open,
+  open: initialOpen,
+  onChange,
 }) {
-  const { onToggle, openClass } = useToggle(open)
+  const { onToggle, openClass, open } = useToggle(initialOpen)
+
+  const _onToggle = useCallback(() => {
+    if (onChange) onChange(!open)
+
+    onToggle()
+  }, [onChange, onToggle, open])
 
   return (
     <Div
@@ -26,7 +33,7 @@ export default function AccordionItem({
         className="c-accordion__heading"
         fontType="primary"
         fontSize="m"
-        onClick={onToggle}
+        onClick={_onToggle}
         themeColor="darker"
         allowSelect={false}
       >
@@ -65,5 +72,6 @@ AccordionItem.propTypes = {
   content: PropTypes.node,
   heading: PropTypes.node.isRequired,
   icon: PropTypes.string,
+  onChange: PropTypes.func,
   open: PropTypes.bool,
 }

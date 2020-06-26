@@ -67,6 +67,17 @@ const items = [
       </p>
     ),
   },
+  {
+    heading: 'With onChange',
+    onChange: open => console.log('Is open?', open),
+    content: (
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam
+        impedit esse dolores maiores repellat doloremque quae animi sapiente
+        odio voluptate?
+      </p>
+    ),
+  },
 ]
 
 storiesOf('molecules/components/Accordion', module)
