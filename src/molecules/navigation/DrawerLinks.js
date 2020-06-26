@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import { Div, HeadingThree, Link, Paragraph } from '../../helpers/Element'
 
-export default function DrawerList({ title, items }) {
+export default function DrawerLinks({ title, items }) {
   return (
-    <Div spacingSize="half" li>
+    <Div spacingSize="half">
       <HeadingThree
         fontType="secondary"
         fontSize="s"
@@ -26,7 +26,7 @@ export default function DrawerList({ title, items }) {
   )
 }
 
-DrawerList.propTypes = {
+DrawerLinks.propTypes = {
   title: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -35,6 +35,6 @@ DrawerList.propTypes = {
     })
   ),
 }
-DrawerList.defaultProps = {
+DrawerLinks.defaultProps = {
   items: [],
 }
