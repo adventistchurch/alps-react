@@ -121,13 +121,13 @@ function ContentBlock({
 }
 
 ContentBlock.propTypes = {
-  category: PropTypes.string,
+  category: PropTypes.node,
   className: PropTypes.string,
   cta: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.node,
   image: MediaImage.propTypes.image,
   more: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.node,
   titleProps: PropTypes.object,
   titleSize: PropTypes.oneOf(['s', 'm', 'l']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
