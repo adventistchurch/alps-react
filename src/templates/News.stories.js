@@ -87,13 +87,11 @@ export function useNewsTabs(settings = {}) {
     settings
   )
 
-  const asideData = aside ? asideTab(aside) : null
-
   return {
     pageHeader: pageHeaderTab(pageHeader),
     featured: featuredTab(settings),
     latest: latestTab(settings),
-    aside: asideData,
+    aside: aside ? asideTab(aside) : null,
     media: mediaTab(settings),
     archive: archiveTab(settings),
     pagination: withPagination ? paginationTab(pagination) : undefined,

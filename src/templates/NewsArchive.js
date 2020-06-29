@@ -66,7 +66,7 @@ function NewsArchive({
             >
               <FacetFilter {...filtersProps} title={null} />
             </ListContent>
-            {aside && aside.children}
+            {aside}
           </Aside>
         </GridItem>
       </Grid>

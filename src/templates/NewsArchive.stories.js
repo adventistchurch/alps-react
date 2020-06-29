@@ -35,9 +35,11 @@ export function articlesTab(settings = {}) {
 export function useNewsArchiveTabs(settings = {}) {
   const { pageHeader, aside, pagination } = getTabData(null, settings)
 
+  const asideChildren = aside ? asideTab(aside) : null
+
   return {
     pageHeader: pageHeaderTab(pageHeader),
-    aside: aside ? asideTab(aside) : null,
+    aside: asideChildren,
     filters: facetsTab(settings),
     pagination: paginationTab(pagination),
     ...articlesTab(settings),

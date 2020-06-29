@@ -61,7 +61,7 @@ function BasicPage({
               spacing
             >
               {breakout && <BreakoutBlock {...breakout} />}
-              {aside && <Aside {...aside} />}
+              {aside && <Aside>{aside}</Aside>}
               {relatedPosts && <RelatedPosts {...relatedPosts} />}
             </Div>
           )}

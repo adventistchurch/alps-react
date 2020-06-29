@@ -45,18 +45,16 @@ export function asideTab(settings = {}) {
   const mediaProps = mediaBlocksTab({ ...defaultSettings, ...settings })
   const commentsProps = commentsBlocksTab({ ...defaultSettings, ...settings })
 
-  return {
-    children: (
-      <>
-        <BlockWrap type="mediaBlock" {...mediaProps} />
-        <BlockWrap type="contentBlock" {...commentsProps} />
-      </>
-    ),
-  }
+  return (
+    <>
+      <BlockWrap type="mediaBlock" {...mediaProps} />
+      <BlockWrap type="contentBlock" {...commentsProps} />
+    </>
+  )
 }
 
 storiesOf('organisms/asides/Aside', module).addWithJSX('Default', () => {
-  const props = asideTab({ parentTab: '' })
+  const children = asideTab({ parentTab: '' })
 
-  return <Aside {...props} />
+  return <Aside>{children}</Aside>
 })

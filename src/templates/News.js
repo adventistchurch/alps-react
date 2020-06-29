@@ -69,7 +69,7 @@ function News({
 
         {aside && (
           <GridItem sizeAtL={2} paddingSide="sides" paddingSize="zero">
-            <Aside {...aside} />
+            <Aside>{aside}</Aside>
           </GridItem>
         )}
       </Grid>
