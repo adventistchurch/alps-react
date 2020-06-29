@@ -13,6 +13,7 @@ function Comment({
   children,
   date,
   dateFormat,
+  dateLocales,
   editLabel,
   editUrl,
   replyLabel,
@@ -42,7 +43,11 @@ function Comment({
             canBe="white"
             color="gray"
           >
-            <DateTimeFormat datetime={date} format={dateFormat} />
+            <DateTimeFormat
+              datetime={date}
+              format={dateFormat}
+              locales={dateLocales}
+            />
           </Span>
           {editUrl && (
             <Span
@@ -82,6 +87,7 @@ Comment.propTypes = {
   children: PropTypes.node,
   date: PropTypes.number,
   dateFormat: PropTypes.oneOf(dateFormats),
+  dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   editUrl: PropTypes.string,
   editLabel: PropTypes.string,
   replyLabel: PropTypes.string,

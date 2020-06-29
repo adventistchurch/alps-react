@@ -21,7 +21,7 @@ export const mediaBlocksTypes = Object.keys(presets)
 /**
  * The MediaBlock Component
  */
-function MediaBlock({
+export default function MediaBlock({
   asBackgroundImage,
   mediaIcon,
   blockProps,
@@ -31,6 +31,7 @@ function MediaBlock({
   ctaIcon,
   date,
   dateFormat,
+  dateLocales,
   dateStyle,
   description,
   image,
@@ -54,10 +55,10 @@ function MediaBlock({
 
   const wrapClasses = useClasses(`c-media-block c-block`, {
     [`c-block__${blockType}`]: blockType,
-    [`c-block__stacked--until-small`]:
+    'c-block__stacked--until-small':
       blockType && (stackedUntilSmall || preset.stackedUntilSmall),
-    [`c-media-block--reversed`]: blockType && isReversed, // TODO: Ask how reverse clases works in ALPS?
-    [`c-block--reversed`]: blockType && isReversed,
+    'c-media-block--reversed': blockType && isReversed, // TODO: Ask how reverse clases work in ALPS?
+    'c-block--reversed': blockType && isReversed,
   })
 
   return (
@@ -135,6 +136,7 @@ function MediaBlock({
                 >
                   <DateTimeFormat
                     datetime={date}
+                    locales={dateLocales}
                     format={dateFormat}
                     style={dateStyle}
                   />
@@ -175,6 +177,7 @@ MediaBlock.propTypes = {
     PropTypes.string,
   ]),
   dateFormat: PropTypes.oneOf(dateFormats),
+  dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   dateStyle: PropTypes.object,
   image: MediaImage.propTypes.image,
   imageProps: PropTypes.shape(Element.propTypes),
@@ -194,5 +197,3 @@ MediaBlock.defaultProps = {
   dateFormat: 'date',
   dateStyle: { date: 'long' },
 }
-
-export default MediaBlock
