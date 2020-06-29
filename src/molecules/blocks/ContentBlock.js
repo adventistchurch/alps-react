@@ -133,6 +133,8 @@ ContentBlock.propTypes = {
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
-ContentBlock.defaultProps = {}
+ContentBlock.defaultProps = {
+  className: '',
+}
 
 export default ContentBlock
