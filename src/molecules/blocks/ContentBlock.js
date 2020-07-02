@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 
 import MediaImage from './MediaImage'
 import Button from '../../atoms/buttons/Button'
-import { Div, HeadingThree, Link, Paragraph, Span } from '../../helpers/Element'
+import Element, {
+  Div,
+  HeadingThree,
+  Link,
+  Paragraph,
+  Span,
+} from '../../helpers/Element'
+import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
 import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
 
@@ -11,6 +18,10 @@ function ContentBlock({
   category,
   className,
   cta,
+  date,
+  dateLocales,
+  dateFormat,
+  dateStyle,
   description,
   image,
   more,
@@ -74,14 +85,34 @@ function ContentBlock({
         <Paragraph className={`c-block__body`}>{description}</Paragraph>
       )}
 
-      {category && (
+      {(category || date) && (
         <Span
           className="c-block__meta"
           themeColor="dark"
           fontSize="xs"
           fontType="secondary"
         >
-          {category}
+          {category && (
+            <Div className="c-block__category" transform="upper">
+              {category}
+            </Div>
+          )}
+
+          {date && (
+            <Element
+              as="time"
+              className="c-block__date"
+              dateTime={date}
+              transform="upper"
+            >
+              <DateTimeFormat
+                datetime={date}
+                locales={dateLocales}
+                format={dateFormat}
+                style={dateStyle}
+              />
+            </Element>
+          )}
         </Span>
       )}
 
@@ -124,6 +155,14 @@ ContentBlock.propTypes = {
   category: PropTypes.node,
   className: PropTypes.string,
   cta: PropTypes.string,
+  date: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  dateFormat: PropTypes.oneOf(dateFormats),
+  dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  dateStyle: PropTypes.object,
   description: PropTypes.node,
   image: MediaImage.propTypes.image,
   more: PropTypes.string,
