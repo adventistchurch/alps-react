@@ -95,7 +95,9 @@ Caso você queira adicionar programaticamente, a variável `externalAssets` é e
 ```jsx
 import { Helmet } from "react-helmet"
 
-import { externalAssets, Wrapper } from 'alps-react'
+import { getExternalAssets, Wrapper } from 'alps-react'
+
+const externalAssets = getExternalAssets({ version: '3.6.3', theme: 'bluejay' })
 
 function MyApp () {
     return (
