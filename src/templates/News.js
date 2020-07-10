@@ -27,7 +27,7 @@ function News({
   return (
     <BlankTemplate {...templateProps}>
       <div>
-        <PageHeader {...pageHeader} />
+        {pageHeader && <PageHeader {...pageHeader} />}
         {featured && (
           <PageHeaderFeature
             asBackgroundImage

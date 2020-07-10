@@ -88,7 +88,7 @@ export function useNewsTabs(settings = {}) {
   )
 
   return {
-    pageHeader: pageHeaderTab(pageHeader),
+    pageHeader: pageHeader ? pageHeaderTab(pageHeader) : null,
     featured: featuredTab(settings),
     latest: latestTab(settings),
     aside: aside ? asideTab(aside) : null,
@@ -102,26 +102,25 @@ export function useNewsTabs(settings = {}) {
 storiesOf('templates/News', module)
   .addWithJSX('Default', () => {
     const props = useNewsTabs()
-
+    return <News {...props} />
+  })
+  .addWithJSX('No Header', () => {
+    const props = useNewsTabs({ pageHeader: null })
     return <News {...props} />
   })
   .addWithJSX('No Aside', () => {
     const props = useNewsTabs({ aside: null })
-
     return <News {...props} />
   })
   .addWithJSX('No primary media', () => {
     const props = useNewsTabs({ hidePrimaryMedia: true })
-
     return <News {...props} />
   })
   .addWithJSX('No secondary media', () => {
     const props = useNewsTabs({ hideSecondaryMedia: true })
-
     return <News {...props} />
   })
   .addWithJSX('with pagination', () => {
     const props = useNewsTabs({ withPagination: true })
-
     return <News {...props} />
   })
