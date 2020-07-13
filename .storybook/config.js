@@ -43,6 +43,10 @@ addParameters({
   options: {
     theme,
   },
+
+  jsx: {
+    filterProps: val => val !== undefined,
+  },
 })
 
 const req = require.context('../src', true, /\.stories\.js$/)
