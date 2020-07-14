@@ -28,11 +28,20 @@ export function generalTab(settings = {}) {
 
 export function iconTab(settings = {}) {
   const { icon, iconPosition, iconSize, tab } = getTabData('Icon', settings)
+
+  const selectedIcon = select('Icon', ['', ...iconNames], icon, tab)
+
   return {
-    icon: select('Icon', iconNames, icon, tab),
-    iconSize: select('Size', iconSizes, iconSize, tab),
-    iconPosition: select('Position', iconPositions, iconPosition, tab),
-    iconFill: select('Fill', { white: 'white', '-': null }, iconPosition, tab),
+    icon: selectedIcon,
+    iconSize: selectedIcon
+      ? select('Size', iconSizes, iconSize, tab)
+      : undefined,
+    iconPosition: selectedIcon
+      ? select('Position', iconPositions, iconPosition, tab)
+      : undefined,
+    iconFill: selectedIcon
+      ? select('Fill', { white: 'white', '-': null }, iconPosition, tab)
+      : undefined,
   }
 }
 
