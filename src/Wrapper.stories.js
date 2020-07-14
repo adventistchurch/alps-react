@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { storiesOf } from '@storybook/react'
-import {} from '@storybook/addon-knobs'
 
 import Wrapper from './Wrapper'
+import { wrapperTab } from './Wrapper.tabs.js'
 import Button from './atoms/buttons/Button'
 import Blockquote from './atoms/texts/Blockquote'
 import MediaBlock from './molecules/blocks/MediaBlock'
@@ -20,8 +20,9 @@ CustomLinkWrapper.propTypes = {
 
 storiesOf('helpers/Wrapper', module)
   .addWithJSX('Default', () => {
+    const props = wrapperTab()
     return (
-      <Wrapper hasGrid primaryColor="ming">
+      <Wrapper {...props}>
         <Div spacingSize="double" padding>
           <Button text="Welcome to ALPS-React" />
 
@@ -52,8 +53,9 @@ storiesOf('helpers/Wrapper', module)
   })
 
   .addWithJSX('With LinkWrapper', () => {
+    const props = wrapperTab()
     return (
-      <Wrapper hasGrid primaryColor="ming" LinkWrapper={CustomLinkWrapper}>
+      <Wrapper {...props} LinkWrapper={CustomLinkWrapper}>
         <Div spacingSize="double" padding>
           <Div>
             <Button
