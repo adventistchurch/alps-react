@@ -8,6 +8,7 @@ import {
 } from '@storybook/react'
 import { boolean, select, withKnobs } from '@storybook/addon-knobs'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+import { withHTML } from '@whitespace/storybook-addon-html/react'
 import JSXAddon from 'storybook-addon-jsx'
 
 import Wrapper from '../src/Wrapper'
@@ -28,6 +29,14 @@ addDecorator(story => {
 })
 
 addDecorator(
+  withHTML({
+    prettier: {
+      tabWidth: 2,
+      useTabs: false,
+      jsxBracketSameLine: true,
+      htmlWhitespaceSensitivity: 'ignore',
+    },
+  }),
   withKnobs({
     escapeHTML: false,
   })
