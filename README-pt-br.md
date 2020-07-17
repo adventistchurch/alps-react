@@ -94,10 +94,12 @@ Você deve incluir também, na tag `<head>` do seu HTML as fontes e os arquivos 
 <link
   rel="stylesheet"
   type="text/css"
-  href="//cdn.adventist.org/alps/3/latest/css/main.css"
+  href="//cdn.adventist.org/alps/3/3.6.3/css/main-bluejay.css"
   media="all"
 />
 ```
+
+_Nota_: Substitua `bluejay` pela cor do tema ALPS que você planeja usar (verifique o array`primaryColors` em `src/atoms/global/colors.js` para todas as opções disponíveis)
 
 Caso você queira adicionar programaticamente, a variável `externalAssets` é exposta em `alps-react`:
 

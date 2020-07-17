@@ -96,10 +96,12 @@ You should also include in your HTML `<head>` ALPS stylesheets and fonts from th
 <link
   rel="stylesheet"
   type="text/css"
-  href="//cdn.adventist.org/alps/3/latest/css/main.css"
+  href="//cdn.adventist.org/alps/3/3.6.3/css/main-bluejay.css"
   media="all"
 />
 ```
+
+_Note_: Replace `bluejay` with the ALPS theme color you are planing to use (check `primaryColors` array in `src/atoms/global/colors.js` for all available options)
 
 If you need to add this programatically, the `externalAssets` variable is exposed by `alps-react`:
 
