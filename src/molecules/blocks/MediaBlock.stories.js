@@ -20,16 +20,18 @@ function getTabData(tab, settings = {}) {
 }
 
 function textsTab(settings = {}) {
-  const { description, kicker, title, titlePrefix, tab } = getTabData(
+  const { description, kicker, title, titlePrefix, titleAs, tab } = getTabData(
     'Texts',
     settings
   )
 
   return {
-    kicker: text('Kicker', kicker, tab),
     title: text('Title', title, tab),
+    titleAs: select('Title tag', ['h1', 'h2', 'h3', 'h4'], titleAs, tab),
     titlePrefix: text('Title prefix', titlePrefix, tab),
     description: text('Description', description, tab),
+    kicker: text('Kicker', kicker, tab),
+    kickerAs: select('Kicker tag', ['h1', 'h2', 'h3', 'h4'], titleAs, tab),
   }
 }
 

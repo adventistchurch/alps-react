@@ -4,13 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import Figure from '../../molecules/media/Figure'
 import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
-import Element, {
-  Em,
-  Div,
-  HeadingFour,
-  HeadingThree,
-  Link,
-} from '../../helpers/Element'
+import Element, { Em, Div, Link } from '../../helpers/Element'
 import useClasses from '../../helpers/useClasses'
 
 import MediaImage from './MediaImage'
@@ -37,9 +31,11 @@ export default function MediaBlock({
   image,
   imageProps,
   kicker,
+  kickerAs,
   reversed,
   stackedUntilSmall,
   title,
+  titleAs,
   titlePrefix,
   type,
   video,
@@ -88,17 +84,19 @@ export default function MediaBlock({
         <Div className="c-block__group" spacing {...preset.group}>
           <Div className="u-width--100p" spacing>
             {kicker && (
-              <HeadingFour
+              <Element
+                as={kickerAs}
                 className="c-block__kicker"
                 spaceSide="bottom"
                 spaceSize="quarter"
                 {...preset.kicker}
               >
                 {kicker}
-              </HeadingFour>
+              </Element>
             )}
             {title && (
-              <HeadingThree
+              <Element
+                as={titleAs}
                 className="c-block__title"
                 spaceSize={kicker ? 'zero' : null}
                 themeColor="dark"
@@ -114,7 +112,7 @@ export default function MediaBlock({
                   {titlePrefix && <Em themeColor="lighter">{titlePrefix}: </Em>}
                   {title}
                 </Link>
-              </HeadingThree>
+              </Element>
             )}
             {description && (
               <p className="c-block__description">{description}</p>
@@ -182,10 +180,12 @@ MediaBlock.propTypes = {
   image: MediaImage.propTypes.image,
   imageProps: PropTypes.shape(Element.propTypes),
   kicker: PropTypes.string,
+  kickerAs: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   reversed: PropTypes.bool,
   stackedUntilSmall: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  titleAs: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
   titlePrefix: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   type: PropTypes.oneOf(mediaBlocksTypes),
   video: PropTypes.node,
@@ -196,4 +196,6 @@ MediaBlock.defaultProps = {
   ctaIcon: 'arrow-long-right',
   dateFormat: 'date',
   dateStyle: { date: 'long' },
+  titleAs: 'h3',
+  kickerAs: 'h4',
 }
