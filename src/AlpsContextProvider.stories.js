@@ -2,14 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { storiesOf } from '@storybook/react'
+import { boolean, select } from '@storybook/addon-knobs'
 
+import { primaryColors, secondaryColors } from './atoms/global/colors'
 import Button from './atoms/buttons/Button'
 import Blockquote from './atoms/texts/Blockquote'
 import MediaBlock from './molecules/blocks/MediaBlock'
 import { Div, Link } from './helpers/Element'
 import AlpsContextProvider from './AlpsContextProvider'
 import Body from './Body'
-import { alpsThemeTab } from './AlpsTheme.tabs.js'
 
 function CustomLinkWrapper({ children, href }) {
   return <span data-link={href}>{children}</span>
@@ -17,6 +18,24 @@ function CustomLinkWrapper({ children, href }) {
 CustomLinkWrapper.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string.isRequired,
+}
+
+export function alpsThemeTab(settings = {}) {
+  const { secondaryColor, primaryColor, hasGrid, tab } = {
+    ...{ tab: 'Theme', primaryColor: 'ming', hasGrid: true },
+    ...settings,
+  }
+
+  return {
+    hasGrid: boolean('Has Grid', hasGrid, tab),
+    primaryColor: select('Primary color', primaryColors, primaryColor, tab),
+    secondaryColor: select(
+      'Secondary color',
+      secondaryColors,
+      secondaryColor,
+      tab
+    ),
+  }
 }
 
 storiesOf('helpers/AlpsContextProvider', module)
