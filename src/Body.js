@@ -24,7 +24,7 @@ export function ThemeWrap({
 ThemeWrap.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  color: PropTypes.pts,
+  color: PropTypes.string,
   hasGrid: PropTypes.bool,
 }
 
