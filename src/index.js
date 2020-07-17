@@ -9,7 +9,7 @@ export {
   default as AlpsContextProvider,
   DrawerContextProvider,
   LinkContextProvider,
-} from './Wrapper'
+} from './AlpsContextProvider'
 
 export function getExternalAssets({
   version = '3.6.3',
