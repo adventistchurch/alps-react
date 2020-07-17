@@ -1,9 +1,4 @@
-import {
-  configure,
-  addDecorator,
-  addParameters,
-  setAddon,
-} from '@storybook/react'
+import { addDecorator, addParameters, setAddon } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { withHTML } from '@whitespace/storybook-addon-html/react'
@@ -49,11 +44,3 @@ addParameters({
     filterProps: val => val !== undefined,
   },
 })
-
-const req = require.context('../src', true, /\.stories\.js$/)
-
-function loadStories() {
-  req.keys().forEach(filename => req(filename))
-}
-
-configure(loadStories, module)
