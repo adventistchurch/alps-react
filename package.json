@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rollup --config",
     "dev": "rollup --config --watch",
-    "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
+    "storybook": "start-storybook -p 9001 -s ./public -c .storybook --ci",
     "sb": "yarn storybook",
     "deploy": "npm run-script build && npm publish",
     "deploy:patch": "npm version patch && npm run deploy",
@@ -43,6 +43,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
+    "@storybook/addon-contexts": "^5.3.19",
     "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-viewport": "^5.3.19",
