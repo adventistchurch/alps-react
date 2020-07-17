@@ -106,7 +106,7 @@ Caso você queira adicionar programaticamente, a variável `externalAssets` é e
 ```jsx
 import { Helmet } from "react-helmet"
 
-import { getExternalAssets, Wrapper } from 'alps-react'
+import { getExternalAssets, AlpsContextProvider, Body } from 'alps-react'
 
 const externalAssets = getExternalAssets({ version: '3.6.3', theme: 'bluejay' })
 
@@ -114,17 +114,19 @@ function MyApp () {
     return (
       <React.Fragment>
         <Helmet>
-          <title>Meu App</title>
-          <link rel="canonical" href="http://meuapp.com" />
+          <title>My App</title>
+          <link rel="canonical" href="http://myapp.com" />
 
           {externalAssets.css.map(href => (
             <link rel="stylesheet" type="text/css" href={href} media="all" />
           ))}
         </Helmet>
 
-        <Wrapper hasGrid={true} primaryColor="bluejay">
-          {/* componentes ALPS-React entram aqui */}
-        </Wrapper>
+        <AlpsContextProvider>
+          <Body primaryColor="bluejay" hasGrid>
+            {/* ALPS-React components go here */}
+          </Body>
+        </AlpsContextProvider>
       </React.Fragment>
     )
   }

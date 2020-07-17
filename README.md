@@ -108,7 +108,7 @@ If you need to add this programatically, the `externalAssets` variable is expose
 ```jsx
 import { Helmet } from "react-helmet"
 
-import { getExternalAssets, Wrapper } from 'alps-react'
+import { getExternalAssets, AlpsContextProvider, Body } from 'alps-react'
 
 const externalAssets = getExternalAssets({ version: '3.6.3', theme: 'bluejay' })
 
@@ -124,9 +124,11 @@ function MyApp () {
           ))}
         </Helmet>
 
-        <Wrapper hasGrid={true} primaryColor="bluejay">
-          {/* ALPS-React components go here */}
-        </Wrapper>
+        <AlpsContextProvider>
+          <Body primaryColor="bluejay" hasGrid>
+            {/* ALPS-React components go here */}
+          </Body>
+        </AlpsContextProvider>
       </React.Fragment>
     )
   }
