@@ -5,19 +5,47 @@ import { primaryColors, secondaryColors } from './atoms/global/colors'
 import { Div } from './helpers/Element'
 import useDrawerContext from './helpers/useDrawerContext'
 
-function Body({ children, hasGrid, primaryColor, secondaryColor }) {
+export function ThemeWrap({
+  children,
+  className = '',
+  color,
+  hasGrid = false,
+}) {
+  return (
+    <Div
+      className={`${color ? `u-theme--${color}` : ''} ${
+        hasGrid ? 'has-grid' : ''
+      } ${className}`}
+    >
+      {children}
+    </Div>
+  )
+}
+ThemeWrap.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  color: PropTypes.pts,
+  hasGrid: PropTypes.bool,
+}
+
+export default function Body({
+  children,
+  hasGrid,
+  primaryColor,
+  secondaryColor,
+}) {
   const { isOpen } = useDrawerContext()
 
   return (
-    <Div className={`u-theme--${primaryColor}`}>
-      <Div
-        className={`body ${
-          secondaryColor ? `u-theme--${secondaryColor}` : ''
-        } ${hasGrid ? 'has-grid' : ''} ${isOpen.menu ? 'menu-is-active' : ''} `}
+    <ThemeWrap color={primaryColor}>
+      <ThemeWrap
+        color={secondaryColor}
+        hasGrid={hasGrid}
+        className={`body ${isOpen.menu ? 'menu-is-active' : ''} `}
       >
         {children}
-      </Div>
-    </Div>
+      </ThemeWrap>
+    </ThemeWrap>
   )
 }
 
@@ -27,9 +55,3 @@ Body.propTypes = {
   primaryColor: PropTypes.oneOf(primaryColors),
   secondaryColor: PropTypes.oneOf(secondaryColors),
 }
-Body.defaultProps = {
-  hasGrid: true,
-  primaryColor: 'ming',
-  secondaryColor: '',
-}
-export default Body

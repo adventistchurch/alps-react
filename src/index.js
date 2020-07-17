@@ -2,12 +2,11 @@ export * from './atoms/index'
 export * from './molecules/index'
 export * from './organisms/index'
 export * from './templates/index'
-
 export * from './helpers/Element'
 
+export * from './Body'
 export {
-  default as Wrapper,
-  Body,
+  default as AlpsContextProvider,
   DrawerContextProvider,
   LinkContextProvider,
 } from './Wrapper'

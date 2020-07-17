@@ -30,38 +30,47 @@ Adicione `alps-react` como depêndencia:
 Então importe e use os componentes no seu código:
 
 ```jsx
-import { Wrapper, Button, Blockquote, Div, MediaBlock } from 'alps-react'
+import {
+  AlpsContextProvider,
+  Body,
+  Button,
+  Blockquote,
+  Div,
+  MediaBlock,
+} from 'alps-react'
 
 function MyApp(props) {
   return (
-    // É necessário que o componente Wrapper seja o pai dos outros components do ALPS-React (normalmente em App root)
-    <Wrapper hasGrid={true} primaryColor="bluejay">
-      <Div spacingSize="double" padding>
-        <Button text="Bem-Vindo ao ALPS-React" />
+    // É necessário que o componente AlpsContextProvider seja o pai dos outros components do ALPS-React (normalmente em App root)
+    <AlpsContextProvider>
+      <Body primaryColor="bluejay" hasGrid>
+        <Div spacingSize="double" padding>
+          <Button text="Bem-Vindo ao ALPS-React" />
 
-        <MediaBlock
-          type="inline"
-          title="Sunt id vel ipsum at ut praesentium aut."
-          description="Repellat libero qui magni at ut sapiente facere nam veritatis."
-          kicker="Cumque omnis velit."
-          category="Church"
-          date={new Date()}
-          image={{
-            srcSet: {
-              default: '//picsum.photos/480/270?image=248',
-              '500': '//picsum.photos/720/405?image=248',
-              '900': '//picsum.photos/960/540?image=248',
-            },
-            alt: 'Placeholder image',
-          }}
-          reversed={true}
-          cta="Read more"
-          url="#/link/to/article"
-        />
+          <MediaBlock
+            type="inline"
+            title="Sunt id vel ipsum at ut praesentium aut."
+            description="Repellat libero qui magni at ut sapiente facere nam veritatis."
+            kicker="Cumque omnis velit."
+            category="Church"
+            date={new Date()}
+            image={{
+              srcSet: {
+                default: '//picsum.photos/480/270?image=248',
+                '500': '//picsum.photos/720/405?image=248',
+                '900': '//picsum.photos/960/540?image=248',
+              },
+              alt: 'Placeholder image',
+            }}
+            reversed={true}
+            cta="Read more"
+            url="#/link/to/article"
+          />
 
-        <Blockquote text="Asperiores quisquam perferendis dolor in amet." />
-      </Div>
-    </Wrapper>
+          <Blockquote text="Asperiores quisquam perferendis dolor in amet." />
+        </Div>
+      </Body>
+    </AlpsContextProvider>
   )
 }
 ```
