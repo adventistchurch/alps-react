@@ -5,7 +5,7 @@ import { withHTML } from '@whitespace/storybook-addon-html/react'
 import JSXAddon from 'storybook-addon-jsx'
 
 import theme from './theme'
-import withAlpsWrapper from './withAlpsWrapper'
+import { withAlpsContext, withAlpsTheme } from './withAlps'
 
 // IMPORTANT: this must be added BEFORE alps wrapper decorator
 addDecorator(
@@ -19,8 +19,11 @@ addDecorator(
   })
 )
 
-// Decorates story with current theme and grid wrapper
-addDecorator(withAlpsWrapper())
+// Decorates stories with theme colors and grid context
+addDecorator(withAlpsTheme())
+
+// Decorates stories with ALPS Context
+addDecorator(withAlpsContext())
 
 // IMPORTANT: this must be added AFTER alps wrapper decorator
 addDecorator(
