@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import { Link, LI } from '../../helpers/Element'
@@ -6,8 +6,11 @@ import useDrawerContext from '../../helpers/useDrawerContext'
 import SubNav from './SubNav'
 import SubNavArrow from './SubNavArrow'
 
-function getId(text, url) {
-  return text ? `${text.toLowerCase().replace(' ', '-')}-${url}` : url
+function useItemId(text, url) {
+  return useMemo(
+    () => (text ? `${text.toLowerCase().replace(' ', '-')}-${url}` : url),
+    [text, url]
+  )
 }
 
 function PrimaryNavItem({
@@ -22,17 +25,20 @@ function PrimaryNavItem({
 }) {
   const { isOpen, openSubNav, setOpenSubNav } = useDrawerContext()
 
-  const id = getId(text, url)
+  const id = useItemId(text, url)
 
   const openClass =
     (!(isOpen.search || isOpen.menu) && active) || openSubNav === id
       ? 'this-is-active'
       : ''
 
-  function onArrowClick(e) {
-    e.stopPropagation()
-    setOpenSubNav(openSubNav !== id ? id : null)
-  }
+  const onArrowClick = useCallback(
+    e => {
+      e.stopPropagation()
+      setOpenSubNav(openSubNav !== id ? id : null)
+    },
+    [id, openSubNav, setOpenSubNav]
+  )
 
   return (
     <LI
