@@ -15,7 +15,13 @@ export const blockTypes = [
   'longform',
 ]
 
-function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
+function PageHeaderFeature({
+  blocks,
+  blockType,
+  hasScroll,
+  titleAs,
+  ...props
+}) {
   const headerClasses = useClasses('c-page-header c-page-header__feature', {
     'c-page-header__3-col': blockType === 'column',
     'has-scroll': hasScroll,
@@ -25,9 +31,14 @@ function PageHeaderFeature({ blocks, blockType, hasScroll, ...props }) {
     <header className={headerClasses}>
       <div className="c-page-header__content">
         {blocks ? (
-          renderItems(blocks, MediaBlock, { type: blockType })
+          renderItems(blocks, MediaBlock, { type: blockType, titleAs })
         ) : (
-          <MediaBlock {...props} type={blockType} asBackgroundImage />
+          <MediaBlock
+            {...props}
+            type={blockType}
+            asBackgroundImage
+            titleAs={titleAs}
+          />
         )}
       </div>
       {hasScroll && <Link href="#top" className="c-page-header__scroll" />}
@@ -44,6 +55,7 @@ PageHeaderFeature.propTypes = {
 
 PageHeaderFeature.defaultProps = {
   blockType: 'feature',
+  titleAs: 'h1',
 }
 
 export default PageHeaderFeature
