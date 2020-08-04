@@ -96,7 +96,7 @@ You should also include in your HTML `<head>` ALPS stylesheets and fonts from th
 <link
   rel="stylesheet"
   type="text/css"
-  href="//cdn.adventist.org/alps/3/3.6.3/css/main-bluejay.css"
+  href="//cdn.adventist.org/alps/3/3.7.0/css/main-bluejay.css"
   media="all"
 />
 ```
@@ -110,7 +110,7 @@ import { Helmet } from "react-helmet"
 
 import { getExternalAssets, AlpsContextProvider, Body } from 'alps-react'
 
-const externalAssets = getExternalAssets({ version: '3.6.3', theme: 'bluejay' })
+const externalAssets = getExternalAssets({ version: '3.7.0', theme: 'bluejay' })
 
 function MyApp () {
     return (
