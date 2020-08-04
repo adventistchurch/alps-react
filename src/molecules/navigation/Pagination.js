@@ -13,8 +13,7 @@ const nextIcon = (
     name="arrow-bracket-right"
     size="m"
     themeColor="dark"
-    spaceSide="left"
-    spaceSize="half"
+    spaceLeft="half"
   />
 )
 const prevIcon = (
@@ -22,8 +21,7 @@ const prevIcon = (
     name="arrow-bracket-left"
     size="m"
     themeColor="dark"
-    spaceSide="right"
-    spaceSize="half"
+    spaceRight="half"
   />
 )
 

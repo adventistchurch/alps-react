@@ -5,7 +5,7 @@ import { Div, HeadingThree, Link, Paragraph } from '../../helpers/Element'
 
 export default function DrawerLinks({ title, items }) {
   return (
-    <Div spacingSize="half">
+    <Div spacing="half">
       <HeadingThree
         fontType="secondary"
         fontSize="s"
@@ -15,7 +15,7 @@ export default function DrawerLinks({ title, items }) {
         {title}:
       </HeadingThree>
 
-      <Paragraph spacingSize="half">
+      <Paragraph spacing="half">
         {items.map(({ text, url }, i) => (
           <Link href={url} linkColor="white" key={`${url}-${i}`}>
             {text}

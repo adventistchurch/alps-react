@@ -39,8 +39,7 @@ function ShareTools({ services, url }) {
         <IconWrap
           name="share"
           size="xs"
-          spaceSize="quarter"
-          spaceSide="right"
+          spaceRight="quarter"
           themeColor="base"
         />
         Share
@@ -51,8 +50,8 @@ function ShareTools({ services, url }) {
         backgroundColor="gray--light"
         themeBorder="darker"
         themeBorderSide="left"
-        spacingSize="half"
-        paddingSize="half"
+        spacing="half"
+        padding="half"
       >
         {services.map((props, key) => (
           <ShareToolItem {...props} key={`share-${key}`} />

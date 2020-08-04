@@ -16,7 +16,7 @@ function SearchResults({
   showLoadMore,
 }) {
   return (
-    <Text className="c-search-results" spacingSize="double">
+    <Text className="c-search-results" spacing="double">
       {Array.isArray(results) && results.length > 0 ? (
         results.map(({ cta, ...rest }, i) => (
           <ContentBlock
@@ -35,8 +35,8 @@ function SearchResults({
           as="a"
           url={loadMoreUrl}
           onClick={onLoadMore}
-          spaceSide="left"
           text={loadMoreLabel}
+          spaceLeft
         />
       )}
     </Text>

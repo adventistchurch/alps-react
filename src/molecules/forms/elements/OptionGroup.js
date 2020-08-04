@@ -47,7 +47,7 @@ OptionGroup.propTypes = {
 }
 OptionGroup.defaultProps = {
   options: [],
-  spacingSize: 'half',
+  spacing: 'half',
   titleFontSize: 's',
   titleFontType: 'secondary',
 }

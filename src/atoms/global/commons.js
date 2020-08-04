@@ -15,7 +15,7 @@ export const positionOptions = ['absolute', 'relative']
 // Common Functions:
 
 function getMod(key) {
-  return key ? `--${key}` : ''
+  return typeof key === 'string' ? `--${key}` : ''
 }
 
 export function getBaseClass(baseClass, mods = []) {

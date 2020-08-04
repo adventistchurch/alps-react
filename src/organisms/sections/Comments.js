@@ -33,7 +33,7 @@ CommentsList.defaultProps = {
 
 function Comments({ items, title }) {
   return (
-    <Section className="c-comments" spacingSize="double">
+    <Section className="c-comments" spacing="double">
       <HeadingBlock title={title} />
       <CommentsList items={items} level={0} />
       <CommentForm /> {/* TODO: Set CommentForm props here...*/}

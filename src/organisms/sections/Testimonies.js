@@ -34,8 +34,7 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
     <Section className="c-testimonies" position="relative" spacing>
       <HeadingBlock
         linkText={linkText}
-        spaceSide="bottom"
-        spaceSize="double"
+        spaceBottom="double"
         title={title}
         url={linkUrl}
       />
@@ -47,14 +46,13 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
             gridItemSizeAtL={2}
             gridItemSizeAtXL={1}
             key={`slide-${key}`}
-            paddingSide="sides"
-            paddingSize="zero"
-            spaceSide="bottom"
+            paddingSides="zero"
+            spaceBottom
           >
             <ContentBlock
               {...item}
-              spacingSize="half"
-              paddingSide="right"
+              spacing="half"
+              paddingRight
               titleProps={{
                 fontType: 'secondary',
                 fontSize: 'm',
@@ -65,7 +63,7 @@ function Testimonies({ items, linkText, linkUrl, shareText, shareUrl, title }) {
           </Div>
         ))}
       </Slider>
-      <Button text={shareText} url={shareUrl} spaceSide="left" />
+      <Button text={shareText} url={shareUrl} spaceLeft />
     </Section>
   )
 }

@@ -8,7 +8,7 @@ function Blockquote({ children, text }) {
     <Element
       as="blockquote"
       className="pullquote"
-      paddingSide="right"
+      paddingRight
       themeColor="darker"
       themeBorder="darker"
       themeBorderSide="left"

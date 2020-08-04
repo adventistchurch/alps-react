@@ -6,7 +6,7 @@ import { Nav, Link } from '../../helpers/Element'
 
 function FooterSecondaryNavigation({ defaultItemIcon, items }) {
   return (
-    <Nav className="c-footer__primary-nav__list" spacingSize="half">
+    <Nav className="c-footer__primary-nav__list" spacing="half">
       {items.map(({ icon, text, url, className, onClick, noWrap }, key) => (
         <Link
           href={url}
@@ -21,8 +21,7 @@ function FooterSecondaryNavigation({ defaultItemIcon, items }) {
             color="white"
             size="xs"
             name={icon || defaultItemIcon}
-            spaceSide="right"
-            spaceSize="half"
+            spaceRight="half"
           />
           {text}
         </Link>

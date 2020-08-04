@@ -87,8 +87,7 @@ export default function MediaBlock({
               <Element
                 as={kickerAs}
                 className="c-block__kicker"
-                spaceSide="bottom"
-                spaceSize="quarter"
+                spaceBottom="quarter"
                 {...preset.kicker}
               >
                 {kicker}
@@ -98,7 +97,7 @@ export default function MediaBlock({
               <Element
                 as={titleAs}
                 className="c-block__title"
-                spaceSize={kicker ? 'zero' : null}
+                space={kicker ? 'zero' : null}
                 themeColor="dark"
                 fontType="primary"
                 {...preset.title}

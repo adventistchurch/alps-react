@@ -138,8 +138,7 @@ function ContentBlock({
             className="c-block__button"
             icon="arrow-long-right"
             iconProps={{
-              spaceSide: 'left',
-              spaceSize: 'half',
+              spaceLeft: 'half',
             }}
             outline
             text={cta}

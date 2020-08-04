@@ -75,7 +75,7 @@ function DrawerNavigation({
               {aboutLeft}
             </Div>
           )}
-          <Div className="c-drawer__about-right" spacingSize="half">
+          <Div className="c-drawer__about-right" spacing="half">
             {aboutRight}
           </Div>
         </div>

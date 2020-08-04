@@ -3,15 +3,13 @@ import PropTypes from 'prop-types'
 
 import Element from '../helpers/Element'
 
-function Main({ children, paddingSide, paddingSize, spacingSize, ...props }) {
+function Main({ children, spacing, ...props }) {
   return (
     <Element
       {...props}
       as="main"
       className="l-main"
-      paddingSide={paddingSide}
-      paddingSize={paddingSize}
-      spacingSize={spacingSize}
+      spacing={spacing}
       role="main"
     >
       {children}
@@ -24,9 +22,8 @@ Main.propTypes = {
   ...Element.propTypes,
 }
 Main.defaultProps = {
-  paddingSide: 'bottom',
-  paddingSize: 'double',
-  spacingSize: 'double',
+  paddingBottom: 'double',
+  spacing: 'double',
 }
 
 export default Main

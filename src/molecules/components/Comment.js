@@ -25,12 +25,12 @@ function Comment({
       className="c-comment--inner"
       borderSide="left"
       themeBorder="darker"
-      spaceSide="bottom"
+      spaceBottom
     >
-      <Div className="c-comment__avatar" spaceSide="right">
+      <Div className="c-comment__avatar" spaceRight>
         <Image alt={byline} src={avatar} />
       </Div>
-      <Div className="c-comment__body" spacingSize="quarter">
+      <Div className="c-comment__body" spacing="quarter">
         <div className="c-comment__meta">
           <Byline as="span">
             {bylineLink ? <Link href={bylineLink}>{byline}</Link> : byline}

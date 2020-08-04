@@ -11,7 +11,7 @@ import renderItems from '../../helpers/renderItems'
 function FacetFilter({ facets, filterLabel, title, ...props }) {
   return (
     <Form className="c-facet-filter-form" {...props}>
-      <Fieldset legend={title} spacingSize="half">
+      <Fieldset legend={title} spacing="half">
         <Div spacing>
           {renderItems(facets, Dropdown)}
           {/* TODO: create component for screen readers? */}

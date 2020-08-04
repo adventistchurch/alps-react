@@ -25,20 +25,9 @@ function NewsArchive({
     <BlankTemplate {...templateProps}>
       <PageHeader {...pageHeader} />
 
-      <Grid
-        seven
-        as="section"
-        wrap={6}
-        spacingSize="double"
-        spacingUntil="large"
-      >
-        <GridItem
-          sizeAtL={4}
-          paddingSide="sides"
-          paddingSize="zero"
-          spacingSize="double"
-        >
-          <ListContent title={articlesTitle} linkUrl={null} paddingSide="right">
+      <Grid seven as="section" wrap={6} spacingDoubleUntil="large">
+        <GridItem sizeAtL={4} paddingSides="zero" spacing="double">
+          <ListContent title={articlesTitle} linkUrl={null} paddingRight>
             {articles &&
               articles.map((item, key) => (
                 <MediaBlock
@@ -52,18 +41,9 @@ function NewsArchive({
           {pagination && <Pagination {...pagination} />}
         </GridItem>
 
-        <GridItem
-          sizeAtL={2}
-          paddingSide="sides"
-          paddingSize="zero"
-          spacingSize="double"
-        >
+        <GridItem sizeAtL={2} paddingSides="zero" spacing="double">
           <Aside>
-            <ListContent
-              title={filtersTitle}
-              linkUrl={null}
-              paddingSide="right"
-            >
+            <ListContent title={filtersTitle} linkUrl={null} paddingRight>
               <FacetFilter {...filtersProps} title={null} />
             </ListContent>
             {aside}

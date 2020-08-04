@@ -5,7 +5,7 @@ import { Div } from '../../helpers/Element'
 
 function Aside({ children }) {
   return (
-    <Div spacingSize="double" paddingSide="right">
+    <Div spacing="double" paddingRight>
       {children}
     </Div>
   )

@@ -5,7 +5,7 @@ import { Footer } from '../../helpers/Element'
 
 function ArticleFooter({ children }) {
   return (
-    <Footer className="c-article__footer" paddingSide="left">
+    <Footer className="c-article__footer" paddingLeft>
       {children}
     </Footer>
   )

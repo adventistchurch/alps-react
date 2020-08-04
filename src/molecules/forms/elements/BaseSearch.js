@@ -63,8 +63,8 @@ function BaseSearch({
                 icon="search"
                 text={searchLabel}
                 outline={!showSearchAgain}
-                spaceSide="right"
-                type="submut"
+                spaceRight
+                type="submit"
               />
               {(filters || sorting) && (
                 <Button
@@ -79,7 +79,7 @@ function BaseSearch({
           </Div>
         </Div>
         {(filters || sorting) && (
-          <Div className="c-filter__form" paddingSide="top">
+          <Div className="c-filter__form" paddingTop>
             <Div {...contentProps}>
               {filters && renderItems(filters, FilterGroup)}
               {sorting && renderItems([sorting], FilterGroup)}

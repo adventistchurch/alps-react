@@ -8,7 +8,7 @@ import Form from './elements/Form'
 
 const CommentForm = ({ onSubmit, rows, submitLabel, title, ...props }) => {
   return (
-    <Form className="c-comment-form" spacingSize="half" noValidate {...props}>
+    <Form className="c-comment-form" spacing="half" noValidate {...props}>
       <Title
         as="h3"
         themeColor="darker"

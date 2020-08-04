@@ -93,11 +93,11 @@ storiesOf('atoms/icons/IconWrap', module)
             themeBackground={props.background}
           >
             <IconWrap {...props} name={icon} />
-            <Div themeBackground="white" paddingSize="quarter">
+            <Div themeBackground="white" padding="quarter">
               <Div
                 color={props.color}
                 themeColor={props.themeColor}
-                spaceSize="quarter"
+                space="quarter"
                 strong
               >
                 <code>{icon}</code>

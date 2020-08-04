@@ -11,7 +11,7 @@ function RadioButton({
   label,
   labelOptional,
   labelClass,
-  labelSpacingSize,
+  labelSpacing,
   name,
   value,
   ...props
@@ -24,7 +24,7 @@ function RadioButton({
       position="bottom"
       text={label}
       textOptional={labelOptional}
-      spacingSize={labelSpacingSize}
+      spacing={labelSpacing}
     >
       <BaseInput
         checked={checked}
@@ -46,14 +46,14 @@ RadioButton.propTypes = {
   label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
   labelClass: PropTypes.string,
-  labelSpacingSize: FormLabel.propTypes.spacingSize,
+  labelSpacing: FormLabel.propTypes.spacing,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
 }
 RadioButton.defaultProps = {
   labelClass: null,
-  labelSpacingSize: null,
+  labelSpacing: null,
 }
 
 export default RadioButton

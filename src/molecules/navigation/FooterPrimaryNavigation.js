@@ -5,7 +5,7 @@ import { Link, Nav } from '../../helpers/Element'
 
 function FooterPrimaryNavigation({ items }) {
   return (
-    <Nav className="c-footer__primary-nav__list" spacingSize="half">
+    <Nav className="c-footer__primary-nav__list" spacing="half">
       {items.map(({ text, url, className, onClick, noWrap }, key) => (
         <Link
           href={url}

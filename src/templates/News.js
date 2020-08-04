@@ -37,19 +37,13 @@ function News({
         )}
       </div>
 
-      <Grid
-        seven
-        as="section"
-        wrap={6}
-        spacingSize="double"
-        spacingUntil="large"
-      >
-        <GridItem sizeAtL={4} paddingSide="sides" paddingSize="zero">
+      <Grid seven as="section" wrap={6} spacingDoubleUntil="large">
+        <GridItem sizeAtL={4} paddingSides="zero">
           <ListContent
             title={latest.title}
             linkLabel={latest.linkLabel}
             linkUrl={latest.linkUrl}
-            paddingSide="right"
+            paddingRight
           >
             {latest.items &&
               latest.items.map((item, key) => (
@@ -61,14 +55,14 @@ function News({
               ))}
           </ListContent>
           {pagination && (
-            <Div paddingSide="top" paddingSize="double">
+            <Div paddingTop="double">
               <Pagination {...pagination} />
             </Div>
           )}
         </GridItem>
 
         {aside && (
-          <GridItem sizeAtL={2} paddingSide="sides" paddingSize="zero">
+          <GridItem sizeAtL={2} paddingSides="zero">
             <Aside>{aside}</Aside>
           </GridItem>
         )}
@@ -80,14 +74,8 @@ function News({
         linkUrl={media.linkUrl}
       >
         {media.primaryItems && media.primaryItems.length > 0 && (
-          <Grid
-            seven
-            as="section"
-            wrap={6}
-            spacingSize="double"
-            spacingUntil="large"
-          >
-            <GridItem paddingSide="sides" paddingSize="zero">
+          <Grid seven as="section" wrap={6} spacingDoubleUntil="large">
+            <GridItem paddingSides="zero">
               {media.primaryItems.map((item, key) => (
                 <MediaBlock
                   key={`media-content-${key}`}
@@ -101,15 +89,8 @@ function News({
         )}
 
         {media.secondaryItems && media.secondaryItems.length > 0 && (
-          <Grid
-            as="section"
-            blockRow
-            seven
-            wrap={6}
-            spacingSize="double"
-            spacingUntil="large"
-          >
-            <GridItem flex paddingSide="sides" paddingSize="zero">
+          <Grid as="section" blockRow seven wrap={6} spacingDoubleUntil="large">
+            <GridItem flex paddingSides="zero">
               {media.secondaryItems.map((item, key) => (
                 <MediaBlock
                   key={`media-row-${key}`}
@@ -128,7 +109,7 @@ function News({
         shiftSide="left"
         shiftAt="large"
       >
-        <GridItem className="c-article" sizeAtL="4" spacingSize="triple">
+        <GridItem className="c-article" sizeAtL="4" spacing="triple">
           {subscribeForm}
           {archive && (
             <ListContent

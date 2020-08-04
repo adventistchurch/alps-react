@@ -9,10 +9,10 @@ function Definition({ items }) {
     <dl>
       {renderItems(items, ({ text, title }) => (
         <>
-          <Element as="dt" paddingSide="top">
+          <Element as="dt" paddingTop>
             {title}
           </Element>
-          <Element as="dd" paddingSide="bottom">
+          <Element as="dd" paddingBottom>
             {text}
           </Element>
         </>

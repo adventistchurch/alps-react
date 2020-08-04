@@ -23,7 +23,7 @@ function GalleryBlock({ images, kicker, title }) {
       themeBorderSide="left"
     >
       <div className="c-gallery-block__header">
-        <Div className="c-gallery-block__title" padding spacingSize="half">
+        <Div className="c-gallery-block__title" padding spacing="half">
           {title && <Title text={title} kicker={kicker} />}
           {otherImages && (
             <Button
@@ -66,8 +66,7 @@ function GalleryBlock({ images, kicker, title }) {
                   fontType="secondary"
                   fontSize="s"
                   padding
-                  paddingSize="double"
-                  paddingSide="bottom"
+                  paddingBottom="double"
                 >
                   {image.caption}
                 </Div>

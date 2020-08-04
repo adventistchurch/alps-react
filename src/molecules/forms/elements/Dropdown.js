@@ -12,7 +12,7 @@ function Dropdown({
   label,
   labelOptional,
   labelClass,
-  labelSpacingSize,
+  labelSpacing,
   name,
   noneLabel,
   noneValue,
@@ -26,7 +26,7 @@ function Dropdown({
       htmlFor={id || name}
       text={label}
       textOptional={labelOptional}
-      spacingSize={labelSpacingSize}
+      spacing={labelSpacing}
     >
       <select defaultValue={defaultValue} id={id} name={name} {...props}>
         {!hideNone && (
@@ -63,7 +63,7 @@ Dropdown.propTypes = {
   label: PropTypes.string,
   labelOptional: PropTypes.string,
   labelClass: PropTypes.string,
-  labelSpacingSize: FormLabel.propTypes.spacingSize,
+  labelSpacing: FormLabel.propTypes.spacing,
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({

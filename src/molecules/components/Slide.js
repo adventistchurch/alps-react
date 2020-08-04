@@ -34,11 +34,11 @@ function Slide({
           <Div gridItemSizeAtM={4} gridItemSizeAtXL={3}>
             <Div
               className={`c-carousel__item-text ${textClass}`}
-              paddingSide={['top', 'bottom']}
-              paddingSize="double"
+              paddingBottom="double"
+              paddingTop="double"
               spacing
             >
-              <Div className="c-carousel__item-text--inner" spacingSize="half">
+              <Div className="c-carousel__item-text--inner" spacing="half">
                 <HeadingTwo
                   className="c-carousel__item-heading"
                   fontType="primary"

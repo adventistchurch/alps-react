@@ -20,7 +20,7 @@ function LoginForm({
   ...props
 }) {
   return (
-    <Form spacingSize="half" {...props}>
+    <Form spacing="half" {...props}>
       <Title
         fontSize="m"
         fontType="secondary"

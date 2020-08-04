@@ -30,13 +30,11 @@ function BasicPage({
           className="l-main__content"
           gridWrap="6"
           id="top"
-          paddingSize="zero"
-          paddingSide="sides"
+          paddingSides="zero"
           seven
           shiftSide="left"
           shiftAt={hasSidebar ? 'xxlarge' : 'large'}
-          spacingSize="double"
-          spacingUntil="xxlarge"
+          spacingDoubleUntil="xxlarge"
         >
           <Article
             className="c-article"
@@ -56,8 +54,7 @@ function BasicPage({
               className="c-sidebar"
               gridItemSizeAtL={2}
               gridItemSizeAtXL={2}
-              paddingSize="zero"
-              paddingSide="sides"
+              paddingSides="zero"
               spacing
             >
               {breakout && <BreakoutBlock {...breakout} />}

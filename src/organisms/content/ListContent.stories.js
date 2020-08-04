@@ -48,13 +48,12 @@ export function itemsTab(settings = {}) {
       imageProps: {
         gridItemSizeAtS: 2,
         gridItemSizeAtL: 1,
-        paddingSize: 'zero',
-        paddingSide: 'sides',
+        paddingSides: 'zero',
       },
       contentProps: {
         gridItemSizeAtS: 4,
         gridItemSizeAtL: 3,
-        paddingSide: 'left',
+        paddingLeft: true,
         flexJustify: 'start',
       },
     }),

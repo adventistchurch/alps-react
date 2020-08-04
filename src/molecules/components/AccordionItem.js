@@ -25,9 +25,8 @@ export default function AccordionItem({
     <Div
       className={`c-accordion__item ${openClass}`}
       borderSide="left"
-      paddingSide="left"
-      paddingSize="half"
-      spacingSize="half"
+      paddingLeft="half"
+      spacing="half"
     >
       <Div
         className="c-accordion__heading"
@@ -41,8 +40,7 @@ export default function AccordionItem({
           className="c-accordion__arrow"
           name="arrow-bracket-right"
           size="m"
-          spaceSide="right"
-          spaceSize="half"
+          spaceRight="half"
           themePathFill="darker"
         />
         <strong>{heading}</strong>
@@ -50,17 +48,12 @@ export default function AccordionItem({
           <IconWrap
             name={icon}
             size="s"
-            spaceSide="left"
-            spaceSize="half"
+            spaceLeft="half"
             themePathFill="darker"
           />
         )}
       </Div>
-      <Div
-        className="c-accordion__content"
-        paddingSide="left"
-        paddingSize="half"
-      >
+      <Div className="c-accordion__content" paddingLeft="half">
         {content || children}
       </Div>
     </Div>

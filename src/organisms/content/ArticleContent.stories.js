@@ -18,11 +18,11 @@ function getTabData(name, settings = {}) {
 }
 
 export function resultsTab(settings = {}) {
-  const { spacingSize, hasDropcap, tab } = getTabData('General', settings)
+  const { spacing, hasDropcap, tab } = getTabData('General', settings)
 
   return {
     hasDropcap: boolean('Has dropcap', hasDropcap, tab),
-    spacingSize: select('Spacing Size', spacingSizes, spacingSize, tab),
+    spacing: select('Spacing', spacingSizes, spacing, tab),
   }
 }
 

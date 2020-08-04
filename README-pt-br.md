@@ -44,7 +44,7 @@ function MyApp(props) {
     // É necessário que o componente AlpsContextProvider seja o pai dos outros components do ALPS-React (normalmente em App root)
     <AlpsContextProvider>
       <Body primaryColor="bluejay" hasGrid>
-        <Div spacingSize="double" padding>
+        <Div spacing="double" padding>
           <Button text="Bem-Vindo ao ALPS-React" />
 
           <MediaBlock

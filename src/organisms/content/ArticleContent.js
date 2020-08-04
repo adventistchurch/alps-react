@@ -8,7 +8,7 @@ import Text from '../../atoms/texts/Text'
 import GridSeven from '../../atoms/grids/GridSeven'
 import GridItem from '../../atoms/grids/GridItem'
 
-function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
+function ArticleContent({ children, sidebar, hasDropcap, spacing }) {
   return (
     <GridSeven
       as="section"
@@ -16,17 +16,15 @@ function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
       noWrapClass
       shiftSide="left"
       shiftAt="large"
-      spacingSize="double"
-      spacingUntil="large"
-      paddingSize="zero"
-      paddingSide="sides"
+      spacingDoubleUntil="large"
+      paddingSides="zero"
     >
       <GridItem className="c-article" sizeAtL="3" sizeAtXL="3">
         <Text
           as="article"
           className="c-article__body"
           hasDropcap={hasDropcap}
-          spacingSize={spacingSize}
+          spacing={spacing}
         >
           {children}
         </Text>
@@ -37,8 +35,7 @@ function ArticleContent({ children, sidebar, hasDropcap, spacingSize }) {
           className="c-sidebar"
           gridItemSizeAtL="2"
           gridItemSizeAtXL="2"
-          paddingSize="zero"
-          paddingSide="sides"
+          paddingSides="zero"
         >
           {sidebar}
         </Div>
@@ -51,11 +48,11 @@ ArticleContent.propTypes = {
   children: PropTypes.node,
   sidebar: PropTypes.node,
   hasDropcap: PropTypes.bool,
-  spacingSize: PropTypes.oneOf(spacingSizes),
+  spacing: PropTypes.oneOf(spacingSizes),
 }
 ArticleContent.defaultProps = {
   hasDropcap: true,
-  spacingSize: 'double',
+  spacing: 'double',
 }
 
 export default ArticleContent

@@ -8,7 +8,7 @@ function FormFilter({ options, title }) {
   return (
     <Div
       className="c-filter__form-item"
-      spacingSize="half"
+      spacing="half"
       gridItemSizeAtS={2}
       gridItemSizeAtL={1}
     >

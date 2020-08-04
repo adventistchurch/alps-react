@@ -82,7 +82,6 @@ import {
   getSpaceClass,
   getSpacingClass,
   spaceAfterSizes,
-  spaceSides,
   spacingSizes,
   spacingAfterSizes,
   spacingUntilSizes,
@@ -129,8 +128,12 @@ function getClassNameAndOtherProps(props) {
     linkHoverColor,
     overlay,
     padding,
-    paddingSide,
-    paddingSize,
+    paddingBottom,
+    paddingLeft,
+    paddingLeftUntil,
+    paddingRight,
+    paddingTop,
+    paddingSides,
     pathFill,
     position,
     seven,
@@ -139,11 +142,17 @@ function getClassNameAndOtherProps(props) {
     shiftSide,
     space,
     spaceAfter,
-    spaceSide,
-    spaceSize,
+    spaceBottom,
+    spaceLeft,
+    spaceRight,
+    spaceTop,
     spacing,
     spacingAfter,
-    spacingSize,
+    // spacingBottom,
+    spacingLeft,
+    // spacingRight,
+    // spacingTop,
+    spacingDoubleUntil,
     spacingUntil,
     strong,
     textAlign,
@@ -198,37 +207,75 @@ function getClassNameAndOtherProps(props) {
       })
     )
 
-  // - Spacing classes
-
+  // - Padding classes
   if (clearFix) classes.push(clearFixClass)
 
-  if (padding) classes.push(getPaddingClass({}))
+  if (padding) classes.push(getPaddingClass(null, padding))
 
-  if (paddingSide || paddingSize)
-    classes.push(
-      getPaddingClass({
-        side: paddingSide,
-        size: paddingSize,
-      })
-    )
+  if (paddingBottom) {
+    classes.push(getPaddingClass('bottom', paddingBottom))
+  }
+  if (paddingLeft) {
+    classes.push(getPaddingClass('left', paddingLeft))
+  }
+  if (paddingLeftUntil) {
+    classes.push(getPaddingClass('left', null, paddingLeftUntil))
+  }
+  if (paddingRight) {
+    classes.push(getPaddingClass('right', paddingRight))
+  }
+  if (paddingTop) {
+    classes.push(getPaddingClass('top', paddingTop))
+  }
+  if (paddingSides) {
+    classes.push(getPaddingClass('sides', paddingSides))
+  }
 
-  if (space || spaceAfter || spaceSide || spaceSize)
-    classes.push(
-      getSpaceClass({
-        after: spaceAfter,
-        side: spaceSide,
-        size: spaceSize,
-      })
-    )
+  // - Space classes
+  if (space) {
+    classes.push(getSpaceClass(null, space))
+  }
+  if (spaceBottom) {
+    classes.push(getSpaceClass('bottom', spaceBottom))
+  }
+  if (spaceLeft) {
+    classes.push(getSpaceClass('left', spaceLeft))
+  }
+  if (spaceRight) {
+    classes.push(getSpaceClass('right', spaceRight))
+  }
+  if (spaceTop) {
+    classes.push(getSpaceClass('top', spaceTop))
+  }
+  if (spaceAfter) {
+    classes.push(getSpaceClass(null, null, spaceAfter))
+  }
 
-  if (spacing || spacingAfter || spacingSize || spacingUntil)
-    classes.push(
-      getSpacingClass({
-        after: spacingAfter,
-        size: spacingSize,
-        until: spacingUntil,
-      })
-    )
+  // - Spacing classes
+  if (spacing) {
+    classes.push(getSpacingClass(null, spacing))
+  }
+  // if (spacingBottom) {
+  //   classes.push(getSpacingClass('bottom', spacingBottom))
+  // }
+  if (spacingLeft) {
+    classes.push(getSpacingClass('left', spacingLeft))
+  }
+  // if (spacingRight) {
+  //   classes.push(getSpacingClass('right', spacingRight))
+  // }
+  // if (spacingTop) {
+  //   classes.push(getSpacingClass('top', spacingTop))
+  // }
+  if (spacingAfter) {
+    classes.push(getSpacingClass(null, spacing, spacingAfter))
+  }
+  if (spacingUntil) {
+    classes.push(getSpacingClass(null, spacing, null, spacingUntil))
+  }
+  if (spacingDoubleUntil) {
+    classes.push(getSpacingClass(null, 'double', null, spacingDoubleUntil))
+  }
 
   // - Flex
   if (flex) classes.push(getFlexClass())
@@ -381,12 +428,13 @@ Element.propTypes = {
   linkColor: PropTypes.oneOf(linkColors),
   linkHoverColor: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
-  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  paddingSide: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.oneOf(spaceSides),
-  ]),
-  paddingSize: PropTypes.oneOf(spacingSizes),
+  padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  paddingBottom: PropTypes.oneOf(spacingSizes),
+  paddingLeft: PropTypes.oneOf(spacingSizes),
+  paddingLeftUntil: PropTypes.oneOf(['xxlarge']),
+  paddingRight: PropTypes.oneOf(spacingSizes),
+  paddingTop: PropTypes.oneOf(spacingSizes),
+  paddingSides: PropTypes.oneOf(spacingSizes),
   pathFill: PropTypes.oneOf(svgFillColors),
   position: PropTypes.oneOf(positionOptions),
   seven: PropTypes.bool,
@@ -395,18 +443,18 @@ Element.propTypes = {
   shiftSide: PropTypes.oneOf(shiftSides),
   space: PropTypes.bool,
   spaceAfter: PropTypes.oneOf(spaceAfterSizes),
-  spaceSide: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.oneOf(spaceSides),
-  ]),
-  spaceSize: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.oneOf(spacingSizes),
-  ]),
+  spaceBottom: PropTypes.oneOf(spacingSizes),
+  spaceLeft: PropTypes.oneOf(spacingSizes),
+  spaceRight: PropTypes.oneOf(spacingSizes),
+  spaceTop: PropTypes.oneOf(spacingSizes),
   spacing: PropTypes.bool,
   spacingAfter: PropTypes.oneOf(spacingAfterSizes),
-  spacingSize: PropTypes.oneOf(spacingSizes),
+  // spacingBottom: PropTypes.oneOf(spacingSizes),
+  spacingLeft: PropTypes.oneOf(spacingSizes),
+  // spacingRight: PropTypes.oneOf(spacingSizes),
+  // spacingTop: PropTypes.oneOf(spacingSizes),
   spacingUntil: PropTypes.oneOf(spacingUntilSizes),
+  spacingDoubleUntil: PropTypes.oneOf(spacingUntilSizes),
   strong: PropTypes.bool,
   tag: PropTypes.string,
   textAlign: PropTypes.oneOf(textAlignOptions),

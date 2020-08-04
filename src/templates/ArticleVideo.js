@@ -47,10 +47,8 @@ function ArticleVideo({
           noWrapClass
           shiftSide="left"
           shiftAt="xxlarge"
-          spacingSize="double"
-          spacingUntil="large"
-          paddingSize="zero"
-          paddingSide="sides"
+          spacingDoubleUntil="large"
+          paddingSides="zero"
         >
           <GridItem className="c-article" sizeAtL="5" sizeAtXL="4">
             <VideoFigureWithCaption videoSrc={src} caption={caption} />

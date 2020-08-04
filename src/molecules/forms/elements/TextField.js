@@ -9,7 +9,7 @@ function TextField({
   label,
   labelOptional,
   labelClass,
-  labelSpacingSize,
+  labelSpacing,
   ...props
 }) {
   const { labelPosition } = useFormContext()
@@ -22,7 +22,7 @@ function TextField({
       position={labelPosition}
       text={label}
       textOptional={labelOptional}
-      spacingSize={labelSpacingSize}
+      spacing={labelSpacing}
     >
       <BaseInput {...props} />
     </FormLabel>
@@ -35,7 +35,7 @@ TextField.propTypes = {
   label: PropTypes.string,
   labelOptional: PropTypes.string,
   labelClass: PropTypes.string,
-  labelSpacingSize: FormLabel.propTypes.spacingSize,
+  labelSpacing: FormLabel.propTypes.spacing,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf([

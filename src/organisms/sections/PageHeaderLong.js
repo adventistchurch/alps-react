@@ -21,7 +21,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
       <Header
         className={`c-page-header c-page-header__long ${backgroundClass}`}
         themeBackground="dark"
-        spaceSize="zero"
+        space="zero"
       >
         {bgInlineStyles && <InlineStyles styles={bgInlineStyles} />}
         <Div

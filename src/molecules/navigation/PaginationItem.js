@@ -26,7 +26,7 @@ function PaginationItem({
   return isCurrent ? (
     <Span
       className="pagination__page pagination__page--current"
-      paddingSize="quarter"
+      padding="quarter"
       themeColor="base"
       fontWeight="bold"
     >
@@ -41,7 +41,7 @@ function PaginationItem({
       }`}
       href={url}
       onClick={onItemClick(number, onClick)}
-      paddingSize="quarter"
+      padding="quarter"
       themeColor="darker"
       fontWeight="bold"
     >

@@ -29,7 +29,8 @@ const feature = {
   },
   content: {
     gridItem: true,
-    paddingSide: ['top', 'bottom'],
+    paddingTop: true,
+    paddingBottom: true,
     themeBackground: 'darker',
     themeBorder: 'darker',
     themeBorderSide: 'left',
@@ -37,8 +38,7 @@ const feature = {
   },
   image: {
     gridItem: true,
-    paddingSide: 'sides',
-    paddingSize: 'zero',
+    paddingSides: 'zero',
   },
   title: {
     color: 'white',
@@ -94,13 +94,12 @@ const featuredNews = {
   image: {
     gridItemSizeAtS: 2,
     gridItemSizeAtL: 1,
-    paddingSize: 'zero',
-    paddingSide: 'sides',
+    paddingSides: 'zero',
   },
   content: {
     gridItemSizeAtS: 4,
     gridItemSizeAtL: 3,
-    paddingSide: 'left',
+    paddingLeft: true,
     flexJustify: 'start',
   },
   title: {
@@ -124,8 +123,7 @@ const archive = {
     gridItemSize: 2,
     gridItemSizeAtM: 1,
     gridItemSizeAtL: 1,
-    paddingSize: 'zero',
-    paddingSide: 'sides',
+    paddingSides: 'zero',
   },
 
   content: {
@@ -170,13 +168,13 @@ const full = {
 const inline = {
   reversed: true,
   image: {
-    paddingSide: 'sides',
-    paddingSize: 'zero',
+    paddingSides: 'zero',
   },
   content: {
     backgroundColor: 'gray--light',
     color: 'gray',
-    padding: ['top', 'bottom'],
+    paddingTop: true,
+    paddingBottom: true,
   },
   contentReversed: {
     borderAt: 'large',
@@ -219,8 +217,7 @@ const mediaContent = {
   },
   image: {
     gridItemSizeAtS: 3,
-    paddingSize: 'zero',
-    paddingSide: 'sides',
+    paddingSides: 'zero',
   },
   content: {
     gridItemSizeAtS: 3,
@@ -234,7 +231,8 @@ const mediaContent = {
     color: 'gray',
     backgroundColor: 'gray--light',
     canBe: 'dark-dark',
-    paddingSide: ['top', 'bottom'],
+    paddingTop: true,
+    paddingBottom: true,
   },
   title: {
     fontSize: 'l',
@@ -250,7 +248,8 @@ const longform = {
     canBe: 'dark-dark',
     gridWrap: 6,
     noGridClass: true,
-    paddingSide: ['top', 'bottom'],
+    paddingTop: true,
+    paddingBottom: true,
     seven: true,
     themeBackground: 'darker',
   },
@@ -292,9 +291,8 @@ const mediaRow = {
     gridItemSizeAtM: 2,
     gridItemSizeAtXL: 1,
     noGridItemClass: true,
-    paddingSide: 'sides',
-    paddingSize: 'zero',
-    spaceSide: 'right',
+    paddingSides: 'zero',
+    spaceRight: true,
   },
   content: {
     gridItemSize: 3,
@@ -347,8 +345,8 @@ const video = {
   icon: 'video',
 
   block: {
-    spaceSide: ['right', 'bottom'],
-    spaceSize: ['', 'double'],
+    spaceRight: true,
+    spaceBottom: 'double',
   },
   content: {
     borderSide: 'left',
@@ -375,7 +373,7 @@ const relatedPost = {
     gridItemSize: 2,
     gridItemSizeAtM: 1,
     gridItemSizeAtL: 1,
-    paddingSide: 'right',
+    paddingRight: true,
   },
   content: {
     gridItemSize: 4,
@@ -385,7 +383,7 @@ const relatedPost = {
     themeBorder: 'darker',
     themeBorderSide: 'left',
     color: 'gray',
-    spacingSize: 'half',
+    spacing: 'half',
   },
   title: {
     themeColor: 'dark',

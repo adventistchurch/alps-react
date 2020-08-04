@@ -46,7 +46,7 @@ function MyApp(props) {
     // The AlpsContextProvider and Body components are required as parents other ALPS-React components (normally in your App root)
     <AlpsContextProvider>
       <Body primaryColor="bluejay" hasGrid>
-        <Div spacingSize="double" padding>
+        <Div spacing="double" padding>
           <Button text="Welcome to ALPS-React" />
 
           <MediaBlock

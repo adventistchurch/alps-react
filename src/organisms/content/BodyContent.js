@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Div } from '../../helpers/Element'
 
 function BodyContent({ children }) {
-  return <Div spacingSize="triple">{children}</Div>
+  return <Div spacing="triple">{children}</Div>
 }
 
 BodyContent.propTypes = {

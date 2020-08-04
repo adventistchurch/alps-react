@@ -36,13 +36,7 @@ function ContentBlockExpand({ kicker, title, description }) {
           </div>
         </Div>
       </div>
-      <Div
-        className="c-block__body"
-        padding
-        paddingSide="top"
-        paddingSize="zero"
-        spacing
-      >
+      <Div className="c-block__body" padding paddingTop="zero" spacing>
         <p>{description}</p>
       </Div>
     </Div>

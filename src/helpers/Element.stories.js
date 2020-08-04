@@ -59,7 +59,6 @@ import { shiftBreakpoints, shiftSides, wrapSizes } from '../atoms/global/grids'
 
 import {
   spaceAfterSizes,
-  spaceSides,
   spacingSizes,
   spacingAfterSizes,
   spacingUntilSizes,
@@ -234,54 +233,133 @@ function fontTab(settings = {}) {
   }
 }
 
-function paddingAndSpacingTab(settings = {}) {
+function paddingTab(settings = {}) {
   const {
     padding,
-    paddingSide,
-    paddingSize,
-    space,
-    spaceAfter,
-    spaceSide,
-    spaceSize,
-    spacing,
-    spacingAfter,
-    spacingSize,
-    spacingUntil,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    paddingSides,
+    paddingTop,
     tab,
-  } = getTabData('Spacing', settings)
+  } = getTabData('Padding', settings)
 
   return {
-    padding: boolean('Has padding', padding, tab),
-    paddingSide: select(
-      'Padding Side',
-      setOptions(spaceSides),
-      paddingSide,
-      tab
-    ),
-    paddingSize: select(
-      'Padding Size',
+    padding: select('Padding', setOptions(spacingSizes), padding, tab),
+    paddingBottom: select(
+      'Padding Bottom',
       setOptions(spacingSizes),
-      paddingSize,
+      paddingBottom,
       tab
     ),
+    paddingLeft: select(
+      'Padding Left',
+      setOptions(spacingSizes),
+      paddingLeft,
+      tab
+    ),
+    paddingRight: select(
+      'Padding Right',
+      setOptions(spacingSizes),
+      paddingRight,
+      tab
+    ),
+    paddingTop: select(
+      'Padding Top',
+      setOptions(spacingSizes),
+      paddingTop,
+      tab
+    ),
+    paddingSides: select(
+      'Padding sides',
+      setOptions([true, 'zero']),
+      paddingSides,
+      tab
+    ),
+    paddingLeftUntil: select(
+      'Padding Left Until',
+      setOptions(['xxlarge']),
+      paddingLeft,
+      tab
+    ),
+  }
+}
 
-    space: boolean('Has space', space, tab),
-    spaceSize: select('Space Size', setOptions(spacingSizes), spaceSize, tab),
-    spaceSide: select('Space Side', setOptions(spaceSides), spaceSide, tab),
+function spaceTab(settings = {}) {
+  const {
+    space,
+    spaceAfter,
+    spaceBottom,
+    spaceLeft,
+    spaceRight,
+    spaceTop,
+    tab,
+  } = getTabData('Space', settings)
+
+  return {
+    space: select('Space', setOptions(spacingSizes), space, tab),
+    spaceBottom: select(
+      'Space Bottom',
+      setOptions(spacingSizes),
+      spaceBottom,
+      tab
+    ),
+    spaceLeft: select('Space Left', setOptions(spacingSizes), spaceLeft, tab),
+    spaceRight: select(
+      'Space Right',
+      setOptions(spacingSizes),
+      spaceRight,
+      tab
+    ),
+    spaceTop: select('Space Top', setOptions(spacingSizes), spaceTop, tab),
     spaceAfter: select(
       'Space After',
       setOptions(spaceAfterSizes),
       spaceAfter,
       tab
     ),
+  }
+}
 
-    spacing: boolean('Has spacing', spacing, tab),
-    spacingSize: select(
-      'Spacing Size',
-      setOptions(spacingSizes),
-      spacingSize,
+function spacingTab(settings = {}) {
+  const {
+    spacing,
+    // spacingBottom,
+    spacingLeft,
+    // spacingRight,
+    // spacingTop,
+    spacingAfter,
+    spacingUntil,
+    spacingDoubleUntil,
+    tab,
+  } = getTabData('Spacing', settings)
+
+  return {
+    spacing: select('Spacing', setOptions(spacingSizes), spacing, tab),
+    // spacingBottom: select(
+    //   'Spacing Bottom',
+    //   setOptions(spacingSizes),
+    //   spacingBottom,
+    //   tab
+    // ),
+    spacingLeft: select(
+      'Spacing Left',
+      setOptions(['half']), //setOptions(spacingSizes),
+      spacingLeft,
       tab
     ),
+    // spacingRight: select(
+    //   'Spacing Right',
+    //   setOptions(spacingSizes),
+    //   spacingRight,
+    //   tab
+    // ),
+    // spacingTop: select(
+    //   'Spacing Top',
+    //   setOptions(spacingSizes),
+    //   spacingTop,
+    //   tab
+    // ),
     spacingAfter: select(
       'Spacing After',
       setOptions(spacingAfterSizes),
@@ -292,6 +370,12 @@ function paddingAndSpacingTab(settings = {}) {
       'Spacing Until',
       setOptions(spacingUntilSizes),
       spacingUntil,
+      tab
+    ),
+    spacingDoubleUntil: select(
+      'Spacing double until',
+      setOptions(spacingUntilSizes),
+      spacingDoubleUntil,
       tab
     ),
   }
@@ -394,7 +478,9 @@ export function elementTab(props) {
     ...fontTab(props),
     ...colorTab(props),
     ...borderTab(props),
-    ...paddingAndSpacingTab(props),
+    ...paddingTab(props),
+    ...spaceTab(props),
+    ...spacingTab(props),
     ...displayAndFlexTab(props),
     ...gridTab(props),
   }

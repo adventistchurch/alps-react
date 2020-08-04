@@ -11,8 +11,8 @@ export default function Suggestions({ items }) {
           key={key}
           className="o-suggestions__item"
           fontType="secondary"
-          paddingSide={['top', 'bottom']}
-          paddingSize="half"
+          paddingTop="half"
+          paddingBottom="half"
         >
           <Link className="o-suggestions__link" onClick={onClick} href={href}>
             {text}

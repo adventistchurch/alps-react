@@ -13,8 +13,8 @@ const baseProps = {
   nestedProps: {
     gridItemSizeAtM: 3,
   },
-  paddingSide: ['top', 'bottom'],
-  paddingSize: 'double',
+  paddingTop: 'double',
+  paddingBottom: 'double',
 }
 
 function SearchHeader(props) {

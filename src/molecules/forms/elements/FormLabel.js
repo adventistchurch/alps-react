@@ -53,7 +53,7 @@ FormLabel.propTypes = {
 FormLabel.defaultProps = {
   className: 'c-form-group',
   position: 'top',
-  spacingSize: 'quarter',
+  spacing: 'quarter',
 }
 
 export default FormLabel

@@ -44,7 +44,7 @@ storiesOf('helpers/AlpsContextProvider', module)
     return (
       <AlpsContextProvider>
         <Body {...themeProps}>
-          <Div spacingSize="double" padding>
+          <Div spacing="double" padding>
             <Button text="Welcome to ALPS-React" />
 
             <MediaBlock
@@ -79,7 +79,7 @@ storiesOf('helpers/AlpsContextProvider', module)
     return (
       <AlpsContextProvider LinkWrapper={CustomLinkWrapper}>
         <Body {...themeProps}>
-          <Div spacingSize="double" padding>
+          <Div spacing="double" padding>
             <Div>
               <Button
                 as="a"

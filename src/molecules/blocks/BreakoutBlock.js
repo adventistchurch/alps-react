@@ -10,8 +10,8 @@ function BreakoutBlock({ title, description, cta, url, ...props }) {
       className={`c-block__breakout`}
       themeBackground="darker"
       padding
-      paddingSize="double"
-      paddingSide={['top', 'bottom']}
+      paddingTop="double"
+      paddingBottom="double"
       spacing
       {...props}
     >

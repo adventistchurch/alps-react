@@ -19,7 +19,7 @@ function ListContent({
       {title && (
         <HeadingBlock title={title} linkText={linkLabel} url={linkUrl} />
       )}
-      <Div className="c-block-wrap__content" spacingSize={contentSpacing}>
+      <Div className="c-block-wrap__content" spacing={contentSpacing}>
         {children}
       </Div>
       {pagination && <Pagination {...pagination} />}

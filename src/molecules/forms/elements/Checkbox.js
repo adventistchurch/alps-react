@@ -9,7 +9,7 @@ function Checkbox({
   label,
   labelOptional,
   labelClass,
-  labelSpacingSize,
+  labelSpacing,
   ...props
 }) {
   return (
@@ -20,7 +20,7 @@ function Checkbox({
       position="bottom"
       text={label}
       textOptional={labelOptional}
-      spacingSize={labelSpacingSize}
+      spacing={labelSpacing}
     >
       <BaseInput checked={checked} type="checkbox" {...props} />
     </FormLabel>
@@ -34,7 +34,7 @@ Checkbox.propTypes = {
   label: PropTypes.string.isRequired,
   labelOptional: PropTypes.string,
   labelClass: PropTypes.string,
-  labelSpacingSize: FormLabel.propTypes.spacingSize,
+  labelSpacing: FormLabel.propTypes.spacing,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
