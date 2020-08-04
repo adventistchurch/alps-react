@@ -33,9 +33,10 @@ storiesOf('organisms/content/ArticleContent', module)
     return (
       <ArticleContent {...props}>
         <Paragraph>
-          <strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing
-          elit. <Link href="https://adventist.org">Donec malesuada</Link>, est
-          ut viverra euismod, dui dolor gravida massa, sed aliquam ex nisl ut
+          <strong>&ldquo;Lorem</strong> ipsum&rdquo; dolor sit amet, consectetur
+          adipiscing elit.{' '}
+          <Link href="https://adventist.org">Donec malesuada</Link>, est ut
+          viverra euismod, dui dolor gravida massa, sed aliquam ex nisl ut
           metus. Mauris at ante laoreet, gravida odio gravida, fermentum lectus.
           Fusce ac sollicitudin purus. Morbi et diam nunc. Praesent fringilla
           magna nisl, et volutpat nisi tincidunt aliquet. In laoreet ligula vel
@@ -70,9 +71,10 @@ storiesOf('organisms/content/ArticleContent', module)
     return (
       <ArticleContent {...props} sidebar={<RelatedPosts {...relatedPosts} />}>
         <Paragraph>
-          <strong>Lorem</strong> ipsum dolor sit amet, consectetur adipiscing
-          elit. <Link href="https://adventist.org">Donec malesuada</Link>, est
-          ut viverra euismod, dui dolor gravida massa, sed aliquam ex nisl ut
+          <em>&quot; &nbsp; Lorem</em> ipsum&quot; dolor sit amet, consectetur
+          adipiscing elit.{' '}
+          <Link href="https://adventist.org">Donec malesuada</Link>, est ut
+          viverra euismod, dui dolor gravida massa, sed aliquam ex nisl ut
           metus. Mauris at ante laoreet, gravida odio gravida, fermentum lectus.
           Fusce ac sollicitudin purus. Morbi et diam nunc. Praesent fringilla
           magna nisl, et volutpat nisi tincidunt aliquet. In laoreet ligula vel

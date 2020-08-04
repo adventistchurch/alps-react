@@ -8,13 +8,10 @@ const forceStyle = { fontWeight: 'normal' }
 function Dropcap({ letter }) {
   return (
     <>
-      <Span
-        className="o-dropcap"
-        themeBackground="base"
-        data-letter={letter[0]}
-        style={forceStyle}
-      />
-      <span hidden>{letter[0]}</span>
+      <Span className="o-drop-cap" themeBackground="base" style={forceStyle}>
+        {letter}
+      </Span>
+      <span hidden>{letter}</span>
     </>
   )
 }

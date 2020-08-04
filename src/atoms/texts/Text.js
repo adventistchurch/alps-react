@@ -10,7 +10,7 @@ function Text({ children, className, hasDropcap, ...props }) {
   const classes = useClasses(
     'text',
     {
-      'has-dropcap': hasDropcap,
+      'has-drop-cap': hasDropcap,
     },
     className
   )

@@ -35,8 +35,8 @@ function withChildren(children, Dropcap, parentFound, setParentFound) {
       setFound()
 
       // extract first characher and rest of text
-      const firstChar = child[0]
-      const rest = child.substring(1)
+      const firstChar = child.match(/\w/gi, '')[0]
+      const rest = child.substring(child.indexOf(firstChar) + 1)
 
       // Return a span with aria label (for screen readers),
       // and the dropcap firstChar with the rest of text
