@@ -9,9 +9,11 @@ import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
 function MediaImage({
   asBackgroundImage,
-  icon,
+  caption,
   className,
+  icon,
   image,
+  type,
   url,
   wrapProps,
   ...otherProps
@@ -45,17 +47,32 @@ function MediaImage({
             style={asBackgroundImage ? { visibility: 'hidden' } : null}
           />
         </Link>
+
+        {(caption || image.caption) && (
+          <Div
+            className="c-block__caption"
+            color="white-transparent"
+            paddingBottom
+            paddingTop
+            paddingRight={type}
+            paddingLeft={type ? 'quad' : false}
+            paddingSides={!type}
+          >
+            {caption || image.caption}
+          </Div>
+        )}
       </Div>
     </Div>
   )
 }
 
 MediaImage.propTypes = {
-  ...Div.propTypes,
   asBackgroundImage: PropTypes.bool,
-  icon: PropTypes.string,
   className: PropTypes.string,
+  caption: PropTypes.string,
+  icon: PropTypes.string,
   image: Picture.propTypes.image,
+  type: PropTypes.oneOf(['audio', 'gallery', 'video']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   wrapProps: PropTypes.object,
 }

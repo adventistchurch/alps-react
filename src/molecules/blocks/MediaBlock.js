@@ -29,6 +29,7 @@ export default function MediaBlock({
   dateStyle,
   description,
   image,
+  imageCaption,
   imageProps,
   kicker,
   kickerAs,
@@ -47,6 +48,7 @@ export default function MediaBlock({
   const isReversed = reversed !== undefined ? reversed : preset.reversed
 
   const blockType = preset.type || type
+  const _titleAs = preset.titleAs || titleAs
   const icon = mediaIcon || preset.icon
 
   const wrapClasses = useClasses(`c-media-block c-block`, {
@@ -63,6 +65,7 @@ export default function MediaBlock({
         <MediaImage
           icon={icon}
           asBackgroundImage={asBackgroundImage}
+          caption={imageCaption}
           {...preset.image}
           {...imageProps}
           image={image}
@@ -95,7 +98,7 @@ export default function MediaBlock({
             )}
             {title && (
               <Element
-                as={titleAs}
+                as={_titleAs}
                 className="c-block__title"
                 space={kicker ? 'zero' : null}
                 themeColor="dark"
@@ -177,6 +180,7 @@ MediaBlock.propTypes = {
   dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   dateStyle: PropTypes.object,
   image: MediaImage.propTypes.image,
+  imageCaption: PropTypes.node,
   imageProps: PropTypes.shape(Element.propTypes),
   kicker: PropTypes.string,
   kickerAs: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),

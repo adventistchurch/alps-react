@@ -17,7 +17,7 @@ function getTabData(name, settings = {}) {
 }
 
 export function pictureTab(settings = {}) {
-  const { alt, srcSet, lazy, tab } = getTabData('Picture', settings)
+  const { alt, caption, srcSet, lazy, tab } = getTabData('Picture', settings)
 
   const imageMode = srcSet
     ? null
@@ -28,6 +28,7 @@ export function pictureTab(settings = {}) {
     image: {
       srcSet: object('Image SrcSet *', src, tab),
       alt: text('Image Alt', alt, tab),
+      caption: text('Image Caption', caption, tab),
     },
     lazy: boolean('Lazy load', lazy, tab),
   }

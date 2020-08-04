@@ -54,11 +54,15 @@ function metaTab(settings = {}) {
 }
 
 function imageTab(settings = {}) {
-  const { asBackgroundImage, image, tab } = getTabData('Image', settings)
+  const { asBackgroundImage, image, imageCaption, tab } = getTabData(
+    'Image',
+    settings
+  )
   const showImage = boolean('Show Image', true, tab)
 
   return {
     asBackgroundImage: boolean('As Background Image', asBackgroundImage, tab),
+    imageCaption: text('Caption', imageCaption, tab),
     ...(showImage ? pictureTab({ ...image, tab }) : {}),
   }
 }
@@ -129,4 +133,12 @@ storiesOf('molecules/blocks/MediaBlock', module)
   .addWithJSX('Stacked', () => {
     const props = allTabs()
     return <MediaBlock {...props} type="stacked" />
+  })
+
+  .addWithJSX('Image caption', () => {
+    const props = allTabs({
+      imageCaption:
+        'Aliquam erat volutpat. Etiam dui dui, molestie et pulvinar eget, malesuada vitae dui. Nunc non est pulvinar, lacinia augue sit amet, efficitur libero.',
+    })
+    return <MediaBlock {...props} type="feature" />
   })
