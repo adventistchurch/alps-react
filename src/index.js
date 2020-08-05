@@ -12,7 +12,7 @@ export {
 } from './AlpsContextProvider'
 
 export function getExternalAssets({
-  version = '3.7.0',
+  version = '3.7.2',
   theme = 'bluejay',
 } = {}) {
   return {
