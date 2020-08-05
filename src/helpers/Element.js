@@ -87,7 +87,7 @@ import {
   spacingUntilSizes,
 } from '../atoms/global/spacing'
 
-function getClassNameAndOtherProps(props) {
+function useElementProps(props) {
   // Extract style-related props to build `className`
   const {
     allowSelect,
@@ -369,7 +369,7 @@ function getClassNameAndOtherProps(props) {
  * @param {Object} props All Element's props
  */
 export default function Element({ as, children, tag, forwardedRef, ...props }) {
-  const { className, ...otherProps } = getClassNameAndOtherProps(props)
+  const { className, ...otherProps } = useElementProps(props)
 
   return React.createElement(
     tag ? tag : as,
@@ -385,6 +385,11 @@ export default function Element({ as, children, tag, forwardedRef, ...props }) {
 export const gridItemSizePropType = PropTypes.oneOfType([
   PropTypes.number,
   PropTypes.string,
+])
+
+const spacingPropType = PropTypes.oneOfType([
+  PropTypes.bool,
+  PropTypes.oneOf(spacingSizes),
 ])
 
 Element.propTypes = {
@@ -429,30 +434,30 @@ Element.propTypes = {
   linkHoverColor: PropTypes.oneOf(linkHoverColors),
   overlay: PropTypes.oneOf(overlayColors),
   padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  paddingBottom: PropTypes.oneOf(spacingSizes),
-  paddingLeft: PropTypes.oneOf(spacingSizes),
+  paddingBottom: spacingPropType,
+  paddingLeft: spacingPropType,
   paddingLeftUntil: PropTypes.oneOf(['xxlarge']),
-  paddingRight: PropTypes.oneOf(spacingSizes),
-  paddingTop: PropTypes.oneOf(spacingSizes),
-  paddingSides: PropTypes.oneOf(spacingSizes),
+  paddingRight: spacingPropType,
+  paddingTop: spacingPropType,
+  paddingSides: spacingPropType,
   pathFill: PropTypes.oneOf(svgFillColors),
   position: PropTypes.oneOf(positionOptions),
   seven: PropTypes.bool,
   sevenInner: PropTypes.bool,
   shiftAt: PropTypes.oneOf(shiftBreakpoints),
   shiftSide: PropTypes.oneOf(shiftSides),
-  space: PropTypes.bool,
+  space: spacingPropType,
   spaceAfter: PropTypes.oneOf(spaceAfterSizes),
-  spaceBottom: PropTypes.oneOf(spacingSizes),
-  spaceLeft: PropTypes.oneOf(spacingSizes),
-  spaceRight: PropTypes.oneOf(spacingSizes),
-  spaceTop: PropTypes.oneOf(spacingSizes),
+  spaceBottom: spacingPropType,
+  spaceLeft: spacingPropType,
+  spaceRight: spacingPropType,
+  spaceTop: spacingPropType,
   spacing: PropTypes.bool,
   spacingAfter: PropTypes.oneOf(spacingAfterSizes),
-  // spacingBottom: PropTypes.oneOf(spacingSizes),
-  spacingLeft: PropTypes.oneOf(spacingSizes),
-  // spacingRight: PropTypes.oneOf(spacingSizes),
-  // spacingTop: PropTypes.oneOf(spacingSizes),
+  // spacingBottom: spacingPropType,
+  spacingLeft: spacingPropType,
+  // spacingRight: spacingPropType,
+  // spacingTop: spacingPropType,
   spacingUntil: PropTypes.oneOf(spacingUntilSizes),
   spacingDoubleUntil: PropTypes.oneOf(spacingUntilSizes),
   strong: PropTypes.bool,
