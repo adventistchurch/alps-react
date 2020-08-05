@@ -8,9 +8,6 @@ import replace from 'rollup-plugin-replace'
 import { terser } from 'rollup-plugin-terser'
 
 // Sets some constants
-const env = process.env.NODE_ENV
-const srcDir = 'src'
-
 const EXTENSIONS = ['.js', '.json']
 const CODES = [
   'THIS_IS_UNDEFINED',
@@ -40,7 +37,7 @@ function shouldIncludePath(path) {
 const walkFolder = dir => {
   var results = []
   var list = readdirSync(dir)
-  list.forEach(function (file) {
+  list.forEach(function(file) {
     file = `${dir}/${file}`
 
     var stat = statSync(file)
@@ -93,7 +90,7 @@ export default [
   // CJS and ESM
   {
     onwarn: discardWarning,
-    input: getChunks(srcDir),
+    input: getChunks('src'),
     output: [
       {
         dir: 'dist/esm',
@@ -109,9 +106,7 @@ export default [
       },
     ],
     plugins: [
-      del({
-        targets: ['dist/cjs', 'dist/esm'],
-      }),
+      del({ targets: ['dist/cjs', 'dist/esm'] }),
       babel({
         babelrc: false,
         presets: [
@@ -121,13 +116,11 @@ export default [
         extensions: EXTENSIONS,
         exclude: 'node_modules/**',
         plugins: [
-          // ['transform-react-remove-prop-types', { removeImport: true }],
+          ['transform-react-remove-prop-types', { removeImport: true }],
         ],
       }),
-      commonjs({
-        include: /node_modules/,
-      }),
-      replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
+      commonjs({ include: /node_modules/ }),
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       resolve({
         extensions: EXTENSIONS,
         preferBuiltins: false,
