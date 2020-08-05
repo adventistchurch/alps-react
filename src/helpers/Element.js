@@ -452,7 +452,7 @@ Element.propTypes = {
   spaceLeft: spacingPropType,
   spaceRight: spacingPropType,
   spaceTop: spacingPropType,
-  spacing: PropTypes.bool,
+  spacing: spacingPropType,
   spacingAfter: PropTypes.oneOf(spacingAfterSizes),
   // spacingBottom: spacingPropType,
   spacingLeft: spacingPropType,
