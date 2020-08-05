@@ -17,6 +17,7 @@ const CODES = [
 
 const excludePaths = [
   '.stories.js', // Storybook stories
+  'atoms/global', // global classes configuration
   'atoms/icons/library', // Icons in library
   'helpers/renderTimes', // not used
 ]
@@ -116,7 +117,7 @@ export default [
         extensions: EXTENSIONS,
         exclude: 'node_modules/**',
         plugins: [
-          ['transform-react-remove-prop-types', { removeImport: true }],
+          // ['transform-react-remove-prop-types', { removeImport: true }],
         ],
       }),
       commonjs({ include: /node_modules/ }),
