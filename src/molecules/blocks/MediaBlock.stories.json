@@ -11,9 +11,9 @@
   "image": {
     "alt": "Eligendi quod dolorem",
     "srcSet": {
-      "default": "https://picsum.photos/480/270/",
-      "500": "https://picsum.photos/720/405/",
-      "900": "https://picsum.photos/960/540/"
+      "default": "https://picsum.photos/480/360/",
+      "500": "https://picsum.photos/720/540/",
+      "900": "https://picsum.photos/960/720/"
     }
   }
 }

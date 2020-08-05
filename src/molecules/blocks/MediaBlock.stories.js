@@ -135,10 +135,10 @@ storiesOf('molecules/blocks/MediaBlock', module)
     return <MediaBlock {...props} type="stacked" />
   })
 
-  .addWithJSX('Image caption', () => {
+  .addWithJSX('with image caption', () => {
     const props = allTabs({
-      imageCaption:
-        'Aliquam erat volutpat. Etiam dui dui, molestie et pulvinar eget, malesuada vitae dui. Nunc non est pulvinar, lacinia augue sit amet, efficitur libero.',
+      imageCaption: '@2020 Photographer Name',
+      type: 'row',
     })
-    return <MediaBlock {...props} type="feature" />
+    return <MediaBlock {...props} />
   })
