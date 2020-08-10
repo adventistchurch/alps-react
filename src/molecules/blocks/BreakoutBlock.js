@@ -7,7 +7,7 @@ import { Div, HeadingThree, Paragraph } from '../../helpers/Element'
 function BreakoutBlock({ title, description, cta, url, ...props }) {
   return (
     <Div
-      className={`c-block__breakout`}
+      className="c-block__breakout"
       themeBackground="darker"
       padding
       paddingTop="double"
