@@ -15,7 +15,6 @@ function MediaImage({
   image,
   type,
   url,
-  wrapProps,
   ...otherProps
 }) {
   const bgImageStyles = useResponsiveStyles(
@@ -39,29 +38,31 @@ function MediaImage({
       {asBackgroundImage && bgImageStyles && (
         <InlineStyles styles={bgImageStyles} />
       )}
-      <Div className="c-block__image-wrap" {...wrapProps}>
-        <Link href={url} title={image.caption || image.alt}>
-          <Picture
-            image={image}
-            // TODO: FIX: find a better way to hide picture when asBackgroundImage is enabled
-            style={asBackgroundImage ? { visibility: 'hidden' } : null}
-          />
-        </Link>
+      <div className="c-block__image-outer-wrap">
+        <div className="c-block__image-wrap">
+          <Link href={url} title={image.caption || image.alt}>
+            <Picture
+              image={image}
+              // TODO: FIX: find a better way to hide picture when asBackgroundImage is enabled
+              style={asBackgroundImage ? { visibility: 'hidden' } : null}
+            />
+          </Link>
 
-        {(caption || image.caption) && (
-          <Div
-            className="c-block__caption"
-            color="white-transparent"
-            paddingBottom
-            paddingTop
-            paddingRight={type}
-            paddingLeft={type ? 'quad' : false}
-            paddingSides={!type}
-          >
-            {caption || image.caption}
-          </Div>
-        )}
-      </Div>
+          {(caption || image.caption) && (
+            <Div
+              className="c-block__caption"
+              color="white-transparent"
+              paddingBottom
+              paddingTop
+              paddingRight={type}
+              paddingLeft={type ? 'quad' : false}
+              paddingSides={!type}
+            >
+              {caption || image.caption}
+            </Div>
+          )}
+        </div>
+      </div>
     </Div>
   )
 }
@@ -74,7 +75,6 @@ MediaImage.propTypes = {
   image: Picture.propTypes.image,
   type: PropTypes.oneOf(['audio', 'gallery', 'video']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  wrapProps: PropTypes.object,
 }
 
 export default MediaImage
