@@ -94,7 +94,7 @@ Você deve incluir também, na tag `<head>` do seu HTML as fontes e os arquivos 
 <link
   rel="stylesheet"
   type="text/css"
-  href="//cdn.adventist.org/alps/3/3.7.2/css/main-bluejay.css"
+  href="//cdn.adventist.org/alps/3/3.7.9/css/main-bluejay.css"
   media="all"
 />
 ```

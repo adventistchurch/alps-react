@@ -96,7 +96,7 @@ You should also include in your HTML `<head>` ALPS stylesheets and fonts from th
 <link
   rel="stylesheet"
   type="text/css"
-  href="//cdn.adventist.org/alps/3/3.7.2/css/main-bluejay.css"
+  href="//cdn.adventist.org/alps/3/3.7.9/css/main-bluejay.css"
   media="all"
 />
 ```
