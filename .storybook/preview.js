@@ -27,7 +27,6 @@ export const parameters = {
   },
 
   jsx: {
-    // filterProps: val => val !== undefined && val !== null, // Remove props with undefined and null values
-    skip: 0,
+    filterProps: val => val !== undefined && val !== null, // Filters props with undefined and null values
   },
 }
