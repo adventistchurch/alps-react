@@ -1,32 +1,9 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import { primaryColors, secondaryColors } from './atoms/global/colors'
 import { Div } from './helpers/Element'
 import useDrawerContext from './helpers/useDrawerContext'
-
-export function ThemeWrap({
-  children,
-  className = '',
-  color,
-  hasGrid = false,
-}) {
-  return (
-    <Div
-      className={`${color ? `u-theme--${color}` : ''} ${
-        hasGrid ? 'has-grid' : ''
-      } ${className}`}
-    >
-      {children}
-    </Div>
-  )
-}
-ThemeWrap.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  color: PropTypes.string,
-  hasGrid: PropTypes.bool,
-}
 
 export default function Body({
   children,
@@ -36,17 +13,16 @@ export default function Body({
 }) {
   const { isOpen } = useDrawerContext()
 
-  return (
-    <ThemeWrap color={primaryColor}>
-      <ThemeWrap
-        color={secondaryColor}
-        hasGrid={hasGrid}
-        className={`body ${isOpen.menu ? 'menu-is-active' : ''} `}
-      >
-        {children}
-      </ThemeWrap>
-    </ThemeWrap>
-  )
+  const className = useMemo(() => {
+    const classes = ['body']
+    if (hasGrid) classes.push('has-grid')
+    if (primaryColor) classes.push(`u-theme--${primaryColor}`)
+    if (secondaryColor) classes.push(`u-theme--${secondaryColor}`)
+    if (isOpen.menu) classes.push('menu-is-active')
+    return classes.join(' ')
+  }, [hasGrid, primaryColor, secondaryColor, isOpen])
+
+  return <Div className={className}>{children}</Div>
 }
 
 Body.propTypes = {

@@ -1,70 +1,61 @@
 import React from 'react'
 
-import { withContexts } from '@storybook/addon-contexts/react'
+import AlpsContextProvider from '../src/AlpsContextProvider'
+import Body from '../src/Body'
 import { primaryColors, secondaryColors } from '../src/atoms/global/colors'
 
-import AlpsContextProvider from '../src/AlpsContextProvider'
-import { ThemeWrap } from '../src/Body'
+export function withAlpsTheme(Story, context = {}) {
+  const {
+    hasGrid = true,
+    primaryColor = 'denim',
+    secondaryColor = '',
+  } = context.globals
 
-export function withAlpsContext(props = {}) {
-  return story => (
-    <AlpsContextProvider {...props}>{story()}</AlpsContextProvider>
+  return (
+    <AlpsContextProvider>
+      <Body
+        hasGrid={hasGrid}
+        primaryColor={primaryColor}
+        secondaryColor={secondaryColor}
+      >
+        <Story />
+      </Body>
+    </AlpsContextProvider>
   )
 }
 
-export function withAlpsTheme({
-  primaryColor = 'ming',
-  secondaryColor = '',
-  hasGrid = true,
-} = {}) {
-  return withContexts([
-    {
-      icon: 'paintbrush',
-      title: 'Primary color',
-      components: [ThemeWrap],
-      params: primaryColors.map(color => ({
-        name: color,
-        props: { color },
-        default: color === primaryColor,
-      })),
-      options: {
-        deep: true,
-        disable: false,
-        cancelable: true,
-      },
-    },
-    {
-      icon: 'mirror',
-      title: 'Secondary Color',
-      components: [ThemeWrap],
-      params: secondaryColors.map(color => ({
-        name: color || 'light',
-        props: { color },
-        default: color === secondaryColor,
-      })),
-      options: {
-        deep: true,
-        disable: false,
-        cancelable: true,
-      },
-    },
-
-    {
+export const alpsGlobals = {
+  hasGrid: {
+    name: 'Show Grid',
+    description: 'Toggle Seven-column grid',
+    defaultValue: '',
+    toolbar: {
       icon: 'grid',
-      title: 'Show 7 Column grid',
-      components: [ThemeWrap],
-      params: [
-        {
-          name: 'Show Grid',
-          props: { hasGrid: true },
-          default: hasGrid,
-        },
+      items: [
+        { title: 'Show grid', value: true, id: 'grid-true' },
+        { title: 'Hide grid', value: false, id: 'grid-false' },
       ],
-      options: {
-        deep: true,
-        disable: false,
-        cancelable: true,
-      },
     },
-  ])
+  },
+  primaryColor: {
+    name: 'Primary Color',
+    description: 'Choose the primary color',
+    defaultValue: 'denim',
+    toolbar: {
+      icon: 'paintbrush',
+      items: primaryColors,
+    },
+  },
+  secondaryColor: {
+    name: 'Secondary Color',
+    description: 'Choose the secondary color',
+    defaultValue: '',
+    toolbar: {
+      icon: 'mirror',
+      items: secondaryColors.map(color => ({
+        title: color || 'light',
+        value: color,
+      })),
+    },
+  },
 }
