@@ -1,34 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { boolean, select } from '@storybook/addon-knobs'
 
 import Grid, { asOptions, wrapSizes } from './Grid'
 import GridItem from './GridItem'
 
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Grid.defaultProps,
-    ...settings,
-  }
-}
-
-export function gridTab(settings = {}) {
-  const { as, noGutters, seven, wrap, tab } = getTabData('Grid', settings)
-
-  return {
-    as: select('As', asOptions, as, tab),
-    wrap: select('Wrap (x of 7)', [true, false, ...wrapSizes], wrap, tab),
-    noGutters: boolean('No Gutters', noGutters, tab),
-    seven: boolean('Seven', seven, tab),
-  }
-}
-
-storiesOf('atoms/grids/Grid', module).addWithJSX('Default', () => {
-  const { as, noGutters, seven, wrap } = gridTab()
-
+const GridTemplate = (props) => {
   return (
-    <Grid as={as} noGutters={noGutters} seven={seven} wrap={wrap}>
+    <Grid {...props}>
       <GridItem sizeAtS="3" sizeAtXL="2">
         Test
       </GridItem>
@@ -37,4 +14,22 @@ storiesOf('atoms/grids/Grid', module).addWithJSX('Default', () => {
       </GridItem>
     </Grid>
   )
-})
+}
+
+export default {
+  title: 'Atoms/Grids/Grid',
+  component: Grid,
+  args: {
+    as: 'div', 
+    wrap: '1', 
+    seven: false, 
+    noGutters: false,
+  },
+  argTypes: {
+    as: { control: { type: 'select', options: asOptions } },
+    wrap: { control: { type: 'select', options: wrapSizes } },
+  }
+}
+
+
+export const Default = GridTemplate.bind({});
