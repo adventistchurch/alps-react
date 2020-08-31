@@ -1,9 +1,6 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { color as colorPicker, select } from '@storybook/addon-knobs'
 
 import IconWrap, { iconSizes } from './IconWrap'
-import { Div, Link } from '../../helpers/Element'
 import { iconNames } from './Icon'
 import {
   svgFillColors,
@@ -11,100 +8,23 @@ import {
   themeBackgroundColors,
 } from '../../atoms/global/colors'
 
-function setOptions(options, labelFormat) {
-  const newOptions = {}
-  for (const option of options) {
-    newOptions[labelFormat ? labelFormat(option) : option] = option
-  }
-  return { '-': null, ...newOptions }
+export default {
+  title: 'Atoms/Icons/IconWrap',
+  component: IconWrap,
+  args: {
+    name: '',
+  },
 }
 
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Element.defaultProps,
-    ...settings,
-  }
+const IconWrapTemplate = props => <IconWrap {...props} />
+
+export const Default = IconWrapTemplate.bind({})
+Default.args = { name: 'logo' }
+Default.argTypes = {
+  name: { control: { type: 'select', options: iconNames } },
+  fill: { control: { type: 'color' } },
+  size: { control: { type: 'select', options: iconSizes } },
+  color: { control: { type: 'select', options: svgFillColors } },
+  themeColor: { control: { type: 'select', options: themeColors } },
+  background: { control: { type: 'select', options: themeBackgroundColors } },
 }
-
-function iconWrapTab(settings = {}) {
-  const {
-    background,
-    color,
-    themeColor,
-    name,
-    size,
-    hideName,
-    tab,
-  } = getTabData('Props', settings)
-
-  return {
-    name: hideName ? null : select('Icon name *', iconNames, name, tab),
-    color: select('Color', setOptions(svgFillColors), color, tab),
-    themeColor: select('Theme Color', setOptions(themeColors), themeColor, tab),
-    fill: colorPicker('Fill', '', tab),
-    background: select(
-      'Background',
-      setOptions(themeBackgroundColors),
-      background,
-      tab
-    ),
-    size: select('Size', iconSizes, size, tab),
-  }
-}
-
-storiesOf('atoms/icons/IconWrap', module)
-  .addWithJSX('Default', () => {
-    const { name, size, color, background, themeColor, fill } = iconWrapTab({
-      name: 'logo',
-      size: 'xl',
-    })
-
-    return (
-      <IconWrap
-        name={name}
-        size={size}
-        themeColor={themeColor}
-        color={color}
-        background={background}
-        fill={fill}
-      />
-    )
-  })
-
-  .addWithJSX('All icons', () => {
-    const props = iconWrapTab({ size: 'xl', hideName: true })
-
-    return (
-      <Div flex flexJustify="center">
-        {iconNames.map(icon => (
-          <Link
-            href={`/?path=/story/atoms-icons-icon--${icon}`}
-            target="_blank"
-            key={icon}
-            flex
-            flexColumn
-            flexAlign="center"
-            space
-            spacing
-            padding
-            border
-            themeBorder={props.themeColor}
-            themeBackground={props.background}
-          >
-            <IconWrap {...props} name={icon} />
-            <Div themeBackground="white" padding="quarter">
-              <Div
-                color={props.color}
-                themeColor={props.themeColor}
-                space="quarter"
-                strong
-              >
-                <code>{icon}</code>
-              </Div>
-            </Div>
-          </Link>
-        ))}
-      </Div>
-    )
-  })
