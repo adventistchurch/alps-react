@@ -30,7 +30,6 @@ function GalleryBlock({ images, kicker, title }) {
               as="button"
               className={`c-gallery-block__toggle ${openClass}`}
               icon="plus"
-              iconFill="white"
               onClick={onToggle}
               outline
               small

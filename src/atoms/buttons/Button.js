@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Element, { Link } from '../../helpers/Element'
 import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
-import IconWrap from '../icons/IconWrap'
+import IconWrap, { iconSizes } from '../icons/IconWrap'
 
 export const asOptions = ['a', 'button', 'span']
 export const iconPositions = ['left', 'right']
@@ -44,7 +44,6 @@ function Button({
   expand,
   href,
   icon,
-  iconFill,
   iconPosition,
   iconProps,
   iconSize,
@@ -89,7 +88,6 @@ function Button({
   const iconElem = icon && (
     <IconWrap
       color="white"
-      fill={iconFill}
       name={icon}
       size={iconSize}
       style={iconPosition === 'right' ? fixRightIcon : null}
@@ -119,10 +117,9 @@ Button.propTypes = {
   expand: PropTypes.bool,
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   icon: PropTypes.string,
-  iconFill: PropTypes.string,
   iconPosition: PropTypes.oneOf(iconPositions),
   iconProps: PropTypes.object,
-  iconSize: PropTypes.string,
+  iconSize: PropTypes.oneOf(iconSizes),
   lighter: PropTypes.bool,
   onClick: PropTypes.func,
   outline: PropTypes.bool,
@@ -136,9 +133,6 @@ Button.propTypes = {
 Button.defaultProps = {
   as: 'button',
   className: '',
-  iconFill: 'white',
-  iconPosition: 'left',
-  iconSize: 'xs',
 }
 
 export default Button

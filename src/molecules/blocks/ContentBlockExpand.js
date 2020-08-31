@@ -27,7 +27,6 @@ function ContentBlockExpand({ kicker, title, description }) {
               as="button"
               className={openClass}
               icon="plus"
-              iconFill="white"
               onClick={onToggle}
               outline
               small

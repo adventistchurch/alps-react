@@ -10,21 +10,22 @@ export default {
   component: Button,
   args: {
     text: 'Learn more',
-    href: '',
-    url: '',
     as: 'button',
-    className: '',
     disabled: false,
     outline: false,
     small: false,
     simple: false,
     lighter: false,
+    toggle: false,
+    expand: false,
   },
   argTypes: {
     as: { control: { type: 'select', options: ['button', 'a'] } },
     icon: { control: { type: 'select', options: iconNames } },
-    iconSize: { control: { type: 'select', options: iconSizes } },
-    iconPosition: { control: { type: 'select', options: iconPositions } },
+    iconSize: { control: { type: 'inline-radio', options: iconSizes } },
+    iconPosition: {
+      control: { type: 'inline-radio', options: iconPositions },
+    },
   },
 }
 
