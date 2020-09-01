@@ -21,7 +21,8 @@
     "constructor-super": "warn",
     "no-console": "warn",
     "valid-typeof": "warn",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "react/prop-types": "off"
   },
 
   "parser": "babel-eslint",
