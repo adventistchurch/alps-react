@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Button, { iconPositions } from './Button'
-import { iconNames } from '../icons/Icon'
-
-import { iconSizes } from '../icons/IconWrap'
+import { iconSizes, iconNames } from '../icons/IconWrap'
 
 export default {
   title: 'Atoms/Buttons/Button',

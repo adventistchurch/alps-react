@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Element, { Link } from '../../helpers/Element'
 import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
-import IconWrap, { iconSizes } from '../icons/IconWrap'
+import IconWrap, { iconSizes, iconNames } from '../icons/IconWrap'
 
 export const asOptions = ['a', 'button', 'span']
 export const iconPositions = ['left', 'right']
@@ -111,22 +111,73 @@ function Button({
 }
 
 Button.propTypes = {
+  /**
+   * Sets the html element used to render the button
+   */
   as: PropTypes.oneOf(asOptions),
+  /**
+   * Allows passing extra classes to button's wrapper
+   */
   className: PropTypes.string,
+  /**
+   * Flags button as diabled
+   */
   disabled: PropTypes.bool,
+  /**
+   * TODO: is this required?
+   */
   expand: PropTypes.bool,
+  /**
+   * URL to navigate when button is pressed. It can be a regular `string` URL, or an `object` with metadata (like Links in Next.js).
+   */
   href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  icon: PropTypes.string,
+  /**
+   * Icon to be displayed (requires `iconPosition`)
+   */
+  icon: PropTypes.oneOf(iconNames),
+  /**
+   * Defines icon positioning (relative to `text`)
+   */
   iconPosition: PropTypes.oneOf(iconPositions),
+  /**
+   * Provides extra props to the icon element
+   */
   iconProps: PropTypes.object,
+  /**
+   * Set icon's size
+   */
   iconSize: PropTypes.oneOf(iconSizes),
+  /**
+   * Makes button look lighter
+   */
   lighter: PropTypes.bool,
+  /**
+   * Handles `onclick` event
+   */
   onClick: PropTypes.func,
+  /**
+   * Removes button's background
+   */
   outline: PropTypes.bool,
+  /**
+   * Removes button's border and background
+   */
   simple: PropTypes.bool,
+  /**
+   * Makes button look smaller
+   */
   small: PropTypes.bool,
+  /**
+   * Sets button label
+   */
   text: PropTypes.string,
+  /**
+   * TODO: is this required?
+   */
   toggle: PropTypes.bool,
+  /**
+   * An `href` alias
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
