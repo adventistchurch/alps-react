@@ -14,6 +14,7 @@ export function withAlpsTheme(Story, context = {}) {
   return (
     <AlpsContextProvider>
       <Body
+        hasBodyClass={false}
         hasGrid={hasGrid}
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
