@@ -1,40 +1,31 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { boolean, object, select, text } from '@storybook/addon-knobs'
 
 import Picture from './Picture'
-import data from './Picture.stories.json'
 
-const imageModes = ['Landscape', 'Portrait', 'Square']
-
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Picture.defaultProps,
-    ...data,
-    ...settings,
-  }
+export default {
+  title: 'ALPS/Atoms/Images/Picture',
+  component: Picture,
 }
 
-export function pictureTab(settings = {}) {
-  const { alt, caption, srcSet, lazy, tab } = getTabData('Picture', settings)
+const PictureTemplate = props => <Picture {...props} />
 
-  const imageMode = srcSet
-    ? null
-    : select(' Mode', imageModes, 'Landscape', tab)
-  const src = srcSet || data[imageMode]
-
-  return {
-    image: {
-      srcSet: object('Image SrcSet *', src, tab),
-      alt: text('Image Alt', alt, tab),
-      caption: text('Image Caption', caption, tab),
+export const Default = PictureTemplate.bind({})
+Default.args = {
+  image: {
+    srcSet: {
+      default: '//picsum.photos/500/500',
     },
-    lazy: boolean('Lazy load', lazy, tab),
-  }
+    alt: 'Image description',
+  },
 }
 
-storiesOf('atoms/images/Picture', module).addWithJSX('Default', () => {
-  const { image, lazy } = pictureTab()
-  return <Picture image={image} lazy={lazy} />
-})
+export const Lazy = PictureTemplate.bind({})
+Lazy.args = {
+  image: {
+    srcSet: {
+      default: '//picsum.photos/id/25/500/500',
+    },
+    alt: 'Image description',
+  },
+  lazy: true,
+}

@@ -1,23 +1,29 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-function Picture({ image, lazy, style }) {
-  if (!image || !image.srcSet) return null
-  const { alt, srcSet } = image
+export default function Picture({ image, lazy, style }) {
+  const { alt, srcSet } = image || {}
 
-  const { default: defaultImage, ...otherImages } = srcSet
+  const { sources, defaultImage } = useMemo(() => {
+    if (!srcSet) return {}
 
-  const sources = Object.keys(otherImages)
-    .reverse()
-    .map((size, i) => (
-      <source
-        key={i}
-        media={`(min-width: ${size}px)`}
-        srcSet={otherImages[size]}
-      />
-    ))
+    const { default: defaultImage, ...otherImages } = srcSet
+
+    return {
+      defaultImage,
+      sources: Object.keys(otherImages)
+        .reverse()
+        .map((size, i) => (
+          <source
+            key={i}
+            media={`(min-width: ${size}px)`}
+            srcSet={otherImages[size]}
+          />
+        )),
+    }
+  }, [srcSet])
 
   return (
     <picture className="picture" style={style}>
@@ -28,15 +34,19 @@ function Picture({ image, lazy, style }) {
 }
 
 Picture.propTypes = {
+  /**
+   * The image object
+   */
   image: PropTypes.shape({
     alt: PropTypes.string.isRequired,
     srcSet: PropTypes.object.isRequired,
   }),
+  /**
+   * Makes the image lazy-loaded (loaded only when is in the viewport)
+   */
   lazy: PropTypes.bool,
+  /**
+   * Extra inline styles
+   */
   style: PropTypes.object,
 }
-Picture.defaultProps = {
-  image: { srcSet: {}, alt: '' },
-}
-
-export default Picture

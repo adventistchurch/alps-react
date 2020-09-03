@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Svg from '../../../helpers/Svg'
 
-function SDA({ fill }) {
+export default function SDA({ fill }) {
   return (
     <Svg title="logo-sda" viewBox="0 0 432.6 103.09">
       <path
@@ -20,5 +20,3 @@ SDA.propTypes = {
 SDA.defaultProps = {
   fill: '#fb23c2',
 }
-
-export default SDA

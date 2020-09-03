@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Svg from '../../../helpers/Svg'
 
-function SDAArabic({ fill }) {
+export default function SDAArabic({ fill }) {
   return (
     <Svg title="logo-sda-arabic" viewBox="0 0 473.55 118.98">
       <path
@@ -20,5 +20,3 @@ SDAArabic.propTypes = {
 SDAArabic.defaultProps = {
   fill: '#fb23c2',
 }
-
-export default SDAArabic

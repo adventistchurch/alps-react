@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Svg from '../../../helpers/Svg'
 
-function Gain({ fill, fillAccent }) {
+export default function Gain({ fill, fillAccent }) {
   return (
     <Svg title="logo-gain" viewBox="0 0 1177 400">
       <g fill="none">
@@ -29,5 +29,3 @@ Gain.defaultProps = {
   fill: '#000',
   fillAccent: '#d0021b',
 }
-
-export default Gain
