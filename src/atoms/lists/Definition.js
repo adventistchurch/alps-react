@@ -2,35 +2,35 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
-import renderItems from '../../helpers/renderItems'
+import DefinitionItem from './DefinitionItem'
 
-function Definition({ items }) {
+/**
+ * Definition list component
+ */
+export default function Definition({ items, children, ...props }) {
   return (
-    <dl>
-      {renderItems(items, ({ text, title }) => (
-        <>
-          <Element as="dt" paddingTop>
-            {title}
-          </Element>
-          <Element as="dd" paddingBottom>
-            {text}
-          </Element>
-        </>
-      ))}
-    </dl>
+    <Element as="dl" {...props}>
+      {Array.isArray(items)
+        ? items.map((props, i) => (
+            <DefinitionItem key={`definition-item-${i}`} {...props} />
+          ))
+        : children}
+    </Element>
   )
 }
 
 Definition.propTypes = {
+  /**
+   * Use this provide items as nested children (we recommend they to be `DefinitionItem`)
+   */
+  children: PropTypes.node,
+  /**
+   * List of items to display
+   */
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
+      title: PropTypes.node.isRequired,
+      description: PropTypes.node.isRequired,
     })
   ),
 }
-Definition.defaultProps = {
-  items: [],
-}
-
-export default Definition

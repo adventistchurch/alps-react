@@ -1,13 +1,28 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { object } from '@storybook/addon-knobs'
 
 import Inline from './Inline'
-import data from './Inline.stories.json'
 
-const propsTab = 'Props'
+export default {
+  title: 'ALPS/Atoms/Lists/Inline',
+  component: Inline,
+}
 
-storiesOf('atoms/lists/Inline', module).addWithJSX('Default', () => {
-  const items = object('Items', data.items, propsTab)
-  return <Inline items={items} />
-})
+const InlineTemplate = props => <Inline {...props} />
+
+export const Default = InlineTemplate.bind({})
+Default.args = {
+  items: [
+    {
+      text: 'Inline Item A',
+    },
+    {
+      text: 'Inline Item B',
+    },
+    {
+      text: 'Inline Item C',
+    },
+    {
+      text: 'Inline Item D',
+    },
+  ],
+}
