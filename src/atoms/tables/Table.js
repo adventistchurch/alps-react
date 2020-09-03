@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
 
-function Table({ title, columns, rows, slim }) {
+export default function Table({ title, columns, rows, slim }) {
   return (
     <Element as="table" className={slim ? 'o-table-slim' : null} border spacing>
       {title && <caption>{title}</caption>}
@@ -32,15 +32,23 @@ function Table({ title, columns, rows, slim }) {
 }
 
 Table.propTypes = {
+  /**
+   * Table's title
+   */
   title: PropTypes.string,
+  /**
+   * Columns headers
+   */
   columns: PropTypes.array,
-  rows: PropTypes.array,
+  /**
+   * Table rows
+   */
+  rows: PropTypes.array.isRequired,
+  /**
+   * Reduces spacing for cells
+   */
   slim: PropTypes.bool,
 }
 Table.defaultProps = {
   columns: [],
-  rows: [],
-  slim: false,
 }
-
-export default Table

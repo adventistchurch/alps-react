@@ -1,44 +1,36 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { boolean, number, object, text } from '@storybook/addon-knobs'
 
-import range from '../../helpers/range'
 import Table from './Table'
 
-import data from './Table.stories.json'
+export default {
+  title: 'ALPS/Atoms/Tables/Table',
+  component: Table,
+}
 
-const propsTab = 'Props'
+const TableTemplate = props => <Table {...props} />
 
-storiesOf('atoms/tables/Table', module)
-  .addWithJSX('Default', () => {
-    const title = text('Title', data.table1.title, propsTab)
-    const columns = object('Columns', data.table1.columns, propsTab)
-    const rows = object('Rows', data.table1.rows, propsTab)
-    const slim = boolean('Slim', false, propsTab)
+export const Default = TableTemplate.bind({})
+Default.args = {
+  columns: ['Heading 1', 'Heading 2', 'Heading 3', 'Heading 4', 'Heading 5'],
+  rows: [
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+    ['Cell 1', 'Cell 2', 'Cell 3', 'Cell 4', 'Cell 5'],
+  ],
+}
 
-    return <Table title={title} columns={columns} rows={rows} slim={slim} />
-  })
+export const Slim = TableTemplate.bind({})
+Slim.args = {
+  ...Default.args,
+  slim: true,
+}
 
-  .addWithJSX('Slim', () => {
-    const slim = boolean('Slim', true, propsTab)
-    const title = text('Title', data.table1.title, propsTab)
-    const columns = object('Columns', data.table1.columns, propsTab)
-    const rows = object('Rows', data.table1.rows, propsTab)
-
-    return <Table title={title} columns={columns} rows={rows} slim={slim} />
-  })
-
-  .addWithJSX('Playground', () => {
-    const title = text('Title', 'Table A.1', propsTab)
-    const colCount = number('Number of Columns', 7, {}, propsTab)
-    const rowCount = number('Number of Rows', 7, {}, propsTab)
-    const cellText = text('Cell text', '', propsTab)
-    const slim = boolean('Slim', false, propsTab)
-
-    const columns = range(1, colCount).map(col => `Header ${col}`)
-    const rows = range(1, rowCount).map(row =>
-      range(1, colCount).map(col => cellText || `C:${col} / R:${row}`)
-    )
-
-    return <Table title={title} columns={columns} rows={rows} slim={slim} />
-  })
+export const WithTitle = TableTemplate.bind({})
+WithTitle.args = {
+  ...Default.args,
+  title: 'Table A.1',
+}
