@@ -1,16 +1,23 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { number, text } from '@storybook/addon-knobs'
 
 import Video from './Video'
 
-import data from './Video.stories.json'
+export default {
+  title: 'ALPS/Atoms/Media/Video',
+  component: Video,
+}
 
-const propsTab = 'Props'
+const VideoTemplate = props => <Video {...props} />
 
-storiesOf('atoms/media/Video', module).addWithJSX('Default', () => {
-  const src = text('Source *', data.src, propsTab)
-  const width = number('Width', data.width, {}, propsTab)
-  const height = number('Height', data.height, {}, propsTab)
-  return <Video src={src} width={width} height={height} />
-})
+export const Default = VideoTemplate.bind({})
+Default.args = {
+  src:
+    'https://player.vimeo.com/video/137487821?color=ffffff&title=0&byline=0&portrait=0',
+  title: 'Just a demo video',
+  width: 600,
+  height: 300,
+}
+Default.argTypes = {
+  width: { control: { type: 'range', min: 200, max: 1280, step: 10 } },
+  height: { control: { type: 'range', min: 200, max: 1280, step: 10 } },
+}
