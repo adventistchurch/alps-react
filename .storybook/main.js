@@ -8,6 +8,7 @@ module.exports = {
         actions: false,
       },
     },
+    '@storybook/addon-a11y',
     'storybook-addon-jsx',
     '@whitespace/storybook-addon-html',
   ],
