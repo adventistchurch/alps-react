@@ -4,7 +4,7 @@ import Button, { iconPositions } from './Button'
 import { iconSizes, iconNames } from '../icons/IconWrap'
 
 export default {
-  title: 'Atoms/Buttons/Button',
+  title: 'ALPS/Atoms/Buttons/Button',
   component: Button,
   args: {
     text: 'Learn more',

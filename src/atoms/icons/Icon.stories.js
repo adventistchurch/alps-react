@@ -1,7 +1,7 @@
 import Icon, { iconNames } from './Icon'
 
 export default {
-  title: 'Atoms/Icons/Icon',
+  title: 'ALPS/Atoms/Icons/Icon',
   component: Icon,
   args: {
     name: '',

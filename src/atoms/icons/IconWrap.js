@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 import { themeBackgroundColors } from '../../atoms/global/colors'
 
-import Icon from '../../atoms/icons/Icon'
+import Icon, { iconNames } from '../../atoms/icons/Icon'
 import Element from '../../helpers/Element'
 import useClasses from '../../helpers/useClasses'
 
 // Available icons sizes
 export const iconSizes = ['xs', 's', 'm', 'l', 'xl']
+export { iconNames }
 
 export default function IconWrap({
   background,
@@ -42,7 +43,7 @@ IconWrap.propTypes = {
   color: Icon.propTypes.color,
   themeColor: Icon.propTypes.themeColor,
   fill: Icon.propTypes.fill,
-  name: Icon.propTypes.name,
+  name: PropTypes.oneOf(iconNames),
   size: PropTypes.oneOf(iconSizes),
   ...Element.propTypes,
 }
