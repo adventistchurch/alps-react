@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Text from './Text'
 
-function Intro({ children, text }) {
+export default function Intro({ children, text }) {
   return (
     <Text as="p" className="o-intro">
       {children || text}
@@ -12,8 +12,12 @@ function Intro({ children, text }) {
 }
 
 Intro.propTypes = {
+  /**
+   * Sets content as children (prevails over `text` prop).
+   */
   children: PropTypes.node,
+  /**
+   * Sets content.
+   */
   text: PropTypes.string,
 }
-
-export default Intro

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Span } from '../../helpers/Element'
 
-function Kicker({ color, text }) {
+export default function Kicker({ color, text }) {
   return (
     <Span themeColor={color}>
       <em>{text}</em>
@@ -12,11 +12,15 @@ function Kicker({ color, text }) {
 }
 
 Kicker.propTypes = {
+  /**
+   * Defines kicker color (based on theme).
+   */
   color: PropTypes.oneOf(['base', 'darker']),
+  /**
+   * Sets content.
+   */
   text: PropTypes.string.isRequired,
 }
 Kicker.defaultProps = {
   color: 'base',
 }
-
-export default Kicker

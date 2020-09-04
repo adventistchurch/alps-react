@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Element from '../../helpers/Element'
 
-function Blockquote({ children, text }) {
+export default function Blockquote({ children, text }) {
   return (
     <Element
       as="blockquote"
@@ -19,8 +19,12 @@ function Blockquote({ children, text }) {
 }
 
 Blockquote.propTypes = {
+  /**
+   * Sets content as children (prevails over `text` prop).
+   */
   children: PropTypes.node,
+  /**
+   * Sets content and wraps it in a `<p>` tag.
+   */
   text: PropTypes.string,
 }
-
-export default Blockquote

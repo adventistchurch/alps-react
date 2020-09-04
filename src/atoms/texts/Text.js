@@ -6,7 +6,7 @@ import useClasses from '../../helpers/useClasses'
 import useDropcap from '../../helpers/useDropcap'
 import Dropcap from './Dropcap'
 
-function Text({ children, className, hasDropcap, ...props }) {
+export default function Text({ children, className, hasDropcap, ...props }) {
   const classes = useClasses(
     'text',
     {
@@ -29,12 +29,19 @@ function Text({ children, className, hasDropcap, ...props }) {
 
 Text.propTypes = {
   ...Element.propTypes,
+  /**
+   * Sets the tag element used in as wrapping element.
+   */
   as: PropTypes.oneOf(['article', 'div', 'p', 'section', 'span']),
+  /**
+   * Sets content as children.
+   */
   children: PropTypes.node,
+  /**
+   * Defines if a dropcap will be shown.
+   */
   hasDropcap: PropTypes.bool,
 }
 Text.defaultProps = {
   as: 'div',
 }
-
-export default Text

@@ -1,12 +1,15 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text as textInput } from '@storybook/addon-knobs'
 
 import Kicker from './Kicker'
 
-const propsTab = 'Props'
+export default {
+  title: 'ALPS/Atoms/Texts/Kicker',
+  component: Kicker,
+}
 
-storiesOf('atoms/texts/Kicker', module).addWithJSX('Default', () => {
-  const text = textInput('text *', 'A Kicker title', propsTab)
-  return <Kicker text={text} />
-})
+const KickerTemplate = props => <Kicker {...props} />
+
+export const Default = KickerTemplate.bind({})
+Default.args = {
+  text: 'A Kicker title',
+}

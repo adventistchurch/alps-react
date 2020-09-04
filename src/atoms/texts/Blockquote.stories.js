@@ -1,20 +1,26 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import Blockquote from './Blockquote'
 
-import data from './Blockquote.stories.json'
+export default {
+  title: 'ALPS/Atoms/Texts/Blockquote',
+  component: Blockquote,
+}
 
-const propsTab = 'Props'
+const BlockquoteTemplate = props => <Blockquote {...props} />
 
-storiesOf('atoms/texts/Blockquote', module)
-  .addWithJSX('Default', () => {
-    const blockquoteText = text('Text *', data.text, propsTab)
-    return <Blockquote text={blockquoteText} />
-  })
+export const Default = BlockquoteTemplate.bind({})
+Default.args = {
+  text: 'Proin dictum lobortis luctus.',
+}
 
-  .addWithJSX('As Children', () => {
-    const blockquoteText = text('Text *', data.text, propsTab)
-    return <Blockquote>{blockquoteText}</Blockquote>
-  })
+export const AsChildren = ({ children, ...props }) => {
+  return (
+    <Blockquote {...props}>
+      <em>{children}</em>
+    </Blockquote>
+  )
+}
+AsChildren.args = {
+  children: Default.args.text,
+}

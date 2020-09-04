@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Div } from '../../helpers/Element'
 
-function Caption({ children, text }) {
+export default function Caption({ children, text }) {
   return (
     <Div className="o-caption" color="gray" fontSize="s" fontType="secondary">
       {children || text}
@@ -12,8 +12,12 @@ function Caption({ children, text }) {
 }
 
 Caption.propTypes = {
+  /**
+   * Sets content as children (prevails over `text` prop).
+   */
   children: PropTypes.node,
+  /**
+   * Sets content as text.
+   */
   text: PropTypes.string,
 }
-
-export default Caption
