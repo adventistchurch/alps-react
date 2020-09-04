@@ -1,17 +1,10 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-function InlineStyles({ styles }) {
-  const innerHtml = useMemo(() => ({ __html: styles }), [])
-
-  return <style dangerouslySetInnerHTML={innerHtml} type="text/css" />
+export default function InlineStyles({ styles }) {
+  return <style dangerouslySetInnerHTML={{ __html: styles }} type="text/css" />
 }
 
 InlineStyles.propTypes = {
-  styles: PropTypes.string,
+  styles: PropTypes.string.isRequired,
 }
-InlineStyles.defaultProps = {
-  styles: '',
-}
-
-export default InlineStyles
