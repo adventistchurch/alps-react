@@ -436,7 +436,7 @@ Element.propTypes = {
   padding: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   paddingBottom: spacingPropType,
   paddingLeft: spacingPropType,
-  paddingLeftUntil: PropTypes.oneOf(['xxlarge']),
+  paddingLeftUntil: PropTypes.oneOf([false, 'xxlarge']),
   paddingRight: spacingPropType,
   paddingTop: spacingPropType,
   paddingSides: spacingPropType,
@@ -511,6 +511,11 @@ export function Paragraph(props) {
 Paragraph.propTypes = Element.propTypes
 
 // - Lists
+
+export function OL(props) {
+  return <Element {...props} as="ol" />
+}
+UL.propTypes = Element.propTypes
 
 export function UL(props) {
   return <Element {...props} as="ul" />

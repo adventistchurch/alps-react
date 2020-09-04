@@ -9,6 +9,7 @@ import { getBaseClass } from './commons'
 
 export const spacingSizes = [
   true,
+  false,
   'quarter',
   'half',
   'double',
