@@ -4,7 +4,6 @@ import InlineStyles from './InlineStyles'
 
 export default {
   title: 'ALPS/Helpers/InlineStyles',
-  description: 'This is a React helper used to inject inline styles',
   component: InlineStyles,
   args: {
     styles: '',

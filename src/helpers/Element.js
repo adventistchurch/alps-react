@@ -365,8 +365,6 @@ function useElementProps(props) {
 
 /**
  * The ubiquitous Element component
- *
- * @param {Object} props All Element's props
  */
 export default function Element({ as, children, tag, forwardedRef, ...props }) {
   const { className, ...otherProps } = useElementProps(props)
