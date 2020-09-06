@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconWrap from '../../atoms/icons/IconWrap'
 import { Div } from '../../helpers/Element'
-import Slider, { DefaultArrows } from '../../helpers/Slider'
+import Slider from '../../helpers/Slider'
 import Slide from './Slide'
 
 const sliderSettings = {
@@ -13,35 +13,36 @@ const sliderSettings = {
   adaptiveHeight: true,
 }
 
-function CarouselArrows({ onNext, onPrev }) {
-  return (
-    <div className="c-carousel__controls">
-      <span className="o-arrow__prev" onClick={onPrev}>
-        <IconWrap
-          background="darker"
-          className="c-carousel__arrow c-carousel__arrow--prev u-round"
-          name="arrow-bracket-left"
-          size="s"
-        />
-      </span>
-      <span className="o-arrow__next" onClick={onNext}>
-        <IconWrap
-          background="darker"
-          className="c-carousel__arrow c-carousel__arrow--next u-round"
-          name="arrow-bracket-right"
-          size="s"
-        />
-      </span>
-    </div>
-  )
-}
-CarouselArrows.propTypes = DefaultArrows.propTypes
-
-function Carousel({ slides, showArrows, showDots }) {
+export default function Carousel({ slides, showArrows, showDots }) {
   return (
     <Div className="c-carousel" position="relative">
       <Slider
-        arrowsComponent={showArrows ? CarouselArrows : null}
+        arrowsComponent={
+          showArrows
+            ? ({ onNext, onPrev }) => {
+                return (
+                  <div className="c-carousel__controls">
+                    <span className="o-arrow__prev" onClick={onPrev}>
+                      <IconWrap
+                        background="darker"
+                        className="c-carousel__arrow c-carousel__arrow--prev u-round"
+                        name="arrow-bracket-left"
+                        size="s"
+                      />
+                    </span>
+                    <span className="o-arrow__next" onClick={onNext}>
+                      <IconWrap
+                        background="darker"
+                        className="c-carousel__arrow c-carousel__arrow--next u-round"
+                        name="arrow-bracket-right"
+                        size="s"
+                      />
+                    </span>
+                  </div>
+                )
+              }
+            : null
+        }
         className="c-carousel__slides"
         showArrows={showArrows}
         showDots={showDots}
@@ -56,14 +57,40 @@ function Carousel({ slides, showArrows, showDots }) {
 }
 
 Carousel.propTypes = {
+  /**
+   * Toggles carousel's arrows
+   */
   showArrows: PropTypes.bool,
+  /**
+   * Toggles carousel's dots
+   */
   showDots: PropTypes.bool,
-  slides: PropTypes.array,
+  /**
+   * List of slides to display
+   */
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      className: PropTypes.string,
+      cta: PropTypes.string,
+      dek: PropTypes.string,
+      heading: PropTypes.string,
+      image: PropTypes.shape({
+        image: PropTypes.shape({
+          alt: PropTypes.string.isRequired,
+          srcSet: PropTypes.object.isRequired,
+        }).isRequired,
+        lazy: PropTypes.bool,
+        style: PropTypes.object,
+      }),
+      imageIsLazy: PropTypes.bool,
+      subtitle: PropTypes.string,
+      textClass: PropTypes.string,
+      url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    })
+  ),
 }
 Carousel.defaultProps = {
   showArrows: false,
   showDots: true,
   slides: [],
 }
-
-export default Carousel

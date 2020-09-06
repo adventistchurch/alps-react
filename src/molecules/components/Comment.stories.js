@@ -1,83 +1,20 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { date as datePicker, select, text } from '@storybook/addon-knobs'
 
 import Comment from './Comment'
-import { dateFormats } from '../../helpers/DateTimeFormat'
-import data from './Comment.stories.json'
 
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Comment.defaultProps,
-    ...data,
-    ...settings,
-  }
+export default {
+  title: 'ALPS/Molecules/Components/Comment',
+  component: Comment,
 }
 
-function dataTab(settings = {}) {
-  const { byline, bylineLink, comment, date, dateFormat, tab } = getTabData(
-    'Data',
-    settings
-  )
+const CommentTemplate = props => <Comment {...props} />
 
-  return {
-    byline: text('Byline *', byline, tab),
-    bylineLink: text('Byline Link', bylineLink, tab),
-    text: text('Comment *', comment, tab),
-    date: datePicker('Date Time *', date || new Date(), tab),
-    dateFormat: select(
-      'Date Format',
-      dateFormats,
-      dateFormat || dateFormats[0],
-      tab
-    ),
-  }
+export const Default = CommentTemplate.bind({})
+Default.args = {
+  avatar: '//picsum.photos/50/50',
+  byline: 'Bob Smith',
+  bylineLink: '#Bob-Smith',
+  date: '2020-10-26 12:34:56',
+  text:
+    'Vivamus sollicitudin ipsum vel rutrum facilisis. Vestibulum eu cursus massa. Donec faucibus velit eu enim dapibus, sed scelerisque nibh finibus. Praesent imperdiet, leo ut ullamcorper facilisis, felis neque vestibulum mi, in vehicula turpis libero vestibulum eros. Nunc ac lectus id dui eleifend dignissim.',
 }
-
-function avatarTab(settings = {}) {
-  const { avatar, tab } = getTabData('Avatar', settings)
-
-  return text('Avatar URL', avatar, tab)
-}
-
-function linksTab(settings = {}) {
-  const { editUrl, replyUrl, tab } = getTabData('Links', settings)
-
-  return {
-    editUrl: text('Edit URL', editUrl, tab),
-    replyUrl: text('Reply URL', replyUrl, tab),
-  }
-}
-
-export function commentTab(settings = {}) {
-  const props = getTabData('Comment', settings)
-
-  return {
-    ...dataTab(props),
-    ...linksTab(props),
-    avatar: avatarTab(props),
-  }
-}
-
-storiesOf('molecules/components/Comment', module)
-  .addWithJSX('Default', () => {
-    const props = commentTab()
-
-    return <Comment {...props} />
-  })
-
-  .addWithJSX('With links', () => {
-    const props = commentTab({
-      editUrl: '#edit',
-      replyUrl: '#reply',
-    })
-
-    return <Comment {...props} />
-  })
-
-  .addWithJSX('As Children', () => {
-    const { text, ...props } = commentTab()
-
-    return <Comment {...props}>{text}</Comment>
-  })

@@ -1,40 +1,52 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { number, text } from '@storybook/addon-knobs'
 
 import Comments from './Comments'
-import data from './Comments.stories.json'
-import Comment from './Comment'
-import { commentTab } from './Comment.stories.js'
 
-function getTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Comments.defaultProps,
-    ...data,
-    ...settings,
-  }
+const comments = [
+  {
+    avatar: '//picsum.photos/50/50',
+    byline: 'Bob Smith',
+    bylineLink: '#Bob-Smith',
+    date: '2020-10-26 12:34:56',
+    text: 'Vivamus sollicitudin ipsum vel rutrum facilisis.',
+  },
+  {
+    avatar: '//picsum.photos/50/50',
+    byline: 'John Doe',
+    bylineLink: '#John-Doe',
+    date: '2020-10-20 12:34:56',
+    text:
+      'Donec faucibus velit eu enim dapibus, sed scelerisque nibh finibus. Praesent imperdiet, leo ut ullamcorper facilisis, felis neque vestibulum mi, in vehicula turpis libero vestibulum eros. Nunc ac lectus id dui eleifend dignissim.',
+  },
+  {
+    avatar: '//picsum.photos/50/50',
+    byline: 'Jack Sparrow',
+    bylineLink: '#Jack-Sparrow',
+    date: '2020-10-12 12:34:56',
+    text: 'Vestibulum eu cursus massa.',
+  },
+]
+
+export default {
+  title: 'ALPS/Molecules/Components/Comments',
+  component: Comments,
 }
 
-export function commentsTab(settings = {}) {
-  const { heading, tab } = getTabData('Comments', settings)
+const CommentsTemplate = props => <Comments {...props} />
 
-  return {
-    heading: text('Heading', heading, tab),
-    content: [...Array(number('Items to show', 5, {}, tab)).keys()].map(i => (
-      <Comment {...commentTab()} key={`comment-${i}`} />
-    )),
-  }
+export const Default = CommentsTemplate.bind({})
+Default.args = {
+  items: comments,
 }
 
-storiesOf('molecules/components/Comments', module)
-  .addWithJSX('Default', () => {
-    const props = commentsTab()
+export const Expanded = CommentsTemplate.bind({})
+Expanded.args = {
+  ...Default.args,
+  expanded: true,
+}
 
-    return <Comments {...props} />
-  })
-  .addWithJSX('Start expnded', () => {
-    const props = commentsTab()
-
-    return <Comments {...props} expanded />
-  })
+export const WithCustomHeading = CommentsTemplate.bind({})
+WithCustomHeading.args = {
+  ...Default.args,
+  heading: 'Latest Comments',
+}

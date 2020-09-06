@@ -61,10 +61,28 @@ export default function AccordionItem({
 }
 
 AccordionItem.propTypes = {
+  /**
+   * Provide content as nested children nodes
+   */
   children: PropTypes.node,
+  /**
+   * Provide content as nodes or string
+   */
   content: PropTypes.node,
+  /**
+   * Sets item's heading text
+   */
   heading: PropTypes.node.isRequired,
+  /**
+   * Sets item's icon
+   */
   icon: PropTypes.string,
+  /**
+   * Provide a callback that gets triggered when item is toggled (`(open) => void`)
+   */
   onChange: PropTypes.func,
+  /**
+   * Sets item's open state
+   */
   open: PropTypes.bool,
 }

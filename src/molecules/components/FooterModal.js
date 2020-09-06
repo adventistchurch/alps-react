@@ -6,7 +6,10 @@ import useToggle from '../../helpers/useToggle'
 import Text from '../../atoms/texts/Text'
 import { Paragraph } from '../../helpers/Element'
 
-function FooterModal({ children, text }) {
+/**
+ * Footer Modal component
+ */
+export default function FooterModal({ children, text }) {
   const { onToggle, openClass } = useToggle(true, '', 'this-is-active')
 
   return (
@@ -37,5 +40,3 @@ FooterModal.propTypes = {
   text: PropTypes.string,
   children: PropTypes.node,
 }
-
-export default FooterModal

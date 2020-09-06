@@ -6,7 +6,7 @@ import { Div } from '../../helpers/Element'
 
 import AccordionItem from './AccordionItem'
 
-function Accordion({ children, items, className }) {
+export default function Accordion({ children, items, className }) {
   return (
     <Div className={`c-accordion ${className}`} position="relative" spacing>
       {Array.isArray(items) ? renderItems(items, AccordionItem) : children}
@@ -15,12 +15,28 @@ function Accordion({ children, items, className }) {
 }
 
 Accordion.propTypes = {
+  /**
+   * To provide the items as nested elements (expected to be an array of `AccordionItem`). It will not have effect if `items` prop is defined
+   */
   children: PropTypes.node,
+  /**
+   * For extra classes
+   */
   className: PropTypes.string,
-  items: PropTypes.array,
+  /**
+   * To provide the items as data
+   */
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      children: PropTypes.node,
+      content: PropTypes.node,
+      heading: PropTypes.node.isRequired,
+      icon: PropTypes.string,
+      onChange: PropTypes.func,
+      open: PropTypes.bool,
+    })
+  ),
 }
 Accordion.defaultProps = {
   className: '',
 }
-
-export default Accordion

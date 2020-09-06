@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import Accordion from './Accordion'
 import AccordionItem from './AccordionItem'
@@ -80,16 +79,21 @@ const items = [
   },
 ]
 
-storiesOf('molecules/components/Accordion', module)
-  .addWithJSX('With children', () => {
-    return (
-      <Accordion>
-        {items.map((props, i) => (
-          <AccordionItem {...props} key={`item-${i}`} />
-        ))}
-      </Accordion>
-    )
-  })
-  .addWithJSX('With items', () => {
-    return <Accordion items={items} />
-  })
+export default {
+  title: 'ALPS/Molecules/Components/Accordion',
+  component: Accordion,
+}
+
+const AccordionTemplate = props => <Accordion {...props} />
+
+export const Default = AccordionTemplate.bind({})
+Default.args = {
+  items,
+}
+
+export const WithChildren = AccordionTemplate.bind({})
+WithChildren.args = {
+  children: items.map((props, i) => (
+    <AccordionItem {...props} key={`item-${i}`} />
+  )),
+}

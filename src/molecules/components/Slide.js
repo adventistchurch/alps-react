@@ -5,7 +5,10 @@ import Button from '../../atoms/buttons/Button'
 import Picture from '../../atoms/images/Picture'
 import { Div, HeadingTwo, HeadingThree } from '../../helpers/Element'
 
-function Slide({
+/**
+ * Slide Item component
+ */
+export default function Slide({
   heading,
   subtitle,
   dek,
@@ -77,18 +80,47 @@ function Slide({
 }
 
 Slide.propTypes = {
+  /**
+   * Extra classes for wrapper
+   */
   className: PropTypes.string,
+  /**
+   * Call-to-Action text
+   */
   cta: PropTypes.string,
+  /**
+   * Subhead text.
+   */
   dek: PropTypes.string,
+  /**
+   * Heading text.
+   */
   heading: PropTypes.string,
-  image: Picture.propTypes.image.isRequired,
-  imageIsLazy: Picture.propTypes.lazy,
+  /**
+   * Slide image.
+   */
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    srcSet: PropTypes.object.isRequired,
+  }).isRequired,
+  /**
+   * Sets lazy loading for the image.
+   */
+  imageIsLazy: PropTypes.bool,
+  /**
+   * Subtitle text.
+   */
   subtitle: PropTypes.string,
+  /**
+   * Extra classes for text wrapper
+   */
   textClass: PropTypes.string,
+  /**
+   * URL for the CTA button
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 Slide.defaultProps = {
   className: '',
+  imageIsLazy: true,
 }
-
-export default Slide

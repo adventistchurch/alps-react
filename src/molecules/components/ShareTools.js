@@ -26,8 +26,11 @@ ShareToolItem.propTypes = {
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
-// TODO: discuss about AddThis
-function ShareTools({ services, url }) {
+/**
+ * ShareTools
+ * TODO: is AddThis still being used?
+ */
+export default function ShareTools({ shareLabel, services, url }) {
   return (
     <div className="c-share-tools js-hover">
       <Link
@@ -42,7 +45,7 @@ function ShareTools({ services, url }) {
           spaceRight="quarter"
           themeColor="base"
         />
-        Share
+        {shareLabel}
       </Link>
       <UL
         className="c-share-tools__list"
@@ -62,19 +65,27 @@ function ShareTools({ services, url }) {
 }
 
 ShareTools.propTypes = {
+  /**
+   * Share button's label
+   */
+  shareLabel: PropTypes.node,
+  /**
+   * List with social items
+   */
   services: PropTypes.array,
+  /**
+   * Share button's url
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
 
 ShareTools.defaultProps = {
+  shareLabel: 'Share',
   services: [
     { name: 'addthis_button_facebook', label: 'Facebook' },
     { name: 'addthis_button_twitter', label: 'Twitter' },
-    { name: 'addthis_button_google', label: 'Google' }, // TODO: Google Plus has been shout down!
     { name: 'addthis_button_email', label: 'Email' },
   ],
   url:
     'http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4ed4fc0e60966005',
 }
-
-export default ShareTools

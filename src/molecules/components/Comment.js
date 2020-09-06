@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 
 import Image from '../../atoms/images/Image'
 import Byline from '../../molecules/text/Byline'
-import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
+import DateTime, { dateModes, dateFormats } from '../../helpers/DateTime'
 import { Div, Link, Span } from '../../helpers/Element'
 
-function Comment({
+export default function Comment({
   avatar,
   byline,
   bylineLink,
   children,
   date,
-  dateFormat,
+  dateMode,
   dateLocales,
   editLabel,
   editUrl,
@@ -43,11 +43,7 @@ function Comment({
             canBe="white"
             color="gray"
           >
-            <DateTimeFormat
-              datetime={date}
-              format={dateFormat}
-              locales={dateLocales}
-            />
+            <DateTime datetime={date} mode={dateMode} locales={dateLocales} />
           </Span>
           {editUrl && (
             <Span
@@ -81,24 +77,70 @@ function Comment({
 }
 
 Comment.propTypes = {
-  avatar: Image.propTypes.src,
+  /**
+   * Avatar's image url
+   */
+  avatar: PropTypes.string,
+  /**
+   * Byline text
+   */
   byline: PropTypes.string,
+  /**
+   * Byline link
+   */
   bylineLink: PropTypes.string,
+  /**
+   * Provide comment's text as nested children
+   */
   children: PropTypes.node,
-  date: PropTypes.number,
-  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Comment's date.
+   */
+  date: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  /**
+   * Defines the mode of date as one of these: `datetime`, `date` or `time`
+   */
+  dateMode: PropTypes.oneOf(dateModes),
+  /**
+   * Use it for date localization (if not set, will use browser's default locale)
+   */
   dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-  editUrl: PropTypes.string,
+  /**
+   * Sets format for the date part (day, month, year) of a Date
+   */
+  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Sets format for the time part (hours, minutes, and seconds) of a Date
+   */
+  timeFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Edit text label
+   */
   editLabel: PropTypes.string,
+  /**
+   * Edit link URL
+   */
+  editUrl: PropTypes.string,
+  /**
+   * Reply text label
+   */
   replyLabel: PropTypes.string,
+  /**
+   * Reply link URL
+   */
   replyUrl: PropTypes.string,
-  text: PropTypes.string,
+  /**
+   * Provide comment's text
+   */
+  text: PropTypes.node,
 }
 
 Comment.defaultProps = {
-  dateFormat: 'datetime',
+  dateMode: 'datetime',
   editLabel: '(Edit)',
   replyLabel: 'Reply',
 }
-
-export default Comment

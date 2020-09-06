@@ -1,20 +1,22 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import FooterModal from './FooterModal'
 
-import data from './FooterModal.stories.json'
+export default {
+  title: 'ALPS/Molecules/Components/FooterModal',
+  component: FooterModal,
+}
 
-const propsTab = 'Props'
+const FooterModalTemplate = props => <FooterModal {...props} />
 
-storiesOf('molecules/components/FooterModal', module)
-  .addWithJSX('Default', () => {
-    const modalText = text('Text *', data.text, propsTab)
-    return <FooterModal text={modalText} />
-  })
+export const Default = FooterModalTemplate.bind({})
+Default.args = {
+  text:
+    'By using our website you are consenting to our use of cookies in accordance with our Cookie Policy',
+}
 
-  .addWithJSX('As Children', () => {
-    const modalText = text('Text *', data.text, propsTab)
-    return <FooterModal>{modalText}</FooterModal>
-  })
+export const WithChildren = FooterModalTemplate.bind({})
+WithChildren.args = {
+  children:
+    'By using our website you are consenting to our use of cookies in accordance with our Cookie Policy',
+}

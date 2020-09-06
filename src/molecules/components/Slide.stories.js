@@ -1,55 +1,29 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text, boolean, object } from '@storybook/addon-knobs'
 
 import Slide from './Slide'
 
-import data from './Slide.stories.json'
+export default {
+  title: 'ALPS/Molecules/Components/Slide',
+  component: Slide,
+}
 
-const propsTab = 'Props'
-const textTab = 'Text'
-const ctaTab = 'CTA'
+const SlideTemplate = props => <Slide {...props} />
 
-storiesOf('molecules/components/Slide', module)
-  .addWithJSX('Default', () => {
-    const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
-    const alt = text('Image Alt', data.image.alt, propsTab)
-    const lazy = boolean('Layz load image', false, propsTab)
-
-    const image = {
-      alt,
-      lazy,
-      srcSet,
-    }
-
-    return <Slide image={image} />
-  })
-
-  .addWithJSX('With heading', () => {
-    const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
-    const alt = text('Image Alt', data.image.alt, propsTab)
-    const lazy = boolean('Lazy load image', false, propsTab)
-    const heading = text('Heading *', data.heading, textTab)
-    const dek = text('Description *', data.dek, textTab)
-    const subtitle = text('Subtitle', data.subtitle, textTab)
-    const showCta = boolean('Show CTA', true, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const url = text('Call to Action URL', data.url, ctaTab)
-
-    const image = {
-      alt,
-      lazy,
-      srcSet,
-    }
-
-    return (
-      <Slide
-        heading={heading}
-        subtitle={subtitle}
-        dek={dek}
-        image={image}
-        cta={showCta ? cta : null}
-        url={showCta ? url : null}
-      />
-    )
-  })
+export const Default = SlideTemplate.bind({})
+Default.args = {
+  heading: 'Lorem Ipsum',
+  subtitle: 'Fusce nec urna ut tellus accumsan fermentum.',
+  dek:
+    'Morbi eleifend, mi et varius imperdiet, nunc magna ullamcorper nibh, vel varius felis dui ac arcu. Vestibulum semper commodo dolor vel congue. Curabitur eleifend ligula ut arcu finibus posuere.',
+  cta: 'Read more',
+  url: 'https://www.adventist.org',
+  image: {
+    srcSet: {
+      default: '//picsum.photos/id/123/500/450',
+      500: '//picsum.photos/id/123/750/400',
+      750: '//picsum.photos/id/123/1200/800',
+      1200: '//picsum.photos/id/123/1500/900',
+    },
+    alt: 'Placeholder image',
+  },
+}
