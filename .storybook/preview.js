@@ -9,6 +9,8 @@ export const globalTypes = { ...alpsGlobals }
 export const decorators = [jsxDecorator, withHTML, withAlpsTheme]
 
 export const parameters = {
+  layout: 'fullscreen',
+
   html: {
     prettier: {
       tabWidth: 2,
@@ -18,9 +20,9 @@ export const parameters = {
     },
   },
 
-  controls: {
-    // expanded: true
-  },
+  // controls: {
+  //   expanded: true
+  // },
 
   viewport: {
     viewports: INITIAL_VIEWPORTS,
