@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
 import Figure from '../../molecules/media/Figure'
-import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
+import DateTime, { dateModes, dateFormats } from '../../helpers/DateTime'
 import Element, { Em, Div, Link } from '../../helpers/Element'
 import useClasses from '../../helpers/useClasses'
 
-import MediaImage from './MediaImage'
+import BlockImage from './BlockImage'
 import presets from './MediaBlock.presets'
 
 export const mediaBlocksTypes = Object.keys(presets)
@@ -35,6 +35,7 @@ export default function MediaBlock({
   kickerAs,
   reversed,
   stackedUntilSmall,
+  timeStyle,
   title,
   titleAs,
   titlePrefix,
@@ -62,7 +63,7 @@ export default function MediaBlock({
   return (
     <Div className={wrapClasses} {...preset.block} {...blockProps}>
       {image && (
-        <MediaImage
+        <BlockImage
           icon={icon}
           asBackgroundImage={asBackgroundImage}
           caption={imageCaption}
@@ -134,11 +135,12 @@ export default function MediaBlock({
                   dateTime={date}
                   transform="upper"
                 >
-                  <DateTimeFormat
+                  <DateTime
                     datetime={date}
                     locales={dateLocales}
                     format={dateFormat}
-                    style={dateStyle}
+                    dateStyle={dateStyle}
+                    timeStyle={timeStyle}
                   />
                 </Element>
               )}
@@ -162,43 +164,126 @@ export default function MediaBlock({
 }
 
 MediaBlock.propTypes = {
-  asBackgroundImage: PropTypes.bool,
-  mediaIcon: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  /**
+   * Extra props for block wrapper.
+   */
   blockProps: PropTypes.shape(Element.propTypes),
+  /**
+   * Category text.
+   */
   category: PropTypes.string,
-  column: PropTypes.bool,
+  /**
+   * Extra props for content wrapper.
+   */
   contentProps: PropTypes.shape(Element.propTypes),
+  /**
+   * Call-to-Action label.
+   */
   cta: PropTypes.string,
+  /**
+   * Call-to-Action icon.
+   */
   ctaIcon: Button.propTypes.icon,
+  /**
+   * Description text.
+   */
   description: PropTypes.string,
+  /**
+   * Block's date.
+   */
   date: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.number,
     PropTypes.string,
   ]),
-  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Defines the mode of date as one of these: `datetime`, `date` or `time`
+   */
+  dateMode: PropTypes.oneOf(dateModes),
+  /**
+   * Use it for date localization (if not set, will use browser's default locale)
+   */
   dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-  dateStyle: PropTypes.object,
-  image: MediaImage.propTypes.image,
+  /**
+   * Sets format for the date part (day, month, year) of a Date
+   */
+  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Sets format for the time part (hours, minutes, and seconds) of a Date
+   */
+  timeFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Image object (including `srcSet` and `alt`).
+   */
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    srcSet: PropTypes.object.isRequired,
+  }),
+  /**
+   * Image caption (as string or node element).
+   */
   imageCaption: PropTypes.node,
+  /**
+   * When true image as a background image (use it when a responsive layout is required).
+   */
+  asBackgroundImage: PropTypes.bool,
+  /**
+   * Displays an icon in the media section.
+   */
+  mediaIcon: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  /**
+   * Extra props for image wrapper.
+   */
   imageProps: PropTypes.shape(Element.propTypes),
+  /**
+   * Kicker text.
+   */
   kicker: PropTypes.string,
+  /**
+   * Kicker render element.
+   */
   kickerAs: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
+  /**
+   * URL used for `title` and `cta` link.
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  /**
+   * Flips order of media and conetnt .
+   */
   reversed: PropTypes.bool,
+  /**
+   * Forces block to be stacked (media section on top of content)
+   */
   stackedUntilSmall: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /**
+   * Title text.
+   */
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
+  /**
+   * Title render element.
+   */
   titleAs: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
+  /**
+   * Title prefix.
+   */
   titlePrefix: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  /**
+   * Set media block's type from presets.
+   */
   type: PropTypes.oneOf(mediaBlocksTypes),
+  /**
+   * Set media video.
+   */
   video: PropTypes.node,
 }
 
 MediaBlock.defaultProps = {
+  type: 'default',
   asBackgroundImage: false,
   ctaIcon: 'arrow-long-right',
-  dateFormat: 'date',
-  dateStyle: { date: 'long' },
+  dateMode: 'date',
+  dateFormat: 'long',
+  timeFormat: 'short',
   titleAs: 'h3',
   kickerAs: 'h4',
 }

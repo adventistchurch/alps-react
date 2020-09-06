@@ -7,13 +7,15 @@ import useClasses from '../../helpers/useClasses'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
-function MediaImage({
+/**
+ * Block Image component
+ */
+export default function BlockImage({
   asBackgroundImage,
   caption,
   className,
   icon,
   image,
-  type,
   url,
   ...otherProps
 }) {
@@ -54,9 +56,9 @@ function MediaImage({
               color="white-transparent"
               paddingBottom
               paddingTop
-              paddingRight={type}
-              paddingLeft={type ? 'quad' : false}
-              paddingSides={!type}
+              paddingRight={icon || false}
+              paddingLeft={icon ? 'quad' : false}
+              paddingSides={!icon}
             >
               {caption || image.caption}
             </Div>
@@ -67,14 +69,32 @@ function MediaImage({
   )
 }
 
-MediaImage.propTypes = {
-  asBackgroundImage: PropTypes.bool,
+BlockImage.propTypes = {
+  /**
+   * Extra classes
+   */
   className: PropTypes.string,
-  caption: PropTypes.string,
-  icon: PropTypes.string,
-  image: Picture.propTypes.image,
-  type: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  /**
+   * Image object (including `srcSet` and `alt`).
+   */
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    srcSet: PropTypes.object.isRequired,
+  }).isRequired,
+  /**
+   * Image caption (as string or node element).
+   */
+  caption: PropTypes.node,
+  /**
+   * When true image as a background image (use it when a responsive layout is required).
+   */
+  asBackgroundImage: PropTypes.bool,
+  /**
+   * Displays an icon in the media section.
+   */
+  icon: PropTypes.oneOf(['audio', 'gallery', 'video']),
+  /**
+   * URL for the link that wraps the image.
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
-
-export default MediaImage

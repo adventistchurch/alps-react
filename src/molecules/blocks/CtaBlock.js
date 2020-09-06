@@ -6,12 +6,20 @@ import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 import { Div, HeadingThree, Paragraph } from '../../helpers/Element'
 
-const getBackgroundRule = url => `.o-background-image {
-  background-image: url('${url}');
-}`
-
-function CtaBlock({ asBackgroundImage, buttons, description, picture, title }) {
-  const bgInlineStyles = useResponsiveStyles(getBackgroundRule, picture)
+/**
+ * Call-to-Action block
+ */
+export default function CtaBlock({
+  asBackgroundImage,
+  buttons,
+  description,
+  picture,
+  title,
+}) {
+  const bgInlineStyles = useResponsiveStyles(
+    url => `.o-background-image { background-image: url('${url}'); }`,
+    picture ? picture.srcSet : null
+  )
 
   const backgroundClass =
     picture && asBackgroundImage
@@ -60,6 +68,7 @@ function CtaBlock({ asBackgroundImage, buttons, description, picture, title }) {
                 key={`cta-block-${key}`}
                 text={label}
                 url={url}
+                spaceRight="half" // TODO: this is not present in ALPS
                 {...rest}
               />
             ))}
@@ -74,16 +83,38 @@ function CtaBlock({ asBackgroundImage, buttons, description, picture, title }) {
 }
 
 CtaBlock.propTypes = {
+  /**
+   * Set image as background.
+   */
   asBackgroundImage: PropTypes.bool,
+  /**
+   * Provide CTA buttons.
+   */
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
       url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
       label: PropTypes.string.isRequired,
     })
   ),
-  description: PropTypes.string,
-  picture: PropTypes.object,
+  /**
+   * Block's title text.
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * Block's description text.
+   */
+  description: PropTypes.string,
+  /**
+   * Block's picture.
+   */
+  picture: PropTypes.shape({
+    srcSet: PropTypes.shape({
+      default: PropTypes.string,
+      '[breakpointA]': PropTypes.string,
+      '[breakpointB]': PropTypes.string,
+      '[breakpointX]': PropTypes.string,
+    }),
+    alt: PropTypes.string,
+    caption: PropTypes.string,
+  }),
 }
-
-export default CtaBlock

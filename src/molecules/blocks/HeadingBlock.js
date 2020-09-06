@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Div, HeadingThree, Link } from '../../helpers/Element'
 
-function HeadingBlock({ linkText, title, url }) {
+export default function HeadingBlock({ linkText, title, url }) {
   return (
     <Div className="c-block__heading" themeBorder="darker">
       <HeadingThree className="c-block__heading-title" themeColor="darker">
@@ -28,5 +28,3 @@ HeadingBlock.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
-
-export default HeadingBlock

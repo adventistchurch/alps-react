@@ -1,25 +1,19 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import ContentBlockExpand from './ContentBlockExpand'
 
-import data from './ContentBlockExpand.stories.json'
+export default {
+  title: 'ALPS/Molecules/Blocks/ContentBlockExpand',
+  component: ContentBlockExpand,
+}
 
-const propsTab = 'Props'
+const ContentBlockExpandTemplate = props => <ContentBlockExpand {...props} />
 
-storiesOf('molecules/blocks/ContentBlockExpand', module).addWithJSX(
-  'Default',
-  () => {
-    const title = text('Title *', data.title, propsTab)
-    const kicker = text('Kicker', data.kicker, propsTab)
-    const description = text('Description', data.description, propsTab)
-    return (
-      <ContentBlockExpand
-        kicker={kicker}
-        title={title}
-        description={description}
-      />
-    )
-  }
-)
+export const Default = ContentBlockExpandTemplate.bind({})
+Default.args = {
+  title: 'The General Conference.',
+  kicker:
+    'Coordinates the global ministry of the Seventh-day Adventist Church.',
+  description:
+    'Is responsible for the spiritual and developmental plans of the church around the world.',
+}

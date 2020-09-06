@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import Button from '../../atoms/buttons/Button'
 import { Div, HeadingThree, Paragraph } from '../../helpers/Element'
 
-function BreakoutBlock({ title, description, cta, url, ...props }) {
+export default function BreakoutBlock({
+  title,
+  description,
+  cta,
+  url,
+  ...props
+}) {
   return (
     <Div
       className="c-block__breakout"
@@ -13,6 +19,7 @@ function BreakoutBlock({ title, description, cta, url, ...props }) {
       paddingTop="double"
       paddingBottom="double"
       spacing
+      canBe="dark-dark"
       {...props}
     >
       <HeadingThree className="c-block__title" color="white">
@@ -27,14 +34,20 @@ function BreakoutBlock({ title, description, cta, url, ...props }) {
 }
 
 BreakoutBlock.propTypes = {
+  /**
+   * Block's Call-to-Action text.
+   */
   cta: PropTypes.string,
+  /**
+   * Block's Description text.
+   */
   description: PropTypes.string,
+  /**
+   * Block's Title text.
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * URL for the Call-to-Action button .
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
-
-BreakoutBlock.defaultProps = {
-  canBe: 'dark-dark',
-}
-
-export default BreakoutBlock

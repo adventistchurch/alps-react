@@ -7,11 +7,13 @@ import Title from '../../atoms/texts/Title'
 import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
-function GalleryBlock({ images, kicker, title }) {
+export default function GalleryBlock({ images, kicker, title }) {
   const { onToggle, openClass } = useToggle()
 
-  const thumbImage = images.length > 0 ? images[0] : null
-  const otherImages = images.length > 1 ? images.slice(1) : null
+  const totalImages = images.length
+
+  const thumbImage = totalImages > 0 ? images[0] : null
+  const otherImages = totalImages > 1 ? images.slice(1) : null
 
   return (
     <Div
@@ -57,7 +59,7 @@ function GalleryBlock({ images, kicker, title }) {
               }`}
               key={key}
             >
-              <Picture image={image} />
+              <Picture image={image} lazy={false} />
               {image.caption && (
                 <Div
                   className="c-gallery-block__caption"
@@ -79,13 +81,32 @@ function GalleryBlock({ images, kicker, title }) {
 }
 
 GalleryBlock.propTypes = {
-  images: PropTypes.arrayOf(Picture.propTypes.image),
+  /**
+   * Gallery's images.
+   * The first one will be displayed, the rest will be toggled with the "Show" button.
+   */
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      srcSet: PropTypes.shape({
+        default: PropTypes.string,
+        '[breakpointA]': PropTypes.string,
+        '[breakpointB]': PropTypes.string,
+        '[breakpointX]': PropTypes.string,
+      }),
+      alt: PropTypes.string,
+      caption: PropTypes.string,
+    })
+  ),
+  /**
+   * Gallery's title
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * Gallery's kicker
+   */
   kicker: PropTypes.string,
 }
 
 GalleryBlock.defaultProps = {
   images: [],
 }
-
-export default GalleryBlock

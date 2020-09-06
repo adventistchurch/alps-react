@@ -1,144 +1,130 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { boolean, date as datetime, select, text } from '@storybook/addon-knobs'
 
 import { iconNames } from '../../atoms/icons/Icon'
-import { dateFormats, dateStyles } from '../../helpers/DateTimeFormat'
+import DateTimeStories from '../../helpers/DateTime.stories'
 
 import MediaBlock, { mediaBlocksTypes } from './MediaBlock'
+import { exampleImages } from './BlockImage.stories'
 
-import data from './MediaBlock.stories.json'
-import { pictureTab } from '../../atoms/images/Picture.stories.js'
-
-function getTabData(tab, settings = {}) {
-  return {
-    tab,
-    ...MediaBlock.defaultProps,
-    ...data,
-    ...settings,
-  }
+export default {
+  title: 'ALPS/Molecules/Blocks/MediaBlock',
+  component: MediaBlock,
+  argTypes: {
+    type: { control: { type: 'select', options: mediaBlocksTypes } },
+    titlePrefix: { control: { type: 'text' } },
+    title: { control: { type: 'text' } },
+    titleAs: { control: { type: 'select' } },
+    description: { control: { type: 'text' } },
+    kicker: { control: { type: 'text' } },
+    kickerAs: { control: { type: 'select' } },
+    category: { control: { type: 'text' } },
+    date: { control: { type: 'date' } },
+    dateMode: DateTimeStories.argTypes.mode,
+    dateFormat: DateTimeStories.argTypes.dateFormat,
+    timeFormat: DateTimeStories.argTypes.timeFormat,
+    dateLocales: DateTimeStories.argTypes.locale,
+    cta: { control: { type: 'text' } },
+    ctaIcon: { control: { type: 'select', options: iconNames } },
+    url: { control: { type: 'text' } },
+    image: { control: { type: 'select', options: exampleImages } },
+    imageCaption: { control: { type: 'text' } },
+    asBackgroundImage: { control: { type: 'boolean' } },
+  },
 }
 
-function textsTab(settings = {}) {
-  const { description, kicker, title, titlePrefix, titleAs, tab } = getTabData(
-    'Texts',
-    settings
-  )
+const MediaBlockTemplate = props => <MediaBlock {...props} />
 
-  return {
-    title: text('Title', title, tab),
-    titleAs: select('Title tag', ['h1', 'h2', 'h3', 'h4'], titleAs, tab),
-    titlePrefix: text('Title prefix', titlePrefix, tab),
-    description: text('Description', description, tab),
-    kicker: text('Kicker', kicker, tab),
-    kickerAs: select('Kicker tag', ['h1', 'h2', 'h3', 'h4'], titleAs, tab),
-  }
+export const Default = MediaBlockTemplate.bind({})
+Default.args = {
+  title:
+    'Adventist leaders call for international cooperation to end abuse of refugees in Libya',
+  description:
+    'Mauris sit amet augue gravida, dignissim sem maximus, aliquam metus. Maecenas eu consectetur orci, id auctor dui.',
+  url: 'https://www.adventist.org',
+  image: exampleImages.landscape,
 }
 
-function metaTab(settings = {}) {
-  const { category, date, dateFormat, dateStyle, url, tab } = getTabData(
-    'Meta',
-    settings
-  )
-
-  return {
-    category: text('Category', category, tab),
-    date: datetime('Date Time', new Date(date), tab),
-    dateFormat: select('Date Format', dateFormats, dateFormat, tab),
-    dateStyle: {
-      date: select('Date Style', dateStyles, dateStyle.date, tab),
-      time: select('Time Style', dateStyles, dateStyle.time, tab),
-    },
-    url: text('URL', url, tab),
-  }
+export const WithImageCaption = MediaBlockTemplate.bind({})
+WithImageCaption.args = {
+  ...Default.args,
+  imageCaption: '@2020 Photographer Name',
 }
 
-function imageTab(settings = {}) {
-  const { asBackgroundImage, image, imageCaption, tab } = getTabData(
-    'Image',
-    settings
-  )
-  const showImage = boolean('Show Image', true, tab)
-
-  return {
-    asBackgroundImage: boolean('As Background Image', asBackgroundImage, tab),
-    imageCaption: text('Caption', imageCaption, tab),
-    ...(showImage ? pictureTab({ ...image, tab }) : {}),
-  }
+export const WithImageMediaIcon = MediaBlockTemplate.bind({})
+WithImageMediaIcon.args = {
+  ...Default.args,
+  mediaIcon: 'gallery',
 }
 
-function displayTab(settings = {}) {
-  const { reversed, titleSize, type, tab } = getTabData('Display', settings)
-
-  return {
-    type: select('Type', mediaBlocksTypes, type, tab),
-    titleSize: select('Title size', ['m', 'l', 'xl'], titleSize, tab),
-    reversed: boolean('Reversed', reversed, tab),
-  }
+export const WithImagePortrait = MediaBlockTemplate.bind({})
+WithImagePortrait.args = {
+  ...Default.args,
+  image: exampleImages.portrait,
 }
 
-function ctaTab(settings = {}) {
-  const { cta, ctaIcon = 'arrow-long-right', tab } = getTabData(
-    'Image',
-    settings
-  )
-
-  const showCta = boolean('Show Call to Action', false, ctaTab)
-
-  return showCta
-    ? {
-        cta: text('Call to Action Text', cta, tab),
-        ctaIcon: select('Call to Action Icon *', iconNames, ctaIcon, tab),
-      }
-    : {}
+export const WithImageSquare = MediaBlockTemplate.bind({})
+WithImageSquare.args = {
+  ...Default.args,
+  image: exampleImages.square,
 }
 
-function allTabs(settings = {}) {
-  return {
-    ...textsTab(settings),
-    ...metaTab(settings),
-    ...imageTab(settings),
-    ...ctaTab(settings),
-    ...displayTab(settings),
-  }
+export const WithKicker = MediaBlockTemplate.bind({})
+WithKicker.args = {
+  ...Default.args,
+  kicker: 'Eligendi quod dolorem',
 }
 
-export function mediaBlockTab(settings = {}) {
-  const mediaBlock = getTabData('MediaBlock', settings)
-
-  return allTabs(mediaBlock)
+export const WithTitlePrefix = MediaBlockTemplate.bind({})
+WithTitlePrefix.args = {
+  ...Default.args,
+  titlePrefix: 'Breaking',
 }
 
-storiesOf('molecules/blocks/MediaBlock', module)
-  .addWithJSX('Default', () => {
-    const props = allTabs()
-    return <MediaBlock {...props} />
-  })
+export const WithCategory = MediaBlockTemplate.bind({})
+WithCategory.args = {
+  ...Default.args,
+  category: 'Culture',
+}
 
-  .addWithJSX('Inline', () => {
-    const props = allTabs()
-    return <MediaBlock {...props} type="inline" />
-  })
+export const WithDateTime = MediaBlockTemplate.bind({})
+WithDateTime.args = {
+  ...Default.args,
+  date: '2019-02-09 12:34:56',
+}
 
-  .addWithJSX('Feature', () => {
-    const props = allTabs()
-    return <MediaBlock {...props} type="feature" />
-  })
+export const WithCTA = MediaBlockTemplate.bind({})
+WithCTA.args = {
+  ...Default.args,
+  cta: 'Find out more',
+  ctaIcon: 'arrow-long-right',
+}
 
-  .addWithJSX('Inset', () => {
-    const props = allTabs()
-    return <MediaBlock {...props} type="inset" />
-  })
+export const Inline = MediaBlockTemplate.bind({})
+Inline.args = {
+  ...Default.args,
+  type: 'inline',
+}
 
-  .addWithJSX('Stacked', () => {
-    const props = allTabs()
-    return <MediaBlock {...props} type="stacked" />
-  })
+export const Feature = MediaBlockTemplate.bind({})
+Feature.args = {
+  ...Default.args,
+  type: 'feature',
+}
 
-  .addWithJSX('with image caption', () => {
-    const props = allTabs({
-      imageCaption: '@2020 Photographer Name',
-      type: 'row',
-    })
-    return <MediaBlock {...props} />
-  })
+export const Inset = MediaBlockTemplate.bind({})
+Inset.args = {
+  ...Default.args,
+  type: 'inset',
+}
+
+export const Stacked = MediaBlockTemplate.bind({})
+Stacked.args = {
+  ...Default.args,
+  type: 'stacked',
+}
+
+export const Row = MediaBlockTemplate.bind({})
+Row.args = {
+  ...Default.args,
+  type: 'row',
+}

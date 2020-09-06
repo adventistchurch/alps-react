@@ -1,29 +1,19 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { text, boolean } from '@storybook/addon-knobs'
 
 import BreakoutBlock from './BreakoutBlock'
 
-import data from './BreakoutBlock.stories.json'
+export default {
+  title: 'ALPS/Molecules/Blocks/BreakoutBlock',
+  component: BreakoutBlock,
+}
 
-const propsTab = 'Props'
-const ctaTab = 'CTA'
+const BreakoutBlockTemplate = props => <BreakoutBlock {...props} />
 
-storiesOf('molecules/blocks/BreakoutBlock', module).addWithJSX(
-  'Default',
-  () => {
-    const title = text('Title *', data.title, propsTab)
-    const description = text('Description *', data.description, propsTab)
-    const showCta = boolean('Show Call to Action', true, ctaTab)
-    const cta = text('Call to Action Text', data.cta, ctaTab)
-    const url = text('Call to Action URL', data.url, ctaTab)
-    return (
-      <BreakoutBlock
-        title={title}
-        description={description}
-        cta={showCta ? cta : null}
-        url={showCta ? url : null}
-      />
-    )
-  }
-)
+export const Default = BreakoutBlockTemplate.bind({})
+Default.args = {
+  title: 'General Conference',
+  description:
+    'The General Conference coordinates the global ministry of the Seventh-day Adventist Church and is responsible for the spiritual and developmental plans of the church around the world.',
+  cta: 'Find out more',
+  url: 'https://www.adventist.org',
+}

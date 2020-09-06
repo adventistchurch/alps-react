@@ -6,7 +6,7 @@ import Title from '../../atoms/texts/Title'
 import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
-function ContentBlockExpand({ kicker, title, description }) {
+export default function ContentBlockExpand({ title, kicker, description }) {
   const { onToggle, openClass } = useToggle()
 
   return (
@@ -43,9 +43,16 @@ function ContentBlockExpand({ kicker, title, description }) {
 }
 
 ContentBlockExpand.propTypes = {
+  /**
+   * Block's title text.
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * Block's kicker text.
+   */
   kicker: PropTypes.string,
+  /**
+   * Block's description text.
+   */
   description: PropTypes.string,
 }
-
-export default ContentBlockExpand

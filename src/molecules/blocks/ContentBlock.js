@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import MediaImage from './MediaImage'
+import BlockImage from './BlockImage'
 import Button from '../../atoms/buttons/Button'
 import Element, {
   Div,
@@ -10,11 +10,11 @@ import Element, {
   Paragraph,
   Span,
 } from '../../helpers/Element'
-import DateTimeFormat, { dateFormats } from '../../helpers/DateTimeFormat'
+import DateTime, { dateModes, dateFormats } from '../../helpers/DateTime'
 import useClasses from '../../helpers/useClasses'
 import useToggle from '../../helpers/useToggle'
 
-function ContentBlock({
+export default function ContentBlock({
   category,
   className,
   cta,
@@ -25,6 +25,7 @@ function ContentBlock({
   description,
   image,
   more,
+  timeStyle,
   title,
   titleProps,
   titleSize,
@@ -38,8 +39,9 @@ function ContentBlock({
     {
       'c-block__text-expand': more,
       'has-image': image,
+      className,
     },
-    `${className} ${openClass}`
+    openClass
   )
 
   const moreProps = more
@@ -60,7 +62,7 @@ function ContentBlock({
       {...props}
       {...moreProps}
     >
-      {image && <MediaImage image={image} url={url} />}
+      {image && <BlockImage image={image} url={url} />}
 
       <HeadingThree
         fontType="primary"
@@ -105,11 +107,12 @@ function ContentBlock({
               dateTime={date}
               transform="upper"
             >
-              <DateTimeFormat
+              <DateTime
                 datetime={date}
                 locales={dateLocales}
                 format={dateFormat}
-                style={dateStyle}
+                dateStyle={dateStyle}
+                timeStyle={timeStyle}
               />
             </Element>
           )}
@@ -151,28 +154,74 @@ function ContentBlock({
 }
 
 ContentBlock.propTypes = {
+  /**
+   * Block's category text.
+   */
   category: PropTypes.node,
+  /**
+   * Extra classes for outer wrap element.
+   */
   className: PropTypes.string,
+  /**
+   * Block's Call-to-Action text.
+   */
   cta: PropTypes.string,
+  /**
+   * Block's date
+   */
   date: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.number,
     PropTypes.string,
   ]),
-  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Defines the mode of date as one of these: `datetime`, `date` or `time`
+   */
+  dateMode: PropTypes.oneOf(dateModes),
+  /**
+   * Use it for date localization (if not set, will use browser's default locale)
+   */
   dateLocales: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
-  dateStyle: PropTypes.object,
+  /**
+   * Sets format for the date part (day, month, year) of a Date
+   */
+  dateFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Sets format for the time part (hours, minutes, and seconds) of a Date
+   */
+  timeFormat: PropTypes.oneOf(dateFormats),
+  /**
+   * Image object (including `srcSet` and `alt`).
+   */
+  /**
+   * Block's description text.
+   */
   description: PropTypes.node,
-  image: MediaImage.propTypes.image,
+  /**
+   * Block's image data.
+   */
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    srcSet: PropTypes.object.isRequired,
+  }),
+  /**
+   * Block's more text (enables a "Show more" button, that replaces the `cta` button)
+   */
   more: PropTypes.string,
+  /**
+   * Block's title text.
+   */
   title: PropTypes.node,
+  /**
+   * Extras title props.
+   */
   titleProps: PropTypes.object,
+  /**
+   * Sets title size.
+   */
   titleSize: PropTypes.oneOf(['s', 'm', 'l']),
+  /**
+   * URL for the Call-to-Action (cta) button .
+   */
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
-
-ContentBlock.defaultProps = {
-  className: '',
-}
-
-export default ContentBlock
