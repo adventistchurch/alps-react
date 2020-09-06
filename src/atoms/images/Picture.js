@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import Image from './Image'
+import LazyLoad from 'react-lazyload'
 
 export default function Picture({ image, lazy, style }) {
   const { alt, srcSet } = image || {}
@@ -25,11 +25,19 @@ export default function Picture({ image, lazy, style }) {
     }
   }, [srcSet])
 
-  return (
+  const picture = (
     <picture className="picture" style={style}>
       {sources}
-      <Image alt={alt} lazy={lazy} src={defaultImage} />
+      <img alt={alt} src={defaultImage} />
     </picture>
+  )
+
+  return lazy ? (
+    <LazyLoad once offset={100}>
+      {picture}
+    </LazyLoad>
+  ) : (
+    picture
   )
 }
 
@@ -40,7 +48,7 @@ Picture.propTypes = {
   image: PropTypes.shape({
     alt: PropTypes.string.isRequired,
     srcSet: PropTypes.object.isRequired,
-  }),
+  }).isRequired,
   /**
    * Makes the image lazy-loaded (loaded only when is in the viewport)
    */
@@ -49,4 +57,8 @@ Picture.propTypes = {
    * Extra inline styles
    */
   style: PropTypes.object,
+}
+
+Picture.defaultProps = {
+  lazy: true,
 }
