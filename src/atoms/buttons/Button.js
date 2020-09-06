@@ -34,10 +34,9 @@ function useButtonClass(base, { disabled, ...flags }, extras) {
 }
 
 /**
- * ALPS atom/buttons/Button component
- * @param {object} props - Button props
+ * Button component
  */
-function Button({
+export default function Button({
   as,
   className,
   disabled,
@@ -184,6 +183,5 @@ Button.propTypes = {
 Button.defaultProps = {
   as: 'button',
   className: '',
+  iconPosition: 'left',
 }
-
-export default Button
