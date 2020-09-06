@@ -1,60 +1,36 @@
-import React, { useState } from 'react'
-import { storiesOf } from '@storybook/react'
-import { text, object } from '@storybook/addon-knobs'
+import React from 'react'
 
 import Search from './Search'
-import data from './Search.stories.json'
 
-function useTabData(name, settings = {}) {
-  return {
-    tab: name,
-    ...Search.defaultProps,
-    ...data,
-    ...settings,
-  }
+export default {
+  title: 'ALPS/Molecules/Forms/Search',
+  component: Search,
 }
 
-export function useSearchTab(settings = {}) {
-  const {
-    placeholder,
-    title,
-    suggestions,
-    defaultTerm,
-    tab,
-    withSuggestions = false,
-  } = useTabData('Search', settings)
+const SearchTemplate = props => <Search {...props} />
 
-  const initialTerm = withSuggestions
-    ? text('Default Term', defaultTerm, tab)
-    : undefined
-
-  const [term, setTerm] = useState(initialTerm)
-
-  const onSearch = e => {
-    setTerm(e.target.value)
-  }
-
-  return {
-    placeholder: text('Placeholder', placeholder, tab),
-    title: text('Form Title (screen readers only)', title, tab),
-    suggestions: withSuggestions
-      ? object('Suggestions', term ? suggestions : null, tab)
-      : undefined,
-    onSearch: withSuggestions ? onSearch : undefined,
-    term,
-  }
+export const Default = SearchTemplate.bind({})
+Default.args = {
+  placeholder: 'Search...',
+  submitLabel: 'Search',
+  title: 'Search',
 }
 
-storiesOf('molecules/forms/Search', module).addWithJSX('Default', () => {
-  const props = useSearchTab()
-  return <Search {...props} />
-})
+export const WithSuggestions = SearchTemplate.bind({})
+WithSuggestions.args = {
+  ...Default.args,
+  suggestions: [
+    { key: 'abc1', text: 'Hi', href: '#' },
+    { key: 'abc2', text: 'Hello', href: '#' },
+    { key: 'abc3', text: 'Hola', href: '#' },
+    { key: 'abc4', text: 'Hallo', href: '#' },
+    { key: 'abc5', text: 'Hallo', href: '#' },
+    { key: 'abc6', text: 'Hallooo', href: '#' },
+  ],
+}
 
-storiesOf('molecules/forms/Search', module).addWithJSX(
-  'with suggestions',
-  () => {
-    const props = useSearchTab({ withSuggestions: true, defaultTerm: 'Hi' })
-
-    return <Search {...props} hasFocus />
-  }
-)
+export const WithFocus = SearchTemplate.bind({})
+WithFocus.args = {
+  ...Default.args,
+  hasFocus: true,
+}

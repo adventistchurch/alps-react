@@ -17,7 +17,7 @@ const baseProps = {
   paddingBottom: 'double',
 }
 
-function SearchHeader(props) {
+export default function SearchHeader(props) {
   return <BaseSearch {...baseProps} {...props} />
 }
 
@@ -34,5 +34,3 @@ SearchHeader.defaultProps = {
   searchLabel: 'Search',
   showSearchAgain: true,
 }
-
-export default SearchHeader

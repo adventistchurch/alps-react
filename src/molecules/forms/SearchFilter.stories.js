@@ -1,31 +1,54 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { object, text } from '@storybook/addon-knobs'
 
 import SearchFilter from './SearchFilter'
 
-import data from './SearchFilter.stories.json'
+export default {
+  title: 'ALPS/Molecules/Forms/SearchFilter',
+  component: SearchFilter,
+}
 
-const propsTab = 'Props'
-const filtersTab = 'Filters'
-const sortingTab = 'Sorting'
+const SearchFilterTemplate = props => <SearchFilter {...props} />
 
-storiesOf('molecules/forms/SearchFilter', module).addWithJSX('Default', () => {
-  const placeholder = text('Placeholder', data.placeholder, propsTab)
-  const searchLabel = text('Search Button', data.searchLabel, propsTab)
-  // const optionsLabel = text(
-  //   'Options Button',
-  //   'n/a (the text is set in the css)',
-  //   propsTab
-  // )
-  const filters = object('Filters', data.filters, filtersTab)
-  const sorting = object('Sorting', data.sorting, sortingTab)
-  return (
-    <SearchFilter
-      filters={filters}
-      placeholder={placeholder}
-      searchLabel={searchLabel}
-      sorting={sorting}
-    />
-  )
-})
+export const Default = SearchFilterTemplate.bind({})
+Default.args = {}
+
+export const WithOptions = SearchFilterTemplate.bind({})
+WithOptions.args = {
+  ...Default.args,
+  filters: [
+    {
+      title: 'Media',
+      options: [
+        {
+          id: 1,
+          checked: true,
+          type: 'checkbox',
+          name: 'Option 1',
+          value: 'Option 1',
+        },
+        {
+          id: 2,
+          type: 'checkbox',
+          name: 'Option 2',
+          value: 'Option 2',
+        },
+      ],
+    },
+  ],
+  sorting: {
+    title: 'Sort By',
+    options: [
+      {
+        id: 1,
+        checked: true,
+        name: 'Option 1',
+        value: 'Option 1',
+      },
+      {
+        id: 2,
+        name: 'Option 2',
+        value: 'Option 2',
+      },
+    ],
+  },
+}

@@ -5,7 +5,7 @@ import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 import useFormContext from './FormContext'
 
-function TextField({
+export default function TextField({
   label,
   labelOptional,
   labelClass,
@@ -51,5 +51,3 @@ TextField.propTypes = {
 TextField.defaultProps = {
   type: 'text',
 }
-
-export default TextField

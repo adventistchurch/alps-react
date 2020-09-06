@@ -5,7 +5,7 @@ import Element, { Div, Span } from '../../../helpers/Element'
 import ErrorMessage from './ErrorMessage'
 import useFormContext from './FormContext'
 
-function FormLabel({
+export default function FormLabel({
   children: field,
   error,
   htmlFor,
@@ -55,5 +55,3 @@ FormLabel.defaultProps = {
   position: 'top',
   spacing: 'quarter',
 }
-
-export default FormLabel

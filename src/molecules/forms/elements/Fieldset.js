@@ -5,7 +5,7 @@ import { themeColors } from '../../../atoms/global/colors'
 import { fontSizes, fontTypes } from '../../../atoms/global/fonts'
 import Element from '../../../helpers/Element'
 
-function Fieldset({
+export default function Fieldset({
   children,
   legend,
   legendClass,
@@ -49,5 +49,3 @@ Fieldset.defaultProps = {
   legendFontType: 'secondary',
   legendThemeColor: 'darker',
 }
-
-export default Fieldset

@@ -13,7 +13,7 @@ const styles = {
   inputWrap: { position: 'relative' },
 }
 
-function BaseSearch({
+export default function BaseSearch({
   contentProps,
   nestedProps,
   filters,
@@ -43,12 +43,10 @@ function BaseSearch({
               <Element
                 as="input"
                 className="o-input__search"
-                color="gray"
                 fontType="secondary"
                 fontSize="s"
                 onChange={onSearch}
                 placeholder={placeholder}
-                themeColor="darker"
                 autoComplete="off"
                 type="search"
                 value={term}
@@ -117,5 +115,3 @@ BaseSearch.defaultProps = {
   searchAgainLabel: 'Search Again',
   searchLabel: 'Search',
 }
-
-export default BaseSearch

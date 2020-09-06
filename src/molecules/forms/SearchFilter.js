@@ -8,7 +8,7 @@ const contentProps = {
   spacing: true,
 }
 
-function SearchFilter(props) {
+export default function SearchFilter(props) {
   return (
     <BaseSearch
       borderSide="left"
@@ -28,10 +28,7 @@ SearchFilter.propTypes = {
   searchLabel: PropTypes.string,
 }
 SearchFilter.defaultProps = {
-  filters: [],
   placeholder: 'Search...',
   searchAgainLabel: 'Search Again',
   searchLabel: 'Search',
 }
-
-export default SearchFilter

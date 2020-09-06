@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 
-function Checkbox({
+export default function Checkbox({
   checked,
   label,
   labelOptional,
@@ -39,5 +39,3 @@ Checkbox.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
 }
-
-export default Checkbox

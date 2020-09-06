@@ -5,7 +5,7 @@ import Button from '../../atoms/buttons/Button'
 import Form from './elements/Form'
 import TextField from './elements/TextField'
 
-function InlineForm({ onSubmit, submitLabel, ...props }) {
+export default function InlineForm({ onSubmit, submitLabel, ...props }) {
   return (
     <Form inline noValidate {...props}>
       <TextField aria-required={true} name="text" required />
@@ -22,5 +22,3 @@ InlineForm.propTypes = {
 InlineForm.defaultProps = {
   submitLabel: 'Submit',
 }
-
-export default InlineForm

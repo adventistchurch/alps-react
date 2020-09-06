@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Div } from '../../../helpers/Element'
 import Title from '../../../atoms/texts/Title'
 
-function FormFilter({ options, title }) {
+export default function FormFilter({ options, title }) {
   return (
     <Div
       className="c-filter__form-item"
@@ -56,5 +56,3 @@ FormFilter.propTypes = {
 FormFilter.defaultProps = {
   options: [],
 }
-
-export default FormFilter

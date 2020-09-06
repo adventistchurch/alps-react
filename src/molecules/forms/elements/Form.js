@@ -38,7 +38,7 @@ function useFormFields(fields, children) {
   })
 }
 
-function Form({
+export default function Form({
   children,
   className,
   darkMode,
@@ -116,5 +116,3 @@ Form.propTypes = {
 Form.defaultProps = {
   fields: [],
 }
-
-export default Form

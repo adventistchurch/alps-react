@@ -4,7 +4,14 @@ import PropTypes from 'prop-types'
 import useClasses from '../../../helpers/useClasses'
 import useInputFocus from '../../../helpers/useInputFocus'
 
-function BaseInput({ checked, error, type, value, hasFocus, ...props }) {
+export default function BaseInput({
+  checked,
+  error,
+  type,
+  value,
+  hasFocus,
+  ...props
+}) {
   const inputClass = useClasses('form-input', {
     'has-error': error,
   })
@@ -47,5 +54,3 @@ BaseInput.propTypes = {
 BaseInput.defaultProps = {
   type: 'text',
 }
-
-export default BaseInput

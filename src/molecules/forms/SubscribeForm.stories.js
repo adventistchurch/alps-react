@@ -1,24 +1,15 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { boolean, text } from '@storybook/addon-knobs'
 
 import SubscribeForm from './SubscribeForm'
 
-import data from './SubscribeForm.stories.json'
+export default {
+  title: 'ALPS/Molecules/Forms/SubscribeForm',
+  component: SubscribeForm,
+}
 
-const propsTab = 'Props'
+const SubscribeFormTemplate = props => <SubscribeForm {...props} />
 
-storiesOf('molecules/forms/SubscribeForm', module).addWithJSX('Default', () => {
-  const darkMode = boolean('Dark Mode', true, propsTab)
-  const title = text('Title', data.title, propsTab)
-  const submitLabel = text('Submit Button', data.submitLabel, propsTab)
-  const cancelLabel = text('Cancel Button', data.cancelLabel, propsTab)
-  return (
-    <SubscribeForm
-      cancelLabel={cancelLabel}
-      darkMode={darkMode}
-      submitLabel={submitLabel}
-      title={title}
-    />
-  )
-})
+export const Default = SubscribeFormTemplate.bind({})
+Default.args = {
+  title: 'Subscribe for Healthy Spam-Substitute',
+}

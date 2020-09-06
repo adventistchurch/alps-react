@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Element from '../../../helpers/Element'
 
-function ErrorMessage({ text }) {
+export default function ErrorMessage({ text }) {
   return (
     <Element
       as="small"
@@ -20,5 +20,3 @@ function ErrorMessage({ text }) {
 ErrorMessage.propTypes = {
   text: PropTypes.string.isRequired,
 }
-
-export default ErrorMessage

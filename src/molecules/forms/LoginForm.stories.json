@@ -1,9 +1,0 @@
-{
-  "submitLabel": "Login",
-  "usernameLabel": "Username",
-  "passwordLabel": "Password",
-  "forgotPwdLabel": "Forgot Password?",
-  "forgotPwdUrl": "/forgot-password",
-  "submitMessage": "Logging you in...",
-  "title": "Login"
-}

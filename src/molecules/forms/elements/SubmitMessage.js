@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Div } from '../../../helpers/Element'
 
-function SubmitMessage({ text }) {
+export default function SubmitMessage({ text }) {
   return (
     <Div className="messaging" padding color="white" themeBackground="darker">
       <Div fontSize="s" fontType="secondary">
@@ -16,5 +16,3 @@ function SubmitMessage({ text }) {
 SubmitMessage.propTypes = {
   text: PropTypes.string.isRequired,
 }
-
-export default SubmitMessage

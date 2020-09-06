@@ -6,7 +6,13 @@ import TextField from './elements/TextField'
 import Title from '../../atoms/texts/Title'
 import Form from './elements/Form'
 
-const CommentForm = ({ onSubmit, rows, submitLabel, title, ...props }) => {
+export default function CommentForm({
+  onSubmit,
+  rows,
+  submitLabel,
+  title,
+  ...props
+}) {
   return (
     <Form className="c-comment-form" spacing="half" noValidate {...props}>
       <Title
@@ -42,5 +48,3 @@ CommentForm.defaultProps = {
   submitLabel: 'Post Comment',
   title: 'Leave a Comment',
 }
-
-export default CommentForm

@@ -11,7 +11,7 @@ const styles = {
   inputWrap: { position: 'relative' },
 }
 
-function Search({
+export default function Search({
   term,
   hasFocus,
   onSubmit,
@@ -51,12 +51,21 @@ function Search({
 }
 
 Search.propTypes = {
+  /**
+   * Sets the focus on the search field
+   */
   hasFocus: PropTypes.bool,
   onSearch: PropTypes.func,
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
   submitLabel: PropTypes.string,
-  suggestions: PropTypes.array,
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      text: PropTypes.node,
+      url: PropTypes.string,
+    })
+  ),
   term: PropTypes.string,
   title: PropTypes.string,
 }
@@ -66,5 +75,3 @@ Search.defaultProps = {
   title: 'Search',
   placeholder: 'Search...',
 }
-
-export default Search

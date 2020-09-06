@@ -14,7 +14,7 @@ const components = {
   radio: RadioButton,
 }
 
-function OptionGroup({
+export default function OptionGroup({
   children,
   options,
   title,
@@ -51,5 +51,3 @@ OptionGroup.defaultProps = {
   titleFontSize: 's',
   titleFontType: 'secondary',
 }
-
-export default OptionGroup

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import BaseInput from './BaseInput'
 import FormLabel from './FormLabel'
 
-function RadioButton({
+export default function RadioButton({
   checked,
   error,
   id,
@@ -55,5 +55,3 @@ RadioButton.defaultProps = {
   labelClass: null,
   labelSpacing: null,
 }
-
-export default RadioButton

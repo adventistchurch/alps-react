@@ -56,7 +56,6 @@ LoginForm.defaultProps = {
   forgotPwdLabel: 'Forgot Password?',
   passwordLabel: 'Password',
   submitLabel: 'Login',
-  submitMessage: 'Logging you in...',
   title: 'Login',
   usernameLabel: 'Username',
 }

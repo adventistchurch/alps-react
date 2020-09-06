@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import FormLabel from './FormLabel'
 
-function Dropdown({
+export default function Dropdown({
   allowNone,
   defaultValue,
   error,
@@ -80,5 +80,3 @@ Dropdown.defaultProps = {
   noneLabel: '-',
   options: [],
 }
-
-export default Dropdown

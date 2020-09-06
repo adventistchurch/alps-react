@@ -7,7 +7,7 @@ import OptionGroup from './elements/OptionGroup'
 import RadioButton from './elements/RadioButton'
 import TextField from './elements/TextField'
 
-function SubscribeForm({
+export default function SubscribeForm({
   cancelLabel,
   darkMode,
   onCancel,
@@ -78,5 +78,3 @@ SubscribeForm.defaultProps = {
   submitLabel: 'Submit',
   title: 'Subscribe',
 }
-
-export default SubscribeForm

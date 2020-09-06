@@ -8,7 +8,7 @@ import Form from './elements/Form'
 import SubmitButton from './elements/SubmitButton'
 import renderItems from '../../helpers/renderItems'
 
-function FacetFilter({ facets, filterLabel, title, ...props }) {
+export default function FacetFilter({ facets, filterLabel, title, ...props }) {
   return (
     <Form className="c-facet-filter-form" {...props}>
       <Fieldset legend={title} spacing="half">
@@ -33,5 +33,3 @@ FacetFilter.defaultProps = {
   facets: [],
   filterLabel: 'Filter',
 }
-
-export default FacetFilter
