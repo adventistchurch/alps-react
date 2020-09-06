@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Paragraph } from '../../helpers/Element'
 
-function Figcaption({ caption, children }) {
+export default function Figcaption({ caption, children }) {
   return (
     <figcaption className="o-figcaption">
       <Paragraph
@@ -22,5 +22,3 @@ Figcaption.propTypes = {
   caption: PropTypes.string,
   children: PropTypes.string,
 }
-
-export default Figcaption

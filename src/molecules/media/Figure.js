@@ -10,20 +10,29 @@ import {
   figureSizes,
 } from '../../atoms/global/figures'
 
-function Figure({ caption, className, image, lazy, videoSrc, align, size }) {
+export default function Figure({
+  caption,
+  className,
+  image,
+  lazy,
+  videoSrc,
+  align,
+  size,
+}) {
   const classes = useMemo(() => getFigureClasses(align, size), [align, size])
 
   return (
     <figure className={`o-figure ${classes} ${className}`}>
-      {image && (
-        <div className="o-figure__image">
-          <Picture image={image} lazy={lazy} />
-        </div>
-      )}
-      {videoSrc && (
+      {videoSrc ? (
         <div className="u-image--wrap">
           <Video src={videoSrc} />
         </div>
+      ) : (
+        image && (
+          <div className="o-figure__image">
+            <Picture image={image} lazy={lazy} />
+          </div>
+        )
       )}
       {caption && (
         <div className="o-figure__caption">
@@ -46,5 +55,3 @@ Figure.propTypes = {
 Figure.defaultProps = {
   className: '',
 }
-
-export default Figure

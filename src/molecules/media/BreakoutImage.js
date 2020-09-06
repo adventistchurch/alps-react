@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import InlineStyles from '../../helpers/InlineStyles'
@@ -11,7 +11,7 @@ const getBackgroundRule = url => `.c-breakout-image__background {
   background-image: url('${url}');
 }`
 
-function BreakoutImage({ caption, srcSet, parallax }) {
+export default function BreakoutImage({ caption, srcSet, parallax }) {
   const { backgroundRef, parallaxStyles } = useBackgroundParallax({
     enabled: parallax,
     speed: 8,
@@ -47,5 +47,3 @@ BreakoutImage.propTypes = {
 BreakoutImage.defaultProps = {
   parallax: false,
 }
-
-export default BreakoutImage

@@ -1,32 +1,37 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { object, text } from '@storybook/addon-knobs'
 
 import BreakoutImage from './BreakoutImage'
 
-import data from './BreakoutImage.stories.json'
+export default {
+  title: 'ALPS/Molecules/Media/BreakoutImage',
+  component: BreakoutImage,
+}
 
-const propsTab = 'Props'
+export const Default = props => <BreakoutImage {...props} />
+Default.args = {
+  title: 'Lorem Ipsum',
+  description: 'Fusce nec urna ut tellus accumsan fermentum.',
+  srcSet: {
+    default: '//picsum.photos/500/800',
+    500: '//picsum.photos/700/800',
+    700: '//picsum.photos/1200/800',
+    1200: '//picsum.photos/1500/900',
+  },
+  caption: 'Proin dictum lobortis luctus.',
+}
 
-storiesOf('molecules/media/BreakoutImage', module)
-  .addWithJSX('Default', () => {
-    const srcSet = object('Image SrcSet *', data.srcSet, propsTab)
-    const caption = text('Caption', data.caption, propsTab)
-    return <BreakoutImage srcSet={srcSet} caption={caption} />
-  })
-
-  .addWithJSX('With Parallax', () => {
-    const srcSet = object('Image SrcSet *', data.srcSet, propsTab)
-    const caption = text('Caption', data.caption, propsTab)
-    const wrapperStyle = { marginTop: 100 }
-
-    return (
-      <div
-        important="This wrapper div is not required for a BreakoutImage to work. So, don't copy it!"
-        note="It's just adds some top margin in order to make the parallax effect is visible in StoryBook."
-        style={wrapperStyle}
-      >
-        <BreakoutImage srcSet={srcSet} caption={caption} parallax />
-      </div>
-    )
-  })
+export const WithParallax = props => {
+  return (
+    <div
+      important="This wrapper div is not required for a BreakoutImage to work. So, don't copy it!"
+      note="It's just adds some top margin in order to make the parallax effect is visible in StoryBook."
+      style={{ marginBottom: 200 }}
+    >
+      <BreakoutImage {...props} />
+    </div>
+  )
+}
+WithParallax.args = {
+  ...Default.args,
+  parallax: true,
+}
