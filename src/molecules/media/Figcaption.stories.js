@@ -7,7 +7,9 @@ export default {
   component: Figcaption,
 }
 
-export const Default = props => <Figcaption {...props} />
+const FigcaptionTemplate = props => <Figcaption {...props} />
+
+export const Default = FigcaptionTemplate.bind({})
 Default.args = {
   caption: 'Proin dictum lobortis luctus.',
 }

@@ -12,7 +12,9 @@ export default {
   },
 }
 
-export const Default = props => <Figure {...props} />
+const FigureTemplate = props => <Figure {...props} />
+
+export const Default = FigureTemplate.bind({})
 Default.args = {
   caption: 'Proin dictum lobortis luctus.',
   image: {
