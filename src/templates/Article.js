@@ -47,6 +47,7 @@ function Article({
               <RelatedPosts heading={relatedTitle} blocks={relatedPosts} />
             )
           }
+          spacing
         >
           {content || children}
         </ArticleContent>
