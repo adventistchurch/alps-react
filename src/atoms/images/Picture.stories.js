@@ -6,6 +6,7 @@ import Picture from './Picture'
 import data from './Picture.stories.json'
 
 const imageModes = ['Landscape', 'Portrait', 'Square']
+import range from '../../helpers/range'
 
 function getTabData(name, settings = {}) {
   return {
@@ -34,7 +35,28 @@ export function pictureTab(settings = {}) {
   }
 }
 
-storiesOf('atoms/images/Picture', module).addWithJSX('Default', () => {
-  const { image, lazy } = pictureTab()
-  return <Picture image={image} lazy={lazy} />
-})
+storiesOf('atoms/images/Picture', module)
+  .addWithJSX('Default', () => {
+    const { image, lazy } = pictureTab()
+    return <Picture image={image} lazy={lazy} />
+  })
+  .addWithJSX('Lazy', () => {
+    const { image } = pictureTab()
+    return range(10, 50).map((x, i) => (
+      <div key={`lazy-image-${i}`} style={{ width: 400, height: 300 }}>
+        <Picture
+          image={{
+            ...image,
+            srcSet: {
+              default: `//picsum.photos/id/${x}1/200/150`,
+              placeholder: `//picsum.photos/id/${x}1/20/15`,
+              '500': `//picsum.photos/id/${x}1/400/300`,
+              '750': `//picsum.photos/id/${x}1/600/450`,
+              '1200': `//picsum.photos/id/${x}1/800/600`,
+            },
+          }}
+          lazy
+        />
+      </div>
+    ))
+  })

@@ -1619,6 +1619,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.2.0":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
+  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.10.4.tgz#3251996c4200ebc71d1a8fc405fba940f36ba278"
@@ -5982,6 +5989,11 @@ interpret@^2.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-2.0.0.tgz#b783ffac0b8371503e9ab39561df223286aa5433"
   integrity sha512-e0/LknJ8wpMMhTiWcjivB+ESwIuvHnBSlBbmP/pSb8CQJldoj1p2qv7xGZ/+BtbTziYRFSz8OsvdbiX45LtYQA==
 
+intersection-observer@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.11.0.tgz#f4ea067070326f68393ee161cc0a2ca4c0040c6f"
+  integrity sha512-KZArj2QVnmdud9zTpKf279m2bbGfG+4/kn16UU0NL3pTVl52ZHiJ9IRNSsnn6jaHrL9EGLFM5eWjTx2fz/+zoQ==
+
 invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -8180,15 +8192,26 @@ react-input-autosize@^2.2.2:
   dependencies:
     prop-types "^15.5.8"
 
+react-intersection-observer@^6.1.0:
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-6.4.2.tgz#a061add707c37ea14e1308c77c2e286719347928"
+  integrity sha512-gL6YrkhniA0tIbyDbUterzBwKh61vHR520rsKULel5T37gG4YP07wnWI3WoqOcKK5bKAu0PZB2FHD7/OjawN+w==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    invariant "^2.2.4"
+
 react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-lazyload@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.0.0.tgz#f9741daa823d95ddb4dd59527ca6b8845d1b4c3e"
-  integrity sha512-wYR9iroanIUELPQ7YtgeHjl7KburmA1WxB2GurjAOs31B6IehxxvHEp/74pIaWJLv+o/ug952WoWqjFpDzl5Ig==
+react-lazy-images@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-lazy-images/-/react-lazy-images-1.1.0.tgz#c865445c96e568a6249db03a2bb2dccd49cb6f50"
+  integrity sha512-h5DHFhkMJyh2qsDl3hXWu6d+On10FsgHtRJ+BH7xjgsFOvsqaii9CEwEESqPJrrAiHo1qrN1LgzrV8X3zctHKA==
+  dependencies:
+    react-intersection-observer "^6.1.0"
+    unionize "^2.1.2"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -9684,6 +9707,11 @@ union-value@^1.0.0:
     get-value "^2.0.6"
     is-extendable "^0.1.1"
     set-value "^2.0.1"
+
+unionize@^2.1.2:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/unionize/-/unionize-2.2.0.tgz#ce88635aa0793f28ab617abeac36172ba0aeb7bc"
+  integrity sha512-lHXiL6LPVuRYBGCLOdUd4GMHoAGqM0HtYHAZcA6pUEiwN1nk+LEYlh8bud7saeL0bkFntJzCPEPVVJeFm3Cqsg==
 
 uniq@^1.0.1:
   version "1.0.1"

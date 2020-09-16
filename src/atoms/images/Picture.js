@@ -3,26 +3,30 @@ import PropTypes from 'prop-types'
 
 import Image from './Image'
 
-function Picture({ image, lazy, style }) {
+export default function Picture({ image, lazy, style }) {
   if (!image || !image.srcSet) return null
+
   const { alt, srcSet } = image
 
-  const { default: defaultImage, ...otherImages } = srcSet
-
-  const sources = Object.keys(otherImages)
-    .reverse()
-    .map((size, i) => (
-      <source
-        key={i}
-        media={`(min-width: ${size}px)`}
-        srcSet={otherImages[size]}
-      />
-    ))
+  const { default: defaultImage, placeholder, ...otherImages } = srcSet
 
   return (
     <picture className="picture" style={style}>
-      {sources}
-      <Image alt={alt} lazy={lazy} src={defaultImage} />
+      {Object.keys(otherImages)
+        .reverse()
+        .map((size, i) => (
+          <source
+            key={i}
+            media={`(min-width: ${size}px)`}
+            srcSet={otherImages[size]}
+          />
+        ))}
+      <Image
+        alt={alt}
+        lazy={lazy}
+        src={defaultImage}
+        placeholderSrc={placeholder}
+      />
     </picture>
   )
 }
@@ -38,5 +42,3 @@ Picture.propTypes = {
 Picture.defaultProps = {
   image: { srcSet: {}, alt: '' },
 }
-
-export default Picture
