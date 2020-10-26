@@ -23,6 +23,7 @@ export default function MediaBlock({
   contentProps,
   cta,
   ctaIcon,
+  ctaIconPosition,
   date,
   dateFormat,
   dateLocales,
@@ -150,6 +151,7 @@ export default function MediaBlock({
               className="c-block__button"
               icon={ctaIcon}
               iconSize="m"
+              iconPosition={ctaIconPosition}
               outline
               text={cta}
               url={url}
@@ -170,6 +172,7 @@ MediaBlock.propTypes = {
   contentProps: PropTypes.shape(Element.propTypes),
   cta: PropTypes.string,
   ctaIcon: Button.propTypes.icon,
+  ctaIconPosition: Button.propTypes.iconPosition,
   description: PropTypes.string,
   date: PropTypes.oneOfType([
     PropTypes.object,
