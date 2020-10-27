@@ -110,7 +110,7 @@ const featuredNews = {
   },
 }
 
-const archive = {
+const archiveHome = {
   // reversed: true, // TODO: Template says .c-block--reversed
 
   block: {
@@ -136,6 +136,38 @@ const archive = {
   },
   title: {
     fontSize: 'l',
+  },
+  meta: {
+    themeColor: 'base',
+  },
+}
+
+const archivePage = {
+  block: {
+    reversed: true, // TODO: Template says .c-block--reversed
+    gridWrap: 5,
+    seven: true,
+    gridBreak: 'standard',
+  },
+
+  image: {
+    noGridItemClass: true,
+    gridItemSize: 2,
+    gridItemSizeAtM: 1,
+    gridItemSizeAtL: 1,
+    paddingSides: 'zero',
+  },
+
+  content: {
+    noGridItemClass: true,
+    gridItemSize: 4,
+    gridItemSizeAtM: 3,
+    gridItemSizeAtXL: 2,
+    flexJustify: 'start',
+  },
+  title: {
+    fontSize: 'm',
+    themeColor: 'darker',
   },
   meta: {
     themeColor: 'base',
@@ -403,7 +435,8 @@ export default {
   featureHalf,
   featureWide,
   featuredNews,
-  archive,
+  archiveHome,
+  archivePage,
   full,
   inline,
   inset,
