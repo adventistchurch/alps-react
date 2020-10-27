@@ -38,7 +38,7 @@ function shouldIncludePath(path) {
 const walkFolder = dir => {
   var results = []
   var list = readdirSync(dir)
-  list.forEach(function(file) {
+  list.forEach(function (file) {
     file = `${dir}/${file}`
 
     var stat = statSync(file)
