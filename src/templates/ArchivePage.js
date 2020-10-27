@@ -35,7 +35,6 @@ export default function ArchivePage({
     <BlankTemplate {...templateProps}>
       <PageHeaderLong {...pageHeader} />
 
-      {/* l-main__content l-grid l-grid--7-col u-shift--left--1-col--at-xxlarge l-grid-wrap--6-of-7 u-spacing--double--until-xxlarge u-padding--zero--sides */}
       <GridSeven
         className="l-main__content"
         id="top"
