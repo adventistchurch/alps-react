@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { object, text } from '@storybook/addon-knobs'
 
-import NewsArchive from './NewsArchive'
+import ArchivePage from './ArchivePage'
 
 // Stories and data
 import { useGlobalTab } from './TemplateWrap.stories.js'
@@ -10,12 +10,12 @@ import { asideTab } from '../organisms/asides/Aside.stories.js'
 import { paginationTab } from '../molecules/navigation/Pagination.stories.js'
 import { facetsTab } from '../molecules/forms/FacetFilter.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
-import data from './NewsArchive.stories.json'
+import data from './ArchivePage.stories.json'
 
 function getTabData(name, settings = {}) {
   return {
     tab: name,
-    ...NewsArchive.defaultProps,
+    ...ArchivePage.defaultProps,
     ...data,
     ...settings,
   }
@@ -49,8 +49,8 @@ export function useNewsArchiveTabs(settings = {}) {
   }
 }
 
-storiesOf('templates/NewsArchive', module).addWithJSX('Default', () => {
+storiesOf('templates/ArchivePage', module).addWithJSX('Default', () => {
   const props = useNewsArchiveTabs()
 
-  return <NewsArchive {...props} />
+  return <ArchivePage {...props} />
 })

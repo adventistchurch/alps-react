@@ -14,7 +14,7 @@ import PageHeaderLong from '../organisms/sections/PageHeaderLong'
 import BlockFeed from '../organisms/sections/BlockFeed'
 import BlankTemplate from './BlankTemplate'
 
-export default function NewsArchive({
+export default function ArchivePage({
   articles,
   articleCta,
   aside,
@@ -97,7 +97,7 @@ export default function NewsArchive({
   )
 }
 
-NewsArchive.propTypes = {
+ArchivePage.propTypes = {
   aside: PropTypes.shape(Aside.propTypes),
   breakout: PropTypes.shape(BreakoutBlock.propTypes),
   articles: PropTypes.array,
@@ -107,7 +107,7 @@ NewsArchive.propTypes = {
   pagination: PropTypes.shape(Pagination.propTypes),
   ...BlankTemplate.propTypes,
 }
-NewsArchive.defaultProps = {
+ArchivePage.defaultProps = {
   articles: [],
   articleCta: 'Learn more',
 }
