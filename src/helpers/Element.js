@@ -72,7 +72,6 @@ import {
   getGridItemClass,
   gridBreaks,
   shiftBreakpoints,
-  shiftSides,
   wrapSizes,
 } from '../atoms/global/grids'
 
@@ -138,8 +137,8 @@ function useElementProps(props) {
     position,
     seven,
     sevenInner,
-    shiftAt,
-    shiftSide,
+    shiftLeftAt,
+    shiftRightAt,
     space,
     spaceAfter,
     spaceBottom,
@@ -290,8 +289,8 @@ function useElementProps(props) {
   if (
     seven ||
     sevenInner ||
-    shiftAt ||
-    shiftSide ||
+    shiftLeftAt ||
+    shiftRightAt ||
     gridWrap ||
     gridNoGutters ||
     blockRow
@@ -305,8 +304,8 @@ function useElementProps(props) {
         noGutters: gridNoGutters,
         seven,
         sevenInner,
-        shiftAt,
-        shiftSide,
+        shiftLeftAt,
+        shiftRightAt,
         wrap: gridWrap,
       })
     )
@@ -444,8 +443,8 @@ Element.propTypes = {
   position: PropTypes.oneOf(positionOptions),
   seven: PropTypes.bool,
   sevenInner: PropTypes.bool,
-  shiftAt: PropTypes.oneOf(shiftBreakpoints),
-  shiftSide: PropTypes.oneOf(shiftSides),
+  shiftLeftAt: PropTypes.oneOf(shiftBreakpoints),
+  shiftRight: PropTypes.oneOf(shiftBreakpoints),
   space: spacingPropType,
   spaceAfter: PropTypes.oneOf(spaceAfterSizes),
   spaceBottom: spacingPropType,

@@ -14,8 +14,7 @@ function ArticleContent({ children, sidebar, hasDropcap, spacing }) {
       as="section"
       gridWrap="6"
       noWrapClass
-      shiftSide="left"
-      shiftAt="large"
+      shiftLeftAt="large"
       spacingDoubleUntil="large"
       paddingSides="zero"
     >

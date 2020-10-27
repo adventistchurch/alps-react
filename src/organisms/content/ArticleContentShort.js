@@ -13,8 +13,7 @@ function ArticleContentShort({ children, sidebar, hasDropcap, spacing }) {
       as="section"
       gridWrap="6"
       noWrapClass
-      shiftSide="left"
-      shiftAt="xxlarge"
+      shiftLeftAt="xxlarge"
       spacingDoubleUntil="large"
     >
       <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">

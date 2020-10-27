@@ -25,12 +25,7 @@ function Slide({
     >
       <Picture image={image} lazy={imageIsLazy} />
       {heading && (
-        <Div
-          className="c-carousel__item-text__wrap"
-          seven
-          shiftSide="left"
-          shiftAt="large"
-        >
+        <Div className="c-carousel__item-text__wrap" seven shiftLeftAt="large">
           <Div gridItemSizeAtM={4} gridItemSizeAtXL={3}>
             <Div
               className={`c-carousel__item-text ${textClass}`}

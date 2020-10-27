@@ -1,13 +1,11 @@
 const gridClass = 'l-grid'
-const col = 'col'
 
-export const sevenClass = `${gridClass}--7-${col}`
+export const sevenClass = `${gridClass}--7-col`
 const sevenInnerClass = `${sevenClass}--inner` // Class is available in CSS, but not not used in twig/json templates
 const wrapClass = `${gridClass}-wrap`
 const itemClass = `${gridClass}-item`
 
 const shiftClass = 'u-shift'
-export const shiftSides = ['left', 'right']
 export const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
 
 export const gridBreaks = ['standard', 'large']
@@ -28,14 +26,12 @@ export const wrapSizes = [
  *    `getShiftClass('left','xxlarge') // 'u-shift--left--1-col--at-xxlarge'`
  *    `getShiftClass('right','standard') // 'u-shift--left--1-col--standard'`
  *
- * @param {string} side One of `shiftSides`
+ * @param {string} side One of ['left', 'right']
  * @param {string} at one of `shiftBreakpoints`
  *
  */
 function getShiftClass(side, at) {
-  return `${shiftClass}--${side}--1-${col}--${
-    at === 'standard' ? at : `at-${at}`
-  }`
+  return `${shiftClass}--${side}--1-col--${at === 'standard' ? at : `at-${at}`}`
 }
 
 export function getGridWrapClass(size, noWrapClass) {
@@ -56,8 +52,8 @@ export function getGridClass({
   blockRow,
   seven,
   sevenInner,
-  shiftAt,
-  shiftSide,
+  shiftLeftAt,
+  shiftRightAt,
   wrap,
 }) {
   const classes = []
@@ -69,7 +65,8 @@ export function getGridClass({
   if (gridBreak) classes.push(gridBreakClass.replace('#', gridBreak))
   if (blockRow) classes.push(getBlockRowClass())
   if (wrap) classes.push(getGridWrapClass(wrap, noWrapClass))
-  if (shiftSide && shiftAt) classes.push(getShiftClass(shiftSide, shiftAt))
+  if (shiftLeftAt) classes.push(getShiftClass('left', shiftLeftAt))
+  if (shiftRightAt) classes.push(getShiftClass('right', shiftRightAt))
 
   return classes
 }
@@ -96,7 +93,7 @@ export function getGridItemClass({
 
   for (const { at, size } of sizes) {
     if (wrapSizes.includes(size)) {
-      classes.push(`${itemClass}${at ? `--${at}` : ''}--${size}-${col}`)
+      classes.push(`${itemClass}${at ? `--${at}` : ''}--${size}-col`)
     }
   }
 

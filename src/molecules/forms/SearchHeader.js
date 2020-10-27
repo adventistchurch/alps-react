@@ -7,8 +7,7 @@ const baseProps = {
   contentProps: {
     seven: true,
     shiftAt: 'large',
-    shiftSide: 'left',
-    spacingUntil: 'medium',
+    shiftLeftAt: 'medium',
   },
   nestedProps: {
     gridItemSizeAtM: 3,

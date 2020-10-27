@@ -32,8 +32,7 @@ function BasicPage({
           id="top"
           paddingSides="zero"
           seven
-          shiftSide="left"
-          shiftAt={hasSidebar ? 'xxlarge' : 'large'}
+          shiftLeftAt={hasSidebar ? 'xxlarge' : 'large'}
           spacingDoubleUntil="xxlarge"
         >
           <Article

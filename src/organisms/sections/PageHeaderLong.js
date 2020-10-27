@@ -34,8 +34,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
             borderSide={background ? 'left' : null}
             borderColor={background ? 'white' : null}
             borderAt={background ? 'medium' : null}
-            shiftSide="left"
-            shiftAt="xxlarge"
+            shiftLeftAt="xxlarge"
             noGridClass
             gridWrap={5}
           >
@@ -71,8 +70,7 @@ function PageHeaderLong({ title, kicker, subtitle, background, url }) {
             fontType="secondary"
             fontSize="m"
             borderSide={background ? 'left' : null}
-            shiftSide="left"
-            shiftAt="xxlarge"
+            shiftLeftAt="xxlarge"
             gridWrap={5}
           >
             {subtitle}

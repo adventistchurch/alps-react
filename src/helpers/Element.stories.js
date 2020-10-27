@@ -55,7 +55,7 @@ import {
   fontWeights,
 } from '../atoms/global/fonts'
 
-import { shiftBreakpoints, shiftSides, wrapSizes } from '../atoms/global/grids'
+import { shiftBreakpoints, wrapSizes } from '../atoms/global/grids'
 
 import {
   spaceAfterSizes,
@@ -432,8 +432,8 @@ function gridTab(settings = {}) {
     gridNoGutters,
     seven,
     sevenInner,
-    shiftAt,
-    shiftSide,
+    shiftLeftAt,
+    shiftRightAt,
     tab,
   } = getTabData('Grid', settings)
 
@@ -463,13 +463,18 @@ function gridTab(settings = {}) {
       {},
       tab
     ),
-    shiftAt: select(
-      'Shift at Breakpoint',
+    shiftLeftAt: select(
+      'Shift Left at Breakpoint',
       setOptions(shiftBreakpoints),
-      shiftAt,
+      shiftLeftAt,
       tab
     ),
-    shiftSide: select('Shift Side', setOptions(shiftSides), shiftSide, tab),
+    shiftRightAt: select(
+      'Shift Right at Breakpoint',
+      setOptions(shiftBreakpoints),
+      shiftRightAt,
+      tab
+    ),
   }
 }
 

@@ -45,8 +45,7 @@ function ArticleVideo({
           as="section"
           gridWrap="6"
           noWrapClass
-          shiftSide="left"
-          shiftAt="xxlarge"
+          shiftLeftAt="xxlarge"
           spacingDoubleUntil="large"
           paddingSides="zero"
         >

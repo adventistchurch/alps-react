@@ -102,13 +102,7 @@ function News({
           </Grid>
         )}
       </ListContent>
-      <GridSeven
-        as="section"
-        gridWrap="6"
-        noWrapClass
-        shiftSide="left"
-        shiftAt="large"
-      >
+      <GridSeven as="section" gridWrap="6" noWrapClass shiftLeftAt="large">
         <GridItem className="c-article" sizeAtL="4" spacing="triple">
           {subscribeForm}
           {archive && (
@@ -126,7 +120,7 @@ function News({
                       category={category}
                       url={url}
                       image={image}
-                      type="archive"
+                      type="archiveHome"
                       date={date}
                     />
                   )
