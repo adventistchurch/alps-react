@@ -1,6 +1,0 @@
-export { default as BreakoutBlock } from './BreakoutBlock'
-export { default as ContentBlock } from './ContentBlock'
-export { default as ContentBlockExpand } from './ContentBlockExpand'
-export { default as GalleryBlock } from './GalleryBlock'
-export { default as HeadingBlock } from './HeadingBlock'
-export { default as MediaBlock } from './MediaBlock'

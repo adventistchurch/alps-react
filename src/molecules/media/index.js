@@ -1,5 +1,0 @@
-export { default as BreakoutImage } from './BreakoutImage'
-export { default as Figcaption } from './Figcaption'
-export { default as Figure } from './Figure'
-export { default as FigureWithCaption } from './FigureWithCaption'
-export { default as VideoFigureWithCaption } from './VideoFigureWithCaption'
