@@ -38,9 +38,10 @@ import {
 } from '../atoms/global/colors'
 
 import {
-  getBaseClass,
+  centerBlockClass,
   displayClass,
   displayOptions,
+  getBaseClass,
   positionClass,
   positionOptions,
   sides,
@@ -97,6 +98,7 @@ function useElementProps(props) {
     borderColor,
     borderSide,
     canBe,
+    centerBlock,
     className,
     clearFix,
     color,
@@ -338,6 +340,7 @@ function useElementProps(props) {
   if (display) classes.push(getBaseClass(displayClass, display))
   if (position) classes.push(getBaseClass(positionClass, position))
   if (vishidden) classes.push(vishiddenClass)
+  if (centerBlock) classes.push(centerBlockClass)
 
   // - Theme classes
   if (themeBorder)
@@ -401,6 +404,7 @@ Element.propTypes = {
   borderColor: PropTypes.oneOf(borderColors),
   borderSide: PropTypes.oneOf(borderSides),
   canBe: PropTypes.oneOf(canBeColors),
+  centerBlock: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   clearFix: PropTypes.bool,

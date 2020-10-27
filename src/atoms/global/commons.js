@@ -11,6 +11,7 @@ export const displayOptions = ['block', 'inline-block']
 export const vishiddenClass = 'is-vishidden'
 export const positionClass = 'u-position'
 export const positionOptions = ['absolute', 'relative']
+export const centerBlockClass = 'u-center-block'
 
 // Common Functions:
 
