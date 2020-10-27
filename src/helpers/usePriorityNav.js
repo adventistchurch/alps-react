@@ -33,8 +33,8 @@ function usePriorityNav(items = []) {
   const [lastVisibleIndex, setLastVisibleIndex] = useState(total - 1)
   const [safeToShow, setSafeToShow] = useState(false)
 
-  const breakpoints = []
-  let priorityWidths = []
+  const breakpoints = useMemo(() => [], [])
+  let priorityWidths = useMemo(() => [], [])
 
   const priorityItems = useMemo(
     () =>
