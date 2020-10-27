@@ -1,6 +1,7 @@
 {
   "pageHeader": {
-    "title": "News"
+    "kicker": "category",
+    "title": "Archives"
   },
   "articlesTitle": "Archive news",
   "articles": [
@@ -154,47 +155,28 @@
   ],
 
   "aside": {
-    "media": {
-      "title": "Related",
+    "comments": {
+      "title": "Archives",
       "linkLabel": "See all",
       "linkUrl": "#",
       "items": [
         {
           "title": "Quis soluta sapiente et nam iure velit tenetur facere quia",
           "category": "Culture",
-          "description": "Eligendi vel voluptas repudiandae voluptatibus laboriosam tenetur occaecati et consequatur",
           "date": "2017-12-28 10:30",
-          "url": "#",
-          "mediaIcon": "video",
-          "image": {
-            "alt": "Eligendi quod dolorem",
-            "srcSet": {
-              "default": "https://picsum.photos/400/225?random=16",
-              "500": "https://picsum.photos/640/360?random=16"
-            }
-          }
+          "url": "#"
         },
         {
           "title": "Church leaders pray for the two titles during Euro-Asia Division year-end meetings.",
           "category": "Church",
-          "description": "The Coachella Valley community is officially home to Loma Linda University Children’s Health – Indio, Jill and Barry Golden Pavilion, the largest pediatric clinic in the area. The grand opening was...",
           "date": "2017-12-28 10:30",
-          "url": "#",
-          "mediaIcon": "video",
-          "image": {
-            "alt": "Eligendi quod dolorem",
-            "srcSet": {
-              "default": "https://picsum.photos/400/225?random=18",
-              "500": "https://picsum.photos/640/360?random=18"
-            }
-          }
+          "url": "#"
         }
       ]
     }
   },
   "pagination": {
     "page": 7,
-    "linkPrefix": "?page=",
     "surrounding": 2,
     "surroundingOnExtremes": 0,
     "showFirstAndLast": false,

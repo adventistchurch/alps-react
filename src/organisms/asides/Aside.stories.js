@@ -21,6 +21,8 @@ function getTabData(name, settings = {}) {
 function mediaBlocksTab(settings = {}) {
   const { media, tab } = getTabData('Media Blocks', settings)
 
+  if (settings.noMediaBlocks) return {}
+
   return {
     title: text('Title', media.title, tab),
     linkLabel: text('Link label', media.linkLabel, tab),
@@ -31,6 +33,8 @@ function mediaBlocksTab(settings = {}) {
 
 function commentsBlocksTab(settings = {}) {
   const { comments, tab } = getTabData('Comment Blocks', settings)
+
+  if (settings.noComments) return {}
 
   return {
     title: text('Title', comments.title, tab),

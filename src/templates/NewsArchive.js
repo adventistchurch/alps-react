@@ -1,70 +1,113 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import Grid from '../atoms/grids/Grid'
 import GridItem from '../atoms/grids/GridItem'
-import MediaBlock from '../molecules/blocks/MediaBlock'
+import GridSeven from '../atoms/grids/GridSeven'
+import Text from '../atoms/texts/Text'
+import { Div } from '../helpers/Element'
+import BreakoutBlock from '../molecules/blocks/BreakoutBlock'
 import FacetFilter from '../molecules/forms/FacetFilter'
 import Pagination from '../molecules/navigation/Pagination'
 import Aside from '../organisms/asides/Aside'
 import ListContent from '../organisms/content/ListContent'
-import PageHeader from '../organisms/sections/PageHeader'
+import PageHeaderLong from '../organisms/sections/PageHeaderLong'
+import BlockFeed from '../organisms/sections/BlockFeed'
 import BlankTemplate from './BlankTemplate'
 
-function NewsArchive({
+export default function NewsArchive({
   articles,
-  articlesTitle,
+  articleCta,
   aside,
+  breakout,
   filters,
   pageHeader,
   pagination,
   ...templateProps
 }) {
   const { title: filtersTitle, ...filtersProps } = filters
+
+  const articleProps = useMemo(
+    () => ({ cta: articleCta, ctaIconPosition: 'right' }),
+    [articleCta]
+  )
+
   return (
     <BlankTemplate {...templateProps}>
-      <PageHeader {...pageHeader} />
+      <PageHeaderLong {...pageHeader} />
 
-      <Grid seven as="section" wrap={6} spacingDoubleUntil="large">
-        <GridItem sizeAtL={4} paddingSides="zero" spacing="double">
-          <ListContent title={articlesTitle} linkUrl={null} paddingRight>
-            {articles &&
-              articles.map((item, key) => (
-                <MediaBlock
-                  key={`featured-item-${key}`}
-                  type="archive"
-                  {...item}
-                />
-              ))}
-          </ListContent>
-
-          {pagination && <Pagination {...pagination} />}
+      {/* l-main__content l-grid l-grid--7-col u-shift--left--1-col--at-xxlarge l-grid-wrap--6-of-7 u-spacing--double--until-xxlarge u-padding--zero--sides */}
+      <GridSeven
+        className="l-main__content"
+        id="top"
+        as="section"
+        gridWrap="6"
+        noWrapClass
+        shiftLeftAt="xxlarge"
+        spacingDoubleUntil="xxlarge"
+        paddingSides="zero"
+      >
+        <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">
+          <Text
+            as="article"
+            className="c-article__body"
+            hasDropcap={false}
+            spacing="double"
+            spaceTop
+          >
+            <GridItem
+              gridNoGutters
+              noItemClass
+              noGridClass
+              shiftLeftAt="xlarge"
+              shiftRightAt="large"
+              size="5"
+              sizeAtL="4"
+              sizeAtXL="3"
+              spacing="double"
+            >
+              <BlockFeed
+                blocks={articles}
+                blocksType="archivePage"
+                blocksProps={articleProps}
+                spacing="double"
+              />
+              {pagination && <Pagination {...pagination} />}
+            </GridItem>
+          </Text>
         </GridItem>
 
-        <GridItem sizeAtL={2} paddingSides="zero" spacing="double">
-          <Aside>
+        <Div
+          className="c-sidebar"
+          gridItem
+          gridItemSizeAtL="2"
+          gridItemSizeAtXL="2"
+          paddingSides="zero"
+          spacing
+        >
+          <Div spacing="double" paddingRight>
+            {breakout && <BreakoutBlock {...breakout} />}
             <ListContent title={filtersTitle} linkUrl={null} paddingRight>
               <FacetFilter {...filtersProps} title={null} />
             </ListContent>
             {aside}
-          </Aside>
-        </GridItem>
-      </Grid>
+          </Div>
+        </Div>
+      </GridSeven>
     </BlankTemplate>
   )
 }
 
 NewsArchive.propTypes = {
   aside: PropTypes.shape(Aside.propTypes),
+  breakout: PropTypes.shape(BreakoutBlock.propTypes),
   articles: PropTypes.array,
-  articlesTitle: PropTypes.node,
+  articleCta: PropTypes.node,
   filters: PropTypes.shape(FacetFilter.propTypes),
-  pageHeader: PropTypes.shape(PageHeader.propTypes),
+  pageHeader: PropTypes.shape(PageHeaderLong.propTypes),
   pagination: PropTypes.shape(Pagination.propTypes),
   ...BlankTemplate.propTypes,
 }
 NewsArchive.defaultProps = {
   articles: [],
+  articleCta: 'Learn more',
 }
-
-export default NewsArchive

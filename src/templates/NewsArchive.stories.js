@@ -35,7 +35,9 @@ export function articlesTab(settings = {}) {
 export function useNewsArchiveTabs(settings = {}) {
   const { pageHeader, aside, pagination } = getTabData(null, settings)
 
-  const asideChildren = aside ? asideTab(aside) : null
+  const asideChildren = aside
+    ? asideTab({ noMediaBlocks: true, ...aside })
+    : null
 
   return {
     pageHeader: pageHeaderTab(pageHeader),
