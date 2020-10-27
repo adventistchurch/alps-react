@@ -6,7 +6,13 @@ const wrapClass = `${gridClass}-wrap`
 const itemClass = `${gridClass}-item`
 
 const shiftClass = 'u-shift'
-export const shiftBreakpoints = ['medium', 'standard', 'large', 'xxlarge']
+export const shiftBreakpoints = [
+  'medium',
+  'standard',
+  'large',
+  // 'xlarge', // TODO:  this one is missing in ALPS. Should it be added?
+  'xxlarge',
+]
 
 export const gridBreaks = ['standard', 'large']
 const gridBreakClass = 'l-#-break'
