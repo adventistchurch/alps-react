@@ -4,7 +4,6 @@
     "dividerLabel": "…",
     "firstLabel": "First",
     "lastLabel": "Last",
-    "linkPrefix": "?page=",
     "surrounding": 2,
     "surroundingOnExtremes": 0,
     "showFirstAndLast": false,
@@ -14,7 +13,6 @@
   "textArrows": {
     "page": 123,
     "dividerLabel": "--",
-    "linkPrefix": "?p=",
     "prevLabel": "Prev",
     "nextLabel": "Next",
     "surrounding": 1,

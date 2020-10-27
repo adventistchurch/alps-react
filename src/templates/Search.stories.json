@@ -161,7 +161,6 @@
   ],
   "pagination": {
     "page": 7,
-    "linkPrefix": "?page=",
     "surrounding": 2,
     "surroundingOnExtremes": 0,
     "showFirstAndLast": false,

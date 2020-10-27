@@ -27,7 +27,6 @@ export function paginationTab(settings = {}) {
     showFirstAndLast,
     showPrevAndNext,
     showIconArrows,
-    linkPrefix,
     dividerLabel,
     firstLabel,
     lastLabel,
@@ -36,7 +35,7 @@ export function paginationTab(settings = {}) {
     tab,
   } = getTabData('Pagination', settings)
 
-  const setUrl = number => `${linkPrefix} ${number}`
+  const setUrl = number => `#${number}`
 
   return {
     total: number('Total pages', total, {}, tab),
@@ -50,7 +49,6 @@ export function paginationTab(settings = {}) {
     showFirstAndLast: boolean('Show First & Last', showFirstAndLast, tab),
     showPrevAndNext: boolean('Show Prev & Next', showPrevAndNext, tab),
     showIconArrows: boolean('Show Icon Arrows', showIconArrows, tab),
-    linkPrefix: text('Link prefix', linkPrefix, tab),
     onPrevClick,
     onNextClick,
     onPageClick,

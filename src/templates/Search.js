@@ -6,7 +6,7 @@ import SearchResults from '../organisms/content/SearchResults'
 import BlankTemplate from './BlankTemplate'
 import ArticleContent from '../organisms/content/ArticleContent'
 
-function Search({ results, searchHeader, ...props }) {
+export default function Search({ results, searchHeader, ...props }) {
   return (
     <BlankTemplate {...props}>
       <SearchHeader {...searchHeader} />
@@ -25,5 +25,3 @@ Search.defaultProps = {
   results: [],
   searchHeader: {},
 }
-
-export default Search
