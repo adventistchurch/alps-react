@@ -24,6 +24,7 @@ function usePagination({
   showIconArrows,
   surrounding,
   total: last,
+  ...otherProps
 }) {
   const first = 1
   let lowerOffset = page - surrounding
@@ -114,7 +115,7 @@ function usePagination({
     }
   }
 
-  return [].concat(...pages)
+  return { pages: [].concat(...pages), ...otherProps }
 }
 
 export default usePagination

@@ -26,13 +26,15 @@ const prevIcon = (
 )
 
 function Pagination(props) {
-  const pages = usePagination(props)
+  const { pages, ...otherProps } = usePagination(props)
 
   return (
     <Nav
-      className="pagination u-center-block"
-      textAlign="center"
+      className="pagination"
       role="navigation"
+      textAlign="center"
+      centerBlock
+      {...otherProps}
     >
       {renderItems(pages, PaginationItem)}
     </Nav>
