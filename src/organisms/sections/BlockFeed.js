@@ -7,7 +7,14 @@ import GridItem from '../../atoms/grids/GridItem'
 import MediaBlock, { mediaBlocksTypes } from '../../molecules/blocks/MediaBlock'
 import renderItems from '../../helpers/renderItems'
 
-function BlockFeed({ blocks, blocksProps, blocksType, grid, gridNoWrap }) {
+function BlockFeed({
+  blocks,
+  blocksProps,
+  blocksType,
+  grid,
+  gridItemProps,
+  gridNoWrap,
+}) {
   const itemsProps = {
     ...blocksProps,
     type: blocksType,
@@ -18,7 +25,7 @@ function BlockFeed({ blocks, blocksProps, blocksType, grid, gridNoWrap }) {
       {grid ? (
         <GridSeven noGutters noWrapClass={gridNoWrap}>
           {renderItems(blocks, block => (
-            <GridItem sizeAtS="3" sizeAtXL="2">
+            <GridItem {...gridItemProps}>
               <MediaBlock {...itemsProps} {...block} />
             </GridItem>
           ))}
@@ -35,10 +42,12 @@ BlockFeed.propTypes = {
   blocksProps: PropTypes.object,
   blocksType: PropTypes.oneOf(mediaBlocksTypes),
   grid: PropTypes.bool,
+  gridItemProps: PropTypes.object,
   gridNoWrap: PropTypes.bool,
 }
 BlockFeed.defaultProps = {
   blocksType: 'row',
+  gridItemProps: { sizeAtS: 3, sizeAtXL: 2 },
 }
 
 export default BlockFeed
