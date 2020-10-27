@@ -24,7 +24,7 @@ export function withAlpsTheme({
       components: [ThemeWrap],
       params: primaryColors.map(color => ({
         name: color,
-        props: { color },
+        props: { color, className: 'body' },
         default: color === primaryColor,
       })),
       options: {
