@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const baseStyle = {
-  height: '5pt',
-  transition: 'width .5s ease-out',
+export const sizes = {
+  small: '3pt',
+  medium: '5pt',
+  large: '10pt',
 }
 
-function useProgressStyle(percentage) {
+function useBarStyle(visible, size) {
+  return {
+    height: visible ? sizes[size] : 0,
+    transition: 'height .5s ease-out',
+  }
+}
+
+function useProgressStyle(percentage, visible, size) {
   const [fakePercentage, setFakePercentage] = useState(0)
+  const barStyle = useBarStyle(visible, size)
 
   useEffect(() => {
     let interval
@@ -23,19 +32,30 @@ function useProgressStyle(percentage) {
     return () => clearInterval(interval)
   }, [fakePercentage, percentage])
 
-  return { width: `${percentage || fakePercentage}%`, ...baseStyle }
+  return {
+    width: `${percentage || fakePercentage}%`,
+    transition: 'width .5s ease-out',
+    ...barStyle,
+  }
 }
 
-export default function Progress({ percentage }) {
-  const innerStyle = useProgressStyle(percentage)
+export default function Progress({ percentage, size, visible }) {
+  const barStyle = useBarStyle(visible, size)
+  const progressStyle = useProgressStyle(percentage, visible, size)
 
   return (
-    <div className="u-theme--background-color--lighter" style={baseStyle}>
-      <div className="u-theme--background-color--dark" style={innerStyle} />
+    <div className="u-theme--background-color--lighter" style={barStyle}>
+      <div className="u-theme--background-color--dark" style={progressStyle} />
     </div>
   )
 }
 
 Progress.propTypes = {
   percentage: PropTypes.number,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  visible: PropTypes.bool,
+}
+Progress.defaultProps = {
+  size: 'medium',
+  visible: true,
 }
