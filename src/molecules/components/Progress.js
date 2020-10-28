@@ -2,25 +2,40 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 export const sizes = {
+  hairline: '1pt',
   small: '3pt',
   medium: '5pt',
   large: '10pt',
+  huge: '16pt',
 }
 
-function useBarStyle(visible, size) {
+const widthTransition = 'width .5s ease-out'
+const heightTransition = 'height .3s ease-out'
+
+function useBarStyle(visible, size, transition = heightTransition) {
   return {
     height: visible ? sizes[size] : 0,
-    transition: 'height .5s ease-out',
+    transition: transition,
   }
 }
 
 function useProgressStyle(percentage, visible, size) {
   const [fakePercentage, setFakePercentage] = useState(0)
-  const barStyle = useBarStyle(visible, size)
+  const barStyle = useBarStyle(
+    visible,
+    size,
+    `${widthTransition}, ${heightTransition}`
+  )
+
+  const isPercentageSet =
+    percentage !== null && percentage !== undefined && percentage !== ''
 
   useEffect(() => {
     let interval
-    if (!percentage) {
+    if (isPercentageSet) {
+      setFakePercentage(0)
+      clearInterval(interval)
+    } else {
       interval = setInterval(() => {
         if (fakePercentage < 100) {
           setFakePercentage(fakePercentage + 20)
@@ -30,11 +45,12 @@ function useProgressStyle(percentage, visible, size) {
       }, 500)
     }
     return () => clearInterval(interval)
-  }, [fakePercentage, percentage])
+  }, [fakePercentage, isPercentageSet])
 
   return {
-    width: `${percentage || fakePercentage}%`,
-    transition: 'width .5s ease-out',
+    width: `${
+      isPercentageSet ? (percentage > 100 ? 100 : percentage) : fakePercentage
+    }%`,
     ...barStyle,
   }
 }
