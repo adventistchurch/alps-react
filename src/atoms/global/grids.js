@@ -10,7 +10,7 @@ export const shiftBreakpoints = [
   'medium',
   'standard',
   'large',
-  // 'xlarge', // TODO:  this one is missing in ALPS. Should it be added?
+  'xlarge', // TODO: this one is missing in ALPS. Should it be added? See https://github.com/adventistchurch/alps/issues/515
   'xxlarge',
 ]
 
