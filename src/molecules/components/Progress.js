@@ -20,7 +20,7 @@ function useBarStyle(
   transition = heightTransition
 ) {
   const fixedProps = fixed
-    ? { position: 'fixed', top: 0, left: 0, right: 0 }
+    ? { position: 'fixed', top: 0, left: 0, right: 0, zIndex: 999999 }
     : {}
 
   return {
@@ -83,7 +83,7 @@ export default function Progress({ fixed, percentage, size, visible, style }) {
 Progress.propTypes = {
   fixed: PropTypes.bool,
   percentage: PropTypes.number,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['hairline', 'small', 'medium', 'large', 'huge']),
   style: PropTypes.object,
   visible: PropTypes.bool,
 }
