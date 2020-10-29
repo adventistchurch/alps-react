@@ -16,6 +16,7 @@ function useBarStyle(
   visible,
   size,
   fixed = false,
+  style = {},
   transition = heightTransition
 ) {
   const fixedProps = fixed
@@ -26,6 +27,7 @@ function useBarStyle(
     ...fixedProps,
     height: visible ? sizes[size] : 0,
     transition: transition,
+    ...style,
   }
 }
 
@@ -35,6 +37,7 @@ function useProgressStyle(percentage, visible, size) {
     visible,
     size,
     false,
+    {},
     `${widthTransition}, ${heightTransition}`
   )
 
@@ -66,8 +69,8 @@ function useProgressStyle(percentage, visible, size) {
   }
 }
 
-export default function Progress({ fixed, percentage, size, visible }) {
-  const barStyle = useBarStyle(visible, size, fixed)
+export default function Progress({ fixed, percentage, size, visible, style }) {
+  const barStyle = useBarStyle(visible, size, fixed, style)
   const progressStyle = useProgressStyle(percentage, visible, size)
 
   return (
@@ -81,6 +84,7 @@ Progress.propTypes = {
   fixed: PropTypes.bool,
   percentage: PropTypes.number,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  style: PropTypes.object,
   visible: PropTypes.bool,
 }
 Progress.defaultProps = {
