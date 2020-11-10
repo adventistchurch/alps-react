@@ -25,6 +25,7 @@ function SecondaryNavigation({
             icon="search"
             type="search"
             isPriority
+            noWrap
             onClick={openDrawerWithSearch}
           />
         )}
@@ -34,6 +35,7 @@ function SecondaryNavigation({
             icon="menu"
             type="menu"
             isPriority
+            noWrap
             onClick={openDrawer}
           />
         )}
