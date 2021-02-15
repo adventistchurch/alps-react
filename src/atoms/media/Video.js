@@ -13,7 +13,7 @@ const iframeStyle = {
   left: 0,
 }
 
-function Video({ src, ...rest }) {
+export default function Video({ src, ...rest }) {
   return (
     <div style={wrapStyle}>
       <iframe
@@ -23,6 +23,7 @@ function Video({ src, ...rest }) {
         mozallowfullscreen="true"
         allowFullScreen
         style={iframeStyle}
+        key={src}
         {...rest}
       />
     </div>
@@ -32,5 +33,3 @@ function Video({ src, ...rest }) {
 Video.propTypes = {
   src: PropTypes.string.isRequired,
 }
-
-export default Video
