@@ -5,6 +5,7 @@ import ArrowLongRight from './ArrowLongRight'
 import ArrowShortLeft from './ArrowShortLeft'
 import ArrowShortRight from './ArrowShortRight'
 import Close from './Close'
+import CloseThin from './CloseThin'
 import Contact from './Contact'
 import Dots from './Dots'
 import Find from './Find'
@@ -31,6 +32,7 @@ export default {
   'arrow-short-left': ArrowShortLeft,
   'arrow-short-right': ArrowShortRight,
   close: Close,
+  'close-thin': CloseThin,
   contact: Contact,
   dots: Dots,
   find: Find,
