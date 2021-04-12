@@ -59,8 +59,8 @@ function MyApp(props) {
             image={{
               srcSet: {
                 default: '//picsum.photos/480/270?image=248',
-                '500': '//picsum.photos/720/405?image=248',
-                '900': '//picsum.photos/960/540?image=248',
+                500: '//picsum.photos/720/405?image=248',
+                900: '//picsum.photos/960/540?image=248',
               },
               alt: 'Placeholder image',
             }}
@@ -88,7 +88,7 @@ You should also include in your HTML `<head>` ALPS stylesheets and fonts from th
 <link
   rel="stylesheet"
   type="text/css"
-  href="//fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i"
+  href="//fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i&display=swap"
   media="all"
 />
 
