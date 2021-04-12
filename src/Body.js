@@ -30,18 +30,21 @@ ThemeWrap.propTypes = {
 
 export default function Body({
   children,
+  fullWidth,
   hasGrid,
   primaryColor,
   secondaryColor,
 }) {
   const { isOpen } = useDrawerContext()
+  const openMenuClass = isOpen.menu ? 'menu-is-active' : ''
+  const fullWidthClass = fullWidth ? 'full-width' : ''
 
   return (
     <ThemeWrap color={primaryColor}>
       <ThemeWrap
         color={secondaryColor}
         hasGrid={hasGrid}
-        className={`body ${isOpen.menu ? 'menu-is-active' : ''} `}
+        className={`body ${openMenuClass} ${fullWidthClass}`}
       >
         {children}
       </ThemeWrap>
@@ -51,6 +54,7 @@ export default function Body({
 
 Body.propTypes = {
   hasGrid: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   children: PropTypes.node,
   primaryColor: PropTypes.oneOf(primaryColors),
   secondaryColor: PropTypes.oneOf(secondaryColors),
