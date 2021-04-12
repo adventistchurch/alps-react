@@ -79,7 +79,7 @@ function MyApp(props) {
 
 > _NOTE_: This is just a simple example on how the API loooks. Event when you can use the components as you will, the recomended way is to use some of the Templates components and provide them with configurations and data/subcomponents.
 
-### Add Assets: ALPS Styles and fonts
+### Assets: ALPS Styles and fonts
 
 You should also include in your HTML `<head>` ALPS stylesheets and fonts from their official CDN:
 
@@ -135,9 +135,27 @@ function MyApp () {
 }
 ```
 
-After adding the assets you should see something like this:
+After adding the Font and CSS assets you should see something like this:
 
 ![Example output](public/example-output.png?raw=true)
+
+### Assets: Images
+
+> NOTE: this is only required if you use some components that use image assets, like `atoms/map/GoogleMap`.
+
+Copy the contents of `/public/assets/images` to the location where you stores the asssets in you project (its usually `/public`).
+
+Also you need to configure the `publicAssetsPath` in `<AlpsContextProvider />`. For example, if you copied all assets to `/public/assets`:
+
+```jsx
+<AlpsContextProvider publicAssetsPath="/assets">
+  <Body primaryColor="bluejay" hasGrid>
+    {/* ALPS-React components go here */}
+  </Body>
+</AlpsContextProvider>
+```
+
+(Note that in this example, the path `/` points to `/public`, so `/assets` points to `/public/assets)`
 
 ## Development
 
