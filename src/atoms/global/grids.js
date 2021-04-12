@@ -10,7 +10,7 @@ export const shiftBreakpoints = [
   'medium',
   'standard',
   'large',
-  'xlarge', // TODO: this one is missing in ALPS. Should it be added? See https://github.com/adventistchurch/alps/issues/515
+  'xlarge',
   'xxlarge',
 ]
 
@@ -29,8 +29,8 @@ export const wrapSizes = [
 
 /**
  *  Examples:
- *    `getShiftClass('left','xxlarge') // 'u-shift--left--1-col--at-xxlarge'`
- *    `getShiftClass('right','standard') // 'u-shift--left--1-col--standard'`
+ *    `getShiftClass('left','xxlarge') // => 'u-shift--left--1-col--at-xxlarge'`
+ *    `getShiftClass('right','standard') // => 'u-shift--right--1-col--standard'`
  *
  * @param {string} side One of ['left', 'right']
  * @param {string} at one of `shiftBreakpoints`
