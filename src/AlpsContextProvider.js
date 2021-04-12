@@ -5,18 +5,26 @@ import 'intersection-observer' // Polyfill required for react-lazy-images
 
 import { DrawerContextProvider } from './helpers/useDrawerContext'
 import { LinkContextProvider } from './helpers/useLinkContext'
+import { AssetsContextProvider } from './helpers/useAssetsContext'
 
-export default function AlpsContextProvider({ LinkWrapper, children }) {
+export default function AlpsContextProvider({
+  LinkWrapper,
+  publicAssetsPath,
+  children,
+}) {
   return (
-    <LinkContextProvider LinkWrapper={LinkWrapper}>
-      <DrawerContextProvider>{children}</DrawerContextProvider>
-    </LinkContextProvider>
+    <AssetsContextProvider publicAssetsPath={publicAssetsPath}>
+      <LinkContextProvider LinkWrapper={LinkWrapper}>
+        <DrawerContextProvider>{children}</DrawerContextProvider>
+      </LinkContextProvider>
+    </AssetsContextProvider>
   )
 }
 
 AlpsContextProvider.propTypes = {
   children: PropTypes.node,
   LinkWrapper: PropTypes.func,
+  publicAssetsPath: PropTypes.string,
 }
 
-export { DrawerContextProvider, LinkContextProvider }
+export { AssetsContextProvider, DrawerContextProvider, LinkContextProvider }

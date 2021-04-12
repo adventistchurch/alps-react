@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { storiesOf } from '@storybook/react'
-import { boolean, select } from '@storybook/addon-knobs'
+import { boolean, select, text } from '@storybook/addon-knobs'
 
 import { primaryColors, secondaryColors } from './atoms/global/colors'
 import Button from './atoms/buttons/Button'
@@ -21,13 +21,17 @@ CustomLinkWrapper.propTypes = {
 }
 
 export function alpsThemeTab(settings = {}) {
-  const { secondaryColor, primaryColor, hasGrid, tab } = {
-    ...{ tab: 'Theme', primaryColor: 'ming', hasGrid: true },
+  const { secondaryColor, primaryColor, publicAssetsPath, hasGrid, tab } = {
+    ...{
+      tab: 'Theme',
+      primaryColor: 'ming',
+      hasGrid: true,
+      publicAssetsPath: '/assets',
+    },
     ...settings,
   }
 
   return {
-    hasGrid: boolean('Has Grid', hasGrid, tab),
     primaryColor: select('Primary color', primaryColors, primaryColor, tab),
     secondaryColor: select(
       'Secondary color',
@@ -35,6 +39,8 @@ export function alpsThemeTab(settings = {}) {
       secondaryColor,
       tab
     ),
+    hasGrid: boolean('Has Grid', hasGrid, tab),
+    publicAssetsPath: text('Path to Public Assets', publicAssetsPath, tab),
   }
 }
 
@@ -57,8 +63,8 @@ storiesOf('helpers/AlpsContextProvider', module)
               image={{
                 srcSet: {
                   default: '//picsum.photos/480/270?image=248',
-                  '500': '//picsum.photos/720/405?image=248',
-                  '900': '//picsum.photos/960/540?image=248',
+                  500: '//picsum.photos/720/405?image=248',
+                  900: '//picsum.photos/960/540?image=248',
                 },
                 alt: 'Placeholder image',
               }}

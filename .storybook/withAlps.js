@@ -8,7 +8,9 @@ import { ThemeWrap } from '../src/Body'
 
 export function withAlpsContext(props = {}) {
   return story => (
-    <AlpsContextProvider {...props}>{story()}</AlpsContextProvider>
+    <AlpsContextProvider {...props} publicAssetsPath="/assets">
+      {story()}
+    </AlpsContextProvider>
   )
 }
 
