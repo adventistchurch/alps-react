@@ -31,8 +31,7 @@ function getTabData(name, settings = {}) {
 
 function logoTab(settings = {}) {
   const { logo, tab } = getTabData('Logo', settings)
-
-  const { canBeDark, link, useFillTheme } = logo
+  const { canBeDark, link, useFillTheme, wide } = logo
 
   const logoName = select('Logo', Object.keys(logos), 'SDA', tab)
 
@@ -41,6 +40,7 @@ function logoTab(settings = {}) {
     link: text('Link', link, tab),
     canBeDark: boolean('Logo can be dark', canBeDark, tab),
     useFillTheme: boolean('Logo Use Fill Theme', useFillTheme, tab),
+    wide: boolean('Logo can be wide', wide, tab),
   }
 }
 
