@@ -15,7 +15,11 @@ function Header({ drawer, logo, className, primaryNav, secondaryNav }) {
           <div className="c-header__nav-secondary">
             <SecondaryNavigation {...secondaryNav} />
           </div>
-          <div className="c-header__logo c-logo">
+          <div
+            className={`c-header__logo c-logo ${
+              logo.wide ? 'c-header__logo--wide' : ''
+            }`}
+          >
             <Link
               canBe={logo.canBeDark ? 'dark-dark' : null}
               className="c-logo__link"
@@ -47,6 +51,7 @@ Header.propTypes = {
     link: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     element: PropTypes.node,
     useFillTheme: PropTypes.bool,
+    wide: PropTypes.bool,
   }),
   primaryNav: PropTypes.object,
   secondaryNav: PropTypes.object,
@@ -59,6 +64,7 @@ Header.defaultProps = {
     link: '/',
     element: <SDALogo />,
     useFillTheme: true,
+    wide: false,
   },
   primaryNav: {},
   secondaryNav: {},
