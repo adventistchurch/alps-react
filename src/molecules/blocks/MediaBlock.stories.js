@@ -63,7 +63,7 @@ function imageTab(settings = {}) {
   return {
     asBackgroundImage: boolean('As Background Image', asBackgroundImage, tab),
     imageCaption: text('Caption', imageCaption, tab),
-    ...(showImage ? pictureTab({ ...image, tab }) : {}),
+    image: showImage ? pictureTab({ ...image, tab }) : {},
   }
 }
 

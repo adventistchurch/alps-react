@@ -7,7 +7,7 @@ import useClasses from '../../helpers/useClasses'
 import InlineStyles from '../../helpers/InlineStyles'
 import useResponsiveStyles from '../../helpers/useResponsiveStyles'
 
-function MediaImage({
+export default function MediaImage({
   asBackgroundImage,
   caption,
   className,
@@ -42,9 +42,9 @@ function MediaImage({
         <div className="c-block__image-wrap">
           <Link href={url} title={image.caption || image.alt}>
             <Picture
-              image={image}
+              {...image}
               // TODO: FIX: find a better way to hide picture when asBackgroundImage is enabled
-              style={asBackgroundImage ? { visibility: 'hidden' } : null}
+              className={asBackgroundImage ? 'is-hidden' : ''}
             />
           </Link>
 
@@ -72,9 +72,7 @@ MediaImage.propTypes = {
   className: PropTypes.string,
   caption: PropTypes.string,
   icon: PropTypes.string,
-  image: Picture.propTypes.image,
+  image: PropTypes.object,
   type: PropTypes.oneOf(['audio', 'gallery', 'video']),
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 }
-
-export default MediaImage

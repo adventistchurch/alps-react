@@ -14,11 +14,9 @@ storiesOf('molecules/components/Slide', module)
   .addWithJSX('Default', () => {
     const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
     const alt = text('Image Alt', data.image.alt, propsTab)
-    const lazy = boolean('Layz load image', false, propsTab)
 
     const image = {
       alt,
-      lazy,
       srcSet,
     }
 
@@ -28,7 +26,6 @@ storiesOf('molecules/components/Slide', module)
   .addWithJSX('With heading', () => {
     const srcSet = object('Image SrcSet *', data.image.srcSet, propsTab)
     const alt = text('Image Alt', data.image.alt, propsTab)
-    const lazy = boolean('Lazy load image', false, propsTab)
     const heading = text('Heading *', data.heading, textTab)
     const dek = text('Description *', data.dek, textTab)
     const subtitle = text('Subtitle', data.subtitle, textTab)
@@ -38,7 +35,6 @@ storiesOf('molecules/components/Slide', module)
 
     const image = {
       alt,
-      lazy,
       srcSet,
     }
 

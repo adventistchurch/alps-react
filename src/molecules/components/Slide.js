@@ -5,14 +5,13 @@ import Button from '../../atoms/buttons/Button'
 import Picture from '../../atoms/images/Picture'
 import { Div, HeadingTwo, HeadingThree } from '../../helpers/Element'
 
-function Slide({
+export default function Slide({
   heading,
   subtitle,
   dek,
   cta,
   url,
   image,
-  imageIsLazy,
   className,
   textClass,
   ...others
@@ -23,7 +22,7 @@ function Slide({
       position="relative"
       {...others}
     >
-      <Picture image={image} lazy={imageIsLazy} />
+      <Picture {...image} />
       {heading && (
         <Div className="c-carousel__item-text__wrap" seven shiftLeftAt="large">
           <Div gridItemSizeAtM={4} gridItemSizeAtXL={3}>
@@ -76,8 +75,7 @@ Slide.propTypes = {
   cta: PropTypes.string,
   dek: PropTypes.string,
   heading: PropTypes.string,
-  image: Picture.propTypes.image.isRequired,
-  imageIsLazy: Picture.propTypes.lazy,
+  image: PropTypes.object,
   subtitle: PropTypes.string,
   textClass: PropTypes.string,
   url: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -85,5 +83,3 @@ Slide.propTypes = {
 Slide.defaultProps = {
   className: '',
 }
-
-export default Slide

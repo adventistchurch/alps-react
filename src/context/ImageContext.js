@@ -14,10 +14,7 @@ ImageProvider.propTypes = {
   children: PropTypes.node,
   ImageComponent: PropTypes.func,
 }
-ImageProvider.defaultProps = {
-  ImageComponent: props => <img {...props} />,
-}
 
-export function useImageContext() {
+export function useImageComponent() {
   return useContext(ImageContext)
 }

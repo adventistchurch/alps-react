@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { boolean, text, object, select } from '@storybook/addon-knobs'
+import { text, object, select } from '@storybook/addon-knobs'
 
 import FigureWithCaption from './FigureWithCaption'
 import { figureSizes, figureAlignPositions } from '../../atoms/global/figures'
@@ -28,7 +28,7 @@ export function generalTab(settings = {}) {
 }
 
 export function mediaTab(settings = {}) {
-  const { videoSrc, image, lazy, type, tab } = getTabData('Media', settings)
+  const { videoSrc, image, type, tab } = getTabData('Media', settings)
 
   const mediaType = select('Type', ['video', 'image'], type, tab)
 
@@ -41,7 +41,6 @@ export function mediaTab(settings = {}) {
           srcSet: object('Image SrcSet *', image.srcSet, tab),
           alt: text('Image Alt', image.alt, tab),
         },
-        lazy: boolean('Lazyload Image', lazy, tab),
       }
 }
 

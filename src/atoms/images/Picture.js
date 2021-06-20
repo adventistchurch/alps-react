@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useImageComponent } from '../../context/ImageContext'
 
-import Image from './Image'
+export default function Picture({ alt, srcSet, ...props }) {
+  const Img = useImageComponent()
 
-export default function Picture({ image, lazy, style }) {
-  if (!image || !image.srcSet) return null
+  if (Img) return <Img alt={alt} srcSet={srcSet} {...props} asPicture />
 
-  const { alt, srcSet } = image
-
-  const { default: defaultImage, placeholder, ...otherImages } = srcSet
+  if (!srcSet) return null
+  const { default: defaultImage, ...otherImages } = srcSet
 
   return (
-    <picture className="picture" style={style}>
+    <picture {...props}>
       {Object.keys(otherImages)
         .reverse()
         .map((size, i) => (
@@ -21,24 +21,11 @@ export default function Picture({ image, lazy, style }) {
             srcSet={otherImages[size]}
           />
         ))}
-      <Image
-        alt={alt}
-        lazy={lazy}
-        src={defaultImage}
-        placeholderSrc={placeholder}
-      />
+      <img alt={alt} src={defaultImage} />
     </picture>
   )
 }
-
 Picture.propTypes = {
-  image: PropTypes.shape({
-    alt: PropTypes.string.isRequired,
-    srcSet: PropTypes.object.isRequired,
-  }),
-  lazy: PropTypes.bool,
-  style: PropTypes.object,
-}
-Picture.defaultProps = {
-  image: { srcSet: {}, alt: '' },
+  alt: PropTypes.string.isRequired,
+  srcSet: PropTypes.object.isRequired,
 }

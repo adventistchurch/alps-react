@@ -7,7 +7,7 @@ import Title from '../../atoms/texts/Title'
 import { Div } from '../../helpers/Element'
 import useToggle from '../../helpers/useToggle'
 
-function GalleryBlock({ images, kicker, title }) {
+export default function GalleryBlock({ images, kicker, title }) {
   const { onToggle, openClass } = useToggle()
 
   const thumbImage = images.length > 0 ? images[0] : null
@@ -58,7 +58,7 @@ function GalleryBlock({ images, kicker, title }) {
               }`}
               key={key}
             >
-              <Picture image={image} />
+              <Picture {...image} />
               {image.caption && (
                 <Div
                   className="c-gallery-block__caption"
@@ -80,7 +80,7 @@ function GalleryBlock({ images, kicker, title }) {
 }
 
 GalleryBlock.propTypes = {
-  images: PropTypes.arrayOf(Picture.propTypes.image),
+  images: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   kicker: PropTypes.string,
 }
@@ -88,5 +88,3 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   images: [],
 }
-
-export default GalleryBlock

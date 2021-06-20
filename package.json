@@ -20,10 +20,7 @@
   "repository": "git@github.com:adventistchurch/alps-react.git",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "dependencies": {
-    "intersection-observer": "^0.12.0",
-    "react-lazy-images": "^1.1.0"
-  },
+  "dependencies": {},
   "files": [
     "dist"
   ],
