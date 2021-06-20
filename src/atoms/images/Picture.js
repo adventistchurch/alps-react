@@ -26,6 +26,6 @@ export default function Picture({ alt, srcSet, ...props }) {
   )
 }
 Picture.propTypes = {
-  alt: PropTypes.string.isRequired,
-  srcSet: PropTypes.object.isRequired,
+  alt: PropTypes.string,
+  srcSet: PropTypes.object,
 }
