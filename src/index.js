@@ -18,3 +18,18 @@ export function getExternalAssets({
     ],
   }
 }
+
+// Extracted from ALPS project (https://github.com/adventistchurch/alps/blob/v3.x/source/css/_settings.variables.scss#L153)
+const breakpoints = {
+  xsmall: 350,
+  small: 500,
+  medium: 700,
+  large: 900,
+  xlarge: 1100,
+  xxlarge: 1300,
+  xxxlarge: 1500,
+}
+
+const breakpointsWidths = Object.keys(breakpoints).map(k => breakpoints[k])
+
+export { breakpoints, breakpointsWidths }
