@@ -13,8 +13,6 @@ function useInputFocus(hasFocus) {
   const focusTimeout = setTimeout(() => {
     if (hasFocus) {
       input && input.focus()
-    } else {
-      input && input.blur()
     }
   }, 250)
 
