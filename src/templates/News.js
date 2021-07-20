@@ -47,6 +47,10 @@ function News({
               linkUrl={extendedFeatures.linkUrl}
               paddingRight
               paddingBottom="double"
+              spaceBottom="double"
+              backgroundColor="gray--light"
+              themeBorder="darker"
+              themeBorderSide="left"
             >
               {extendedFeatures.items &&
                 extendedFeatures.items.map((item, key) => (
