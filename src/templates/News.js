@@ -19,7 +19,7 @@ function News({
   latest,
   pageHeader,
   featured,
-  extendedFeatured,
+  extendedFeatures,
   media,
   pagination,
   subscribeForm,
@@ -40,15 +40,16 @@ function News({
 
       <Grid seven as="section" wrap={6} spacingDoubleUntil="large">
         <GridItem sizeAtL={4} paddingSides="zero">
-          {extendedFeatured?.items?.length > 0 && (
+          {extendedFeatures?.items?.length > 0 && (
             <ListContent
-              title={extendedFeatured.title}
-              linkLabel={extendedFeatured.linkLabel}
-              linkUrl={extendedFeatured.linkUrl}
+              title={extendedFeatures.title}
+              linkLabel={extendedFeatures.linkLabel}
+              linkUrl={extendedFeatures.linkUrl}
               paddingRight
+              paddingBottom="double"
             >
-              {extendedFeatured.items &&
-                extendedFeatured.items.map((item, key) => (
+              {extendedFeatures.items &&
+                extendedFeatures.items.map((item, key) => (
                   <MediaBlock
                     key={`extended-featured-item-${key}`}
                     type="featuredNews"
@@ -165,7 +166,7 @@ News.propTypes = {
     search: PropTypes.object,
   }),
   featured: PropTypes.object,
-  extendedFeatured: PropTypes.shape({
+  extendedFeatures: PropTypes.shape({
     title: PropTypes.string,
     linkLabel: PropTypes.string,
     linkUrl: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -193,7 +194,7 @@ News.defaultProps = {
     linkLabel: 'See all',
     linkUrl: '#',
   },
-  extendedFeatured: {
+  extendedFeatures: {
     title: 'Featured Stories',
     linkLabel: 'See all',
     linkUrl: '#',

@@ -24,8 +24,8 @@ function getTabData(name, settings = {}) {
 export { pageHeaderTab }
 
 export function featuredTab(settings = {}) {
-  const { latest, tab } = getTabData('Featured', settings)
-  const { title, titlePrefix, image, category, date, url } = latest
+  const { featured, tab } = getTabData('Featured', settings)
+  const { title, titlePrefix, image, category, date, url } = featured
 
   return {
     titlePrefix: text('Title prefix', titlePrefix, tab),
@@ -37,9 +37,21 @@ export function featuredTab(settings = {}) {
   }
 }
 
+export function extendedFeaturesTab(settings = {}) {
+  const { extendedFeatures, tab } = getTabData('Extended Features', settings)
+  const { title, linkLabel, linkUrl, items } = extendedFeatures || {}
+
+  return {
+    title: text('Title', title, tab),
+    linkLabel: text('Link Label', linkLabel, tab),
+    linkUrl: text('Link Url', linkUrl, tab),
+    items: object('Items', items, tab),
+  }
+}
+
 export function latestTab(settings = {}) {
-  const { featured, tab } = getTabData('Latest news', settings)
-  const { title, linkLabel, linkUrl, items } = featured || {}
+  const { latest, tab } = getTabData('Latest news', settings)
+  const { title, linkLabel, linkUrl, items } = latest || {}
 
   return {
     title: text('Title', title, tab),
@@ -90,6 +102,7 @@ export function useNewsTabs(settings = {}) {
   return {
     pageHeader: pageHeader ? pageHeaderTab(pageHeader) : null,
     featured: featuredTab(settings),
+    extendedFeatures: extendedFeaturesTab(settings),
     latest: latestTab(settings),
     aside: aside ? asideTab(aside) : null,
     media: mediaTab(settings),

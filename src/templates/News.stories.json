@@ -2,7 +2,7 @@
   "pageHeader": {
     "title": "News"
   },
-  "latest": {
+  "featured": {
     "title": "Adventist student’s incredible story of survival",
     "titlePrefix": "Breaking",
     "category": "NORTH AMERICAN DIVISION",
@@ -17,7 +17,42 @@
       }
     }
   },
-  "featured": {
+  "extendedFeatures": {
+    "title": "Extended Features",
+    "linkLabel": "See all",
+    "linkUrl": "#",
+    "items": [
+      {
+        "title": "Adventist student’s incredible story of survival",
+        "category": "NORTH AMERICAN DIVISION",
+        "date": "2017-12-28 10:30",
+        "url": "#",
+        "image": {
+          "alt": "Eligendi quod dolorem",
+          "srcSet": {
+            "default": "https://picsum.photos/480/270?random=1",
+            "500": "https://picsum.photos/720/405?random=1",
+            "900": "https://picsum.photos/960/540?random=1"
+          }
+        }
+      },
+      {
+        "title": "In dicta qui earum",
+        "category": "facilis nesciunt suscipit",
+        "date": "2017-12-28 10:30",
+        "url": "#",
+        "image": {
+          "alt": "Eligendi quod dolorem",
+          "srcSet": {
+            "default": "https://picsum.photos/480/270?random=2",
+            "500": "https://picsum.photos/720/405?random=2",
+            "900": "https://picsum.photos/960/540?random=2"
+          }
+        }
+      }
+    ]
+  },
+  "latest": {
     "title": "Latest news",
     "linkLabel": "See all",
     "linkUrl": "#",
