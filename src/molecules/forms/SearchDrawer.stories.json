@@ -1,0 +1,47 @@
+{
+  "placeholder": "Search...",
+  "submitLabel": "Search",
+  "suggestions": {
+    "itemsTitle": "In this site",
+    "items": [
+      {
+        "key": "abc1",
+        "text": "Lorem ipsum dolor sit amet consectetur",
+        "href": "#"
+      },
+      {
+        "key": "abc2",
+        "text": "Molestias libero optio eaque, asperiores reiciendis",
+        "href": "#"
+      },
+      {
+        "key": "abc3",
+        "text": "Facilis, accusamus beatae a earum minima omnis vero culpa exercitationem!",
+        "href": "#"
+      }
+    ],
+    "otherTitle": "In other sites",
+    "otherItems": [
+      {
+        "key": "abc4",
+        "text": "Voluptate debitis nemo odit adipisci optio?",
+        "href": "#"
+      },
+      {
+        "key": "abc5",
+        "text": "Ipsa quia, laboriosam ex exercitationem minus",
+        "href": "#"
+      },
+      {
+        "key": "abc6",
+        "text": "Perspiciatis vitae quidem, ratione vero maxime quos! ",
+        "href": "#"
+      },
+      {
+        "key": "abc7",
+        "text": "Recusandae, repellat? Vero architecto dolorem necessitatibus eius iusto culpa.",
+        "href": "#"
+      }
+    ]
+  }
+}
