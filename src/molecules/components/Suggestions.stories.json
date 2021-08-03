@@ -1,0 +1,12 @@
+{
+  "items": [
+    { "key": "abc1", "text": "Hi", "href": "#" },
+    { "key": "abc2", "text": "Hello", "href": "#" },
+    { "key": "abc3", "text": "Hola", "href": "#" }
+  ],
+  "otherItems": [
+    { "key": "abc4", "text": "Hallo", "href": "#" },
+    { "key": "abc5", "text": "Hallo", "href": "#" },
+    { "key": "abc6", "text": "Hallooo", "href": "#" }
+  ]
+}
