@@ -18,6 +18,7 @@ function BaseInput({ checked, error, type, value, hasFocus, ...props }) {
       className: inputClass,
       defaultChecked: checked,
       defaultValue: value,
+      value,
       ref: inputFocusRef,
       type,
       ...props,
