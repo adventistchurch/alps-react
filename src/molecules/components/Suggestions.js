@@ -48,7 +48,7 @@ export default function Suggestions({
       style={{ display: visible ? 'block' : 'none' }}
     >
       <SuggestionsList items={items} title={itemsTitle} />
-      {otherItems?.length && (
+      {otherItems?.length > 0 && (
         <SuggestionsList items={otherItems} title={otherTitle} />
       )}
     </div>

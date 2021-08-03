@@ -6,7 +6,7 @@ import Suggestions from '../components/Suggestions'
 import Form from './elements/Form'
 import TextField from './elements/TextField'
 
-export default function Search({
+export default function SearchDrawer({
   clearLabel,
   filters,
   filtersLabel,
@@ -98,7 +98,7 @@ export default function Search({
   )
 }
 
-Search.propTypes = {
+SearchDrawer.propTypes = {
   clearLabel: PropTypes.string,
   hasFocus: PropTypes.bool,
   name: PropTypes.string,
@@ -118,7 +118,7 @@ Search.propTypes = {
   term: PropTypes.string,
 }
 
-Search.defaultProps = {
+SearchDrawer.defaultProps = {
   clearLabel: 'Clear search',
   name: 'search',
   placeholder: 'Search...',
