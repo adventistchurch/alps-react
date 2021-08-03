@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from '../../helpers/Element'
 
 function SuggestionsList({ title, items }) {
   return (
@@ -11,17 +12,27 @@ function SuggestionsList({ title, items }) {
         className="c-suggestions__list u-spacing--quarter"
         data-context="search-other-suggestions"
       >
-        {items?.map(({ text, href, onClick, key }) => (
-          <li key={key}>
-            <a
-              className="u-theme--color--darker can-be--white"
-              onClick={onClick}
-              href={href}
-            >
-              {text}
-            </a>
-          </li>
-        ))}
+        {items?.map(({ text, href, onClick, external, key }) => {
+          const itemProps = external
+            ? {
+                target: '_blank',
+                rel: 'noreferrer',
+              }
+            : {}
+
+          return (
+            <li key={key}>
+              <Link
+                className="u-theme--color--darker can-be--white"
+                onClick={onClick}
+                href={href}
+                {...itemProps}
+              >
+                {text}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
