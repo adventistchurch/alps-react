@@ -25,20 +25,17 @@ export function useSearchDrawerTab(settings = {}) {
 
   const initialTerm = withSuggestions
     ? text('Default Term', defaultTerm, tab)
-    : undefined
+    : ''
 
   const [term, setTerm] = useState(initialTerm)
-
-  const onSearch = e => {
-    setTerm(e.target.value)
-  }
 
   return {
     placeholder: text('Placeholder', placeholder, tab),
     suggestions: withSuggestions
       ? object('Suggestions', term ? suggestions : null, tab)
       : undefined,
-    onSearch: withSuggestions ? onSearch : undefined,
+    onSearch: value => setTerm(value),
+    onClear: () => setTerm(initialTerm),
     term,
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Icon from '../../atoms/icons/Icon'
 import Suggestions from '../components/Suggestions'
 import Form from './elements/Form'
+import SubmitButton from './elements/SubmitButton'
 import TextField from './elements/TextField'
 
 export default function SearchDrawer({
@@ -64,7 +65,7 @@ export default function SearchDrawer({
               required
               autoComplete="off"
             />
-
+            <SubmitButton className="c-search-drawer__submit" vishidden />
             {showClear && (
               <button
                 className="o-button o-button--simple can-be--white"
