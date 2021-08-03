@@ -16,7 +16,7 @@ const baseProps = {
   paddingBottom: 'double',
 }
 
-function SearchHeader(props) {
+export default function SearchHeader(props) {
   return <BaseSearch {...baseProps} {...props} />
 }
 
@@ -26,6 +26,12 @@ SearchHeader.propTypes = {
   searchAgainLabel: PropTypes.string,
   searchLabel: PropTypes.string,
   showSearchAgain: PropTypes.bool,
+  suggestions: PropTypes.shape({
+    items: PropTypes.array,
+    itemsTitle: PropTypes.string,
+    otherItems: PropTypes.array,
+    otherTitle: PropTypes.string,
+  }),
 }
 SearchHeader.defaultProps = {
   placeholder: 'Search...',
@@ -33,5 +39,3 @@ SearchHeader.defaultProps = {
   searchLabel: 'Search',
   showSearchAgain: true,
 }
-
-export default SearchHeader
