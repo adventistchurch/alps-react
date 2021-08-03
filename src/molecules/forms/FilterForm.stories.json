@@ -1,0 +1,13 @@
+{
+  "filterLabel": "Filter",
+  "filterOptions": [
+    { "id": "option-1", "label": "Option 1", "href": "#" },
+    { "id": "option-2", "label": "Option 2", "href": "#" }
+  ],
+
+  "sortLabel": "Sort by",
+  "sortOptions": [
+    { "id": "option-1", "label": "Option 1", "href": "#" },
+    { "id": "option-2", "label": "Option 2", "href": "#" }
+  ]
+}
