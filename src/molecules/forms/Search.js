@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Fieldset from './elements/Fieldset'
@@ -22,6 +22,18 @@ function Search({
   title,
   ...props
 }) {
+  const [showSuggestions, setShowSuggestions] = useState()
+
+  const onTermChange = useCallback(
+    e => {
+      const term = e.target.value || ''
+      setShowSuggestions(term.length > 0)
+
+      if (typeof onSearch === 'function') onSearch(e)
+    },
+    [onSearch]
+  )
+
   return (
     <Form className="search-form" role="search" onSubmit={onSubmit} {...props}>
       <Fieldset legend={title} legendVishidden>
@@ -32,12 +44,14 @@ function Search({
             name="search"
             placeholder={placeholder}
             hasFocus={hasFocus}
-            onChange={onSearch}
+            onChange={onTermChange}
             value={term}
             required
             autoComplete="off"
           />
-          {suggestions && <Suggestions items={suggestions} />}
+          {suggestions && (
+            <Suggestions {...suggestions} visible={showSuggestions} />
+          )}
         </div>
 
         <SubmitButton
@@ -56,7 +70,12 @@ Search.propTypes = {
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
   submitLabel: PropTypes.string,
-  suggestions: PropTypes.array,
+  suggestions: PropTypes.shape({
+    items: PropTypes.array,
+    itemsTitle: PropTypes.string,
+    otherItems: PropTypes.array,
+    otherTitle: PropTypes.string,
+  }),
   term: PropTypes.string,
   title: PropTypes.string,
 }
