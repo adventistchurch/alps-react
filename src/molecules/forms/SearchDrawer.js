@@ -12,10 +12,12 @@ export default function Search({
   filtersLabel,
   hasFocus,
   name,
+  onClear,
   onSearch,
   onSubmit,
   placeholder,
   suggestions,
+  showClear,
   term,
   ...props
 }) {
@@ -29,6 +31,15 @@ export default function Search({
       if (typeof onSearch === 'function') onSearch(e)
     },
     [onSearch]
+  )
+
+  const onTermClear = useCallback(
+    e => {
+      e.preventDefault()
+
+      if (typeof onClear === 'function') onClear(e)
+    },
+    [onClear]
   )
 
   return (
@@ -54,9 +65,14 @@ export default function Search({
               autoComplete="off"
             />
 
-            <button className="o-button o-button--simple can-be--white">
-              <font>{clearLabel}</font>
-            </button>
+            {showClear && (
+              <button
+                className="o-button o-button--simple can-be--white"
+                onClick={onTermClear}
+              >
+                <font>{clearLabel}</font>
+              </button>
+            )}
           </div>
 
           {filters && (
@@ -88,9 +104,11 @@ Search.propTypes = {
   name: PropTypes.string,
   filters: PropTypes.node,
   filtersLabel: PropTypes.string,
+  onClear: PropTypes.func,
   onSearch: PropTypes.func,
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
+  showClear: PropTypes.bool,
   suggestions: PropTypes.shape({
     items: PropTypes.array,
     itemsTitle: PropTypes.string,
@@ -104,4 +122,5 @@ Search.defaultProps = {
   clearLabel: 'Clear search',
   name: 'search',
   placeholder: 'Search...',
+  showClear: true,
 }
