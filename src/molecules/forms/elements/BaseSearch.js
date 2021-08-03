@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../../atoms/buttons/Button'
@@ -29,6 +29,17 @@ function BaseSearch({
   ...props
 }) {
   const { onToggle, openClass } = useToggle(false, 'c-filter-is-active', '')
+  const [showSuggestions, setShowSuggestions] = useState()
+
+  const onTermChange = useCallback(
+    e => {
+      const term = e.target.value || ''
+      setShowSuggestions(term.length > 0)
+
+      if (typeof onSearch === 'function') onSearch(e)
+    },
+    [onSearch]
+  )
 
   return (
     <Div
@@ -46,14 +57,16 @@ function BaseSearch({
                 color="gray"
                 fontType="secondary"
                 fontSize="s"
-                onChange={onSearch}
+                onChange={onTermChange}
                 placeholder={placeholder}
                 themeColor="darker"
                 autoComplete="off"
                 type="search"
                 value={term}
               />
-              {suggestions && <Suggestions items={suggestions} />}
+              {suggestions && (
+                <Suggestions {...suggestions} visible={showSuggestions} />
+              )}
             </div>
           </Div>
           <Div {...nestedProps}>
@@ -110,7 +123,12 @@ BaseSearch.propTypes = {
   searchLabel: PropTypes.string,
   showSearchAgain: PropTypes.bool,
   sorting: PropTypes.object,
-  suggestions: PropTypes.array,
+  suggestions: PropTypes.shape({
+    items: PropTypes.array,
+    itemsTitle: PropTypes.string,
+    otherItems: PropTypes.array,
+    otherTitle: PropTypes.string,
+  }),
   ...Div.propTypes,
 }
 BaseSearch.defaultProps = {
