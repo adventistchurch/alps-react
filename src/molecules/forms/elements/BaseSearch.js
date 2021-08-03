@@ -5,9 +5,9 @@ import Button from '../../../atoms/buttons/Button'
 import Element, { Div } from '../../../helpers/Element'
 import renderItems from '../../../helpers/renderItems'
 import useToggle from '../../../helpers/useToggle'
+import Suggestions from '../../components/Suggestions'
 import FilterGroup from './FilterGroup'
 import Form from './Form'
-import Suggestions from './Suggestions'
 
 const styles = {
   inputWrap: { position: 'relative' },

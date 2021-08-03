@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { UL, LI, Link } from '../../../helpers/Element'
+import { UL, LI, Link } from '../../helpers/Element'
 
 export default function Suggestions({ items }) {
   return (

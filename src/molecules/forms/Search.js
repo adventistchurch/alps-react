@@ -5,7 +5,7 @@ import Fieldset from './elements/Fieldset'
 import Form from './elements/Form'
 import TextField from './elements/TextField'
 import SubmitButton from './elements/SubmitButton'
-import Suggestions from './elements/Suggestions'
+import Suggestions from '../components/Suggestions'
 
 const styles = {
   inputWrap: { position: 'relative' },
