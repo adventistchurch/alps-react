@@ -63,6 +63,7 @@ function ContentBlock({
       {image && <MediaImage image={image} url={url} />}
 
       <HeadingThree
+        className="c-block__title"
         fontType="primary"
         fontSize={titleSize}
         themeColor="darker"
@@ -74,10 +75,10 @@ function ContentBlock({
             themeLinkHover="dark"
             href={url}
           >
-            <strong>{title}</strong>
+            {title}
           </Link>
         ) : (
-          <strong>{title}</strong>
+          title
         )}
       </HeadingThree>
 
