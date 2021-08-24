@@ -5,7 +5,7 @@ export {
 } from './AlpsContextProvider'
 
 export function getExternalAssets({
-  version = '3.11.3',
+  version = '3.11.4',
   theme = 'bluejay',
 } = {}) {
   // Sets suffix for ALPS CSS theme (if `theme` provided)
