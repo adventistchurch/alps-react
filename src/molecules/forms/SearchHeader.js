@@ -6,7 +6,6 @@ import BaseSearch from './elements/BaseSearch'
 const baseProps = {
   contentProps: {
     seven: true,
-    shiftAt: 'large',
     shiftLeftAt: 'medium',
   },
   nestedProps: {
