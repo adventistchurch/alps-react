@@ -2,12 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../../atoms/buttons/Button'
-import Text from '../../atoms/texts/Text'
-import { Paragraph } from '../../helpers/Element'
+import { Paragraph, Div } from '../../helpers/Element'
 import ContentBlock from '../../molecules/blocks/ContentBlock'
 
-function SearchResults({
-  learnMoreLabel,
+export default function SearchResults({
   loadMoreLabel,
   loadMoreUrl,
   noResultsLabel,
@@ -16,15 +14,10 @@ function SearchResults({
   showLoadMore,
 }) {
   return (
-    <Text className="c-search-results" spacing="double">
+    <Div className="c-search-results" spacing="double">
       {Array.isArray(results) && results.length > 0 ? (
-        results.map(({ cta, ...rest }, i) => (
-          <ContentBlock
-            key={`result-item-${i}`}
-            titleSize="m"
-            cta={cta || learnMoreLabel}
-            {...rest}
-          />
+        results.map((props, i) => (
+          <ContentBlock key={`result-item-${i}`} titleSize="m" {...props} />
         ))
       ) : (
         <Paragraph>{noResultsLabel}</Paragraph>
@@ -39,13 +32,12 @@ function SearchResults({
           spaceLeft
         />
       )}
-    </Text>
+    </Div>
   )
 }
 
 SearchResults.propTypes = {
   results: PropTypes.array,
-  learnMoreLabel: PropTypes.string,
   loadMoreLabel: PropTypes.string,
   loadMoreUrl: PropTypes.string,
   noResultsLabel: PropTypes.string,
@@ -54,10 +46,7 @@ SearchResults.propTypes = {
 }
 SearchResults.defaultProps = {
   results: [],
-  learnMoreLabel: 'Learn More',
   loadMoreLabel: 'Load More',
   noResultsLabel: 'No results',
   showLoadMore: false,
 }
-
-export default SearchResults
