@@ -11,6 +11,7 @@ function GridItem({
   sizeAtM,
   sizeAtS,
   sizeAtXL,
+  sizeAtXXL,
   ...props
 }) {
   return (
@@ -22,6 +23,7 @@ function GridItem({
       gridItemSizeAtM={sizeAtM}
       gridItemSizeAtL={sizeAtL}
       gridItemSizeAtXL={sizeAtXL}
+      gridItemSizeAtXXL={sizeAtXXL}
       noGridItemClass={noItemClass}
     >
       {children}
@@ -39,6 +41,7 @@ GridItem.propTypes = {
   sizeAtM: Element.propTypes.gridItemSizeAtM,
   sizeAtL: Element.propTypes.gridItemSizeAtL,
   sizeAtXL: Element.propTypes.gridItemSizeAtXL,
+  sizeAtXXL: Element.propTypes.gridItemSizeAtXL,
   ...Element.propTypes,
 }
 GridItem.defaultProps = {

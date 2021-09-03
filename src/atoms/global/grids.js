@@ -84,6 +84,7 @@ export function getGridItemClass({
   sizeAtM,
   sizeAtS,
   sizeAtXL,
+  sizeAtXXL,
 }) {
   const classes = []
 
@@ -96,6 +97,7 @@ export function getGridItemClass({
   if (sizeAtM) sizes.push({ size: sizeAtM, at: 'm' })
   if (sizeAtL) sizes.push({ size: sizeAtL, at: 'l' })
   if (sizeAtXL) sizes.push({ size: sizeAtXL, at: 'xl' })
+  if (sizeAtXL) sizes.push({ size: sizeAtXXL, at: 'xxl' })
 
   for (const { at, size } of sizes) {
     if (wrapSizes.includes(size)) {

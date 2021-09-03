@@ -120,6 +120,7 @@ function useElementProps(props) {
     gridItemSizeAtM,
     gridItemSizeAtL,
     gridItemSizeAtXL,
+    gridItemSizeAtXXL,
     noGridClass,
     noGridItemClass,
     noGridWrapClass,
@@ -320,7 +321,8 @@ function useElementProps(props) {
     gridItemSizeAtS ||
     gridItemSizeAtM ||
     gridItemSizeAtL ||
-    gridItemSizeAtXL
+    gridItemSizeAtXL ||
+    gridItemSizeAtXXL
   ) {
     classes.push(
       ...getGridItemClass({
@@ -329,6 +331,7 @@ function useElementProps(props) {
         sizeAtM: gridItemSizeAtM,
         sizeAtL: gridItemSizeAtL,
         sizeAtXL: gridItemSizeAtXL,
+        sizeAtXXL: gridItemSizeAtXXL,
         noItemClass: noGridItemClass,
       })
     )
@@ -429,6 +432,7 @@ Element.propTypes = {
   gridItemSizeAtM: gridItemSizePropType,
   gridItemSizeAtL: gridItemSizePropType,
   gridItemSizeAtXL: gridItemSizePropType,
+  gridItemSizeAtXXL: gridItemSizePropType,
   gridWrap: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(wrapSizes)]),
   noGridClass: PropTypes.bool,
   noGridItemClass: PropTypes.bool, // TODO: This is required as some items, like `.c-drawer__container` has a "grid-item"'s size class, but not `.l-grid-item`,
