@@ -41,11 +41,11 @@ export default function ArchivePage({
         as="section"
         gridWrap="6"
         noWrapClass
-        shiftLeftAt="xxlarge"
+        // shiftLeftAt="xxlarge"
         spacingDoubleUntil="xxlarge"
         paddingSides="zero"
       >
-        <GridItem className="c-article" sizeAtL="4" sizeAtXL="3">
+        <GridItem className="c-article" sizeAtL="4" sizeAtXXL="4">
           <Text
             as="article"
             className="c-article__body"
