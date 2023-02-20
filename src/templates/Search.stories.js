@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { object } from '@storybook/addon-knobs'
 
 import { useGlobalTab } from './TemplateWrap.stories.js'
+import { paginationTab } from '../molecules/navigation/Pagination.stories.js'
 import { pageHeaderTab } from '../organisms/sections/PageHeader.stories.js'
 import { useSearchHeaderTab } from '../molecules/forms/SearchHeader.stories.js'
 import data from './Search.stories.json'
@@ -29,12 +30,13 @@ export function resultsTab(settings = {}) {
 }
 
 export function useSearchTabs(settings = {}) {
-  const { pageHeader } = getTabData(null, settings)
+  const { pageHeader, pagination } = getTabData(null, settings)
   const searchHeader = useSearchHeaderTab(settings)
 
   return {
     pageHeader: pageHeaderTab(pageHeader),
     searchHeader: searchHeader,
+    pagination: paginationTab(pagination),
     ...resultsTab(settings),
     ...useGlobalTab(settings),
   }
